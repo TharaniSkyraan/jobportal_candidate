@@ -1,0 +1,81 @@
+@extends('layouts.app')
+
+
+@section('content')
+@include('layouts.header')
+
+@php $useraccountype = Cookie::get('accounttype'); @endphp 
+
+@php if($useraccountype=='') { $useraccountype = Cookie::queue('accounttype', 'candidate', 120); } @endphp
+<style>
+  .form-control:invalid {
+      border-color: #dc3545;
+      padding-right: calc(1.5em + 0.75rem);
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right calc(0.375em + 0.1875rem) center;
+      background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+  }
+</style>
+<section class="gradient-custom">
+  <div class="container pt-5 pb-3 h-100 ">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-6 col-lg-5 col-xl-5">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="card-body p-5">
+            <div class="">
+              <div class="text-center">
+                  <h4 class="fw-bolder mb-2">Ready to take the next step </h4>
+                  <p class="mb-2">Create an account or sign in.</p>
+                  
+                <div>
+                  <!--@if (Session::has('error'))-->
+                  <!--  <div class="alert alert-danger alert-dismissible fade show" role="alert" id="success-alert-update">-->
+                  <!--    <strong>Failed!</strong> {{ Session::get('error') }}-->
+                  <!--  </div>-->
+                  <!--@endif -->
+                </div>
+              </div>
+              <div class="row text-center mt-4">
+                <div class="col-md-4 col-sm-4 col-4 col-xs-4">
+                  <a href="{{ url('signinorsignup/google')}}" class=""><img src="{{ url('site_assets_1/assets/img/social_media/google.png')}}" width="40px"></a>
+                </div>
+                <div class="col-md-4 col-sm-4 col-4 col-xs-4">
+                  <a href="{{ url('signinorsignup/apple')}}" class=""><img src="{{ url('site_assets_1/assets/img/social_media/apple.png')}}" width="40px"></a>
+                </div> 
+                <div class="col-md-4 col-sm-4 col-4 col-xs-4">
+                  <a href="{{ url('signinorsignup/facebook')}}" class=""><img src="{{ url('site_assets_1/assets/img/social_media/fb.png')}}" width="40px"></a>
+                </div>
+
+              </div>
+
+              <div class="ln_cus my-2">
+                <div class="ln_cus_2 ln_cus_i"><span class=""> or </span></div>
+              </div>
+
+              <form class="mb-3" method="POST" action="{{ route('accountverification') }}" onsubmit='return validateLoginForm()' >
+                  {{ csrf_field() }}
+                  <div class="mb-5 formrow">
+                    <label class="form-label fw-bolder">Email address </label>
+                    <input type="text" name="email" class="form-control required_1 {{ Session::has('errors') ? ' is-invalid' : '' }}" autofocus id="email" value="{{ old('email') }}" placeholder="{{__('Enter Email Address')}}" >
+                    <small id="err_email" class="text-muted err_msg text-danger">@if (Session::has('errors')) {{ Session::get('errors') }} @endif</small>
+                  </div> 
+                  <div class="d-grid gap-2">
+                    {{-- btn btn-primary btn-round --}}
+                    <button class="btn btn_c_s text-wrap" type="submit">{{__('Continue')}}</button>
+                    {{-- <input type="submit" class="btn btn-primary rounded-pill" value="{{__('Continue')}}"> --}}
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+@endsection
+
+@section('footer')
+@include('layouts.footer')
+<script type="text/javascript" src="{{ asset('site_assets_1/assets/user@ie3e2!/js/log&e7.re@3.js') }}"></script>
+@endsection

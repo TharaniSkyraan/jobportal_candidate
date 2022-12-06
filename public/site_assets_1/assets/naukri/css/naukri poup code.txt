@@ -1,0 +1,47 @@
+<div class="filterTooltip bgWhite z-depth-2" id="tooltip">
+    <div class="heading">
+        <span class="fw500 fs16">Salary</span>
+        <i class="naukicon naukicon-cross icon-24"></i>
+    </div>
+    <div class="filter-comp-options">
+        <div class="mt-8 chckBoxCont">
+            <input type="checkbox" id="chk-0-3 Lakhs-ctcFilter-expanded">
+            <label class="chkLbl" for="chk-0-3 Lakhs-ctcFilter-expanded">
+                <i class="fleft naukicon naukicon-checkbox"></i>
+                <p class="grey-text lH20 fleft ml-8 txtLbl">
+                <span class="ellipsis fleft" title="0-3 Lakhs">0-3 Lakhs</span><span class="fleft ml-5">(2858)</span>
+                </p>
+            </label>
+        </div>
+
+        <div class="mt-8 chckBoxCont">
+            <input type="checkbox" id="chk-3-6 Lakhs-ctcFilter-expanded">
+            <label class="chkLbl" for="chk-3-6 Lakhs-ctcFilter-expanded">
+                <i class="fleft naukicon naukicon-checkbox"></i>
+                <p class="grey-text lH20 fleft ml-8 txtLbl">
+                    <span class="ellipsis fleft" title="3-6 Lakhs">3-6 Lakhs</span>
+                    <span class="fleft ml-5">(9083)</span></p>
+            </label>
+        </div>
+
+        <div class="mt-8 chckBoxCont">
+            <input type="checkbox" id="chk-75-100 Lakhs-ctcFilter-expanded">
+            <label class="chkLbl" for="chk-75-100 Lakhs-ctcFilter-expanded">
+                <i class="fleft naukicon naukicon-checkbox"></i>
+                <p class="grey-text lH20 fleft ml-8 txtLbl">
+                    <span class="ellipsis fleft" title="75-100 Lakhs">75-100 Lakhs</span>
+                    <span class="fleft ml-5">(3)</span>
+                </p>
+            </label>
+        </div>
+        <div class="mt-8 chckBoxCont">
+            <input type="checkbox" id="chk-100+ Lakhs-ctcFilter-expanded">
+            <label class="chkLbl" for="chk-100+ Lakhs-ctcFilter-expanded">
+            <i class="fleft naukicon naukicon-checkbox"></i>
+            <p class="grey-text lH20 fleft ml-8 txtLbl">
+                <span class="ellipsis fleft" title="100+ Lakhs">100+ Lakhs</span>
+            <span class="fleft ml-5">(2)</span></p>
+            </label>
+        </div>
+    </div>
+</div>

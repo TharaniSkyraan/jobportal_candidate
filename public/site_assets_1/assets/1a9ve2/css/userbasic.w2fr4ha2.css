@@ -1,0 +1,198 @@
+
+.typeahead, .tt-query, .tt-hint {
+    border: 1px solid #CCCCCC;
+    border-radius: .25rem;
+    font-size: 0.9rem; /* Set input font size */
+    /* height: 30px; */
+    line-height: 24px;
+    /* outline: medium none; */
+    padding: 0.6rem 1rem;
+    width: 100%;
+}
+.typeahead {
+    background-color: #FFFFFF !important;
+}
+/* .typeahead:focus {
+    border: 1px solid #3e93ff;
+} */
+.tt-query {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+.tt-hint {
+    color: #000;
+}
+.tt-menu {
+    background-color: #FFFFFF;
+    border: .025rem solid rgba(0, 0, 0, 0.2);
+    border-radius: .25rem;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    /* margin-top: 12px; */
+    padding: 5px 0;
+    width: 100%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.tt-suggestion {
+    font-size: 0.9rem;  /* Set suggestion dropdown font size */
+    padding: 3px 15px;
+}
+.tt-suggestion:hover {
+    cursor: pointer;
+    background-color: #E9FBFF;
+    color: #000000;
+}
+.tt-suggestion p {
+    margin: 0;
+}
+.tt-cursor{
+    background-color: #E9FBFF;
+    color: #000000;
+} 
+.tt-is-under-cursor {
+    background-color: #000000!important;
+    color: #FFFFFF !important;
+}
+/* override css thjs starts*/
+.twitter-typeahead
+{
+    position: relative !important;
+    display: block !important;
+}
+/* override css thjs ends*/
+/* typehead css ends*/
+
+.text-truncate{
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    display: -webkit-box !important;
+    white-space: break-spaces !important;
+}
+
+.form-control-2:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #3e93ff;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+    /* border-bottom-left-radius: 0; */
+    /* border-bottom-right-radius: 0; */
+}
+.form-control-2 {
+    border-color: #ccc;
+    height: inherit!important;
+}
+
+.form-control-2 {
+    display: block;
+    width: 100%;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid lightgrey;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+
+.value-button {
+    display: inline-block;
+  /*   border: 1px solid #ddd; */
+    margin: 0px;
+    width: 40px;
+    /* height: 20px; */
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px 0;
+    background: #E9FBFF;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  .value-button:hover {
+    cursor: pointer;
+  }
+  
+  #decrease {
+    margin-right: -4px;
+    border-radius: 8px 0 0 8px;
+  }
+  
+  #increase {
+    margin-left: -4px;
+    border-radius: 0 8px 8px 0;
+  }
+  
+  #input-wrap {
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  input#number {
+    text-align: center;
+    border: none;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin: 0px;
+    width: 40px;
+    height: 40px;
+  }
+  
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+  }
+  
+  .tag{
+      position: relative;
+      background: #E9FBFF;
+      max-width: 100%;
+      word-wrap: break-word;
+      padding: 5px 10px 5px 10px;
+      border-radius: 15px;
+      margin: 0 5px 5px 0;
+      box-shadow: 2px 4px 6px #d6d6dd;
+  }
+  .field-icon {
+    float: right;
+      margin-left: -25px !important;
+      margin-top: -27px;
+      position: relative;
+      z-index: 5;
+      left: -3%;
+  }
+  .form-control.is-invalid, .was-validated .form-control:invalid {
+      border-color: #dc3545;
+      padding-right: calc(1.5em + 0.75rem);
+      background-image: unset;
+      background-repeat: no-repeat;
+      background-position: right calc(0.375em + 0.1875rem) center;
+      background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+  }
+  .inputs input{
+    width:44px;height:40px
+  }
+  input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button{
+    -webkit-appearance: none;-moz-appearance: none;appearance: none;margin: 0
+  }
+  .fa-arrow-rotate-left{
+    background-color: #57d53f;
+    color: #fff !important;
+    font-size: smaller;
+  }
+  .fa-pen-to-square, .fa-trash-can{
+    font-size: medium;
+  }
+
+  
