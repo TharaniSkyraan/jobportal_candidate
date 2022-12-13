@@ -54,12 +54,16 @@
     align-items: center;
     align-items: center;
     display: flex;
+    cursor: pointer;
 }
 
  #user_sbar .sideb_icn img{
     width: 17px;
 }
 
+.sideb_icn a {
+    color: #000;
+}
 #user_sbar .collapse,  #user_sbar .collapsing{
     padding: 12px;
     border-radius: 15px;
@@ -86,7 +90,7 @@
     cursor: pointer;
 }
 
-#user_sbar .no_fillfield span,  #user_sbar .no_fillfield i{
+#user_sbar .no_fillfield a,  #user_sbar .no_fillfield i{
     color:#808080;
 }
 

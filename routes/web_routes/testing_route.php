@@ -58,7 +58,6 @@ Route::view('page8','demo.page8');
 
 //user profile pages
 Route::view('sidebar','demo.sidebar');
-Route::view('about-me','demo.about-me');
 Route::view('my-education','demo.my-education');
 Route::view('my-experience','demo.my-experience');
 Route::view('my-experience-choose','demo.my-experience-choose');

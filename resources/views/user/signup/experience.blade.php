@@ -1,39 +1,12 @@
 @extends('layouts.app')
 @section('custom_scripts')
-<link href="{{ asset('site_assets_1/assets/vendor/select2/select2.min.css') }}" rel="stylesheet">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<link rel="stylesheet" href="{{ asset('site_assets_1/assets/date_flatpicker/flatpickr.min.css')}}">
-<script src="{{ asset('site_assets_1/assets/date_flatpicker/flatpickr.js')}}"></script>
-<link href="{{ asset('site_assets_1/assets/1a9ve2/css/userbasic.w2fr4ha2.css')}}" rel="stylesheet">
-<script  type="text/javascript" src="{{ asset('site_assets_1/assets/vendor/typehead/typeahead.bundle.js') }}"></script>
 <link href="{{asset('css/candidate_wzrd.css')}}" rel="stylesheet">
-
+<link href="{{ asset('site_assets_1/assets/vendor/select2/select2.min.css') }}" rel="stylesheet">
 <!--icons fa -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 @endsection
-
-
-<style>
-    .levtstge_fre{
-        background:url('{{asset('images/fresher_inactive.png')}}');
-        background-size: cover;
-    background-position: center;
-    }
-
-    .levtstge_fre:hover{
-        background:url('{{asset('images/fresher_active.png')}}');
-        background-size: cover;
-        background-position: center;
-    }
-
-    .levtstge_fre:focus {
-        background:url('{{asset('images/fresher_active.png')}}');
-        background-size: cover;
-        background-position: center;
-
-    }
-</style>
 
 @section('content')
 
@@ -61,28 +34,37 @@
                     <h1 class="fw-bolder text-center">
                         I am
                     </h1>
-
+                    {!! Form::open(array('method' => 'post', 'route' => array('experience-save'), 'class' => 'form')) !!}
+                 
                     <div class="container">
-                        <div class="row">
+
+                        <div class="row text-center">
                             <div class="col-md-6">
-                                <div class="levtstge_fre">
-                                <!-- <img src="{{asset('images/fresher_inactive.png')}}" alt=""> -->
-                                </div>
+                                <input class="employment_status" type="radio" id="fresher" name="employment_status" style="display:none" value="fresher" @if($user->employment_status=='fresher' || $user->employment_status==null) checked @endif>
+                                <label for="fresher">
+                                    <div class="levtstge_fre">
+                                    </div>
                                 <div class="text-center fw-bolder mt-3">A Fresher</div>
+
+                                </label>
+                               
                             </div>
                             <div class="col-md-6">
-                                <div class="levtstge_exp">
-                                    <img src="{{asset('images/experienced_inactive.png')}}" alt="">
-                                </div>
+                                <input class="employment_status" type="radio" id="experienced" name="employment_status" style="display:none" value="experienced" @if($user->employment_status=='experienced') checked @endif>
+                                <label for="experienced">
+                                    <div class="levtstge_exp">
+                                    </div>
                                 <div class="text-center fw-bolder mt-3">A Experienced</div>
+
+                                </label>
                             </div>
 
                             <div class="row mb-4 mt-5">
                                 <div class="col-md-6">
-                                    <span><img src="{{asset('images/lefticon.png')}}"> Previous</span>
+                                    <a href="{{ route('education') }}" class="btn"><img src="{{asset('images/lefticon.png')}}"> Previous</a >
                                 </div>
                                 <div class="col-md-6 text-end">
-                                    <span>Save & Continue  <img src="{{asset('images/righticon.png')}}"></span>
+                                    <button type="submit" class="btn">Save & Continue  <img src="{{asset('images/righticon.png')}}"></button>
                                 </div>
                             </div>
                             <div class="progress mt-3">
@@ -90,6 +72,7 @@
                             </div>
                         </div>
                     </div> 
+                     {!! Form::close() !!}
                 </div>
             </div>
 
@@ -99,6 +82,7 @@
         </div>
     </div>
 </section>
-
-
 @endsection
+@push('scripts')
+<script type="text/javascript" src="{{ asset('site_assets_1/assets/user@ie3e2!/js/formwizard/usiup@4h6i1.js') }}"></script>
+@endpush

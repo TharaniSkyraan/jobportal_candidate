@@ -68,9 +68,9 @@
                                 <th><a class="text-decoration-underline" href="">Upload Resume</a></th>
                                 <th><i class="fas fa-arrow-up"></i></th>
                             </table>     
-                        </div>
-                    
+                        </div>                    
                     </div>
+                    
                 </div>
             </div>
         </div>

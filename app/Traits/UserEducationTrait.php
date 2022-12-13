@@ -97,12 +97,6 @@ trait UserEducationTrait
         $userEducation = $this->assignEducationValues($userEducation, $request, $user_id);
         $userEducation->save();
         
-        // Update Signup Processing Level
-        $masterTable = AccountType::findorFail($userEducation->user->account_type_id);
-        if($masterTable->next_process_level == 'user_education'){
-            $masterTable->next_process_level = 'user_experience';
-            $masterTable->save();
-        }
         /*         * ************************************ */
         $this->storeuserEducationMajorSubjects($request, $userEducation->id);
         /*         * ************************************ */

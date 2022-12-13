@@ -167,7 +167,7 @@ class AjaxController extends Controller
         $education_type_id = $request->input('education_type_id');
 
         $educationTypes = DataArrayHelper::langEducationTypesArray($education_level_id);
-        $dd = Form::select('education_type_id', ['' => 'Select education type'] + $educationTypes, $education_type_id, array('id' => 'education_type_id', 'class' => 'form-control required education_type_id'));
+        $dd = Form::select('education_type_id', ['' => 'Select education type'] + $educationTypes, $education_type_id, array('id' => 'education_type_id', 'class' => 'form-select required education_type_id'));
 
         if(count($educationTypes)>0){
             echo $dd; exit;

@@ -250,6 +250,7 @@ class LoginController extends Controller
                             'verified' => 0,
                             'password' => Hash::make($request->password),
                             'next_process_level' => 'verify_otp',
+                            'token'=>$this->generateRandomString(8),
                         ]);  
                 $user = User::findorFail($user->id);
                
@@ -415,7 +416,8 @@ class LoginController extends Controller
       
      */
  
-     public function SwitchRedirect($next_process_level){
+     public function SwitchRedirect($next_process_level)
+     {
         $page = '';
 
         switch($next_process_level) {
@@ -444,9 +446,9 @@ class LoginController extends Controller
 
         }
 
-         return $page;
+        return $page;
          
-     }
+    }
  
 }
 

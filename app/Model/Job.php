@@ -6,7 +6,6 @@ use DB;
 use App;
 use App\Traits\Active;
 use App\Traits\Featured;
-use App\Traits\JobTrait;
 use App\Traits\CountryStateCity;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
@@ -17,7 +16,7 @@ class Job extends Model
 {
 
 
-    use Active, featured, JobTrait, CountryStateCity, SoftDeletes;
+    use Active, featured, CountryStateCity, SoftDeletes;
 
     protected $table = 'jobs';
     public $timestamps = true;

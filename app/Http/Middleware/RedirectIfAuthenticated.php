@@ -27,17 +27,6 @@ class RedirectIfAuthenticated
                 return redirect('/redirect_user');
             }
         }
-        // Company
-        if (Auth::check()) {
-            
-            if(Auth::user()->is_active==1){
-                return redirect('/company/postedjobslist');
-            }
-            
-            if(Auth::user()->is_active==0){
-                return redirect('/redirect_user');
-            }
-        }
 
         return $next($request);
     }

@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Auth;
 use Auth;
 use Session;
 use App\Model\User;
+use App\Model\UserEducation;
 use App\Model\UserExperience;
 use App\Model\UserCv;
+use App\Model\UserSkill;
+use App\Model\JobSkill;
 use App\Model\Skill;
-use App\Model\AccountType;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -50,7 +52,7 @@ class RegisterController extends Controller
         $this->middleware('auth')->except('getVerification', 'getVerificationError');
     }
 
- /**
+    /**
      *  View Blade file of Candidate Basic Information Form
      
      * 
@@ -67,11 +69,63 @@ class RegisterController extends Controller
 
      public function Education()
      {
-        $user = User::findOrFail(Session::get('id'));
-        return view('user.signup.education')->with('user', $user);
-     
-     }
+        $user = User::findOrFail(Auth::user()->id);
+        $educationLevels = DataArrayHelper::langEducationlevelsArray();
+        $educationTypes = '';
+        $education  = (count($user->userEducation)>0)?$user->userEducation[0]:null;
+        
+        if(!empty($education)){
+            $education_level_id = $education->education_level_id;
+            $education_type_id = $education->education_type_id;
+            if(!empty($education_type_id)){
+                $educationTypes = DataArrayHelper::langEducationTypesArray($education_level_id);
+            }
+        }
+
+        
+        return view('user.signup.education', compact('education','educationLevels','educationTypes'));
+    }
  
+    /**
+     *  View Blade file of Candidate Basic Information Form
+     
+     * 
+     
+     *  @param Get user id from session 
+     
+     * 
+     
+     *  @return Education Information Form
+     
+     * 
+     
+     */
+
+     public function EducationSave(Request $request)
+     {
+        // dd($request->all());
+        $user = User::findOrFail(Auth::user()->id);
+
+        $education  = (count($user->userEducation)>0)?$user->userEducation[0]:null;
+        if(!empty($education)){
+            $userEducation = UserEducation::find($education->id);
+        }else{
+            $userEducation = new UserEducation();
+        }
+        $userEducation->user_id = $user->id;
+        $userEducation->education_level_id = $request->education_level_id;
+        $userEducation->education_type_id = $request->education_type_id;
+        $userEducation->save();
+
+        if($user->next_process_level == 'education'){                
+            $user->next_process_level = 'experience';
+            $user->save();
+        }
+
+        return redirect('/experience');
+
+     }
+
      /**
       *  View Blade file of Candidate Basic Information Form
       
@@ -89,9 +143,37 @@ class RegisterController extends Controller
  
      public function Experience()
      {
-        $user = User::findOrFail(Session::get('id'));
+        $user = User::findOrFail(Auth::user()->id);
          
         return view('user.signup.experience')->with('user', $user);
+     
+     }
+
+     /**
+      *  View Blade file of Candidate Basic Information Form
+      
+      * 
+      
+      *  @param Get user id from session 
+      
+      * 
+      
+      *  @return Experience Information Form
+      
+      * 
+      
+      */
+ 
+     public function ExperienceSave(Request $request)
+     {
+        $user = User::findOrFail(Auth::user()->id);
+        $user->employment_status = $request->employment_status;
+        if($user->next_process_level == 'experience'){                
+            $user->next_process_level = 'career_info';
+        }
+        $user->save();
+         
+        return redirect('/career_info');
      
      }
  
@@ -112,9 +194,42 @@ class RegisterController extends Controller
  
      public function CareerInfo()
      {
-        $user = User::findOrFail(Session::get('id'));
+        $user = User::findOrFail(Auth::user()->id);
          
-        return view('user.signup.career_info')->with('user', $user);
+        $countries = DataArrayHelper::CountriesArray();
+        return view('user.signup.career_info', compact('countries','user'));
+     
+     }
+     /**
+      *  View Blade file of Candidate Basic Information Form
+      
+      * 
+      
+      *  @param Get user id from session 
+      
+      * 
+      
+      *  @return Experience Information Form
+      
+      * 
+      
+      */
+ 
+     public function CareerInfoSave(Request $request)
+     {
+        $user = User::findOrFail(Auth::user()->id);
+        $user->career_title = $request->career_title;
+        $user->total_experience = $request->exp_in_year.'.'.$request->exp_in_month;
+        $user->expected_salary = (int) str_replace(',',"",$request->input('expected_salary'));
+        $user->salary_currency = $request->salary_currency;
+        $user->country_id = $request->country_id;
+        $user->location = $request->location;
+        if($user->next_process_level == 'career_info'){                
+            $user->next_process_level = 'skills';
+        }
+        $user->save();
+        
+        return redirect('/skills');
      
      }
      
@@ -136,17 +251,94 @@ class RegisterController extends Controller
  
      public function Skills()
      {
-         $user = User::findOrFail(Session::get('id'));  
- 
-         if(count($user->userSkills)==0){   
-             $skill_id = DataArrayHelper::usedTools(Session::get('id'));
-             $skills = Skill::whereIn('id',$skill_id)->pluck('skill','id')->toArray(); 
-         }
-           
-         return view('user.signup.skills')->with(['user'=> $user,'skills'=>$skills??array()]);
-     
+        
+        $user = User::findOrFail(Auth::user()->id);  
+        $title =  $user->career_title??'';
+        $user_skill_id = UserSkill::whereUserId($user->id)->pluck('skill_id')->toArray();
+
+        $suggestedskill = JobSkill::whereHas('job', function($q) use($title){
+                            $q->where('title', 'like', '%' . $title . '%');
+                        })
+                        ->whereNotIn('skill_id',$user_skill_id)
+                        ->select('job_skills.skill_id', \DB::raw('COUNT(job_skills.skill_id) as count'))
+                        ->groupBy('skill_id')
+                        ->orderBy('count','desc')
+                        ->limit(10)
+                        ->pluck('skill_id');
+
+        
+
+        if(count($suggestedskill)!=0){   
+            $skills = Skill::whereIn('id',$suggestedskill)->pluck('skill','id')->toArray(); 
+        }
+        
+        return view('user.signup.skills')->with(['user'=> $user,'skills'=>$skills??array()]);
+    
      }
+  
+     /**
+      *  View Blade file of Candidate Basic Information Form
+      
+      * 
+      
+      *  @param Get user id from session 
+      
+      * 
+      
+      *  @return Skills Information Form
+      
+      * 
+      
+      */
  
+      public function SkillSave(Request $request)
+      {
+        $user = User::findOrFail(Auth::user()->id);
+        $user->skill = $request->skills;
+        if($user->next_process_level == 'skills'){                
+            $user->next_process_level = 'resume_upload';
+        }
+        $user->save();
+
+        $skills = json_decode($request->skills);
+        $skill_id = array_column($skills, 'id');
+        $user_skill_id = UserSkill::whereUserId($user->id)->pluck('skill_id')->toArray();
+        
+        $remove_id = UserSkill::whereUserId($user->id)->whereIn('skill_id',array_diff($user_skill_id,$skill_id))->delete(); 
+        $skills  = array_diff($skill_id,$user_skill_id);
+        foreach($skills as $skill)
+        {
+            $updateSkill = new UserSkill();
+            $updateSkill->user_id = $user->id;
+            $updateSkill->skill_id  = $skill;
+            $updateSkill->save();
+        }
+
+        return redirect('/resume_upload');
+
+      }
+
+    /**
+     *  Upload file of Candidate Resume
+     
+     * 
+     
+     *  @param Post user id from session 
+     
+     * 
+     
+     *  @return Resume File to s3
+     
+     * 
+     
+     */
+
+     public function ResumeUpload()
+     {
+        $user = User::findOrFail(Auth::user()->id);
+            
+        return view('user.signup.resume_upload')->with('user', $user);
+     }
 
     /**
      *  Upload file of Candidate Resume
@@ -165,7 +357,7 @@ class RegisterController extends Controller
 
     public function ResumeUpdate(Request $request)
     {
-        $user = User::findOrFail(Session::get('id'));
+        $user = User::findOrFail(Auth::user()->id);
         
         if ($request->hasFile('file')) {
 
@@ -173,26 +365,31 @@ class RegisterController extends Controller
                 'file' => 'required|file|mimes:pdf,docx,doc,txt,rtf|max:2048',
             ]);        
          
-            $path = Storage::disk('s3')->put('candidate/'.$user->token.'/file', $request->file);
-            $url = Storage::disk('s3')->url($path);
-            $UserCv = new UserCv();
-            $UserCv->path = $path;
-            $UserCv->cv_file = $url;
-            $UserCv->user_id = $user->id;
-            $UserCv->is_default = 1;
-            $UserCv->save();
+            // $path = Storage::disk('s3')->put('candidate/'.$user->token.'/file', $request->file);
+            // $url = Storage::disk('s3')->url($path);
+            // $UserCv = new UserCv();
+            // $UserCv->path = $path;
+            // $UserCv->cv_file = $url;
+            // $UserCv->user_id = $user->id;
+            // $UserCv->is_default = 1;
+            // $UserCv->save();
 
         }
+        $user = User::findOrFail(Auth::user()->id);
+        if($user->next_process_level == 'resume_upload'){                
+            $user->is_active = 1;
+            $user->next_process_level = 'completed';
+        }
+        $user->save();
         
-
-        return response()->json(array('success' => true));
+        return redirect('/home');
                 
     }
 
    
     public function CompleteSignup(){
         
-        $user = User::findOrFail(Session::get('id')); 
+        $user = User::findOrFail(Auth::user()->id); 
         $user->next_process_level = 'completed';
         $user->is_active = 1;
         $user->save();

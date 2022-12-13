@@ -1,13 +1,8 @@
 @extends('layouts.app')
 @section('custom_scripts')
-<link href="{{ asset('site_assets_1/assets/vendor/select2/select2.min.css') }}" rel="stylesheet">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<link rel="stylesheet" href="{{ asset('site_assets_1/assets/date_flatpicker/flatpickr.min.css')}}">
-<script src="{{ asset('site_assets_1/assets/date_flatpicker/flatpickr.js')}}"></script>
-<link href="{{ asset('site_assets_1/assets/1a9ve2/css/userbasic.w2fr4ha2.css')}}" rel="stylesheet">
-<script  type="text/javascript" src="{{ asset('site_assets_1/assets/vendor/typehead/typeahead.bundle.js') }}"></script>
 <link href="{{asset('css/candidate_wzrd.css')}}" rel="stylesheet">
-
+<link href="{{ asset('site_assets_1/assets/vendor/select2/select2.min.css') }}" rel="stylesheet">
 <!--icons fa -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -29,48 +24,36 @@
                         </a>
                     </div>
 
-                        
-                        <h1 class="fw-bolder text-center lvledticn mt-3 mb-4">
-                           <div><img src="{{asset('images/candidate_educ.png')}}">&nbsp;Education</div>
-                        </h1>
+                    
+                    <h1 class="fw-bolder text-center lvledticn mt-3 mb-4">
+                        <div><img src="{{asset('images/candidate_educ.png')}}">&nbsp;Education</div>
+                    </h1>
+                    {!! Form::open(array('method' => 'post', 'route' => array('education-save'), 'class' => 'form', 'onSubmit' => 'return validateAccountForm()')) !!}
+                        {!! Form::hidden('id', $education->id??null) !!}
+                        <div class="container">
+                            <div class="mb-4">
+                                <label for="exampleInputEmail1" class="form-label grytxtv">Highest level of Qualification</label>
+                                {!! Form::select('education_level_id', [''=>__('Select Education')]+$educationLevels, $education->education_level_id??null, array('class'=>'form-select required', 'id'=>'education_level_id')) !!}
+                                <small class="help-block form-text text-muted text-danger err_msg education_level_id-error" id="err_education_level_id"></small> 
+                            </div>
 
+                            <div class="mb-4 education_type_div" @if(empty($educationTypes)) style="display:none;" @endif>
+                                <label for="exampleInputEmail1" class="form-label grytxtv">Education</label>
+                                <div class="" id="education_types_dd">    
+                                    @if(!empty($educationTypes))            
+                                        {!! Form::select('education_type_id', [''=>__('Select Education Type')]+$educationTypes, $education->education_type_id??null, array('class'=>'form-select required', 'id'=>'education_type_id')) !!}
+                                    @else
+                                        {!! Form::select('education_type_id', [''=>__('Select Education Type')], null, array('class'=>'form-select required', 'id'=>'education_type_id')) !!}
+                                    @endif    
+                                </div>
+                                <small class="help-block form-text text-muted text-danger err_msg education_type_id-error" id="err_education_type_id"></small> 
+                            </div>
 
-                    <div class="container">
-                        <div class="mb-4">
-                            <label for="exampleInputEmail1" class="form-label grytxtv">Highest level of Qualification</label>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>UG(Under Graduate)</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
+                            <div class="mb-5 text-end">
+                                <button class="btn" type="submit">Save & Continue <img src="{{asset('images/righticon.png')}}"></button>
+                            </div>
                         </div>
-
-                        <div class="mb-4">
-                            <label for="exampleInputEmail1" class="form-label grytxtv">Name of Degree</label>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Bachelor of Engineering</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </div>
-
-
-                        <div class="mb-4">
-                            <label for="exampleInputEmail1" class="form-label grytxtv">Major Subject</label>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Computer Science</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-5 text-end">
-                            <span>Save & Continue <img src="{{asset('images/righticon.png')}}"></span>
-                        </div>
-                    </div>
+                     {!! Form::close() !!}
                      <div class="progress">
                         <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
@@ -85,3 +68,9 @@
 </section>
 
 @endsection
+@push('scripts')
+<script type="text/javascript">
+var baseurl = '{{ url("/") }}';
+</script>
+<script type="text/javascript" src="{{ asset('site_assets_1/assets/user@ie3e2!/js/formwizard/usiup@4h6i1.js') }}"></script>
+@endpush

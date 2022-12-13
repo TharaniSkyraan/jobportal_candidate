@@ -1,42 +1,19 @@
 @extends('layouts.app')
 @section('custom_scripts')
-<link href="{{ asset('site_assets_1/assets/vendor/select2/select2.min.css') }}" rel="stylesheet">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<link rel="stylesheet" href="{{ asset('site_assets_1/assets/date_flatpicker/flatpickr.min.css')}}">
-<script src="{{ asset('site_assets_1/assets/date_flatpicker/flatpickr.js')}}"></script>
-<link href="{{ asset('site_assets_1/assets/1a9ve2/css/userbasic.w2fr4ha2.css')}}" rel="stylesheet">
-<script  type="text/javascript" src="{{ asset('site_assets_1/assets/vendor/typehead/typeahead.bundle.js') }}"></script>
 <link href="{{asset('css/candidate_wzrd.css')}}" rel="stylesheet">
-
+<link href="{{ asset('site_assets_1/assets/vendor/select2/select2.min.css') }}" rel="stylesheet">
+<link href="{{ asset('site_assets_1/assets/1a9ve2/css/userbasic.w2fr4ha2.css')}}" rel="stylesheet">
 <!--icons fa -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 @endsection
-
-
-<style>
-    .levtstge_fre{
-        background:url('{{asset('images/fresher_inactive.png')}}');
-        background-size: cover;
-    background-position: center;
-    }
-
-    .levtstge_fre:hover{
-        background:url('{{asset('images/fresher_active.png')}}');
-        background-size: cover;
-        background-position: center;
-    }
-
-    .levtstge_fre:focus {
-        background:url('{{asset('images/fresher_active.png')}}');
-        background-size: cover;
-        background-position: center;
-
-    }
-</style>
 
 @section('content')
 
+@php
+    $country_id = (!empty($user->country_id))?$user->country_id:$ip_data->country_id;
+    $country = (!empty($user->country_id))?$user->getCountry('country'):$ip_data->geoplugin_countryName;
+@endphp
 <section id="cndidate_wzrd">
     <div class="container">
         <div class="row">
@@ -57,76 +34,69 @@
                     <h1 class="fw-bolder text-center lvledticn mt-3 mb-4">
                         <div><img src="{{asset('images/candidate_exp.png')}}">&nbsp;Career Info</div>
                     </h1>
-
+                    {!! Form::open(array('method' => 'post', 'route' => array('career-info-save'), 'class' => 'form', 'onSubmit' => 'return validateCareerInfoForm()')) !!}
                     <div class="container">
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Your Current / Last designation</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <small id="emailHelp" class="form-text"></small>
+                            <label for="career_title" class="form-label">Your Current / Last designation</label>
+							{!! Form::text('career_title', $user->career_title??null, array('class'=>'form-control required', 'id'=>'career_title', 'placeholder'=>__('ex:auditor, doctor'))) !!}
+                            <small class="form-text text-muted text-danger err_msg" id="err_career_title"></small>
                         </div>
-
-
-
+                        @php
+                            $exp = explode('.',$user->total_experience);
+                            $exp_in_year = $exp[0]??'';
+                            $exp_in_month = $exp[1]??'';
+                        @endphp
                         <label for="exampleInputEmail1" class="form-label">Total years of experience</label>
-                        <div class="row">
+                        <div class="row mb-4">
                             <div class="col-md-6">
-                                <div class="mb-4">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>In years</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select>
-                                </div>
+                                {!! Form::select('exp_in_year', MiscHelper::getNumExpYears(), $exp_in_year, array('class'=>'form-select required', 'id'=>'exp_in_year')) !!}
                             </div>
 
                             <div class="col-md-6">
-                                <div class="mb-4">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>Months</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select>
-                                </div>  
+                                {!! Form::select('exp_in_month', MiscHelper::getNumExpMonths(), $exp_in_month, array('class'=>'form-select required', 'id'=>'exp_in_month')) !!}
                             </div>
+                            <small class="form-text text-muted text-danger err_msg" id="err_total_exp"></small>
                         </div>
 
-
-                        <label for="exampleInputEmail1" class="form-label">Expected salary</label>
+                        <label for="expected_salary" class="form-label">Expected salary</label>
                         <div class="input-group mb-3 slct_apnd">
-                            <select aria-label="Default select example">
-                                <option selected>INR</option>
-                                <option value="1">Inr</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-
-                            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                            {!! Form::select('salary_currency', ['₹'=>'₹'], $user->salary_currency, array('id'=>'salary_currency')) !!}
+                            {!! Form::text('expected_salary', null, array('class'=>'form-control required', 'data-type'=>'currency', 'id'=>'expected_salary', 'minlength'=>'0', 'maxlength'=>'10', 'placeholder'=>__('Expected Salary'))) !!}
                             <span class="input-group-text">annam</span>
                         </div>
-
+                        <small class="form-text text-muted text-danger err_msg" id="err_expected_salary"></small>
                         
-
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Jobs locations looking for</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                            <small id="emailHelp" class="form-text"></small>
+                            <label class="form-label">Jobs location looking for <span class="country_text">- {{ $country }} <a href="javascript:void(0);" onClick="CountryChange()">Change</a></span></label>
+                            <div class="country_change"  style="display:none;">
+                                <label for="div_country_id" class="form-label">Country </label>  
+                                <div>                              
+                                    {!! Form::select('country_id', $countries['value'], $country_id, array('class'=>'form-select required', 'id'=>'country_id'), $countries['attribute']) !!}
+                                    <small class="form-text text-muted text-danger err_msg" id="err_country_id"></small>
+                                    {!! APFrmErrHelp::showErrors($errors, 'country_id') !!} 
+                                </div>
+                            </div>
+                         </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">City</label>
+                            {!! Form::text('location', $user->location??null, array('class'=>'form-control-2 required typeahead', 'id'=>'location', 'placeholder'=>__('Enter your location'),' aria-label'=>'Enter your location')) !!}
+                            <small class="form-text text-muted text-danger err_msg" id="err_location"></small>
                         </div>
                         
 
                         <div class="row mb-4 mt-5">
                             <div class="col-md-6">
-                                <span><img src="{{asset('images/lefticon.png')}}"> Previous</span>
+                                <a href="{{ route('experience')}}" class="btn"><img src="{{asset('images/lefticon.png')}}"> Previous</a>
                             </div>
                             <div class="col-md-6 text-end">
-                                <span>Save & Continue  <img src="{{asset('images/righticon.png')}}"></span>
+                                <button class="btn" type="submit">Save & Continue  <img src="{{asset('images/righticon.png')}}"></button>
                             </div>
                         </div>
                         <div class="progress mt-3">
                             <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 85%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
+                     {!! Form::close() !!}
                 </div>
             </div>
 
@@ -137,5 +107,11 @@
     </div>
 </section>
 
-
 @endsection
+@push('scripts')
+<script>
+ var expected_salary = "{{$user->expected_salary??''}}"
+</script>
+<script  type="text/javascript" src="{{ asset('site_assets_1/assets/vendor/typehead/typeahead.bundle.js') }}"></script>
+<script type="text/javascript" src="{{ asset('site_assets_1/assets/user@ie3e2!/js/formwizard/usiup@4h6i1.js') }}"></script>
+@endpush

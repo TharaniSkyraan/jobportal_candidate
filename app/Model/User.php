@@ -47,7 +47,7 @@ class User extends Authenticatable
 
         'first_name','middle_name','last_name','father_name','marital_status_id',
         'date_of_birth','gender','country_id','state_id','city_id','name', 'email', 
-        'password', 'account_type_id','employment_status','notice_period','verified',
+        'password','employment_status','notice_period','verified',
         'is_active', 'token', 'location', 'career_title', 'expected_salary', 
         'current_salary', 'total_experience'
 
@@ -758,15 +758,6 @@ class User extends Authenticatable
 
     }
     
-
-    public function AccountType()
-
-    {
-
-        return $this->belongsTo(AccountType::class, 'account_type_id', 'id');
-
-    }
-
     public function NoticePeriod()
     {
         return $this->belongsTo(NoticePeriod::class, 'notice_period', 'id');

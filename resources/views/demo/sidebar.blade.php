@@ -1,11 +1,7 @@
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" ></script>
-  <link href="{{asset('css/user_skill.css')}}" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" ></script>
+<link href="{{asset('css/user_skill.css')}}" rel="stylesheet">
 
-  <style>
-  
-  </style>
-  
 <!-- Start Side Nav Bar -->
 <div id="user_sbar">
     <div class="sidebar sidebar-style-2 sidebar-bg" >
@@ -189,24 +185,24 @@
         </div>
 
         <ul class="nav nav-primary">                 
-            <li class="nav-item {{ Request::is('my_profile') ? 'active' : '' }}" >
-                <a href="{{ route('my_profile') }}" class="collapsed" aria-expanded="false">
+            <li class="nav-item {{ Request::is('applied-jobs') ? 'active' : '' }}" >
+                <a href="{{ route('applied-jobs') }}" class="collapsed" aria-expanded="false">
                 <img class="me-3" width="17px" src="{{url('images/applied_jobs.png')}}">
                     <p>Applied Jobs</p>
                 </a>
             </li>
-            <li class="nav-item {{ Request::is('my_resume') ? 'active' : '' }}" >
-                <a href="{{ route('show.front.profile.cvs') }}" class="collapsed" aria-expanded="false">
+            {{-- <li class="nav-item" >
+                <a href="#" class="collapsed" aria-expanded="false">
                     <img class="me-3" width="17px" src="{{url('images/messages.png')}}">
                     <p>Messages</p>
                 </a>
             </li>
-            <li class="nav-item {{ Request::is('applied-jobs') ? 'active' : '' }}" >
-                <a href="{{ route('applied-jobs') }}" class="collapsed" aria-expanded="false">
+            <li class="nav-item" >
+                <a href="#" class="collapsed" aria-expanded="false">
                     <img class="me-3" width="17px" src="{{url('images/job_alerts.png')}}">
                     <p>Job Alerts</p>
                 </a>
-            </li>
+            </li> --}}
             <li class="nav-item {{ Request::is('saved-jobs') ? 'active' : '' }}" >
                 <a href="{{ route('saved-jobs') }}" class="collapsed" aria-expanded="false">
                     <img class="me-3" width="17px" src="{{url('images/saved_jobs.png')}}">
@@ -234,7 +230,7 @@
     $('.companyaccountsetting').click(function() {
         const aTag = document.createElement('a');
         aTag.rel = 'noopener';
-        aTag.href = '{{ route("company.accounts_settings") }}';
+        aTag.href = '{{ route("accounts_settings") }}';
         aTag.click();
     });
 

@@ -59,6 +59,18 @@ class MiscHelper
         return $array;
     }
 
+    public static function getNumExpYears()
+    {
+        $array = ['0' => 'Years', '1' => '1 year', '2' => '2 years', '3' => '3 years', '4' => '4 years', '5' => '5 years', '6' => '6 years', '7' => '7 years', '8' => '8 years', '9' => '9 years', '10' => '10 years', '11' => '11 years', '12' => '12 years', '13' => '13 years', '14' => '14 years', '15' => '15 years', '16' => '16 years', '17' => '17 years', '18' => '18 years', '19' => '19 years', '20' => '20 years', '21' => '21 years', '22' => '22 years', '23' => '23 years', '24' => '24 years', '25' => '25 years', '26' => '26 years', '27' => '27 years', '28' => '28 years', '29' => '29 years', '30' => '30 years'];
+        return $array;
+    }
+
+    public static function getNumExpMonths()
+    {
+        $array = ['0' => 'Months', '1' => '1 month', '2' => '2 months', '3' => '3 months', '4' => '4 months', '5' => '5 months', '6' => '6 months', '7' => '7 months', '8' => '8 months', '9' => '9 months', '10' => '10 months', '11' => '11 months', '12' => '12 months'];
+        return $array;
+    }
+
     public static function getEstablishedIn()
     {
         $array = array();

@@ -6,8 +6,8 @@
 <link href="{{ asset('site_assets_1/assets/css/input_tag/jquery.tagsinput-revisited.css')}}" rel="stylesheet">	  
 <link href="{{ asset('site_assets_1/assets/vendor/select2/select2.min.css') }}" rel="stylesheet">
 <link href="{{ asset('site_assets_1/assets/vendor/selectize/selectize.css')}}" rel="stylesheet">
-<link href="{{ asset('site_assets_1/assets/date_flatpicker/flatpickr.min.css')}}" rel="stylesheet">
 <link href="{{ asset('site_assets_1/assets/1a9ve2/css/userbasic.w2fr4ha2.css')}}" rel="stylesheet">
+<link href="{{ asset('site_assets_1/assets/date_flatpicker/flatpickr.min.css')}}" rel="stylesheet">
 <script src="{{ asset('site_assets_1/assets/date_flatpicker/flatpickr.js')}}"></script>
 @endsection
 
@@ -232,18 +232,14 @@
 										<div class="row" id="div-education">
 											<div class="col-12 col-lg-12 m-auto">
 												<div class="card page-inner mb-4">
-													
 													<div id="education_success"></div>
 													<!-- Education Form start-->
 													<div class="append-form-education"></div>
 													<!-- /Education Form end-->
-												
 													<div class="text-center">
 														<button class="btn btn-add openForm" type="button" data-form="new">Add Education</button>
 													</div>
-
 												</div>
-												
 												<!-- education card-->
 												<div class="" id="education_div"></div>
 												<!-- education card end -->

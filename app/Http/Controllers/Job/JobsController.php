@@ -64,14 +64,12 @@ class JobsController extends Controller
                             ->limit(3)
                             ->get();
 
-
         $recent_job = JobSearch::select('title', 'company_name', 'salary_string', 'experience_string', 'location', 'slug')
                                 ->where('location', 'like', "%{$session->city}%")
                                 ->orderBy('created_at','asc')
                                 ->limit(3)
                                 ->get();
                                 
-
         $job_list = Job::select('title', DB::raw('count(`title`) as total_count'))
                         ->groupBy('title')
                         ->orderBy('total_count','DESC')
@@ -83,8 +81,6 @@ class JobsController extends Controller
                                     ->orderBy('total_count','DESC')
                                     ->limit(4)
                                     ->get();
-                                
-
 
         $top_sector = Industry::withCount('jobsearch')
                                 ->orderBy('jobsearch_count','DESC')
@@ -92,11 +88,8 @@ class JobsController extends Controller
                                 ->get();
 
         $titles = Title::where('hit_count','!=',0)->orderBy('hit_count','desc')->take(5)->get();
-        $company = Auth::check();
-
-        $user = Auth::check();           
+         
         return view('candidate-home', compact('titles', 'near_job', 'recent_job', 'job_list', 'top_cities', 'top_sector'));
-
 
     }
     

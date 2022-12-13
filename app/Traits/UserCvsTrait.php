@@ -27,7 +27,7 @@ trait UserCvsTrait
         $user = Auth::user();  
         $resume1 = $user->UserCvs[0];
         $resume2 = $user->UserCvs[1]??null;
-        return view('user.dashboard.my_resume', compact('resume1','resume2'));
+        return view('user.resume.resume', compact('resume1','resume2'));
     }
 
     public function storeUserCv(Request $request)

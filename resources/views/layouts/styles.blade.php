@@ -3,9 +3,10 @@
 <link href="{{ asset('site_assets_1/assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
 
 <!-- Main CSS File -->
-<link href="{{ asset('site_assets_1/assets/css/style.css')}}" rel="stylesheet">
-<link href="{{ asset('site_assets_1/assets/css/custom_style.css?v1')}}" rel="stylesheet">
-<link href="{{ asset('site_assets_1/assets/css/atlantis.min.css')}}" rel="stylesheet">
+<link href="{{ asset('site_assets_1/assets/css/style.css') }}" rel="stylesheet">
+<link href="{{ asset('site_assets_1/assets/css/custom_style.css?v1') }}" rel="stylesheet">
+<link href="{{ asset('site_assets_1/assets/css/atlantis.min.css') }}" rel="stylesheet">
+<link href="{{ asset('css/user_skill.css') }}" rel="stylesheet">
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
