@@ -26,45 +26,27 @@ use App\Helpers\DataArrayHelper;
 trait UserEducationTrait
 {
 
-    public function showFrontUserEducation(Request $request, $user_id=null)
-    {
-        
-        $user_id = empty($user_id)?Auth::user()->id:$user_id;
-        $user = User::find($user_id);
-        $html ='';
-        if (isset($user) && count($user->userEducation)):
-
-            foreach ($user->userEducation as $education):
-                //  deleted-detail -> class name
-                $html .= '<div class="education_div shadow p-4 rounded bg-white mb-4 education_edited_div_'.$education->id.'"><div class="container">
-                <div class="row">
-                <div class="col-md-9 col-sm-8 col-xs-8 col-12">
-                <h5 class="text-green-color fw-bolder">' . $education->getEducationLevel('education_level') . ($education->getEducationType('education_type')!=''? ' - ' : ' ') . $education->getEducationType('education_type') . '</h5>
-                </div>
-                
-                <div class="col-md-3 col-sm-4 col-xs-4 col-12 d-flex justify-content-between mb-3">
-                <div class="edit_education_'.$education->id.'"><a href="javascript:void(0);"><i class="fa-solid fa-pen-to-square text-green-color openForm"  data-form="edit" data-id="'.$education->id.'" data-type-id="'.($education->education_type_id??0).'"></i></a></div>';
-                if(count($user->userEducation)>1){
-                    $html .='<div class="delete_education_'.$education->id.' delete_education"><a href="javascript:void(0);"><i class="fa-solid fa-trash-can text-danger" onclick="delete_user_education(' . $education->id . ');"></i></a></div>
-                    <div class="undo_education_'.$education->id.'" onclick="undo_user_education(' . $education->id . ');" style="display:none;"><a href="javascript:void(0);"><i class="fa-solid fa-arrow-rotate-left text-green-color border-0 rounded p-2" style="background-color:#6CD038;" ></i></a></div>';
-                }                
-                $html .='</div>
-                </div>
-                
-                <div style="margin: 5px 0;">' . ucwords($education->institution) . '</div>
-                <div style="margin: 5px 0;">' . ucwords($education->location) . '</div>
-                <div style="margin: 5px 0;">' . Carbon::parse($education->from_year)->Format('M Y') . ' - '. ($education->pursuing!='yes'? Carbon::parse($education->to_year)->Format('M Y') : 'Still Pursuing') . '</div>
-                <div style="margin: 5px 0;">' . ($education->percentage!=''? $education->getResultType('result_type') . ': ' . $education->percentage : ' ' ) . '</div>
-                </div></div>';
-
-            endforeach;
-
-        endif;
-
-        echo $html;
+    public function showUserEducationList(Request $request)
+    { 
+        $education_level_id = $request->education_level_id??"";
+        $user_id = Auth::user()->id;
+        $data = array();
+        $usereducationlevels = UserEducation::whereUserId($user_id)->groupBy('education_level_id')->pluck('education_level_id')->toArray();
+        if($education_level_id){
+            $usereducationlevels = UserEducation::whereUserId($user_id)->where('education_level_id',$education_level_id)
+                                                ->groupBy('education_level_id')
+                                                ->pluck('education_level_id')
+                                                ->toArray();
+        }
+        foreach($usereducationlevels as $usereducationlevel){
+            $usereductaions = UserEducation::whereUserId($user_id)->whereEducationLevelId($usereducationlevel)->get();
+            $data[$usereducationlevel] = view('user.education.educationlist')
+                                        ->with('educations', $usereductaions)
+                                        ->render();
+        }
+        return response()->json(array('success' => true, 'data' => $data));
 
     }
-
 
     public function getFrontUserEducationForm(Request $request, $user_id=null)
     {
@@ -79,6 +61,7 @@ trait UserEducationTrait
         $returnHTML = view('user.education.add')
                 ->with('user', $user)
                 ->with('educationLevels', $educationLevels)
+                ->with('education_level_id', $request->education_level_id)
                 ->with('resultTypes', $resultTypes)
                 ->with('majorSubjects', $majorSubjects)
                 ->with('userEducationMajorSubjectIds', $userEducationMajorSubjectIds)
@@ -153,6 +136,7 @@ trait UserEducationTrait
                         ->with('user', $user)
                         ->with('userEducation', $userEducation)
                         ->with('educationLevels', $educationLevels)
+                        ->with('education_level_id', $userEducation->education_level_id)
                         ->with('resultTypes', $resultTypes)
                         ->with('countries', $countries)
                         ->render();

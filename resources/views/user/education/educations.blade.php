@@ -26,63 +26,18 @@
                         $eduLevelids = App\Model\UserEducation::whereUserId(Auth::user()->id)->pluck('education_level_id')->toArray();
                     @endphp
                     @foreach ($eduLevels as $key => $eduLevel)  
-                    <div class="{{ (!in_array($key, $eduLevelids)) ? 'crdbxpl' : 'crdbxless' }} mt-4">
+                    <div class="{{ (!in_array($key, $eduLevelids)) ? 'crdbxpl' : 'crdbxless' }} mt-4 {{ (in_array($key, $eduLevelids) && ($key!=1 || $key!=2))? '' : 'openForm' }}" data-education-level-id="{{$key}}" type="button" data-form="new">
                         <div class="row">
                             <div class="col-10 px-5">{{ $eduLevel }}</div>
-                            <div class="col-2 align-self-center"><i class="fa fa-plus openForm" data-education-level-id="{{$key}}" type="button" data-form="new"></i></div>
+                            <div class="col-2 align-self-center">
+                            @if(in_array($key, $eduLevelids) && ($key!=1 || $key!=2)) @else <i class="fa fa-plus"></i>@endif</div>
                         </div>
                     </div>                    
-                    <div class="educationListAdd{{$key}}"></div>  
+                    <div class="educationListAdd_{{$key}} educationListAdd mb-4 form-empty"></div>  
                     @php
                         $educations = App\Model\UserEducation::whereUserId(Auth::user()->id)->where('education_level_id',$key)->get();
                     @endphp
-                    
-                        @foreach ($educations as $education)
-                        <div class="appendeducation card educationList{{$education->id}} m-1">
-                            <div class="text-end" data-edid="{{$education->id}}">
-                               <span class="edit_education_{{$education->id}} edit_education"> <i class="fa fa-edit"></i> </span>
-                               <span class="delete_education_{{$education->id}} delete_education"> <i class="fa-solid fa-trash-can text-danger"></i> </span>
-                               <span class="undo_education_{{$education->id}}" style="display:none;"> <i class="fa-solid fa-arrow-rotate-left text-green-color border-0 rounded p-2"></i> </span>
-                            </div>
-
-                            <div class="row mb-5">
-                                <div class="col-md-6">
-                                    <label for="" class="mb-2">Qualification Level</label>
-                                    <div class="fw-bolder">{{$eduLevel}}</div>
-                                </div>
-                                <div class="col-md-6">
-                                    @if(!empty($education->education_type_id))
-                                    <label for="" class="mb-2">Education</label>
-                                    <div class="fw-bolder">{{$education->getEducationType('education_type')?? ' - '}}</div>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="row mb-5">
-                                <div class="col-md-6">
-                                    <label for="" class="mb-2">Instition name</label>
-                                    <div class="fw-bolder">{{ucwords($education->institution??'None')}}</div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="" class="mb-2">Place of Education</label>
-                                    <div class="fw-bolder">{{ ucwords($education->location??'None') }}</div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="" class="mb-2">Year of education</label>
-                                    <div class="fw-bolder">{{Carbon\Carbon::parse($education->from_year)->Format('M Y')}} - {{($education->pursuing!='yes'? Carbon\Carbon::parse($education->to_year)->Format('M Y') : 'Still Pursuing') }}</div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="" class="mb-2">Secured</label>
-                                    <div class="fw-bolder">@if($education->percentage!=''){{ $education->getResultType('result_type') }}: {{ $education->percentage }} @else - @endif</div>
-                                </div>
-                            </div>
-                        </div>      
-                        <div class="educationListEdit{{$education->id}}"></div>    
-                        @endforeach
-
+                    <div id="educationList_{{$key}}"></div>
                     @endforeach
 
                 </div>  

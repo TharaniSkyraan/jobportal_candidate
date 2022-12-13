@@ -1,11 +1,13 @@
 
-<div class="card mt-5">
+<div class="card">
     <div class="col-md-10 mb-4" id="div_education_level_id">
-        <label for="div_education_level_id" class="form-label fw-bolder">Highest Qualification Level</label>
-        {!! Form::select('education_level_id', [''=>__('Select Education')]+$educationLevels, null, array('class'=>'form-select required', 'id'=>'education_level_id')) !!}
-        <small class="help-block form-text text-muted text-danger err_msg education_level_id-error" id="err_education_level_id"></small> 
+        <label for="div_education_level_id" class="form-label fw-bolder">Highest Qualification Level <strong class="education_level_id"></strong></label>
+        <div class="" id="education_level_dd" style="display:none;">                    
+            {!! Form::select('education_level_id', [''=>__('Select Education')]+$educationLevels, $education_level_id??nul, array('class'=>'form-select required', 'id'=>'education_level_id')) !!}
+            <small class="help-block form-text text-muted text-danger err_msg education_level_id-error" id="err_education_level_id"></small> 
+        </div>
     </div>
-    <div class="col-md-10 education_type_div" style="display:none;">
+    <div class="col-md-10 education_type_div mb-4" style="display:none;">
         <label for="education_type_id" class="form-label fw-bolder">Education</label>
         <div class="" id="education_types_dd">                    
             {!! Form::select('education_type_id', [''=>__('Select Education Type')], null, array('class'=>'form-select required', 'id'=>'education_type_id')) !!}
@@ -20,41 +22,39 @@
         $country = (!empty($userEducation->country_id))?$userEducation->getCountry('country'):$ip_data->geoplugin_countryName;
     @endphp
 
-    <div class="col-md-10 mb-4">
-        <label class="form-label fw-bolder">Place of Education</label>
-        <div class="mb-3 country_change"  style="display:none;">
+    <div class="col-md-6 mb-4">
+        <label class="form-label fw-bolder">Place of Education <span class="country_text"> - {{ $country }} <a href="javascript:void(0);" onClick="CountryChange()">Change</a></span> </label>
+        <div class="country_change"  style="display:none;">
             <label for="country_id" class="form-label fw-bolder">Country</label>
             {!! Form::select('country_id_dd', [''=>__('Select Country')]+$countries['value'], $country_id, array('class'=>'form-select country_id required', 'id'=>'country_id_dd'), $countries['attribute']) !!}
             <small class="help-block form-text text-muted text-danger err_msg country_id_dd-error" id="err_country_id_dd"></small>                        
         </div>
      </div>
     
-    <div class="row">
-        <div class="col-md-6">
-            <label for="location" class="form-label fw-bolder">City</label>
-            {!! Form::text('location', null, array('class'=>'form-control-2 required typeahead', 'id'=>'location', 'placeholder'=>__('Enter city'),' aria-label'=>'Enter city')) !!}
-            <small class="form-text text-muted text-danger err_msg" id="err_location"></small>                          
-        </div>
+    <div class="col-md-10 mb-4">
+        <label for="location" class="form-label fw-bolder">City</label>
+        {!! Form::text('location', null, array('class'=>'form-control-2 required typeahead', 'id'=>'location', 'placeholder'=>__('Enter city'),' aria-label'=>'Enter city')) !!}
+        <small class="form-text text-muted text-danger err_msg" id="err_location"></small>                          
     </div>
 
-    <hr/>
+    {{-- <hr/> --}}
 
-    <div class="mb-3">
+    <div class="col-md-10 mb-4">
         <label for="exampleInputEmail1" class="form-label fw-bolder">Institution name</label>
         {!! Form::text('institution', null, array('class'=>'form-control-2 required typeahead mb-2', 'id'=>'institution', 'placeholder'=>__('Institution Name'))) !!}
         <small class="help-block form-text text-muted text-danger err_msg institution-error" id="err_institution"></small>  
     </div>
 
-    <div class="row">
+    <div class="row mb-4">
         <div class="col-md-8 col-sm-12 col-xs-12">
             <div class="row">
-                    @php
-                        $d = $userEducation->from_year??date('Y-m-d');
-                        $fromdate = old('from_year')?date('Y-m-d',strtotime(old('from_year'))):'';
+                @php
+                    $d = $userEducation->from_year??date('Y-m-d');
+                    $fromdate = old('from_year')?date('Y-m-d',strtotime(old('from_year'))):'';
 
-                        $d = $userEducation->to_year??date('Y-m-d');
-                        $todate = old('to_year')?date('Y-m-d',strtotime(old('to_year'))):'';
-                    @endphp
+                    $d = $userEducation->to_year??date('Y-m-d');
+                    $todate = old('to_year')?date('Y-m-d',strtotime(old('to_year'))):'';
+                @endphp
                 <label for="" class="form-label fw-bolder">Year of education</label>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-2">
                     <div class="input-group">
@@ -81,7 +81,7 @@
         </div>
     </div>
 
-    <hr/>
+    {{-- <hr/> --}}
 
     <label for="" class="form-label fw-bolder">Secured</label>
     <div class=" mb-3">
@@ -122,10 +122,10 @@
 
     <div class="row mt-5">
         <div class="col-6 d-flex justify-content-center">
-            <input type="button" class="btn cnsl_btn" value="Cancel">
+            <button class="btn cnsl_btn user-education-cancel"  onClick="cancelUserEducationForm({{$userEducation->id??0}});" type="button">Cancel</button>
         </div>
         <div class="col-6 d-flex justify-content-center">
-            <input type="submit" class="btn sb_btn" value="Submit">
+            <button class="btn btn-submit bg-green-color"  onClick="submitUserEducationForm();" type="button">Save</button>
         </div>
     </div>
 </div>

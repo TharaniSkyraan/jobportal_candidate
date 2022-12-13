@@ -58,7 +58,7 @@
         Route::view('/education-details','user.education.educations')->name('education-details');
         Route::post('get-education-form/{id?}', 'UserController@getFrontUserEducationForm')->name('get.education.form');
         Route::post('store-education/{id?}', 'UserController@storeFrontUserEducation')->name('store.education.form');
-        Route::post('show-education/{id?}', 'UserController@showFrontUserEducation')->name('show.education');
+        Route::post('show-education', 'UserController@showUserEducationList')->name('show.education');
         Route::post('get-education-edit-form/{id?}', 'UserController@getFrontUserEducationEditForm')->name('get.education.edit.form');
         Route::put('update-education/{education_id}/{user_id?}', 'UserController@updateFrontUserEducation')->name('update.education');
         Route::delete('delete-education', 'UserController@deleteUserEducation')->name('delete.education');
