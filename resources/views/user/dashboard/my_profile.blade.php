@@ -345,23 +345,17 @@
 												
 													<!--Languages-->
 													<div class=" js-active " data-animation="scaleIn">
-													
-																							
+
 														<!-- info card-->
 														<div class="card page-inner mb-4">
-															
 															<div id="language_success"></div>
-
 															<!-- Form Tag -->
 															<div class="append-card-language" id="append-card-language"></div>
 															<!-- End Form -->
-
 															<div class="text-center">
 																<button class="btn btn-add openForm" type="button" data-form="new">Add Language</button>
 															</div>
-
 														</div>
-														
 
 														<!-- Language List card-->
 														<div class="" id="language_div"></div>                        
@@ -369,7 +363,7 @@
 
 													
 													</div>
-											</div>
+												</div>
 											</div>
 										</div>
 									</div>

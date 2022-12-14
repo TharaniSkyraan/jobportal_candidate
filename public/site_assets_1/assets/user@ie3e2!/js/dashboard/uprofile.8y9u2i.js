@@ -788,43 +788,43 @@
 
       }
 
-  }
-  
-  function undo_user_project(id) {
-      var msg = "Are you sure! you want to undo?";
-      if (confirm(msg)) {
-          $.post(baseurl + "undo-project", {id: id, _method: 'POST', _token: csrf_token})
-          .done(function (response) {
-              if (response == 'ok')
-              {
-                $('.undo_project_'+id).hide();
-                $('.delete_project_'+id).show();
-                $('.edit_project_'+id).show();
-                $('.project_edited_div_' + id).addClass("project_div");           
-                if($(".project_div").length > 1){
-                  $('.project_div').find(".delete_project").show();
+    }
+    
+    function undo_user_project(id) {
+        var msg = "Are you sure! you want to undo?";
+        if (confirm(msg)) {
+            $.post(baseurl + "undo-project", {id: id, _method: 'POST', _token: csrf_token})
+            .done(function (response) {
+                if (response == 'ok')
+                {
+                  $('.undo_project_'+id).hide();
+                  $('.delete_project_'+id).show();
+                  $('.edit_project_'+id).show();
+                  $('.project_edited_div_' + id).addClass("project_div");           
+                  if($(".project_div").length > 1){
+                    $('.project_div').find(".delete_project").show();
+                  }
+                } else
+                {
+                    alert('Request Failed!');
                 }
-              } else
-              {
-                  alert('Request Failed!');
-              }
-          });
+            });
+        }
+    }             
+
+    function cancelUserProjectForm(project_id) {
+
+      if(project_id!=0){      
+        $('.project_edited_div_'+project_id).show();
       }
-  }             
+      if($(".project_div").length==0){
+        $('.append-form-project').html(`<div class="text-center"><img src="${baseurl}site_assets_1/assets/img/fresher.png')}}" height="250" width="250"></div>`);
+      }else{
+        $('.append-form-project').html('');
+      }
+      $('#div-'+act_ftab).find(".btn-add").show();
 
-  function cancelUserProjectForm(project_id) {
-
-    if(project_id!=0){      
-      $('.project_edited_div_'+project_id).show();
     }
-    if($(".project_div").length==0){
-      $('.append-form-project').html(`<div class="text-center"><img src="${baseurl}site_assets_1/assets/img/fresher.png')}}" height="250" width="250"></div>`);
-    }else{
-      $('.append-form-project').html('');
-    }
-    $('#div-'+act_ftab).find(".btn-add").show();
-
-  }
 
   /** End of Project */
 
@@ -1106,8 +1106,6 @@
         });
       }
   }
-
-
 
   function cancelUserLanguageForm(language_id) {
 

@@ -65,8 +65,9 @@
         Route::post('undo-education', 'UserController@undoUserEducation')->name('undo.education');
 
         //** Experience */
-        Route::view('/experience-details','user.experience.experiences')->name('experience-details');
-        Route::post('show-experience/{id?}', 'UserController@showFrontUserExperience')->name('show.experience');
+        Route::get('/experience-details','UserController@ExpDetail')->name('experience-details');
+        Route::post('employementstatus-update', 'UserController@employementStatusUpdate')->name('employementstatus-update');
+        Route::post('show-experience', 'UserController@showUserExperienceList')->name('show.experience');
         Route::post('get-experience-form/{id?}', 'UserController@getFrontUserExperienceForm')->name('get.experience.form');
         Route::post('store-experience/{id?}', 'UserController@storeFrontUserExperience')->name('store.experience');
         Route::post('get-experience-edit-form/{id?}', 'UserController@getFrontUserExperienceEditForm')->name('get.experience.edit.form');

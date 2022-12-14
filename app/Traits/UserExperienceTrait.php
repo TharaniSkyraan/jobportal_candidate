@@ -9,7 +9,6 @@ use Carbon\Carbon;
 use Redirect;
 use App\Model\User;
 use App\Model\UserExperience;
-use App\Model\AccountType;
 use App\Model\Country;
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -19,71 +18,92 @@ use App\Helpers\DataArrayHelper;
 
 trait UserExperienceTrait
 {
-
-    public function showFrontUserExperience(Request $request, $user_id=null)
+    public function ExpDetail(Request $request)
     {
-        
-        $user_id = empty($user_id)?Auth::user()->id:$user_id;
+        $user = Auth::user();
+        if($user->employment_status=='fresher'){
+            return view('user.experience.fresher');
+        }else{
+            return view('user.experience.experience');
+        }
+ 
+    }
+    public function employementStatusUpdate(Request $request)
+    {
+        $user_id = Auth::user()->id;
         $user = User::find($user_id);
-        $html = '';
-        if (isset($user) && count($user->userExperience)):
-            foreach ($user->userExperience as $experience):
-               
-                if ($experience->is_currently_working == 1){                    
-                    $date_end = 'Currently working';
-                }
-                else{
-                    $date_end = $experience->date_end->format('d M, Y');
-                }
-
-                $html .= '<div class="experience_div shadow p-4 rounded bg-white mb-4 experience_edited_div_'.$experience->id.'"><div class="container">
-                        <div class="row">
-                            <div class="col-md-9 col-sm-8 col-xs-8 col-8">
-                                <h5 class="text-green-color fw-bolder">' . $experience->title . '</h5>
-                            </div>
-
-                            <div class="col-md-3 col-sm-4 col-xs-4 col-4 d-flex justify-content-between mb-3">
-                                <div class="edit_experience_'.$experience->id.'"><a  href="javascript:void(0);"><i class="fa-solid fa-pen-to-square text-green-color openForm" data-form="edit" data-id="'.$experience->id.'"></i></a></div>';
-                                if(count($user->userExperience)>1){
-                                    $html .='<div class="delete_experience delete_experience_'.$experience->id.'"><a href="javascript:void(0);" onclick="delete_user_experience(' . $experience->id . ');"><i class="fa-solid fa-trash-can text-danger"></i></a></div>
-                                    <div class="undo_experience_'.$experience->id.'" onclick="undo_user_experience(' . $experience->id . ');" style="display:none;"><a href="javascript:void(0);"><i class="fa-solid fa-arrow-rotate-left text-green-color border-0 rounded p-2" style="background-color:#6CD038;" ></i></a></div>';
-                                }
-                                $html .='</div>
-                        </div>
-
-                        <div style="margin: 5px 0;">' . $experience->company . '</div>
-                        <div style="margin: 5px 0;">' . $experience->location . '</div>
-                        
-                        <div style="margin: 5px 0;">'. Carbon::parse($experience->date_start)->Format('M Y') . ' - '. ($experience->is_currently_working!=1? Carbon::parse($experience->date_end)->Format('M Y') : 'Currently working') .'</div>
-                        
-                        <div class="more-details-show-hide collapse mt-3" id="collapseExample'.$experience->id.'">
-                            <div class="mb-3">
-                                <label class="fw-bolder mb-2">Job Description</label><br>
-                                <text> '. (($experience->description!='')?$experience->description:'No Job Description') .' </text>
-                            </div>';
-                            if($experience->used_tools!=null){
-                                $html .='<div class="mb-3">
-                                    <label class="fw-bolder mb-2">Tools / Software used</label><br>';
-                                    foreach(explode(',',$experience->used_tools) as $usedtools){$html .='<div class="d-flex"><button class="btn tag">' . $usedtools . '</button></div>';}
-                                $html .='</div>';
-                            }
-
-                        $html .='</div>
-
-                        <div class="text-center mt-2 more-details more-details'.$experience->id.'"  onclick="collapsedExp('.$experience->id.')">
-                            <a class="text-green-color" id="more-details-button-exp" data-bs-toggle="collapse" href="#collapseExample'.$experience->id.'" role="button" aria-expanded="false" aria-controls="collapseExample">More details 
-                            <i class="fa-solid fa-chevron-down collapse-down-arrow"></i> 
-                            <i class="fa-solid fa-chevron-up collapse-up-arrow" style="display:none;"></i></a>
-                        </div>
-                        </div>
-                    </div>';
-                endforeach;
-            endif;
-    
-            echo $html;
-            
+        $user->employment_status = $request->employment_status;
+        $user->save();
+        return redirect('/experience-details');
     }
 
+    public function showUserExperienceList(Request $request)
+    {
+        
+        $countries = DataArrayHelper::CountriesArray();
+        $user = Auth::user();
+        $html = view('user.experience.experiencelist', compact('countries','user'))->render();
+        
+        echo $html;
+    }
+
+    // public function showFrontUserExperience(Request $request, $user_id=null)
+    // {
+        
+    //     $user_id = empty($user_id)?Auth::user()->id:$user_id;
+    //     $user = User::find($user_id);
+    //     $html = '';
+    //     if (isset($user) && count($user->userExperience)):
+    //         foreach ($user->userExperience as $experience):
+               
+
+    //             $html .= '<div class="experience_div shadow p-4 rounded bg-white mb-4 experience_edited_div_'.$experience->id.'"><div class="container">
+    //                     <div class="row">
+    //                         <div class="col-md-9 col-sm-8 col-xs-8 col-8">
+    //                             <h5 class="text-green-color fw-bolder">' . $experience->title . '</h5>
+    //                         </div>
+
+    //                         <div class="col-md-3 col-sm-4 col-xs-4 col-4 d-flex justify-content-between mb-3">
+    //                             <div class="edit_experience_'.$experience->id.'"><a  href="javascript:void(0);"><i class="fa-solid fa-pen-to-square text-green-color openForm" data-form="edit" data-id="'.$experience->id.'"></i></a></div>';
+    //                             if(count($user->userExperience)>1){
+    //                                 $html .='<div class="delete_experience delete_experience_'.$experience->id.'"><a href="javascript:void(0);" onclick="delete_user_experience(' . $experience->id . ');"><i class="fa-solid fa-trash-can text-danger"></i></a></div>
+    //                                 <div class="undo_experience_'.$experience->id.'" onclick="undo_user_experience(' . $experience->id . ');" style="display:none;"><a href="javascript:void(0);"><i class="fa-solid fa-arrow-rotate-left text-green-color border-0 rounded p-2" style="background-color:#6CD038;" ></i></a></div>';
+    //                             }
+    //                             $html .='</div>
+    //                     </div>
+
+    //                     <div style="margin: 5px 0;">' . $experience->company . '</div>
+    //                     <div style="margin: 5px 0;">' . $experience->location . '</div>
+                        
+    //                     <div style="margin: 5px 0;">'. Carbon::parse($experience->date_start)->Format('M Y') . ' - '. ($experience->is_currently_working!=1? Carbon::parse($experience->date_end)->Format('M Y') : 'Currently working') .'</div>
+                        
+    //                     <div class="more-details-show-hide collapse mt-3" id="collapseExample'.$experience->id.'">
+    //                         <div class="mb-3">
+    //                             <label class="fw-bolder mb-2">Job Description</label><br>
+    //                             <text> '. (($experience->description!='')?$experience->description:'No Job Description') .' </text>
+    //                         </div>';
+    //                         if($experience->used_tools!=null){
+    //                             $html .='<div class="mb-3">
+    //                                 <label class="fw-bolder mb-2">Tools / Software used</label><br>';
+    //                                 foreach(explode(',',$experience->used_tools) as $usedtools){$html .='<div class="d-flex"><button class="btn tag">' . $usedtools . '</button></div>';}
+    //                             $html .='</div>';
+    //                         }
+
+    //                     $html .='</div>
+
+    //                         <div class="text-center mt-2 more-details more-details'.$experience->id.'"  onclick="collapsedExp('.$experience->id.')">
+    //                             <a class="text-green-color" id="more-details-button-exp" data-bs-toggle="collapse" href="#collapseExample'.$experience->id.'" role="button" aria-expanded="false" aria-controls="collapseExample">More details 
+    //                             <i class="fa-solid fa-chevron-down collapse-down-arrow"></i> 
+    //                             <i class="fa-solid fa-chevron-up collapse-up-arrow" style="display:none;"></i></a>
+    //                         </div>
+    //                     </div>
+    //                 </div>';
+    //             endforeach;
+    //         endif;
+    
+    //         echo $html;
+            
+    // }
 
     public function getFrontUserExperienceForm(Request $request, $user_id=null)
     {
@@ -107,13 +127,6 @@ trait UserExperienceTrait
         $userExperience = new UserExperience();
         $userExperience = $this->assignExperienceValues($userExperience, $request, $user_id);
         $userExperience->save();
-
-        // Update Signup Processing Level
-        $masterTable = AccountType::findorFail($userExperience->user->account_type_id);
-        if($masterTable->next_process_level == 'user_experience'){
-            $masterTable->next_process_level = 'user_skills';
-            $masterTable->save();
-        }
 
         return response()->json(array('success' => true, 'status' => 200, 'html' => $returnHTML??''), 200);
     }

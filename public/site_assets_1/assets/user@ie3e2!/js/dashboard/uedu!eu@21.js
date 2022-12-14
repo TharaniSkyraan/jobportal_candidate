@@ -282,51 +282,24 @@
     function StillCheck(form){
     
         if(form=='education'){          
-        if($("input[name='pursuing']").is(':checked') == false){
-            $('.to_year').prop('disabled', false);
-            $(".to_year").css("cursor",'pointer');
-        }else{
-            $('.to_year').prop('disabled', true);   
-            $(".to_year").css("cursor",'not-allowed'); 
-            $('.to_year').val('');    
-        }  
-        }
-        
-        if(form=='experience'){          
-        if($("input[name='is_currently_working']").is(':checked') == false){          
-            $("#date_end").prop('disabled', false);
-            $("#date_end").css("cursor",'pointer');
-        }else{
-            $("#date_end").prop('disabled', true);
-            $("#date_end").css("cursor",'not-allowed');
-            $("#date_end").val('');
-        }  
-        }
-        
-        if(form=='project'){          
-        if($("input[name='is_on_going']").is(':checked') == false){          
-            $("#date_end").prop('disabled', false);
-            $("#date_end").css("cursor",'pointer');
-        }else{
-            $("#date_end").prop('disabled', true);
-            $("#date_end").css("cursor",'not-allowed');
-            $("#date_end").val('');
-        }  
-        }
-        
-        if(form=='skill'){          
-        if($("input[name='is_currently_working']").is(':checked') == false){          
-            $("#end_date").prop('disabled', false);
-            $("#end_date").css("cursor",'pointer');
-        }else{
-            $("#end_date").prop('disabled', true);
-            $("#end_date").css("cursor",'not-allowed');
-            $("#end_date").val('');
-        }  
+          if($("input[name='pursuing']").is(':checked') == false){
+              $('.to_year').prop('disabled', false);
+              $(".to_year").css("cursor",'pointer');
+          }else{
+              $('.to_year').prop('disabled', true);   
+              $(".to_year").css("cursor",'not-allowed'); 
+              $('.to_year').val('');    
+          }  
         }
 
     }
 
+
+    $(document).on('change', '#country_id_dd', function (e) {
+      e.preventDefault();
+      $('#location').val('');
+    });
+    
     function CountryChange(){
       $('.country_change').show();
       $('.country_text').hide();

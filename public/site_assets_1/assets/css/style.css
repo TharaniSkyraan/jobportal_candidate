@@ -2270,4 +2270,35 @@ label {
   opacity: .8;
   font-weight: 600;
 }
+ /*experience**/
+
  
+ .levtstge_fre, .levtstge_exp
+ {
+  margin: 0 auto;
+  display: flex;
+  height: 130px;
+  width: 160px;
+}
+.levtstge_fre
+{
+  background:url(../../../../images/fresher_inactive.png);
+  background-size: cover;
+background-position: center;
+}
+.levtstge_fre:hover, .levtstge_fre:focus, .levtstge_fre.checked{
+  background:url(../../../../images/fresher_active.png);
+  background-size: cover;
+  background-position: center;
+}
+
+.levtstge_exp{
+  background:url(../../../../images/experienced_inactive.png);
+  background-size: cover;
+  background-position: center;
+}
+.levtstge_exp:focus, .levtstge_exp:hover, .levtstge_exp.checked{
+  background:url(../../../../images/experienced_active.png);
+  background-size: cover;
+  background-position: center;
+}

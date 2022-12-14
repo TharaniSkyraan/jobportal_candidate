@@ -28,17 +28,16 @@ trait UserLanguageTrait
         $user = User::find($user_id);
         $html = '';
         if (isset($user) && count($user->userLanguages)):
-        $html .= '<div class=" shadow p-4 rounded bg-white mb-4">
-                <div class="table-responsive"> <table class="table table-hover">            
-                <thead> <tr> <th>Language</th> <th>Fluency Level</th> <th>Read</th>
+        $html .= ' <table class="table">            
+                <thead> <tr class="thtg"> <th>Language</th> <th>Fluency Level</th> <th>Read</th>
                 <th>Speak</th> <th>Write</th> <th>Action</th></tr>  </thead> <tbody>';      
            
                 foreach ($user->userLanguages as $language):  
                     $read = $language->read == "yes"? '<i class="fa-solid fa-check" style="color:green; padding-right:3px;"></i>' : '-';               
                     $write = $language->write == "yes"? '<i class="fa-solid fa-check" style="color:green; padding-right:3px;"></i>' : '-';               
                     $speak = $language->speak == "yes"? '<i class="fa-solid fa-check" style="color:green; padding-right:3px;"></i>' : '-';
-                    $html .=  '<tr class="language_div language_edited_div_'.$language->id.'" >
-                    <td>' . $language->getLanguage('lang') . '</td>
+                    $html .=  '<tr class="rslt language_div language_edited_div_'.$language->id.'" >
+                    <td class="fw-bolder">' . $language->getLanguage('lang') . '</td>
                     <td>' . $language->getLanguageLevel('language_level') . '</td>
                     <td>' . $read . '</td>
                     <td>' . $speak . '</td>
@@ -50,7 +49,7 @@ trait UserLanguageTrait
                     }
                     $html .='</td></tr>';
             endforeach;
-            $html .'</tbody> </table> </div> </div>';
+            $html .'</tbody> </table>';
         endif;
 
         echo $html;

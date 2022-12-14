@@ -197,12 +197,12 @@
                     <p>Saved jobs</p>
                 </a>
             </li>
-            <li class="nav-item {{ Request::is('accounts_settings') ? 'active' : '' }}" >
+            {{-- <li class="nav-item {{ Request::is('accounts_settings') ? 'active' : '' }}" >
                 <a href="{{ route('accounts_settings') }}" class="collapsed" aria-expanded="false">
                 <img class="me-3" width="17px" src="{{url('images/account_settings.png')}}">
                     <p>Accounts Settings</p>
                 </a>
-            </li>
+            </li> --}}
         </ul>
     </div>
 </div>

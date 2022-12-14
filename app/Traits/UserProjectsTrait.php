@@ -48,87 +48,13 @@ trait UserProjectsTrait
 
     public function showFrontUserProjects(Request $request, $user_id=null)
     {
-
-        $user_id = empty($user_id)?Auth::user()->id:$user_id;
-        $user = User::find($user_id);
-        
+        $user = Auth::user();
         $html = '';
-
-        if (isset($user) && count($user->userProjects)):
-
-            $projectCounter = 0;
-
-            foreach ($user->userProjects as $project):
-
-                $date = '';
-                
-                
-                if ($project->is_on_going == 1){
-
-                    $date = $project->date_start != null ? Carbon::parse($project->date_start)->Format('M Y').' - Currently ongoing' : "Currently ongoing";
-
-                }else{
-                    $start_date = $project->date_start != null ? Carbon::parse($project->date_start)->Format('M Y')  : "";
-                    $end_date = $project->date_end != null ? " - ".Carbon::parse($project->date_end)->Format('M Y')  : "";
-                    $date = $start_date . $end_date;
-                }
-
-                // $image = ImgUploader::get_image("project_images/thumb/$project->image");
-
-                $html .= '<!--Project Start-->
-                         <div class="card page-inner mb-4 project_div project_edited_div_'.$project->id.'">
-					        <div class="row">
-                                <div class="col-md-8">
-                                    <h4 class="text-green-color fw-bold">' . $project->name . '</h4>
-                                </div>
-
-                                <div class="col-md-3 d-flex justify-content-around">
-                                    <div class="edit_project_'.$project->id.'"><a href="javascript:void(0);"><i class="fa-solid fa-pen-to-square text-green-color openForm" data-form="edit" data-id="'.$project->id.'"></i></a></div>';
-                                    if(count($user->userProjects)>1){ 
-                                        $html .= '<div class="delete_project delete_project_'.$project->id.'"><a href="javascript:void(0);"  onclick="delete_user_project(' . $project->id . ');"><i class="fa-solid fa-trash-can text-danger"></i></a></div>
-                                        <div class="undo_project_'.$project->id.'" onclick="undo_user_project(' . $project->id . ');" style="display:none;"><a href="javascript:void(0);"><i class="fa-solid fa-arrow-rotate-left text-green-color border-0 rounded p-2" style="background-color:#6CD038;" ></i></a></div>'; 
-                                    }
-                                $html .= '</div>
-                            </div>
-
-                            <p>' . $project->getCompany('company') . '</p>
-                            <p>' . ucwords($project->project_location) . ' Project </p>
-                            <p>' . $project->getCity('city') . '</p>
-                            <p>' . $date . '</p>
-
-                            <div class="more-details-show-hide collapse" id="collapseproject'.$project->id.'">
-                                <div class="mb-3">
-                                    <label class="pb-2">Job Description</label><br>
-                                    <text> '. $project->description .' </text>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="pb-2">Your role on the project </label><br>
-                                    <text> '. $project->role_on_project .' </text>
-                                </div>';
-                                
-                            if($project->used_tools!=null){
-                                $html .='<div class="mb-3">
-                                    <label class="pb-2">Tools / Software used</label><br>';
-                                    foreach(array_filter(explode(',',$project->used_tools)) as $usedtools){$html .='<text class="tag">' . $usedtools . '</text>';}
-                                $html .='</div>';
-                            }
-                            $html .='</div>
-
-                            <div class="text-center mt-2 more-details-proj more-details-proj'.$project->id.'" onclick="collapsedProj('.$project->id.')">
-                                <a class="text-green-color" id="more-details-button-proj" data-bs-toggle="collapse" href="#collapseproject'.$project->id.'" role="button" aria-expanded="false" aria-controls="collapseproject">More details 
-                                <i class="fa-solid fa-chevron-down collapse-down-arrow-proj"></i> 
-                                <i class="fa-solid fa-chevron-up collapse-up-arrow-proj" style="display:none;"></i></a>
-                            </div>
-
-                        </div>';
-
-               
-            endforeach;
-
-        endif;
-
-
-
+        if (isset($user) && count($user->userProjects)){
+            $html = view('user.project.projectslist')->render();
+        
+            echo $html;exit();
+        }
         echo $html;
 
     }
@@ -165,15 +91,7 @@ trait UserProjectsTrait
 
         $userProject->save();
 
-
-
-        $this->addUserProjectImage($request, $userProject);
-
-
-
-        $returnHTML = view('admin.user.forms.project.project_thanks')->render();
-
-        return response()->json(array('success' => true, 'status' => 200, 'html' => $returnHTML), 200);
+        return response()->json(array('success' => true, 'status' => 200), 200);
 
     }
 

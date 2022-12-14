@@ -13,12 +13,6 @@
 
 @endsection
 
-<style>
-
-</style>
-
-
-
 @section('content')
 <div class="wrapper" >
 	@include('layouts.header')
