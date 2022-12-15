@@ -95,7 +95,7 @@ class UserController extends Controller
         $noticePeriod = DataArrayHelper::langNoticePeriodsArray();
         $countries = DataArrayHelper::CountriesArray();
 
-        return view('user.dashboard.my_profile', compact('noticePeriod', 'user', 'genders', 'maritalStatuses', 'countries'));
+        return view('user.dashboard.about-me', compact('noticePeriod', 'user', 'genders', 'maritalStatuses', 'countries'));
         
     }
     
@@ -122,7 +122,7 @@ class UserController extends Controller
         $noticePeriod = DataArrayHelper::langNoticePeriodsArray();
         $countries = DataArrayHelper::CountriesArray();
 
-       return view('user.dashboard.my_profile', compact('noticePeriod', 'user', 'genders', 'maritalStatuses', 'countries'));
+       return view('user.dashboard.about-me', compact('noticePeriod', 'user', 'genders', 'maritalStatuses', 'countries'));
     }    
 
     public function accountSettings(){

@@ -110,7 +110,7 @@
 
   });
 
-  function validateBasicinfoForm(){
+    function validateBasicinfoForm(){
       clrErr();
       var errStaus = false; 
       

@@ -51,7 +51,7 @@
         Route::post('change-password', 'UserController@ChangePassword')->name('change-password');
         Route::put('my_profile', 'UserController@updateMyProfile')->name('my_profile_save');
         
-        Route::view('/about-me','user.dashboard.about-me')->name('about-me');
+        Route::view('/career-info-details','user.dashboard.career-info-details')->name('career-info-details');
         
         /** Educations */
         
@@ -105,8 +105,6 @@
         Route::delete('delete-project', 'UserController@deleteUserProject')->name('delete.project');
         Route::post('undo-project', 'UserController@undoUserProject')->name('undo.project');
         
-        Route::view('/career-info-details','user.career_info.career-info')->name('career-info-details');
-
         /**Resume */
         Route::get('resume-details', 'UserController@showUserCvs')->name('resume-details');
         Route::post('store-front-profile-cv', 'UserController@storeUserCv')->name('store.front.profile.cv');

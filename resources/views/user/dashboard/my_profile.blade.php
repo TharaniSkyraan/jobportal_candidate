@@ -61,8 +61,7 @@
 									<!--Start Basic Info Form-->
 								
 									<div class="card page-inner mt-4 mb-4 tab-pane fade show active" id="pills-basic_info" role="tabpanel" aria-labelledby="pills-basic_info-tab">
-										{!! Form::model($user, array('method' => 'put', 'route' => array('my_profile_save'), 'id' => 'submitbasicinfoform', 'class' => 'form', 'files'=>true)) !!}
-														
+												
 										<!-- <form class="mt-4 mb-3"> -->
 										<div class="row mb-4">
 											@if(session()->has('message'))

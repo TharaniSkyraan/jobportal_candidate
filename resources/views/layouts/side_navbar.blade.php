@@ -39,13 +39,13 @@
                 </div>
             </div>
 
-            <div class="collapse {{ (Request::is('about-me') || Request::is('education-details') || Request::is('experience-details') || Request::is('project-details') || Request::is('language-details') || Request::is('skill-details') || Request::is('career-info-details')|| Request::is('resume-details')) ? 'show' : '' }}" id="collapseExample">
+            <div class="collapse {{ (Request::is('home') || Request::is('education-details') || Request::is('experience-details') || Request::is('project-details') || Request::is('language-details') || Request::is('skill-details') || Request::is('career-info-details')|| Request::is('resume-details')) ? 'show' : '' }}" id="collapseExample">
                 <div class="card card-body">
                     <div class="row mb-3 {{ (empty(Auth::user()->date_of_birth))? 'no_fillfield' : '' }}">
                         <div class="col-10">
                             <div class="sideb_icn">
                                 <img src="{{asset('images/candidate_educ.png')}}" alt="">
-                                <a href="{{ route('about-me') }}">&nbsp;About me</a>
+                                <a href="{{ route('home') }}">&nbsp;About me</a>
                             </div>                            
                         </div>
                         <div class="col-2 align-self-center text-center">
