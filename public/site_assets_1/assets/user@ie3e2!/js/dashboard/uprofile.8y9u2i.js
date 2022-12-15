@@ -117,9 +117,9 @@
       if(validateFormFields('first_name','Please enter the First name.','NameVali')) errStaus=true;
       if(validateFormFields('last_name','Please enter Last name.','NameVali')) errStaus=true;
       if(validateFormFields('date_of_birth ','Please enter date of birth.','')) errStaus=true;
-      if(validateFormFields('user_location ','Please Enter City.','ValiCity')) errStaus=true;
       if(validateFormFields('marital_status_id ','Please select Marital status.','')) errStaus=true;
-      if(validateFormFields('country_id ','Please select Country.','')) errStaus=true;
+     if(validateFormFields('user_location ','Please Enter City.','ValiCity')) errStaus=true;
+       if(validateFormFields('country_id ','Please select Country.','')) errStaus=true;
       if(validateFormFields('career_title ','Please Enter job career title.','')) errStaus=true;
       if(validateFormFields('expected_salary ','Please Enter expected salary.','')) errStaus=true;
 
