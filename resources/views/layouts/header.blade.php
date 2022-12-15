@@ -32,7 +32,7 @@
 								</li> -->
 								<li>
 									@if(Auth::user()->is_active==1)
-										<a class="dropdown-item" href="{{ route('company.my_profile') }}"><i class="fa-solid fa-user px-1 mx-2"></i> My Profile</a>
+										<a class="dropdown-item" href="{{ route('my_profile') }}"><i class="fa-solid fa-user px-1 mx-2"></i> My Profile</a>
 									@else
 										<a class="dropdown-item" href="{{ route('redirect-user') }}"><i class="fa-solid fa-user px-1 mx-2"></i> My Profile</a>
 									@endif
