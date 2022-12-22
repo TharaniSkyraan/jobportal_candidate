@@ -114,7 +114,6 @@ class UserController extends Controller
 
     public function myProfile()
     {
-        
         $user = Auth::user();
         
         $genders = DataArrayHelper::langGendersArray();
@@ -138,6 +137,7 @@ class UserController extends Controller
         $user = User::findOrFail(Auth::user()->id)->update($request->all());
         
         flash(__('You have updated your profile successfully'))->success();
+    
         return \Redirect::route('my_profile')->with('message',' Updated Succssfully!');
     }
     

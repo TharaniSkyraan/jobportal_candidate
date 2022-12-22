@@ -118,6 +118,7 @@
     </div>
 </div>
 
+
 @include('user.resume_upload_modal')
 @endsection
 

@@ -249,7 +249,6 @@ class JobsController extends Controller
 
         }
         
-        
         return view('jobs.job_detail', compact('job','meta','breakpoint'));
     }
     
@@ -361,6 +360,7 @@ class JobsController extends Controller
         $company =Company::find($companies);
         $breadcrumbs= Job::where('company_id', $companies)->select('title', 'slug')->first();
         $company_jobs=$company->getOpenJobs();
+
 
 
         return view('jobs.company_view', compact('company','company_jobs', 'breadcrumbs'));
