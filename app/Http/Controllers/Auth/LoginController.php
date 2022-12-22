@@ -303,13 +303,10 @@ class LoginController extends Controller
         $user->session_otp = Carbon::now();
         $user->save();
             
-        // Auth::login($user, true); 
-        // UserVerification::generate($user);
-        // UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
-        // Auth::logout();
-        // if(empty($user->verify_otp))
-        // {                
-        // }
+        Auth::login($user, true); 
+        UserVerification::generate($user);
+        UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
+        Auth::logout();
 
         return view('auth.verify_otp',compact('user'));      
 
@@ -366,10 +363,10 @@ class LoginController extends Controller
 
         $user =  User::whereEmail($request->email)->first();
 
-        // Auth::login($user, true); 
-        // UserVerification::generate($user);
-        // UserVerification::send($user, 'Account Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
-        // Auth::logout();
+        Auth::login($user, true); 
+        UserVerification::generate($user);
+        UserVerification::send($user, 'Account Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
+        Auth::logout();
         
         return true;
      }
