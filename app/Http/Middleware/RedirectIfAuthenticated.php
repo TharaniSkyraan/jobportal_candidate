@@ -20,10 +20,10 @@ class RedirectIfAuthenticated
     {
         // User
         if (Auth::guard($guard)->check()) {
-            if(Auth::guard($guard)->user()->is_active==1){
+            if(Auth::user()->is_active==1){
                 return redirect('/home');
             }
-            if(Auth::guard($guard)->user()->is_active==0){
+            if(Auth::user()->is_active==0){
                 return redirect('/redirect_user');
             }
         }
