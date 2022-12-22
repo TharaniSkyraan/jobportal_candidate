@@ -56,11 +56,9 @@
         </a>
     </div>
     <p class="title-content">Confirm your Account Creation</h3>
-    <p class="text-center">Verify your login Email ID by clicking on the below link button.</p><br>
+    <p class="text-center">Your Verification otp.</p><br>
     <p class="text-center">
-        <a class="button button-blue" href="{{ route('email-verification.check', $user->verification_token) . '?email=' . urlencode($user->email) }}">
-           Verify Your Email ID
-        </a>
+        {{ $user->verification_token }}
     </p>
     <br>
     <p class="footer-content">You have received this mail because your e-mail ID is registered with 

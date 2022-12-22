@@ -303,6 +303,7 @@ class LoginController extends Controller
         $user->session_otp = Carbon::now();
         $user->save();
             
+        $user = User::findOrFail(Session::get('id'));
         Auth::login($user, true); 
         UserVerification::generate($user);
         UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
