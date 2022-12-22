@@ -58,7 +58,7 @@
     <p class="title-content">Confirm your Account Creation</h3>
     <p class="text-center">Your Verification otp.</p><br>
     <p class="text-center">
-        {{ $user->verification_token }}
+        {{ $user->verify_otp }}
     </p>
     <br>
     <p class="footer-content">You have received this mail because your e-mail ID is registered with 
