@@ -870,6 +870,14 @@ font-size: 14px;
         cursor: pointer;
     } */
 
+    #homepage_stn .hm_gr h3{
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        height: 50px;
+    }
     #topjobsector .card{
         padding: 1rem 0rem 0.7rem 1rem !important;
 
@@ -2514,6 +2522,13 @@ font-size: 14px;
         }
 
 
+    }
+
+
+    @media(max-width: 767px){
+        .navbar-mobile ul {
+            height: fit-content;
+        }
     }
 
 

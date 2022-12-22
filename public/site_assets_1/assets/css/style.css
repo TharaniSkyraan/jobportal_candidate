@@ -2302,3 +2302,12 @@ background-position: center;
   background-size: cover;
   background-position: center;
 }
+
+/**jayavel css**/
+
+/**job_info**/
+@media(max-width:767px){
+  .check-appended-cards{
+    padding: 20px !important;
+  }
+}
