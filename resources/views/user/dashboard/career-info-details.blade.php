@@ -27,7 +27,7 @@
                     @endphp
                     <div class="card mt-5">
                         
-                    {!! Form::open(array('method' => 'put', 'route' => array('my_profile_save'), 'class' => 'form', 'onSubmit' => 'return validateCareerInfoForm()')) !!}
+                    {!! Form::open(array('method' => 'put', 'route' => array('career_info_save'), 'class' => 'form', 'onSubmit' => 'return validateCareerInfoForm()')) !!}
                     <div class="container">
                         <div class="mb-3">
                             <label for="career_title" class="form-label">Your Current / Last designation</label>
@@ -108,7 +108,7 @@
 @endsection
 @push('scripts')
 <script>
- var expected_salary = "{{$user->expected_salary??''}}"
+ var expected_salary = "{{$user->expected_salary??''}}";
 </script>
 <script  type="text/javascript" src="{{ asset('site_assets_1/assets/vendor/typehead/typeahead.bundle.js') }}"></script>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/user@ie3e2!/js/formwizard/usiup@4h6i1.js') }}"></script>

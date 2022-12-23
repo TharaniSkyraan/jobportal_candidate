@@ -49,9 +49,7 @@ class RegisterController extends Controller
      */
     public function __construct(Request $request)
     {
-        $this->middleware('auth',function ($request, $next) {
-          dd('test');
-        })->except('getVerification', 'getVerificationError');
+        $this->middleware('checkauth')->except('getVerification', 'getVerificationError');
     }
 
     /**

@@ -2282,23 +2282,23 @@ label {
 }
 .levtstge_fre
 {
-  background:url(../../../../images/fresher_inactive.png);
+  background:url(../../../images/fresher_inactive.png);
   background-size: cover;
 background-position: center;
 }
 .levtstge_fre:hover, .levtstge_fre:focus, .levtstge_fre.checked{
-  background:url(../../../../images/fresher_active.png);
+  background:url(../../../images/fresher_active.png);
   background-size: cover;
   background-position: center;
 }
 
 .levtstge_exp{
-  background:url(../../../../images/experienced_inactive.png);
+  background:url(../../../images/experienced_inactive.png);
   background-size: cover;
   background-position: center;
 }
 .levtstge_exp:focus, .levtstge_exp:hover, .levtstge_exp.checked{
-  background:url(../../../../images/experienced_active.png);
+  background:url(../../../images/experienced_active.png);
   background-size: cover;
   background-position: center;
 }

@@ -25,7 +25,7 @@ trait UserCvsTrait
     public function showUserCvs()
     {
         $user = Auth::user();  
-        $resume1 = $user->UserCvs[0];
+        $resume1 = $user->UserCvs[0]??null;
         $resume2 = $user->UserCvs[1]??null;
         return view('user.resume.resume', compact('resume1','resume2'));
     }
@@ -39,11 +39,11 @@ trait UserCvsTrait
             $request->validate([
                 'file' => 'required|file|mimes:pdf,docx,doc,txt,rtf|max:2048',
             ]);                 
-            $path = Storage::disk('s3')->put('candidate/'.$user->token.'/file', $request->file);
-            $url = Storage::disk('s3')->url($path);
+            // $path = Storage::disk('s3')->put('candidate/'.$user->token.'/file', $request->file);
+            // $url = Storage::disk('s3')->url($path);
             $UserCv = new UserCv();
-            $UserCv->path = $path;
-            $UserCv->cv_file = $url;
+            $UserCv->path = $path??"";
+            $UserCv->cv_file = $url??"";
             $UserCv->user_id = $user->id;
             $UserCv->save();
         }
@@ -62,12 +62,12 @@ trait UserCvsTrait
             $request->validate([
                 'file' => 'required|file|mimes:pdf,docx,doc,txt,rtf|max:2048',
             ]); 
-            $path = Storage::disk('s3')->put('candidate/'.$user->token.'/file', $request->file);
-            $url = Storage::disk('s3')->url($path);
+            // $path = Storage::disk('s3')->put('candidate/'.$user->token.'/file', $request->file);
+            // $url = Storage::disk('s3')->url($path);
             $UserCv = UserCv::find($cv_id);
             $previous_file_path = $UserCv->path;
-            $UserCv->path = $path;
-            $UserCv->cv_file = $url;
+            // $UserCv->path = $path;
+            // $UserCv->cv_file = $url;
             $UserCv->user_id = $user->id;
             $UserCv->save();
             Storage::disk('s3')->delete($previous_file_path); 

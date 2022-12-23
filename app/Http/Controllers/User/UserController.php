@@ -130,15 +130,23 @@ class UserController extends Controller
     
     public function updateMyProfile(UserFrontRegisterFormRequest $request)
     { 
-        $request['current_salary']      = (int) str_replace(',',"",$request->input('current_salary'));
-        $request['expected_salary']      = (int) str_replace(',',"",$request->input('expected_salary'));
+        // $request['current_salary']      = (int) str_replace(',',"",$request->input('current_salary'));
+        // $request['expected_salary']      = (int) str_replace(',',"",$request->input('expected_salary'));
         $request['date_of_birth'] = Carbon::parse($request->date_of_birth)->format('Y-m-d');
-        $request['location'] = $request->user_location;
+        // $request['location'] = $request->user_location;
+        // dd($request->all());
         $user = User::findOrFail(Auth::user()->id)->update($request->all());
-        
-        flash(__('You have updated your profile successfully'))->success();
     
         return \Redirect::route('my_profile')->with('message',' Updated Succssfully!');
+    }
+    
+    public function updateCareer(Request $request)
+    { 
+        $request['expected_salary']      = (int) str_replace(',',"",$request->input('expected_salary'));
+        $request['location'] = $request->location;
+        $user = User::findOrFail(Auth::user()->id)->update($request->all());
+    
+        return \Redirect::back()->with('message',' Updated Succssfully!');
     }
     
     public function ProfileUpdate(Request $request)

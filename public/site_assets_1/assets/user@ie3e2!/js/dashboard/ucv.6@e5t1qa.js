@@ -23,7 +23,7 @@ $('input[name=primary]').on('change', function() {
         {       
             toastr.options.timeOut = 10000;
             toastr.success('Successfully Updated.');             
-            // window.location = baseurl + "/my_resume";
+            // window.location = baseurl + "/resume-details";
         } else
         {
             alert('Request Failed!');
@@ -121,7 +121,7 @@ function submitCvs()
                 $("#resume_upload_modal").modal('toggle');
                 });
             
-                window.location = baseurl + "/my_resume";
+                window.location = baseurl + "/resume-details";
             },
             error: function(json){
 
