@@ -30,7 +30,9 @@ class UserFrontRegisterFormRequest extends Request
             'first_name' => 'required|max:80',
             'last_name' => 'required|max:80',
             'marital_status_id' => 'required',
-            'country_id' => 'required',
+            'date_of_birth' => 'required',
+            // 'country_id' => 'required',
+            // 'location' => 'required|max:180',
             // 'expected_salary' => 'required|max:11',
             // 'salary_currency' => 'required|max:5',
             // 'career_title' => 'required|max:180',
@@ -42,11 +44,6 @@ class UserFrontRegisterFormRequest extends Request
             // 'g-recaptcha-response' => 'required|captcha',
         ];
 
-        if(isset($this->user_location)){
-            $rules['user_location'] = 'required|max:180';
-        }else{
-            $rules['location'] = 'required|max:180';
-        }
         // if($this->employment_status == 'experienced'){
         //     $rules['current_salary'] = 'required|max:11';
         //     $rules['total_experience'] = 'required';

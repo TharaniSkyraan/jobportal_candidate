@@ -25,7 +25,7 @@ trait UserCvsTrait
     public function showUserCvs()
     {
         $user = Auth::user();  
-        $resume1 = $user->UserCvs[0];
+        $resume1 = $user->UserCvs[0]??null;
         $resume2 = $user->UserCvs[1]??null;
         return view('user.resume.resume', compact('resume1','resume2'));
     }
@@ -42,8 +42,8 @@ trait UserCvsTrait
             $path = Storage::disk('s3')->put('candidate/'.$user->token.'/file', $request->file);
             $url = Storage::disk('s3')->url($path);
             $UserCv = new UserCv();
-            $UserCv->path = $path;
-            $UserCv->cv_file = $url;
+            $UserCv->path = $path??"";
+            $UserCv->cv_file = $url??"";
             $UserCv->user_id = $user->id;
             $UserCv->save();
         }

@@ -50,6 +50,7 @@
         Route::post('verify_request', 'UserController@VerifyOtp')->name('verify-otp');
         Route::post('change-password', 'UserController@ChangePassword')->name('change-password');
         Route::put('my_profile', 'UserController@updateMyProfile')->name('my_profile_save');
+        Route::put('career_info', 'UserController@updateCareer')->name('career_info_save');
         
         Route::view('/career-info-details','user.dashboard.career-info-details')->name('career-info-details');
         

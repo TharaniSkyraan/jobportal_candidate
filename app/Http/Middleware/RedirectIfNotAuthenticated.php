@@ -18,8 +18,8 @@ class RedirectIfNotAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check() && Auth::guard($guard)->user()->is_active==0) {
-            return redirect('/login');
+        if (Auth::check() && Auth::user()->is_active==0) {
+            return redirect('/redirect_user');
         }
         return $next($request);
     }

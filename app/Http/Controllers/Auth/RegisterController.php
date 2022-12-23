@@ -50,6 +50,7 @@ class RegisterController extends Controller
     public function __construct(Request $request)
     {
         $this->middleware('check_auth')->except('getVerification', 'getVerificationError');
+
     }
 
     /**
@@ -365,14 +366,14 @@ class RegisterController extends Controller
                 'file' => 'required|file|mimes:pdf,docx,doc,txt,rtf|max:2048',
             ]);        
          
-            // $path = Storage::disk('s3')->put('candidate/'.$user->token.'/file', $request->file);
-            // $url = Storage::disk('s3')->url($path);
-            // $UserCv = new UserCv();
-            // $UserCv->path = $path;
-            // $UserCv->cv_file = $url;
-            // $UserCv->user_id = $user->id;
-            // $UserCv->is_default = 1;
-            // $UserCv->save();
+            $path = Storage::disk('s3')->put('candidate/'.$user->token.'/file', $request->file);
+            $url = Storage::disk('s3')->url($path);
+            $UserCv = new UserCv();
+            $UserCv->path = $path;
+            $UserCv->cv_file = $url;
+            $UserCv->user_id = $user->id;
+            $UserCv->is_default = 1;
+            $UserCv->save();
 
         }
         $user = User::findOrFail(Auth::user()->id);
