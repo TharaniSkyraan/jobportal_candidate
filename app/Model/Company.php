@@ -91,7 +91,8 @@ class Company extends Authenticatable
 
     public function openJobs()
     {
-        return Job::where('company_id', '=', $this->id)->notExpire();
+        return Job::where('company_id', '=', $this->id)->active()->whereDate('expiry_date', '>', Carbon::now());
+
     }
 
     public function getOpenJobs()
