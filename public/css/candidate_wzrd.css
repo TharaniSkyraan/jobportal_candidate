@@ -1,108 +1,61 @@
 /**common css**/
 #page-container{
     background: transparent radial-gradient(closest-side at 50% 50%, #4285F4 10%, #3163B5 90%) 0% 0% no-repeat padding-box;
-}
-
-#cndidate_wzrd .card{
+}#cndidate_wzrd .card{
     background-color:#F3F7FE;
     padding: 20px 40px 20px 40px;
     border-radius:15px;
     margin:0 auto;
-
-}
-
-#cndidate_wzrd{
+}#cndidate_wzrd{
     display: grid;
     place-items: center;
     height: 100vh;
     margin: 0;
-}
-
-#cndidate_wzrd .subtbtn{
+}#cndidate_wzrd .subtbtn{
     background: #4285F4 !important;
     border-color: #4285F4 !important;
     border-radius: 8px !important;
-}
-
-
-#cndidate_wzrd .card{
+}#cndidate_wzrd .card{
     width: 85%;
-}
-
-#cndidate_wzrd .cndte_mbile img{
+}#cndidate_wzrd .cndte_mbile img{
     width:100%;
-}
-
-#cndidate_wzrd .site2_logo img{
+}#cndidate_wzrd .site2_logo img{
     width:130px;
-
-}
-
-#cndidate_wzrd .progress{
+}#cndidate_wzrd .progress{
     height:8px;
-}
-
-#cndidate_wzrd .lvledticn img{
-    
-    width: 35px;
-   
-}
-
-.lvledticn div{
+}#cndidate_wzrd .lvledticn img{
+    width: 35px;  
+}.lvledticn div{
     align-items: center;
     justify-content: center;
     display: flex;
-}
-
-
-#cndidate_wzrd .grytxtv{
+}#cndidate_wzrd .grytxtv{
     color:#808080 !important;
-}
-
-.grytxtv.pdngtxt{
+}.grytxtv.pdngtxt{
     padding: 0px 30px 0px 30px;
-
-}
-
-p.grytxtv{
+}p.grytxtv{
     font-size: 16px;
-}
-
-#cndidate_wzrd .cdt_crtect button{
+}#cndidate_wzrd .cdt_crtect button{
     background:#C4C4C4;
     border-radius:8px;
-}
-
-#cndidate_wzrd .restnt{
+}#cndidate_wzrd .restnt{
     color:#808080;
     font-size:14px;
-}
-
-
-.levtstge_fre, .levtstge_exp{
+}.levtstge_fre, .levtstge_exp{
     margin: 0 auto;
     display: flex;
     height: 120px;
     width: 120px;
-}
-
-#cndidate_wzrd .slct_apnd select{
+}#cndidate_wzrd .slct_apnd select{
     border: 1px solid #ccc;
-    padding: 5px;
-    
-}
-
-#cndidate_wzrd .slct_apnd input{
+    padding: 5px;   
+}#cndidate_wzrd .slct_apnd input{
     border-right:none;
     border-left:none;
-}
-
-#cndidate_wzrd .slct_apnd span{
+}#cndidate_wzrd .slct_apnd span{
     background: #fff;
     border: 1px solid #ced4da !important;
-}
-
-#cndidate_wzrd .skls_cdte{
+}#cndidate_wzrd .skls_cdte{
     position: relative;
     background: #fff;
     max-width: 100%;
@@ -111,14 +64,10 @@ p.grytxtv{
     border-radius: 15px;
     margin: 0 5px 5px 0;
     box-shadow: 2px 4px 6px #d6d6dd;
-}
-
-.skls_cdte .tag-plus{
+}.skls_cdte .tag-plus{
     border: 0px;
     background: none;
-}
-
-.loadflebrd {
+}.loadflebrd {
     align-items: center;
     justify-content: center;
     display: flex;
@@ -129,52 +78,58 @@ p.grytxtv{
     width: 300px;
     border-radius: 10px;
 }
-
-
-
 @media(max-width:480px){
     #cndidate_wzrd .cndte_mbile{
         display: none;
-    }
-
-    #cndidate_wzrd .card{
+    }#cndidate_wzrd .card{
         width: 100%;
         padding: 0px;
     }
+}@media(min-width:  481px) and (max-width:767px){
+    #cndidate_wzrd .cndte_mbile{
+        display: none;
+    }#cndidate_wzrd .card{
+        width: 100%;
+        padding: 10px;
+    }
+}
+@media(min-width:  767px) and (max-width: 1024px){
+    #cndidate_wzrd .card{
+        width: 100%;
+        padding: 10px;
+    }
+}
+@media(min-width:  1025px) and (max-width: 1300px){
+    #cndidate_wzrd .card{
+        width: 100%;
+        padding: 10px;
+    }
 }
 
-/***** Tharani ***/
-
-.field-icon {
-    float: right;
-    margin-left: -25px !important;
-    margin-top: -27px;
-    position: relative;
-    z-index: 5;
-    left: -3%;
-}
-  
-.hide { 
-    display: none; 
-}
-.levtstge_fre{
-    background:url(../images/fresher_inactive.png);
-    background-size: cover;
-background-position: center;
-}
-.levtstge_fre:hover, .levtstge_fre:focus, .levtstge_fre.checked{
-    background:url(../images/fresher_active.png);
-    background-size: cover;
-    background-position: center;
-}
-
-.levtstge_exp{
-    background:url(../images/experienced_inactive.png);
-    background-size: cover;
-    background-position: center;
-}
-.levtstge_exp:focus, .levtstge_exp:hover, .levtstge_exp.checked{
-    background:url(../images/experienced_active.png);
-    background-size: cover;
-    background-position: center;
-}
+    /***** Tharani ***/
+    .field-icon {
+        float: right;
+        margin-left: -25px !important;
+        margin-top: -27px;
+        position: relative;
+        z-index: 5;
+        left: -3%;
+    }.hide { 
+        display: none; 
+    }.levtstge_fre{
+        background:url(../images/fresher_inactive.png);
+        background-size: cover;
+        background-position: center;
+    }.levtstge_fre:hover, .levtstge_fre:focus, .levtstge_fre.checked{
+        background:url(../images/fresher_active.png);
+        background-size: cover;
+        background-position: center;
+    }.levtstge_exp{
+        background:url(../images/experienced_inactive.png);
+        background-size: cover;
+        background-position: center;    
+    }.levtstge_exp:focus, .levtstge_exp:hover, .levtstge_exp.checked{
+        background:url(../images/experienced_active.png);
+        background-size: cover;
+        background-position: center;
+    }

@@ -115,7 +115,6 @@
             </nav>
         <div class="row">
             <div class="col-md-9">
-                <div id="jasuccess"></div>
                 <div class="card page-inner">
                     <div class="card-body jdcarc">
                         <div class="mb-1">
@@ -387,7 +386,7 @@
                     </div>
                     @endif
 
-                    <div class="abt-cmp card-body jdcarc mt-5">
+                    <div class="abt-cmp card-body jdcarc">
                         <div class="mb-2">
                             @if(!empty($job->company->description))
                             <div class="mb-4">

@@ -15,143 +15,85 @@
 1.7.my experience2
 
 **/
-
-
-
-
-
 /******************
 ****1.1.user sidebar****
 *******************/
-
 #user_sbar .user_card{
     background:transparent linear-gradient(180deg, #4285F4 0%, #195ECD 100%) 0% 0% no-repeat padding-box;
     border-radius:10px;
     padding: 20px 15px 20px 15px;
     margin-top: 10px;
-
-}
-
-#user_sbar .user{
+}#user_sbar .user{
     padding: 10px 10px 0px 10px;
-}
-
-#user_sbar .sidebar-content{
+}#user_sbar .sidebar-content{
     padding-bottom: 0px;
-}
-
-#user_sbar .useraccountsetting {
+}#user_sbar .useraccountsetting {
     color:#fff;
-}
-
-#user_sbar .pf_cfont{
+}#user_sbar .pf_cfont{
     font-size:15px;
-}
-
-#user_sbar .sideb_icn{
+}#user_sbar .sideb_icn{
     font-weight: bold;
     font-size: 14px;
     align-items: center;
     align-items: center;
     display: flex;
     cursor: pointer;
-}
-
- #user_sbar .sideb_icn img{
+}#user_sbar .sideb_icn img{
     width: 17px;
-}
-
-.sideb_icn a {
+}.sideb_icn a {
     color: #000;
-}
-#user_sbar .collapse,  #user_sbar .collapsing{
+}#user_sbar .collapse,  #user_sbar .collapsing{
     padding: 12px;
     border-radius: 15px;
-}
-
-#user_sbar .collapse .card,  #user_sbar .collapsing .card{
+}#user_sbar .collapse .card,  #user_sbar .collapsing .card{
     background:#E9F1FF;
-}
-
-#user_sbar .collapse .fa-check,  #user_sbar .collapsing .fa-check{
+}#user_sbar .collapse .fa-check,  #user_sbar .collapsing .fa-check{
     color:#00D599;
-}
-
-#user_sbar .sidebar .user{
+}#user_sbar .sidebar .user{
     padding-bottom: 0px !important;
-}
-
-#user_sbar .side_rgt .sideb_icn{
+}#user_sbar .side_rgt .sideb_icn{
     margin-left: 18px;
     font-size: 13px;
-}
-
-#user_sbar .click_side1{
+}#user_sbar .click_side1{
     cursor: pointer;
-}
-
-#user_sbar .no_fillfield a,  #user_sbar .no_fillfield i{
+}#user_sbar .no_fillfield a,  #user_sbar .no_fillfield i{
     color:#808080;
-}
-
-#user_sbar .fa-check,  #user_sbar .fa-plus{
+}#user_sbar .fa-check,  #user_sbar .fa-plus{
     font-size:14px;
-}
-
-#user_sbar .card{
+}#user_sbar .sidebar .card{
     margin-bottom:0px !important;
 }
-
-
-
-
 /******************
 ****1.2.user about me****
 *******************/
-
 #abt_meusr .icnsuld {
     align-items: center;
     justify-content: center;
     display: flex;
-}
-
-#abt_meusr .profilepictureappend img {
+}#abt_meusr .profilepictureappend img {
     width: 80%;
     box-shadow: 0 3px 10px rgb(0 0 0 / 20%);
     border-radius: 50%;
     height: 120px;
     border: 3px solid #ccc;
     padding: 2px;
-}
-
-
-#abt_meusr{
+}#abt_meusr{
     width:65%;
-}
-
-#abt_meusr .ttleicn img{
+}#abt_meusr .ttleicn img{
     width:45px;
     align-items:center;
-}
-
-#abt_meusr .ttleicn h2{
+}#abt_meusr .ttleicn h2{
     font-size: 30px;
     align-items: center;
     justify-content: center;
     display: flex;
-}
-
-#page-container{
+}#page-container{
     min-height:auto !important;
-}
-
-#abt_meusr .card{
+}#abt_meusr .card{
     padding: 60px;
     background:#FCFCFC;
     box-shadow: 0px 0px 6px #00000029;
-}
-
-#abt_meusr .fa-camera {
+}#abt_meusr .fa-camera {
     position: absolute;
     background-color: blue;
     color: #ffff;
@@ -164,13 +106,9 @@
     border-radius: 50%;
     margin-top: 30px;
     margin-left: 55px;
-}
-
-#abt_meusr label{
+}#abt_meusr label{
     color:#808080 !important;
-}
-
-#abt_meusr .fa-check{
+}#abt_meusr .fa-check{
     background-color: #25D366;
     width: 15px;
     height: 15px;
@@ -183,321 +121,197 @@
     display: flex;
     font-size: 8px;
 }
-
-
-
-
 /******************
 **1.3.my education**
 *******************/
-
 #my_eductin{
     width:65%;
-}
-
-#my_eductin .crdbxpl{
+}#my_eductin .crdbxpl{
     background-color:#F3F7FE;
     font-weight: bolder;
     padding: 10px;
     margin-bottom: 20px;
     box-shadow: 0px 0px 6px #00000029;
     cursor: pointer;
-}
-
-#my_eductin .crdbxless{
+}#my_eductin .crdbxless{
     background-color:#F6F6F6;
     font-weight: bolder;
     padding: 10px;
     margin-bottom: 20px;
     box-shadow: 0px 0px 6px #00000029;
     cursor: pointer;
-
-}
-
-#my_eductin .card{
+}#my_eductin .card{
     padding: 40px;
     background:#FCFCFC;
     box-shadow: 0px 0px 6px #00000029;
-}
-
-#my_eductin .fa-plus, #my_eductin .fa-minus{
+}#my_eductin .fa-plus, #my_eductin .fa-minus{
     align-items: end;
     text-align: end;
     justify-content: end;
     display: flex;
     font-size: 18px;
-}
-
-
-#my_eductin hr{
-    /* margin-bottom: 30px;
-    margin-top: 30px; */
+}#my_eductin hr{
     height: 2px;
-}
-
-
-#my_eductin .cnsl_btn{
+}#my_eductin .cnsl_btn{
     background-color: #e4e4e4;
     color: #000 !important;
-}
-
-
-#my_eductin .sb_btn{
+}#my_eductin .sb_btn{
     background-color: #00D599;
     color: #000 !important;
-}
-
-#my_eductin .appendeducation{
+}#my_eductin .appendeducation{
     background: #F3F7FE;
-}
-
-
-#my_eductin .fa-edit{
+}#my_eductin .fa-edit{
     color: #1572e8;
     font-size: 20px;
     cursor: pointer;
-}
-
-#my_eductin .appendeducation label{
+}#my_eductin .appendeducation label{
     color:808080 !important;
-}
-
-#my_eductin h2{
+}#my_eductin h2{
     font-size: 30px;
     align-items: center;
     justify-content: center;
     display: flex;
 }
-
-
-
-
 /******************
 **1.4.my experience**
 *******************/
 #my_expernce{
     width:65%;
-}
-
-#my_expernce h2 {
+}#my_expernce h2 {
     font-size: 30px;
     align-items: center;
     justify-content: center;
     display: flex;
-}
-
-#my_expernce .expnce img{
+}#my_expernce .expnce img{
     width: 40%;
 }
-
-
-
 /******************
 **1.5.choose experience**
 *******************/
 #chhose_expernce{
     width:65%;
-}
-
-#chhose_expernce h2 {
+}#chhose_expernce h2 {
     font-size: 30px;
     align-items: center;
     justify-content: center;
     display: flex;
-}
-
-#chhose_expernce .chseimg img{
+}#chhose_expernce .chseimg img{
     width: 150px;
-}
-
-
-#chhose_expernce .add_exprn{
+}#chhose_expernce .add_exprn{
     padding: 10px;
     background-color: #F3F7FE;
     box-shadow: 0px 0px 6px #00000029;
     width: 80%;
     margin: 0 auto;
-}
-
-#chhose_expernce .expnce .fw-bolder{
+}#chhose_expernce .expnce .fw-bolder{
     color: #808080;
     opacity: 1;
 }
-
-
-
 /******************
 **1.6.my experience1**
 *******************/
-
 #my_expernce1{
     width:65%;
-}
-
-#my_expernce1 h2 {
+}#my_expernce1 h2 {
     font-size: 30px;
     align-items: center;
     justify-content: center;
     display: flex;
-}
-
-#my_expernce1 .card {
+}#my_expernce1 .card {
     padding: 60px;
     background:#F6F6F6 0% 0% no-repeat padding-box;;
     box-shadow: 0px 0px 6px #00000029;
-}
-
-
-#my_expernce1 .cnsl_btn{
+}#my_expernce1 .cnsl_btn{
     background-color: #e4e4e4;
     color: #000 !important;
-}
-
-
-#my_expernce1 .sb_btn{
+}#my_expernce1 .sb_btn{
     background-color: #00D599;
     color: #000 !important;
 }
-
-
 /******************
 **1.7.my experience2**
 *******************/
-
-
 #my_expernce2{
     width:65%;
-}
-
-#my_expernce2 h2 {
+}#my_expernce2 h2 {
     font-size: 30px;
     align-items: center;
     justify-content: center;
     display: flex;
-}
-
-#my_expernce2 .crdbxpl{
+}#my_expernce2 .crdbxpl{
     background-color:#F6F6F6;
     font-weight: bolder;
     padding: 8px;
     margin-bottom: 20px;
     box-shadow: 0px 0px 6px #00000029;
     cursor: pointer;
-}
-
-#my_expernce2 .crdbxpl button{
+}#my_expernce2 .crdbxpl button{
     background-color: #4285F4;
     color: #fff;
     border: 1px solid #4285F4;
     border-radius: 20px;
     padding: 2px 18px 2px 18px;
-}
-
-
-#my_expernce2 .card{
+}#my_expernce2 .card{
     background:#F3F7FE;
     padding: 40px;
     box-shadow: 0px 0px 6px #00000029;
-}
-
-#my_expernce2 .fa-edit {
+}#my_expernce2 .fa-edit {
     color: #1572e8;
     font-size: 18px;
     cursor: pointer;
-}
-
-#my_expernce2 .fa-trash {
+}#my_expernce2 .fa-trash {
     color: #FF3434;
     font-size: 18px;
     cursor: pointer;
-
-}
-
-#my_expernce2 .dtls small{
+}#my_expernce2 .dtls small{
     color: #808080
-}
-
-#my_expernce2 .gry{
+}#my_expernce2 .gry{
     color:#808080;
-}
-
-#my_expernce2 .skilsdtl span{
+}#my_expernce2 .skilsdtl span{
     background: #4285F4 !important;
     color: #fff !important;
     font-size: 14px;
     padding: 4px 15px;
     border-radius: 20px;
-}
-
-#my_expernce2 .skilsdtl .fa-close{
+}#my_expernce2 .skilsdtl .fa-close{
     font-size: 12px;
-}
-
-#my_expernce2 .skilsdtl span{
+}#my_expernce2 .skilsdtl span{
     margin-right: 10px;
-}
-
-#my_expernce2 .text-justify{
+}#my_expernce2 .text-justify{
     text-align: justify;
 }
-
-
-
-
-
 /******************
 **1.8.my projects**
 *******************/
-
-
 #my_projts{
     width:65%;
-}
-
-#my_projts h2 {
+}#my_projts h2 {
     font-size: 30px;
     align-items: center;
     justify-content: center;
     display: flex;
-}
-
-
-#my_projts .card{
+}#my_projts .card{
     padding: 60px;
     background:#F6F6F6;
     box-shadow: 0px 0px 6px #00000029;
-}
-
-
-#my_projts .cnsl_btn{
+}#my_projts .cnsl_btn{
     background-color: #e4e4e4;
     color: #000 !important;
-}
-
-
-#my_projts .sb_btn{
+}#my_projts .sb_btn{
     background-color: #00D599;
     color: #000 !important;
 }
-
-
-
 /******************
 **1.8.my skills**
 *******************/
-
 #my_skills{
     width: 65%;
-}
-
-#my_skills h2 {
+}#my_skills h2 {
     font-size: 30px;
     align-items: center;
     justify-content: center;
     display: flex;
-}
-
-#my_skills .skilsdtl{
+}#my_skills .skilsdtl{
     background: #F6F6F6 !important;
     font-size: 14px;
     padding: 4px 15px;
@@ -505,211 +319,126 @@
     margin-right: 10px;
     color: #808080 !important;
     box-shadow: 0px 3px 6px #00000029;
-
-}
-
-
-#my_skills .skilsdtl .fa-close{
+}#my_skills .skilsdtl .fa-close{
     font-size: 12px;
-}
-
-
-
-#my_skills .cnsl_btn{
+}#my_skills .cnsl_btn{
     background-color: #e4e4e4;
     color: #000 !important;
-}
-
-
-#my_skills .sb_btn{
+}#my_skills .sb_btn{
     background-color: #00D599;
     color: #000 !important;
-}
-
-#my_skills .card{
+}#my_skills .card{
     background: #F6F6F6;
     padding: 20px;
 }
-
-
-
-
-
 /******************
 **1.9.my skills1**
 *******************/
-
 #my_skills1 .card {
     background: #F3F7FE;
     padding: 20px;
     box-shadow: 0px 0px 6px #00000029;
-}
-
-#my_skills1{
+}#my_skills1{
     width: 65%;
-}
-
-#my_skills1 h2 {
+}#my_skills1 h2 {
     font-size: 30px;
     align-items: center;
     justify-content: center;
     display: flex;
-}
-
-#my_skills1 .crdbxpl {
+}#my_skills1 .crdbxpl {
     background-color: #F6F6F6;
     font-weight: bolder;
     padding: 8px;
     margin-bottom: 20px;
     box-shadow: 0px 0px 6px #00000029;
     cursor: pointer;
-}
-
-#my_skills1 .crdbxpl button {
+}#my_skills1 .crdbxpl button {
     background-color: #4285F4;
     color: #fff;
     border: 1px solid #4285F4;
     border-radius: 20px;
     padding: 2px 18px 2px 18px;
-}
-
-#my_skills1 .fa-edit {
+}#my_skills1 .fa-edit {
     color: #1572e8;
     font-size: 18px;
     cursor: pointer;
-}
-
-#my_skills1 .fa-trash {
+}#my_skills1 .fa-trash {
     color: #FF3434;
     font-size: 18px;
     cursor: pointer;
 }
-
-
-
-
-
 /******************
 **10. language Known**
 *******************/
-
 #language_knwn{
     width: 65%;
-}
-
-
-#language_knwn .thtg{
+}#language_knwn .thtg{
     background: #4285F4;
     color: #fff;
-}
-
-#language_knwn .rslt{
+}#language_knwn .rslt{
     background:#F3F7FE ;
     margin-top: 10px;
-}
-
-#language_knwn .addrw{
+}#language_knwn .addrw{
     background:#F6F6F6 ;
-}
-
-#language_knwn .addbtn{
+}#language_knwn .addbtn{
     background: #4285F4 0% 0% no-repeat padding-box;
     box-shadow: 0px 0px 6px #00000029;
     border-radius: 19px;
     border: 1px solid #4285F4;
     color: #fff;
     padding: 3px 30px 3px 30px;
-}
-
-#language_knwn .table{
+}#language_knwn .table{
     border-collapse: separate !important;
     border-spacing: 0 15px;
-}
-
-#language_knwn .addrw input, #language_knwn .addrw select {
+}#language_knwn .addrw input, #language_knwn .addrw select {
     padding: 6px;
     border: 1px solid #fff;
-}
-
-#language_knwn .fa-edit{
+}#language_knwn .fa-edit{
     color: #1572e8;
     font-size: 16px;
     cursor: pointer;
-}
-
-#language_knwn .fa-check{
+}#language_knwn .fa-check{
     color:#00D599;
-}
-
-#language_knwn .fa-trash {
+}#language_knwn .fa-trash {
     color: #FF3434;
     cursor: pointer;
 }
-
-
-
-
 /******************
 **11. language Known1**
 *******************/
-
-
 #language_knwn1{
     width: 65%;
-}
-
-#language_knwn1 h2 {
+}#language_knwn1 h2 {
     font-size: 30px;
     align-items: center;
     justify-content: center;
     display: flex;
-}
-
-#language_knwn1 .card{
+}#language_knwn1 .card{
     background: #F6F6F6;
     padding: 60px;
     box-shadow: 0px 0px 6px #00000029;
-}
-
-
-#language_knwn1 .cnsl_btn{
+}#language_knwn1 .cnsl_btn{
     background-color: #e4e4e4;
     color: #000 !important;
-}
-
-
-#language_knwn1 .sb_btn{
+}#language_knwn1 .sb_btn{
     background-color: #00D599;
     color: #000 !important;
 }
-
-
-
-
 /******************
 ****12.my resume****
 *******************/
-
 #my_resme{
     width: 65%;
-}
-
-
-#my_resme h2 {
+}#my_resme h2 {
     font-size: 30px;
     align-items: center;
     justify-content: center;
     display: flex;
-}
-
-#my_resme .card{
+}#my_resme .card{
     background: #F3F7FE;
     padding: 30px;
     box-shadow: 0px 0px 6px #00000029;
-}
-
-
-#my_resme .fa-info{
+}#my_resme .fa-info{
     font-size: 8px;
     border: 1px solid blue;
     width: 15px;
@@ -719,9 +448,7 @@
     justify-content: center;
     display: flex;
     border-radius: 50%;
-}
-
-#my_resme .fa-arrow-up{
+}#my_resme .fa-arrow-up{
     background: #00d599;
     width: 20px;
     height: 20px;
@@ -732,17 +459,20 @@
     color: #fff;
     font-size: 12px;
     display: flex;
-}
-
-
-#my_resme table{
+}#my_resme table{
     width: fit-content;
     margin: 0 auto;
-}
-
-
-#my_resme .fa-trash {
+}#my_resme .fa-trash {
     color: #FF3434;
     cursor: pointer;
+}
+@media(min-width: 280px) and (max-width: 480px){
+    #my_resme, #abt_meusr, #language_knwn1, #language_knwn {
+        width: 100%;
+    }#abt_meusr .card, #language_knwn1 .card {
+        padding: 15px;
+    }.append-card-language .card{
+
+    }
 }
 
