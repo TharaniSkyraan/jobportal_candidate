@@ -17,20 +17,8 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\UserRegistered' => [
             'App\Listeners\UserRegisterdListener',
         ],
-        'App\Events\CompanyRegistered' => [
-            'App\Listeners\CompanyRegisterdListener',
-        ],
-        'App\Events\JobPosted' => [
-            'App\Listeners\JobPostedListener',
-        ],
-        'App\Events\JobStatusUpdate' => [
-            'App\Listeners\JobStatusUpdateListener',
-        ],
         'App\Events\JobApplied' => [
             'App\Listeners\JobAppliedCompanyListener',
-        ],
-        'App\Events\ApplicationViewed' => [
-            'App\Listeners\JobAppliactionViewedListener',
         ],
         \SocialiteProviders\Manager\SocialiteWasCalled::class => [
             // ... other providers
