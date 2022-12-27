@@ -60,19 +60,19 @@
                             </div>
 
                             <div class="row mb-4 mt-5">
-                                <div class="col-md-6">
+                                <div class="col-md-5">
                                     <a href="{{ route('education') }}" class="btn"><img src="{{asset('images/lefticon.png')}}"> Previous</a >
                                 </div>
-                                <div class="col-md-6 text-end">
+                                <div class="col-md-7 text-end">
                                     <button type="submit" class="btn">Save & Continue  <img src="{{asset('images/righticon.png')}}"></button>
                                 </div>
-                            </div>
-                            <div class="progress mt-3">
-                                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 75%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
                     </div> 
                      {!! Form::close() !!}
+                     <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
                 </div>
             </div>
 
