@@ -121,6 +121,17 @@
     display: flex;
     font-size: 8px;
 }
+@media(min-width: 280px) and (max-width: 767px){
+    #abt_meusr .ttleicn img{
+        width: 35px;
+    }#abt_meusr .ttleicn h2 {
+        font-size: 25px;
+    }.prof_bg .profilepictureappend{
+        text-align: center;
+    }#abt_meusr .profilepictureappend img{
+        width: auto;
+    }
+}
 /******************
 **1.3.my education**
 *******************/
@@ -467,12 +478,55 @@
     cursor: pointer;
 }
 @media(min-width: 280px) and (max-width: 480px){
-    #my_resme, #abt_meusr, #language_knwn1, #language_knwn {
+    #my_resme, #abt_meusr, #language_knwn1, #language_knwn, #my_eductin, #my_expernce2, #my_skills1{
         width: 100%;
     }#abt_meusr .card, #language_knwn1 .card {
         padding: 15px;
-    }.append-card-language .card{
-
     }
+    #my_resme h2{
+        font-size: 25px;
+    }.ttleicn h2{
+        font-size: 25px !important;
+    }
+    .ttleicn img{
+        width: 35px;
+    }#my_expernce2 .crdbxpl button{
+        padding: 1px 6px;
+    }.header-space-search .jdcarc .justify-content-end{
+        justify-content: start !important;
+    }.cmpinfo-detail .text-end{
+        text-align: start !important;
+        margin-top: 1rem;
+    }
+}
+
+@media(min-width: 481px) and (max-width: 767px){
+    #abt_meusr, #my_resme, #my_eductin, #my_expernce2, #my_skills1{
+        width: 100%;
+    }.header-space-search .jdcarc .justify-content-end{
+        justify-content: start !important;
+    }.cmpinfo-detail .text-end{
+        text-align: start !important;
+        margin-top: 1rem;
+    }
+}
+
+@media(min-width: 768px) and (max-width: 1024px){
+    #abt_meusr, #my_resme, #my_eductin, #my_expernce2, #my_skills1{
+        width: 100%;
+    }#abt_meusr .profilepictureappend img{
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media(min-width: 1025px) and (max-width: 1300px){
+    #abt_meusr, #my_resme, #my_eductin, #my_expernce2, #my_skills1{
+        width: 100%;
+    }#abt_meusr .profilepictureappend img{
+        width: 100%;
+        height: auto;
+    }
+
 }
 

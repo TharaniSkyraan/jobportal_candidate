@@ -263,6 +263,7 @@ section {
   top: 55px;
   right: 15px;
   bottom: 15px;
+  height: fit-content;
   left: 15px;
   padding: 10px 0;
   border-radius: 10px;

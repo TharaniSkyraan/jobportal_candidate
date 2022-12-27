@@ -365,7 +365,6 @@
 
 .pagination .page-item .page-link{
   border-radius: 3px!important;
-  margin: 0px 5px !important;
   color: #666;
 }
 .page-item.active .page-link{

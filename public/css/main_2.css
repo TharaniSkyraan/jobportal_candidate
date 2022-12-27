@@ -217,15 +217,15 @@ font-size: 14px;
 
 }
 .galaryappendcontent img{
-    max-width: 200px;
-    max-height: 150px;
+    width: 100%;
+    height: 12vw;
+    object-fit: cover;
 }
 
 .contentbody .parent_box {
     background: #eeeeee7d;
 }
-
-.galaryappendcontent .box, .contentbody .box {
+.contentbody .box {
     height: 150px;
     align-self: center;
     display: inline-flex;
@@ -1503,17 +1503,16 @@ font-size: 14px;
 
 
 .galaryappendcontent img {
-    max-width: 200px;
-    max-height: 120px;
+    width: 100%;
+    height: 12vw;
+    object-fit: cover;
 }
-
-.galaryappendcontent .box {
-    height: 150px;
-    align-self: center;
-    display: inline-flex;
-    flex-flow: column wrap;
-    text-align: center;
-    justify-content: center;
+@media(min-width: 280px) and (max-width: 767px){
+    .galaryappendcontent img{
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
 }
 
     

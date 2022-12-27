@@ -118,7 +118,7 @@
                 <div class="card page-inner">
                     <div class="card-body jdcarc">
                         <div class="mb-1">
-                            <div class="row ">
+                            <div class="row">
                                 <div class="col-md-8 col-sm-8 col-xs-12">
                                     <h2 class="fw-bolder text-green-color jt-ellip">{{ ucwords($job->title) }}</h2>
                                     <h4 class="fw-bolder pb-2">{{ ucwords($job->company->name) }}.</h4>
