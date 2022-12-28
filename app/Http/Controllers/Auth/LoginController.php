@@ -141,7 +141,8 @@ class LoginController extends Controller
          
         $user = Socialite::driver($provider)->stateless()->user();
         
-        if ($user->getEmail() != '') {
+        if($user->getEmail() != '') 
+        {
 
             $str = $user->getName() . $user->getId() . $user->getEmail();
             $email = $user->getEmail();
@@ -207,8 +208,7 @@ class LoginController extends Controller
      {
         DB::beginTransaction();
  
-         try {
-
+        try {
 
             if(empty($request->user_type)){
                 
