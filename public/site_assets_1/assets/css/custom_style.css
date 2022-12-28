@@ -673,13 +673,7 @@
 
 .formField.userType .radioWrap .optionWrap .iconWrap {
     margin-top: 3px;
-}
-
-.formField.userType .radioWrap .optionWrap .textWrap {
-    /* margin-left: 10px; */
-}
-
-.formField.userType .radioWrap .optionWrap .textWrap .main-3 {
+}.formField.userType .radioWrap .optionWrap .textWrap .main-3 {
     font-weight: 600;
 }
 .main-3 {
@@ -897,7 +891,4 @@ table{
 /**jayavel**/
 #cndidate_wzrd .btn{
   font-size: 16px;
-}
-#cndidate_wzrd img{
-  width: 16px;
 }

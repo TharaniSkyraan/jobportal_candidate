@@ -44,7 +44,7 @@
                     <div class="row mb-3 {{ (empty(Auth::user()->date_of_birth))? 'no_fillfield' : '' }}">
                         <div class="col-10">
                             <div class="sideb_icn">
-                                <img src="{{asset('images/candidate_educ.png')}}" alt="">
+                                <img src="{{asset('images/about_me.png')}}" alt="">
                                 <a href="{{ route('home') }}">&nbsp;About me</a>
                             </div>                            
                         </div>
@@ -56,7 +56,7 @@
                         <div class="row mb-3 {{ (count(Auth::user()->UserCvs)==0)? 'no_fillfield' : '' }}">
                             <div class="col-10">
                                 <div class="sideb_icn">
-                                    <img src="{{asset('images/candidate_exp.png')}}" alt="">
+                                    <img src="{{asset('images/resume.png')}}" alt="">
                                     <a href="{{ route('resume-details') }}">&nbsp;My Resume</a>
                                 </div>
                             </div>
@@ -70,7 +70,7 @@
                         <div class="row mb-3 {{ (count($eduLevelids)==0)? 'no_fillfield' : '' }}">
                             <div class="col-10">
                                 <div class="sideb_icn">
-                                    <img src="{{asset('images/candidate_exp.png')}}" alt="">
+                                    <img src="{{asset('images/candidate_educ.png')}}" alt="">
                                     @if(Request::is('education-details'))
                                     <a href="javascript:;">&nbsp;My Education</a>
                                     @else
@@ -117,7 +117,7 @@
                         <div class="row mb-3 {{ (count(Auth::user()->userProjects)==0)? 'no_fillfield' : '' }}">
                             <div class="col-10">
                                 <div class="sideb_icn">
-                                    <img src="{{asset('images/candidate_exp.png')}}" alt="">
+                                    <img src="{{asset('images/my_projects.png')}}" alt="">
                                     <a href="{{ route('project-details') }}">&nbsp;My Projects</a>
                                 </div>
                             </div>
@@ -131,7 +131,7 @@
                         <div class="row mb-3 {{ (count(Auth::user()->userSkills)==0)? 'no_fillfield' : '' }}">
                             <div class="col-10">
                                 <div class="sideb_icn">
-                                    <img src="{{asset('images/candidate_exp.png')}}" alt="">
+                                    <img src="{{asset('images/skills.png')}}" alt="">
                                     <a href="{{ route('skill-details') }}">&nbsp;My Skills</a>
                                 </div>
                             </div>
@@ -145,7 +145,7 @@
                         <div class="row mb-3 {{ (count(Auth::user()->userLanguages)==0)? 'no_fillfield' : '' }}">
                             <div class="col-10">
                                 <div class="sideb_icn">
-                                    <img src="{{asset('images/candidate_exp.png')}}" alt="">
+                                    <img src="{{asset('images/lang.png')}}" alt="">
                                     <a href="{{ route('language-details') }}">&nbsp;Languages known</a>
                                 </div>
                             </div>
@@ -159,7 +159,7 @@
                         <div class="row mb-3 {{ empty(Auth::user()->career_title)? 'no_fillfield' : '' }}">
                             <div class="col-10">
                                 <div class="sideb_icn">
-                                    <img src="{{asset('images/candidate_exp.png')}}" alt="">
+                                    <img src="{{asset('images/career_info.png')}}" alt="">
                                     <a href="{{ route('career-info-details') }}">&nbsp;Career Info</a>
                                 </div>
                             </div>
@@ -197,12 +197,12 @@
                     <p>Saved jobs</p>
                 </a>
             </li>
-            {{-- <li class="nav-item {{ Request::is('accounts_settings') ? 'active' : '' }}" >
+            <li class="nav-item {{ Request::is('accounts_settings') ? 'active' : '' }}" >
                 <a href="{{ route('accounts_settings') }}" class="collapsed" aria-expanded="false">
                 <img class="me-3" width="17px" src="{{url('images/account_settings.png')}}">
                     <p>Accounts Settings</p>
                 </a>
-            </li> --}}
+            </li>
         </ul>
     </div>
 </div>

@@ -270,8 +270,9 @@
                             <div class="row">
                             @forelse($titles as $title)
                                 <div class="col-md-3 col-12">
-                                    <div class="list_poplar">
-                                        <p class="resentsearch fw-bolder plerhvr"  data-d="{{$title->title}}">{{$title->title}}</p>
+                                    <div class="list_poplar cursor-pointer">
+                                        <p class="resentsearch fw-bolder plerhvr"  data-d="{{$title->title}}">
+                                           <div class="row"><div class="col-10 text-start">{{$title->title}}</div><div class="col-2 text-end"><i class="fa fa-hand-pointer-o" aria-hidden="true"></i></div></div></p>
                                     </div>
                                 </div>
                                 @empty
@@ -292,8 +293,9 @@
                             @forelse($cachedatas as $key => $search)
                                 @if($key < 5 && ($search->designation !='' || $search->location !='')  )
                                 <div class="col-md-3 col-12">
-                                    <div class="list_poplar">
-                                        <p class="resentsearch fw-bolder plerhvr" data-d="{{$search->designation}}" data-l="{{$search->location}}">{{$search->designation}} {{$search->location}}</p>
+                                    <div class="list_poplar cursor-pointer">
+                                        <p class="resentsearch plerhvr" data-d="{{$search->designation}}" data-l="{{$search->location}}"><div class="row"><div class="col-10 text-start">{{$search->designation}} {{$search->location}}</div><div class="col-2 text-end align-self-center"><i class="fa fa-history" aria-hidden="true"></i></div></div> 
+</p>
                                     </div>
                                 </div>
                             @endif

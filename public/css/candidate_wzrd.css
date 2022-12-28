@@ -17,27 +17,6 @@
     border-radius: 8px !important;
 }#cndidate_wzrd .card{
     width: 85%;
-    height:550px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-#cndidate_wzrd .card::-webkit-scrollbar {
-    width: 5px;
-    overflow: hidden;
-    border-radius: 45px;
-    padding: 10px;
-  }
-  
-  #cndidate_wzrd .card::-webkit-scrollbar-track {
-    border-radius: 20px;
-  }
-     #cndidate_wzrd .card::-webkit-scrollbar-thumb {
-    background: #34a853; 
-    border-radius: 55px;
-  }
-  
-  #cndidate_wzrd .card::-webkit-scrollbar-thumb:hover {
-    background: #34a853; 
   }
 #cndidate_wzrd .cndte_mbile img{
     width:100%;
@@ -132,7 +111,7 @@
         float: right;
         margin-left: -25px !important;
         margin-top: -27px;
-        position: relative;
+    position: relative;
         z-index: 5;
         left: -3%;
     }.hide { 
