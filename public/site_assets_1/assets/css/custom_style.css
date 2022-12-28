@@ -893,3 +893,11 @@ table{
   }
 
 /* form wizard end */
+
+/**jayavel**/
+#cndidate_wzrd .btn{
+  font-size: 16px;
+}
+#cndidate_wzrd img{
+  width: 16px;
+}

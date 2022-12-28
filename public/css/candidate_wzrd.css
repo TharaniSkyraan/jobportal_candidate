@@ -17,7 +17,29 @@
     border-radius: 8px !important;
 }#cndidate_wzrd .card{
     width: 85%;
-}#cndidate_wzrd .cndte_mbile img{
+    height:550px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+#cndidate_wzrd .card::-webkit-scrollbar {
+    width: 5px;
+    overflow: hidden;
+    border-radius: 45px;
+    padding: 10px;
+  }
+  
+  #cndidate_wzrd .card::-webkit-scrollbar-track {
+    border-radius: 20px;
+  }
+     #cndidate_wzrd .card::-webkit-scrollbar-thumb {
+    background: #34a853; 
+    border-radius: 55px;
+  }
+  
+  #cndidate_wzrd .card::-webkit-scrollbar-thumb:hover {
+    background: #34a853; 
+  }
+#cndidate_wzrd .cndte_mbile img{
     width:100%;
 }#cndidate_wzrd .site2_logo img{
     width:130px;
@@ -49,9 +71,6 @@
 }#cndidate_wzrd .slct_apnd select{
     border: 1px solid #ccc;
     padding: 5px;   
-}#cndidate_wzrd .slct_apnd input{
-    border-right:none;
-    border-left:none;
 }#cndidate_wzrd .slct_apnd span{
     background: #fff;
     border: 1px solid #ced4da !important;
@@ -77,6 +96,8 @@
     border-style: dashed;
     width: 300px;
     border-radius: 10px;
+}.loadflebrd img{
+    width: 80px !important;
 }
 @media(max-width:480px){
     #cndidate_wzrd .cndte_mbile{
