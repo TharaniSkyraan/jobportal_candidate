@@ -12,15 +12,15 @@
             </div>
         </div>
 
-        <div class="mb-4 dtls">
+        <div class="dtls">
             <h3 class="fw-bolder mb-1">{{$experience->title}}</h3>
             <p class="mb-0">{{$experience->company}}</p>
             <p class="mb-0">{{$experience->location}}</p>
-            <p class="mb-2">{{Carbon\Carbon::parse($experience->date_start)->Format('M Y')}} - {{ ($experience->is_currently_working!=1? Carbon\Carbon::parse($experience->date_end)->Format('M Y') : 'Currently working') }}.</p>
+            <p>{{Carbon\Carbon::parse($experience->date_start)->Format('M Y')}} - {{ ($experience->is_currently_working!=1? Carbon\Carbon::parse($experience->date_end)->Format('M Y') : 'Currently working') }}.</p>
         </div>
 
-        <div class="more-details-show-hide collapse mt-3" id="collapseExample{{$experience->id}}">
-            <div class="mb-5">
+        <div class="more-details-show-hide collapse mt-2" id="collapseExample{{$experience->id}}">
+            <div class="mb-4">
                 <h3 class="gry">Job Description</h3>
                 <p class="text-justify">
                 {{($experience->description!='')?$experience->description:'No Job Description'}}   

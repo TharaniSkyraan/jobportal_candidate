@@ -544,7 +544,16 @@ font-size: 14px;
 
     .cadidate_bnstn .align-items-end img{
         width: 80%;
+    }.list_poplar .col-10{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+    }.list_poplar .fa-history{
+        color: #808080;
     }
+
 
 
     .home_pagesection h1{
@@ -1881,7 +1890,6 @@ font-size: 14px;
             align-items: center;
             justify-content: center;
         }
-
         #homepage_stn .popularser_hme{
             margin-top: 1.5rem!important;
         }
