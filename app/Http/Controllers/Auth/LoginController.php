@@ -131,15 +131,13 @@ class LoginController extends Controller
  
      public function handleProviderCallback(Request $request,$provider)
      {
-         if($request->has('error')){
+        if($request->has('error')){
             if($provider=='facebook'){
                 return redirect('login')->with("error", $request->error_description);   
             }elseif($provider=='apple'){
                 return redirect('login')->with("error", $request->error);   
             }
-         }
-         
-            
+        }
          
         $user = Socialite::driver($provider)->stateless()->user();
         
@@ -283,10 +281,10 @@ class LoginController extends Controller
         $user->save();
             
         $user = User::findOrFail(Session::get('id'));
-        Auth::login($user, true); 
-        UserVerification::generate($user);
-        UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
-        Auth::logout();
+        // Auth::login($user, true); 
+        // UserVerification::generate($user);
+        // UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
+        // Auth::logout();
 
         return view('auth.verify_otp',compact('user'));      
 
@@ -343,10 +341,10 @@ class LoginController extends Controller
 
         $user =  User::whereEmail($request->email)->first();
 
-        Auth::login($user, true); 
-        UserVerification::generate($user);
-        UserVerification::send($user, 'Account Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
-        Auth::logout();
+        // Auth::login($user, true); 
+        // UserVerification::generate($user);
+        // UserVerification::send($user, 'Account Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
+        // Auth::logout();
         
         return true;
      }
