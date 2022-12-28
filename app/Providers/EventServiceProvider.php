@@ -17,6 +17,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\UserRegistered' => [
             'App\Listeners\UserRegisterdListener',
         ],
+        'App\Events\JobApplied' => [
+            'App\Listeners\JobAppliedCompanyListener',
+        ],
         \SocialiteProviders\Manager\SocialiteWasCalled::class => [
             // ... other providers
             \SocialiteProviders\Apple\AppleExtendSocialite::class.'@handle',
