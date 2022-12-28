@@ -147,6 +147,7 @@ class LoginController extends Controller
 
             $str = $user->getName() . $user->getId() . $user->getEmail();
             $email = $user->getEmail();
+            $providerId = $user->getId();
 
             if(User::where('email',$email)->doesntExist()){
 
@@ -155,7 +156,7 @@ class LoginController extends Controller
                     'email' => $user->getEmail(),
                     'next_process_level' =>  'education',
                     'provider' => $provider,
-                    'provider_id' => $user->getId(), 
+                    'provider_id' => $providerId, 
                     'password' => bcrypt($str), 
                     'is_active' => 0, 
                     'verified' => 1, 
@@ -172,14 +173,14 @@ class LoginController extends Controller
                     User::where('email',$email)->update([
                         'next_process_level' => 'education',
                         'provider' => $provider,
-                        'provider_id' => $user->getId(), 
+                        'provider_id' => $providerId, 
                         'is_active' => 0, 
                         'verified' => 1
                     ]);
                 }else{
                     User::where('email',$email)->update([
                         'provider' => $provider,
-                        'provider_id' => $user->getId() 
+                        'provider_id' => $providerId 
                     ]);
                 }
                 $user = User::findorFail($user->id);
