@@ -52,7 +52,7 @@ class JobAppliedCompanyMailable extends Mailable
                                     'company_name' => $company->name,
                                     'user_name' => $user->getName(),
                                     'user_link' =>route('applicant-profile', $this->jobApply->id),
-                                    'job_link' => route('job.detail', [$this->job->slug])
+                                    'job_link' => route('postedjob', [$this->job->slug])
                                 ]);
     }
 
