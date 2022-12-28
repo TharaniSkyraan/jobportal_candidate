@@ -12,11 +12,6 @@
 
 <style>
 
-  .cr-boundary{
-    height: 230px !important;
-    width: 230px !important;
-  }
-
 /*profilepic start*/
 .profilepic {
 	border: 0.5px solid lightgrey;
@@ -114,6 +109,12 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
   font-size: 13px;
   border-color: #d1f3fb;
 }
+@media(max-width:480px){
+
+.change_phone_number .iti--allow-dropdown{
+  margin-bottom:10px;
+}
+}
 
 </style>
 
@@ -128,15 +129,15 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 				<h4 class="page-title"></h4>
 			</div>
 			<div class="page-inner">
-				<div class="text-center bg-color-blue mb-4">
-					<h4 class="page-title p-2">Accounts Settings</h4>
-				</div>
 				<div class="row">
 					<div class="col-md-12">
 						<div class="card mb-3">
-							<div class="card-body">
+              <div class="text-center" style="background:#f3f7fe;">
+                <h2 class="fw-bolder p-3 mb-0 border-bottom" >Accounts Settings</h2>
+              </div>
+							<div class="card-body mt-2">
 								<div class="row">
-									<div class="col-md-3 mb-4">
+									<div class="col-md-3">
 										<!-- <div class="text-center">
 											<div class="position-relative d-inline-block mb-4">
 												
@@ -150,7 +151,8 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 											<!-- </div>
 										</div> -->
 										<div class="profilepic m-auto cursor-pointer">
-											@if(Auth::check() && Auth::user()->image !=null )
+											@if( Auth::check() && Auth::user()->image !=null )
+                      
 											<img src="{{Auth::user()->image}}" alt="Img" class="profilepic__image w-100 h-100" id="profileImage">
 											@else  
 											<img src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="Img" class="profilepic__image w-100 h-100" id="profileImage">
@@ -162,7 +164,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 											</div>
 										</div>
 									</div>
-									<div class="col-md-8 mb-4">
+									<div class="col-md-8">
 										
 
 										<div class="mb-4">
@@ -170,12 +172,12 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 											<label for="" class="form-label fw-bolder">Email</label>
                         
                       <div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-6 col-6">
+                        <div class="col-md-6 col-sm-8 col-xs-6 col-8">
                           <div class="d-flex">
                             <text class="align-self-center width overflow-auto">{{ Auth::user()->email }}</text>
                           </div>
                         </div>
-                        <div class="col-md-6 col-sm-6 col-xs-6 col-6">
+                        <div class="col-md-6 col-sm-4 col-xs-6 col-4 text-center">
                           <img class="align-self-center align-top" src="{{ url('site_assets_1/assets/img/check-mark.png')}}" height="20px" width="20px"> 
                         </div>
                       </div>
@@ -184,31 +186,31 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 										<div class="mb-4">
                       <label for="" class="form-label fw-bolder">Phone Number</label>
                       <div class="row align-items-center current_phone_number">
-                        <div class="col-md-6 col-sm-6 col-xs-6 col-6">
+                        <div class="col-md-6 col-sm-8 col-xs-6 col-8">
                           <text class=" align-self-center">{{Auth::user()->phone ?? 'None'}}</text>
                         </div>
-                        <div class="col-md-6 col-sm-6 col-xs-6 col-6">
-                          <div class="d-flex">
+                        <div class="col-md-6 col-sm-4 col-xs-6 col-4">
+                          <div class="text-center">
                             @if(!empty(Auth::user()->phone))
                             <button class="btn rounded-pill align-self-center btns1 bg-color-blue" type="button" onclick="ChangePhoneNumber();">Change</button>
                             @else
                             <button class="btn rounded-pill align-self-center btns1 bg-color-blue" type="button" onclick="ChangePhoneNumber();">Add</button>
                             @endif
-                            
                           </div>
                         </div>
                       </div>
+
                       <div class="row">
                         <div class="col-md-12 change_phone_number" style="display:none !important;">
                           <div class="row align-items-center">
-                            <div class="col-md-6 col-sm-6 col-xs-6 col-12 mb-2">
+                            <div class="col-md-6 col-sm-12 col-xs-6 col-12">
                               {!! Form::tel('phone', Auth::user()->phone??null, array('class'=>'form-control mob_cp validMob width me-5','style'=>'line-height:0px', 'id'=>'phone', 'onkeypress'=> 'return isNumber(event)', 'minlength'=>'9', 'maxlength'=>'14', 'placeholder'=>__('Phone'))) !!}
                             </div>
-                            <div class="col-md-3 col-sm-3 col-xs-3 col-6 mb-2 text-start">
-                              <button class="btn btn-verify rounded-pill align-self-center btns1" type="button" onclick="ChangePhoneNumberRequest();">Verify</button>
+                            <div class="col-md-2 col-sm-2 col-xs-2 col-2">
+                              <button class="btn btn-verify rounded-pill align-self-center btns1 btn-sm" type="button" onclick="ChangePhoneNumberRequest();">Verify</button>
                             </div>
-                            <div class="col-md-3 col-sm-3 col-xs-3 col-6 mb-2 text-start">
-                                  <button class="btn rounded-pill align-self-center btns1 bg-color-blue" type="button" onclick="CurrentPhoneNumber();">Cancel</button>
+                            <div class="col-md-2 col-sm-2 col-xs-2 mx-3 col-2">
+                                  <button class="btn rounded-pill align-self-center btn-sm btns1 bg-color-blue" type="button" onclick="CurrentPhoneNumber();">Cancel</button>
                             </div>
                           </div>
                         </div>
@@ -219,11 +221,11 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 										<div class="mb-4 align-items-center">
                       <label for="" class="form-label fw-bolder">Password</label>	
                       <div class="row align-items-center">	
-                        <div class="col-md-6 col-sm-6 col-xs-6 col-6">  
+                        <div class="col-md-6 col-sm-8 col-xs-6 col-8">  
                             <small class="width me-5">**********</small>
                         </div>
-                        <div class="col-md-6 col-sm-6 col-xs-6 col-6">
-                          <button class="btn rounded-pill align-self-center btns1 bg-color-blue" type="button" onclick="ChangePassword();">Change</button>                      
+                        <div class="col-md-6 col-sm-4 col-xs-6 text-center col-4">
+                          <button class="btn rounded-pill align-self-center btn-sm bg-color-blue btns1" type="button" onclick="ChangePassword();">Change</button>                      
                         </div>
                       </div>
 										</div>										
@@ -243,18 +245,18 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	<div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
 		<div class="modal-dialog  modal-dialog-centered ">
 			<div class="modal-content">
-				<div class="modal-header" style="border-bottom:unset !important">
+				<div class="modal-header" style="border-bottom:unset !important;background: #f3f7fe;">
 					<h4 class="modal-title fw-bolder">Profile picture</h4>
 					<button type="button" class="btn-close profilemodalclose" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 
 				<div class="modal-body">
-					<div class="text-center">
+					<div class="text-center reset-modal">
 						<div class="text-center">
 							<small class="form-text text-muted text-danger err_msg  mb-4" id="err_image"></small>
 						</div>
-						<div class="profilepic-modal m-auto mb-5">
-							@if( Auth::check() && Auth::user()->image !=null )
+						<div class="profilepic-modal m-auto mb-4">
+							@if(Auth::user()->image !=null )
 							<img src="{{Auth::user()->image}}" alt="Img" class="profilepic__image w-100 h-100" id="profileImage">
 							@else  
 							<img src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="Img" class="profilepic__image w-100 h-100" id="profileImage">
@@ -278,21 +280,22 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 
 	<!-- CHnage Password -->
 	<div class="modal fade" id="ChangePassword" tabindex="-1" aria-labelledby="ChangePasswordLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog  modal-dialog-centered modal-md">
       <div class="modal-content">
-        <div class="modal-header" style="border-bottom:unset !important">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        
+        <div class="modal-header" style="border-bottom:unset !important;background: #f3f7fe;">
+					<h4 class="modal-title fw-bolder">Change Password</h4>
+					<button type="button" class="btn-close profilemodalclose" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+          
         <div class="modal-body">
-          <div class="m-auto" style="width:70%">
+          <div class="m-auto mx-3 mt-1">
             {!! Form::model(Auth::user(), array('method' => 'post', 'route' => array('change-password'), 'id' => 'change-password', 'class' => 'form')) !!}
               <div class="mb-2">
                 <label for="" class="form-label fw-bolder">Enter Old password</label>
                 <input type="password" name="old_password" id="old_password" class="form-control password" placeholder="Enter your old password">
                 <small class="form-text text-muted text-danger err_msg" id="err_old_password"></small>
                 <div class="text-end">
-                  <a href="{{ route('password.request') }}" target="_blank"> <b> {{__('Forget Password')}}</b></a>
+                  <a href="{{ route('password.request') }}" target="_blank"> <b><small>{{__('Forgot Password ?')}}</small></b></a>
                 </div>
               </div>
 
@@ -308,14 +311,14 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
                   <small class="form-text text-muted text-danger err_msg" id="err_confirm_password"></small>
               </div>
 
-              <div class="mb-5">
+              <div class="mb-2">
                 <label class="form-check-label cursor-pointer user-select-none" for="show_p_chk">
                   <input class="form-check-input" type="checkbox" id="show_p_chk" value="" onclick="showpwd()">
                   <span class="form-check-sign" for="show_p_chk">Show Password</span>
                 </label>
               </div>
 
-              <div class="d-flex justify-content-around mt-5 ">
+              <div class="d-flex justify-content-around mt-3">
                   <!-- <div class="text-center">
                       <button class="btn bg-grey-color" onclick ='window.location.href=document.referrer' type="button">Cancel</button>
                   </div> -->
@@ -345,7 +348,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
                     You have changed your phone number 
                   </h2>
                   <h5>Verify by providing the received OTP</h5>
-                  <h5>An OTP was sent to the provided Phone Number </h5>
+                  <h5>An OTP was sent to the Email provided</h5>
                   {!! Form::hidden('otp_code', null, array('id'=>'otp_code', 'class'=>'otp')) !!}
                   {!! Form::hidden('full_number', null, array('id'=>'full_number', 'class'=>'otp')) !!}
                   <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2"> 
@@ -359,8 +362,8 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
                   <small class="form-text text-muted text-danger err_msg" id="err_otp_code"></small> 
 
                 </div>
-                <div class="text-center mt-4">
-                  <button class="btn btn-submit bg-green-color verify" type="button"  onClick="VerifyPasswordChange()">Submit</button>
+                <div class="text-center mt-2">
+                  <button class="btn btn-submit bg-green-color verify" type="button"  onClick="VerifyPasswordChange()">verify</button>
                 </div>
               {!! Form::close() !!}
           </div>
@@ -370,6 +373,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
   </div>
 </div>
 @endsection
+
 @section('custom_bottom_scripts')
 @endsection
 
@@ -402,10 +406,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
   } 
   OTPInput(); 
 });
-
-
 </script>
 <!-- otp ends -->
+
 
 <script type="text/javascript">
 
@@ -468,9 +471,13 @@ $('.btn-upload-image').on('click', function (ev) {
     });
   });
 });
-
 </script>
+
 <script>
+
+  $(document.body).on('hidden.bs.modal', function () {
+    $(".reset-modal" ).load(document.URL + ".reset-modal>*", "" );
+  });
 
 	function openModal(){
 		$('#profileModal').modal('show');
@@ -478,7 +485,7 @@ $('.btn-upload-image').on('click', function (ev) {
 
 	function ChangePassword(){
     clrErr();
-    $("#change-password").trigger('reset');
+    $("#change-password").trigger("reset");
     showpwd();
 		$('#ChangePassword').modal('show');
 	} 
@@ -500,7 +507,6 @@ $('.btn-upload-image').on('click', function (ev) {
     utilsScript: "{{ asset('site_assets_1/assets/intl-tel-input/js/utils.js')}}",
   });
   @if(empty($user->phone))iti.setCountry("in");@endif
-  
   $(document).on('keyup change', ".validMob", function() {
       
       var ck_phone = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/i;
@@ -537,9 +543,6 @@ $('.btn-upload-image').on('click', function (ev) {
     return true;
   }
 	function ChangePhoneNumberRequest(){
-
-    $("#verify-otp").trigger('reset');
-
     clrErr();
     var errStaus = false;
     var old_num = '{{ Auth::user()->phone }}';
@@ -563,16 +566,17 @@ $('.btn-upload-image').on('click', function (ev) {
                   console.log(json);
                   $('.err_msg').html('');  
 		              $('#changephone').modal('show');
+
                 },
                 error: function(json){
-                  $('.err_msg').html('');   
-                  if (json.status === 422) {
-                      var resJSON = json.responseJSON;
-                      $.each(resJSON.errors, function (key, value) {     
-                        $('#err_' + key).html(value);               
-                      });
+                      $('.err_msg').html('');   
+                      if (json.status === 422) {
+                          var resJSON = json.responseJSON;
+                          $.each(resJSON.errors, function (key, value) {     
+                            $('#err_' + key).html(value);               
+                          });
+                      }
                   }
-                }
             });
         }
     }
@@ -586,10 +590,10 @@ $('.btn-upload-image').on('click', function (ev) {
     
      $('#otp_code').val(String(get_val).replace(/,/g, ""));
 
-     if(validateFormFields('otp_code','Please enter OTP','')) errStaus=true;
+     if(validateFormFields('otp_code','Please enter otp','')) errStaus=true;
      if(errStaus == false){
          if($('#otp_code').val().length < 6){
-           $('#err_otp_code').html('Please Enter Valid OTP');
+           $('#err_otp_code').html('Please Enter Valid otp');
            return false;
          }
        else{

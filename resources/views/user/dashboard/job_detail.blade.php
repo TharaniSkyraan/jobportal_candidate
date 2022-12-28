@@ -319,7 +319,7 @@ ul{
                     </div>
                     @endif
                     
-                    <div class="abt-cmp card-body jdcarc mt-5">
+                    <div class="abt-cmp card-body jdcarc">
                         <div class="mb-2">
                             @if(!empty($job->company->description))
                             <div class="mb-4">

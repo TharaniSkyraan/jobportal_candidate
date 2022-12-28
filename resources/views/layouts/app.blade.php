@@ -12,13 +12,8 @@
     
     @include('layouts.styles')
     @include('layouts.top_scripts')
-    
     @yield('custom_styles')
-
-
-
     @yield('custom_scripts')
-
 </head>
 
 <body>

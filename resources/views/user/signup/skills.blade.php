@@ -65,8 +65,8 @@
                     </div>
                     
                     {!! Form::close() !!}
-                    <div class="progress mt-3">
-                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 95%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 90%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>
             </div>

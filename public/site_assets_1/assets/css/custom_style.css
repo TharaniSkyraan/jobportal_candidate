@@ -365,7 +365,6 @@
 
 .pagination .page-item .page-link{
   border-radius: 3px!important;
-  margin: 0px 5px !important;
   color: #666;
 }
 .page-item.active .page-link{
@@ -894,3 +893,11 @@ table{
   }
 
 /* form wizard end */
+
+/**jayavel**/
+#cndidate_wzrd .btn{
+  font-size: 16px;
+}
+#cndidate_wzrd img{
+  width: 16px;
+}

@@ -115,11 +115,10 @@
             </nav>
         <div class="row">
             <div class="col-md-9">
-                <div id="jasuccess"></div>
                 <div class="card page-inner">
                     <div class="card-body jdcarc">
                         <div class="mb-1">
-                            <div class="row ">
+                            <div class="row">
                                 <div class="col-md-8 col-sm-8 col-xs-12">
                                     <h2 class="fw-bolder text-green-color jt-ellip">{{ ucwords($job->title) }}</h2>
                                     <h4 class="fw-bolder pb-2">{{ ucwords($job->company->name) }}.</h4>
@@ -387,7 +386,7 @@
                     </div>
                     @endif
 
-                    <div class="abt-cmp card-body jdcarc mt-5">
+                    <div class="abt-cmp card-body jdcarc">
                         <div class="mb-2">
                             @if(!empty($job->company->description))
                             <div class="mb-4">
