@@ -186,6 +186,7 @@ class LoginController extends Controller
                 $page = $this->SwitchRedirect($user->next_process_level);
             }
             Auth::login($user, true);
+            session(['id' => $user->id]);
             return redirect($page);
         }
 
