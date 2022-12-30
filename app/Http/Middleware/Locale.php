@@ -32,7 +32,6 @@ class Locale
                 $ip = $remote;
             }
             $ip_data = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=".$ip));    
-            dd($ip_data);
             if($ip_data && $ip_data->geoplugin_countryName != null){
                 
                 // $country = $ip_data->geoplugin_countryName;
@@ -51,6 +50,7 @@ class Locale
                 $city->geoplugin_countryCode = 'IN';
                 view()->share('ip_data',$city);
             }
+            dd($ip_data);
         if(Session::has('ip_config')==false){
             session(['ip_config' => $city]);
         }else{
