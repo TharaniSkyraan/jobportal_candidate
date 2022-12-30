@@ -26,7 +26,7 @@
                         $user = Auth::user();
                         $countries = app\Helpers\DataArrayHelper::CountriesArray();
                         $country_id = (!empty($user->country_id))?$user->country_id:$ip_data->country_id;
-                        $country = (!empty($user->country_id))?$user->getCountry('country'):$ip_data->geoplugin_countryName;
+                        $country = \App\Model\Country::where('country_id',$country_id)->pluck('country')->first();
                     @endphp
                     <div class="card mt-5">                        
                         {!! Form::open(array('method' => 'put', 'route' => array('career_info_save'), 'class' => 'form', 'onSubmit' => 'return validateCareerInfoForm()')) !!}

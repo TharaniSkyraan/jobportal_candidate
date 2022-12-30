@@ -56,7 +56,8 @@
     <div class="row">
         @php
             $country_id = (!empty($userProject->country_id))?$userProject->country_id:$ip_data->country_id;
-            $country = (!empty($userProject->country_id))?$userProject->getCountry('country'):$ip_data->geoplugin_countryName;
+            //$country = (!empty($userProject->country_id))?$userProject->getCountry('country'):$ip_data->geoplugin_countryName;
+            $country = \App\Model\Country::where('country_id',$country_id)->pluck('country')->first();
         @endphp
 
         <div class="mb-4">

@@ -19,7 +19,8 @@
 
     @php
         $country_id = (!empty($userEducation->country_id))?$userEducation->country_id:$ip_data->country_id;
-        $country = (!empty($userEducation->country_id))?$userEducation->getCountry('country'):$ip_data->geoplugin_countryName;
+        //$country = (!empty($userEducation->country_id))?$userEducation->getCountry('country'):$ip_data->geoplugin_countryName;
+        $country = \App\Model\Country::where('country_id',$country_id)->pluck('country')->first();
     @endphp
 
     <div class="col-md-6 mb-4">
