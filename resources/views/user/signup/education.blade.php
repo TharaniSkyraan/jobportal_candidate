@@ -16,7 +16,7 @@
             <div class="col-md-3 align-self-center text-center cndte_mbile">
                 <img src="{{asset('images/candidate_left.png')}}" alt="">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 card-size">
                 <div class="card lgncard1">
                     <div class="site2_logo mb-4 mt-3 text-center">
                         <a href="{{url('/')}}" class="href">

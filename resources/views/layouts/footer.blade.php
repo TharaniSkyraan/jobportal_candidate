@@ -123,7 +123,7 @@
       </div> -->
       
       <div class="copyright">
-        © 2022 <strong><span>Mugaam</span></strong>. All Rights Reserved
+        © 2023 <strong><span>Mugaam</span></strong>. All Rights Reserved
       </div>
     </div>
   </div>

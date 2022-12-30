@@ -16,7 +16,7 @@
             <div class="col-md-3 align-self-center text-center cndte_mbile">
                 <img src="{{asset('images/candidate_left.png')}}" alt="">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 card-size">
                 <div class="card">
                     <!-- <div class="progress">
                         <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width:50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -35,8 +35,8 @@
                         <div class="container">
                             <div class="loadflebrd">
                                 <div class="box text-center">
-                                    <img src="{{asset('images/upload_img.png')}}" width="35%"> 
-                                    <div  class="file_upld cursor-pointer">Drop your Resume here or Browse</div>     
+                                    <img src="{{asset('images/upload_img.png')}}" width="35%" class="file_upld"> 
+                                    <div  class="cursor-pointer file_upld">Drop your Resume here or Browse</div>     
                                     <input type="file" class="d-none" id="file" name="file" accept=".doc,.docx,.pdf,.rtf">
                                 </div>   
                             </div>
@@ -44,13 +44,14 @@
                                 <span class="help-block form-text text-danger err_msg file-error"></span>
                             </div>
                         </div>
-
-                        <div class="row mb-4 mt-5">
-                            <div class="col-md-6">
-                                <a href="{{ route('skills')}}" class="btn"><img src="{{asset('images/lefticon.png')}}"> Previous</a>
-                            </div>
-                            <div class="col-md-6 text-end">
-                                <button class="btn" type="submit">Save & Continue  <img src="{{asset('images/righticon.png')}}"></button>
+                        <div class="container">
+                            <div class="row mb-4 mt-5">
+                                <div class="col-md-6 col-5">
+                                    <a href="{{ route('skills')}}" class="btn"><img src="{{asset('images/lefticon.png')}}"> Previous</a>
+                                </div>
+                                <div class="col-md-6 col-7 text-end">
+                                    <button class="btn" type="submit">Save & Continue  <img src="{{asset('images/righticon.png')}}"></button>
+                                </div>
                             </div>
                         </div>
                     {!! Form::close() !!}

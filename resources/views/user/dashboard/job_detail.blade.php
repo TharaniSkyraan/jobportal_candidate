@@ -337,10 +337,19 @@ ul{
                                     $pincode= $job->company->pin_code ?? '';
                                     $pincode= !empty($pincode)? ', '.$pincode.'.' : '';
                                 @endphp
-                                <div class="cmpinfo-detail"><label><b>Address</b></label>
-                                    <span>{{ !empty($job->company->address) ? $job->company->address.' '.$job->company->location.$pincode : "-" }}</span>
+                                <div class="row cmpinfo-detail">
+                                    <div class="col-md-6">
+                                        <label><b>Address</b></label>
+                                        <span>{{ !empty($job->company->address) ? $job->company->address.' '.$job->company->location.$pincode : "-" }}</span>
+                                    </div>    
+                                    <div class="col-md-6">
+                                        <div class="col-md-6 align-self-center text-end">
+                                            <a href="{{url('company-view/'.$job->company->slug)}}"><label class="chip clickable mt-0 cursor-pointer"><span>View More</span></label></a>                                 
+                                        </div>
+                                    </div>    
                                 </div> 
                             </div>
+                            
                             <hr>
                             <div class="sharethis-inline-share-buttons"></div>
                         </div>

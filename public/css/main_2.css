@@ -1257,7 +1257,7 @@ font-size: 14px;
     }
    
     #cdate_assesment {
-        height:600px;
+        height:300px;
         top: 0;
         bottom: 0;
         position: inherit;        
@@ -1348,7 +1348,7 @@ font-size: 14px;
         font-weight: bolder;
         font-size: 16px;
     }#screeningQuiz72ers3 .modal-header{
-        background-color: #4385f4a8;
+        background-color: #d5e4fd;
     }#screeningQuiz72ers3 .modal-header h3{
         font-weight: bolder;
     }#screeningQuiz72ers3 .modal-content{
@@ -1366,19 +1366,9 @@ font-size: 14px;
     .assessment_modal .next-btn{
         padding: 9px 20px;
     }
-
-    .assessment_modal #cdate_assesment {
-        height: auto;
-    }
-
-
-
-
     /*********************
     -----company-view-----
     **********************/
-
-
     #aboutcompany .pf_imgsabt img{
         width: 100px;
         height: 100px;

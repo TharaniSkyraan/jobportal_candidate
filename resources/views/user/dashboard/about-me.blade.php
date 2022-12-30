@@ -60,15 +60,15 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-md-9">
+                                <div class="col-md-9 align-self-center">
                                     <div class="mb-4">
                                         <label for="exampleInputPassword1" class="form-label fw-bolder"> Email ID</label>
                                         <div class="fw-bolder d-flex align-items-center">{{$user->email}} &nbsp;<i class="fa-solid fa-check"></i></div>
                                     </div>
-                                    <div class="mb-4">
+                                    <!-- <div class="mb-4">
                                         <label for="exampleInputPassword1" class="form-label fw-bolder"> Phone number(optional)</label>
                                         <div class="fw-bolder">{{$user->phone??'None'}}</div>
-                                    </div>
+                                    </div> -->
                                     <div class="col-md-12 text-end">
                                     <a href="{{route('accounts_settings')}}"><div class="fw-bolder d-flex align-items-end justify-content-end cursor-pointer"><i class="fa-solid fa fa-key"></i>&nbsp;Account Settings</div></a>
                                     </div>

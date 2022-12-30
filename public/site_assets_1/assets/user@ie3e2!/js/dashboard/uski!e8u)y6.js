@@ -33,7 +33,6 @@ function loadUserSkillForm(form, id=null){
         }
         $(".tabs").animate({scrollTop: $(window).scrollTop(0)},"slow");
         $('.addSkills button').hide();
-        $('.addSkills').html('<button class="user-skill-cancel" onclick="cancelUserSkillForm()">Close <i class="fa fa-close"></button>');
       }
 
     });
@@ -199,7 +198,6 @@ function loadUserSkillForm(form, id=null){
     $('.skill_edited_div_'+skill_id).show();
     }
     $('.append-form-skill').html('');
-    $('.addSkills .user-skill-cancel').hide();
     $('.addSkills button').show();
 
 

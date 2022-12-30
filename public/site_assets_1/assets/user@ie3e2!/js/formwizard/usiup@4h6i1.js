@@ -59,12 +59,16 @@
     function checkstatus()
     {
         if($("input[name='employment_status']:checked").val()=='fresher'){
+            $('.experience-text').removeClass('fw-bolder');
+            $('.fresher-text').addClass('fw-bolder');
             $('.levtstge_fre').addClass('checked');
-            $('.levtstge_exp').removeClass('checked');
+            $('.levtstge_exp').removeClass('checked');   
         }else
         
         if($("input[name='employment_status']:checked").val()=='experienced'){
+            $('.fresher-text').removeClass('fw-bolder');
             $('.levtstge_exp').addClass('checked');
+            $('.experience-text').addClass('fw-bolder');
             $('.levtstge_fre').removeClass('checked');
         }
     }
@@ -387,3 +391,4 @@
           return true;
       }
     }
+

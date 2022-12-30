@@ -63,7 +63,7 @@
     <div class="search-inp-sec">
         <div class="container">
             <div class="row">
-                <div class="col-md-2 col-lg-2 text-center mobile_m">
+                <div class="col-md-2 col-lg-2 text-end mobile_m">
                     <img src="{{asset('images/search_banner.png')}}" alt="">
                 </div>
                 <div class="col-md-4 col-md-4 col-lg-4 align-self-center">
