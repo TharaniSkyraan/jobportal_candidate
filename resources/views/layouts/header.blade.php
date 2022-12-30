@@ -14,7 +14,7 @@
 		<nav id="navbar" class="navbar">
 			<ul class="">
 				@if(Auth::check())
-					<li><a class="nav-link scrollto {{ (Route::is('index'))?'active':''}}" href="{{ route('index') }}">Find a Job</a></li>
+					<li><a class="nav-link scrollto {{ (Route::is('index'))?'active':''}}" href="{{ route('index') }}">Get a Job</a></li>
 				
 					<li class="dropdown hidden-caret">
 						<a class="dropdown-toggle nav-link profile-pic" data-bs-toggle="dropdown" href="#" id="dropdownMenuLink" aria-expanded="false">
@@ -67,7 +67,7 @@
 					<li><a class="nav-link scrollto" href="{{ route('index') }}">Get a Job </a></li>
 					<li><a class="nav-link scrollto {{ (Route::is('login') )?'active':''}}" href="{{ route('login') }}">Sign in </a></li>
 					<li class="mobile_m"><a>|</a></li>
-					<li><a class="nav-link scrollto" href="#PostLink" >Employer / Post a Job</a></li>
+					<li><a class="nav-link scrollto" href="https://employer.mugaam.com/" >Employer / Post a Job</a></li>
 					{{-- <li><a class="nav-link scrollto {{ (Route::is('job.post_job') )?'active':''}}" href="{{ route('job.post_job') }}">Post Job</a></li> --}}
 				@endif
 				
