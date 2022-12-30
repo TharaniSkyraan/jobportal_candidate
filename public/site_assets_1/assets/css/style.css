@@ -2288,6 +2288,8 @@ background-position: center;
 /**jayavel css**/
 .useraccountsetting{
   font-size: 14px;
+}#upload-demo .cr-viewport{
+  border-radius: 50%;
 }
 
 
@@ -2306,7 +2308,7 @@ background-position: center;
   }
 }
 @media(min-width:768px){
-  #navbar .scrollto{
+  #navbar .scrollto, #navbar .mobile_m{
       margin-right: 25px;
   }
 }

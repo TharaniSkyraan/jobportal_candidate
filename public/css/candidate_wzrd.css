@@ -3,7 +3,6 @@
     background: transparent radial-gradient(closest-side at 50% 50%, #4285F4 10%, #3163B5 90%) 0% 0% no-repeat padding-box;
 }#cndidate_wzrd .card{
     background-color:#F3F7FE;
-    padding: 20px 40px 20px 40px;
     border-radius:15px;
     margin:0 auto;
 }#cndidate_wzrd{
@@ -24,8 +23,9 @@
     width:130px;
 }#cndidate_wzrd .progress{
     height:8px;
+    background: none !important;
 }#cndidate_wzrd .lvledticn img{
-    width: 35px;  
+    width: 30px;  
 }.lvledticn div{
     align-items: center;
     justify-content: center;
@@ -77,6 +77,20 @@
     border-radius: 10px;
 }.loadflebrd img{
     width: 80px !important;
+}#cndidate_wzrd button img, #cndidate_wzrd a.btn img{
+    width: 18px;
+}#cndidate_wzrd .btn{
+    padding: 0px;
+}#cndidate_wzrd .card{
+    max-height: 600px;
+    overflow-y: scroll;
+}#cndidate_wzrd .card::-webkit-scrollbar {
+    display: none;
+}#cndidate_wzrd .card{
+    width: 80%;
+    padding: 0px;
+}.levtstge_fre:hover, .levtstge_exp:hover{
+    cursor: pointer;
 }
 @media(max-width:480px){
     #cndidate_wzrd .cndte_mbile{
@@ -97,12 +111,30 @@
     #cndidate_wzrd .card{
         width: 100%;
         padding: 10px;
+    }#cndidate_wzrd .cndte_mbile{
+        display: none;
+    }#cndidate_wzrd .card-size{
+        width: 75%;
+        margin: 0 auto;
+    }#cndidate_wzrd .btn{
+        width: max-content;
+        padding: 0px;
     }
+    
 }
 @media(min-width:  1025px) and (max-width: 1300px){
     #cndidate_wzrd .card{
         width: 100%;
         padding: 10px;
+    }
+}
+
+@media(min-width: 280px) and (max-width: 767px){
+    #cndidate_wzrd .btn{
+        width: max-content;
+        padding: 0px;
+    }.scroll-page #exp_in_year{
+        margin-bottom: 15px;
     }
 }
 

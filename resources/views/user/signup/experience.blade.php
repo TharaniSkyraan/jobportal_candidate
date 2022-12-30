@@ -16,7 +16,7 @@
             <div class="col-md-3 align-self-center text-center cndte_mbile">
                 <img src="{{asset('images/candidate_left.png')}}" alt="">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 card-size">
                 <div class="card lgncard1">
                     <!-- <div class="progress">
                         <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width:50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -39,31 +39,31 @@
                     <div class="container">
 
                         <div class="row text-center">
-                            <div class="col-md-6">
+                            <div class="col-md-6 col-6">
                                 <input class="employment_status" type="radio" id="fresher" name="employment_status" style="display:none" value="fresher" @if($user->employment_status=='fresher' || $user->employment_status==null) checked @endif>
                                 <label for="fresher">
                                     <div class="levtstge_fre">
                                     </div>
-                                <div class="text-center fw-bolder mt-3">A Fresher</div>
+                                <div class="text-center fresher-text mt-3">A Fresher</div>
 
                                 </label>
                                
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 col-6">
                                 <input class="employment_status" type="radio" id="experienced" name="employment_status" style="display:none" value="experienced" @if($user->employment_status=='experienced') checked @endif>
                                 <label for="experienced">
                                     <div class="levtstge_exp">
                                     </div>
-                                <div class="text-center fw-bolder mt-3">A Experienced</div>
+                                <div class="text-center experience-text mt-3">Experienced</div>
 
                                 </label>
                             </div>
 
                             <div class="row mb-4 mt-5">
-                                <div class="col-md-5">
+                                <div class="col-md-5 col-5">
                                     <a href="{{ route('education') }}" class="btn"><img src="{{asset('images/lefticon.png')}}"> Previous</a >
                                 </div>
-                                <div class="col-md-7 text-end">
+                                <div class="col-md-7 col-7 text-end">
                                     <button type="submit" class="btn">Save & Continue  <img src="{{asset('images/righticon.png')}}"></button>
                                 </div>
                             </div>
