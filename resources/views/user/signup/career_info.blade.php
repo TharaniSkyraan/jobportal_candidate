@@ -63,7 +63,7 @@
                             <div class="input-group mb-3 slct_apnd">
                                 {!! Form::select('salary_currency', ['₹'=>'₹'], $user->salary_currency, array('id'=>'salary_currency')) !!}
                                 {!! Form::text('expected_salary', null, array('class'=>'form-control required', 'data-type'=>'currency', 'id'=>'expected_salary', 'minlength'=>'0', 'maxlength'=>'10', 'placeholder'=>__('Expected Salary'))) !!}
-                                <span class="input-group-text">annam</span>
+                                <span class="input-group-text">/ annam</span>
                             </div>
                             <small class="form-text text-muted text-danger err_msg" id="err_expected_salary"></small>
                             
@@ -111,8 +111,9 @@
 @endsection
 @push('scripts')
 <script>
- var expected_salary = "{{$user->expected_salary??''}}"
+ var expected_salary = "{{$user->expected_salary??''}}";
+ var employment_status = "{{$user->employment_status??''}}";
 </script>
-<script  type="text/javascript" src="{{ asset('site_assets_1/assets/vendor/typehead/typeahead.bundle.js') }}"></script>
+<script type="text/javascript" src="{{ asset('site_assets_1/assets/vendor/typehead/typeahead.bundle.js') }}"></script>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/user@ie3e2!/js/formwizard/usiup@4h6i1.js') }}"></script>
 @endpush
