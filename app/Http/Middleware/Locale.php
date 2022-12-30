@@ -20,6 +20,7 @@ class Locale
     public function handle($request, Closure $next, $guard = null)
     {
         
+        if(Session::has('ip_config')==false){
             $client  = @$_SERVER['HTTP_CLIENT_IP'];
             $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
             $remote  = @$_SERVER['REMOTE_ADDR'];
@@ -50,8 +51,6 @@ class Locale
                 $city->geoplugin_countryCode = 'IN';
                 view()->share('ip_data',$city);
             }
-            
-        if(Session::has('ip_config')==false){
             session(['ip_config' => $city]);
         }else{
             view()->share('ip_data',Session::get('ip_config'));
