@@ -79,7 +79,7 @@ trait UserLanguageTrait
         $userLanguage = $this->assignLanguageValues($userLanguage, $request, $user_id);
         $userLanguage->save();
 
-        return response()->json(array('success' => true, 'status' => 200, 'html' => $returnHTML??""), 200);
+        return response()->json(array('success' => true, 'message' =>'Language create successfully', 'status' => 200, 'html' => $returnHTML??""), 200);
     }
 
     public function getFrontUserLanguageEditForm(Request $request, $user_id=null)
@@ -100,7 +100,7 @@ trait UserLanguageTrait
                 ->with('languages', $languages)
                 ->with('languageLevels', $languageLevels)
                 ->render();
-        return response()->json(array('success' => true, 'html' => $returnHTML));
+        return response()->json(array('success' => true, 'message' =>'Language Update successfully', 'html' => $returnHTML));
     }
     
     public function updateFrontUserLanguage(UserLanguageFormRequest $request, $user_language_id, $user_id=null)
@@ -113,7 +113,7 @@ trait UserLanguageTrait
         /*         * ************************************ */
 
         // $returnHTML = view('user.forms.language.language_edit_thanks')->render();
-        return response()->json(array('success' => true, 'status' => 200, 'html' => ''), 200);
+        return response()->json(array('success' => true,'message' =>'Language Update successfully', 'status' => 200, 'html' => ''), 200);
     }
 
     public function assignLanguageValues($userLanguage, $request, $user_id=null)

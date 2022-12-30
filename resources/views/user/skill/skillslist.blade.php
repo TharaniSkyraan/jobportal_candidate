@@ -13,7 +13,7 @@
         <div class="col-md-6 align-self-center text-end">
             <div class="row">
                 <div class="col-6 edit_skill_{{$skill->id}}"><i class="fa fa-edit openForm" data-form="edit" data-id="{{$skill->id}}"></i></div>
-                <div class="col-6 delete_skill delete_skill_{{$skill->id}}"  @if(count(Auth::user()->userSkills)<2) style="display:none" @endif onclick="delete_user_skill({{$skill->id}});"><i class="fa fa-trash"></i></div>
+                <div class="col-6"><i class="fa fa-trash delete_skill delete_skill_{{$skill->id}}"  @if(count(Auth::user()->userSkills)<2) style="display:none" @endif onclick="delete_user_skill({{$skill->id}});"></i></div>
                 <div class="col-6 cursor-pointer undo_skill_{{$skill->id}}" onclick="undo_user_skill({{$skill->id}});" style="display:none"><i class="fa-solid fa-arrow-rotate-left text-green-color border-0 rounded p-2"></i></div>
             </div>
         </div>

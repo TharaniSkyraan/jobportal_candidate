@@ -30,7 +30,8 @@
                         <div class="col-8 align-self-center">
                             <div class="pf_cfont text-white fw-bolder">Profile Completion</div> 
                             <div class="pf_cfont text-white text-center">
-                                <a class="text-white dropdown-toggle" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="{{ (Request::is('my_profile') || Request::is('education-details') || Request::is('experience-details') || Request::is('project-details') || Request::is('language-details') || Request::is('skill-details') || Request::is('career-info-details')) ? 'true' : 'false' }}" aria-controls="collapseExample">
+                                <!-- <a class="text-white dropdown-toggle" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="{{ (Request::is('my_profile') || Request::is('education-details') || Request::is('experience-details') || Request::is('project-details') || Request::is('language-details') || Request::is('skill-details') || Request::is('career-info-details')) ? 'true' : 'false' }}" aria-controls="collapseExample"> -->
+                                <a class="text-white dropdown-toggle" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
                                     My info
                                 </a>
                             </div>
@@ -38,8 +39,8 @@
                     </div>
                 </div>
             </div>
-
-            <div class="collapse {{ (Request::is('home') || Request::is('education-details') || Request::is('experience-details') || Request::is('project-details') || Request::is('language-details') || Request::is('skill-details') || Request::is('career-info-details')|| Request::is('resume-details')) ? 'show' : '' }}" id="collapseExample">
+            <!-- {{ (Request::is('home') || Request::is('education-details') || Request::is('experience-details') || Request::is('project-details') || Request::is('language-details') || Request::is('skill-details') || Request::is('career-info-details')|| Request::is('resume-details')) ? 'show' : '' }}  -->
+            <div class="collapse show" id="collapseExample">
                 <div class="card card-body">
                     <div class="row mb-3 {{ (empty(Auth::user()->date_of_birth))? 'no_fillfield' : '' }}">
                         <div class="col-10">

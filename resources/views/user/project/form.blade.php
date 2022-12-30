@@ -31,7 +31,7 @@
 
         <div class="row align-items-baseline mb-4">
             <div class="d-flex">
-                <div class="col-md-4 justify-content-center">
+                <div class="col-md-4 justify-content-center align-self-center">
                     <input class="form-check-input" type="checkbox" value="yes" id="work_as_team" name="work_as_team" @if( isset($userProject) && $userProject->work_as_team=='yes') checked @endif>
                     <label class="form-check-label" for="work_as_team"> Worked as team </label>
                 </div>
@@ -48,7 +48,7 @@
         <div class="mb-4">
             <label class="form-label fw-bold">Project location</label>  
                 
-            <div class="form-check form-check-inline">
+            <div class="form-check form-check-inline ms-3">
                 <input class="form-check-input" type="radio" name="project_location" id="onsite" value="on_site" @if(isset($userProject) && $userProject->project_location=='on_site') checked @endif>
                 <label class="form-check-label" for="onsite">Onsite</label>
             </div>
@@ -63,7 +63,7 @@
                     $country = (!empty($userProject->country_id)?$userProject->getCountry('country'):$ip_data->geoplugin_countryName);
                 @endphp
 
-                <div class="mb-4">
+                <div class="mb-2">
                     <label class="form-label fw-bolder"> Location <span class="country_text">- {{ $country }} <a href="javascript:void(0);" onClick="CountryChange()">Change</a></span></label>  
                     <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-12 mb-3 country_change"  style="display:none;">
@@ -89,7 +89,7 @@
                 $fromdate = old('date_start')?date('Y-m-d',strtotime(old('date_start'))):'';
                 $todate = old('date_end')?date('Y-m-d',strtotime(old('date_end'))):'';
             @endphp
-            <div class="col-md-4  mb-3">
+            <div class="col-md-4 mb-3">
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">From</span>
                     {!! Form::month('date_start', $userProject->date_start??null, array('class'=>'form-control required', 'max' =>date("Y-m"), 'min'=>'1980-01','id'=>'date_start', 'placeholder'=>__('Start date'))) !!}
@@ -97,13 +97,13 @@
                 <small class="help-block form-text text-muted text-danger err_msg date_start-error" id="err_date_start"></small> 
             </div>
             <div class="col-md-4 hide_currently_working_checked">
-                <div class="input-group">
+                <div class="input-group mb-2">
                     <span class="input-group-text" id="basic-addon1">To</span>
                     {!! Form::month('date_end', $userProject->date_end??null, array('class'=>'form-control required','max' =>date("Y-m"), 'min'=>'1980-01', 'id'=>'date_end', 'placeholder'=>__('End date'))) !!}
                 </div>
                 <small class="help-block form-text text-muted text-danger err_msg date_end-error" id="err_date_end"></small> 
             </div>
-            <div class="col-md-4 justify-content-center">
+            <div class="col-md-4 mb-3 justify-content-center">
                 <input class="form-check-input" type="checkbox" value="1" id="is_on_going" name="is_on_going" @if(isset($userProject) && $userProject->is_on_going == 1) checked @endif>
                 <label class="form-check-label" for="is_on_going"> On progress </label>
             </div>
@@ -125,12 +125,11 @@
             <input  type="text" name="used_tools" class="form-control" value="{{$userProject->used_tools??''}}" id="tagsinputproj">
         </div>
 
-        <div class="d-flex justify-content-around mb-5">
-            <div class="text-center mt-5">
+        <div class="row">
+            <div class="col-6 text-center">
                 <button class="btn bg-grey-color user-project-cancel"  onClick="cancelUserProjectForm({{$userProject->id??0}})" type="button">Cancel</button>
             </div>
-
-            <div class="text-center mt-5">
+            <div class="col-6 text-center">
                 <button class="btn btn-submit bg-green-color" type="button" onclick="submitUserProjectForm()">Save</button>
             </div>
         </div>

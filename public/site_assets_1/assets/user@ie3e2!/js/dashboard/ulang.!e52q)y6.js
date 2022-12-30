@@ -92,6 +92,8 @@ function submitUserLanguageForm() {
           $("#language_success").slideUp(500);
         });
         $('.addbtn').show();
+        toastr.success(json.message);
+        
 
 
       },
@@ -127,6 +129,7 @@ function delete_user_language(id) {
           $('.language_edited_div_' + id).removeClass("language_div");
           if($(".language_div").length == 1){
             $('.delete_language').hide();
+            toastr.success(response.message);
           }
         } else
         {

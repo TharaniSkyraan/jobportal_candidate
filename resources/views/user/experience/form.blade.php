@@ -81,9 +81,13 @@
             <input  type="text" name="used_tools" class="form-control" value="{{$userExperience->used_tools??''}}" id="tagsinputexp">
         </div>
 
-        <div class="d-grid gap-2 m-4 d-md-flex justify-content-md-around">
-            <button class="btn bg-grey-color user-experience-cancel" type="button"  onClick="cancelUserExperienceForm({{$userExperience->id??0}});">Cancel</button>
-            <button class="btn btn-submit bg-green-color" type="button" onClick="submitUserExperienceForm();">Save</button>
+        <div class="row">
+            <div class="col-6 text-center">
+                <button class="btn bg-grey-color user-experience-cancel" type="button"  onClick="cancelUserExperienceForm({{$userExperience->id??0}});">Cancel</button>
+            </div>
+            <div class="col-6 text-center">
+                <button class="btn btn-submit bg-green-color" type="button" onClick="submitUserExperienceForm();">Save</button>
+            </div>
         </div>
     </div>
   <script type="text/javascript" src="{{ asset('site_assets_1/assets/js/input_tag/jquery.tagsinput-revisited.js') }}"></script>

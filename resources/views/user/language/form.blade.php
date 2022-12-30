@@ -9,7 +9,7 @@
                 <small class="help-block form-text text-muted text-danger err_msg language_id-error" id="err_language_id"></small>
             </div>
         </div>   
-        <div class="col-md-6 col-xs-6 col-sm-12 col-12 mb-2">  
+        <div class="col-md-6 col-xs-6 col-sm-12 col-12 align-self-center">  
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" value="yes" id="read" name="read" @if(isset($userLanguage) && $userLanguage->read == 'yes') checked @endif>
                 <label class="form-check-label" for="read">
@@ -52,11 +52,12 @@
         </div>
     </div> 
 
-    <div class="d-grid gap-2 m-4 d-md-flex justify-content-md-around">
-        
-        <button class="btn bg-grey-color user-language-cancel" onClick="cancelUserLanguageForm({{$userLanguage->id??0}})" type="button">Cancel</button>
-
-        <button class="btn btn-submit bg-green-color" type="button" onClick="submitUserLanguageForm();">Save</button>
-        
+    <div class="row">
+        <div class="col-6 text-center">
+            <button class="btn bg-grey-color user-language-cancel" onClick="cancelUserLanguageForm({{$userLanguage->id??0}})" type="button">Cancel</button>
+        </div>
+        <div class="col-6 text-center">
+            <button class="btn btn-submit bg-green-color" type="button" onClick="submitUserLanguageForm();">Save</button>
+        </div>
     </div>
 </div>

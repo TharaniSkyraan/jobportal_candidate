@@ -20,13 +20,37 @@
         font-size:14px;
     }
     .search-inp-sec{
-        padding: 130px 0 50px 0;
+        padding: 95px 0 20px 0;
+        background-color:#4285f4;
         /* background: linear-gradient(-45deg, #629bf6b1, #629AF6, #4285F4); */
         /* background: rgb(2,0,36); */
         /* background: linear-gradient(160deg, rgba(2,0,36,1) 0%, rgba(66,133,244,1) 0%, rgba(66,133,240,1) 100%); */
-        background: url("{{ url('site_assets_1/assets/images/aero2.svg') }}") no-repeat left 50px,linear-gradient(160deg, rgba(2,0,36,1) 0%, rgba(66,133,244,1) 0%, rgba(66,133,240,1) 100%);
+        /* background: url("{{ url('images/search_banner.png') }}") no-repeat left 50px,linear-gradient(160deg, rgba(2,0,36,1) 0%, rgba(66,133,244,1) 0%, rgba(66,133,240,1) 100%); */
         /* background-size: contain; */
+    }.search-inp-sec .mobile_m img{
+        width:130px;
     }
+    @media(min-width: 280px) and (max-width: 767px){
+        .search-inp-sec .mobile_m{
+            display: none;
+        }.search-inp-sec{
+            padding: 105px 0 20px 0;
+        }.search-inp-sec input, .search-inp-sec button{
+            margin-bottom:20px;
+        }.search-inp-sec button{
+            display: flex;
+            margin: 0 auto;
+        }
+    }
+    @media(min-width: 768px) and (max-width: 1300px){
+        .search-inp-sec img{
+            width: 100%;;
+        }.search-inp-sec{
+            padding: 100px 0 30px 0;
+        }
+
+    }    
+
 </style>
 @endsection
 
@@ -37,23 +61,24 @@
 	@include('layouts.header')
 
     <div class="search-inp-sec">
-        <div class="">
-            <div class="row mx-auto container cusconta " >
-                {{-- <div class="srchbox-container"> --}}
-                    <div class="col-md-6 mb-3">
-                        {!! Form::search('designation', $d, array('class'=>'form-control-2  typeahead', 'id'=>'designation',
-                        'placeholder'=>__('Job title, keywords or company'),  'autocomplete'=>'off', 'spellcheck'=>'false' ) ) !!}
-                        {{-- <span class="icl-TextInput-icon iconRight" aria-hidden="true"><span class="" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" fill="none" aria-hidden="true"><defs></defs><path fill="#767676" fill-rule="evenodd" d="M11.4038 12.3048C10.7084 12.7451 9.88397 13 9 13c-2.48528 0-4.5-2.0147-4.5-4.5C4.5 6.01472 6.51472 4 9 4c2.4853 0 4.5 2.01472 4.5 4.5 0 .87711-.2509 1.6956-.6849 2.3876l3.5089 3.5089c.1952.1953.1952.5119 0 .7071l-.7071.7072c-.1953.1952-.5119.1952-.7071 0l-3.506-3.506zM11.5 8.5c0 1.38071-1.1193 2.5-2.5 2.5-1.38071 0-2.5-1.11929-2.5-2.5S7.61929 6 9 6c1.3807 0 2.5 1.11929 2.5 2.5z" clip-rule="evenodd"></path></svg></span></span> --}}
-                        <span class="form-text text-danger err_msg designation-error"></span>
-                    </div>
-                    <div class="col-md-4 mb-3">                    
-                        {!! Form::search('location', $l, array('class'=>'form-control-2 typeahead', 'id'=>'location', 'placeholder'=>__('On Location'),' aria-label'=>'On Location')) !!}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 col-lg-2 text-center mobile_m">
+                    <img src="{{asset('images/search_banner.png')}}" alt="">
+                </div>
+                <div class="col-md-4 col-md-4 col-lg-4 align-self-center">
+                    {!! Form::search('designation', $d, array('class'=>'form-control-2  typeahead', 'id'=>'designation',
+                    'placeholder'=>__('Job title, keywords or company'),  'autocomplete'=>'off', 'spellcheck'=>'false' ) ) !!}
+                    {{-- <span class="icl-TextInput-icon iconRight" aria-hidden="true"><span class="" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" fill="none" aria-hidden="true"><defs></defs><path fill="#767676" fill-rule="evenodd" d="M11.4038 12.3048C10.7084 12.7451 9.88397 13 9 13c-2.48528 0-4.5-2.0147-4.5-4.5C4.5 6.01472 6.51472 4 9 4c2.4853 0 4.5 2.01472 4.5 4.5 0 .87711-.2509 1.6956-.6849 2.3876l3.5089 3.5089c.1952.1953.1952.5119 0 .7071l-.7071.7072c-.1953.1952-.5119.1952-.7071 0l-3.506-3.506zM11.5 8.5c0 1.38071-1.1193 2.5-2.5 2.5-1.38071 0-2.5-1.11929-2.5-2.5S7.61929 6 9 6c1.3807 0 2.5 1.11929 2.5 2.5z" clip-rule="evenodd"></path></svg></span></span> --}}
+                    <span class="form-text text-danger err_msg designation-error"></span>
+                </div>
+                <div class="col-md-4 col-md-4 col-lg-4 align-self-center">
+                {!! Form::search('location', $l, array('class'=>'form-control-2 typeahead', 'id'=>'location', 'placeholder'=>__('On Location'),' aria-label'=>'On Location')) !!}
                         <span class="form-text text-danger err_msg"></span>
-                    </div>
-                    <div class="col-md-1 mb-3 text-center">                    
-                        {!! Form::button('Search', array('class' => 'btn search-button-bg ','id'=>'msearch_btn', 'type' => 'submit')) !!}                   
-                    </div>
-                {{-- </div> --}}
+                </div>
+                <div class="col-md-2 align-self-center">
+                    {!! Form::button('Search', array('class' => 'btn search-button-bg ','id'=>'msearch_btn', 'type' => 'submit')) !!}                       
+                </div>
             </div>
         </div>
     </div>
@@ -185,7 +210,7 @@
                 </div>
             </div>
             <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-                <div class="row mt-1 mb-2">
+                <div class="row mt-1 mb-3">
                     <div class="col-lg-6 col-xs-12 align-self-center align-items-center d-inline justify-content-start">
                         <h5 class="fmftxt fw-bold t_pgres"></h5>									
                         {{-- <small class="ellipsis">1 - 20 of 379 jobs</small> --}}

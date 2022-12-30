@@ -114,7 +114,7 @@
             </ol>
             </nav>
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-12 col-lg-9">
                 <div class="card page-inner">
                     <div class="card-body jdcarc">
                         <div class="mb-1">
@@ -492,75 +492,83 @@
 
 </div>
 
-    <div class="modal fade" id="screeningQuiz72ers3" data-bs-backdrop="static" aria-hidden="true" aria-labelledby="screeningQuiz72ers3Label2" tabindex="-1">
+    <div class="modal fade" id="screeningQuiz72ers3" tabindex="-1" role="dialog" aria-labelledby="screeningQuiz72ers3Label2" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered assessment_modal">
             <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLongTitle">Screening Questions</h3>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
                 <form class="form" id="screeningQuiz" action="{{route('job.apply', $job->slug)}}" method="post">
                     @csrf
                     {!! Form::hidden('is_login',null, array('id'=>'is_login')) !!}
                     <div class="modal-body">
-                        <section id="cdate_assesment">
-                            <div class="card ass_details p-2">
-                                <div class="row">
-                                    {{-- Question --}}
-                                    @foreach ($job->screeningquiz as $key => $quiz)
-                                    <div class="col-md-12 quiz" data-bp="{{$quiz->breakpoint}}" data-dsw3w14="{{$quiz->quiz_code}}" data-dsw3w15="{{$quiz->answer_type}}">
-                                        <p class="h3 mt-4 mb-2">{{$quiz->candidate_question}}</p>
-                                        
-                                        @if($quiz->answer_type=='text')
-                                            {{ Form::text('answer_'.$quiz->quiz_code, null, array('class'=>'form-control e1ex0nj0', 'style' =>'width:25% !important', 'id'=>'answer_'.$quiz->quiz_code, 'placeholder'=>__(' '))) }}
-                                        @elseif($quiz->answer_type=='single')
-                                            @foreach (json_decode($quiz->candidate_options) as $key1 => $option)                           
-                                                <div class="form-check">
-                                                    <input class="form-check-input e1ex0nj0" type="radio" name="answer_{{$quiz->quiz_code}}" value="{{ $option }}" id="answerradio{{$quiz->quiz_code}}_{{ $key1 }}" @if($key1==0) checked @endif>
-                                                    <label class="form-check-label" for="answerradio{{$quiz->quiz_code}}_{{ $key1 }}">
-                                                        {{ $option }}
-                                                    </label>
-                                                </div>                                                
-                                            @endforeach
-                                        @elseif($quiz->answer_type=='multiple')
-                                            @foreach (json_decode($quiz->candidate_options) as $key1 => $option)                           
-                                                <div class="form-check">
-                                                    <input class="form-check-input e1ex0nj0" type="checkbox" name="answer_{{$quiz->quiz_code}}[]" value="{{ $option }}" id="answercheckbox{{$quiz->quiz_code}}_{{ $key1 }}">
-                                                    <label class="form-check-label" for="answercheckbox{{$quiz->quiz_code}}_{{ $key1 }}">
-                                                        {{ $option }}
-                                                    </label>
-                                                </div>
-                                            @endforeach
-                                        @elseif($quiz->answer_type=='textarea')
-                                            {{ Form::textarea('answer_'.$quiz->quiz_code, null, array('class'=>'form-control e1ex0nj0', 'style' =>'width:25% !important', 'id'=>'answer_'.$quiz->quiz_code, 'placeholder'=>__(' '))) }}
-                                        @elseif($quiz->answer_type=='select')
-                                        @php
-                                            $options = json_decode($quiz->candidate_options);
-                                            $options = array_combine($options, $options);
-                                        @endphp
-                                            {{ Form::select('answer_'.$quiz->quiz_code, ['' => __('Select')]+$options??'', null, array('class'=>'form-select', 'style' =>'width:25% !important', 'id'=>'answer_'.$quiz->quiz_code)) }}
-                                        @endif
-                                        <span class="es2wa7s text-danger"> </span>
+                        <div class="row">
+                            <div class="col-6 col-md-6 align-self-center mobile_m">
+                                <img src="{{asset('images/Screening.png')}}" alt="">
+                            </div>
+                            <div class="col-12 col-md-12 col-lg-6 align-self-center">
+                                <section id="cdate_assesment">
+                                    <div class="card ass_details p-2">
+                                        <div class="row">
+                                            {{-- Question --}}
+                                            @foreach ($job->screeningquiz as $key => $quiz)
+                                            <div class="col-md-12 quiz" data-bp="{{$quiz->breakpoint}}" data-dsw3w14="{{$quiz->quiz_code}}" data-dsw3w15="{{$quiz->answer_type}}">
+                                                <p class="h3 mt-4 mb-2">{{$quiz->candidate_question}}</p>
+                                                
+                                                @if($quiz->answer_type=='text')
+                                                    {{ Form::text('answer_'.$quiz->quiz_code, null, array('class'=>'form-control e1ex0nj0', 'id'=>'answer_'.$quiz->quiz_code, 'placeholder'=>__(' '))) }}
+                                                @elseif($quiz->answer_type=='single')
+                                                    @foreach (json_decode($quiz->candidate_options) as $key1 => $option)                           
+                                                        <div class="form-check">
+                                                            <input class="form-check-input e1ex0nj0" type="radio" name="answer_{{$quiz->quiz_code}}" value="{{ $option }}" id="answerradio{{$quiz->quiz_code}}_{{ $key1 }}" @if($key1==0) checked @endif>
+                                                            <label class="form-check-label" for="answerradio{{$quiz->quiz_code}}_{{ $key1 }}">
+                                                                {{ $option }}
+                                                            </label>
+                                                        </div>                                                
+                                                    @endforeach
+                                                @elseif($quiz->answer_type=='multiple')
+                                                    @foreach (json_decode($quiz->candidate_options) as $key1 => $option)                           
+                                                        <div class="form-check">
+                                                            <input class="form-check-input e1ex0nj0" type="checkbox" name="answer_{{$quiz->quiz_code}}[]" value="{{ $option }}" id="answercheckbox{{$quiz->quiz_code}}_{{ $key1 }}">
+                                                            <label class="form-check-label" for="answercheckbox{{$quiz->quiz_code}}_{{ $key1 }}">
+                                                                {{ $option }}
+                                                            </label>
+                                                        </div>
+                                                    @endforeach
+                                                @elseif($quiz->answer_type=='textarea')
+                                                    {{ Form::textarea('answer_'.$quiz->quiz_code, null, array('class'=>'form-control e1ex0nj0', 'id'=>'answer_'.$quiz->quiz_code, 'placeholder'=>__(' '))) }}
+                                                @elseif($quiz->answer_type=='select')
+                                                @php
+                                                    $options = json_decode($quiz->candidate_options);
+                                                    $options = array_combine($options, $options);
+                                                @endphp
+                                                    {{ Form::select('answer_'.$quiz->quiz_code, ['' => __('Select')]+$options??'', null, array('class'=>'form-select', 'id'=>'answer_'.$quiz->quiz_code)) }}
+                                                @endif
+                                                <span class="es2wa7s text-danger"> </span>
 
-                                    </div>
-                                    @endforeach
-                                    <hr>
-                                    <span class="es2wa7sd text-danger"> </span>
+                                            </div>
+                                            @endforeach
+                                            <span class="es2wa7sd text-danger"> </span>
 
-                                    {{-- // Question --}}
-                                </div>
-                            </div>                  
-                        </section>    
+                                            {{-- // Question --}}
+                                        </div>
+                                    </div>                  
+                                </section>    
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="row mx-3 mb-2">
-                        @if($breakpoint==null)
-                            <div class="col-md-6  text-start">
-                                <span class="skip-submit cursor-pointer">Skip and apply</span>
-                            </div>
-                        @else
-                            <div class="col-md-6  text-start">
-                                <span data-bs-dismiss="modal" class="cursor-pointer">Skip</span>
-                            </div>
-                        @endif
-                        <div class="col-md-6  text-end">
-                            <span class="submit cursor-pointer">Submit and Apply</span>
+                  
+                    <div class="container">
+                        <div class="d-grid gap-2 mx-3 mb-4 d-md-flex justify-content-md-between">
+                            @if($breakpoint==null)
+                                <a class="btn previous-btn skip-submit"> Skip and apply</a>
+                            @else
+                                <a class="btn previous-btn" data-bs-dismiss="modal"> Skip</a>
+                            @endif
+                            <button type="submit" class="btn next-btn submit">Submit and Apply</button>
                         </div>
                     </div>
                 </form>

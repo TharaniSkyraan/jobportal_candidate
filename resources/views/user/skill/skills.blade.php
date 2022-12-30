@@ -17,7 +17,7 @@
 			<div class="page-inner">
                 <div id="my_skills1" class="mt-4">
                     <div class="text-center ttleicn">
-                        <h2 class="fw-bolder"><img src="{{asset('images/candidate_educ.png')}}">&nbsp;My skills</h2>
+                        <h2 class="fw-bolder"><img src="{{asset('images/skills.png')}}">&nbsp;My skills</h2>
                     </div>
 
 

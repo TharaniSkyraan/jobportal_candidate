@@ -36,12 +36,16 @@
 	@include('layouts.header')
 	@include('layouts.side_navbar')
 
+    @if(Session::has('message'))
+        <script>toastr.success("{{ Session('message') }}");</script>
+    @endif
+
 	<div class="main-panel main-panel-custom">
 		<div class="content">
 			<div class="page-inner">
                 <div id="abt_meusr" class="mt-4">
                     <div class="text-center ttleicn">
-                        <h2 class="fw-bolder"><img src="{{asset('images/candidate_educ.png')}}">&nbsp;About me</h2>
+                        <h2 class="fw-bolder"><img src="{{asset('images/about_me.png')}}">&nbsp;About me</h2>
                     </div>
 
                     <div class="card mt-5">
@@ -76,34 +80,35 @@
                             <div class="row mt-5">
                                 <div class="col-md-3 col-lg-3"></div>                            
                                 <div class="col-md-9">  
-                                    <div class="col-md-10 mb-4">
+                                    <div class="col-md-12 col-lg-10 mb-4">
                                         <div class="{!! APFrmErrHelp::hasError($errors, 'first_name') !!}">
                                             <label for="first_name" class="form-label fw-bolder">First Name</label>
                                             {!! Form::text('first_name', $user->first_name??$user->name, array('class'=>'form-control required', 'id'=>'first_name', 'placeholder'=>__('First Name'))) !!}
                                             <small class="form-text text-muted text-danger err_msg" id="err_first_name"></small>
                                         </div>                          
                                     </div>                          
-                                    <div class="col-md-10 mb-4 mt-3">
+                                    <div class="col-md-12 col-lg-10 mb-4 mt-3">
                                         <label for="last_name" class="form-label fw-bolder">Last Name</label>
                                         {!! Form::text('last_name', null, array('class'=>'form-control required', 'id'=>'last_name', 'placeholder'=>__('Last Name'))) !!}
                                         <small class="form-text text-muted text-danger err_msg" id="err_last_name"></small>
                                     </div>
-                                    <div class="col-md-10 mb-4">
+                                    <div class="col-md-12 col-lg-10 mb-4">
                                         <label for="" class="form-label fw-bolder">Gender</label>
                                         @php $cgender = (!empty($user->gender))?$user->gender:2; @endphp
                                         @foreach($genders as $key => $gender)
-                                        <div class="form-check form-check-inline">
+                                        <div class="form-check form-check-inline ms-3">
                                             <input class="form-check-input" type="radio" name="gender" id="gender{{$key}}" value="{{$key}}" @if($key==$cgender) checked @endif>
                                             <label class="form-check-label" for="gender{{$key}}">{{$gender}}</label>
                                         </div>
                                         @endforeach
                                     </div>
-                                    <div class="col-md-10 mb-4">
+                                    <div class="col-md-12 col-lg-10 mb-4">
                                         <label for="date_of_birth" class=" col-form-label fw-bolder">Date of Birth</label>
                                         {!! Form::date('date_of_birth', $user->date_of_birth??null, array('class'=>'form-control required', 'id'=>'date_of_birth', 'min'=>'1900-01-02', 'max'=>'2008-12-31', 'placeholder'=>__('Date of Birth'), 'autocomplete'=>'off')) !!}
                                         <small class="form-text text-muted text-danger err_msg" id="err_date_of_birth"></small>
                                     </div>
-                                    <div class="col-md-10 mb-4">
+                        
+                                    <div class="col-md-12 col-lg-10 mb-4">
                                         <label for="marital_status_id" class=" col-form-label fw-bolder">Marital status</label>
                                         {!! Form::select('marital_status_id', [''=>__('Select Marital Status')]+$maritalStatuses, null, array('class'=>'form-select required', 'id'=>'marital_status_id')) !!}
                                         <small class="form-text text-muted text-danger err_msg" id="err_marital_status_id"></small>

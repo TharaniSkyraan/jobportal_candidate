@@ -53,7 +53,7 @@ function deleteResumes(id) {
             }
         });
     }
-}
+}  
 
 function submitCvs()
 {

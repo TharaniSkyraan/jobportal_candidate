@@ -65,12 +65,17 @@
 <div class="modal fade" id="resume_upload_modal" tabindex="-1" aria-labelledby="resume_upload_modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
+      <div class="modal-header" style="background: #f3f7fe;">
+        <h3 class="modal-title" id="exampleModalCenterTitle">Upload Your Resume</h3>
+        <button type="button" class="close border-0" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
         <div class="modal-body h-100">
             <form>
               {{csrf_field()}}
                {!! Form::hidden('resume_id', null, array('id'=>'resume_id')) !!}
               <div class="resume">
-                <div class="text-center mt-3 mb-4"><h4 class="fw-bold">Upload Your Resume </h4></div>
                 <div class="file-drop-area m-4">
                     <div class="icon"><i class="fas fa-cloud-upload-alt fa-3x"></i>
                     <span class="file-msg">Select or drag and drop document here</span></div>

@@ -18,7 +18,7 @@
 			<div class="page-inner">
                 <div id="my_expernce2" class="mt-4">
                     <div class="text-center ttleicn">
-                        <h2 class="fw-bolder"><img src="{{asset('images/candidate_educ.png')}}">&nbsp;My Experience</h2>
+                        <h2 class="fw-bolder"><img src="{{asset('images/candidate_exp.png')}}">&nbsp;My Experience</h2>
                     </div>
                     @php
                         $total_exp = Auth::user()->total_experience;
