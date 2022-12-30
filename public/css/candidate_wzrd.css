@@ -80,7 +80,7 @@
 }#cndidate_wzrd button img, #cndidate_wzrd a.btn img{
     width: 18px;
 }#cndidate_wzrd .btn{
-    padding: 0px;
+    padding: .6rem 1.4rem;
 }#cndidate_wzrd .card{
     max-height: 600px;
     overflow-y: scroll;
@@ -116,9 +116,6 @@
     }#cndidate_wzrd .card-size{
         width: 75%;
         margin: 0 auto;
-    }#cndidate_wzrd .btn{
-        width: max-content;
-        padding: 0px;
     }
     
 }
@@ -130,10 +127,7 @@
 }
 
 @media(min-width: 280px) and (max-width: 767px){
-    #cndidate_wzrd .btn{
-        width: max-content;
-        padding: 0px;
-    }.scroll-page #exp_in_year{
+    .scroll-page #exp_in_year{
         margin-bottom: 15px;
     }
 }
