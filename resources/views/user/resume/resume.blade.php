@@ -37,13 +37,13 @@
                                     </div>
                                     <div class="col-md-6 replace-resume">
                                         <div class="row">
-                                            <div class="col-8 prime1" @if($resume1->is_default==1) style="display:none" @endif >
+                                            <div class="col-8 prime1" @if($resume1->is_default==0) style="display:none" @endif >
                                                 <span class="cursor-pointer" data-bs-toggle="modal" data-bs-target="#resume_upload_modal" onClick="Replace({{$resume1->id}});" aria-hidden="true">
                                                     <i class="fa fa-refresh"></i>
                                                     &nbsp;Replace
                                                 </span>
                                             </div>
-                                            <div class="col-4 prime1" @if($resume1->is_default==1) style="display:none" @endif>
+                                            <div class="col-4 prime1" @if($resume1->is_default==0) style="display:none" @endif>
                                                 <span>
                                                     <i class="fa fa-trash cursor-pointer" onClick="deleteResumes({{$resume1->id}});"></i>
                                                 </span>
@@ -75,13 +75,13 @@
                                         </div>
                                         <div class="col-md-6 replace-resume">
                                             <div class="row">
-                                                <div class="col-8 prime2" @if($resume2->is_default==1) style="display:none" @endif>
+                                                <div class="col-8 prime2" @if($resume2->is_default==0) style="display:none" @endif>
                                                     <span class="cursor-pointer" data-bs-toggle="modal" data-bs-target="#resume_upload_modal" onClick="Replace({{$resume2->id}});" aria-hidden="true">
                                                         <i class="fa fa-refresh"></i>
                                                         &nbsp;Replace
                                                     </span>
                                                 </div>
-                                                <div class="col-4 prime2" @if($resume2->is_default==1) style="display:none" @endif>
+                                                <div class="col-4 prime2" @if($resume2->is_default==0) style="display:none" @endif>
                                                     <span>
                                                         <i class="fa fa-trash cursor-pointer" onClick="deleteResumes({{$resume2->id}});"></i>
                                                     </span>
