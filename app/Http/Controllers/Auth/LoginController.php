@@ -308,7 +308,7 @@ class LoginController extends Controller
         $startdate = Carbon::parse($user->session_otp);
         $enddate = Carbon::now();
 
-        if(($startdate->diffInSeconds($enddate)) > 35)  // 5 refers to 5 minutes
+        if(($startdate->diffInSeconds($enddate)) > 65)  // 5 refers to 5 minutes
         {
             return Response()->json(['success' => true, 'error'=>'OTP expired. Please try again'], 422);  
         }else

@@ -38,7 +38,7 @@
                         {!! Form::open(array('method' => 'post', 'route' => array('career-info-save'), 'class' => 'form', 'onSubmit' => 'return validateCareerInfoForm()')) !!}
                         <div class="container">
                             <div class="mb-3">
-                                <label for="career_title" class="form-label">Your designation</label>
+                                <label for="career_title" class="form-label">@if($user->employment_status=='fresher') Jobs looking for @else Your designation @endif</label>
                                 {!! Form::text('career_title', $user->career_title??null, array('class'=>'form-control required', 'id'=>'career_title', 'placeholder'=>__('ex:auditor, doctor'))) !!}
                                 <small class="form-text text-muted text-danger err_msg" id="err_career_title"></small>
                             </div>
