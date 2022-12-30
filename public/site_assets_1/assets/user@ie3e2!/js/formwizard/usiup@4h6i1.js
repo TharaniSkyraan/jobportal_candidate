@@ -33,9 +33,8 @@
         var education_level_id = $('#education_level_id').val();
 
         if (education_level_id != ''){                      
-        $.post(baseurl + "/filter-education-types-dropdown", {education_level_id: education_level_id, education_type_id: education_type_id, _method: 'POST', _token: csrf_token})
-
-          .done(function (response) {
+            $.post(baseurl + "/filter-education-types-dropdown", {education_level_id: education_level_id, education_type_id: education_type_id, _method: 'POST', _token: csrf_token})
+            .done(function (response) {
 
               if(response!=''){
                 $('.education_type_div').show();
@@ -59,12 +58,16 @@
     function checkstatus()
     {
         if($("input[name='employment_status']:checked").val()=='fresher'){
+            $('.experience-text').removeClass('fw-bolder');
+            $('.fresher-text').addClass('fw-bolder');
             $('.levtstge_fre').addClass('checked');
-            $('.levtstge_exp').removeClass('checked');
+            $('.levtstge_exp').removeClass('checked');   
         }else
         
         if($("input[name='employment_status']:checked").val()=='experienced'){
+            $('.fresher-text').removeClass('fw-bolder');
             $('.levtstge_exp').addClass('checked');
+            $('.experience-text').addClass('fw-bolder');
             $('.levtstge_fre').removeClass('checked');
         }
     }
@@ -128,9 +131,11 @@
         if(validateFormFields('country_id','Please enter country','')) errStaus=true;
         if(validateFormFields('location','Please enter location','')) errStaus=true;
       
-        if($('#exp_in_year').val()==0&&$('#exp_in_month').val()==0){
-          $('#err_total_exp').html('Please select your experience');
-          errStaus=true;
+        if(employment_status!='fresher'){
+          if($('#exp_in_year').val()==0&&$('#exp_in_month').val()==0){
+            $('#err_total_exp').html('Please select your experience');
+            errStaus=true;
+          }
         }
         // form validation ends
         
@@ -387,3 +392,4 @@
           return true;
       }
     }
+

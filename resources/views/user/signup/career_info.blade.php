@@ -20,7 +20,7 @@
             <div class="col-md-3 align-self-center text-center cndte_mbile">
                 <img src="{{asset('images/candidate_left.png')}}" alt="">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 card-size">
             <div class="scroll-page">
                 <div class="card">
                     <!-- <div class="progress">
@@ -63,7 +63,7 @@
                             <div class="input-group mb-3 slct_apnd">
                                 {!! Form::select('salary_currency', ['₹'=>'₹'], $user->salary_currency, array('id'=>'salary_currency')) !!}
                                 {!! Form::text('expected_salary', null, array('class'=>'form-control required', 'data-type'=>'currency', 'id'=>'expected_salary', 'minlength'=>'0', 'maxlength'=>'10', 'placeholder'=>__('Expected Salary'))) !!}
-                                <span class="input-group-text">annam</span>
+                                <span class="input-group-text">/ annam</span>
                             </div>
                             <small class="form-text text-muted text-danger err_msg" id="err_expected_salary"></small>
                             
@@ -86,18 +86,18 @@
                             
 
                             <div class="row mb-4 mt-5">
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-6">
                                     <a href="{{ route('experience')}}" class="btn"><img src="{{asset('images/lefticon.png')}}"> Previous</a>
                                 </div>
-                                <div class="col-md-6 text-end">
+                                <div class="col-md-6 col-6 text-end">
                                     <button class="btn" type="submit">Save & Continue  <img src="{{asset('images/righticon.png')}}"></button>
                                 </div>
                             </div>
                         </div>
-                        {!! Form::close() !!}
                         <div class="progress">
                             <div class="progress-bar bg-success" role="progressbar" style="width: 80%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>
@@ -111,8 +111,9 @@
 @endsection
 @push('scripts')
 <script>
- var expected_salary = "{{$user->expected_salary??''}}"
+ var expected_salary = "{{$user->expected_salary??''}}";
+ var employment_status = "{{$user->employment_status??''}}";
 </script>
-<script  type="text/javascript" src="{{ asset('site_assets_1/assets/vendor/typehead/typeahead.bundle.js') }}"></script>
+<script type="text/javascript" src="{{ asset('site_assets_1/assets/vendor/typehead/typeahead.bundle.js') }}"></script>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/user@ie3e2!/js/formwizard/usiup@4h6i1.js') }}"></script>
 @endpush

@@ -23,8 +23,8 @@
 
                     <div class="crdbxpl mt-5">
                         <div class="row">
-                            <div class="col-8 px-4 align-self-center">Skill</div>
-                            <div class="col-4 text-end addSkills"><button class="openForm" type="button" data-form="new">Add New <i class="fa fa-plus"></i></button></div>
+                            <div class="col-7 px-4 align-self-center">Skill</div>
+                            <div class="col-5 text-end addSkills"><button class="openForm" type="button" data-form="new">Add New <i class="fa fa-plus"></i></button></div>
                         </div>
                     </div>
                        
