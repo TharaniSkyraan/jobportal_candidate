@@ -3,6 +3,7 @@
 /cache/*.key
 /node_modules
 /public/hot
+/public/site_assets_1/assets/img/profile_image
 /public/storage
 /storage/*.key
 /vendor
