@@ -1,5 +1,5 @@
 let csrf_token = $('meta[name=csrf-token]').attr('content');
-var seconds = 31;
+var seconds = 61;
 var el = document.getElementById('seconds-counter');
 
 function incrementSeconds() {
@@ -8,7 +8,7 @@ function incrementSeconds() {
       el.innerText = seconds + " s.";
     }
     if(seconds==0){
-      el.innerText = 30 + " s.";
+      el.innerText = 60 + " s.";
       $('.seconds-counter').hide();
       $('#restnt').show();
     }
@@ -37,7 +37,7 @@ function resentMail() {
       data: {"_token": csrf_token, "email": email},
       dataType: 'json',
       success:function(data) { 
-          seconds = 30;    
+          seconds = 60;    
           $('.seconds-counter').show();
           $('#restnt').hide();
       }

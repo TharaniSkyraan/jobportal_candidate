@@ -319,6 +319,11 @@ var is_login = '{{ Cookie::get("is_login") }}';
         }
     }
     
+    $('.titsearch').on('click', function(){
+        var designation =  $(this).attr('data-d');
+        var location =  $(this).attr('data-l');
+        search(designation,location);
+    });
     $('#msearch_btn').on('click', function(){
         //myElement Has Focus
         $('.err_msg').html('');
