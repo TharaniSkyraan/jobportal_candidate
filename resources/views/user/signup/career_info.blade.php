@@ -11,9 +11,9 @@
 @section('content')
 
 @php
-dd($ip_data);
     $country_id = (!empty($user->country_id))?$user->country_id:$ip_data->country_id;
     $country = (!empty($user->country_id))?$user->getCountry('country'):$ip_data->geoplugin_countryName;
+dd($country);
 @endphp
 <section id="cndidate_wzrd">
     <div class="container">

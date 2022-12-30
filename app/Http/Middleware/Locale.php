@@ -50,7 +50,7 @@ class Locale
                 $city->geoplugin_countryCode = 'IN';
                 view()->share('ip_data',$city);
             }
-            dd($ip_data);
+            
         if(Session::has('ip_config')==false){
             session(['ip_config' => $city]);
         }else{
