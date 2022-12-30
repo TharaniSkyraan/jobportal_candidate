@@ -131,89 +131,68 @@ class LoginController extends Controller
  
      public function handleProviderCallback(Request $request,$provider)
      {
-         if($request->has('error')){
+        if($request->has('error')){
             if($provider=='facebook'){
                 return redirect('login')->with("error", $request->error_description);   
             }elseif($provider=='apple'){
                 return redirect('login')->with("error", $request->error);   
             }
-         }
+        }
          
-            
-         $user = Socialite::driver($provider)->stateless()->user();
+        $user = Socialite::driver($provider)->stateless()->user();
+        
+        if($user->getEmail() != '') 
+        {
 
-         
-         $findDetail = array();
-         if ($user->getEmail() != '') {
- 
-             $user = User::where('email', $user->getEmail())->first();
-             
-             $str = $user->getName() . $user->getId() . $user->getEmail();
- 
-             if ($user) {
- 
-                // Employer
-                User::where('email',$user->getEmail())->update(['verified' => 1, 'account_type_id'=>$masterTable->id]);
-                   
- 
-             }else{
-       
- 
-                 // Employer
-                 $user = User::create([
+            $str = $user->getName() . $user->getId() . $user->getEmail();
+            $email = $user->getEmail();
+            $providerId = $user->getId();
+
+            if(User::where('email',$email)->doesntExist()){
+
+                $user = User::create([
                     'name' => $user->getName()??'', 
                     'email' => $user->getEmail(),
-                    'next_process_level' =>  $account_type=='candidate'?'signup_password':'company_basic_info',
+                    'next_process_level' =>  'education',
                     'provider' => $provider,
-                    'provider_id' => $user->getId(), 
+                    'provider_id' => $providerId, 
                     'password' => bcrypt($str), 
                     'is_active' => 0, 
                     'verified' => 1, 
                     'token'=>$this->generateRandomString(8)
                 ]);
-                User::where('id',$user->id)->update(['slug' => Str::slug($user->name, '-') . '-' . $user->id]);  
-           
-             }
-             
- 
-         }
-         
-         return $findDetail;
- 
-         $findDetail = $this->findOrCreateUser($user, $provider);
- 
-         // Email Verified
-         if($findDetail['masterTable']->verified==1){   
+                
+                $page = $this->SwitchRedirect('education');
+            }else{
 
-             if($findDetail['masterTable']->account_type=='candidate'){
-                 // Login as Candidate
-                 Auth::login($findDetail['masterTable']->user, true);
-             }else{
-                 // Login as Employer
-                 Auth::login($findDetail['masterTable']->company, true);
-             } 
-         }
- 
-         if($findDetail['masterTable']->is_active==0){
- 
-             $page = $this->SwitchRedirect($findDetail['masterTable']);
-               
-             if($findDetail['masterTable']->next_process_level == 'signup_password'){
-                 session(['email' => $user->getEmail()]);
-                 $page = "accountverification";
-                 // return view($page)->with(['data'=>$findDetail['masterTable'],'is_exist'=>$findDetail['is_exist'],'is_login'=>'no']);
-             }
-             return redirect($page);
- 
-         }else{
-             
-             if($findDetail['masterTable']->account_type=='candidate'){
-                 return redirect($this->redirectToUser);
-             }          
-             return redirect($this->redirectTo);
-         }
- 
-     }
+                $user = User::where('email',$email)->first();
+                $user_id = $user->id;
+                
+                if($user->next_process_level=='verify_otp'){
+                    User::where('email',$email)->update([
+                        'next_process_level' => 'education',
+                        'provider' => $provider,
+                        'provider_id' => $providerId, 
+                        'is_active' => 0, 
+                        'verified' => 1
+                    ]);
+                }else{
+                    User::where('email',$email)->update([
+                        'provider' => $provider,
+                        'provider_id' => $providerId 
+                    ]);
+                }
+                $user = User::findorFail($user->id);
+                $page = $this->SwitchRedirect($user->next_process_level);
+            }
+            Auth::login($user, true);
+            session(['id' => $user->id]);
+            return redirect($page);
+        }
+
+        return redirect('/login');
+
+    }
 
      //============================End / Social Signin or Signup========================//
  
@@ -230,8 +209,7 @@ class LoginController extends Controller
      {
         DB::beginTransaction();
  
-         try {
-
+        try {
 
             if(empty($request->user_type)){
                 
@@ -303,11 +281,11 @@ class LoginController extends Controller
         $user->session_otp = Carbon::now();
         $user->save();
             
-        // $user = User::findOrFail(Session::get('id'));
-        // Auth::login($user, true); 
-        // UserVerification::generate($user);
-        // UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
-        // Auth::logout();
+        $user = User::findOrFail(Session::get('id'));
+        Auth::login($user, true); 
+        UserVerification::generate($user);
+        UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
+        Auth::logout();
 
         return view('auth.verify_otp',compact('user'));      
 
@@ -364,10 +342,10 @@ class LoginController extends Controller
 
         $user =  User::whereEmail($request->email)->first();
 
-        // Auth::login($user, true); 
-        // UserVerification::generate($user);
-        // UserVerification::send($user, 'Account Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
-        // Auth::logout();
+        Auth::login($user, true); 
+        UserVerification::generate($user);
+        UserVerification::send($user, 'Account Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
+        Auth::logout();
         
         return true;
      }

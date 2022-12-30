@@ -49,7 +49,7 @@ class User extends Authenticatable
         'date_of_birth','gender','country_id','state_id','city_id','name', 'email', 
         'password','employment_status','notice_period','verified',
         'is_active', 'token', 'location', 'career_title', 'expected_salary', 
-        'current_salary', 'total_experience'
+        'current_salary', 'total_experience','provider_id','provider'
 
     ];
 
