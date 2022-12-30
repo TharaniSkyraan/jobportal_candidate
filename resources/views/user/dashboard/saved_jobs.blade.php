@@ -125,7 +125,7 @@
             fetch_data(1);              
           }
       });
-  }
+  } 
 
   
 </script>

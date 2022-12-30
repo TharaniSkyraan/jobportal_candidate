@@ -11,7 +11,8 @@
 
     });
     
-    function loadUserEducationForm(form, id=null, type_id=null, education_level_id=null){
+    function loadUserEducationForm(form, id=null, type_id=null, education_level_id=null)
+    {
         let route = baseurl + "get-education-form";
         let param = {"_token": csrf_token, "education_level_id": education_level_id};
         if(form=='edit'){

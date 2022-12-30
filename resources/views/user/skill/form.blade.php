@@ -35,7 +35,7 @@
         <div class="mb-2 fw-bolder">
             Practising from (Optional) 
         </div>
-        <div class="">
+        <div class="mb-3">
             <div class="row align-items-center">
                 <div class="col-md-4 mb-2">
                     {!! Form::month('start_date', $userSkill->start_date??null, array('class'=>'form-control required', 'max' =>date("Y-m"), 'min'=>'1980-01', 'id'=>'start_date', 'placeholder'=>__('Start date'))) !!}
@@ -55,7 +55,7 @@
                 <small class="form-text text-muted text-danger err_msg end_date-error" id="err_end_date"></small>
                 </div>
 
-                <div class="col-md-3 mb-2">
+                <div class="col-md-3">
                     <input class="form-check-input" type="checkbox" value="yes" id="is_currently_working" name="is_currently_working" @if(isset($userSkill) && $userSkill->is_currently_working=='yes') checked @endif>
                     <label class="form-check-label" for="is_currently_working">
                     Currently working
@@ -65,8 +65,12 @@
         </div>
     </div>
 
-    <div class="d-grid gap-2 m-4 d-md-flex justify-content-md-around">
-        <button class="btn bg-grey-color user-skill-cancel" onClick="cancelUserSkillForm({{$userSkill->id??0}})" type="button">Cancel</button>
-        <button class="btn btn-submit bg-green-color" type="button" onClick="submitUserSkillForm();">Save</button>
+    <div class="row">
+        <div class="col-6 text-center">
+            <button class="btn bg-grey-color user-skill-cancel" onClick="cancelUserSkillForm({{$userSkill->id??0}})" type="button">Cancel</button>
+        </div>
+        <div class="col-6 text-center">
+            <button class="btn btn-submit bg-green-color" type="button" onClick="submitUserSkillForm();">Save</button>
+        </div>
     </div>
 </div>

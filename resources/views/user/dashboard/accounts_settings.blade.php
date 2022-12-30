@@ -16,8 +16,8 @@
 .profilepic {
 	border: 0.5px solid lightgrey;
 	position: relative;
-	width: 100px;
-    height: 100px;
+	width: 120px;
+    height: 120px;
 	/* height: 125px; */
 	border-radius: 50%;
 	overflow: hidden;
@@ -130,7 +130,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 			</div>
 			<div class="page-inner">
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-10">
 						<div class="card mb-3">
               <div class="text-center" style="background:#f3f7fe;">
                 <h2 class="fw-bolder p-3 mb-0 border-bottom" >Accounts Settings</h2>
@@ -184,7 +184,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 										</div>
 
 										<div class="mb-4">
-                      <label for="" class="form-label fw-bolder">Phone Number</label>
+                      <!-- <label for="" class="form-label fw-bolder">Phone Number</label>
                       <div class="row align-items-center current_phone_number">
                         <div class="col-md-6 col-sm-8 col-xs-6 col-8">
                           <text class=" align-self-center">{{Auth::user()->phone ?? 'None'}}</text>
@@ -198,7 +198,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
                             @endif
                           </div>
                         </div>
-                      </div>
+                      </div> -->
 
                       <div class="row">
                         <div class="col-md-12 change_phone_number" style="display:none !important;">
@@ -242,7 +242,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	</div>
 
   <!-- Button trigger modal -->
-	<div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		<div class="modal-dialog  modal-dialog-centered ">
 			<div class="modal-content">
 				<div class="modal-header" style="border-bottom:unset !important;background: #f3f7fe;">

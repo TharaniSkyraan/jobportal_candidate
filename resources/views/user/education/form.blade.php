@@ -7,7 +7,7 @@
             <small class="help-block form-text text-muted text-danger err_msg education_level_id-error" id="err_education_level_id"></small> 
         </div>
     </div>
-    <div class="col-md-10 education_type_div mb-4" style="display:none;">
+    <div class="col-md-10 education_type_div" style="display:none;">
         <label for="education_type_id" class="form-label fw-bolder">Education</label>
         <div class="" id="education_types_dd">                    
             {!! Form::select('education_type_id', [''=>__('Select Education Type')], null, array('class'=>'form-select required', 'id'=>'education_type_id')) !!}
@@ -44,7 +44,7 @@
         {!! Form::text('institution', null, array('class'=>'form-control-2 required typeahead mb-2', 'id'=>'institution', 'placeholder'=>__('Institution Name'))) !!}
         <small class="help-block form-text text-muted text-danger err_msg institution-error" id="err_institution"></small>  
     </div>
-
+    <label for="" class="form-label fw-bolder">Year of education</label>
     <div class="row mb-4">
         <div class="col-md-8 col-sm-12 col-xs-12">
             <div class="row">
@@ -55,7 +55,6 @@
                     $d = $userEducation->to_year??date('Y-m-d');
                     $todate = old('to_year')?date('Y-m-d',strtotime(old('to_year'))):'';
                 @endphp
-                <label for="" class="form-label fw-bolder">Year of education</label>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-2">
                     <div class="input-group">
                         <span class="input-group-text" id="">From</span>
@@ -73,7 +72,7 @@
             </div>
         </div>
         
-        <div class="col-md-4 col-sm-12 col-xs-12 mb-2 mt-5">
+        <div class="col-md-4 col-sm-12 col-xs-12 mb-2 align-self-center">
             {!! Form::checkbox('pursuing', 'yes', $userEducation->pursuing??null, array('class'=>'form-check-input', 'id'=>'pursuing')) !!}
             <label class="form-check-label" for="pursuing">
             Pursuing

@@ -190,7 +190,7 @@ trait UserProjectsTrait
 
 
 
-        $this->addUserProjectImage($request, $userProject);
+        // $this->addUserProjectImage($request, $userProject);
 
 
 

@@ -269,7 +269,7 @@
                         <div class="popularser_hme mt-5">
                             <div class="row">
                             @forelse($titles as $title)
-                                <div class="col-md-3 col-12">
+                                <div class="col-md-4 col-lg-3 col-12">
                                     <div class="list_poplar cursor-pointer">
                                         <p class="resentsearch fw-bolder plerhvr"  data-d="{{$title->title}}">
                                            <div class="row"><div class="col-10 text-start">{{$title->title}}</div><div class="col-2 text-end"><i class="fa fa-hand-pointer-o" aria-hidden="true"></i></div></div></p>
@@ -292,7 +292,7 @@
 
                             @forelse($cachedatas as $key => $search)
                                 @if($key < 5 && ($search->designation !='' || $search->location !='')  )
-                                <div class="col-md-3 col-12">
+                                <div class="col-md-4 col-lg-3 col-12">
                                     <div class="list_poplar cursor-pointer">
                                         <p class="resentsearch plerhvr" data-d="{{$search->designation}}" data-l="{{$search->location}}"><div class="row"><div class="col-10 text-start">{{$search->designation}} {{$search->location}}</div><div class="col-2 text-end align-self-center"><i class="fa fa-history" aria-hidden="true"></i></div></div> 
 </p>
@@ -398,7 +398,7 @@
                         <div class="row">
                             <h3 class="mb-3 fw-bold mt-3">Top job posts</h3>
                             @foreach($near_job as $near)
-                            <div class="col-md-4">
+                            <div class="col-md-6 col-lg-4">
                                 <div class="card p-4 hm_gr cursor-pointer jobsearch">
                                     <h3 class="fw-bolder">{{$near->title}}</h3>
                                     <p>{{$near->company_name}}</p>
@@ -411,7 +411,7 @@
                         <div class="row mt-3">
                             <h3 class="mb-3 fw-bold">Recent posts</h3>
                             @foreach($recent_job as $recent)
-                                    <div class="col-md-4">
+                                    <div class="col-md-6 col-lg-4">
                                         <a href="{{url('detail',$recent->slug)}}" class="text-dark">
                                             <div class="card p-4 hm_gy cursor-pointer">
                                                 <h3 class="fw-bolder">{{$recent->title}}</h3>

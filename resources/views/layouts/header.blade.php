@@ -1,5 +1,9 @@
 <div class="main-header">
 	<header id="header" class="header fixed-top bg-color-blue d-flex justify-content-center align-items-center">
+		
+		<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+			<i class="fa-solid fa-ellipsis-vertical"></i>
+		</button> 
 		<div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 			<a href="{{ route('index') }}" class="logo d-flex align-items-center">
 				<img src="{{ asset('/') }}sitesetting_images/thumb/{{ $siteSetting->site_logo }}" alt="logo" class="img-fluid">
@@ -32,7 +36,7 @@
 								</li> -->
 								<li>
 									@if(Auth::user()->is_active==1)
-										<a class="dropdown-item" href="{{ route('my_profile') }}"><i class="fa-solid fa-user px-1 mx-2"></i> My Profile</a>
+										<a class="dropdown-item" href="{{ route('home') }}"><i class="fa-solid fa-user px-1 mx-2"></i> My Profile</a>
 									@else
 										<a class="dropdown-item" href="{{ route('redirect-user') }}"><i class="fa-solid fa-user px-1 mx-2"></i> My Profile</a>
 									@endif
@@ -62,7 +66,7 @@
 
 					<li><a class="nav-link scrollto" href="{{ route('index') }}">Get a Job </a></li>
 					<li><a class="nav-link scrollto {{ (Route::is('login') )?'active':''}}" href="{{ route('login') }}">Sign in </a></li>
-					<li><a>|</a></li>
+					<li class="mobile_m"><a>|</a></li>
 					<li><a class="nav-link scrollto" href="#PostLink" >Employer / Post a Job</a></li>
 					{{-- <li><a class="nav-link scrollto {{ (Route::is('job.post_job') )?'active':''}}" href="{{ route('job.post_job') }}">Post Job</a></li> --}}
 				@endif
@@ -74,3 +78,4 @@
 		</div>
 	</header>
 </div>
+

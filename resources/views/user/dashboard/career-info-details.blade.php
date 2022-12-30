@@ -11,12 +11,15 @@
 	@include('layouts.header')
 	@include('layouts.side_navbar')
 
+    @if(Session::has('message'))
+        <script>toastr.success("{{ Session('message') }}");</script>
+    @endif
 	<div class="main-panel main-panel-custom">
 		<div class="content">
 			<div class="page-inner">
                 <div id="abt_meusr" class="mt-4">
                     <div class="text-center ttleicn">
-                        <h2 class="fw-bolder"><img src="{{asset('images/candidate_educ.png')}}">&nbsp;Career Information</h2>
+                        <h2 class="fw-bolder"><img src="{{asset('images/career_info.png')}}">&nbsp;Career Information</h2>
                     </div>
                     @php
                         $noticePeriod = app\Helpers\DataArrayHelper::langNoticePeriodsArray();

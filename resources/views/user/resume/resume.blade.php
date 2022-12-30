@@ -10,7 +10,7 @@
 			<div class="page-inner">
                 <div id="my_resme" class="mt-4">
                     <div class="text-center ttleicn">
-                        <h2 class="fw-bolder"><img src="{{asset('images/candidate_educ.png')}}">&nbsp;My Resume</h2>
+                        <h2 class="fw-bolder"><img src="{{asset('images/resume.png')}}">&nbsp;My Resume</h2>
                     </div>
 
                     <div class="card mt-5">
@@ -20,7 +20,7 @@
                         <!-- resume store 1 -->
                         <div class="row mt-3 resume{{$resume1->id}}">
                             <div class="col-md-4 mb-3">
-                                <a href="javascript:void(0);" data-aci="{{$resume1->id??''}}" class="download-resume text-dark text-decoration-underline cursor-pointer">Resume-1</a>
+                                <a href="javascript:void(0);" data-aci="{{$resume1->id??''}}" class="download-resume text-dark text-decoration-underline cursor-pointer"><i class="fa fa-download"></i> Resume-1</a>
                             </div>
                             <div class="col-md-8">
                                 <div class="row">
@@ -35,7 +35,7 @@
                                             </div>
                                         </div>                                        
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 replace-resume">
                                         <div class="row">
                                             <div class="col-8 prime1" @if($resume1->is_default==1) style="display:none" @endif >
                                                 <span class="cursor-pointer" data-bs-toggle="modal" data-bs-target="#resume_upload_modal" onClick="Replace({{$resume1->id}});" aria-hidden="true">
@@ -58,7 +58,7 @@
                             <!-- resume store 2 -->
                             <div class="row mt-3 resume{{$resume2->id}}">
                                 <div class="col-md-4 mb-3">
-                                    <a href="javascript:void(0);" data-aci="{{$resume2->id??''}}" class="download-resume text-dark text-decoration-underline">Resume-2</a>
+                                    <a href="javascript:void(0);" data-aci="{{$resume2->id??''}}" class="download-resume text-dark text-decoration-underline"><i class="fa fa-download"></i> Resume-2</a>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="row">
@@ -73,7 +73,7 @@
                                                 </div>
                                             </div>                                        
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-6 replace-resume">
                                             <div class="row">
                                                 <div class="col-8 prime2" @if($resume2->is_default==1) style="display:none" @endif>
                                                     <span class="cursor-pointer" data-bs-toggle="modal" data-bs-target="#resume_upload_modal" onClick="Replace({{$resume2->id}});" aria-hidden="true">

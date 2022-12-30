@@ -18,28 +18,27 @@ if ($project->is_on_going == 1)
         <div class="col-md-4 text-end">
             <div class="row">
                 <div class="col-6 edit_project_{{$project->id}}"><i class="fa fa-edit  openForm" data-form="edit" data-id="{{$project->id}}"></i></div>
-                <div class="col-6 delete_project delete_project_{{$project->id}}" @if(count(Auth::user()->userProjects)<2) style="display:none" @endif onclick="delete_user_project({{$project->id}});"><i class="fa fa-trash"></i></div>
+                <div class="col-6"> <i class="fa fa-trash delete_project delete_project_{{$project->id}}" @if(count(Auth::user()->userProjects)<2) style="display:none" @endif onclick="delete_user_project({{$project->id}});"></i></div>
                 <div class="col-6 undo_project_{{$project->id}}" onclick="undo_user_project({{$project->id}});" style="display:none;"><i class="fa-solid fa-arrow-rotate-left text-green-color border-0 rounded p-2"></i></div>
             </div>
         </div>
     </div>
 
-    <div class="mb-4 dtls">
+    <div class="mb-2 dtls">
         <h3 class="fw-bolder mb-1">{{$project->name}}</h3>
         <p class="mb-0">{{ $project->getCompany('company') }}</p>
-        <p class="mb-0">{{ ucwords($project->location) }}.</p>
         <p class="mb-2">{{ $date }}.</p>
     </div>
         
     <div class="more-details-show-hide collapse" id="collapseprojec{{$project->id}}">
-        <div class="mb-5">
+        <div class="mb-2">
             <h3 class="gry">About project</h3>
             <p class="text-justify">
                 {{ $project->description }}
             </p>
         </div>
 
-        <div class="mb-5">
+        <div class="mb-2">
             <h3 class="gry">Role on the project</h3>
             <p class="text-justify">
                 {{ $project->role_on_project }}

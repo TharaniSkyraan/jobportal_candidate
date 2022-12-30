@@ -137,7 +137,7 @@ class UserController extends Controller
         // dd($request->all());
         $user = User::findOrFail(Auth::user()->id)->update($request->all());
     
-        return \Redirect::route('my_profile')->with('message',' Updated Succssfully!');
+        return \Redirect::route('home')->with('message',' Updated Succssfully!');
     }
     
     public function updateCareer(Request $request)

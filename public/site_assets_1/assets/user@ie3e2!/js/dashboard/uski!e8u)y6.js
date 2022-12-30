@@ -1,7 +1,6 @@
-let csrf_token = $('meta[name=csrf-token]').attr('content');
+ let csrf_token = $('meta[name=csrf-token]').attr('content');
 
 $(document).on('click', '.openForm', function (event) {
-
     form = $(this).attr('data-form');
     id = $(this).attr('data-id');
     type_id = $(this).attr('data-type-id');
@@ -33,8 +32,8 @@ function loadUserSkillForm(form, id=null){
           StillCheck('skill');
         }
         $(".tabs").animate({scrollTop: $(window).scrollTop(0)},"slow");
-
-        $('.addSkills').hide();
+        $('.addSkills button').hide();
+        $('.addSkills').html('<button class="user-skill-cancel" onclick="cancelUserSkillForm()">Close <i class="fa fa-close"></button>');
       }
 
     });
@@ -200,7 +199,9 @@ function loadUserSkillForm(form, id=null){
     $('.skill_edited_div_'+skill_id).show();
     }
     $('.append-form-skill').html('');
-    $('.addSkills').show();
+    $('.addSkills .user-skill-cancel').hide();
+    $('.addSkills button').show();
+
 
   }
   function SkillLevel(){

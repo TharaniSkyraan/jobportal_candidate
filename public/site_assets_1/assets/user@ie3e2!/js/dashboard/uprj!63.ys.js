@@ -1,7 +1,7 @@
 let csrf_token = $('meta[name=csrf-token]').attr('content');
 
 $(document).on('click', '.openForm', function (event) {
-
+  $('.add-form .user-project-cancel').hide();
     form = $(this).attr('data-form');
     id = $(this).attr('data-id');
     loadUserProjectForm(form, id);
@@ -27,7 +27,8 @@ function loadUserProjectForm(form, id=null){
     data: param,
     datatype: 'json',
     success: function (json) {  
-
+      $('.addProjects').hide();
+      $('.add-form').append("<button class='user-project-cancel' onclick='cancelUserProjectForm()'>Close <i class='fa fa-close'></i></button>");
       $('.project_div').show();    
 
       if(form=='edit'){
@@ -179,7 +180,8 @@ function undo_user_project(id) {
 } 
 
 function cancelUserProjectForm(project_id) {
-
+  $('.addProjects').show();
+  $('.add-form .user-project-cancel').hide();
   $('.project_div').show();  
   if(project_id!=0){      
     $('.project_edited_div_'+project_id).show();
@@ -213,7 +215,6 @@ showProjects();
 function showProjects(){
   $.post(baseurl + "show-projects", {_method: 'POST', _token: csrf_token})
   .done(function (response) {
-    console.log(response);
       $('#projects_div').html(response);
       // $("div").removeClass('is-loading');
   });
