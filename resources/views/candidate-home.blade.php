@@ -271,8 +271,12 @@
                             @forelse($titles as $title)
                                 <div class="col-md-4 col-lg-3 col-12">
                                     <div class="list_poplar cursor-pointer">
-                                        <p class="resentsearch fw-bolder plerhvr"  data-d="{{$title->title}}">
-                                           <div class="row"><div class="col-10 text-start">{{$title->title}}</div><div class="col-2 text-end"><i class="fa fa-hand-pointer-o" aria-hidden="true"></i></div></div></p>
+                                        <div class="resentsearch plerhvr titsearch" data-d="{{$title->title}}" data-l="">
+                                           <div class="row">
+                                                <div class="col-10 text-start">{{$title->title}}</div>
+                                                <div class="col-2 text-end"><i class="fa fa-hand-pointer-o" aria-hidden="true"></i></div>
+                                           </div>
+                                        </div>
                                     </div>
                                 </div>
                                 @empty
@@ -294,8 +298,14 @@
                                 @if($key < 5 && ($search->designation !='' || $search->location !='')  )
                                 <div class="col-md-4 col-lg-3 col-12">
                                     <div class="list_poplar cursor-pointer">
-                                        <p class="resentsearch plerhvr" data-d="{{$search->designation}}" data-l="{{$search->location}}"><div class="row"><div class="col-10 text-start">{{$search->designation}} {{$search->location}}</div><div class="col-2 text-end align-self-center"><i class="fa fa-history" aria-hidden="true"></i></div></div> 
-</p>
+                                        <div class="resentsearch plerhvr titsearch" data-d="{{$search->designation}}" data-l="{{$search->location}}">
+                                            <div class="row">
+                                                <div class="col-10 text-start">{{$search->designation}} {{$search->location}}</div>
+                                                <div class="col-2 text-end align-self-center">
+                                                    <i class="fa fa-history" aria-hidden="true"></i>
+                                                </div>
+                                            </div> 
+                                        </div>
                                     </div>
                                 </div>
                             @endif
@@ -578,86 +588,92 @@
 
 <script type="text/javascript">   
 
-$("#passbtn").click(function(){
-    var data ="{{$ip_data->city??''}}";
-   search('',data);
- });
+    $("#passbtn").click(function(){
+        var data ="{{$ip_data->city??''}}";
+    search('',data);
+    });
 
-$(".jobsearch").click(function(){
+    $('.titsearch').on('click', function(){
+        var designation =  $(this).attr('data-d');
+        var location =  $(this).attr('data-l');
+        search(designation,location);
+    });
 
-    var location ="{{$ip_data->city??''}}";
+    $(".jobsearch").click(function(){
 
-    $div = $(this).parent("div");
+        var location ="{{$ip_data->city??''}}";
 
-    id = $div.attr("class");
+        $div = $(this).parent("div");
 
-    position = $div.find(".fw-bolder").text();
+        id = $div.attr("class");
 
-    search(position, location);
+        position = $div.find(".fw-bolder").text();
 
- });
+        search(position, location);
+
+    });
   
-$(".topcities").click(function(){
+    $(".topcities").click(function(){
 
-    $div = $(this).parent("div");
+        $div = $(this).parent("div");
 
-    id = $div.attr("class");
+        id = $div.attr("class");
 
-    position = $div.find(".fw-bolder").text();
+        position = $div.find(".fw-bolder").text();
 
-    search('', position);
+        search('', position);
 
-});
+    });
 
-document.onkeyup = enter;
-function enter(e) {
-    if (e.which == 13) {
-        var myElement = document.getElementById('designation');
-        var myElement1 = document.getElementById('location');
-        if(myElement === document.activeElement || myElement1 === document.activeElement){
-            $('#msearch_btn').trigger('click');
+    document.onkeyup = enter;
+    function enter(e) {
+        if (e.which == 13) {
+            var myElement = document.getElementById('designation');
+            var myElement1 = document.getElementById('location');
+            if(myElement === document.activeElement || myElement1 === document.activeElement){
+                $('#msearch_btn').trigger('click');
+            }
+        }
+    } 
+
+    $('.resentsearch').on('click', function(){
+    search($(this).data('d'),$(this).data('l'));
+    });
+
+    function search(d, l){
+        $('#designation').css('border','1px solid lightgray');
+        $('.err_msg').html('');
+        if(d != '' || l !=''){      
+            $.post("{{ route('job.checkkeywords') }}", {designation: d, location: l, _method: 'POST', _token: '{{ csrf_token() }}'})
+                .done(function (response) {
+                    var l = '';
+                    var d = '';
+                if(response.d !=''){
+                    d = 'd='+response.d;
+                }
+                if(response.l !=''){
+                    if(response.d !=''){
+                        l += '&';
+                    }
+                    l += 'l='+response.l;
+                }
+                url = '{{ url("/") }}/';
+                window.location = url+response.sl+'?'+d+l;
+            });
+        }else{
+            $('.designation-error').html('Please enter title, keyword or company');
+            $('#designation').css('border','1px solid #f25961');
         }
     }
-} 
 
-$('.resentsearch').on('click', function(){
-   search($(this).data('d'),$(this).data('l'));
-});
+    $('#designation').on('keyup', function(){
+        $('#designation').css('border','1px solid lightgray');
+    });
 
-function search(d, l){
-    $('#designation').css('border','1px solid lightgray');
-    $('.err_msg').html('');
-    if(d != '' || l !=''){      
-        $.post("{{ route('job.checkkeywords') }}", {designation: d, location: l, _method: 'POST', _token: '{{ csrf_token() }}'})
-            .done(function (response) {
-                var l = '';
-                var d = '';
-            if(response.d !=''){
-                d = 'd='+response.d;
-            }
-            if(response.l !=''){
-                if(response.d !=''){
-                    l += '&';
-                }
-                l += 'l='+response.l;
-            }
-            url = '{{ url("/") }}/';
-            window.location = url+response.sl+'?'+d+l;
-        });
-    }else{
-        $('.designation-error').html('Please enter title, keyword or company');
-        $('#designation').css('border','1px solid #f25961');
-    }
-}
-
-$('#designation').on('keyup', function(){
-    $('#designation').css('border','1px solid lightgray');
-});
-
-$('#msearch_btn').on('click', function(){
-    //myElement Has Focus
-   search($('#designation').val(),$('#location').val());
-});
+    $('#msearch_btn').on('click', function(){
+        //myElement Has Focus
+    search($('#designation').val(),$('#location').val());
+    });
 </script>
 {{-- @include('layouts.footer') --}}
 @endsection
