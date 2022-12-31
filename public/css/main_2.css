@@ -2281,6 +2281,11 @@ font-size: 14px;
 
         .hme_banner .mobile_bnr img{
             display: block;
+        }.assessment_modal #cdate_assesment{
+            height: 250px;
+        }.assessment_modal{
+            width: 80%;
+            margin: 0 auto;
         }
 
         #homepage_stn h1{
