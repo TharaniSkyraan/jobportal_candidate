@@ -17,6 +17,11 @@
 
     <hr/>
 
+    <div class="col-md-10 mb-4">
+        <label for="exampleInputEmail1" class="form-label fw-bolder">Institution name</label>
+        {!! Form::text('institution', null, array('class'=>'form-control-2 required typeahead mb-2', 'id'=>'institution', 'placeholder'=>__('Institution Name'))) !!}
+        <small class="help-block form-text text-muted text-danger err_msg institution-error" id="err_institution"></small>  
+    </div>
     @php
         $country_id = (!empty($userEducation->country_id))?$userEducation->country_id:$ip_data->country_id;
         //$country = (!empty($userEducation->country_id))?$userEducation->getCountry('country'):$ip_data->geoplugin_countryName;
@@ -40,11 +45,6 @@
 
     {{-- <hr/> --}}
 
-    <div class="col-md-10 mb-4">
-        <label for="exampleInputEmail1" class="form-label fw-bolder">Institution name</label>
-        {!! Form::text('institution', null, array('class'=>'form-control-2 required typeahead mb-2', 'id'=>'institution', 'placeholder'=>__('Institution Name'))) !!}
-        <small class="help-block form-text text-muted text-danger err_msg institution-error" id="err_institution"></small>  
-    </div>
     <label for="" class="form-label fw-bolder">Year of education</label>
     <div class="row mb-4">
         <div class="col-md-8 col-sm-12 col-xs-12">
