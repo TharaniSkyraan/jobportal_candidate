@@ -565,10 +565,9 @@
                         <div class="d-grid gap-2 mx-3 mb-4 d-md-flex justify-content-md-between">
                             @if($breakpoint==null)
                                 <a class="btn previous-btn skip-submit"> Skip and apply</a>
-                            @else
-                                <a class="btn previous-btn" data-bs-dismiss="modal"> Skip</a>
                             @endif
-                            <button type="submit" class="btn next-btn submit">Submit and Apply</button>
+                            <a class="btn previous-btn" data-bs-dismiss="modal"> Skip</a>
+                            <button type="button" class="btn next-btn submit">Submit and Apply</button>
                         </div>
                     </div>
                 </form>

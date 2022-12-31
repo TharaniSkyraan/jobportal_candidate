@@ -376,11 +376,9 @@ class RegisterController extends Controller
             $UserCv->save();
 
         }
-        $user = User::findOrFail(Auth::user()->id);
-        if($user->next_process_level == 'resume_upload'){                
-            $user->is_active = 1;
-            $user->next_process_level = 'completed';
-        }
+        $user = User::findOrFail(Auth::user()->id);             
+        $user->is_active = 1;
+        $user->next_process_level = 'completed';
         $user->save();
         
         return redirect('/home');
