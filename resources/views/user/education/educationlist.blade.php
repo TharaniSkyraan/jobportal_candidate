@@ -33,7 +33,11 @@
         <div class="row">
             <div class="col-md-6">
                 <label for="" class="mb-2">Year of education</label>
+                @if(empty($education->from_year) && empty($education->to_year))
+                <div class="fw-bolder">None</div>
+                @else
                 <div class="fw-bolder">{{Carbon\Carbon::parse($education->from_year)->Format('M Y')}} - {{($education->pursuing!='yes'? Carbon\Carbon::parse($education->to_year)->Format('M Y') : 'Still Pursuing') }}</div>
+                @endif
             </div>
             <div class="col-md-6">
                 <label for="" class="mb-2">Secured</label>
