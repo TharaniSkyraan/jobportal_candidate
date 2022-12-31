@@ -30,7 +30,7 @@
                                             <div class="col-10">
                                                 <span class="form-check form-switch">
                                                     <input class="form-check-input" type="radio" data-value="1" name="primary" value="{{$resume1->id}}" @if($resume1->is_default==1) checked @endif>
-                                                    <span class="form-check-label primeinfo1" @if($resume1->is_default!=1) style="display:none;" @endif>primary</span>                                    
+                                                    <span class="form-check-label primeinfo1" @if($resume1->is_default==0) style="display:none;" @endif>primary</span>                                    
                                                 </span>
                                             </div>
                                         </div>                                        
@@ -67,8 +67,8 @@
                                                 <div class="col-2 align-self-center"><i class="fa fa-info"></i></div>
                                                 <div class="col-10">
                                                     <span class="form-check form-switch">
-                                                        <input class="form-check-input" type="radio" data-value="2" name="primary" value="{{$resume2->id}}" @if($resume2->is_default!=1) checked @endif>
-                                                         <span class="form-check-label primeinfo2" @if($resume2->is_default!=1) style="display:none;" @endif>primary</span>                                                      
+                                                        <input class="form-check-input" type="radio" data-value="2" name="primary" value="{{$resume2->id}}" @if($resume2->is_default==1) checked @endif>
+                                                         <span class="form-check-label primeinfo2" @if($resume2->is_default==0) style="display:none;" @endif>primary</span>                                                      
                                                     </span>
                                                 </div>
                                             </div>                                        
