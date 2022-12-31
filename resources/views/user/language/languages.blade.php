@@ -15,9 +15,12 @@
                     <div class="text-center ttleicn">
                         <h2 class="fw-bolder"><img src="{{asset('images/lang.png')}}">&nbsp;Languages Known</h2>
                     </div>
-                    
-                    <div class="text-end">
-                        <button class="btn openForm addbtn" type="button" data-form="new">Add Language +</button>
+
+                    <div class="crdbxpl mt-5">
+                        <div class="row">
+                            <div class="col-7 px-4 align-self-center">Languages Known</div>
+                            <div class="col-5 text-end addSkills"><button class="btn openForm addbtn" type="button" data-form="new">Add Language +</button></div>
+                        </div>
                     </div>
                 </div>
                 <div id="language_knwn1" class="mt-4">

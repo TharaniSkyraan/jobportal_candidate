@@ -50,7 +50,7 @@
                             </div>
 
                             <div class="mb-5 text-end">
-                                <button class="btn" type="submit">Save & Continue <img src="{{asset('images/righticon.png')}}"></button>
+                                <button class="btn p-0" type="submit">Save & Continue <img src="{{asset('images/righticon.png')}}"></button>
                             </div>
                         </div>
                      {!! Form::close() !!}

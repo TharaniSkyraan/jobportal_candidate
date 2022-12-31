@@ -56,10 +56,10 @@
                         </div>   
                         <div class="row mb-4 mt-5">
                             <div class="col-md-6 col-5">
-                                <a href="{{ route('career-info') }}" class="btn"><img src="{{asset('images/lefticon.png')}}"> Previous</a>
+                                <a href="{{ route('career-info') }}" class="btn p-0"><img src="{{asset('images/lefticon.png')}}"> Previous</a>
                             </div>
                             <div class="col-md-6 col-7 text-end">
-                                <button class="btn" type="submit">Save & Continue  <img src="{{asset('images/righticon.png')}}"></button>
+                                <button class="btn p-0" type="submit">Save & Continue  <img src="{{asset('images/righticon.png')}}"></button>
                             </div>
                         </div>
                     </div>

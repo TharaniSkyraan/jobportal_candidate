@@ -28,7 +28,6 @@ function loadUserProjectForm(form, id=null){
     datatype: 'json',
     success: function (json) {  
       $('.addProjects').hide();
-      $('.add-form').append("<button class='user-project-cancel' onclick='cancelUserProjectForm()'>Close <i class='fa fa-close'></i></button>");
       $('.project_div').show();    
 
       if(form=='edit'){
@@ -181,13 +180,12 @@ function undo_user_project(id) {
 
 function cancelUserProjectForm(project_id) {
   $('.addProjects').show();
-  $('.add-form .user-project-cancel').hide();
   $('.project_div').show();  
   if(project_id!=0){      
     $('.project_edited_div_'+project_id).show();
   }
   if($(".project_div").length==0){
-    $('.append-form-project').html(`<div class="text-center"><img src="${baseurl}site_assets_1/assets/img/fresher.png')}}" height="250" width="250"></div>`);
+    $('.append-form-project').html(`<div class="text-center"><img src="${baseurl}site_assets_1/assets/img/fresher.png" height="250" width="250"></div>`);
   }else{
     $('.append-form-project').html('');
   }
