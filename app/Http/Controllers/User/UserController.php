@@ -151,16 +151,11 @@ class UserController extends Controller
     
     public function ProfileUpdate(Request $request)
     {
-        $user = User::findOrFail(Auth::user()->id);
-        
-        // $request->validate([
-        //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        // ]);
+        $user = User::findOrFail(Auth::user()->id);        
         $image_array_1 = explode(";", $request->image);
         $image_array_2 = explode(",", $image_array_1[1]);
         $data = base64_decode($image_array_2[1]);
         $imageName = time() . '.png';
-        file_put_contents(public_path('site_assets_1/assets/img/profile_image/user/'.$imageName), $data);
         $fold_path = "candidate/$user->token/profile_image/$imageName";
         $path = Storage::disk('s3')->put($fold_path, $data);
         $path = Storage::disk('s3')->url($fold_path);
