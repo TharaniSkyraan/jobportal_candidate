@@ -42,7 +42,7 @@
                             {!! Form::text('skills', $user_skills, array('class'=>'form-control', 'id'=>'skills', 'placeholder'=>__('Select Skills'))) !!}
                             <small class="form-text text-muted text-danger err_msg" id="err_skills"></small>  
                         </div>   
-
+                        @if(count($skills)!=0)
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label mb-3">Suggestion skills</label>
                             <div class="mb-3">
@@ -51,9 +51,9 @@
                                     <label class="tag-text add-sug">{{$skill}} <button type="button" class="tag-plus" data-sid="{{$key}}" data-sval="{{$skill}}"><i class="fa fa-plus"></i></button></label>
                                 </label>
                             @endforeach
-                            </div>   
-
+                            </div> 
                         </div>   
+                        @endif
                         <div class="row mb-4 mt-5">
                             <div class="col-md-6 col-5">
                                 <a href="{{ route('career-info') }}" class="btn p-0"><img src="{{asset('images/lefticon.png')}}"> Previous</a>

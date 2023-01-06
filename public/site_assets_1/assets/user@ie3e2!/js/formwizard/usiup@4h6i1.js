@@ -32,7 +32,7 @@
 
         var education_level_id = $('#education_level_id').val();
 
-        if (education_level_id != ''){                      
+        // if (education_level_id != ''){                      
             $.post(baseurl + "/filter-education-types-dropdown", {education_level_id: education_level_id, education_type_id: education_type_id, _method: 'POST', _token: csrf_token})
             .done(function (response) {
 
@@ -48,7 +48,7 @@
 
           });
 
-        }
+        // }
 
     }
     /**EMployment status */
