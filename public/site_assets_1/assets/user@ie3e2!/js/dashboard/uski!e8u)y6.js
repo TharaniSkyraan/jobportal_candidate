@@ -114,7 +114,7 @@ function loadUserSkillForm(form, id=null){
           $("#skill_success").fadeTo(2000, 500).slideUp(500, function() {
             $("#skill_success").slideUp(500);
           });
-          $('.addSkills').show();
+          $('.addSkills button').show();
 
         },
         error: function(json){

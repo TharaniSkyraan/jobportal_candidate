@@ -57,8 +57,16 @@ trait UserSkillTrait
         $userSkill->user_id = $user_id;
         $userSkill->skill_id = $request->input('skill_id');
         $userSkill->level_id = $request->input('level_id');
-        $userSkill->start_date = $request->input('start_date');
-        $userSkill->end_date = $request->input('end_date');
+        if(!empty($request->start_date)){
+            $userSkill->start_date = Carbon::parse($request->input('start_date'))->format('Y-m-d');
+        }else{            
+            $userSkill->start_date = NULL;
+        }   
+        if(!empty($request->end_date)){
+            $userSkill->end_date = Carbon::parse($request->input('end_date'))->format('Y-m-d');
+        }else{
+            $userSkill->end_date = NULL;
+        }
         $userSkill->is_currently_working = $request->input('is_currently_working')??'no';
         $userSkill->save();
         
@@ -98,9 +106,17 @@ trait UserSkillTrait
         $userSkill = UserSkill::find($skill_id);
         $userSkill->user_id = $user_id;
         $userSkill->skill_id = $request->input('skill_id');
-        $userSkill->level_id = $request->input('level_id');
-        $userSkill->start_date = $request->input('start_date');
-        $userSkill->end_date = $request->input('end_date');
+        $userSkill->level_id = $request->input('level_id');    
+        if(!empty($request->start_date)){
+            $userSkill->start_date = Carbon::parse($request->input('start_date'))->format('Y-m-d');
+        }else{            
+            $userSkill->start_date = NULL;
+        }   
+        if(!empty($request->end_date)){
+            $userSkill->end_date = Carbon::parse($request->input('end_date'))->format('Y-m-d');
+        }else{
+            $userSkill->end_date = NULL;
+        }
         $userSkill->is_currently_working = $request->input('is_currently_working')??'no';
         $userSkill->update();
         /*         * ************************************ */

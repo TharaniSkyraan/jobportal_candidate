@@ -39,7 +39,7 @@ function loadUserProjectForm(form, id=null){
         StillCheck('project');
       }   
       
-      $('.addProject').hide();
+      $('.addProjects').hide();
       $(".tabs").animate({scrollTop: $(window).scrollTop(0)},"slow");
 
     }
@@ -108,8 +108,8 @@ function submitUserProjectForm() {
         $("#project_success").slideUp(500);
         });
 
-        $('.addProject').show();
-        profilePercentage();
+        $('.addProjects').show();
+        // profilePercentage();
 
       },
       error: function(json){
@@ -189,7 +189,7 @@ function cancelUserProjectForm(project_id) {
   }else{
     $('.append-form-project').html('');
   }
-  $('.addProject').show();
+  $('.addProjects').show();
 
 }
 

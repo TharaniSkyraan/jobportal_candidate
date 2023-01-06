@@ -38,7 +38,11 @@
         <div class="mb-3">
             <div class="row align-items-center">
                 <div class="col-md-4 mb-2">
-                    {!! Form::month('start_date', $userSkill->start_date??null, array('class'=>'form-control required', 'max' =>date("Y-m"), 'min'=>'1980-01', 'id'=>'start_date', 'placeholder'=>__('Start date'))) !!}
+                 @php
+                    $start_date = isset($userSkill->start_date)?Carbon\Carbon::parse($userSkill->start_date):null;
+                    $end_date = isset($userSkill->end_date)?Carbon\Carbon::parse($userSkill->end_date):null;
+                @endphp
+                    {!! Form::month('start_date', $start_date??null, array('class'=>'form-control required', 'max' =>date("Y-m"), 'min'=>'1980-01', 'id'=>'start_date', 'placeholder'=>__('Start date'))) !!}
 
                     <small class="form-text text-muted text-danger err_msg start_date-error" id="err_start_date"></small>
                 </div>
@@ -49,7 +53,7 @@
 
                 <div class="col-md-4 mb-2 hide_currently_working_checked">
 
-                    {!! Form::month('end_date', $userSkill->end_date??null, array('class'=>'form-control required', 'max' =>date("Y-m"), 'min'=>'1980-01', 'id'=>'end_date', 'placeholder'=>__('End date'))) !!}
+                    {!! Form::month('end_date', $end_date??null, array('class'=>'form-control required', 'max' =>date("Y-m"), 'min'=>'1980-01', 'id'=>'end_date', 'placeholder'=>__('End date'))) !!}
 
 
                 <small class="form-text text-muted text-danger err_msg end_date-error" id="err_end_date"></small>

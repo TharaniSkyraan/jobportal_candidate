@@ -82,24 +82,23 @@
                 </div>
             </div>
         </div>
-
         <div class="row align-items-baseline">
             <label for="" class="form-label fw-bold">Period of project</label>
             @php
-                $fromdate = old('date_start')?date('Y-m-d',strtotime(old('date_start'))):'';
-                $todate = old('date_end')?date('Y-m-d',strtotime(old('date_end'))):'';
+                $fromdate = isset($userProject->date_start)?Carbon\Carbon::parse($userProject->date_start):null;
+                $todate = isset($userProject->date_end)?Carbon\Carbon::parse($userProject->date_end):null;
             @endphp
             <div class="col-md-4 mb-3">
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">From</span>
-                    {!! Form::month('date_start', $userProject->date_start??null, array('class'=>'form-control required', 'max' =>date("Y-m"), 'min'=>'1980-01','id'=>'date_start', 'placeholder'=>__('Start date'))) !!}
+                    {!! Form::month('date_start', $fromdate??null, array('class'=>'form-control required', 'max' =>date("Y-m"), 'min'=>'1980-01','id'=>'date_start', 'placeholder'=>__('Start date'))) !!}
                 </div>
                 <small class="help-block form-text text-muted text-danger err_msg date_start-error" id="err_date_start"></small> 
             </div>
             <div class="col-md-4 hide_currently_working_checked">
                 <div class="input-group mb-2">
                     <span class="input-group-text" id="basic-addon1">To</span>
-                    {!! Form::month('date_end', $userProject->date_end??null, array('class'=>'form-control required','max' =>date("Y-m"), 'min'=>'1980-01', 'id'=>'date_end', 'placeholder'=>__('End date'))) !!}
+                    {!! Form::month('date_end', $todate??null, array('class'=>'form-control required','max' =>date("Y-m"), 'min'=>'1980-01', 'id'=>'date_end', 'placeholder'=>__('End date'))) !!}
                 </div>
                 <small class="help-block form-text text-muted text-danger err_msg date_end-error" id="err_date_end"></small> 
             </div>
