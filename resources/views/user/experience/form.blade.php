@@ -50,21 +50,21 @@
 
         <div class="row align-items-baseline mb-3">
             <label for="" class="form-label fw-bolder">Year of Experience</label>
-            <div class="col-md-4 col-sm-6 col-xs-12 mb-2">
+            <div class="col-md-6 col-lg-4 col-sm-6 col-xs-12 mb-2">
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">From</span>
                     {!! Form::month('date_start', $userExperience->date_start??null, array('class'=>'form-control date_start required', 'id'=>'date_start', 'max'=>date("Y-m"), 'min'=>'1980-01', 'placeholder'=>__('From'), 'autocomplete'=>'off')) !!}
                 </div>
                 <small class="help-block form-text text-muted text-danger err_msg date_start-error" id="err_date_start"></small>
             </div>
-            <div class="col-md-4 col-sm-6 col-xs-12 mb-2 hide_currently_working_checked">
+            <div class="col-md-6 col-lg-4 col-sm-6 col-xs-12 mb-2 hide_currently_working_checked">
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">To</span>
                     {!! Form::month('date_end', $userExperience->date_end??null, array('class'=>'form-control date_end required', 'id'=>'date_end', 'max'=>date("Y-m"), 'min'=>'1980-01', 'placeholder'=>__('Completed Year'), 'autocomplete'=>'off')) !!}
                 </div>
                 <small class="help-block form-text text-muted text-danger err_msg date_end-error" id="err_date_end"></small>
             </div>
-            <div class="col-md-4 col-sm-6 col-xs-12 mb-2 justify-content-center">
+            <div class="col-md-6 col-lg-4 col-sm-6 col-xs-12 mb-2 justify-content-center">
                 <input class="form-check-input" type="checkbox" name="is_currently_working" value="1" id="flexCheckDefault" @if(isset($userExperience) && $userExperience->is_currently_working == 1) checked @endif>
                 <label class="form-check-label" for="flexCheckDefault">Still Working</label>
             </div>

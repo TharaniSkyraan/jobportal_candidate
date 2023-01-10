@@ -60,6 +60,7 @@
 
 	@include('layouts.header')
 
+    <div class="mobilesearchpg" ></div>
     <div class="search-inp-sec">
         <div class="container">
             <div class="row">
@@ -73,7 +74,7 @@
                     <span class="form-text text-danger err_msg designation-error"></span>
                 </div>
                 <div class="col-md-4 col-md-4 col-lg-4 align-self-center">
-                {!! Form::search('location', $l, array('class'=>'form-control-2 typeahead', 'id'=>'location', 'placeholder'=>__('On Location'),' aria-label'=>'On Location')) !!}
+                    {!! Form::search('location', $l, array('class'=>'form-control-2 typeahead', 'id'=>'location', 'placeholder'=>__('On Location'),' aria-label'=>'On Location')) !!}
                         <span class="form-text text-danger err_msg"></span>
                 </div>
                 <div class="col-md-2 align-self-center">
@@ -85,7 +86,6 @@
 
     <div class="container mt-3 mb-5" id="tempskle" style="min-height: 100vh">
         <div class="row" id="search-res-containr" style="display:none">
-            
             <div class="col-lg-3 col-md-0 col-sm-0 col-xs-0" >
                 <div class="sidebar sidebar-style-2" >
                     <div class="card ">
@@ -203,7 +203,6 @@
                                         </div>   
                                     </div>
                                 </li>
-                                
                             </ul>
                         </div>
                     </div>
@@ -221,7 +220,6 @@
                     </div>
                 </div>
                 <div class="job-list">
-                    
                 </div>
             </div>
             
@@ -295,6 +293,164 @@
 	</div>
 
 </div>
+
+
+<div class="filter_show">
+    <a class="fileter mobile" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample"><i class="fa fa-filter"></i></a>
+</div>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-body">
+    <div class="card">
+        <div class="card-title">
+            <h4 class="fw-bold pl-8" id="FilterHeadtitle">Filter Jobs</h4>
+        </div>
+        <div class="card-body">
+            <div class="sidebar_content_2 bg-transparent">
+                <ul class="nav nav-primary">
+                    <li class="nav-item active mb-3" >
+                        <a href="#FilterCityl" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true" >
+                            <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/location.png')}}">
+                            <p class="fw-bold">Location</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse filterContainer collapse show" id="FilterCityl" >
+                            <div class="dropdown_inner filterOptns" data-filter-id="citylFGid">
+                            </div>      
+                        </div>
+                    </li>
+                    
+                    <li class="nav-item mb-3" >
+                        <a href="#salaryFilter" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true" >
+                            <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/salary.png')}}">
+                            <p class="fw-bold">Salary</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse filterContainer collapse show" id="salaryFilter" >
+                            <div class="dropdown_inner filterOptns" data-filter-id="salaryFGid">
+                            </div>
+                        </div>
+                    </li> 
+
+                    <li class="nav-item mb-3" >
+                        <a href="#experinceFilter" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true">
+                        <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/experience.png')}}">
+                            <p class="fw-bold">Experience</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse collapse show" id="experinceFilter">
+                            <div class="dropdown_inner filterOptns" data-filter-id="experinceFv">
+                                <div class="p-3">
+                                    <div class="range-wrap">
+                                        <div class="range-value" id="rangeV"></div>
+                                        <input id="exp-range-slider" type="range" min="0" max="30" step="1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item mb-3" >
+                        <a href="#jobtypeFilter" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true">
+                            <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/job_by_shift.png')}}">
+                            <p class="fw-bold">Job Type</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse filterContainer collapse show" id="jobtypeFilter" >
+                            <div class="dropdown_inner filterOptns" data-filter-id="jobtypeFGid">
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li class="nav-item mb-3" >
+                        <a href="#edulevelFilter" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true">
+                            <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/level_of_education.png')}}">
+                            <p class="fw-bold">Education Level</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse filterContainer collapse show" id="edulevelFilter" >
+                            <div class="dropdown_inner filterOptns" data-filter-id="edulevelFGid">
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li class="nav-item mb-3" >
+                        <a href="#functionalareaFilter" class="filterHeading"  data-bs-toggle="collapse" aria-expanded="true">
+                            <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/func_area.png')}}">
+                            <p class="fw-bold">Functional Area</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse filterContainer collapse show" id="functionalareaFilter" >
+                            <div class="dropdown_inner filterOptns" data-filter-id="functionalareaGid">
+                            </div>
+                        </div>
+                    </li>
+                    
+                    {{-- <li class="nav-item mb-3" >
+                        <a href="#wfhtypeFilter" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true">
+                            <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/wfh.png')}}">
+                            <p class="fw-bold">Work From Home</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse filterContainer collapse show" id="wfhtypeFilter" >
+                            <div class="dropdown_inner filterOptns" data-filter-id="wfhtypeFid">
+                            </div>      
+                        </div>
+                    </li> --}}
+                    
+                    <li class="nav-item mb-3" >
+                        <a href="#industrytypeFilter" class="filterHeading"  data-bs-toggle="collapse" aria-expanded="true">
+                            <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/industry.png')}}">
+                            <p class="fw-bold">Industry</p>
+                            <span class="caret"></span>
+                        </a>
+                        <div class="collapse filterContainer collapse show" id="industrytypeFilter" >
+                            <div class="dropdown_inner filterOptns" data-filter-id="industrytypeGid">
+                            </div>   
+                        </div>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="card-footer">
+           <div class="row">
+            <div class="col-6 text-center">
+                <button class="cancel filterReset">Reset</button>
+            </div>
+            <div class="col-6 text-center">
+                <button class="ok" data-bs-dismiss="offcanvas" aria-label="Close">Ok</button>
+            </div>
+           </div>
+        </div>
+    </div>
+    
+  </div>
+</div>
+
+
+<script>
+    $('.fileter.mobile').click(function(){
+        $("#header").addClass('remove');
+    });
+    
+    $('.ok').click(function(){
+        $("#header").removeClass('remove');
+    });
+    
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
 
 <script type="text/javascript">
 var baseurl = '{{ url("/") }}/';

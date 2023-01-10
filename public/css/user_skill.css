@@ -547,6 +547,13 @@
     }#abt_meusr .profilepictureappend img{
         width: 100%;
         height: auto;
+    }#language_knwn, #language_knwn1{
+        width: 100%;
+    }#language_knwn1 .card{
+        padding: 25px;
+    }#language_div .table{
+        overflow-x: auto;
+        display: block;
     }
 }
 

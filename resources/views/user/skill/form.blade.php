@@ -1,10 +1,10 @@
 
 <div class="card mt-5">
     <div class="row d-flex mb-4">
-        <div class="col-md-2 fw-bolder mb-2">
+        <div class="col-md-4 col-lg-2 fw-bolder mb-2">
             Skill Name
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-lg-6">
             <?php
             $skill_id = (isset($userSkill) ? $userSkill->skill_id : $suggested_skill_id);
             ?>
@@ -13,10 +13,10 @@
         </div>
     </div>
     <div class="row mb-4">
-        <div class="col-md-2">
+        <div class="col-md-4 col-lg-2 align-align-self-center">
             <label for="" class="form-label fw-bolder">Skill Level</label>
         </div>
-        <div class="col-md-10">
+        <div class="col-lg-10 col-md-10">
         <div class="d-grid gap-2 d-md-flex justify-content-md-left">    
             @foreach($levels as $key => $level)
             <div>
@@ -37,7 +37,7 @@
         </div>
         <div class="mb-3">
             <div class="row align-items-center">
-                <div class="col-md-4 mb-2">
+                <div class="col-md-6 col-lg-4 mb-2">
                     {!! Form::month('start_date', $userSkill->start_date??null, array('class'=>'form-control required', 'max' =>date("Y-m"), 'min'=>'1980-01', 'id'=>'start_date', 'placeholder'=>__('Start date'))) !!}
 
                     <small class="form-text text-muted text-danger err_msg start_date-error" id="err_start_date"></small>
@@ -47,7 +47,7 @@
                 to
                 </div>
 
-                <div class="col-md-4 mb-2 hide_currently_working_checked">
+                <div class="col-md-5 col-lg-4 mb-2 hide_currently_working_checked">
 
                     {!! Form::month('end_date', $userSkill->end_date??null, array('class'=>'form-control required', 'max' =>date("Y-m"), 'min'=>'1980-01', 'id'=>'end_date', 'placeholder'=>__('End date'))) !!}
 
@@ -55,7 +55,7 @@
                 <small class="form-text text-muted text-danger err_msg end_date-error" id="err_end_date"></small>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-6 align-self-center col-lg-3">
                     <input class="form-check-input" type="checkbox" value="yes" id="is_currently_working" name="is_currently_working" @if(isset($userSkill) && $userSkill->is_currently_working=='yes') checked @endif>
                     <label class="form-check-label" for="is_currently_working">
                     Currently working

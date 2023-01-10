@@ -58,7 +58,7 @@
 	<div class="main-panel main-panel-custom">
 		<div class="content">
         <div class="row">
-          <div class="col-md-10 col-sm-12 col-xs-12">         
+          <div class="col-md-12 col-lg-10 col-sm-12 col-xs-12">         
               <div class="px-4 pt-4 pb-0 mt-3 mb-3">
                   <div class="card-body wizard-tab" style="background-color:unset !important">
                       <ul class="nav nav-pills" id="pills-tab" role="tablist">

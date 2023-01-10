@@ -31,7 +31,7 @@
                 <p class="mb-3">Tools / software Used</p>
                 <div class="col-md-12 mb-5 skilsdtl">
                     @foreach(explode(',',$experience->used_tools) as $usedtools)
-                        <span class="text-primary">{{$usedtools}} &nbsp;&nbsp;&nbsp;<i class="fa fa-close"></i></span>
+                        <span class="text-primary">{{$usedtools}}</span>
                     @endforeach
                 </div>        
             @endif            

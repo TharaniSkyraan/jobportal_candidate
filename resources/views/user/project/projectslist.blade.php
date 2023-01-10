@@ -49,7 +49,7 @@ if ($project->is_on_going == 1)
 
         <div class="col-md-12 mb-5 skilsdtl">
             @foreach(array_filter(explode(',',$project->used_tools)) as $usedtools)
-                <span class="text-primary">{{$usedtools}} &nbsp;&nbsp;&nbsp;<i class="fa fa-close"></i></span>
+                <span class="text-primary">{{$usedtools}}</span>
             @endforeach
         </div>    
         @endif

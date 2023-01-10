@@ -2290,14 +2290,98 @@ background-position: center;
   font-size: 14px;
 }#upload-demo .cr-viewport{
   border-radius: 50%;
-}
+}#header.remove{
+  display: none !important;
+}.offcanvas#offcanvasExample{
+  margin-top: 15px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  width: 100%;
+  overflow-y: scroll;
 
+}.offcanvas .card-title{
+    padding: 15px;
+    font-weight: bolder !important;
+    border: 2px solid #eee;
+}.offcanvas .nav-item{
+  width: 100%;
+}.offcanvas .cancel{
+  padding: 4px 20px;
+  background: #f3fdff;
+  color: #4285F4;
+  border-color: #4154f15c;
+  border-radius: 5px;
+}.offcanvas .ok{
+  padding: 4px 20px;
+  color: #fff;
+  background: #4285F4;
+  border: 1px solid;
+  letter-spacing: 1px;
+  border-radius: 5px;
+}.offcanvas-body {
+border-radius: 20px;
+}.offcanvas-body{
+  padding: 0px;
+}.offcanvas .card{
+  box-shadow: none;
+}#header #search{
+  height: 35px !important;
+  margin: 0 auto;
+  border-top-right-radius: 20px;
+  border-left: none;
+  border-bottom-right-radius: 20px;
+}#header #basic-addon1{
+  height: 35px;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  background: #fff;
+}#header .input-group-text {
+  border-color: #ccc !important;
+  border-right: none !important;
+  border-style: solid;
+}#header .form-control:focus{
+  border-color: #ccc;
+}#header .mobile_r{
+  display: block;
+}#header .desktop_r{
+  display: none;
+}#search-canvas label{
+  color: #808080 !important;
+  font-size: 14px !important;
+  font-weight: 600;
+}#search-canvas .search{
+  border: none;
+  background: #457eff;
+  border-radius: 30px;
+  color: #fff;
+  font-weight: bolder;
+  font-size: 15px;
+  padding: 4px 20px;
+}.offcanvas-body#search-canvas{
+  overflow-y: hidden !important;
+}.offcanvas#offcanvasTop{
+  height: fit-content;
+}#search-canvas input{
+  padding: 0.4rem 1rem;
+}#search-canvas .search-button-bg{
+  padding: 6px 20px;
+}.desktop_r input{
+  margin-right: 10px !important;
+}
 
 
 /**job_info**/
 @media(max-width:767px){
     .check-appended-cards{
     padding: 20px !important;
+  }.search-inp-sec{
+    display: none;
+  }.mobilesearchpg{
+    margin-top: 3.5rem;
+  }#header .desktop_r{
+    width: 100%;
   }
 }
 @media(min-width: 280px) and (max-width: 767px){
@@ -2305,6 +2389,12 @@ background-position: center;
     margin: 0 auto;
   }.service-wrapper{
     margin: 0 auto !important;
+  }#search-res-containr .sidebar_content_2{
+    display: none;
+  }#header .mobile_r{
+    display: none;
+  }#header .desktop_r{
+    display: flex;
   }
 }
 @media(min-width:768px){

@@ -57,7 +57,7 @@
 	<div class="main-panel main-panel-custom">
 		<div class="content">
         <div class="row">
-          <div class="col-md-10 col-sm-12 col-xs-12">         
+          <div class="col-md-12 col-lg-10 col-sm-12 col-xs-12">         
             <div class="px-5 pt-4 pb-0 mt-3 mb-3">
                 <div class="jobList allJobList">
                 </div>

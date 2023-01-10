@@ -101,9 +101,97 @@
     text{
         font-size: 15px;
     }
+
+    /*company header css*/
+    .top-container {
+    padding: 30px;
+    text-align: center;
+    }
+
+    .header {
+    padding: 10px 16px;
+    background: #4285f4f2;
+    color: #f1f1f1;
+    }
+
+    .content {
+    padding: 16px;
+    }
+
+    .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    }
+
+    .sticky + .content {
+    padding-top: 102px;
+    }#myHeader .card{
+        margin-top: 12px;
+    }.header#myHeader{
+    height: 90px;
+    }
+    @media(max-width:767px){
+        .header#myHeader{
+            display:none !important;
+        }
+    }
 </style>
     
 @include('layouts.header')
+
+<div class="header" id="myHeader">
+    <div class="row">
+        <div class="col-md-10 m-auto">
+            <div class="card p-2">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="col-md-8 col-sm-8 col-xs-12 mx-2">
+                            <h4 class="fw-bolder text-green-color jt-ellip">{{ ucwords($job->title) }}</h4>
+                            <h6 class="fw-bolder text-dark m-0">{{ ucwords($job->company->name) }}.</h6>
+                        </div>
+                    </div>
+                    <div class="col-6 text-end align-self-center">
+                        <div class="row">
+                            <div class="col-10">
+                                @if(count($job->screeningquiz)!=0)
+                                    <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn " id="japplybtn" data-bs-toggle="modal" href="#screeningQuiz72ers3" role="button">
+                                        <img class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
+                                    </button>
+                                @else
+                                    <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn">
+                                        <img class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
+                                    </button>
+                                @endif
+                            </div>
+                            <div class="col-2 align-self-center text-center">
+                                @php
+                                $is_fav = 'no';
+                                if((Auth::check() && Auth::user()->isFavouriteJob($job->slug)==true))
+                                {
+                                    $is_fav = 'yes';
+                                }
+                                @endphp
+                                <div class="mx-3" id="favjob" data-fav='{{$is_fav}}'>                                        
+                                    @if($is_fav=='yes')
+                                        <img class="image-size1 cursor-pointer" src="{{url('site_assets_1/assets/img/star_filled.png')}}" alt="bookmark">
+                                    @else
+                                        <img class="image-size1 cursor-pointer" src="{{url('site_assets_1/assets/img/star_unfilled.png')}}" alt="bookmark">
+                                    @endif
+                                </div>          
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6"></div>
+                </div>
+                
+            </div>
+
+            
+        </div>
+    </div>
+</div>
+
 
 <div class="container mb-5">
     <div class="w-85 mx-auto header-space-search" >
@@ -135,9 +223,6 @@
                                             </button>
                                         @endif
                                         
-                                        <label class="japplied-btn" id="japplied-btn">
-                                            <img class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class="fw-bolder fs-6">Applied</span>
-                                        </label>
                                         @php
                                         $is_fav = 'no';
                                         if((Auth::check() && Auth::user()->isFavouriteJob($job->slug)==true))
@@ -585,6 +670,26 @@
     var is_login = '{{ Cookie::get("is_login") }}';
     var save_req_url = "{{ route('job.save', $job->slug) }}";
     var apply_req_url = "{{ route('job.apply', $job->slug) }}" ;
+
+
+
+    //company header
+    $('#myHeader').hide();
+
+    window.onscroll = function() {myFunction()};
+
+    var header = document.getElementById("myHeader");
+    var sticky = header.offsetTop;
+
+    function myFunction() {
+    $('#myHeader').show();
+    if (window.pageYOffset > sticky) {
+        header.classList.add("sticky");
+    } else {
+    $('#myHeader').hide();
+        header.classList.remove("sticky");
+    }
+    }
    
 </script>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/2e9ejr3/js/destail.e2k3eu0.js') }}"></script>

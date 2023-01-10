@@ -18,8 +18,8 @@
 
                     <div class="crdbxpl mt-5">
                         <div class="row">
-                            <div class="col-7 px-4 align-self-center">Languages Known</div>
-                            <div class="col-5 text-end addSkills"><button class="btn openForm addbtn" type="button" data-form="new">Add Language +</button></div>
+                            <div class="col-5 col-md-7 px-4 align-self-center">Languages Known</div>
+                            <div class="col-7 col-md-5 align-self-center text-end addSkills"><button class="btn openForm addbtn" type="button" data-form="new">Add Language +</button></div>
                         </div>
                     </div>
                 </div>

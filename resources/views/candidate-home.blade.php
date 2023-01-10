@@ -188,9 +188,7 @@
                             <span class="form-text text-white err_msg"></span>                        
                         </div>
                         <div class="col-md-2">
-                            <!-- <button class="btn btn-success form-control">Search</button> -->
                             {!! Form::button('Search', array('class' => 'btn btn-success form-control ','id'=>'msearch_btn', 'type' => 'submit')) !!}                   
-
                         </div>
                     </div>
                 </div>

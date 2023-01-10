@@ -130,7 +130,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 			</div>
 			<div class="page-inner">
 				<div class="row">
-					<div class="col-md-10">
+					<div class="col-md-12 col-lg-10">
 						<div class="card mb-3">
               <div class="text-center" style="background:#f3f7fe;">
                 <h2 class="fw-bolder p-3 mb-0 border-bottom" >Accounts Settings</h2>
@@ -164,7 +164,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 											</div>
 										</div>
 									</div>
-									<div class="col-md-8">
+									<div class="col-lg-8 col-md-9">
 										
 
 										<div class="mb-4">
