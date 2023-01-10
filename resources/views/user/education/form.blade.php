@@ -1,134 +1,133 @@
 
-<div class="card">
-    <div class="col-md-10 mb-4" id="div_education_level_id">
-        <label for="div_education_level_id" class="form-label fw-bolder">Highest Qualification Level <strong class="education_level_id"></strong></label>
-        <div class="" id="education_level_dd" style="display:none;">                    
-            {!! Form::select('education_level_id', [''=>__('Select Education')]+$educationLevels, $education_level_id??nul, array('class'=>'form-select required', 'id'=>'education_level_id')) !!}
-            <small class="help-block form-text text-muted text-danger err_msg education_level_id-error" id="err_education_level_id"></small> 
+    <div class="modal-header">
+        <h4 class="modal-title fw-bolder">Education Detail</h4>
+        <button type="button" class="btn-close educationFromclose" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body modal-dialog-scrollable">
+        <div class="col-md-12 mb-4" id="div_education_level_id">
+            <label for="div_education_level_id" class="form-label fw-bolder">Highest Qualification Level <strong class="education_level_id"></strong></label>
+            <div class="" id="education_level_dd" style="display:none;">                    
+                {!! Form::select('education_level_id', [''=>__('Select Education')]+$educationLevels, $education_level_id??null, array('class'=>'form-select required', 'id'=>'education_level_id')) !!}
+                <small class="help-block form-text text-muted text-danger err_msg education_level_id-error" id="err_education_level_id"></small> 
+            </div>
         </div>
-    </div>
-    <div class="col-md-10 education_type_div" style="display:none;">
-        <label for="education_type_id" class="form-label fw-bolder">Education</label>
-        <div class="" id="education_types_dd">                    
-            {!! Form::select('education_type_id', [''=>__('Select Education Type')], null, array('class'=>'form-select required', 'id'=>'education_type_id')) !!}
+        <div class="col-md-12 education_type_div" style="display:none;">
+            <label for="education_type_id" class="form-label fw-bolder">Education</label>
+            <div class="" id="education_types_dd">                    
+                {!! Form::select('education_type_id', [''=>__('Select Education Type')], null, array('class'=>'form-select required', 'id'=>'education_type_id')) !!}
+            </div>
+            <small class="help-block form-text text-muted text-danger err_msg education_type_id-error" id="err_education_type_id"></small> 
         </div>
-        <small class="help-block form-text text-muted text-danger err_msg education_type_id-error" id="err_education_type_id"></small> 
-    </div>
 
-    <hr/>
+        <hr/>
 
-    <div class="col-md-10 mb-4">
-        <label for="exampleInputEmail1" class="form-label fw-bolder">Institution name</label>
-        {!! Form::text('institution', null, array('class'=>'form-control-2 required typeahead mb-2', 'id'=>'institution', 'placeholder'=>__('Institution Name'))) !!}
-        <small class="help-block form-text text-muted text-danger err_msg institution-error" id="err_institution"></small>  
-    </div>
-    @php
-        $country_id = (!empty($userEducation->country_id))?$userEducation->country_id:$ip_data->country_id;
-        //$country = (!empty($userEducation->country_id))?$userEducation->getCountry('country'):$ip_data->geoplugin_countryName;
-        $country = \App\Model\Country::where('country_id',$country_id)->pluck('country')->first();
-    @endphp
-
-    <div class="col-md-6 mb-4">
-        <label class="form-label fw-bolder">Place of Education <span class="country_text"> - {{ $country }} <a href="javascript:void(0);" onClick="CountryChange()">Change</a></span> </label>
-        <div class="country_change"  style="display:none;">
-            <label for="country_id" class="form-label fw-bolder">Country</label>
-            {!! Form::select('country_id_dd', [''=>__('Select Country')]+$countries['value'], $country_id, array('class'=>'form-select country_id required', 'id'=>'country_id_dd'), $countries['attribute']) !!}
-            <small class="help-block form-text text-muted text-danger err_msg country_id_dd-error" id="err_country_id_dd"></small>                        
+        <div class="col-md-12 mb-4">
+            <label for="exampleInputEmail1" class="form-label fw-bolder">Institution name</label>
+            {!! Form::text('institution', null, array('class'=>'form-control-2 required typeahead mb-2', 'id'=>'institution', 'placeholder'=>__('Institution Name'))) !!}
+            <small class="help-block form-text text-muted text-danger err_msg institution-error" id="err_institution"></small>  
         </div>
-     </div>
-    
-    <div class="col-md-10 mb-4">
-        <label for="location" class="form-label fw-bolder">City</label>
-        {!! Form::text('location', null, array('class'=>'form-control-2 required typeahead', 'id'=>'location', 'placeholder'=>__('Enter city'),' aria-label'=>'Enter city')) !!}
-        <small class="form-text text-muted text-danger err_msg" id="err_location"></small>                          
-    </div>
+        @php
+            $country_id = (!empty($userEducation->country_id))?$userEducation->country_id:$ip_data->country_id;
+            //$country = (!empty($userEducation->country_id))?$userEducation->getCountry('country'):$ip_data->geoplugin_countryName;
+            $country = \App\Model\Country::where('country_id',$country_id)->pluck('country')->first();
+        @endphp
 
-    {{-- <hr/> --}}
-
-    <label for="" class="form-label fw-bolder">Year of education</label>
-    <div class="row mb-4">
-        <div class="col-md-8 col-sm-12 col-xs-12">
-            <div class="row">
-                @php
-                    $d = $userEducation->from_year??date('Y-m-d');
-                    $fromdate = old('from_year')?date('Y-m-d',strtotime(old('from_year'))):'';
-
-                    $d = $userEducation->to_year??date('Y-m-d');
-                    $todate = old('to_year')?date('Y-m-d',strtotime(old('to_year'))):'';
-                @endphp
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-2">
-                    <div class="input-group">
-                        <span class="input-group-text" id="">From</span>
-                        {!! Form::month('from_year', $userEducation->from_year??$fromdate, array('class'=>'form-control from_year required', 'id'=>'from_year', 'max'=>date("Y-m"), 'min'=>'1980-01', 'placeholder'=>__('From'), 'autocomplete'=>'off')) !!}
-                    </div>    
-                    <small class="help-block form-text text-muted text-danger err_msg from_year-error" id="err_from_year"></small> 
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-2">
-                    <div class="input-group">
-                        <span class="input-group-text" id="">To</span>
-                        {!! Form::month('to_year', $userEducation->to_year??$todate, array('class'=>'form-control to_year required', 'id'=>'to_year', 'max'=>date("Y-m"), 'min'=>'1980-01', 'placeholder'=>__('Completed Year'), 'autocomplete'=>'off')) !!}
-                    </div>      
-                    <small class="help-block form-text text-muted text-danger err_msg to_year-error" id="err_to_year"></small> 
-                </div>
+        <div class="col-md-12 mb-4">
+            <label class="form-label fw-bolder">Place of Education <span class="country_text"> - {{ $country }} <a href="javascript:void(0);" onClick="CountryChange()">Change</a></span> </label>
+            <div class="country_change"  style="display:none;">
+                <label for="country_id" class="form-label fw-bolder">Country</label>
+                {!! Form::select('country_id_dd', [''=>__('Select Country')]+$countries['value'], $country_id, array('class'=>'form-select country_id required', 'id'=>'country_id_dd'), $countries['attribute']) !!}
+                <small class="help-block form-text text-muted text-danger err_msg country_id_dd-error" id="err_country_id_dd"></small>                        
             </div>
         </div>
         
-        <div class="col-md-4 col-sm-12 col-xs-12 mb-2 align-self-center">
-            {!! Form::checkbox('pursuing', 'yes', $userEducation->pursuing??null, array('class'=>'form-check-input', 'id'=>'pursuing')) !!}
-            <label class="form-check-label" for="pursuing">
-            Pursuing
-            </label>
+        <div class="col-md-12 mb-4">
+            <label for="location" class="form-label fw-bolder">City</label>
+            {!! Form::text('location', null, array('class'=>'form-control-2 required typeahead', 'id'=>'location', 'placeholder'=>__('Enter city'),' aria-label'=>'Enter city')) !!}
+            <small class="form-text text-muted text-danger err_msg" id="err_location"></small>                          
         </div>
-    </div>
 
-    {{-- <hr/> --}}
+        {{-- <hr/> --}}
 
-    <label for="" class="form-label fw-bolder">Secured</label>
-    <div class=" mb-3">
-        @foreach($resultTypes as $key => $resultType)
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" onclick="selmark()" name="result_type_id" id="secured{{$key}}" value="{{$key}}"  @if(isset($userEducation) && $userEducation->result_type_id==$key) checked @elseif($key==1 && !isset($userEducation)) checked @endif>
-            <label class="form-check-label" for="secured{{$key}}">{{$resultType}}</label>
-        </div>
-        @endforeach
-    </div>
+        <label for="" class="form-label fw-bolder">Year of education</label>
+        <div class="row mb-4">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="row">
+                    @php
+                        $d = $userEducation->from_year??date('Y-m-d');
+                        $fromdate = old('from_year')?date('Y-m-d',strtotime(old('from_year'))):'';
 
-    <div class="col-md-6">
-        <div id="show_gpa_field">
-            <div class="input-group">
-                {!! Form::text('gpa', isset($userEducation)?($userEducation->result_type_id==1?$userEducation->percentage:null):null, array('class'=>'form-control required', 'id'=>'gpa', 'placeholder'=>__('GPA'), 'onkeypress'=>'return isgpa()')) !!}
+                        $d = $userEducation->to_year??date('Y-m-d');
+                        $todate = old('to_year')?date('Y-m-d',strtotime(old('to_year'))):'';
+                    @endphp
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-2">
+                        <div class="input-group">
+                            <span class="input-group-text" id="">From</span>
+                            {!! Form::month('from_year', $userEducation->from_year??$fromdate, array('class'=>'form-control from_year required', 'id'=>'from_year', 'max'=>date("Y-m"), 'min'=>'1980-01', 'placeholder'=>__('From'), 'autocomplete'=>'off')) !!}
+                        </div>    
+                        <small class="help-block form-text text-muted text-danger err_msg from_year-error" id="err_from_year"></small> 
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-2">
+                        <div class="input-group">
+                            <span class="input-group-text" id="">To</span>
+                            {!! Form::month('to_year', $userEducation->to_year??$todate, array('class'=>'form-control to_year required', 'id'=>'to_year', 'max'=>date("Y-m"), 'min'=>'1980-01', 'placeholder'=>__('Completed Year'), 'autocomplete'=>'off')) !!}
+                        </div>      
+                        <small class="help-block form-text text-muted text-danger err_msg to_year-error" id="err_to_year"></small> 
+                    </div>
+                </div>
             </div>
-            <small class="help-block form-text text-muted text-danger err_msg gpa-error" id="err_gpa"></small>
+            
+            <div class="col-md-4 col-sm-12 col-xs-12 mb-2 align-self-center">
+                {!! Form::checkbox('pursuing', 'yes', $userEducation->pursuing??null, array('class'=>'form-check-input', 'id'=>'pursuing')) !!}
+                <label class="form-check-label" for="pursuing">
+                Pursuing
+                </label>
+            </div>
         </div>
 
-        <div id="show_grade_field">
-            <div>                      
-            @php
-                $arrDays = ['A+'=> 'A+' ,'A-'=>'A-' ,'B' => 'B' , 'C'=> 'C' ,'D' => 'D' , 'O'=> 'O' , 'E'=>'E' ];
-                $grade = isset($userEducation)?($userEducation->result_type_id==2?$userEducation->percentage:null):null ;
-            @endphp
-                {!! Form::select('grade', []+$arrDays, $grade, array('class'=>'form-select required', 'placeholder'=>'Select grade', 'id'=>'grade')) !!}
+        {{-- <hr/> --}}
+
+        <label for="" class="form-label fw-bolder">Secured</label>
+        <div class=" mb-3">
+            @foreach($resultTypes as $key => $resultType)
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" onclick="selmark()" name="result_type_id" id="secured{{$key}}" value="{{$key}}"  @if(isset($userEducation) && $userEducation->result_type_id==$key) checked @elseif($key==1 && !isset($userEducation)) checked @endif>
+                <label class="form-check-label" for="secured{{$key}}">{{$resultType}}</label>
             </div>
-            <small class="help-block form-text text-muted text-danger err_msg grade-error" id="err_grade"></small>
+            @endforeach
         </div>
 
-        <div id="show_percentage_field">
-            <div>
-                {!! Form::text('percentage', isset($userEducation)?($userEducation->result_type_id==3?$userEducation->percentage:null):null, array('class'=>'form-control required', 'id'=>'percentage','onkeypress'=>'return ispercentage()', 'placeholder'=>__('Percentage'))) !!}
+        <div class="col-md-6">
+            <div id="show_gpa_field">
+                <div class="input-group">
+                    {!! Form::text('gpa', isset($userEducation)?($userEducation->result_type_id==1?$userEducation->percentage:null):null, array('class'=>'form-control required', 'id'=>'gpa', 'placeholder'=>__('GPA'), 'onkeypress'=>'return isgpa()')) !!}
+                </div>
+                <small class="help-block form-text text-muted text-danger err_msg gpa-error" id="err_gpa"></small>
             </div>
-            <small class="help-block form-text text-muted text-danger err_msg percentage-error" id="err_percentage"></small>
+
+            <div id="show_grade_field">
+                <div>                      
+                @php
+                    $arrDays = ['A+'=> 'A+' ,'A-'=>'A-' ,'B' => 'B' , 'C'=> 'C' ,'D' => 'D' , 'O'=> 'O' , 'E'=>'E' ];
+                    $grade = isset($userEducation)?($userEducation->result_type_id==2?$userEducation->percentage:null):null ;
+                @endphp
+                    {!! Form::select('grade', []+$arrDays, $grade, array('class'=>'form-select required', 'placeholder'=>'Select grade', 'id'=>'grade')) !!}
+                </div>
+                <small class="help-block form-text text-muted text-danger err_msg grade-error" id="err_grade"></small>
+            </div>
+
+            <div id="show_percentage_field">
+                <div>
+                    {!! Form::text('percentage', isset($userEducation)?($userEducation->result_type_id==3?$userEducation->percentage:null):null, array('class'=>'form-control required', 'id'=>'percentage','onkeypress'=>'return ispercentage()', 'placeholder'=>__('Percentage'))) !!}
+                </div>
+                <small class="help-block form-text text-muted text-danger err_msg percentage-error" id="err_percentage"></small>
+            </div>
         </div>
     </div>
-
-    <div class="row mt-5">
-        <div class="col-6 d-flex justify-content-center">
-            <button class="btn cnsl_btn user-education-cancel"  onClick="cancelUserEducationForm({{$userEducation->id??0}});" type="button">Cancel</button>
-        </div>
-        <div class="col-6 d-flex justify-content-center">
-            <button class="btn btn-submit bg-green-color"  onClick="submitUserEducationForm();" type="button">Save</button>
-        </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn bg-grey-color user-education-cancel" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn bg-green-color" onClick="submitUserEducationForm();">Save</button>
     </div>
-</div>
 <script>
     /**
     * Search Location

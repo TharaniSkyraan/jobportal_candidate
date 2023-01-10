@@ -21,39 +21,28 @@
         }
 
         $.ajax({
-        type: "POST",
-        url: route,
-        data: param,
-        datatype: 'json',
-        success: function (json) {
+          type: "POST",
+          url: route,
+          data: param,
+          datatype: 'json',
+          success: function (json) {
                     
-            $('.education_div').show();         
-            if(form=='edit')
-            {
-              $('.educationList_'+id).hide();
-              $(".educationListEdit_"+id).html(json.html);
-            }else
-            {
-              $('.educationListAdd_'+education_level_id).html(json.html);
-            }
-              $('#education_level_id').select2();
-              $('#education_type_id').select2();
-              $('#country_id_dd').select2();
-
-              // $(".tabs").animate({scrollTop: $(window).scrollTop(0)},"slow");
-              selmark();
+            $('.education_div').show();     
+            $('.educationForm').modal('show');
+            $('.education-form').html(json.html);    
+            $('#education_level_id').select2();
+            $('#education_type_id').select2();
+            $('#country_id_dd').select2();
+            selmark();
+            StillCheck('education');
             if(form=='edit'){
               filterEducationTypes(type_id);
-              StillCheck('education');
             }else{
               filterEducationTypes(0);
             }
-            $('.openForm').prop('disabled',true);
-
-        }
+          }
 
         });      
-        $('.addEducation').hide();
     }
 
     /**  Submit */
@@ -121,64 +110,62 @@
         $.each(response.data, function (key, value) {
           $('#educationList_'+key).html(value);
         });
+        if($(".education_div").length == 1){
+          $(".education_div").find('.delete_education').hide();
+       }else{
+          $(".education_div").find('.delete_education').show();
+       }
 
       });
     
     }
 
-    function submitUserEducationForm() {
+    function submitUserEducationForm() 
+    {
 
-      // Education form validation starts
-      
-      var result = validateeducationForm(); 
-      
-      if(result != false){
-      
-      // form validation ends
+      // Education form validation starts    
+      var result = validateeducationForm();   
 
-          var form = $('#add_edit_user_education');
+      if(result != false)
+      {    
 
-          $.ajax({
+        // form validation ends
+        var form = $('#add_edit_user_education');
 
-              url     : form.attr('action'),
+        $.ajax({
+            url     : form.attr('action'),
+            type    : form.attr('method'),
+            data    : form.serialize(),
+            dataType: 'json',
+            success : function (json){
+              var education_level_id = $('#education_level_id option:selected').val();
+              // $('.form-empty').html('');
 
-              type    : form.attr('method'),
+              if(education_level_id==1 || education_level_id==2){
+                $('.educationAdd_'+education_level_id).removeClass('openForm');
+                $('.educationAdd_'+education_level_id).removeClass('crdbxpl');
+                $('.educationAdd_'+education_level_id).addClass('crdbxless');
+                $('.educationAdd_'+education_level_id).find('i').remove();
+              }
 
-              data    : form.serialize(),
+              $('.delete_education'+id).show();
 
-              dataType: 'json',
-
-              success : function (json){
-                var education_level_id = $('#education_level_id option:selected').val();
-                $('.form-empty').html('');
-                $('.openForm').prop('disabled',false);
-                showEducation(education_level_id);
-              },
-
-              error: function(json){
-
-                  if (json.status === 422) {
-
-                  var resJSON = json.responseJSON;
-
-                  $('.help-block').html('');
-
-                  $.each(resJSON.errors, function (key, value) {
-
-                      // $('.' + key + '-error').html('<strong>' + value + '</strong>');
-                    $('.' + key + '-error').html(value);
-
-                    $('#div_' + key).addClass('has-error');
-
-                  });
-
-                  }
-                }
-
-            });
-
+              showEducation(education_level_id);
+              $('.educationFromclose').trigger('click');
+             
+            },
+            error: function(json){
+              if (json.status === 422) {
+                var resJSON = json.responseJSON;
+                $('.help-block').html('');
+                $.each(resJSON.errors, function (key, value) {
+                  $('.' + key + '-error').html(value);
+                  $('#div_' + key).addClass('has-error');
+                });
+              }
+            }
+        });
       }
-
     }
         
     /**End Submit form */
@@ -188,7 +175,7 @@
 
         var education_level_id = $('#education_level_id').val();
 
-        if (education_level_id != ''){
+        // if (education_level_id != ''){
                       
         $.post(baseurl + "filter-education-types-dropdown", {education_level_id: education_level_id, education_type_id: education_type_id, _method: 'POST', _token: csrf_token})
 
@@ -204,21 +191,11 @@
 
           });
 
-        }
+        // }
         var education_level_text = $('#education_level_id option:selected').text();
         $('.education_level_id').html(' - '+education_level_text);
     }
-    
-    function cancelUserEducationForm(education_id) {
 
-      if(education_id!=0){      
-      $('.educationList_'+education_id).show();
-      }
-      $('.form-empty').html('');      
-      $('.openForm').prop('disabled',false);
-      $(".tabs").animate({scrollTop: $(window).scrollTop(0)},"slow");
-
-    }
     
     function delete_user_education(id) {
 
@@ -234,7 +211,7 @@
                 $('.undo_education_'+id).show();
                 $('.delete_education_'+id).hide();
                 $('.edit_education_'+id).hide();
-                $('.education_edited_div_' + id).removeClass("education_div");
+                $('.educationList_' + id).removeClass("education_div");
                 
                 if($(".education_div").length == 1){
                   $('.delete_education').hide();
@@ -251,7 +228,8 @@
 
     }
 
-    function undo_user_education(id) {
+    function undo_user_education(id) 
+    {
       var msg = "Are you sure! you want to undo?";
       if (confirm(msg)) {
         $.post(baseurl + "undo-education", {id: id, _method: 'POST', _token: csrf_token})
@@ -261,7 +239,7 @@
             $('.undo_education_'+id).hide();
             $('.delete_education_'+id).show();
             $('.edit_education_'+id).show();
-            $('.education_edited_div_' + id).addClass("education_div");           
+            $('.educationList_'+id).addClass("education_div");           
             if($(".education_div").length > 1){
               $('.education_div').find(".delete_education").show();
             }

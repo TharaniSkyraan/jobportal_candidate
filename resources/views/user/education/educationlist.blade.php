@@ -1,5 +1,5 @@
 @foreach ($educations as $education)
-    <div class="appendeducation  mb-4 card educationList_{{$education->id}}">
+    <div class="appendeducation mb-4 card educationList_{{$education->id}} education_div">
         <div class="text-end" data-edid="{{$education->id}}">
             <span class="edit_education_{{$education->id}} edit_education openForm m-2 cursor-pointer" data-form="edit" data-id="{{$education->id}}" data-type-id="{{$education->education_type_id??0}}"> <i class="fa fa-edit"></i> </span>
             <span class="delete_education_{{$education->id}} delete_education m-2 cursor-pointer" @if(count(Auth::user()->userEducation)<2) style="display:none" @endif onclick="delete_user_education('{{$education->id}}');"> <i class="fa-solid fa-trash-can text-danger"></i> </span>
@@ -45,5 +45,5 @@
             </div>
         </div>
     </div>      
-    <div class="educationListEdit_{{$education->id}} form-empty"></div>    
+    {{-- <div class="educationListEdit_{{$education->id}} form-empty"></div>     --}}
     @endforeach
