@@ -143,7 +143,11 @@ class UserController extends Controller
     public function updateCareer(Request $request)
     { 
         $request['expected_salary']      = (int) str_replace(',',"",$request->input('expected_salary'));
-        $request['location'] = $request->location;
+        $request['location'] = $request->location;       
+        $request['career_title'] = $request->career_title;
+        $request['total_experience'] = $request->exp_in_year.'.'.$request->exp_in_month;
+        $request['salary_currency'] = $request->salary_currency;
+        $request['country_id'] = $request->country_id;
         $user = User::findOrFail(Auth::user()->id)->update($request->all());
     
         return \Redirect::back()->with('message',' Updated Succssfully!');
@@ -151,16 +155,11 @@ class UserController extends Controller
     
     public function ProfileUpdate(Request $request)
     {
-        $user = User::findOrFail(Auth::user()->id);
-        
-        // $request->validate([
-        //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        // ]);
+        $user = User::findOrFail(Auth::user()->id);        
         $image_array_1 = explode(";", $request->image);
         $image_array_2 = explode(",", $image_array_1[1]);
         $data = base64_decode($image_array_2[1]);
         $imageName = time() . '.png';
-        file_put_contents(public_path('site_assets_1/assets/img/profile_image/user/'.$imageName), $data);
         $fold_path = "candidate/$user->token/profile_image/$imageName";
         $path = Storage::disk('s3')->put($fold_path, $data);
         $path = Storage::disk('s3')->url($fold_path);

@@ -15,7 +15,7 @@ class UserExperience extends Model
     public $timestamps = true;
     protected $guarded = ['id'];
     //protected $dateFormat = 'U';
-    protected $dates = ['created_at', 'updated_at', 'date_start', 'date_end'];
+    protected $dates = ['created_at', 'updated_at'];
 
     public function user()
     {

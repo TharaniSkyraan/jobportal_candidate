@@ -99,11 +99,12 @@ trait UserCvsTrait
     {
         $usercv = UserCv::find($cv_id);
         $extension = pathinfo($usercv->path, PATHINFO_EXTENSION);
-
+        $file_name = ($usercv->user->name??$user->user->first_name.$user->user->last_name).'.'.$extension;
+ 
         $headers = [
             'Content-Type'        => 'application/'.$extension,
-            'Content-Disposition' => 'attachment; filename="'.$usercv->user->first_name.$usercv->user->last_name.'-resume.'.$extension.'"',
-         ];
+            'Content-Disposition' =>  'attachment; filename="'. $file_name .'"',
+        ];
  
         return \Response::make(Storage::disk('s3')->get($usercv->path), 200, $headers);   
     }

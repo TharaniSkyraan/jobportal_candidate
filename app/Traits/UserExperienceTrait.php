@@ -142,8 +142,16 @@ trait UserExperienceTrait
         $userExperience->location = $request->input('location');
         // $userExperience->state_id = $request->input('state_id_dd');
         // $userExperience->city_id = $request->input('city_id_dd');
-        $userExperience->date_start = $request->input('date_start');
-        $userExperience->date_end = $request->input('date_end');
+        if(!empty($request->date_start)){
+            $userExperience->date_start =Carbon::parse($request->date_start)->format('Y-m-d');
+        }else{
+            $userExperience->date_start = NULL;
+        }
+        if(!empty($request->date_end)){
+            $userExperience->date_end = Carbon::parse($request->date_end)->format('Y-m-d');
+        }else{
+            $userExperience->date_end = NULL;
+        }
         $userExperience->is_currently_working = $request->input('is_currently_working')??'0';
         $userExperience->description = $request->input('description');
         $userExperience->used_tools = $request->input('used_tools');

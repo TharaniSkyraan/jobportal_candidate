@@ -14,7 +14,7 @@ class UserSkill extends Model
     public $timestamps = true;
     protected $guarded = ['id'];
     //protected $dateFormat = 'U';
-    protected $dates = ['created_at', 'updated_at', 'start_date', 'end_date'];
+    protected $dates = ['created_at', 'updated_at'];
 
     public function user()
     {

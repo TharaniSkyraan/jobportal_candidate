@@ -80,8 +80,8 @@
                                         <div class="row">
                                             <div class="col-md-4 col-xl-2 align-self-center">
                                                 <div class="card pf_imgsabt">
-                                                    @if(!empty($company->profile_file_path))
-                                                        <img src="{{$company->profile_file_path}}" alt="{{$company->name}}" width="100%">
+                                                    @if(!empty($company->image))
+                                                        <img src="{{$company->image}}" alt="{{$company->name}}" width="100%">
                                                     @else
                                                         <img src="{{asset('noupload.png')}}" alt="{{$company->name}}" width="100%">
                                                     @endif
@@ -156,18 +156,11 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <p>Address</p>
-                                        <span class="fw-bolder">@if($company->website_url != null){{$company->website_url}} @else NIL @endif </span>
+                                        <span class="fw-bolder">@if($company->address != null){{$company->address}} @else NIL @endif </span>
                                     </div>
-                                </div>
-
-                                <div class="row">
                                     <div class="col-md-6">
                                         <p>City</p>
                                         <span class="fw-bolder">{{ $company->location }}</span>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>State</p>
-                                        <span class="fw-bolder">{{ DataArrayHelper::countryParticular($company->country_id) }}</span>
                                     </div>
                                 </div>
 
@@ -181,6 +174,7 @@
                                         <span class="fw-bolder">{{$company->pin_code}}</span>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>

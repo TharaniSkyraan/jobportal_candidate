@@ -86,9 +86,8 @@ trait UserProjectsTrait
         $user_id = empty($user_id)?Auth::user()->id:$user_id;
 
         $userProject = new UserProject();
-
         $userProject = $this->assignProjectValues($userProject, $request, $user_id);
-
+        $userProject->user_id = $user_id;
         $userProject->save();
 
         return response()->json(array('success' => true, 'status' => 200), 200);
@@ -97,39 +96,29 @@ trait UserProjectsTrait
 
     private function assignProjectValues($userProject, $request, $user_id=null)
     {
-
-        $user_id = empty($user_id)?Auth::user()->id:$user_id;
-        $userProject->user_id = $user_id;
-
         $userProject->name = $request->input('name');
-
         $userProject->user_experience_id = $request->input('user_experience_id');
-
         $userProject->url = $request->input('url');
-
-        $userProject->date_start = $request->input('date_start');
-
-        $userProject->date_end = $request->input('date_end');
-
+        if(!empty($request->date_start)){
+            $userProject->date_start =Carbon::parse($request->date_start)->format('Y-m-d');
+        }else{
+            $userProject->date_start = NULL;
+        }
+        if(!empty($request->date_end)){
+            $userProject->date_end = Carbon::parse($request->date_end)->format('Y-m-d');
+        }else{
+            $userProject->date_end = NULL;
+        }
         $userProject->is_on_going = $request->input('is_on_going');
-
         $userProject->noof_team_member = $request->input('noof_team_member');
-
         $userProject->work_as_team = $request->input('work_as_team');
-
         $userProject->project_location = $request->input('project_location');
-
         $userProject->country_id = $request->input('country_id_dd');
-
-        $userProject->state_id = $request->input('state_id_dd');
-
-        $userProject->city_id = $request->input('city_id_dd');
-
+        $userProject->location = $request->input('location');
         $userProject->role_on_project = $request->input('role_on_project');
-
-        $userProject->description = $request->input('description');
-        
+        $userProject->description = $request->input('description');        
         $userProject->used_tools = $request->input('used_tools');
+        // dd($userProject);
 
         return $userProject;
 
@@ -172,11 +161,7 @@ trait UserProjectsTrait
 
     }
 
-
-
-
     public function updateFrontUserProject(UserProjectFormRequest $request, $project_id, $user_id=null)
-
     {
 
 
@@ -187,14 +172,6 @@ trait UserProjectsTrait
         $userProject = $this->assignProjectValues($userProject, $request, $user_id);
 
         $userProject->update();
-
-
-
-        // $this->addUserProjectImage($request, $userProject);
-
-
-
-        // $returnHTML = view('user.forms.project.project_edit_thanks')->render();
 
         return response()->json(array('success' => true, 'status' => 200, 'html' => ''), 200);
 

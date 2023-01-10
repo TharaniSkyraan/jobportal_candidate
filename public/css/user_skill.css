@@ -202,6 +202,14 @@
     justify-content: center;
     display: flex;
 }
+.educationForm .modal-body{
+    overflow-y: scroll;
+    max-height: 400px;
+}
+.educationForm .modal-header{
+    border-bottom:unset !important;
+    background: #f3f7fe;
+}
 /******************
 **1.4.my experience**
 *******************/
@@ -214,6 +222,9 @@
     display: flex;
 }#my_expernce .expnce img{
     width: 40%;
+} 
+.select2-container{
+    z-index: 9999 !important;
 }
 /******************
 **1.5.choose experience**

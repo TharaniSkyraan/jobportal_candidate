@@ -14,7 +14,7 @@ class UserProject extends Model
     public $timestamps = true;
     protected $guarded = ['id'];
     //protected $dateFormat = 'U';
-    protected $dates = ['created_at', 'updated_at', 'date_end', 'date_start'];
+    protected $dates = ['created_at', 'updated_at'];
 
     public function user()
     {
