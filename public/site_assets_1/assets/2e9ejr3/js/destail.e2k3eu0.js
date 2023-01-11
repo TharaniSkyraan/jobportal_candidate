@@ -10,12 +10,12 @@
     $('#is_login').val(v_is_login);
     let csrf_token = $('meta[name=csrf-token]').attr('content');
     
-    $('#favjob').on('click', function(){
-        let btn = $("#favjob");
+    $('.favjob').on('click', function(){
+        let btn = $(".favjob");
         if(1) {
 
-            let is_fav =  $('#favjob').attr("data-fav");            
-            $('#favjob').prop("disabled", true);
+            let is_fav =  $('.favjob').attr("data-fav");            
+            $('.favjob').prop("disabled", true);
 
             $.ajax({
                 url: save_req_url,
@@ -34,8 +34,8 @@
                     let reload_page = resp.reload_page || false;
                     let fav = resp.fav;
 
-                    $('#favjob').prop("disabled", false);
-                    $('#favjob').attr("data-fav", fav);
+                    $('.favjob').prop("disabled", false);
+                    $('.favjob').attr("data-fav", fav);
 
                     if(fav=='yes'){
                         $(btn).html(`<img class="image-size1 cursor-pointer" src="${baseurl}site_assets_1/assets/img/star_filled.png" alt="bookmark">`);

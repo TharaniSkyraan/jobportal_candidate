@@ -176,7 +176,7 @@
                                     $is_fav = 'yes';
                                 }
                                 @endphp
-                                <div class="mx-3" id="favjob" data-fav='{{$is_fav}}'>                                        
+                                <div class="mx-3 favjob" data-fav='{{$is_fav}}'>                                        
                                     @if($is_fav=='yes')
                                         <img class="image-size1 cursor-pointer" src="{{url('site_assets_1/assets/img/star_filled.png')}}" alt="bookmark">
                                     @else
@@ -237,7 +237,7 @@
                                             $is_fav = 'yes';
                                         }
                                         @endphp
-                                        <div class="mx-3" id="favjob" data-fav='{{$is_fav}}'>                                        
+                                        <div class="mx-3 favjob" data-fav='{{$is_fav}}'>                                        
                                             @if($is_fav=='yes')
                                                 <img class="image-size1 cursor-pointer" src="{{url('site_assets_1/assets/img/star_filled.png')}}" alt="bookmark">
                                             @else
