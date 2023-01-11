@@ -163,6 +163,10 @@
                                         <img class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
                                     </button>
                                 @endif
+                                
+                                <label class="japplied-btn">
+                                    <img class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class="fw-bolder fs-6">Applied</span>
+                                </label>
                             </div>
                             <div class="col-2 align-self-center text-center">
                                 @php
@@ -223,6 +227,9 @@
                                             </button>
                                         @endif
                                         
+                                        <label class="japplied-btn">
+                                            <img class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class="fw-bolder fs-6">Applied</span>
+                                        </label>
                                         @php
                                         $is_fav = 'no';
                                         if((Auth::check() && Auth::user()->isFavouriteJob($job->slug)==true))

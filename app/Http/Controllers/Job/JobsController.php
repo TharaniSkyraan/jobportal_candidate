@@ -135,6 +135,7 @@ class JobsController extends Controller
         $experienceFid = $request->experinceFv??'';
         $designation = $request->d??'';
         $location = $request->l??'';
+        $slug = $request->sl??'';
         $words = DataArrayHelper::blockedKeywords();
 
         $dbk = $this->checkTitleBlockedKeywords($designation, $words);
@@ -206,6 +207,7 @@ class JobsController extends Controller
         return response()->json(array('success' => true, 
                                     'd' => $designation, 
                                     'l' => $location,
+                                    'slug' => $slug,
                                     'joblist' => $joblist,    
                                     'appliedJobids' => $appliedjodids??array(),                           
                                     'filters' => $filters,

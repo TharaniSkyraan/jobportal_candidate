@@ -1,10 +1,10 @@
 
     if(applied==true){
-        $("#japplied-btn").show();
-        $("#japplybtn").hide();
+        $(".japplied-btn").show();
+        $(".japply-btn").hide();
     }else{
-        $("#japplied-btn").hide();
-        $("#japplybtn").show();
+        $(".japplied-btn").hide();
+        $(".japply-btn").show();
     }
     v_is_login = is_login || 0;
     $('#is_login').val(v_is_login);
@@ -154,7 +154,7 @@
 
         if(1) {
             $("#japplied-btn").hide();
-            let btn = $("#japplybtn");
+            let btn = $(".japply-btn");
             $(btn).prop("disabled", true);
 
             $.ajax({
@@ -187,14 +187,14 @@
                     }
                     
                     if(applied_b){
-                        $("#japplied-btn").show();
+                        $(".japplied-btn").show();
                         $(btn).hide();
                     }
                     else{
                         $(btn).html(
                             `<img class="image-size" src="${baseurl}site_assets_1/assets/img/apply2.png" alt="Apply"> <span class="fw-bold"> Apply</span></button>`
                         );
-                        $("#japplied-btn").hide();
+                        $(".japplied-btn").hide();
                         $(btn).show();
                     }
                     $(btn).prop("disabled", false);
@@ -213,7 +213,7 @@
                             +resp.message
                             +'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
                             +'</div>');
-                            $("#japplied-btn").show();
+                            $(".japplied-btn").show();
                             $(btn).hide();
                             $('#screeningQuiz72ers3').modal('hide');
                     }else if(redir == ''){
@@ -221,7 +221,7 @@
                         +resp.message
                         +'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
                         +'</div>');
-                        $("#japplied-btn").show();
+                        $(".japplied-btn").show();
                         $(btn).hide();
                         $('#screeningQuiz72ers3').modal('hide');
                     

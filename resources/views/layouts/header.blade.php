@@ -26,12 +26,12 @@
 							<div class="offcanvas-body" id="search-canvas">
 								<div class="container">
 									<div class="mb-3 mt-3">
-										{!! Form::search('designation', $d, array('class'=>'form-control-2  typeahead', 'id'=>'designation',
+										{!! Form::search('mdesignation', $d, array('class'=>'form-control-2  typeahead', 'id'=>'mdesignation',
 										'placeholder'=>__('Job title, keywords or company'),  'autocomplete'=>'off', 'spellcheck'=>'false' ) ) !!}
 										<span class="form-text text-danger err_msg designation-error"></span>
 									</div>
 									<div class="mb-3">
-										{!! Form::search('location', $l, array('class'=>'form-control-2 typeahead', 'id'=>'location', 'placeholder'=>__('On Location'),' aria-label'=>'On Location')) !!}
+										{!! Form::search('mlocation', $l, array('class'=>'form-control-2 typeahead', 'id'=>'mlocation', 'placeholder'=>__('On Location'),' aria-label'=>'On Location')) !!}
 										<span class="form-text text-danger err_msg"></span>
 									</div>
 									<div class="row">
@@ -42,7 +42,7 @@
 													<a class="close_m" href="#" data-bs-dismiss="offcanvas" aria-label="Close">Cancel</a>
 												</div>
 												<div class="col-6 align-self-center">
-													{!! Form::button('Search', array('class' => 'btn search-button-bg ','id'=>'msearch_btn', 'type' => 'submit')) !!}                       
+													{!! Form::button('Search', array('class' => 'btn search-button-bg ','id'=>'mobsearch_btn', 'type' => 'submit')) !!}                       
 												</div>
 											</div>
 										</div>

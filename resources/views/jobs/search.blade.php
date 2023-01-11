@@ -103,36 +103,36 @@
 
                             <ul class="nav nav-primary">
                                 <li class="nav-item active mb-3" >
-                                    <a href="#FilterCityl" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true" >
+                                    <a href="#FilterCitylo" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true" >
                                         <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/location.png')}}">
                                         <p class="fw-bold">Location</p>
                                         <span class="caret"></span>
                                     </a>
-                                    <div class="collapse filterContainer collapse show" id="FilterCityl" >
+                                    <div class="collapse filterContainer collapse show" id="FilterCitylo" >
                                         <div class="dropdown_inner filterOptns" data-filter-id="citylFGid">
                                         </div>      
                                     </div>
                                 </li>
                                 
                                 <li class="nav-item mb-3" >
-                                    <a href="#salaryFilter" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true" >
+                                    <a href="#salaryFilters" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true" >
                                         <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/salary.png')}}">
                                         <p class="fw-bold">Salary</p>
                                         <span class="caret"></span>
                                     </a>
-                                    <div class="collapse filterContainer collapse show" id="salaryFilter" >
+                                    <div class="collapse filterContainer collapse show" id="salaryFilters" >
                                         <div class="dropdown_inner filterOptns" data-filter-id="salaryFGid">
                                         </div>
                                     </div>
                                 </li> 
 
                                 <li class="nav-item mb-3" >
-                                    <a href="#experinceFilter" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true">
+                                    <a href="#experinceFilters" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true">
                                     <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/experience.png')}}">
                                         <p class="fw-bold">Experience</p>
                                         <span class="caret"></span>
                                     </a>
-                                    <div class="collapse collapse show" id="experinceFilter">
+                                    <div class="collapse collapse show" id="experinceFilters">
                                         <div class="dropdown_inner filterOptns" data-filter-id="experinceFv">
                                             <div class="p-3">
                                                 <div class="range-wrap">
@@ -145,36 +145,36 @@
                                 </li>
 
                                 <li class="nav-item mb-3" >
-                                    <a href="#jobtypeFilter" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true">
+                                    <a href="#jobtypeFilters" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true">
                                         <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/job_by_shift.png')}}">
                                         <p class="fw-bold">Job Type</p>
                                         <span class="caret"></span>
                                     </a>
-                                    <div class="collapse filterContainer collapse show" id="jobtypeFilter" >
+                                    <div class="collapse filterContainer collapse show" id="jobtypeFilters" >
                                         <div class="dropdown_inner filterOptns" data-filter-id="jobtypeFGid">
                                         </div>
                                     </div>
                                 </li>
                                 
                                 <li class="nav-item mb-3" >
-                                    <a href="#edulevelFilter" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true">
+                                    <a href="#edulevelFilters" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true">
                                         <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/level_of_education.png')}}">
                                         <p class="fw-bold">Education Level</p>
                                         <span class="caret"></span>
                                     </a>
-                                    <div class="collapse filterContainer collapse show" id="edulevelFilter" >
+                                    <div class="collapse filterContainer collapse show" id="edulevelFilters" >
                                         <div class="dropdown_inner filterOptns" data-filter-id="edulevelFGid">
                                         </div>
                                     </div>
                                 </li>
                                 
                                 <li class="nav-item mb-3" >
-                                    <a href="#functionalareaFilter" class="filterHeading"  data-bs-toggle="collapse" aria-expanded="true">
+                                    <a href="#functionalareaFilters" class="filterHeading"  data-bs-toggle="collapse" aria-expanded="true">
                                         <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/func_area.png')}}">
                                         <p class="fw-bold">Functional Area</p>
                                         <span class="caret"></span>
                                     </a>
-                                    <div class="collapse filterContainer collapse show" id="functionalareaFilter" >
+                                    <div class="collapse filterContainer collapse show" id="functionalareaFilters" >
                                         <div class="dropdown_inner filterOptns" data-filter-id="functionalareaGid">
                                         </div>
                                     </div>
@@ -193,12 +193,12 @@
                                 </li> --}}
                                 
                                 <li class="nav-item mb-3" >
-                                    <a href="#industrytypeFilter" class="filterHeading"  data-bs-toggle="collapse" aria-expanded="true">
+                                    <a href="#industrytypeFilters" class="filterHeading"  data-bs-toggle="collapse" aria-expanded="true">
                                         <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/industry.png')}}">
                                         <p class="fw-bold">Industry</p>
                                         <span class="caret"></span>
                                     </a>
-                                    <div class="collapse filterContainer collapse show" id="industrytypeFilter" >
+                                    <div class="collapse filterContainer collapse show" id="industrytypeFilters" >
                                         <div class="dropdown_inner filterOptns" data-filter-id="industrytypeGid">
                                         </div>   
                                     </div>
@@ -474,22 +474,13 @@ var is_login = '{{ Cookie::get("is_login") }}';
             }
         }
     }
-    
-    $('.titsearch').on('click', function(){
-        var designation =  $(this).attr('data-d');
-        var location =  $(this).attr('data-l');
-        search(designation,location);
-    });
-    $('#msearch_btn').on('click', function(){
+    function search(designation, location)
+    {
         //myElement Has Focus
         $('.err_msg').html('');
-        if($('#designation').val() != '' || $('#location').val() !=''){
-            
+        if(designation != '' || location !=''){
+    
             filterResetallActions();
-
-            var designation = $('#designation').val();
-            var location = $('#location').val();
-            // let req_url = "/checkkeywords";
 
             $.ajax({
                 url: '{{ route("job.checkkeywords") }}',
@@ -518,25 +509,21 @@ var is_login = '{{ Cookie::get("is_login") }}';
                     // $('#content').html(errorMsg);
                 }
             });
-
-            // $.post("/checkkeywords", {designation: designation, location: location, _method: 'POST', _token: '{{ csrf_token() }}'})
-            //     .done(function (response) {
-            //         var l = '';
-            //         var d = '';
-            //     if(response.d !=''){
-            //         d = 'd='+response.d;
-            //     }
-            //     if(response.l !=''){
-            //         if(response.d !=''){
-            //             l += '&';
-            //         }
-            //         l += 'l='+response.l;
-            //     }
-            //     window.location = "/"+response.sl+'?'+d+l;
-            // });
         }else{
             $('.designation-error').html('Enter Your Designation');
         }
+    }
+    $('#msearch_btn').on('click', function(){
+        //myElement Has Focus
+        var designation = $('#designation').val();
+        var location = $('#location').val();
+        search(designation,location);
+    });
+    $('#mobsearch_btn').on('click', function(){
+        //myElement Has Focus
+        var designation = $('#mdesignation').val();
+        var location = $('#mlocation').val();
+        search(designation,location);
     });
 </script>
 
@@ -587,8 +574,8 @@ var is_login = '{{ Cookie::get("is_login") }}';
             replace: function(url, query) {
                 return url + "?q=" + query;
             },        
-            filter: function(stocks) {
-                return $.map(stocks, function(data) {
+            filter: function(location_s) {
+                return $.map(location_s, function(data) {
                     return {
                         // tokens: data.tokens,
                         // symbol: data.symbol,
@@ -600,7 +587,7 @@ var is_login = '{{ Cookie::get("is_login") }}';
     });
     
     location_s.initialize();
-        $('#location.typeahead').typeahead({
+    $('#location.typeahead').typeahead({
         hint: true,
         highlight: false,
         minLength: 1,
@@ -611,6 +598,79 @@ var is_login = '{{ Cookie::get("is_login") }}';
         limit:Number.MAX_VALUE
         }); 
     });
+</script>
+<script>
+
+    $(function(){
+        var mdesignation_s = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        prefetch: 'api/autocomplete/search_designation_default',
+        remote: {
+            url: "api/autocomplete/search_designation",
+            replace: function(url, query) {
+                return url + "?q=" + query;
+            },        
+            filter: function(mdesignation_s) {
+                return $.map(mdesignation_s, function(data) {
+                    return {
+                        // tokens: data.tokens,
+                        // symbol: data.symbol,
+                        name: data.name
+                    }
+                });
+            }
+        }
+    });
+    
+    mdesignation_s.initialize();
+    $('#mdesignation.typeahead').typeahead({
+        hint: true,
+        highlight: false,
+        minLength: 1,
+    },{
+        name: 'mdesignation_s',
+        displayKey: 'name',
+        source: mdesignation_s.ttAdapter(),
+        limit:Number.MAX_VALUE
+        }); 
+    });
+
+    $(function(){
+        var mlocation_s = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        prefetch: 'api/autocomplete/search_location_default',
+        remote: {
+            url: "api/autocomplete/search_location",
+            replace: function(url, query) {
+                return url + "?q=" + query;
+            },        
+            filter: function(mlocation_s) {
+                return $.map(mlocation_s, function(data) {
+                    return {
+                        // tokens: data.tokens,
+                        // symbol: data.symbol,
+                        name: data.name
+                    }
+                });
+            }
+        }
+    });
+    
+    mlocation_s.initialize();
+    $('#mlocation.typeahead').typeahead({
+        hint: true,
+        highlight: false,
+        minLength: 1,
+    },{
+        name: 'mlocation_s',
+        displayKey: 'name',
+        source: mlocation_s.ttAdapter(),
+        limit:Number.MAX_VALUE
+        }); 
+    });
+
 </script>
 
 @endsection

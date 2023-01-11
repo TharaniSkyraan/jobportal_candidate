@@ -23,7 +23,7 @@ trait BlockedKeywords
         $designation = preg_replace('/[+]{2,}+/', ' plus plus ', $designation);
         $designation = preg_replace('/[+]+/', ' plus ', $designation);
         $designation = preg_replace('/[.]+/', ' dot ', $designation);        
-        $location = $locations =  strtolower(preg_replace('/[!\/\\\|\$\%\^\&\*\'\(\)\_\-\<\>\@\,\~\`\;\" "]+/', '', $request->location??$l));
+        $location = $locations =  strtolower(preg_replace('/[!\/\\\|\$\%\^\&\*\'\(\)\_\-\<\>\@\,\~\`\;\""]+/', '', $request->location??$l));
         $words = DataArrayHelper::blockedKeywords();
         $designation_slug = $location_slug = '';
 
