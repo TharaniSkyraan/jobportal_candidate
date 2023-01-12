@@ -99,11 +99,11 @@ trait UserCvsTrait
     {
         $usercv = UserCv::find($cv_id);
         $extension = pathinfo($usercv->path, PATHINFO_EXTENSION);
-        $file_name = ($usercv->user->name??$user->user->first_name.$user->user->last_name).'.'.$extension;
+        $file_name = (!empty($usercv->user->name)?$usercv->user->name:$user->user->first_name.$user->user->last_name);
  
         $headers = [
             'Content-Type'        => 'application/'.$extension,
-            'Content-Disposition' =>  'attachment; filename="'. $file_name .'"',
+            'Content-Disposition' =>  'attachment; filename="'. $file_name.'.'.$extension.'"',
         ];
  
         return \Response::make(Storage::disk('s3')->get($usercv->path), 200, $headers);   
@@ -111,6 +111,7 @@ trait UserCvsTrait
 
     public function deleteUserCv(Request $request)
     {
+        
         $id = $request->input('id');
         try {
             $UserCv = UserCv::findOrFail($id);            
@@ -121,7 +122,7 @@ trait UserCvsTrait
         } catch (ModelNotFoundException $e) {
             return 'notok';
         }
+
     }
-  
 
 }

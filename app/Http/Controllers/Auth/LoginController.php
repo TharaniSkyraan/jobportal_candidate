@@ -366,8 +366,8 @@ class LoginController extends Controller
             case 'skills':
                 $page = '/skills';
                 break;
-            case 'benefits':
-                $page = '/benefits';
+            case 'experience':
+                $page = '/experience';
                 break;
             case 'resume_upload':
                 $page = '/resume_upload';
@@ -410,8 +410,8 @@ class LoginController extends Controller
             case 'skills':
                 $page = '/skills';
                 break;
-            case 'benefits':
-                $page = '/benefits';
+            case 'experience':
+                $page = '/experience';
                 break;
             case 'resume_upload':
                 $page = '/resume_upload';
