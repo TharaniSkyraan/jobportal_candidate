@@ -99,7 +99,7 @@ trait UserCvsTrait
     {
         $usercv = UserCv::find($cv_id);
         $extension = pathinfo($usercv->path, PATHINFO_EXTENSION);
-        $file_name = (!empty($usercv->user->name)?$usercv->user->name:$user->user->first_name.$user->user->last_name);
+        $file_name = (!empty($usercv->user->name)?$usercv->user->name:$usercv->user->first_name.$usercv->user->last_name);
  
         $headers = [
             'Content-Type'        => 'application/'.$extension,
@@ -111,7 +111,7 @@ trait UserCvsTrait
 
     public function deleteUserCv(Request $request)
     {
-        
+
         $id = $request->input('id');
         try {
             $UserCv = UserCv::findOrFail($id);            
