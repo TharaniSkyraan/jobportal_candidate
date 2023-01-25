@@ -62,15 +62,18 @@ trait UserCvsTrait
             $request->validate([
                 'file' => 'required|file|mimes:pdf,docx,doc,txt,rtf|max:2048',
             ]); 
-            $path = Storage::disk('s3')->put('candidate/'.$user->token.'/file', $request->file);
-            $url = Storage::disk('s3')->url($path);
+            // $path = Storage::disk('s3')->put('candidate/'.$user->token.'/file', $request->file);
+            // $url = Storage::disk('s3')->url($path);
+            $path = Storage::disk('public')->put('cv_uploads', $request->file('file'));
+            $url = Storage::disk('public')->url($path);
             $UserCv = UserCv::find($cv_id);
             $previous_file_path = $UserCv->path;
             $UserCv->path = $path;
             $UserCv->cv_file = $url;
             $UserCv->user_id = $user->id;
             $UserCv->save();
-            Storage::disk('s3')->delete($previous_file_path); 
+            Storage::disk('public')->delete($previous_file_path); 
+            // Storage::disk('s3')->delete($previous_file_path); 
         }
         
         return response()->json(array('success' => true));       
@@ -106,7 +109,8 @@ trait UserCvsTrait
             'Content-Disposition' =>  'attachment; filename="'. $file_name.'.'.$extension.'"',
         ];
  
-        return \Response::make(Storage::disk('s3')->get($usercv->path), 200, $headers);   
+        // return \Response::make(Storage::disk('s3')->get($usercv->path), 200, $headers);   
+        return \Response::make(Storage::disk('public')->get($usercv->path), 200, $headers);   
     }
 
     public function deleteUserCv(Request $request)
