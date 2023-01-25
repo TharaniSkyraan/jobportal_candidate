@@ -188,15 +188,10 @@
                     </div>
                     <div class="col-6"></div>
                 </div>
-                
             </div>
-
-            
         </div>
     </div>
 </div>
-
-
 <div class="container mb-5">
     <div class="w-85 mx-auto header-space-search" >
         <nav aria-label="breadcrumb">
@@ -678,8 +673,6 @@
     var save_req_url = "{{ route('job.save', $job->slug) }}";
     var apply_req_url = "{{ route('job.apply', $job->slug) }}" ;
 
-
-
     //company header
     $('#myHeader').hide();
 
@@ -696,7 +689,7 @@
     $('#myHeader').hide();
         header.classList.remove("sticky");
     }
-    }
+    } 
    
 </script>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/2e9ejr3/js/destail.e2k3eu0.js') }}"></script>

@@ -398,7 +398,7 @@ $(document).on( 'click', '.japplybtnredir', function(e) {
 });
 $(document).on( 'click', '.japplybtn', function(e) {
     e.stopPropagation();
-    let jobidv = $(this).parent().parent().parent().parent().data('jobid');;
+    let jobidv = $(this).parent().parent().parent().parent().data('jobid');
     // alert(jobidv)
     btn = $(this);
     jobApply(btn, jobidv);

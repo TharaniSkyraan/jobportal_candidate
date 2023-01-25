@@ -4,7 +4,34 @@
 <div class="card mb-4 p-1 job-list" data-jobid="{{$job->slug}}">
     <div class="card-body m-1">
         <div class="row mb-1">
-            <div class="col-md-6 col-sm-8 col-xs-12"><h4 class="fw-bold text-green-color">{{ $job->title }}</h4></div>
+            <div class="col-md-8 text-start">
+                <h4 class="fw-bold text-green-color">{{ $job->title }}</h4>
+            </div>
+            <div class="col-md-4 text-center">
+                @if($job->expiry_date < Carbon\Carbon::now())
+                    @if(Auth::user()->isAppliedOnJob($job->id))                
+                        <label class="japplied-btn">
+                            <img class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class="fw-bolder fs-6">Applied</span>
+                        </label>
+                    @else
+                        @if(count($job->screeningquiz)!=0)
+                            <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtnredir" id="japplybtn" data-bs-toggle="modal" href="#screeningQuiz72ers3" role="button">
+                                <img class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
+                            </button>
+                        @else
+                            <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn">
+                                <img class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
+                            </button>
+                        @endif
+                    @endif
+                @else
+                    @if(Auth::user()->isAppliedOnJob($job->id))                
+                        <label class="japplied-btn">
+                            <img class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class="fw-bolder fs-6">Applied</span>
+                        </label>
+                    @endif
+                @endif
+            </div>
         </div>
         <div class="mb-3 fw-bold">{{ $job->company->name??'' }}.</div>
         <div class="row mb-3">
@@ -19,7 +46,11 @@
             </ul>
         </div>
         <div class="d-flex mt-3 justify-content-between">
-            <div><text><i class="jpaicon bi-clock-history"></i> {{ \Carbon\Carbon::parse($savedjob->created_at)->diffForHumans() }}</text> </div>
+            @if($job->expiry_date > Carbon\Carbon::now())
+            <div><text class="text-danger"><i class="jpaicon bi-clock-history"></i> Expired<text> </div>
+            @else
+            <div><text>Posted : <i class="jpaicon bi-clock-history"></i> {{ \Carbon\Carbon::parse($job->created_at)->diffForHumans() }}</text> </div>
+            @endif
             <div class="text-black-75">            
             </div>
             @php
@@ -58,24 +89,5 @@
         {{ $jobs->appends(request()->query())->links(); }}
     </div>
 @endif   
-<script>
-
-  
-  $('.job-list').click(function() {
-      const aTag = document.createElement('a');
-      aTag.rel = 'noopener';
-      aTag.target = "_blank";
-      aTag.href = '{{ url("job-detail") }}/'+$(this).data("jobid");
-      aTag.click();
-  });
-      
-  $('.favjob').click(function(e) {
-    e.stopPropagation();
-    // alert(jobidv)
-    btn = $(this);
-    jobUnsave(btn);
-  });
-</script>
-
 
 

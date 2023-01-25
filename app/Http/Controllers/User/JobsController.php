@@ -8,6 +8,7 @@ use Input;
 use Redirect;
 use App\Model\Job;
 use App\Model\JobApply;
+use App\Model\JobScreeningQuiz;
 use App\Model\FavouriteJob;
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -59,7 +60,9 @@ class JobsController extends Controller
         if($job==NULL){
             abort(404);
         }
-        return view('user.dashboard.job_detail', compact('job', 'application_status'));
+        $breakpoint = JobScreeningQuiz::whereJobId($job->id)->whereBreakpoint('yes')->first();
+     
+        return view('user.dashboard.job_detail', compact('job', 'application_status', 'breakpoint'));
     }
 
     
