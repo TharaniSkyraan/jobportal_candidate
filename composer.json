@@ -10,6 +10,7 @@
     "require": {
         "php": "^8.0",
         "anhskohbo/no-captcha": "^3.2",
+        "aws/aws-sdk-php": "^3.257",
         "cakephp/chronos": "^2.0",
         "firebase/php-jwt": "^6.3",
         "fruitcake/laravel-cors": "^2.0",

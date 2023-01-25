@@ -22,6 +22,7 @@ use App\Http\Requests\Front\UserFrontRegisterFormRequest;
 use App\Helpers\DataArrayHelper;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+use Aws\S3\S3Client;
 
 use Illuminate\Auth\Events\Registered;
 use App\Events\UserRegistered;
@@ -359,13 +360,11 @@ class RegisterController extends Controller
     public function ResumeUpdate(Request $request)
     {
         $user = User::findOrFail(Auth::user()->id);
-        
         if ($request->hasFile('file')) {
 
             $request->validate([
                 'file' => 'required|file|mimes:pdf,docx,doc,txt,rtf|max:2048',
-            ]);        
-         
+            ]);       
             $path = Storage::disk('s3')->put('candidate/'.$user->token.'/file', $request->file);
             $url = Storage::disk('s3')->url($path);
             $UserCv = new UserCv();
@@ -374,14 +373,16 @@ class RegisterController extends Controller
             $UserCv->user_id = $user->id;
             $UserCv->is_default = 1;
             $UserCv->save();
+            
+            $user = User::findOrFail(Auth::user()->id);             
+            $user->is_active = 1;
+            $user->next_process_level = 'completed';
+            $user->save();
+        
+            return redirect('/home');
 
         }
-        $user = User::findOrFail(Auth::user()->id);             
-        $user->is_active = 1;
-        $user->next_process_level = 'completed';
-        $user->save();
-        
-        return redirect('/home');
+        return back();
                 
     }
 
