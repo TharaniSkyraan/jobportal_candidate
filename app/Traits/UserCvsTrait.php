@@ -71,6 +71,7 @@ trait UserCvsTrait
             $UserCv->path = $path;
             $UserCv->cv_file = $url;
             $UserCv->user_id = $user->id;
+            $UserCv->upload_on = 'local_server';
             $UserCv->save();
             Storage::disk('public')->delete($previous_file_path); 
             // Storage::disk('s3')->delete($previous_file_path); 
