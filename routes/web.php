@@ -14,8 +14,7 @@
 
 $real_path = realpath(__DIR__) . DIRECTORY_SEPARATOR . 'web_routes' . DIRECTORY_SEPARATOR;
 
-//sitemap for website inactive status
-// Route::get('/sitemap', 'SitemapController@index')->name('sitemap');
+include_once($real_path . 'sitemap_route.php');
 
 include_once($real_path . 'testing_route.php');
 

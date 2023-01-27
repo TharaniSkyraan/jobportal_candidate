@@ -25,13 +25,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        
-        // $schedule->command('queue:listen')->everyMinute()->withoutOverlapping(5)->sendOutputTo(storage_path() . '/logs/queue-jobs.log');
-        // $schedule->command('inspire')
-        //          ->hourly();
-        // $schedule->command('queue:work --stop-when-empty')->everyFiveMinutes()->withoutOverlapping(5)->sendOutputTo(storage_path() . '/logs/queue-jobs.log');
-        // $schedule->command('route:call check-package-validity')->daily()->withoutOverlapping(5)->sendOutputTo(storage_path() . '/logs/queue-jobs.log');
-		// $schedule->command('route:call send-alerts')->daily()->withoutOverlapping(5)->sendOutputTo(storage_path() . '/logs/queue-jobs.log');
+       // $schedule->command('inspire')
+       //          ->hourly();
     }
 
     /**

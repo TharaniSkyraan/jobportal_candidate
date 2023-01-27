@@ -1,9 +1,9 @@
 
 
-<meta name="title" content="{{ $meta->title ?? 'Job Search and Recruitment Process in a Single Move - Mugaam.com'}}">
-<meta name="description" content="{{ $meta->description ?? 'Mugaam is a job portal site with innumerable Job offers for freshers and experienced also picking up the right candidate for vacant position in a company!!'}}"/>
-{{-- <meta name="keywords" content=""> --}}
-<title>{{ $meta->title ?? 'Job Search and Recruitment Process in a Single Move - Mugaam.com'}}</title>
+<meta name="title" content="{{ $meta->title ?? ''}}">
+<meta name="description" content="{{ $meta->description ?? ''}}"/>
+<meta name="keywords" content="">
+<title>{{ $meta->title ?? ''}}</title>
 <link rel="canonical" href="{{ Request::url() ?? 'https://www.mugaam.com/'}}"/>
 
 <!-- Facebook Meta Tags -->

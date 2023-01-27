@@ -23,4 +23,15 @@ class Type extends Model
     //protected $dateFormat = 'U';
     protected $dates = ['created_at', 'updated_at'];
 
+    protected $append = ['type_slug'];
+
+
+    public function getTypeSlugAttribute()
+    {
+        $type =  strtolower(preg_replace('/[!\/\\\|\$\%\^\&\*\'\(\)\_\-\<\>\@\,\~\`\;\""]+/', '', $this->type));
+        
+        $type = str_replace(" ", "-", $type);
+
+        return $type;
+    }
 }

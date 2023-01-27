@@ -27,6 +27,8 @@ class City extends Model
     //protected $dateFormat = 'U';
     protected $dates = ['created_at', 'updated_at'];
 
+    protected $append = ['city_slug'];
+
     public function getCountry($field)
     {
         if (null !== $state = $this->getState()) {
@@ -45,4 +47,12 @@ class City extends Model
         return $city;
     }
 
+    public function getCitySlugAttribute()
+    {
+        $location =  strtolower(preg_replace('/[!\/\\\|\$\%\^\&\*\'\(\)\_\-\<\>\@\,\~\`\;\""]+/', '', $this->city));
+        
+        $location = str_replace(" ", "-", $location);
+
+        return $location;
+    }
 }
