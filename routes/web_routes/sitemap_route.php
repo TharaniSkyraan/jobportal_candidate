@@ -2,7 +2,7 @@
 
 //sitemap for website inactive status
 
-Route::get('/sitemap', 'SitemapController@index')->name('sitemap');
+Route::get('/sitemap/link', 'SitemapController@index')->name('sitemap');
 
 Route::get('/sitemap_job_slug', 'SitemapController@jobSlug');
 Route::get('/sitemap_job_title', 'SitemapController@jobTitle');

@@ -17,6 +17,7 @@ class SitemapController extends Controller
     //
     public function index()
     {
+        // dd('test');
         return response()->view('sitemap.index')->header('Content-Type', 'text/xml');
 
     }
