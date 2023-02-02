@@ -304,6 +304,30 @@ class JobsController extends Controller
                     event(new JobApplied($job, $jobApply));
                     $response = array("success" => true, "message" => "You have successfully applied for this job", "return_to" => "");
                 }
+                                
+                $data["messaging_product"]= "whatsapp";
+                $data["to"]= "917402171681"; 
+                $data["type"]= "template";
+                $data["template"]["name"] = "hello_world";
+                $data["template"]["language"]["code"]= "en_US";
+
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL,"https://graph.facebook.com/v15.0/115601938103127/messages");
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS,json_encode($data));  //Post Fields
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+                $headers = [
+                    'Authorization: Bearer EAALy6BVbtlMBAJ9urU8KwWVJrGP473PyHjQP912FGfaWJK1N3du1vhKk9TKZBZCcQD7t2VXPSOZBr911N5vGKqy98abVGZBTWpES7slUkRaV8ZCkOo8uQeq2lxYdsw3GSTQBWRimHb2ZCMawaqyU0XNRHRIW6yTtL0UtZCAUOEUbMZChZAwqjFGnsqMbCvGcnTHNA3LZC6ukZAwYCp7HynUYgVVPZCQH0x5CUEYZD', 
+                    'Content-Type: application/json' 
+                ];
+
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+                $server_output = curl_exec ($ch);
+
+                curl_close ($ch);
+
         
             }else{            
                 $response = array("success" => false, "message" => "In active user.", "return_to" => "redirect_user");
