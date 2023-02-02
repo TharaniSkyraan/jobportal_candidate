@@ -27,6 +27,7 @@ use App\Http\Requests\Front\ApplyJobFormRequest;
 use App\Http\Controllers\Controller;
 use App\Traits\FetchJobsList;
 use App\Traits\BlockedKeywords;
+use App\Traits\ShareToLayout;
 use App\Events\JobApplied;
 use Illuminate\Support\Facades\Crypt;
 use Cookie;
@@ -38,7 +39,7 @@ class JobsController extends Controller
 {
 
     //use Skills;
-    use FetchJobsList, BlockedKeywords;
+    use FetchJobsList, BlockedKeywords, ShareToLayout;
 
     /**
      * Create a new controller instance.
@@ -88,22 +89,21 @@ class JobsController extends Controller
                                 ->get();
 
         $titles = Title::where('hit_count','!=',0)->orderBy('hit_count','desc')->take(5)->get();
-         
+        $this->shareSeoToLayout('candidate_home');
         return view('candidate-home', compact('titles', 'near_job', 'recent_job', 'job_list', 'top_cities', 'top_sector'));
 
     }
     
     public function search(Request $request, $data)
     {
-        // dd($data);
         $meta=[];
         if(strpos($data, 'jobs') !== false){    
 
             $dl = explode('jobs',str_replace("-in-", "-", $data));
             $d = implode(' ',array_filter(explode('-',$dl[0])));
-            // dd($d);
             $l = implode(' ',array_filter(explode('-',$dl[1])));
-            if(!empty($d)){
+            if(!empty($d))
+            {
                 $checkKeywords = $this->checkKeywords($request, $d, $l);
                 if($checkKeywords['sl'] != $data){
                     return Redirect::to('/'.$checkKeywords['sl']);
@@ -111,19 +111,21 @@ class JobsController extends Controller
                 $d = $checkKeywords['d'];
             }
 
-            if(!empty($d)){
-                $tt = !empty($l)? ($d.' '.$l) : $d;
-                $tt = ucwords($tt);
-                $meta['title'] = $tt .' Jobs and Vacancies - '.date("n F Y").' | Mugaam.com';
-                $meta['description'] = $tt .' Jobs and Vacancies - '.date("n F Y").' on Mugaam.com';
-                $meta = (object) $meta;
+            if(!empty($d) || !empty($l))
+            {
+                // $tt = !empty($l)? ($d.' '.$l) : $d;
+                // $tt = ucwords($tt);
+                // $meta['title'] = $tt .' Jobs and Vacancies - '.date("n F Y").' | Mugaam.com';
+                // $meta['description'] = $tt .' Jobs and Vacancies - '.date("n F Y").' on Mugaam.com';
+                // $meta = (object) $meta;
+                $this->shareSeoToLayout('job_search');                
             }
             
         }else{
             abort(404);
         }
 
-        return view('jobs.search', compact('d','l','meta'));
+        return view('jobs.search', compact('d','l'));
     }
     
     public function searchJob(Request $request)
@@ -243,10 +245,12 @@ class JobsController extends Controller
             if( !empty($tt) && !empty($cpn) && !empty($wl) )
             {
 
-                $ttset = $tt .' - '. $cpn .' - '. $wl ;
-                $meta['title'] = $ttset . ' | Mugaam.com';
-                $meta['description'] = 'Job Description for '.$tt.' in'.$cpn.' in '.$wl.'. Apply Now!';
-                $meta = (object) $meta;
+                // $ttset = $tt .' - '. $cpn .' - '. $wl ;
+                // $meta['title'] = $ttset . ' | Mugaam.com';
+                // $meta['description'] = 'Job Description for '.$tt.' in'.$cpn.' in '.$wl.'. Apply Now!';
+                // $meta = (object) $meta;
+            
+                $this->shareSeoToLayout('job_detail');  
             }
 
         }

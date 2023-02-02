@@ -11,7 +11,7 @@ trait ShareToLayout
     public function shareSeoToLayout($page)
     {
         return View::composer('layouts.app', function($view) use ($page) {
-                    $seo = SEO::where('seo.page_title', 'like', $page)->get();
+                    $seo = SEO::where('seo.page_title', 'like', $page)->first();
                     $view->with('seo', $seo);
                 });
     }

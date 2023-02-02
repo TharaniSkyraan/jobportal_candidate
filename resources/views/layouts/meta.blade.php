@@ -1,11 +1,12 @@
-
-
-<meta name="title" content="{{ $meta->title ?? ''}}">
-<meta name="description" content="{{ $meta->description ?? ''}}"/>
-<meta name="keywords" content="">
-<title>{{ $meta->title ?? ''}}</title>
-<link rel="canonical" href="{{ Request::url() ?? 'https://www.mugaam.com/'}}"/>
-
+@if(isset($seo))
+    <meta name="title" content="{{ $seo->seo_title ?? ''}}">
+    <meta name="description" content="{{ $seo->seo_description ?? ''}}"/>
+    @if(!empty($seo->seo_keywords))
+        <meta name="keywords" content="{{ $seo->seo_keywords }}">
+        <title>{{ $seo->seo_title ?? ''}}</title>
+        <link rel="canonical" href="{{ Request::url() ?? 'https://www.mugaam.com/'}}"/>
+    @endif
+@endif
 <!-- Facebook Meta Tags -->
 <!-- <meta property="og:url" content="">
 <meta property="og:type" content="">
