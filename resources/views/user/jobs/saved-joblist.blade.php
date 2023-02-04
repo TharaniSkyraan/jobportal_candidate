@@ -46,7 +46,7 @@
             </ul>
         </div>
         <div class="d-flex mt-3 justify-content-between">
-            @if($job->expiry_date > Carbon\Carbon::now())
+            @if($job->expiry_date < Carbon\Carbon::now())
             <div><text class="text-danger"><i class="jpaicon bi-clock-history"></i> Expired<text> </div>
             @else
             <div><text>Posted : <i class="jpaicon bi-clock-history"></i> {{ \Carbon\Carbon::parse($job->created_at)->diffForHumans() }}</text> </div>
