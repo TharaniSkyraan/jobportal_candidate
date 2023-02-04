@@ -27,6 +27,12 @@
                             {{ csrf_field() }}
                             {!! Form::hidden('user_type','', array('id'=>'user_type')) !!}
                             
+                            <div class="mb-3 text-center display-email" style="display:none;">
+                                <h3>
+                                    <text id="display-email">...</text> 
+                                    <i class='fa fa-edit cursor-pointer edit-email p-2'></i>
+                                </h3>       
+                            </div>
                             <div class="mb-3 rtname" style="display:none;">
                                 <label class="form-label">Your Name</label>
                                 <input type="text" name="name" class="form-control" autofocus id="name" value="{{ old('name') }}" placeholder="{{__('Enter Your Name')}}" >
@@ -50,7 +56,7 @@
                                <button class="btn form-control subtbtn btn-primary text-center text-white" type="submit">Continue</button>
                             </div>
                         </form>
-                        <div class="small text-center">
+                        <div class="small text-center f-pass">
                             {{__('Forgot Your Password')}}?<a href="{{ route('password.request') }}"> <b> {{__('Click Here')}}</b></a>
                         </div>
 

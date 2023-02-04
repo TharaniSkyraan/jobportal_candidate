@@ -125,3 +125,5 @@
         Route::post('/saved-jobs', 'JobsController@savedJobsList')->name('saved-jobs-list');
 
     });
+
+    ?>

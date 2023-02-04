@@ -373,7 +373,7 @@ class LoginController extends Controller
                 $page = '/resume_upload';
                 break;
             case 'completed':
-                $page = '/home';
+                $page = '/';
                 break;
  
         }
@@ -417,7 +417,7 @@ class LoginController extends Controller
                 $page = '/resume_upload';
                 break;
             case 'completed':
-                $page = '/home';
+                $page = '/';
                 break;
 
         }

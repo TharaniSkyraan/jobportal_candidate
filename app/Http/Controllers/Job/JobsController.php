@@ -71,7 +71,8 @@ class JobsController extends Controller
                                 ->limit(3)
                                 ->get();
                                 
-        $job_list = Job::select('title', DB::raw('count(`title`) as total_count'))
+        $job_list = Job::whereIsActive(0)
+                        ->select('title', DB::raw('count(`title`) as total_count'))
                         ->groupBy('title')
                         ->orderBy('total_count','DESC')
                         ->limit(4)
