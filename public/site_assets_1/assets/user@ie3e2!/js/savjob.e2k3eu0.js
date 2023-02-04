@@ -57,6 +57,12 @@ $(document).ready(function () {
     });
   } 
   
+  $(document).on( 'click', '.favjob', function(e) {
+    e.stopPropagation();
+    // alert(jobidv)
+    btn = $(this);
+    jobUnsave(btn);
+  });
   $(document).on( 'click', '.japplybtn', function(e) {
     e.stopPropagation();
     let jobidv = $(this).parent().parent().parent().parent().data('jobid');
@@ -69,14 +75,6 @@ $(document).on( 'click', '.job-list', function(e) {
     url = baseurl + 'job-detail/'+ $(this).data("jobid");
     openInNewTabWithNoopener(url)
 });
-    
-$('.favjob').click(function(e) {
-  e.stopPropagation();
-  // alert(jobidv)
-  btn = $(this);
-  jobUnsave(btn);
-});
-
 function jobApply(e, jobidv) {
 
   
