@@ -83,17 +83,21 @@
         }
 
         if($("input[name='pursuing']").is(':checked') == false){
-
+          
             if($("#add_edit_user_education").find('.to_year').val() == ''){
               validateFormFields('to_year','Please select Date end.','');
               errStaus=true;
-            }else if($('.to_year').val() <= $('.from_year').val()){
-              setMsg('to_year','Please select greater than from year'); errStaus=true;
-            }
+            } 
         }
 
       }
       
+      if($("#add_edit_user_education").find('.to_year').val() != ''){
+        if($('.to_year').val() <= $('.from_year').val()){
+          setMsg('to_year','Please select greater than from year'); 
+          errStaus=true;
+        }
+      }
       if(errStaus) {
         return false;
       } else {

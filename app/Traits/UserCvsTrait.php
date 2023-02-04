@@ -41,6 +41,8 @@ trait UserCvsTrait
             ]);                 
             $path = Storage::disk('s3')->put('candidate/'.$user->token.'/file', $request->file);
             $url = Storage::disk('s3')->url($path);
+            // $path = Storage::disk('public')->put('cv_uploads', $request->file('file'));
+            // $url = Storage::disk('public')->url($path);
             $UserCv = new UserCv();
             $UserCv->path = $path??"";
             $UserCv->cv_file = $url??"";
@@ -62,10 +64,10 @@ trait UserCvsTrait
             $request->validate([
                 'file' => 'required|file|mimes:pdf,docx,doc,txt,rtf|max:2048',
             ]); 
-            // $path = Storage::disk('s3')->put('candidate/'.$user->token.'/file', $request->file);
-            // $url = Storage::disk('s3')->url($path);
-            $path = Storage::disk('public')->put('cv_uploads', $request->file('file'));
-            $url = Storage::disk('public')->url($path);
+            $path = Storage::disk('s3')->put('candidate/'.$user->token.'/file', $request->file);
+            $url = Storage::disk('s3')->url($path);
+            // $path = Storage::disk('public')->put('cv_uploads', $request->file('file'));
+            // $url = Storage::disk('public')->url($path);
             $UserCv = UserCv::find($cv_id);
             $previous_file_path = $UserCv->path;
             $UserCv->path = $path;
