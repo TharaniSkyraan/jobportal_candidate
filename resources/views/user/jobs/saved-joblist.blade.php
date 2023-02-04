@@ -8,7 +8,7 @@
                 <h4 class="fw-bold text-green-color">{{ $job->title }}</h4>
             </div>
             <div class="col-md-4 text-center">
-                @if($job->expiry_date < Carbon\Carbon::now())
+                @if($job->expiry_date > Carbon\Carbon::now())
                     @if(Auth::user()->isAppliedOnJob($job->id))                
                         <label class="japplied-btn">
                             <img class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class="fw-bolder fs-6">Applied</span>
