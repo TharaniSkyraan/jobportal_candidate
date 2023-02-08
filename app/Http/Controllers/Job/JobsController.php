@@ -282,8 +282,8 @@ class JobsController extends Controller
         $server_output = curl_exec ($ch);
 
         curl_close ($ch);
-        dd('test');
-        // dd($request->all());
+        
+        // print  $server_output;exit;
         $reload_page = false;
         
         if(Auth::check()){
