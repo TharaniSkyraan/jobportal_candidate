@@ -145,6 +145,8 @@ company my profile
 .galaryappendcontent .card-body{
     background: #fff;
     border-radius: 5px;
+    min-height: 135px;
+    max-height: 135px;
 }
 
 
@@ -260,6 +262,10 @@ font-size: 14px;
 
 .savecompanyname .card-text{
  text-align: start;
+ overflow: hidden;
+ display: -webkit-box;
+ -webkit-box-orient: vertical;
+ -webkit-line-clamp: 3;
 }
 
 

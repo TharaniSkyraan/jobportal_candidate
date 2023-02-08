@@ -21,3 +21,4 @@ Route::name('job.')->namespace('Job')->group(function () {
     Route::get('/{slug}', 'JobsController@search')->name('search');
     Route::post('/api/search', 'JobsController@searchJob')->name('search-job');
 });
+?>

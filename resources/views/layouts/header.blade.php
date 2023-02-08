@@ -77,7 +77,7 @@
 									@else
 										<img src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="profile-img" class="h-100 rounded-circle mx-2">
 									@endif								
-									<text class="text-truncate-3 font-weight-bold">{{Auth::user()->first_name??Auth::user()->name}} {{Auth::user()->last_name}}</text>
+									<text class="text-truncate-3 font-weight-bold">{{Auth::user()->getName()}}</text>
 								</div>
 							</a>
 					

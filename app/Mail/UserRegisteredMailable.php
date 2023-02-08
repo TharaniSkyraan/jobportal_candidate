@@ -30,11 +30,11 @@ class UserRegisteredMailable extends Mailable
     public function build()
     {
         return $this->to(config('mail.recieve_to.address'), config('mail.recieve_to.name'))
-                        ->subject('Job Seeker "' . $this->user->name . '" has been registered on "' . config('app.name'))
+                        ->subject('Job Seeker "' . $this->user->getName() . '" has been registered on "' . config('app.name'))
                         ->markdown('emails.user_registered_message')
                         ->with(
                                 [
-                                    'name' => $this->user->name,
+                                    'name' => $this->user->getName(),
                                     'email' => $this->user->email,
                                     'link' => route('edit.user', ['id' => $this->user->id]),
                                     'link_admin' => route('edit.user', ['id' => $this->user->id])

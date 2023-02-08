@@ -30,6 +30,15 @@ $(".toggle-password").click(function() {
       input.attr("type", "password");
     }
 });
+$(document).on('click', ".edit-email", function() {
+  $('#user_type').val('');
+    $('.rtname').hide();
+    $('.rtpassword').hide();
+    $('.rtemail').show();
+    $('.display-email').hide();
+    $('.f-pass').show();
+
+});
 $(document).on('keyup', "#password", function() {
     if( $(this).val() != '' ){$("#showpico").show();}
     else{$("#showpico").hide();}
@@ -40,6 +49,7 @@ function validateLoginForm() {
     clrErr();
     var errStaus = false;
     var user_type = $('#user_type').val();
+    var email = $('#email').val();
     if(validateFormFields('email','Please enter your email address','validEmail')) errStaus=true;      
   
     if(errStaus == false){  
@@ -56,10 +66,13 @@ function validateLoginForm() {
               if(data.user_type=='new'){
                  $('.rtname').show();
                  $('.rtpassword').show();
-                 $('.rtemail').hide();
+                 $('.f-pass').hide();
               }else{
                  $('.rtpassword').show();
               }
+              $('.rtemail').hide();
+              $('#display-email').html(email);
+              $('.display-email').show();
             },
             error: function(json){
                 if (json.status === 422) {

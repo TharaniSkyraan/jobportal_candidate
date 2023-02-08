@@ -42,7 +42,7 @@
 
 							<div class="col-lg-7">
 
-								<h4>{{auth()->user()->name}}</h4> 
+								<h4>{{auth()->user()->getName()}}</h4> 
 
 								<h6><i class="fa fa-map-marker" aria-hidden="true"></i> {{Auth::user()->location}}</h6>
 
