@@ -24,7 +24,7 @@
                         $total_exp = Auth::user()->total_experience;
                         $total_exp = explode('.',$total_exp);
                     @endphp
-                    <h3 class="mt-5 mb-3">Total years of experience :<span class="fw-bolder"> {{$total_exp[0]??0}} years {{$total_exp[1]??0}} month</span></h3>
+                    <h3 class="mt-5 mb-3">Total years of experience :<span class="fw-bolder"> @if($total_exp[0] != 0 || $total_exp[1] !=0){{$total_exp[0]??0}} years {{$total_exp[1]??0}} month @else Fresher @endif</span></h3>
 
                     <div class="crdbxpl mt-5">
                         <div class="row">
