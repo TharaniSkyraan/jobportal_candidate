@@ -151,7 +151,7 @@ class LoginController extends Controller
             if(User::where('email',$email)->doesntExist()){
 
                 $user = User::create([
-                    'name' => $user->getName()??'', 
+                    'first_name' => $user->getName()??'', 
                     'email' => $user->getEmail(),
                     'next_process_level' =>  'education',
                     'provider' => $provider,
@@ -222,7 +222,7 @@ class LoginController extends Controller
             if($request->user_type=='new')
             {
                 $user = User::create([
-                            'name' => $request->name, 
+                            'first_name' => $request->name, 
                             'email' => $request->email, 
                             'is_active' => 0, 
                             'verified' => 0,

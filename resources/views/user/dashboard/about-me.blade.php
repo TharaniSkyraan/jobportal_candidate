@@ -83,7 +83,7 @@
                                     <div class="col-md-12 col-lg-10 mb-4">
                                         <div class="{!! APFrmErrHelp::hasError($errors, 'first_name') !!}">
                                             <label for="first_name" class="form-label fw-bolder">First Name</label>
-                                            {!! Form::text('first_name', $user->first_name??$user->name, array('class'=>'form-control required', 'id'=>'first_name', 'placeholder'=>__('First Name'))) !!}
+                                            {!! Form::text('first_name', $user->first_name, array('class'=>'form-control required', 'id'=>'first_name', 'placeholder'=>__('First Name'))) !!}
                                             <small class="form-text text-muted text-danger err_msg" id="err_first_name"></small>
                                         </div>                          
                                     </div>                          

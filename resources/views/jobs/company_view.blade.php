@@ -1,18 +1,13 @@
 @extends('layouts.app')
 @section('custom_styles')
 <style>
-
-
-#aboutcompany{
-    border-radius: 20px;
-   
-}
-
-#page-container, #header{
-    background-color:#fff !important;
-    box-shadow:none;
-}
-
+    #aboutcompany{
+        border-radius: 20px;
+    }
+    #page-container, #header{
+        background-color:#fff !important;
+        box-shadow:none;
+    }
 </style>
 
 <link href="{{ asset('site_assets_1/assets/cmpy/japplicant/css/jAk3jne9.css')}}" rel="stylesheet">
@@ -149,7 +144,40 @@
                                     </div>
                                     <div class="col-md-6">
                                         <p>Social Media profiles</p>
-                                        <h5 class="aboutcompany_heading1"><div class="socialmediaappend"></div></h5>
+                                        <h5 class="aboutcompany_heading1">
+                                            <div class="socialmediaappend">
+
+                                                @if(!empty($company->linkedin_url))
+                                                    <a href="{{$company->linkedin_url}}" target="_blank">
+                                                        <i class="fa fa-linkedin"></i>
+                                                    </a> 
+                                                @else
+                                                    <i class="fa fa-linkedin noclrfa"></i>
+                                                @endif   
+
+                                                @if(!empty($company->insta_url))
+                                                    <a href="{{$company->insta_url}}" target="_blank">
+                                                    <i class="fa fa-instagram "></i>
+                                                    </a>
+                                                @else
+                                                    <i class="fa fa-instagram noclrfa"></i> 
+                                                @endif
+
+                                                @if(!empty($company->fb_url))
+                                                    <a href="{{$company->fb_url}}" target="_blank" ><i class="fa fa-facebook"></i></a>
+                                                @else 
+                                                    <i class="fa fa-facebook noclrfa"></i>
+                                                @endif
+
+                                                @if(!empty($company->twitter_url))
+                                                    <a href="{{$company->twitter_url}}" target="_blank">
+                                                        <i class="fa fa-twitter"></i>
+                                                    </a> 
+                                                @else
+                                                    <i class="fa fa-twitter noclrfa"></i>
+                                                @endif
+                                            </div>
+                                        </h5>
                                     </div>
                                 </div>
 
@@ -234,24 +262,15 @@
                     
                     $.each(response.data, function (i, data) 
                     { 
-                        if(data['description'].length > 30) 
-                        {
-                            str = data['description'].substring(0,30); 
-                        }
-                        else
-                        {
-                            str = data['description']; 
-                        }
-
                         $('.galaryappendcontent')
-                        .append(`  <div class="col-md-4 col-xl-3">
-                                    <div class="card zoom opacity savecompanyname" onClick="viewdata(`+data["id"]+`)" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        .append(`<div class="col-md-4 col-xl-3">
+                                    <div class="card zoom opacity savecompanyname" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                         <div class="text-center"><div class="box"> 
                                             <img class="card-img-top imgclass" src=`+data['image_exact_url']+`>
                                         </div>
                                         <div class="card-body"> 
                                             <h5 class="card-title text-start fw-bolder">`+data['title']+`</h5> 
-                                            <p class="card-text text-start">`+str+`</p> 
+                                            <p class="card-text text-start">`+data['description']+`</p> 
                                         </div> 
                                     </div>
                                 </div>`);
@@ -263,55 +282,6 @@
             
             });
 
-        var socialvalues='';
-            if('<?php echo $company->fb_url; ?>' != '')
-            {
-                socialvalues+='<a href="{{$company->fb_url}}" target="_blank" ><i class="fa fa-facebook"></i></a>'; 
-
-            }
-            else
-            { 
-                socialvalues+='<i class="fa fa-facebook noclrfa"></i>'; 
-
-            }   
-            
-            
-            if('<?php echo $company->twitter_url; ?>' != '')
-            {
-                socialvalues+='<a href="{{$company->twitter_url}}"><i href="{{$company->fb_url}}" target="_blank" class="fa fa-twitter"></i></a>'; 
-
-            }
-            else
-            { 
-                socialvalues+='<i class="fa fa-twitter noclrfa"></i>'; 
-
-            }     
-
-
-            if('<?php echo $company->linkedin_url; ?>' != '')
-            {
-                socialvalues+='<a href="{{$company->linkedin_url}}"><i href="{{$company->fb_url}}" target="_blank" class="fa fa-linkedin"></i></a>'; 
-
-            }
-            else
-            { 
-                socialvalues+='<i class="fa fa-linkedin noclrfa"></i>'; 
-
-            }      
-            
-            
-            if('<?php echo $company->insta_url; ?>' != '')
-            {
-                socialvalues+='<a href="{{$company->insta_url}}"><i href="{{$company->fb_url}}" target="_blank" class="fa fa-instagram "></i></a>'; 
-
-            }       
-            else
-            {
-                socialvalues+='<i class="fa fa-instagram noclrfa"></i>'; 
-
-            }
-
-        $('.socialmediaappend').html(socialvalues);
         $('.new_post').addClass('bg-lit-green-col');
 
         $('input[name=choose_job_post]').on('click', function() 

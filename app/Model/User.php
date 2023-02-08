@@ -73,7 +73,7 @@ class User extends Authenticatable
 
     public function sendPasswordResetNotification($token)
     {
-        return Mail::send(new UserResetPasswordMailable($token, $this->email, $this->name));
+        return Mail::send(new UserResetPasswordMailable($token, $this->email, $this->getName()));
     }
 
     public function userSummary()
@@ -430,7 +430,7 @@ class User extends Authenticatable
     {
         $cover_image = (string) $this->cover_image;
         $cover_image = (!empty($cover_image)) ? $cover_image : 'no-no-image.gif';
-        return \ImgUploader::print_image("user_images/$cover_image", $width, $height, '/admin_assets/no-cover.jpg', $this->name);
+        return \ImgUploader::print_image("user_images/$cover_image", $width, $height, '/admin_assets/no-cover.jpg', $this->getName());
     }
 
 	
