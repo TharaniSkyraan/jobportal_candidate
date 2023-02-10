@@ -67,7 +67,7 @@ trait UserSkillTrait
         }else{
             $userSkill->end_date = NULL;
         }
-        $userSkill->is_currently_working = $request->input('is_currently_working')??'no';
+        $userSkill->is_currently_working = $request->input('is_currently_working')??NULL;
         $userSkill->save();
         
        // $returnHTML = view('user.forms.skill.skill_thanks')->render();
@@ -117,7 +117,7 @@ trait UserSkillTrait
         }else{
             $userSkill->end_date = NULL;
         }
-        $userSkill->is_currently_working = $request->input('is_currently_working')??'no';
+        $userSkill->is_currently_working = $request->input('is_currently_working')??NULL;
         $userSkill->update();
         /*         * ************************************ */
 

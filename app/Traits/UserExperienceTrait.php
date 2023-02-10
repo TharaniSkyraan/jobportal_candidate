@@ -152,7 +152,7 @@ trait UserExperienceTrait
         }else{
             $userExperience->date_end = NULL;
         }
-        $userExperience->is_currently_working = $request->input('is_currently_working')??'0';
+        $userExperience->is_currently_working = $request->input('is_currently_working')??NULL;
         $userExperience->description = $request->input('description');
         $userExperience->used_tools = $request->input('used_tools');
         return $userExperience;

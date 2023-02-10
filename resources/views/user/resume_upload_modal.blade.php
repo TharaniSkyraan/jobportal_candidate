@@ -4,19 +4,17 @@
 
     .file-drop-area {
         position: relative;
-        display: flex;
         align-items: center;
         /* width: 450px; */
         max-width: 100%;
-        padding: 25px;
-        border: 1px solid black;
+        border: 3px solid #ccc;
         border-radius: 3px;
         transition: 0.2s;
         height: 190px;
         white-space: pre-line;
         text-align: center;
         place-content: center;
-        border: dotted #d1d1d1;
+        border-style: dashed;
     }
     .file-drop-area.is-active {
       background-color: rgba(255, 255, 255, 0.05);
@@ -76,10 +74,10 @@
               {{csrf_field()}}
                {!! Form::hidden('resume_id', null, array('id'=>'resume_id')) !!}
               <div class="resume">
-                <div class="file-drop-area m-4">
-                    <div class="icon"><i class="fas fa-cloud-upload-alt fa-3x"></i>
-                    <span class="file-msg">Select or drag and drop document here</span></div>
-                    <input class="file-input" type="file" name="file" id="file" accept=".doc,.docx,.pdf,.rtf">
+                <div class="file-drop-area m-4">                   
+                      <img src="{{asset('images/upload_img.png')}}" width="20%" class="p-1 file_upload file_upld"> 
+                      <div class="file_upld">Drop your Resume here or Browse</div>
+                      <input class="file-input" type="file" name="file" id="file" accept=".doc,.docx,.pdf,.rtf">
                 </div>
                 <div class="text-center">
                   <span class="help-block form-text text-danger err_msg file-error"></span>
@@ -111,8 +109,9 @@
 
 
 <script>
+
     var $fileInput = $('.file-input');
-    var $droparea = $('.file-drop-area');
+    var $droparea = $('.file_upld');
 
     // highlight drag area
     $fileInput.on('dragenter focus click', function() {
@@ -128,12 +127,13 @@
     $fileInput.on('change', function() {
         var filesCount = $(this)[0].files.length;
         var $textContainer = $(this).prev();
-
+        $(".file_upload").attr('src', '{{asset("images/file_img.png")}}');
         if (filesCount === 1) {
             // if single file is selected, show file name
             var fileName = $(this).val().split('\\').pop();
             $textContainer.text(fileName);
         } else {
+            $(".file_upload").attr('src', '{{asset("images/upload_img.png")}}');
             // otherwise show number of files
             $textContainer.text('No files selected');
         }

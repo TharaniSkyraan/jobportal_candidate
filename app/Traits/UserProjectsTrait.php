@@ -109,7 +109,7 @@ trait UserProjectsTrait
         }else{
             $userProject->date_end = NULL;
         }
-        $userProject->is_on_going = $request->input('is_on_going');
+        $userProject->is_on_going = $request->input('is_on_going')??NULL;
         $userProject->noof_team_member = $request->input('noof_team_member');
         $userProject->work_as_team = $request->input('work_as_team');
         $userProject->project_location = $request->input('project_location');

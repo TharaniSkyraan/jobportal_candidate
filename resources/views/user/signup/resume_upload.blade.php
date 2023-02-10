@@ -35,7 +35,7 @@
                         <div class="container">
                             <div class="loadflebrd">
                                 <div class="box text-center">
-                                    <img src="{{asset('images/upload_img.png')}}" width="35%" class="file_upld"> 
+                                    <img src="{{asset('images/upload_img.png')}}" width="35%" class="p-1 file_upld file_upload"> 
                                     <div  class="cursor-pointer file_upld">Drop your Resume here or Browse</div>     
                                     <input type="file" class="d-none" id="file" name="file" accept=".doc,.docx,.pdf,.rtf">
                                 </div>   
@@ -66,5 +66,8 @@
 </section>
 @endsection
 @section('custom_bottom_scripts')
+<script>
+var baseurl = '{{ url("/") }}';
+</script>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/user@ie3e2!/js/formwizard/usiup@4h6i1.js') }}"></script>
 @endsection

@@ -223,14 +223,14 @@
       // tag added callback
       function onAddTag(e){
         clrErr();
-        console.log("onAddTag: ", e.detail);
-        console.log("original input value: ", inputElm.value)
+        // console.log("onAddTag: ", e.detail);
+        // console.log("original input value: ", inputElm.value)
         tagify.off('add', onAddTag) // exmaple of removing a custom Tagify event
       }
 
       // tag remvoed callback
       function onRemoveTag(e){
-        console.log("onRemoveTag:", e.detail, "tagify instance value:", tagify.value)
+        // console.log("onRemoveTag:", e.detail, "tagify instance value:", tagify.value)
       }
 
       // on character(s) added/removed (user is typing/deleting)
@@ -244,7 +244,7 @@
             .then(function(result){
             
                 $.ajax({
-                    url     : baseurl+"/skills_data",
+                    url     : baseurl+"/skillsdata",
                     type    : 'GET',
                     data    : {"key": e.detail.value},
                     dataType: 'json',
@@ -253,7 +253,7 @@
                       // return false;
                         // replace tagify "whitelist" array values with new values
                         // and add back the ones already choses as Tagsx`
-                        tagify.settings.whitelist.push(...result.skills, ...tagify.value)
+                        tagify.settings.whitelist.push(...result, ...tagify.value)
 
                         // render the suggestions dropdown.
                         tagify.loading(false).dropdown.show.call(tagify, e.detail.value);
@@ -265,26 +265,26 @@
       }
 
       function onTagEdit(e){
-        console.log("onTagEdit: ", e.detail);
+        // console.log("onTagEdit: ", e.detail);
       }
 
       // invalid tag added callback
       function onInvalidTag(e){
-        console.log("onInvalidTag: ", e.detail);
+        // console.log("onInvalidTag: ", e.detail);
       }
 
       // invalid tag added callback
       function onTagClick(e){
-        console.log(e.detail);
-        console.log("onTagClick: ", e.detail);
+        // console.log(e.detail);
+        // console.log("onTagClick: ", e.detail);
       }
 
       function onTagifyFocusBlur(e){
-        console.log(e.type, "event fired")
+        // console.log(e.type, "event fired")
       }
 
       function onDropdownSelect(e){
-        console.log("onDropdownSelect: ", e.detail)
+        // console.log("onDropdownSelect: ", e.detail)
       }
 
       
@@ -326,12 +326,13 @@
     $fileInput.on('change', function() {
       var filesCount = $(this)[0].files.length;
       var $textContainer = $(this).prev();
-
+      $(".file_upload").attr('src', baseurl+'/images/file_img.png');
       if (filesCount === 1) {
           // if single file is selected, show file name
           var fileName = $(this).val().split('\\').pop();
           $textContainer.text(fileName);
       } else {
+        $(".file_upload").attr('src', baseurl+'/images/upload_img.png');
           // otherwise show number of files
           $textContainer.text('No files selected');
       }

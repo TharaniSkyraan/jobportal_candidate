@@ -90,7 +90,7 @@ function submitCvs()
                         $(".progress-bar").html(percentComplete+'%');
                         if(percentComplete == 100)
                         {
-                                $('.success').html('Uploading... Please wait');
+                            $('.success').html('Uploading... Please wait');
                         }
                     }
                 }, false);

@@ -24,8 +24,7 @@
    
     /** Skills */
     Route::get('skills', 'Auth\RegisterController@Skills')->name('skills');  
-    Route::get('skills_data', 'AjaxController@
-    ')->name('get.skills.data');  
+    Route::get('skills_data', 'AjaxController@SkillData')->name('get.skills.data');  
 
     Route::post('skills', 'Auth\RegisterController@SkillSave')->name('skills-save');  
 

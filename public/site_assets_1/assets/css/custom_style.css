@@ -704,7 +704,7 @@
 }
 
 .tagsinput .tag .tag-remove{
-  border-left: 1px solid #d0d0d0 !important;
+  /* border-left: 1px solid #d0d0d0 !important; */
 }
 
 .tagsinput .tag .tag-remove:before, .tagsinput .tag .tag-remove:after{

@@ -210,37 +210,32 @@
 
                 
                 <div class="tab-pane" id="gallery" role="tabpanel" aria-labelledby="gallery-tab">
-                            <div class="galaryappendcontent row"></div>
-                    </div>
+                        <div class="galaryappendcontent row"></div>
+                </div>
 
-                    <div class="tab-pane" id="activejobs" role="tabpanel" aria-labelledby="review-tab">
-                        <div class="row">
-                       
-
-                       @if(count($company_jobs) != 0)
+                <div class="tab-pane" id="activejobs" role="tabpanel" aria-labelledby="review-tab">
+                    <div class="row">
+                        @if(count($company_jobs) != 0)
                             @foreach($company_jobs as $for)
-                                    <div class="col-md-6">
-                                        <a class="cursor-pointer text-dark" href="{{url('detail/'.$for->slug)}}">
-                                            <div class="card jobsearch p-4">
-                                                <div>
-                                                    <h2 class="fw-bolder">{{$for->title}}</h2>
-                                                    <p>{{$company->name}}</p></td>
-                                                    <table>
-                                                    <tr>
-                                                        <td><p><strong class="fw-bolder">Experience &nbsp;</strong></td><td>:&nbsp; {{$for->experience}}</p></td></tr/>
-                                                    <td><p><strong class="fw-bolder">Salary &nbsp;</strong></td><td>:&nbsp; {{$for->salary_from}}k to {{$for->salary_to}}k</p></td>
-                                                    </table>
-                                                </div>
+                                <div class="col-md-6">
+                                    <a class="cursor-pointer text-dark" target="_blank" href="{{url('detail/'.$for->slug)}}">
+                                        <div class="card jobsearch p-4">
+                                            <div>
+                                                <h2 class="fw-bolder">{{$for->title}}</h2>
+                                                <p>{{$company->name}}</p></td>
+                                                <table>
+                                                <tr>
+                                                    <td><p><strong class="fw-bolder">Experience &nbsp;</strong></td><td>:&nbsp; {{$for->experience}}</p></td></tr/>
+                                                <td><p><strong class="fw-bolder">Salary &nbsp;</strong></td><td>:&nbsp; {{$for->salary_from}}k to {{$for->salary_to}}k</p></td>
+                                                </table>
                                             </div>
-                                        </a>
-                                    </div>
+                                        </div>
+                                    </a>
+                                </div>
                             @endforeach
-                       @else
-
-                       <span class="text-center fw-bolder">No Active Jobs</span>
-
-                       @endif
-                       
+                        @else
+                            <span class="text-center fw-bolder">No Active Jobs</span>
+                        @endif                    
                     </div>
                 </div>   
             </div>    

@@ -78,7 +78,7 @@
             </div>
             
             <div class="col-md-4 col-sm-12 col-xs-12 mb-2 align-self-center">
-                {!! Form::checkbox('pursuing', 'yes', $userEducation->pursuing??null, array('class'=>'form-check-input', 'id'=>'pursuing')) !!}
+                {!! Form::checkbox('pursuing', 'yes', null, array('class'=>'form-check-input', 'id'=>'pursuing')) !!}
                 <label class="form-check-label" for="pursuing">
                 Pursuing
                 </label>
