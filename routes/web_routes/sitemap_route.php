@@ -17,3 +17,5 @@ Route::get('/sitemap_job_type_location', 'SitemapController@jobTypeLocation');
 Route::get('/sitemap_job_type_location/{id}', 'SitemapController@jobTypeLocations');
 Route::get('/sitemap_job_type_title_location', 'SitemapController@jobTypeTitleLocation');
 Route::get('/sitemap_job_type_title_location/{designation}/{id}', 'SitemapController@jobTypeTitleLocations');
+
+?>

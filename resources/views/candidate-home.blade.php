@@ -547,7 +547,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card">
-                            <img src="{{asset('images/homepg_advance.jpg')}}" class="card-img-top" alt="...">
+                            <img src="{{asset('images/homepg_advance.webp')}}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h3 class="fw-bolder">Plan your Work in advance</h3>
                                 <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
@@ -558,7 +558,7 @@
 
                     <div class="col-md-4">
                         <div class="card">
-                            <img src="{{asset('images/homepg_work.jpg')}}" class="card-img-top" alt="...">
+                            <img src="{{asset('images/homepg_work.webp')}}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h3 class="fw-bolder">Tired of Work</h3>
                                 <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
@@ -569,7 +569,7 @@
 
                     <div class="col-md-4">
                         <div class="card">
-                            <img src="{{asset('images/homepg_employee.jpg')}}" class="card-img-top" alt="...">
+                            <img src="{{asset('images/homepg_employee.webp')}}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h3 class="fw-bolder">How To face your fellow employess</h3>
                                 <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
