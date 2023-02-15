@@ -46,12 +46,19 @@ return [
             'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
         ],
+        // 's3' => [
+        //     'driver' => 's3',
+        //     'key' => 'AKIA6RJ6UWN3ZRXGJHPT',
+        //     'secret' => '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',
+        //     'region' => 'ap-south-1',
+        //     'bucket' => 'mugaam',
+        // ],
         's3' => [
             'driver' => 's3',
-            'key' => 'AKIA6RJ6UWN3ZRXGJHPT',
-            'secret' => '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',
+            'key' => 'AKIA6RJ6UWN37GNQZNFI',
+            'secret' => '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',
             'region' => 'ap-south-1',
-            'bucket' => 'mugaam',
+            'bucket' => 'development.mugaam',
         ],
     ],
 ];

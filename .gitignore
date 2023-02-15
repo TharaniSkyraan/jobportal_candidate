@@ -7,7 +7,6 @@
 /public/storage
 /storage/*.key
 /storage/app
-/config/*
 /vendor
 /.idea
 /.vscode
