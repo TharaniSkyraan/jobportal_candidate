@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use DB;
+use App\Model\CountryDetail;
 use App\Model\Country;
 use App\Model\State;
 use App\Model\City;
@@ -81,6 +82,11 @@ trait CountryStateCity
         } else {
             $city->delete();
         }
+    }
+
+    public function countrydetail()
+    {
+        return $this->belongsTo(CountryDetail::class, 'country_id', 'id');
     }
 
     public function country()

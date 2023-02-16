@@ -719,7 +719,7 @@
         }
         if(!empty($job->salary_from)&&!empty($job->salary_to)){
             $result['baseSalary']['@type'] = "MonetaryAmount";
-            $result['baseSalary']['currency'] = $job->salary_currency;
+            $result['baseSalary']['currency'] = $job->countrydetail->code??'INR';
             $result['baseSalary']['value']['@type'] = "QuantitativeValue";
             $result['baseSalary']['value']['minValue'] = $job->salary_from;
             $result['baseSalary']['value']['maxValue'] = $job->salary_to;
@@ -730,7 +730,6 @@
         
         $result = json_encode($result);
         $result = preg_replace("/\//", '', $result);
-        
     @endphp    
 </script>
 <script type="application/ld+json">
