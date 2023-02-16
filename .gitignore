@@ -1,5 +1,6 @@
  
 /bootstrap/cache
+/config/*
 /cache/*.key
 /node_modules
 /public/hot
