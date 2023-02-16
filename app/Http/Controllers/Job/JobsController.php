@@ -57,6 +57,7 @@ class JobsController extends Controller
     {
 
         $session= Session::get('ip_config');
+        $session->city = 'coimbatore';
         
         $near_job = JobSearch::select('title','location', 'company_name', DB::raw('count(`title`) as total_count'))
                             ->where('location', 'like', "%{$session->city}%")

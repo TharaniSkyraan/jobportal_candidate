@@ -682,15 +682,59 @@
     var sticky = header.offsetTop;
 
     function myFunction() {
-    $('#myHeader').show();
-    if (window.pageYOffset > sticky) {
-        header.classList.add("sticky");
-    } else {
-    $('#myHeader').hide();
-        header.classList.remove("sticky");
-    }
+        $('#myHeader').show();
+        if (window.pageYOffset > sticky) {
+            header.classList.add("sticky");
+        } else {
+        $('#myHeader').hide();
+            header.classList.remove("sticky");
+        }
     } 
-   
+
+    @php
+        $result['@context']="http://schema.org";
+        $result['@type']="JobPosting";
+        $result['title']=$job->title;
+        $result['description']=$job->description;
+        $result['datePosted'] = $job->posted_date;
+        $result['validThrough'] = $job->expiry_date;
+        $result['employmentType']='['.rtrim($jtyv, ", ").']';
+        $result['skills']=$skillarr;
+        $result['hiringOrganization']['@type']="Organization";
+        $result['hiringOrganization']['name']=$job->company->name;
+        if(!empty($job->company->profile_file_path))
+        {
+            $result['hiringOrganization']['logo']=$job->company->profile_file_path;
+        }
+        if(!empty($job->company->website_url))
+        {
+            $result['hiringOrganization']['sameAs']=$job->company->website_url;
+        }
+        if($job->experience_string != 'Fresher'){
+            $result['experienceRequirements']=$job->experience_string.' of experience in '.$job->title;
+            $result['OccupationalExperienceRequirements']=$job->experience_string.' of experience in '.$job->title;
+        }
+        if(isset($job->educationLevel->education_level)){
+            $result['educationRequirements'] = $job->educationLevel->education_level;
+        }
+        if(!empty($job->salary_from)&&!empty($job->salary_to)){
+            $result['baseSalary']['@type'] = "MonetaryAmount";
+            $result['baseSalary']['currency'] = $job->salary_currency;
+            $result['baseSalary']['value']['@type'] = "QuantitativeValue";
+            $result['baseSalary']['value']['minValue'] = $job->salary_from;
+            $result['baseSalary']['value']['maxValue'] = $job->salary_to;
+            $result['baseSalary']['value']['unitText'] = (isset($job->salaryPeriod->salary_period)?strtoupper(str_replace('ly','',$job->salaryPeriod->salary_period)):'MONTH');
+        }        
+        $result['applicantLocationRequirements']['@type'] = "Country";
+        $result['applicantLocationRequirements']['name'] = "India";
+        
+        $result = json_encode($result);
+        $result = preg_replace("/\//", '', $result);
+        
+    @endphp    
+</script>
+<script type="application/ld+json">
+@php print_r($result); @endphp
 </script>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/2e9ejr3/js/destail.e2k3eu0.js') }}"></script>
 @endsection
