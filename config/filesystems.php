@@ -51,7 +51,7 @@ return [
             'key' => 'AKIA6RJ6UWN3ZRXGJHPT',
             'secret' => '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',
             'region' => 'ap-south-1',
-            'bucket' => 'mugaam',
+            'bucket' => 'mugaam.com',
         ],
     ],
 ];
