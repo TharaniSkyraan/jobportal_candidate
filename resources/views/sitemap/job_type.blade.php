@@ -4,7 +4,7 @@
         <url>
             <loc>{{ url('/') }}/{{$type->type_slug}}-jobs</loc>
             <lastmod>{{ $type->update_at->tz('UTC')->toAtomString() }}</lastmod>
-            <changefreq>weekly</changefreq>
+            <changefreq>daily</changefreq>
             <priority>0.8</priority>
         </url>
     @endforeach

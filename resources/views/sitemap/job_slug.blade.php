@@ -4,7 +4,7 @@
         @foreach ($jobs as $job)  
             <loc>{{ url('/detail') }}/{{$job->job->slug}}</loc>
             <lastmod>{{ $job->update_at->tz('UTC')->toAtomString() }}</lastmod>
-            <changefreq>Always</changefreq>
+            <changefreq>always</changefreq>
             <priority>1.0</priority>
         @endforeach
     </url>
