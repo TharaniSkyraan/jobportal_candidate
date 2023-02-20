@@ -1,13 +1,9 @@
 <?php
 
-
-
 namespace App\Traits;
-
 use Carbon\Carbon;
 
 trait JobTrait
-
 {
 
     public function scopeNotExpire($query)
