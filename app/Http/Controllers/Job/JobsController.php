@@ -32,9 +32,6 @@ use App\Events\JobApplied;
 use Illuminate\Support\Facades\Crypt;
 use Cookie;
 
-
-
-
 class JobsController extends Controller
 {
 
