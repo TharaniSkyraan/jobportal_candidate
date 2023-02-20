@@ -90,6 +90,6 @@ class SitemapController extends Controller
     public function jobSlug()
     {
         $jobs = JobSearch::all();
-        return response()->view('sitemap.job_functional_area',compact('jobs'))->header('Content-Type', 'text/xml');
+        return response()->view('sitemap.job_slug',compact('jobs'))->header('Content-Type', 'text/xml');
     }
 }
