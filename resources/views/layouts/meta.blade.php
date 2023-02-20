@@ -4,8 +4,8 @@
     @if(!empty($seo->seo_keywords))
         <meta name="keywords" content="{{ $seo->seo_keywords }}">
         <title>{{ $seo->seo_title ?? ''}}</title>
-        <link rel="canonical" href="{{ Request::url() ?? 'https://www.mugaam.com/'}}"/>
-    @endif
+    @endif      
+    <link rel="canonical" href="{{ Request::url() ?? 'https://www.mugaam.com/'}}"/>
 @endif
 <!-- Facebook Meta Tags -->
 <!-- <meta property="og:url" content="">
