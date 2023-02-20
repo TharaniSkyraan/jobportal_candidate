@@ -120,12 +120,14 @@ class JobsController extends Controller
                 // $meta['title'] = $tt .' Jobs and Vacancies - '.date("n F Y").' | Mugaam.com';
                 // $meta['description'] = $tt .' Jobs and Vacancies - '.date("n F Y").' on Mugaam.com';
                 // $meta = (object) $meta;
-                $this->shareSeoToLayout('job_search');                
+                // $this->shareSeoToLayout('job_search');                
             }
             
         }else{
             abort(404);
         }
+        
+        $this->shareSeoToLayout('job_search',$d,$l);
 
         return view('jobs.search', compact('d','l'));
     }
