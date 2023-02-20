@@ -23,6 +23,8 @@
     @endif
 @endif
 
+<meta name="google-site-verification" content="BzvgVIU65gOXHATWh24LSGse9TnNKNm57QaGkhrmpQs"/>
+
 
 <!-- Twitter Meta Tags -->
 {{-- <meta name="twitter:card" content="">
@@ -31,3 +33,4 @@
 <meta name="twitter:title" content="">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content=""> --}}
+>>>>>>> refs/remotes/origin/main
