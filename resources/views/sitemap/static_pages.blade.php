@@ -3,7 +3,7 @@
     <url>
         <loc>{{ url('/') }}</loc>
         <lastmod>{{ Carbon\Carbon::now()->tz('UTC')->toAtomString() }}</lastmod>
-        <changefreq>weekly</changefreq>
+        <changefreq>Daily</changefreq>
         <priority>0.8</priority>
     </url>
     <url>

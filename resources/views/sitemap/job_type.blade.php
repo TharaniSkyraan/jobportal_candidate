@@ -3,7 +3,7 @@
     @foreach ($types as $type)    
         <url>
             <loc>{{ url('/') }}/{{$type->type_slug}}-jobs</loc>
-            <lastmod>{{ $type->created_at->tz('UTC')->toAtomString() }}</lastmod>
+            <lastmod>{{ $type->update_at->tz('UTC')->toAtomString() }}</lastmod>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
         </url>
