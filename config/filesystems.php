@@ -47,17 +47,11 @@ return [
             'visibility' => 'public',
         ],
         's3' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL') . '/storage',
-            'visibility' => 'public',
+            'driver' => 's3',
+            'key' => 'AKIA6RJ6UWN3ZRXGJHPT',
+            'secret' => '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',
+            'region' => 'ap-south-1',
+            'bucket' => 'mugaam.com',
         ],
-        // 's3' => [
-        //     'driver' => 's3',
-        //     'key' => 'AKIA6RJ6UWN3ZRXGJHPT',
-        //     'secret' => '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',
-        //     'region' => 'ap-south-1',
-        //     'bucket' => 'mugaam.com',
-        // ],
     ],
 ];
