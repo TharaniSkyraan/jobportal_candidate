@@ -32,9 +32,6 @@ use App\Events\JobApplied;
 use Illuminate\Support\Facades\Crypt;
 use Cookie;
 
-
-
-
 class JobsController extends Controller
 {
 
@@ -115,17 +112,14 @@ class JobsController extends Controller
 
             if(!empty($d) || !empty($l))
             {
-                // $tt = !empty($l)? ($d.' '.$l) : $d;
-                // $tt = ucwords($tt);
                 // $meta['title'] = $tt .' Jobs and Vacancies - '.date("n F Y").' | Mugaam.com';
                 // $meta['description'] = $tt .' Jobs and Vacancies - '.date("n F Y").' on Mugaam.com';
-                // $meta = (object) $meta;
-                $this->shareSeoToLayout('job_search');                
             }
             
         }else{
             abort(404);
         }
+        $this->shareSeoToLayout('job_search',$d,$l);
 
         return view('jobs.search', compact('d','l'));
     }

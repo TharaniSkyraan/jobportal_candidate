@@ -3,8 +3,8 @@
     <url>
         @foreach ($titles as $title)        
             <loc>{{ url('/') }}/{{$title->designation}}-jobs?jobtypeFGid={{$id}}</loc>
-            <lastmod>{{ $title->created_at->tz('UTC')->toAtomString() }}</lastmod>
-            <changefreq>weekly</changefreq>
+            <lastmod>{{ $title->update_at->tz('UTC')->toAtomString() }}</lastmod>
+            <changefreq>daily</changefreq>
             <priority>0.8</priority>
         @endforeach
     </url>

@@ -105,9 +105,9 @@
     </div>
 
     
-    <section id="homepage_stn">
-        <!--alert profile-->
-        <!-- <div class="alert_prnt">
+    <section id="homepage_stn">        
+        {{-- <!--alert profile-->
+        <div class="alert_prnt">
             <div class="alert pfcmpletalert alert-dismissible fade show" role="alert">
                 <div class="row">
                     <div class="col-2 wrning text-center">
@@ -119,15 +119,11 @@
                 </div>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-        </div> -->
-
+        </div>
         <!-- Button trigger modal -->
-        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
-        </button> -->
-
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Launch demo modal </button>
         <!-- Modal -->
-        <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -149,9 +145,7 @@
                     </div>
                 </div>
             </div>
-        </div> -->
-
-
+        </div> --}}
         <div class="container">
             <div class="hme_banner">
                 <div class="row">
@@ -194,7 +188,7 @@
                 </div>
 
     
-            <!-- <p class="text-center fw-bolder align-items-center justify-content-center d-flex accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseOne">Recent searches &nbsp;</p>
+            {{-- <p class="text-center fw-bolder align-items-center justify-content-center d-flex accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseOne">Recent searches &nbsp;</p>
 
 
                 <div id="collapseOne" class="mt-4" data-bs-parent="#myAccordion">
@@ -248,7 +242,7 @@
                         </div>
                     </div>
                 </div>
-                @endif -->
+                @endif --}}
 
                 <div class="content hometabcndte">
                     <ul class="nav nav-tabs" id="candsearchs" role="tablist">
