@@ -92,4 +92,10 @@ class SitemapController extends Controller
         $jobs = JobSearch::all();
         return response()->view('sitemap.job_slug',compact('jobs'))->header('Content-Type', 'text/xml');
     }
+    
+    public function staticPages()
+    {
+        return response()->view('sitemap.static_pages')->header('Content-Type', 'text/xml');
+    }
+
 }

@@ -12,7 +12,7 @@
     @endif   
     <meta name="robots" content="index, nofollow">  
     <link rel="canonical" href="{{ Request::url() ?? 'https://www.mugaam.com/'}}"/>
-    @if($seo->page_title) 
+    @if($seo->page_title=='job_serach') 
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="{{ Request::url() ?? 'https://www.mugaam.com/'}}">
     <meta property="og:type" content="">
@@ -33,4 +33,3 @@
 <meta name="twitter:title" content="">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content=""> --}}
->>>>>>> refs/remotes/origin/main

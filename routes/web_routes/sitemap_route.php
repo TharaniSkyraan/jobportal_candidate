@@ -4,6 +4,7 @@
 
 Route::get('/sitemap/link', 'SitemapController@index')->name('sitemap');
 
+Route::get('/sitemapstaticpages', 'SitemapController@staticPages');
 Route::get('/sitemapjobslug', 'SitemapController@jobSlug');
 Route::get('/sitemapjobtitle', 'SitemapController@jobTitle');
 Route::get('/sitemapjoblocation', 'SitemapController@jobLocation');

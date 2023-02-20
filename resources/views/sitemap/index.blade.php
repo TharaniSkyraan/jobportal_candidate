@@ -17,6 +17,8 @@
         <lastmod>2022-08-02T10:49:26+00:00</lastmod>
         <loc>{{url('/sitemapjobslug')}}</loc>
         <lastmod>2022-08-02T10:49:26+00:00</lastmod>
+        <loc>{{url('/sitemapstaticpages')}}</loc>
+        <lastmod>2022-08-02T10:49:26+00:00</lastmod>
     </sitemap>
 </sitemapindex>
 
