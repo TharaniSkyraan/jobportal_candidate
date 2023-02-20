@@ -238,16 +238,7 @@ class JobsController extends Controller
             }
             $wl = $job->work_locations ?? '';
             $wl = !empty($wl) ? rtrim( $job->work_locations , ", ") : '';
-            if( !empty($tt) && !empty($cpn) && !empty($wl) )
-            {
-
-                // $ttset = $tt .' - '. $cpn .' - '. $wl ;
-                // $meta['title'] = $ttset . ' | Mugaam.com';
-                // $meta['description'] = 'Job Description for '.$tt.' in'.$cpn.' in '.$wl.'. Apply Now!';
-                // $meta = (object) $meta;
-            
-                $this->shareSeoToLayout('job_detail');  
-            }
+            $this->shareSeoToLayout('job_detail',$tt,$wl,$cpn);  
 
         }
         
