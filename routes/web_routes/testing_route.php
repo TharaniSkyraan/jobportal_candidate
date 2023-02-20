@@ -29,3 +29,4 @@ Route::get('suggestedcandidate', function(){
     $job = App\Model\JobSearch::whereActive('active')->where('expiry_date','<=', $today_date);
 });
 
+?>
