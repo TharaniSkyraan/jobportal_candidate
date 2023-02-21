@@ -159,3 +159,6 @@
         background-size: cover;
         background-position: center;
     }
+    .form-control.is-invalid{
+        background-image: unset !important;
+    }

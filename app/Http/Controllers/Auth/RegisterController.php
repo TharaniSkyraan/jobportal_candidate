@@ -361,7 +361,8 @@ class RegisterController extends Controller
     public function ResumeUpdate(Request $request)
     {
         $user = User::findOrFail(Auth::user()->id);
-        if ($request->hasFile('file')) {
+        if ($request->hasFile('file')) 
+        {
 
             $request->validate([
                 'file' => 'required|file|mimes:pdf,docx,doc,txt,rtf|max:2048',
@@ -385,7 +386,7 @@ class RegisterController extends Controller
             $user->next_process_level = 'completed';
             $user->save();
         
-            return redirect('/home');
+            return redirect('/');
 
         }
         return back();

@@ -38,6 +38,8 @@ use Jrean\UserVerification\Facades\UserVerification;
 
 use App\Http\Requests\Front\SIgnup_SigninPasswordRequest;
 
+use App\Traits\ShareToLayout;
+
 class LoginController extends Controller
 {
 
@@ -63,7 +65,7 @@ class LoginController extends Controller
 
 
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsers, ShareToLayout;
 
 
 
@@ -96,6 +98,17 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except(['logout','UserSwitchRedirect']);
         
+    }
+    
+    /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showLoginForm()
+    {
+        $this->shareSeoToLayout('candidate_login');  
+        return view('auth.login');
     }
 
     /** 
@@ -281,11 +294,11 @@ class LoginController extends Controller
         $user->session_otp = Carbon::now();
         $user->save();
             
-        $user = User::findOrFail(Session::get('id'));
-        Auth::login($user, true); 
-        UserVerification::generate($user);
-        UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
-        Auth::logout();
+        // $user = User::findOrFail(Session::get('id'));
+        // Auth::login($user, true); 
+        // UserVerification::generate($user);
+        // UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
+        // Auth::logout();
 
         return view('auth.verify_otp',compact('user'));      
 
