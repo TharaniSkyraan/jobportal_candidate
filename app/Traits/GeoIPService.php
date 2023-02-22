@@ -20,8 +20,13 @@ trait GeoIPService
             $record = $this->reader->city($ip);
             return [
                 'geoplugin_city' => $record->city->name,
-                'geoplugin_regionName' => $record->mostSpecificSubdivision->isoCode,
+                'geoplugin_regionName' => $record->mostSpecificSubdivision->name,
+                'geoplugin_regionCode' => $record->mostSpecificSubdivision->isoCode,
                 'geoplugin_countryName' => $record->country->name,
+                'geoplugin_countryCode' => $record->country->isoCode,
+                'geoplugin_postalcode' => $record->postal->code,
+                'geoplugin_latitude' => $record->location->latitude,
+                'geoplugin_longitude' => $record->location->longitude,
             ];
         } catch (AddressNotFoundException $e) {
             return null;

@@ -22,39 +22,48 @@ class Locale
     public function handle($request, Closure $next, $guard = null)
     {
 
-        $ip  = @$_SERVER['HTTP_CLIENT_IP'];
-      
-        $ip1 = $request->ip();
-        // $location = $this->getCity('183.82.250.192');
-        
-        if(Session::has('ip_config')==false){
-           
+        if(Session::has('ip_config')==false)
+        {
             $ip = $request->ip();
-            $ip_data = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=".$ip));    
-            dd($ip_data); 
-            if($ip_data && $ip_data->geoplugin_countryName != null){
-                
-                // $country = $ip_data->geoplugin_countryName;
-                // $state = $ip_data->geoplugin_regionName;
-                // $city = $ip_data->geoplugin_city;
-                $city = \App\Model\City::where('city',$ip_data->geoplugin_city)->where('is_default', '=', 1)->first();
-                $ip_data->city_id = $city->id??'';
-                $ip_data->state_id = $city->state_id??'';
-                $ip_data->country_id = $city->state->country_id??'';
-                view()->share('ip_data',$ip_data);
+            
+            $ip_data = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=".$ip??'183.82.250.192'));    
+          
+            if($ip_data == null || $ip_data->geoplugin_countryName == null)
+            {
+                $ipData = $this->getCity($ip??'183.82.250.192');
             }else{
-                $city = \App\Model\City::where('id',131618)->first();
-                $city->geoplugin_city = 'Coimbatore';
-                $city->geoplugin_regionName = 'Tamil Nadu';
-                $city->geoplugin_countryName = 'India';
-                $city->geoplugin_countryCode = 'IN';
-                view()->share('ip_data',$city);
+               
+                $ipData->geoplugin_city = $ip_data->geoplugin_city;
+                $ipData->geoplugin_regionName = $ip_data->geoplugin_regionName;
+                $ipData->geoplugin_regionCode = $ip_data->geoplugin_regionCode;
+                $ipData->geoplugin_countryName = $ip_data->geoplugin_countryName;
+                $ipData->geoplugin_countryCode = $ip_data->geoplugin_countryCode;
+                $ipData->geoplugin_postalcode = '';
+                $ipData->geoplugin_latitude = $ip_data->geoplugin_latitude;
+                $ipData->geoplugin_longitude = $ip_data->geoplugin_longitude;
+               
             }
-            session(['ip_config' => $city]);
-        }else{
+
+            if($ipData && $ipData->geoplugin_countryName != null)
+            {
+                $city = \App\Model\City::where('city',$ipData->geoplugin_city)
+                                        ->where('is_default', '=', 1)
+                                        ->first();
+                
+                $ipData->ip         = $ip;
+                $ipData->city_id    = $city->id??'';
+                $ipData->state_id   = $city->state_id??'';
+                $ipData->country_id = $city->state->country_id??'';
+
+                view()->share('ip_data',$ipData);
+                session(['ip_config' => $city]);
+            }
+
+        }else
+        {
             view()->share('ip_data',Session::get('ip_config'));
         }
-dd('testtttt');
+
         if (Session::has('locale')) {
             app()->setLocale(Session::get('locale'));
         }
