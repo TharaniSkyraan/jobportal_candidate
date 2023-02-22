@@ -27,20 +27,20 @@ class Locale
             $ip = $request->ip();
 
             $ip_data = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=".$ip??'183.82.250.192'));    
-          dd($ip_data->geoplugin_city);
+       
             if($ip_data == null || $ip_data->geoplugin_countryName == null)
             {
                 $ipData = $this->getCity($ip??'183.82.250.192');
             }else{
                
-                $ipData->geoplugin_city = $ip_data->geoplugin_city;
-                $ipData->geoplugin_regionName = $ip_data->geoplugin_regionName;
-                $ipData->geoplugin_regionCode = $ip_data->geoplugin_regionCode;
-                $ipData->geoplugin_countryName = $ip_data->geoplugin_countryName;
-                $ipData->geoplugin_countryCode = $ip_data->geoplugin_countryCode;
+                $ipData->geoplugin_city = $ip_data->geoplugin_city??'';
+                $ipData->geoplugin_regionName = $ip_data->geoplugin_regionName??'';
+                $ipData->geoplugin_regionCode = $ip_data->geoplugin_regionCode??'';
+                $ipData->geoplugin_countryName = $ip_data->geoplugin_countryName??'';
+                $ipData->geoplugin_countryCode = $ip_data->geoplugin_countryCode??'';
                 $ipData->geoplugin_postalcode = '';
-                $ipData->geoplugin_latitude = $ip_data->geoplugin_latitude;
-                $ipData->geoplugin_longitude = $ip_data->geoplugin_longitude;
+                $ipData->geoplugin_latitude = $ip_data->geoplugin_latitude??'';
+                $ipData->geoplugin_longitude = $ip_data->geoplugin_longitude??'';
                
             }
 
