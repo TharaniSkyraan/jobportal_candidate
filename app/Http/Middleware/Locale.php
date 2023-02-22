@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Traits\GeoIPService;
 use Closure, Session, View;
 use Auth;
 use Cookie;
@@ -9,6 +10,7 @@ use Cookie;
 class Locale
 {
 
+    use GeoIPService;
     /**
      * Handle an incoming request.
      *
@@ -19,7 +21,12 @@ class Locale
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        
+
+        $ip  = @$_SERVER['HTTP_CLIENT_IP'];
+      
+        $ip1 = $request->ip();
+        // $location = $this->getCity('183.82.250.192');
+        dd($ip.' - - '.$ip1);
         if(Session::has('ip_config')==false){
             $client  = @$_SERVER['HTTP_CLIENT_IP'];
             $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
