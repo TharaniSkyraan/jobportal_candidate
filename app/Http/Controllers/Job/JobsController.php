@@ -54,17 +54,16 @@ class JobsController extends Controller
     {
 
         $session= Session::get('ip_config');
-        $session->city = 'coimbatore';
-        
+
         $near_job = JobSearch::select('title','location', 'company_name', DB::raw('count(`title`) as total_count'))
-                            ->where('location', 'like', "%{$session->city}%")
+                            ->where('location', 'like', "%{$session['city']}%")
                             ->groupBy('title','location', 'company_name')
                             ->orderBy('total_count','desc')
                             ->limit(3)
                             ->get();
 
         $recent_job = JobSearch::select('title', 'company_name', 'salary_string', 'experience_string', 'location', 'slug')
-                                ->where('location', 'like', "%{$session->city}%")
+                                ->where('location', 'like', "%{$session['city']}%")
                                 ->orderBy('created_at','asc')
                                 ->limit(3)
                                 ->get();
