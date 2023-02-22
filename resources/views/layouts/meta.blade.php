@@ -10,7 +10,6 @@
     @if(!empty($seo->seo_keywords))
     <meta name="keywords" content="{{ $seo->seo_keywords }}">
     @endif   
-    <meta name="robots" content="index, nofollow">  
     <link rel="canonical" href="{{ Request::url() ?? 'https://www.mugaam.com/'}}"/>
     @if($seo->page_title=='job_serach') 
     <!-- Facebook Meta Tags -->
@@ -22,8 +21,8 @@
     <meta property="og:locale" content="en_US"/> 
     @endif
 @endif
-
-<meta name="google-site-verification" content="BzvgVIU65gOXHATWh24LSGse9TnNKNm57QaGkhrmpQs"/>
+    <meta name="robots" content="index, nofollow">  
+    <meta name="google-site-verification" content="BzvgVIU65gOXHATWh24LSGse9TnNKNm57QaGkhrmpQs"/>
 
 
 <!-- Twitter Meta Tags -->
