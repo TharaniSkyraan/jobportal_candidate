@@ -26,7 +26,7 @@ class Locale
       
         $ip1 = $request->ip();
         // $location = $this->getCity('183.82.250.192');
-        dd($ip.' - - '.$ip1);
+        
         if(Session::has('ip_config')==false){
             dd('test');
             $client  = @$_SERVER['HTTP_CLIENT_IP'];
@@ -63,7 +63,7 @@ class Locale
         }else{
             view()->share('ip_data',Session::get('ip_config'));
         }
-
+dd('testtttt');
         if (Session::has('locale')) {
             app()->setLocale(Session::get('locale'));
         }
