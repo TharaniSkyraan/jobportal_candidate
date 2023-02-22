@@ -390,7 +390,7 @@
                     <div class="row">
                         <div class="col-md-6 col-6">
                             <h2 class="fw-bolder">Jobs near you</h2>
-                            <h2 class="fw-bolder">{{$ip_data->city??''}}</h2>
+                            <h2 class="fw-bolder">{{$ip_data['city']??''}}</h2>
                         </div>
                         <div class="col-md-6 col-6 text-end align-self-end">
                             <i id="passbtn" class="far fa-arrow-alt-circle-right cursor-pointer"></i>
@@ -581,7 +581,7 @@
 <script type="text/javascript">   
 
     $("#passbtn").click(function(){
-        var data ="{{$ip_data->city??''}}";
+        var data ="{{$ip_data['city']??''}}";
     search('',data);
     });
 
@@ -593,7 +593,7 @@
 
     $(".jobsearch").click(function(){
 
-        var location ="{{$ip_data->city??''}}";
+        var location ="{{$ip_data['city']??''}}";
 
         $div = $(this).parent("div");
 

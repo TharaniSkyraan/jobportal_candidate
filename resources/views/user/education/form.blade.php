@@ -27,8 +27,8 @@
             <small class="help-block form-text text-muted text-danger err_msg institution-error" id="err_institution"></small>  
         </div>
         @php
-            $country_id = (!empty($userEducation->country_id))?$userEducation->country_id:$ip_data->country_id;
-            //$country = (!empty($userEducation->country_id))?$userEducation->getCountry('country'):$ip_data->geoplugin_countryName;
+            $country_id = (!empty($userEducation->country_id))?$userEducation->country_id:$ip_data['country_id'];
+            //$country = (!empty($userEducation->country_id))?$userEducation->getCountry('country'):$ip_data['geoplugin_countryName'];
             $country = \App\Model\Country::where('country_id',$country_id)->pluck('country')->first();
         @endphp
 

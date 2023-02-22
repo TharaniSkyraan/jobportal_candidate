@@ -59,8 +59,8 @@
             
             <div class="row">
                 @php
-                    $country_id = (!empty($userProject->country_id)?$userProject->country_id:$ip_data->country_id);
-                    $country = (!empty($userProject->country_id)?$userProject->getCountry('country'):$ip_data->geoplugin_countryName);
+                    $country_id = (!empty($userProject->country_id)?$userProject->country_id:$ip_data['country_id']);
+                    $country = (!empty($userProject->country_id)?$userProject->getCountry('country'):$ip_data['geoplugin_countryName']);
                 @endphp
 
                 <div class="mb-2">

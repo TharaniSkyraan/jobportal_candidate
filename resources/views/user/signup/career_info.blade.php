@@ -11,7 +11,7 @@
 @section('content')
 
 @php
-    $country_id = (!empty($user->country_id))?$user->country_id:$ip_data->country_id;
+    $country_id = (!empty($user->country_id))?$user->country_id:$ip_data['country_id'];
     $country = \App\Model\Country::where('country_id',$country_id)->pluck('country')->first();
 @endphp
 <section id="cndidate_wzrd">

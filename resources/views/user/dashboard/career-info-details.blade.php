@@ -25,7 +25,7 @@
                         $noticePeriod = app\Helpers\DataArrayHelper::langNoticePeriodsArray();
                         $user = Auth::user();
                         $countries = app\Helpers\DataArrayHelper::CountriesArray();
-                        $country_id = (!empty($user->country_id))?$user->country_id:$ip_data->country_id;
+                        $country_id = (!empty($user->country_id))?$user->country_id:$ip_data['country_id'];
                         $country = \App\Model\Country::where('country_id',$country_id)->pluck('country')->first();
                     @endphp
                     <div class="card mt-5">                        

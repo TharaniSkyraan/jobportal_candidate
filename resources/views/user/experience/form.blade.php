@@ -25,8 +25,8 @@
             <small class="help-block form-text text-muted text-danger err_msg company-error" id="err_company"></small> 
         </div>
         @php
-            $country_id = (!empty($userExperience->country_id))?$userExperience->country_id:$ip_data->country_id;
-            //$country = (!empty($userExperience->country_id))?$userExperience->getCountry('country'):$ip_data->geoplugin_countryName;
+            $country_id = (!empty($userExperience->country_id))?$userExperience->country_id:$ip_data['country_id'];
+            //$country = (!empty($userExperience->country_id))?$userExperience->getCountry('country'):$ip_data['geoplugin_countryName'];
             $country = \App\Model\Country::where('country_id',$country_id)->pluck('country')->first();
         @endphp
 
