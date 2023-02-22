@@ -57,6 +57,10 @@ class Locale
                 $ipData['state_id']   = $city->state_id??'';
                 $ipData['country_id'] = $city->state->country_id??'';
 
+                $ipData['city']       = $city->city??'';
+                $ipData['state']      = $city->state->state??'';
+                $ipData['country']    = $city->country->country??'';
+                
                 view()->share('ip_data',$ipData);
                 session(['ip_config' => $ipData]);
             }
