@@ -28,6 +28,7 @@ class Locale
         // $location = $this->getCity('183.82.250.192');
         dd($ip.' - - '.$ip1);
         if(Session::has('ip_config')==false){
+            dd('test');
             $client  = @$_SERVER['HTTP_CLIENT_IP'];
             $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
             $remote  = @$_SERVER['REMOTE_ADDR'];
