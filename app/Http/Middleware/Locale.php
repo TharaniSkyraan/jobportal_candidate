@@ -32,31 +32,33 @@ class Locale
             {
                 $ipData = $this->getCity($ip??'183.82.250.192');
             }else{
-               
-                $ipData->geoplugin_city = $ip_data->geoplugin_city??'';
-                $ipData->geoplugin_regionName = $ip_data->geoplugin_regionName??'';
-                $ipData->geoplugin_regionCode = $ip_data->geoplugin_regionCode??'';
-                $ipData->geoplugin_countryName = $ip_data->geoplugin_countryName??'';
-                $ipData->geoplugin_countryCode = $ip_data->geoplugin_countryCode??'';
-                $ipData->geoplugin_postalcode = '';
-                $ipData->geoplugin_latitude = $ip_data->geoplugin_latitude??'';
-                $ipData->geoplugin_longitude = $ip_data->geoplugin_longitude??'';
+              
+                $ipData = array(
+                    'geoplugin_city' => $ip_data->geoplugin_city??'',
+                    'geoplugin_regionName' => $ip_data->geoplugin_regionName??'',
+                    'geoplugin_regionCode' => $ip_data->geoplugin_regionCode??'',
+                    'geoplugin_countryName' => $ip_data->geoplugin_countryName??'',
+                    'geoplugin_countryCode' => $ip_data->geoplugin_countryCode??'',
+                    'geoplugin_postalcode' => '',
+                    'geoplugin_latitude' => $ip_data->geoplugin_latitude??'',
+                    'geoplugin_longitude' => $ip_data->geoplugin_longitude??''
+                );
                
             }
 
-            if($ipData && $ipData->geoplugin_countryName != null)
+            if($ipData && $ipData['geoplugin_countryName'] != null)
             {
-                $city = \App\Model\City::where('city',$ipData->geoplugin_city)
+                $city = \App\Model\City::where('city',$ipData['geoplugin_city'])
                                         ->where('is_default', '=', 1)
                                         ->first();
                 
-                $ipData->ip         = $ip;
-                $ipData->city_id    = $city->id??'';
-                $ipData->state_id   = $city->state_id??'';
-                $ipData->country_id = $city->state->country_id??'';
+                $ipData['ip']         = $ip;
+                $ipData['city_id']    = $city->id??'';
+                $ipData['state_id']   = $city->state_id??'';
+                $ipData['country_id'] = $city->state->country_id??'';
 
                 view()->share('ip_data',$ipData);
-                session(['ip_config' => $city]);
+                session(['ip_config' => $ipData]);
             }
 
         }else
