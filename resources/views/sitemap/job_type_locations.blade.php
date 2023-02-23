@@ -3,7 +3,7 @@
     <url>
         @foreach ($locations as $location)        
             <loc>{{ url('/') }}/jobs-in-{{$location->city_slug}}?jobtypeFGid={{$id}}</loc>
-            <lastmod>{{ $location->update_at->tz('UTC')->toAtomString() }}</lastmod>
+            <lastmod>{{ $location->created_at->tz('UTC')->toAtomString() }}</lastmod>
             <changefreq>daily</changefreq>
             <priority>0.8</priority>
         @endforeach
