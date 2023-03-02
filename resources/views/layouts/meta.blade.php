@@ -23,7 +23,44 @@
 @endif
     <meta name="robots" content="index, nofollow">  
     <meta name="google-site-verification" content="BzvgVIU65gOXHATWh24LSGse9TnNKNm57QaGkhrmpQs"/>
-
+@if($seo->page_title=='job_detail') 
+    @php
+        $result['@context']="http://schema.org/";
+        $result['@type']="JobPosting";
+        $result['title']=$job->title;
+        $result['description']=$job->description;
+        $result['datePosted'] = $job->posted_date;
+        $result['validThrough'] = $job->expiry_date;
+        $result['employmentType']='['.rtrim($jtyv, ", ").']';
+        $result['skills']=$skillarr;
+        $result['hiringOrganization']['@type']="Organization";
+        $result['hiringOrganization']['name']=$job->company->name;
+        if(!empty($job->company->profile_file_path))
+        {
+            $result['hiringOrganization']['logo']=$job->company->profile_file_path;
+        }
+        if(!empty($job->company->website_url))
+        {
+            $result['hiringOrganization']['sameAs']=$job->company->website_url;
+        }
+        $result['jobLocationType'] = "TELECOMMUTE";
+        $result['applicantLocationRequirements']['@type'] = "Country";
+        $result['applicantLocationRequirements']['name'] = "India";
+        if(!empty($job->salary_from)&&!empty($job->salary_to)){
+            $result['baseSalary']['@type'] = "MonetaryAmount";
+            $result['baseSalary']['currency'] = $job->countrydetail->code??'INR';
+            $result['baseSalary']['value']['@type'] = "QuantitativeValue";
+            $result['baseSalary']['value']['minValue'] = $job->salary_from;
+            $result['baseSalary']['value']['maxValue'] = $job->salary_to;
+            $result['baseSalary']['value']['unitText'] = (isset($job->salaryPeriod->salary_period)?strtoupper(str_replace('ly','',$job->salaryPeriod->salary_period)):'MONTH');
+        }       
+        
+        $result = json_encode($result);
+    @endphp    
+    <script type="application/ld+json">
+    @php print_r($result); @endphp
+    </script>
+@endif
 
 <!-- Twitter Meta Tags -->
 {{-- <meta name="twitter:card" content="">
