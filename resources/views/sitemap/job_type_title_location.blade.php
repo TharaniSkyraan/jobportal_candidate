@@ -2,12 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     @foreach ($titles as $title) 
         @foreach ($types as $type)  
-        <url> 
+        <sitemap> 
             <loc>{{ route('sitemapjobtypetitlelocation', [$title->designation,$type->id]) }}</loc>
             <lastmod>{{ $type->created_at->tz('UTC')->toAtomString() }}</lastmod>
-            <changefreq>daily</changefreq>
-            <priority>0.8</priority>
-        </url>
+        </sitemap>
         @endforeach
     @endforeach
 </urlset>
