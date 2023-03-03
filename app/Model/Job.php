@@ -23,7 +23,7 @@ class Job extends Model
     protected $guarded = ['id'];
     // protected $dateFormat = 'U';
     protected $dates = ['created_at', 'updated_at', 'expiry_date', 'posted_date'];
-    protected $appends = ['experience_string','salary_string','work_locations','benefits','supplementals','shortlistedcount'];
+    protected $appends = ['designation','experience_string','salary_string','work_locations','benefits','supplementals','shortlistedcount'];
     protected $fillable = [
 
         'company_id', 'employer_name', 'jkey', 'employer_role_id', 'start_date', 'is_active', 'expiry_date'
@@ -539,5 +539,18 @@ class Job extends Model
         return Arr::get($this->original, $key, $default);
     }
     
+    public function getDesignationAttribute()
+    {       
+        $designation = strtolower(preg_replace('/[!\/\\\\|\$\%\^\&\*\'\{\}\[\(\)\_\-\<\>\@\,\~\`\;\" "]+/', ' ', $this->title));
+        // Special Character to String
+        $designation = preg_replace('/[#]+/', ' sharp ', $designation);
+        $designation = preg_replace('/[+]{2,}+/', ' plus plus ', $designation);
+        $designation = preg_replace('/[+]+/', ' plus ', $designation);
+        $designation = preg_replace('/[.]+/', ' dot ', $designation);  
+
+        $designation = str_replace(" ", "-", $designation);
+
+         return $designation;
+    }
 
 }

@@ -2,21 +2,24 @@
 
 //sitemap for website inactive status
 
-Route::get('/sitemap/link', 'SitemapController@index')->name('sitemap');
+Route::get('/sitemap/link.xml', 'SitemapController@index')->name('sitemap');
 
-Route::get('/sitemapstaticpages', 'SitemapController@staticPages');
-Route::get('/sitemapjobslug', 'SitemapController@jobSlug');
-Route::get('/sitemapjobtitle', 'SitemapController@jobTitle');
-Route::get('/sitemapjoblocation', 'SitemapController@jobLocation');
-Route::get('/sitemapjobtitlelocation', 'SitemapController@jobTitleLocation');
-Route::get('/sitemapjobtitlelocation/{id}', 'SitemapController@jobTitleLocations');
-
-Route::get('/sitemapjobtype', 'SitemapController@jobType');
-Route::get('/sitemapjobtypetitle', 'SitemapController@jobTypeTitle');
-Route::get('/sitemapjobtypetitle/{id}', 'SitemapController@jobTypeTitles');
-Route::get('/sitemapjobtypelocation', 'SitemapController@jobTypeLocation');
-Route::get('/sitemapjobtypelocation/{id}', 'SitemapController@jobTypeLocations');
-Route::get('/sitemapjobtypetitlelocation', 'SitemapController@jobTypeTitleLocation');
-Route::get('/sitemapjobtypetitlelocation/{designation}/{id}', 'SitemapController@jobTypeTitleLocations');
+Route::get('/sitemapstaticpages.xml', 'SitemapController@staticPages');
+Route::get('/sitemapjobslug.xml', 'SitemapController@jobSlug');
+Route::get('/sitemapjobtitle.xml', 'SitemapController@jobTitle');
+Route::get('/sitemapjoblocation.xml', 'SitemapController@jobLocation');
+Route::get('/sitemapjobtitlelocation.xml', 'SitemapController@jobTitleLocation');
+// dynamic
+Route::get('/sitemapjobtitlelocation/{id}/link.xml', 'SitemapController@jobTitleLocations')->name('sitemapjobtitlelocation');
+Route::get('/sitemapjobtype.xml', 'SitemapController@jobType');
+Route::get('/sitemapjobtypetitle.xml', 'SitemapController@jobTypeTitle');
+// dynamic
+Route::get('/sitemapjobtypetitle/{id}/link.xml', 'SitemapController@jobTypeTitles')->name('sitemapjobtypetitle');
+Route::get('/sitemapjobtypelocation.xml', 'SitemapController@jobTypeLocation');
+// dynamic
+Route::get('/sitemapjobtypelocation/{id}/link.xml', 'SitemapController@jobTypeLocations')->name('sitemapjobtypelocation');
+Route::get('/sitemapjobtypetitlelocation.xml', 'SitemapController@jobTypeTitleLocation');
+// dynamic
+Route::get('/sitemapjobtypetitlelocation/{designation}/{id}/link.xml', 'SitemapController@jobTypeTitleLocations')->name('sitemapjobtypetitlelocation');
 
 ?>
