@@ -38,6 +38,11 @@
                                 <input type="text" name="name" class="form-control" autofocus id="name" value="{{ old('name') }}" placeholder="{{__('Enter Your Name')}}" >
                                 <small id="err_name" class="text-muted err_msg text-danger"></small>
                             </div> 
+                            <div class="mb-3 rtname" style="display:none;">
+                                <label class="form-label">Phone</label>
+                                <input type="text" name="phone" class="form-control" autofocus id="phone" value="{{ old('phone') }}" placeholder="{{__('Enter Your Phone')}}" >
+                                <small id="err_phone" class="text-muted err_msg text-danger"></small>
+                            </div> 
                             <div class="mb-3 rtemail">
                                 <label class="form-label">Email Address </label>
                                 <input type="text" name="email" class="form-control required_1" autofocus id="email" value="" placeholder="{{__('Enter Email Address')}}" >

@@ -88,6 +88,7 @@ function validateLoginForm() {
         if(user_type=='new'){
           if(validateFormFields('password','Please enter your password','validPass')) errStaus=true;
           if(validateFormFields('name','Please enter name.','NameVali')) errStaus=true;
+          if(validateFormFields('name','Please enter name.','NameVali')) errStaus=true;
         }else{
           if(validateFormFields('password','Please enter your password','')) errStaus=true;
         }

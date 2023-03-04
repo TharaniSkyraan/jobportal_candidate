@@ -110,10 +110,12 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
   border-color: #d1f3fb;
 }
 @media(max-width:480px){
-
-.change_phone_number .iti--allow-dropdown{
-  margin-bottom:10px;
+  .change_phone_number .iti--allow-dropdown{
+    margin-bottom:10px;
+  }
 }
+.main-panel>.content{
+  overflow: unset !important;  
 }
 
 </style>
@@ -184,7 +186,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 										</div>
 
 										<div class="mb-4">
-                      <!-- <label for="" class="form-label fw-bolder">Phone Number</label>
+                      <label for="" class="form-label fw-bolder">Phone Number</label>
                       <div class="row align-items-center current_phone_number">
                         <div class="col-md-6 col-sm-8 col-xs-6 col-8">
                           <text class=" align-self-center">{{Auth::user()->phone ?? 'None'}}</text>
@@ -198,7 +200,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
                             @endif
                           </div>
                         </div>
-                      </div> -->
+                      </div>
 
                       <div class="row">
                         <div class="col-md-12 change_phone_number" style="display:none !important;">
