@@ -3,7 +3,7 @@
     @foreach ($titles as $title) 
         @foreach($title->jobtypes as $type)  
         <sitemap> 
-            <loc>{{ route('sitemapjobtypetitlelocation', [$title->designation,$type->id]) }}</loc>
+            <loc>{{ route('sitemapjobtypetitlelocation', [$title->designation,$type->type_id]) }}</loc>
             <lastmod>{{ $type->created_at->tz('UTC')->toAtomString() }}</lastmod>
         </sitemap>
         @endforeach

@@ -21,18 +21,18 @@ class SitemapController extends Controller
     public function index()
     {
         return response()->view('sitemap.index')->header('Content-Type', 'text/xml');
-
     }
     public function jobTitle()
     {
         $titles = Job::orderBy('created_at','DESC')->get()->unique('title');
-        if($titles->count()!=0){
+        if($titles->count()!=0)
+        {
             return response()->view('sitemap.job_title', compact('titles'))->header('Content-Type', 'text/xml');
         }
     }
     public function jobLocation()
     {
-        $cities = JobWorkLocation::pluck('city_id')->toArray();
+        $cities    = JobWorkLocation::pluck('city_id')->toArray();
         $locations = City::whereIn('id',$cities)->whereCountryId(101)->get();
         if($locations->count()!=0)
         {        
@@ -49,17 +49,17 @@ class SitemapController extends Controller
     }
     public function jobTitleLocations($designation)
     {
-        $cities = JobWorkLocation::pluck('city_id')->toArray();
+        $cities    = JobWorkLocation::pluck('city_id')->toArray();
         $locations = City::whereIn('id',$cities)->whereCountryId(101)->get();
         if($locations->count()!=0)
         { 
-        return response()->view('sitemap.job_title_locations', compact('designation','locations'))->header('Content-Type', 'text/xml');
+            return response()->view('sitemap.job_title_locations', compact('designation','locations'))->header('Content-Type', 'text/xml');
         }
     }
 
     public function jobType()
     {
-        $ids = JobType::pluck('type_id')->toArray();
+        $ids   = JobType::pluck('type_id')->toArray();
         $types = Type::whereIn('id',$ids)->get();
         if($types->count()){
             return response()->view('sitemap.job_type', compact('types'))->header('Content-Type', 'text/xml');
@@ -68,10 +68,11 @@ class SitemapController extends Controller
     
     public function jobTypeTitle()
     {
-        $ids = JobType::pluck('type_id')->toArray();
-        $types = Type::whereIn('id',$ids)->get();
+        $ids    = JobType::pluck('type_id')->toArray();
+        $types  = Type::whereIn('id',$ids)->get();
         $titles = Job::orderBy('created_at','DESC')->get()->unique('title');
-        if($titles->count()!=0){
+        if($titles->count()!=0)
+        {
             return response()->view('sitemap.job_type_title', compact('types','titles'))->header('Content-Type', 'text/xml');
         }
     }
@@ -79,16 +80,17 @@ class SitemapController extends Controller
     public function jobTypeTitles($id)
     {
         $titles = Job::orderBy('created_at','DESC')->get()->unique('title');
-        if($titles->count()!=0){
+        if($titles->count()!=0)
+        {
             return response()->view('sitemap.job_type_titles', compact('id','titles'))->header('Content-Type', 'text/xml');
         }
     }
     
     public function jobTypeLocation()
     {
-        $ids = JobType::pluck('type_id')->toArray();
-        $types = Type::whereIn('id',$ids)->get();
-        $cities = JobWorkLocation::pluck('city_id')->toArray();
+        $ids       = JobType::pluck('type_id')->toArray();
+        $types     = Type::whereIn('id',$ids)->get();
+        $cities    = JobWorkLocation::pluck('city_id')->toArray();
         $locations = City::whereIn('id',$cities)->whereCountryId(101)->get();
         if($locations->count()!=0)
         { 
@@ -98,7 +100,7 @@ class SitemapController extends Controller
     
     public function jobTypeLocations($id)
     {
-        $cities = JobWorkLocation::pluck('city_id')->toArray();
+        $cities    = JobWorkLocation::pluck('city_id')->toArray();
         $locations = City::whereIn('id',$cities)->whereCountryId(101)->get();
         if($locations->count()!=0)
         { 
@@ -108,21 +110,22 @@ class SitemapController extends Controller
     
     public function jobTypeTitleLocation()
     {
-        $ids = JobType::pluck('type_id')->toArray();
-        $types = Type::whereIn('id',$ids)->get();      
+        $ids    = JobType::pluck('type_id')->toArray();
+        $types  = Type::whereIn('id',$ids)->get();      
         $titles = Job::orderBy('created_at','DESC')->get()->unique('title');
-        if($titles->count()!=0){
+        if($titles->count() != 0)
+        {
             return response()->view('sitemap.job_type_title_location', compact('types','titles'))->header('Content-Type', 'text/xml');
         }
     }
     
     public function jobTypeTitleLocations($designation, $id)
     {
-        $cities = JobWorkLocation::pluck('city_id')->toArray();
+        $cities    = JobWorkLocation::pluck('city_id')->toArray();
         $locations = City::whereIn('id',$cities)->whereCountryId(101)->get();
         if($locations->count()!=0)
         { 
-        return response()->view('sitemap.job_type_title_locations', compact('designation', 'id','locations'))->header('Content-Type', 'text/xml');
+            return response()->view('sitemap.job_type_title_locations', compact('designation', 'id','locations'))->header('Content-Type', 'text/xml');
         }
     }
 
