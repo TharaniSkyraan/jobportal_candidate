@@ -1,30 +1,40 @@
 <?php echo '<?xml version="1.0" encoding="UTF-8"?>'; ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <sitemap>
         <loc>{{url('/sitemapstaticpages.xml')}}</loc>
-    </url>
-    <url>
+        <lastmod>{{ Carbon\Carbon::now()->tz('UTC')->toAtomString() }}</lastmod>
+    </sitemap>
+    <sitemap>
         <loc>{{url('/sitemapjobslug.xml')}}</loc>
-    </url>
-    <url>
+        <lastmod>{{ Carbon\Carbon::now()->tz('UTC')->toAtomString() }}</lastmod>
+    </sitemap>
+    <sitemap>
         <loc>{{url('/sitemapjobtitle.xml')}}</loc>
-    </url>
-    <url>
+        <lastmod>{{ Carbon\Carbon::now()->tz('UTC')->toAtomString() }}</lastmod>
+    </sitemap>
+    <sitemap>
         <loc>{{url('/sitemapjoblocation.xml')}}</loc>
-    </url>
-    <url>
+        <lastmod>{{ Carbon\Carbon::now()->tz('UTC')->toAtomString() }}</lastmod>
+    </sitemap>
+    <sitemap>
         <loc>{{url('/sitemapjobtitlelocation.xml')}}</loc>
-    </url>
-    <url>
+        <lastmod>{{ Carbon\Carbon::now()->tz('UTC')->toAtomString() }}</lastmod>
+    </sitemap>
+    <sitemap>
         <loc>{{url('/sitemapjobtype.xml')}}</loc>
-    </url>
-    <url>
+        <lastmod>{{ Carbon\Carbon::now()->tz('UTC')->toAtomString() }}</lastmod>
+    </sitemap>
+    <sitemap>
         <loc>{{url('/sitemapjobtypelocation.xml')}}</loc>
-    </url>
-    <url>
+        <lastmod>{{ Carbon\Carbon::now()->tz('UTC')->toAtomString() }}</lastmod>
+    </sitemap>
+    <sitemap>
         <loc>{{url('/sitemapjobtypetitle.xml')}}</loc>
-    </url>
-    <url>
+        <lastmod>{{ Carbon\Carbon::now()->tz('UTC')->toAtomString() }}</lastmod>
+    </sitemap>
+    <sitemap>
         <loc>{{url('/sitemapjobtypetitlelocation.xml')}}</loc>
-    </url>
-</urlset>
+        <lastmod>{{ Carbon\Carbon::now()->tz('UTC')->toAtomString() }}</lastmod> 
+    </sitemap>
+</sitemapindex>
+
