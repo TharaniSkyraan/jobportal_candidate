@@ -23,6 +23,11 @@ class SitemapController extends Controller
         return response()->view('sitemap.index')->header('Content-Type', 'text/xml');
 
     }
+    public function index1()
+    {
+        return response()->view('sitemap.index1')->header('Content-Type', 'text/xml');
+
+    }
     public function jobTitle()
     {
         $titles = Job::orderBy('created_at','DESC')->get()->unique('title');
