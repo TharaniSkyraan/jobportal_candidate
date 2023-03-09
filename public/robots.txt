@@ -1,2 +1,13 @@
+User-agent: Googlebot
+User-agent: googlebot-mobile
 User-agent: *
 Disallow:
+Disallow: /cgi-bin/
+Disallow: /admin/
+Disallow: /employer.mugaam.com/
+
+Sitemap: https://www.mugaam.com/sitemap.xml
+Sitemap: https://www.mugaam.com/sitemapjobtypetitlelocation.xml
+Sitemap: https://www.mugaam.com/sitemapjobtypetitle.xml
+Sitemap: https://www.mugaam.com/sitemapjobtypelocation.xml
+Sitemap: https://www.mugaam.com/sitemapjobtitlelocation.xml

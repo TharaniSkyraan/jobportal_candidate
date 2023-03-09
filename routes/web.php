@@ -66,7 +66,11 @@ Route::get('/clear-cache', function () {
 Route::get('/dev-cvparser','CVParserController@index');
 // Modified By Sound ************ */
 
-
+Route::get('robots.txt', function () {
+    return response(file_get_contents(public_path('robots.txt')), 200, [
+        'Content-Type' => 'text/plain'
+    ]);
+});
 /* * ******** JobController **************** */
 include_once($real_path . 'job.php');
 
