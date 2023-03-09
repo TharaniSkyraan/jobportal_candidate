@@ -24,7 +24,7 @@ class Locale
 
         if(Session::has('ip_config')==false)
         {
-            $ip = $request->ip();
+            $ip = '183.82.250.192';
 
             $ip_data = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=".$ip??'183.82.250.192'));    
        
