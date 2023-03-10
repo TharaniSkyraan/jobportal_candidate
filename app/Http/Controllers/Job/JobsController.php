@@ -246,29 +246,7 @@ class JobsController extends Controller
     
     public function ApplyJob(Request $request, $job_slug)
     {
-        $data["messaging_product"]= "whatsapp";
-        $data["to"]= "917402171681"; 
-        $data["type"]= "template";
-        $data["template"]["name"] = "hello_world";
-        $data["template"]["language"]["code"]= "en_US";
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL,"https://graph.facebook.com/v15.0/115601938103127/messages");
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS,json_encode($data));  //Post Fields
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-        $headers = [
-            'Authorization: Bearer EAALy6BVbtlMBAJ9urU8KwWVJrGP473PyHjQP912FGfaWJK1N3du1vhKk9TKZBZCcQD7t2VXPSOZBr911N5vGKqy98abVGZBTWpES7slUkRaV8ZCkOo8uQeq2lxYdsw3GSTQBWRimHb2ZCMawaqyU0XNRHRIW6yTtL0UtZCAUOEUbMZChZAwqjFGnsqMbCvGcnTHNA3LZC6ukZAwYCp7HynUYgVVPZCQH0x5CUEYZD', 
-            'Content-Type: application/json' 
-        ];
-
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-        $server_output = curl_exec ($ch);
-
-        curl_close ($ch);
-        
+     
         // print  $server_output;exit;
         $reload_page = false;
         
@@ -309,12 +287,11 @@ class JobsController extends Controller
                     //     $user->update();
                     // }
                     /*         * ******************************* */
+                    $this->Notification($jobApply->id);
                     event(new JobApplied($job, $jobApply));
                     $response = array("success" => true, "message" => "You have successfully applied for this job", "return_to" => "");
                 }
-                                
-               
-        
+                     
             }else{            
                 $response = array("success" => false, "message" => "In active user.", "return_to" => "redirect_user");
             }
@@ -377,11 +354,64 @@ class JobsController extends Controller
         $breadcrumbs= Job::where('company_id', $companies)->select('title', 'slug')->first();
         $company_jobs=$company->getOpenJobs();
 
-
-
         return view('jobs.company_view', compact('company','company_jobs', 'breadcrumbs'));
     }
 
+    public function Notification($id)
+    {
+        $job = JobApply::find($id);
+        $phone = str_replace("+","",$job->user->phone);
+
+        if(!empty($phone)){
+
+            $name = $job->user->getName();
+            $title = $job->job->title;
+            $data = [
+                "to"=>$phone,
+                "messaging_product"=>"whatsapp",
+                "type"=>"template",
+                "template"=>[
+                    "name"=>"job_applied_notification",
+                    "language"=>[
+                        "code"=>"en_US"
+                    ],
+                    "components"=>[
+                        [
+                            "type"=>"body",
+                            "parameters"=>[
+                                [
+                                    "type"=>"text",
+                                    "text"=>"*$name*"
+                                ],
+                                [
+                                    "type"=>"text",
+                                    "text"=>"*$title*"
+                                ]
+                            ]
+                        ]
+                    ]            
+                ]
+            ];
+            
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL,"https://graph.facebook.com/v15.0/108875332057674/messages");
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS,json_encode($data));  //Post Fields
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        
+            $headers = [
+                'Authorization: Bearer EAALy6BVbtlMBACz2abQ9FzLXf9fPVSxwUxOL5Md7cdYzsJ3v0QkZCTCx5DBqRB5P1kGIONvYF2rHCPZAPKE4sksJDdCN0178S9G8ZAKRK2YVO0hO4X4KYiKDLzLal1kRfak0uBoC7rp5Ek1wEmLs9DSU7WuowAFxxWRfbAF95JSrMXEttMWPCJwX9KX56g9qkMlSeabQQZDZD', 
+                'Content-Type: application/json' 
+            ];
+        
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        
+            $server_output = curl_exec ($ch);
+        
+            curl_close ($ch); 
+        }
+
+    }
 
 
 }

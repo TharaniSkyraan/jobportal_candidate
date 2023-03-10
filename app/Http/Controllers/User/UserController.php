@@ -187,50 +187,7 @@ class UserController extends Controller
         $user->verification_token = $verification_token;
         $user->session_otp = Carbon::now();
         $user->save();
-
-        $data = [
-            "to"=>"917402171681",
-            "messaging_product"=>"whatsapp",
-            "type"=>"template",
-            "template"=>[
-                "name"=>"verify_account",
-                "language"=>[
-                    "code"=>"en_US"
-                ],
-                "components"=>[
-                    [
-                        "type"=>"body",
-                        "parameters"=>[
-                            [
-                                "type"=>"text",
-                                "text"=>"User Account"
-                            ],
-                            [
-                                "type"=>"text",
-                                "text"=>$verification_token
-                            ]
-                        ]
-                    ]
-                ]            
-            ]
-        ];
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL,"https://graph.facebook.com/v15.0/108875332057674/messages");
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS,json_encode($data));  //Post Fields
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
-        $headers = [
-            'Authorization: Bearer EAALy6BVbtlMBACz2abQ9FzLXf9fPVSxwUxOL5Md7cdYzsJ3v0QkZCTCx5DBqRB5P1kGIONvYF2rHCPZAPKE4sksJDdCN0178S9G8ZAKRK2YVO0hO4X4KYiKDLzLal1kRfak0uBoC7rp5Ek1wEmLs9DSU7WuowAFxxWRfbAF95JSrMXEttMWPCJwX9KX56g9qkMlSeabQQZDZD', 
-            'Content-Type: application/json' 
-        ];
-    
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    
-        $server_output = curl_exec ($ch);
-    
-        curl_close ($ch); 
-
+        $this->Notification($request->phone,$verification_token);
         // Mail::send(new ChangePasswordRequestMailable($user));
            
         // $settings = SiteSetting::findOrFail(1272);
@@ -378,6 +335,57 @@ class UserController extends Controller
         $final_percentage = $percentage > 100 ? 100 : $percentage;
 
         return $final_percentage;
+    }
+
+    public function Notification($phone,$otp)
+    {
+        $phone =  str_replace("+","",$phone);
+        if(!empty($phone))
+        {
+            $data = [
+                "to"=>$phone,
+                "messaging_product"=>"whatsapp",
+                "type"=>"template",
+                "template"=>[
+                    "name"=>"verify_account",
+                    "language"=>[
+                        "code"=>"en_US"
+                    ],
+                    "components"=>[
+                        [
+                            "type"=>"body",
+                            "parameters"=>[
+                                [
+                                    "type"=>"text",
+                                    "text"=>"User Account"
+                                ],
+                                [
+                                    "type"=>"text",
+                                    "text"=>$otp
+                                ]
+                            ]
+                        ]
+                    ]            
+                ]
+            ];
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL,"https://graph.facebook.com/v15.0/108875332057674/messages");
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS,json_encode($data));  //Post Fields
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        
+            $headers = [
+                'Authorization: Bearer EAALy6BVbtlMBACz2abQ9FzLXf9fPVSxwUxOL5Md7cdYzsJ3v0QkZCTCx5DBqRB5P1kGIONvYF2rHCPZAPKE4sksJDdCN0178S9G8ZAKRK2YVO0hO4X4KYiKDLzLal1kRfak0uBoC7rp5Ek1wEmLs9DSU7WuowAFxxWRfbAF95JSrMXEttMWPCJwX9KX56g9qkMlSeabQQZDZD', 
+                'Content-Type: application/json' 
+            ];
+        
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        
+            $server_output = curl_exec ($ch);
+        
+            curl_close ($ch); 
+        }
+
     }
 
 }
