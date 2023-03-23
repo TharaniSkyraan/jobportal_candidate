@@ -45,10 +45,13 @@ class JobsController extends Controller
                                     }elseif($sortBy !='all'){           
                                         $q->whereApplicationStatus($sortBy);
                                     }
-                               })->orderBy('created_at','asc')->paginate(10);
-
+                               })->whereHas('job', function($q1){
+                                    $q1->whereNotNull('slug');
+                               })->orderBy('created_at','asc')
+                                 ->paginate(10);
 
         $returnHTML = view('user.jobs.applied-joblist', compact('jobs'))->render();    
+        
         return response()->json(array('success' => true, 'html' => $returnHTML));
     }
     

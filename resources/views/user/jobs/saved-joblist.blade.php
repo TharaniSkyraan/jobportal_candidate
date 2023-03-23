@@ -33,7 +33,7 @@
                 @endif
             </div>
         </div>
-        <div class="mb-3 fw-bold">{{ $job->company->name??'' }}.</div>
+        <div class="mb-3 fw-bold">{{ $job->company_name??$job->company->name }}.</div>
         <div class="row mb-3">
             <div class="col-md-3 col-sm-4 col-xs-12"><span class=""><img class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/experience.png') }}"></span><text class="">{{ $job->experience_string }}</text></div>
             <div class="col-md-5 col-sm-4 col-xs-12"><div><span class=""><img class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/salary.png') }}"></span><text class="">{{ trim($job->salary_string) ? $job->salary_string :'Not Disclosed' }}</text></div></div>

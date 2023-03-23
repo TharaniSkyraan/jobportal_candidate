@@ -32,7 +32,7 @@
             $result['employmentType']='['.rtrim($jtyv, ", ").']';
             $result['skills']=$skillarr;
             $result['hiringOrganization']['@type']="Organization";
-            $result['hiringOrganization']['name']=$job->company->name;
+            $result['hiringOrganization']['name']=$job->company_name??$job->company->name;
             if(!empty($job->company->profile_file_path))
             {
                 $result['hiringOrganization']['logo']=$job->company->profile_file_path;

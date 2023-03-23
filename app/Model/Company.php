@@ -59,31 +59,7 @@ class Company extends Authenticatable
 
     protected $dates = ['created_at', 'updated_at', 'package_start_date', 'package_end_date','date_of_birth','founded_on'];
 
-    protected $fillable = [
-
-        'CEO_name','founded_on','name', 'phone', 'email', 'date_of_birth', 'gender', 'country_id',
-        'state_id', 'city_id', 'pin_code', 'description', 'address', 'location', 'industry_id', 
-        'sub_industry_id', 'company_type', 'no_of_employees', 'password', 'slug', 'account_type_id', 'verified', 'is_active', 'token',
-        'employer_name', 'employer_role_id', 'website_url','fb_url','twitter_url','insta_url','linkedin_url','profile_file_path','profile_exact_path' 
-
-    ];
-
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-
-    public function sendPasswordResetNotification($token)
-    {
-        return Mail::send(new CompanyResetPasswordMailable($token, $this->email, $this->name));
-    }
-
-    public function printCompanyImage($width = 0, $height = 0)
-    {
-        $logo = (string)$this->logo;
-        $logo = (null!==($logo)) ? $logo : 'no-no-image.gif';
-        return \ImgUploader::print_image("company_logos/$logo", $width, $height, '/admin_assets/no-image.png', $this->name);
-    }
-
+    
     public function jobs()
     {
         return $this->hasMany(Job::class, 'company_id', 'id');
@@ -158,44 +134,6 @@ class Company extends Authenticatable
             }
 
         }
-
-    }
-
-
-
-    public function countFollowers()
-
-    {
-
-        return FavouriteCompany::where('company_slug', 'like', $this->slug)->count();
-
-    }
-
-
-
-    public function getFollowerIdsArray()
-
-    {
-
-        return FavouriteCompany::where('company_slug', 'like', $this->slug)->pluck('user_id')->toArray();
-
-    }
-
-
-
-    public function countCompanyMessages()
-
-    {
-
-        return CompanyMessage::where('company_id', '=', $this->id)->where('status', '=', 'unviewed')->where('type', '=', 'reply')->count();
-
-    }
-
-    public function countMessages($id)
-
-    {
-
-        return CompanyMessage::where('company_id', '=', $this->id)->where('seeker_id', '=', $id)->where('type', 'reply')->where('status', '=', 'unviewed')->count();
 
     }
 
@@ -350,29 +288,5 @@ class Company extends Authenticatable
         }
     }
     
-
-    public function AccountType()
-
-    {
-
-        return $this->belongsTo(AccountType::class, 'account_type_id', 'id');
-
-    }
-
-    public function employer_role()
-    {
-        return $this->belongsTo(EmployerRole::class, 'employer_role_id', 'employer_role_id');
-    }
-
-    public function getEmployerRole($field = '')
-    {
-        if (null !== $employer_role = $this->employer_role()->first()) {
-            if (!empty($field)) {
-                return $employer_role->$field;
-            } else {
-                return $employer_role;
-            }
-        }
-    }
 }
 

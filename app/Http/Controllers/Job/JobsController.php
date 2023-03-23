@@ -224,7 +224,7 @@ class JobsController extends Controller
         if(!empty($job))
         {
             $tt = $job->title ?? '';
-            $cpn = $job->company->name ?? '';
+            $cpn = $job->company_name ?? $job->company->name;
             if(!empty($cpn)){
                 $cpn = ucwords($cpn);
             }else{

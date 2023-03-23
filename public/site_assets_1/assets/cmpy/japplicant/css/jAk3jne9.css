@@ -429,3 +429,10 @@
 #lvl1tabs .nav-tabs{
   border-bottom: 0px solid #4285f491 !important;
 }
+#aboutcompany{
+    border-radius: 20px;
+}
+#page-container, #header{
+    background-color:#fff !important;
+    box-shadow:none;
+}

@@ -1,15 +1,5 @@
 @extends('layouts.app')
 @section('custom_styles')
-<style>
-    #aboutcompany{
-        border-radius: 20px;
-    }
-    #page-container, #header{
-        background-color:#fff !important;
-        box-shadow:none;
-    }
-</style>
-
 <link href="{{ asset('site_assets_1/assets/cmpy/japplicant/css/jAk3jne9.css')}}" rel="stylesheet">
 @endsection
 @section('custom_scripts')	  

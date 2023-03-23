@@ -283,7 +283,7 @@ ul{
                             <div class="row">
                                 <div class="col-md-8 col-sm-8 col-xs-12">
                                     <h2 class="fw-bolder text-green-color jt-ellip">{{ ucwords($job->title) }}</h2>
-                                    <h4 class="fw-bolder pb-2">{{ ucwords($job->company->name) }}.</h4>
+                                    <h4 class="fw-bolder pb-2">{{ ucwords($job->company_name??$job->company->name) }}.</h4>
                                 </div>
                                 <div class="col-md-4 col-sm-8 col-xs-12" style="text-align: -webkit-right;">
                                     <div class="d-flex align-items-center justify-content-end">
