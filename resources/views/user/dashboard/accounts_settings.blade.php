@@ -118,6 +118,15 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
   overflow: unset !important;  
 }
 
+.card-title{
+  background: #4285f4;
+  color:#fff;
+  border-radius: 15px 15px 0px 0px;
+}
+.acc-set{  
+  border-radius: 15px !important;
+}
+
 </style>
 
 <div class="wrapper" >
@@ -133,8 +142,8 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 			<div class="page-inner">
 				<div class="row">
 					<div class="col-md-12 col-lg-10">
-						<div class="card mb-3">
-              <div class="text-center" style="background:#f3f7fe;">
+						<div class="card mb-3 acc-set">
+              <div class="text-center card-title">
                 <h2 class="fw-bolder p-3 mb-0 border-bottom" >Accounts Settings</h2>
               </div>
 							<div class="card-body mt-2">
@@ -551,36 +560,36 @@ $('.btn-upload-image').on('click', function (ev) {
     $("#full_number").val($('.iti__selected-dial-code').html()+String($("#phone").val()).replace(/ /g, ""));
     if(validateFormFields('phone','Please enter your phone number','')) errStaus=true;
     if(errStaus == false){
-        var phone = $("#full_number").val();
-        if(phone == old_num){  
-            $("#phone").removeClass('is-valid').addClass('is-invalid');   
-            $("#err_phone").html('Given number is already Existing.');
-            return false;   
-          }else{
-              
-            $("#phone").removeClass('is-invalid');
-            $.ajax({
-                url     : '{{ route("send-request")}}',
-                type    : 'post',
-                data    : {"phone": phone, "_token": "{{ csrf_token() }}"},
-                dataType: 'json',
-                success : function (json){  
-                  console.log(json);
-                  $('.err_msg').html('');  
-		              $('#changephone').modal('show');
-
-                },
-                error: function(json){
-                      $('.err_msg').html('');   
-                      if (json.status === 422) {
-                          var resJSON = json.responseJSON;
-                          $.each(resJSON.errors, function (key, value) {     
-                            $('#err_' + key).html(value);               
-                          });
-                      }
-                  }
-            });
-        }
+      var phone = $("#full_number").val();
+      if(phone == old_num)
+      {  
+        $("#phone").removeClass('is-valid').addClass('is-invalid');   
+        $("#err_phone").html('Given number is already Existing.');
+        return false;   
+      }else
+      {
+        $("#phone").removeClass('is-invalid');
+        $.ajax({
+          url     : '{{ route("send-request")}}',
+          type    : 'post',
+          data    : {"phone": phone, "_token": "{{ csrf_token() }}"},
+          dataType: 'json',
+          success : function (json){  
+            console.log(json);
+            $('.err_msg').html('');  
+            $('#changephone').modal('show');
+          },
+          error: function(json){
+            $('.err_msg').html('');   
+            if (json.status === 422) {
+              var resJSON = json.responseJSON;
+              $.each(resJSON.errors, function (key, value) {     
+                $('#err_' + key).html(value);               
+              });
+            }
+          }
+        });
+      }
     }
   }
   

@@ -1,3 +1,14 @@
+<style>
+@media(min-width: 280px) and (max-width: 767px){
+  .sidenav-toggler{
+      display: block !important; 
+      
+  }  
+  .sidebar{
+    margin-top: 0px !important;
+  }
+}
+</style>
 @php
     $percentage_profile = App\Model\ProfilePercentage::pluck('value','key')->toArray();
     $percentage = $percentage_profile['user_basic_info'];

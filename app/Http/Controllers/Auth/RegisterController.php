@@ -177,7 +177,6 @@ class RegisterController extends Controller
         $user->save();
          
         return redirect('/career_info');
-     
      }
  
      /**
@@ -219,8 +218,10 @@ class RegisterController extends Controller
       */
  
      public function CareerInfoSave(Request $request)
-     {
+     {  
         $user = User::findOrFail(Auth::user()->id);
+        $user->phone = $request->full_number;
+        $user->is_watsapp_number = $request->is_watsapp_number;
         $user->career_title = $request->career_title;
         $user->total_experience = $request->exp_in_year.'.'.$request->exp_in_month;
         $user->expected_salary = (int) str_replace(',',"",$request->input('expected_salary'));

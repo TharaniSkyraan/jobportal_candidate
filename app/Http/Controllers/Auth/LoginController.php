@@ -294,11 +294,11 @@ class LoginController extends Controller
         $user->session_otp = Carbon::now();
         $user->save();
             
-        $user = User::findOrFail(Session::get('id'));
-        Auth::login($user, true); 
-        UserVerification::generate($user);
-        UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
-        Auth::logout();
+        // $user = User::findOrFail(Session::get('id'));
+        // Auth::login($user, true); 
+        // UserVerification::generate($user);
+        // UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
+        // Auth::logout();
 
         return view('auth.verify_otp',compact('user'));      
 
@@ -321,7 +321,7 @@ class LoginController extends Controller
         $startdate = Carbon::parse($user->session_otp);
         $enddate = Carbon::now();
 
-        if(($startdate->diffInSeconds($enddate)) > 65)  // 5 refers to 5 minutes
+        if(($startdate->diffInMinutes($enddate)) > 5)  // 5 refers to 5 minutes
         {
             return Response()->json(['success' => true, 'error'=>'OTP expired. Please try again'], 422);  
         }else
@@ -355,10 +355,10 @@ class LoginController extends Controller
 
         $user =  User::whereEmail($request->email)->first();
 
-        Auth::login($user, true); 
-        UserVerification::generate($user);
-        UserVerification::send($user, 'Account Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
-        Auth::logout();
+        // Auth::login($user, true); 
+        // UserVerification::generate($user);
+        // UserVerification::send($user, 'Account Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
+        // Auth::logout();
         
         return true;
      }

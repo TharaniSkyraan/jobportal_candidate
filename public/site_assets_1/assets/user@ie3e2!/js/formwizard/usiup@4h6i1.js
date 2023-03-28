@@ -77,10 +77,45 @@
     if(document.getElementById('country_id'))
     {
 
-      function CountryChange(){
-        $('.country_change').show();
-        $('.country_text').hide();
-      }
+     
+        var input = document.querySelector("#phone");
+        var iti = window.intlTelInput(input, {
+            separateDialCode: true,
+            formatOnDisplay: false,
+            utilsScript: "{{ asset('site_assets_1/assets/intl-tel-input/js/utils.js')}}",
+        });
+        if(!setcountry){
+            iti.setCountry("in");
+        } 
+      
+        $(document).on('keyup change', ".validMob", function() {
+            
+          var ck_phone = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/i;
+          var fieldId = $(this).attr('id');
+          var fieldVal = $(this).val();
+
+          $('#'+fieldId).removeClass('is-invalid').removeClass('is-valid');
+          // alert()
+          if(fieldVal == ''){
+            $('#'+fieldId).removeClass('is-invalid');
+            clrErr();
+          }
+          
+          if(fieldId.indexOf('phone') === -1) {  var checkEmail = false; }else{ var checkEmail = true; }
+          if(checkEmail === true){
+              if(!ck_phone.test(fieldVal)){
+                setMsg(fieldId,'Please enter a valid phone number');
+              } else {
+                $('#'+fieldId).removeClass('is-invalid').addClass('is-valid');
+                $(".err_msg").html('');
+              }
+          }
+        });
+
+        function CountryChange(){
+          $('.country_change').show();
+          $('.country_text').hide();
+        }
   
       /**
       * Search Location
@@ -130,7 +165,9 @@
         if(validateFormFields('expected_salary','Please enter expected salary','')) errStaus=true;
         if(validateFormFields('country_id','Please enter country','')) errStaus=true;
         if(validateFormFields('location','Please enter location','')) errStaus=true;
-      
+        if(validateFormFields('phone','Please enter contact number.','validMobile')) errStaus=true;
+        $("#full_number").val($('.iti__selected-dial-code').html()+String($("#phone").val()).replace(/ /g, ""));
+   
         if(employment_status!='fresher'){
           if($('#exp_in_year').val()==0&&$('#exp_in_month').val()==0){
             $('#err_total_exp').html('Please select your experience');

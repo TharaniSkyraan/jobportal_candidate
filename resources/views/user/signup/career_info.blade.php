@@ -4,12 +4,24 @@
 <link href="{{asset('css/candidate_wzrd.css')}}" rel="stylesheet">
 <link href="{{ asset('site_assets_1/assets/vendor/select2/select2.min.css') }}" rel="stylesheet">
 <link href="{{ asset('site_assets_1/assets/1a9ve2/css/userbasic.w2fr4ha2.css')}}" rel="stylesheet">
+<link href="{{ asset('site_assets_1/assets/intl-tel-input/css/intlTelInput.css')}}" rel="stylesheet">
+<script src="{{ asset('site_assets_1/assets/intl-tel-input/js/intlTelInput.js')}}" ></script>
 <!--icons fa -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 @endsection
 
 @section('content')
-
+<style>
+    .iti__flag { display: none; }
+    .iti--separate-dial-code input[type=tel] {
+        padding-left: 70px !important;
+    }
+    .mob_cp
+    {
+        padding-left: 85px;
+        padding-right: 33px
+    }
+</style>
 @php
     $country_id = (!empty($user->country_id))?$user->country_id:$ip_data['country_id'];
     $country = \App\Model\Country::where('country_id',$country_id)->pluck('country')->first();
@@ -83,8 +95,17 @@
                                 {!! Form::text('location', $user->location??null, array('class'=>'form-control-2 required typeahead', 'id'=>'location', 'placeholder'=>__('Enter your location'),' aria-label'=>'Enter your location')) !!}
                                 <small class="form-text text-muted text-danger err_msg" id="err_location"></small>
                             </div>
-                            
-
+                            <div class="mb-4">
+                                <label class="form-label">Contact Number</label>
+                                {!! Form::hidden('full_number', null, array('id'=>'full_number')) !!}
+                                {!! Form::tel('phone', $user->phone??null, array('class'=>'form-control mob_cp validMob', 'id'=>'phone', 'onkeypress'=> 'return isNumber(event)', 'minlength'=>'9', 'maxlength'=>'14', 'placeholder'=>__('Phone'))) !!}
+                                <small class="form-text text-muted text-danger err_msg" id="err_phone"></small> 
+                                {!! APFrmErrHelp::showErrors($errors, 'phone') !!}
+                            </div>
+                            <div class="form-check mb-2 is_watsapp_number">
+                                {!! Form::checkbox('is_watsapp_number', 'yes', $user->is_watsapp_number??'', array('class'=>'form-check-input', 'id'=>'is_watsapp_number')) !!}
+                                <label class="form-check-label" for="is_watsapp_number">Is this watsapp number.</label>
+                            </div>
                             <div class="row mb-4 mt-5">
                                 <div class="col-md-6 col-6">
                                     <a href="{{ route('experience')}}" class="btn p-0"><img src="{{asset('images/lefticon.png')}}"> Previous</a>
@@ -113,6 +134,8 @@
 <script>
  var expected_salary = "{{$user->expected_salary??''}}";
  var employment_status = "{{$user->employment_status??''}}";
+ var setcountry = '{{$user->phone}}';
+
 </script>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/vendor/typehead/typeahead.bundle.js') }}"></script>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/user@ie3e2!/js/formwizard/usiup@4h6i1.js') }}"></script>

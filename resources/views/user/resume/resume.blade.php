@@ -4,7 +4,20 @@
 <div class="wrapper" >
 	@include('layouts.header')
 	@include('layouts.side_navbar')
+<style>
+@media (min-width: 280px) and (max-width: 767px){
+        
+    .replace-resume{
+        margin-top:0px !important;
+    }
+}
 
+@media (max-width: 467px){
+    .replace-resume{
+        margin-top:10px !important;
+    }
+}
+</style>
 	<div class="main-panel main-panel-custom">
 		<div class="content">
 			<div class="page-inner">
@@ -15,41 +28,26 @@
 
                     <div class="card mt-5">
                         <span class="fw-bolder">Resume( <span class="fw-normal">You can keep up to 2 resumes</span> )</span>
-                        
-                        
                         <!-- resume store 1 -->
                         <div class="row mt-3 resume{{$resume1->id}}">
-                            <div class="col-md-4 mb-3">
-                                <a href="javascript:void(0);" data-aci="{{$resume1->id??''}}" class="download-resume text-dark text-decoration-underline cursor-pointer"><i class="fa fa-download"></i> Resume-1</a>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="row">
-                                            <div class="col-2 align-self-center"><i class="fa fa-info"></i></div>
-                                            <div class="col-10">
-                                                <span class="form-check form-switch">
-                                                    <input class="form-check-input" type="radio" data-value="1" name="primary" value="{{$resume1->id}}" @if($resume1->is_default==1) checked @endif>
-                                                    <span class="form-check-label primeinfo1" @if($resume1->is_default==0) style="display:none;" @endif>primary</span>                                    
-                                                </span>
-                                            </div>
-                                        </div>                                        
-                                    </div>
-                                    <div class="col-md-6 replace-resume">
-                                        <div class="row">
-                                            <div class="col-8 prime1" @if($resume1->is_default==1) style="display:none" @endif >
-                                                <span class="cursor-pointer" data-bs-toggle="modal" data-bs-target="#resume_upload_modal" onClick="Replace({{$resume1->id}});" aria-hidden="true">
-                                                    <i class="fa fa-refresh"></i>
-                                                    &nbsp;Replace
-                                                </span>
-                                            </div>
-                                            <div class="col-4 prime1" @if($resume1->is_default==1) style="display:none" @endif>
-                                                <span>
-                                                    <i class="fa fa-trash cursor-pointer" onClick="deleteResumes({{$resume1->id}});"></i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="resume-list">  
+                                <div class="d-flex mright">        
+                                    <a href="javascript:void(0);" data-aci="{{$resume1->id??''}}" class="download-resume text-dark text-decoration-underline cursor-pointer"><i class="fa fa-download"></i> Resume-1</a>
+                             
+                                    <i class="fa fa-info align-self-center mrightleft"></i>
+                                    <span class="form-check form-switch">
+                                        <input class="form-check-input" type="radio" data-value="1" name="primary" value="{{$resume1->id}}" @if($resume1->is_default==1) checked @endif>
+                                        <span class="form-check-label primeinfo1" @if($resume1->is_default==0) style="display:none;" @else style="font-size: 12px; font-weight: 900;" @endif>Primary</span>                                    
+                                    </span>                                  
+                                </div>
+                                <div class="d-flex replace-resume">
+                                    <span class="cursor-pointer prime1" data-bs-toggle="modal" data-bs-target="#resume_upload_modal" onClick="Replace({{$resume1->id}});" aria-hidden="true" @if($resume1->is_default==1) style="display:none" @endif>
+                                        <i class="fa fa-refresh"></i>
+                                        &nbsp;Replace
+                                    </span>
+                                    <span class="prime1" @if($resume1->is_default==1) style="display:none" @endif>
+                                        <i class="fa fa-trash cursor-pointer mx-4" onClick="deleteResumes({{$resume1->id}});"></i>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -57,37 +55,23 @@
                         @if($resume2!=null)
                             <!-- resume store 2 -->
                             <div class="row mt-3 resume{{$resume2->id}}">
-                                <div class="col-md-4 mb-3">
-                                    <a href="javascript:void(0);" data-aci="{{$resume2->id??''}}" class="download-resume text-dark text-decoration-underline"><i class="fa fa-download"></i> Resume-2</a>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <div class="col-2 align-self-center"><i class="fa fa-info"></i></div>
-                                                <div class="col-10">
-                                                    <span class="form-check form-switch">
-                                                        <input class="form-check-input" type="radio" data-value="2" name="primary" value="{{$resume2->id}}" @if($resume2->is_default==1) checked @endif>
-                                                         <span class="form-check-label primeinfo2" @if($resume2->is_default==0) style="display:none;" @endif>primary</span>                                                      
-                                                    </span>
-                                                </div>
-                                            </div>                                        
-                                        </div>
-                                        <div class="col-md-6 replace-resume">
-                                            <div class="row">
-                                                <div class="col-8 prime2" @if($resume2->is_default==1) style="display:none" @endif>
-                                                    <span class="cursor-pointer" data-bs-toggle="modal" data-bs-target="#resume_upload_modal" onClick="Replace({{$resume2->id}});" aria-hidden="true">
-                                                        <i class="fa fa-refresh"></i>
-                                                        &nbsp;Replace
-                                                    </span>
-                                                </div>
-                                                <div class="col-4 prime2" @if($resume2->is_default==1) style="display:none" @endif>
-                                                    <span>
-                                                        <i class="fa fa-trash cursor-pointer" onClick="deleteResumes({{$resume2->id}});"></i>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <div class="resume-list">   
+                                    <div class="d-flex mright">    
+                                        <a href="javascript:void(0);" data-aci="{{$resume2->id??''}}" class="download-resume text-dark text-decoration-underline"><i class="fa fa-download"></i> Resume-2</a>
+                                        <i class="fa fa-info align-self-center mrightleft"></i>
+                                        <span class="form-check form-switch">
+                                            <input class="form-check-input" type="radio" data-value="2" name="primary" value="{{$resume2->id}}" @if($resume2->is_default==1) checked @endif>
+                                            <span class="form-check-label primeinfo2" @if($resume2->is_default==0) style="display:none;" @else style="font-size: 12px;font-weight: 900;" @endif>Primary</span>                                                      
+                                        </span>
+                                    </div>     
+                                    <div class="replace-resume d-flex">
+                                        <span class="cursor-pointer prime2" data-bs-toggle="modal" data-bs-target="#resume_upload_modal" onClick="Replace({{$resume2->id}});" aria-hidden="true" @if($resume2->is_default==1) style="display:none" @endif>
+                                            <i class="fa fa-refresh"></i>
+                                            &nbsp;Replace
+                                        </span>
+                                        <span class="prime2" @if($resume2->is_default==1) style="display:none" @endif>
+                                            <i class="fa fa-trash cursor-pointer mx-4" onClick="deleteResumes({{$resume2->id}});"></i>
+                                        </span>
                                     </div>
                                 </div>
                             </div>                        
