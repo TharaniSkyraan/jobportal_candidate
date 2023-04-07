@@ -15,8 +15,8 @@ trait ShareToLayout
         {
             $tt = !empty($l)? ($d.' '.$l) : $d;
             $tt = ucwords($tt);
-            $seo->seo_title = $tt .' Jobs and Vacancies - '.date("n F Y").' | Mugaam.com';
-            $seo->seo_description = $tt .' Jobs and Vacancies - '.date("n F Y").' on Mugaam.com';
+            $seo->seo_title = $tt .' Jobs and Vacancies - '.date("d F Y").' | Mugaam.com';
+            $seo->seo_description = $tt .' Jobs and Vacancies - '.date("d F Y").' on Mugaam.com';
         }  
         if($page=='job_detail')
         {
