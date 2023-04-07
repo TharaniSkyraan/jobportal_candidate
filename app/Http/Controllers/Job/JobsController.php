@@ -348,7 +348,8 @@ class JobsController extends Controller
     }
 
 
-    public function companydetail($slug){
+    public function companydetail($slug)
+    {
         $companies= Company::where('slug', $slug)->pluck('id')->first();
         $company =Company::find($companies);
         $breadcrumbs= Job::where('company_id', $companies)->select('title', 'slug')->first();

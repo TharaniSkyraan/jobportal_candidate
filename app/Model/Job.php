@@ -459,7 +459,7 @@ class Job extends Model
     {
         $experience = ($this->experience == 'experienced') ? $experience = $this->min_experience .' - '.  $this->max_experience .' '. Str::plural('year', $this->max_experience) : $this->experience;
 
-        return $experience;
+        return ucwords($experience);
     }
 
     public function getSalaryStringAttribute()

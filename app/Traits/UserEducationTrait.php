@@ -56,6 +56,7 @@ trait UserEducationTrait
         $majorSubjects = DataArrayHelper::langMajorSubjectsArray();
         $countries = DataArrayHelper::CountriesArray();
         $userEducationMajorSubjectIds = array();
+        $educationTypes = DataArrayHelper::langEducationTypesArray($request->education_level_id);
 
         $user = User::find($user_id);
         $returnHTML = view('user.education.add')
@@ -65,6 +66,7 @@ trait UserEducationTrait
                 ->with('resultTypes', $resultTypes)
                 ->with('majorSubjects', $majorSubjects)
                 ->with('userEducationMajorSubjectIds', $userEducationMajorSubjectIds)
+                ->with('educationTypes', $educationTypes)
                 ->with('countries', $countries)
                 ->render();
         return response()->json(array('success' => true, 'html' => $returnHTML));
@@ -132,6 +134,8 @@ trait UserEducationTrait
         $userEducation = UserEducation::find($education_id);
         $user = User::find($user_id);
 
+        $educationTypes = DataArrayHelper::langEducationTypesArray($userEducation->education_level_id);
+
         $returnHTML = view('user.education.edit')
                         ->with('user', $user)
                         ->with('userEducation', $userEducation)
@@ -139,6 +143,7 @@ trait UserEducationTrait
                         ->with('education_level_id', $userEducation->education_level_id)
                         ->with('resultTypes', $resultTypes)
                         ->with('countries', $countries)
+                        ->with('educationTypes', $educationTypes)
                         ->render();
 
         return response()->json(array('success' => true, 'html' => $returnHTML));

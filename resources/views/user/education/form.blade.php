@@ -11,9 +11,11 @@
                 <small class="help-block form-text text-muted text-danger err_msg education_level_id-error" id="err_education_level_id"></small> 
             </div>
         </div>
-        <div class="col-md-12 education_type_div" style="display:none;">
+        <div class="col-md-12 education_type_div" @if(count($educationTypes)==0) style="display:none;" @endif>
             <label for="education_type_id" class="form-label fw-bolder">Education</label>
-            <div class="" id="education_types_dd">                    
+            <div class="">                    
+                {{-- {!! Form::select('education_type_id', [''=>__('Select Education Type')]+$educationTypes, null, array('class'=>'form-select required', 'id'=>'education_type_id')) !!} --}}
+            </div> <div class="">                    
                 {!! Form::select('education_type_id', [''=>__('Select Education Type')], null, array('class'=>'form-select required', 'id'=>'education_type_id')) !!}
             </div>
             <small class="help-block form-text text-muted text-danger err_msg education_type_id-error" id="err_education_type_id"></small> 
@@ -129,6 +131,7 @@
         <button type="button" class="btn bg-green-color" onClick="submitUserEducationForm();">Save</button>
     </div>
 <script>
+
     /**
     * Search Location
     */

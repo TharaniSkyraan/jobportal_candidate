@@ -218,12 +218,6 @@
   color: #FFC107;
   margin: 10px;
 }
-
-.sidenav-toggler{
-  display: none !important; 
-  
-}
-
 .search-button-green-bg{
   background-color: #005063;
 }
@@ -242,10 +236,6 @@
     color: #8d9498;
 }
 @media (max-width: 767px) {
-  .sidenav-toggler{
-      display: block !important; 
-      
-  }  
   .sidebar{
     margin-top: 0px !important;
   }
@@ -904,4 +894,7 @@ table{
 /**jayavel**/
 #cndidate_wzrd .btn{
   font-size: 16px;
+}
+#header .sidenav-toggler{
+  display: none;
 }

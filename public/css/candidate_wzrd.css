@@ -1,6 +1,6 @@
 /**common css**/
 #page-container{
-    background: transparent radial-gradient(closest-side at 50% 50%, #4285F4 10%, #3163B5 90%) 0% 0% no-repeat padding-box;
+    background: transparent radial-gradient(closest-side at 50% 50%, #0060ff 10%, #1750ae 90%) 0% 0% no-repeat padding-box;
 }#cndidate_wzrd .card{
     background-color:#F3F7FE;
     border-radius:15px;
@@ -11,9 +11,9 @@
     height: 100vh;
     margin: 0;
 }#cndidate_wzrd .subtbtn{
-    background: #4285F4 !important;
-    border-color: #4285F4 !important;
-    border-radius: 8px !important;
+    background: #ea4335 !important;
+    border-color: #ea4335!important;
+    border-radius: 25px !important;
 }#cndidate_wzrd .card{
     width: 85%;
   }

@@ -2127,13 +2127,16 @@ section {
     border-radius: 4px; */
     transition: 0.5s;
     color: #fff;
-    background: #4285F4;
+    background: #ea4335 !important;
+    border-color: #ea4335!important;
+    border-radius: 25px !important;
+    /* background: #4285F4; */
     /* box-shadow: 0px 5px 30px rgb(65 84 241 / 40%); */
     font-size: 16px !important;
 }
 .btn_c_s:hover{
-  background: #4285F4!important;
-  border-color: #4285F4!important;
+  /* background: #4285F4!important;
+  border-color: #4285F4!important; */
   color: #fff !important;
 }
 .btn_c_s:focus{
@@ -2401,4 +2404,17 @@ border-radius: 20px;
   #navbar .scrollto, #navbar .mobile_m{
       margin-right: 25px;
   }
+}
+.jobsearch td strong {
+  font-weight: bolder;
+  font-size: 15px;
+}
+.jobsearch td{
+  font-size: 16px;
+}
+.pe-1{
+  color: #005063;
+}
+.pe-1 i{
+  margin: 0px 2px 0px 2px;
 }

@@ -20,12 +20,14 @@
         </div>
 
         <div class="more-details-show-hide collapse mt-2" id="collapseExample{{$experience->id}}">
+            @if(!empty($experience->description))
             <div class="mb-4">
                 <h3 class="gry">Job Description</h3>
                 <p class="text-justify">
                 {{($experience->description!='')?$experience->description:'No Job Description'}}   
                 </p>
             </div>
+            @endif
 
             @if($experience->used_tools!=null)
                 <p class="mb-3">Tools / software Used</p>
@@ -36,12 +38,14 @@
                 </div>        
             @endif            
         </div>  
+        @if($experience->used_tools!=null || !empty($experience->description))
         <div class="text-center more-details more-details{{$experience->id}}"  onclick="collapsedExp({{$experience->id}})">
                 <a class="text-green-color" id="more-details-button-exp" data-bs-toggle="collapse" href="#collapseExample{{$experience->id}}" role="button" aria-expanded="false" aria-controls="collapseExample">More details 
                 <i class="fa-solid fa-chevron-down collapse-down-arrow"></i> 
                 <i class="fa-solid fa-chevron-up collapse-up-arrow" style="display:none;"></i>
             </a>                           
-        </div>                      
+        </div>     
+        @endif                 
     </div>
     {{-- <div id="ExperienceList_{{$experience->id}} form-empty"></div> --}}
 @endforeach

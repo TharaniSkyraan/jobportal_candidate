@@ -1,58 +1,28 @@
 <?php
 
-
-
 namespace App\Model;
 
-
 use Mail;
-
 use Auth;
-
 use App;
-
 use Carbon\Carbon;
-
 use App\Traits\Active;
-
 use App\Traits\Featured;
- 
 use App\Traits\JobTrait;
-
 use App\Traits\CountryStateCity;
-
 use Illuminate\Database\Eloquent\Model;
-
 use Illuminate\Notifications\Notifiable;
-
 use App\Notifications\CompanyResetPassword;
-
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
 use App\Mail\CompanyResetPasswordMailable;
 
-
-
 class Company extends Authenticatable
-
 {
 
-
-
-    use Active;
-
-    use Featured;
-
-    use Notifiable;
-
-    use JobTrait;
-
-    use CountryStateCity;
+    use Active, Featured, Notifiable, JobTrait, CountryStateCity;
 
     protected $table = 'companies';
-
     public $timestamps = true;
-
     protected $guarded = ['id'];
 
     //protected $dateFormat = 'U';
@@ -137,10 +107,7 @@ class Company extends Authenticatable
 
     }
 
-
-
     public function getSocialNetworkHtml()
-
     {
 
         $html = '';
@@ -149,31 +116,21 @@ class Company extends Authenticatable
 
             $html .= '<a href="' . $this->facebook . '" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>';
 
-
-
         if (!empty($this->twitter))
 
             $html .= '<a href="' . $this->twitter . '" target="_blank"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>';
-
-
 
         if (!empty($this->linkedin))
 
             $html .= '<a href="' . $this->linkedin . '" target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>';
 
-
-
         if (!empty($this->google_plus))
 
             $html .= '<a href="' . $this->google_plus . '" target="_blank"><i class="fa fa-google-plus-square" aria-hidden="true"></i></a>';
 
-
-
         if (!empty($this->pinterest))
 
             $html .= '<a href="' . $this->pinterest . '" target="_blank"><i class="fa fa-pinterest-square" aria-hidden="true"></i></a>';
-
-
 
         return $html;
 

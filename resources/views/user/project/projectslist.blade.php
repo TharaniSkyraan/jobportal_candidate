@@ -37,15 +37,16 @@ if ($project->is_on_going == 1)
                 {{ $project->description }}
             </p>
         </div>
-
+        @if(!empty($project->role_on_project))
         <div class="mb-2">
             <h3 class="gry">Role on the project</h3>
             <p class="text-justify">
                 {{ $project->role_on_project }}
             </p>
         </div>
+        @endif
         @if($project->used_tools!=null)
-        <p class="mb-3">Tools / software Used</p>
+        <h4 class="mb-3">Tools / software Used</h4>
 
         <div class="col-md-12 mb-5 skilsdtl">
             @foreach(array_filter(explode(',',$project->used_tools)) as $usedtools)

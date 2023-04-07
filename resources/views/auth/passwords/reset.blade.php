@@ -68,7 +68,7 @@
                         </div>
                         
                         <div class="d-grid gap-2 ">
-                          <input type="submit" class="btn btn-primary " value="{{__('Submit')}}">
+                          <input type="submit" class="btn btn_c_s" value="{{__('Submit')}}">
                         </div>
                     </form>
                   </div>
@@ -118,5 +118,5 @@
   }
 </script>
   
-@include('layouts.footer')
+{{-- @include('layouts.footer') --}}
 @endsection

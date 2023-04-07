@@ -1,14 +1,16 @@
-<style>
-@media(min-width: 280px) and (max-width: 767px){
-  .sidenav-toggler{
-      display: block !important; 
-      
-  }  
-  .sidebar{
-    margin-top: 0px !important;
+@if(Auth::check())
+  <style>
+  @media(min-width: 280px) and (max-width: 767px){
+    .sidenav-toggler{
+        display: block !important; 
+        
+    } 
+    .sidebar{
+        margin-top: 0px !important;
+    }
   }
-}
-</style>
+  </style>
+@endif
 @php
     $percentage_profile = App\Model\ProfilePercentage::pluck('value','key')->toArray();
     $percentage = $percentage_profile['user_basic_info'];
@@ -120,7 +122,8 @@
                                 </div>
                             </div>
                             <div class="col-2 align-self-center text-center">
-                                <i class="{{ (count(Auth::user()->userExperience)==0)? 'fa fa-plus' : 'fa fa-check' }}"></i>
+                                {{-- <i class="{{ (count(Auth::user()->userExperience)==0)? 'fa fa-plus' : 'fa fa-check' }}"></i> --}}
+                                <i class="fa fa-check"></i>
                             </div>
                         </div>
                     </div>

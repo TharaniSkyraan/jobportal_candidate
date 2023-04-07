@@ -411,6 +411,18 @@
                                 <h4 class="fw-bolder text-green-color">Contact Details</h4>
                             </div>
                             <div class="mb-2 row col-md-12 justify-content-between">                                
+                                <div class="col-md-12 align-self-center d-flex">
+                                    <div class="pe-1">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="">
+                                           <a>{{ $job->contact_person_details->name??'' }}</a>
+                                        </h5>    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-2 row col-md-12 justify-content-between">                                
                                 <div class="col-md-5 align-self-center d-flex">
                                     <div class="pe-1">
                                         <img class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_message.png')}}" alt="contact location">
@@ -486,11 +498,11 @@
                                 <h5 class="mb-1 fw-bolder text-green-color">Company Info</h5>
                                 @if($job->company->website_url)
                                 <div class="row col-md-12 cmpinfo-detail mb-2">
-                                    <div class="col-md-2">
+                                    <div class="col-md-12">
                                         <label><b>Website : </b></label>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <a href="{{ $job->company->website_url}}" target="_blank" rel="nofollow noreferer">{{ $job->company->website_url}}</a>
+                                        <span>
+                                            <a href="{{ $job->company->website_url}}" target="_blank" rel="nofollow noreferer">{{ $job->company->website_url}}</a>
+                                        </span>
                                     </div>
                                 </div>
                                 @endif

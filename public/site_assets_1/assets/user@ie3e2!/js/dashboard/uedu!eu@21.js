@@ -30,16 +30,15 @@
             $('.education_div').show();     
             $('.educationForm').modal('show');
             $('.education-form').html(json.html);    
-            $('#education_level_id').select2();
-            $('#education_type_id').select2();
-            $('#country_id_dd').select2();
             selmark();
             StillCheck('education');
-            if(form=='edit'){
-              filterEducationTypes(type_id);
-            }else{
-              filterEducationTypes(0);
-            }
+            // if(form=='edit'){
+            //   filterEducationTypes(type_id);
+            // }else{
+            //   filterEducationTypes(0);
+            // }
+            $('#education_level_id').select2();
+            $('#country_id_dd').select2();
           }
 
         });      
@@ -190,7 +189,6 @@
             }else{              
               $('.education_type_div').show();
               $('#education_types_dd').html(response); 
-              $('#education_type_id').select2();
             }
 
           });
