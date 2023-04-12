@@ -114,7 +114,7 @@
                     </div>
 
                     <div class="click_side2">
-                        <div class="row mb-3 {{ (count(Auth::user()->userExperience)==0)? 'no_fillfield' : '' }}">
+                        <div class="row mb-3">
                             <div class="col-10">
                                 <div class="sideb_icn">
                                     <img src="{{asset('images/candidate_exp.png')}}" alt="">

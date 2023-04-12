@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="mb-4 dtls">
-                <h3 class="fw-bolder mb-1">{{ $skill->getSkill('skill') }}</h3>
+                <h3 class="fw-bolder mb-1">{{ $skill->skill }}</h3>
                 <p class="mb-0">{{ $skill->is_currently_working=='yes'?' Currently Working ':'' }}</p>
                 <p class="mb-0">Skill level</p>
                 <p class="fw-bolder">{{ $skill->getLevel('language_level')??'-' }}</p>

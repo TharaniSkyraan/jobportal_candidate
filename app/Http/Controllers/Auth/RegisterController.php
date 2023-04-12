@@ -105,7 +105,6 @@ class RegisterController extends Controller
 
      public function EducationSave(Request $request)
      {
-        // dd($request->all());
         $user = User::findOrFail(Auth::user()->id);
 
         $education  = (count($user->userEducation)>0)?$user->userEducation[0]:null;
@@ -117,7 +116,7 @@ class RegisterController extends Controller
         $userEducation->user_id = $user->id;
         $userEducation->education_level_id = $request->education_level_id;
         $userEducation->education_type = $request->education_type;
-        $userEducation->pursuing = 'no';
+        $userEducation->pursuing = Null;
         $userEducation->save();
 
         if($user->next_process_level == 'education'){                
@@ -297,26 +296,58 @@ class RegisterController extends Controller
  
       public function SkillSave(Request $request)
       {
+
         $user = User::findOrFail(Auth::user()->id);
-        $user->skill = $request->skills;
         if($user->next_process_level == 'skills'){                
             $user->next_process_level = 'resume_upload';
         }
-        $user->save();
 
-        $skills = json_decode($request->skills);
-        $skill_id = array_column($skills, 'id');
-        $user_skill_id = UserSkill::whereUserId($user->id)->pluck('skill_id')->toArray();
+        $skills = [];
+        // $skill_id = array_column($skills, 'id');
+        // $user_skill_id = UserSkill::whereUserId($user->id)->pluck('skill_id')->toArray();
         
-        $remove_id = UserSkill::whereUserId($user->id)->whereIn('skill_id',array_diff($user_skill_id,$skill_id))->delete(); 
-        $skills  = array_diff($skill_id,$user_skill_id);
-        foreach($skills as $skill)
+        // $remove_id = UserSkill::whereUserId($user->id)->whereIn('skill_id',array_diff($user_skill_id,$skill_id))->delete(); 
+        // $skills  = array_diff($skill_id,$user_skill_id);
+        $words = DataArrayHelper::blockedKeywords();
+
+        foreach(json_decode($request->skills) as $skill)
         {
-            $updateSkill = new UserSkill();
-            $updateSkill->user_id = $user->id;
-            $updateSkill->skill_id  = $skill;
-            $updateSkill->save();
+            if(!isset($skill->id) && !in_array($skill->value, $words))
+            {                
+                if(Skill::where('skill',$skill->value)->doesntExist())
+                {
+                    $newskill = new Skill();                
+                    $newskill->skill = $skill->value;
+                    $newskill->is_active = 0;
+                    $newskill->lang = 'en';
+                    $newskill->is_default = 1;
+                    $newskill->save();
+                    $newskill->skill_id = $newskill->id;
+                    $newskill->update();
+                }else{
+                    $newskill = Skill::where('skill',$skill->value)->first();
+                }
+            }
+
+            if(isset($skill->id) || isset($newskill->id))
+            {    
+                $skill_id = $skill->id??$newskill->id;       
+                if(UserSkill::where('skill_id',$skill_id)->doesntExist())
+                {                
+                    $updateSkill = new UserSkill();
+                    $updateSkill->user_id = $user->id;
+                    $updateSkill->skill  = $skill->value;
+                    $updateSkill->skill_id  = $skill_id;
+                    $updateSkill->save();
+                }
+                $skills[] = array(
+                    'id'=>$skill_id,
+                    'value'=>$skill->value,
+                );
+            }
         }
+        $user->skill = json_encode($skills);
+        $user->save();
 
         return redirect('/resume_upload');
 
@@ -379,7 +410,6 @@ class RegisterController extends Controller
             $UserCv->cv_file = $url;
             $UserCv->user_id = $user->id;
             $UserCv->is_default = 1;
-            $UserCv->upload_on = 'local_server';
             $UserCv->save();
             
             $user = User::findOrFail(Auth::user()->id);             
