@@ -84,5 +84,8 @@
 </section>
 @endsection
 @push('scripts')
+<script>
+var baseurl = '{{ url("/") }}';
+</script>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/user@ie3e2!/js/formwizard/usiup@4h6i1.js') }}"></script>
 @endpush

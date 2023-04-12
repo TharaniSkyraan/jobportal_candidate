@@ -21,6 +21,75 @@
         padding-left: 85px;
         padding-right: 33px
     }
+    li {
+        font-family: 'Nunito', sans-serif !important;
+    }
+    .career_title .typeahead.dropdown-menu{
+        max-height: 188px !important;
+        overflow: auto;
+        display: block;
+        margin-right: 25px;
+        width: -webkit-fill-available;
+    }
+    .city .typeahead.dropdown-menu{
+        max-height: 188px !important;
+        overflow: auto;
+        display: block;         
+        width: -webkit-fill-available;
+    }
+    /* Extra Small Devices (Phones) */
+@media only screen and (max-width: 353px) {
+  /* CSS rules for phones */
+    .city .typeahead.dropdown-menu{
+        top: 111.5% !important;
+        margin-right: 24px;
+    }
+}
+
+    /* Extra Small Devices (Phones) */
+@media (min-width: 354px) and (max-width: 480px) {
+  /* CSS rules for phones */
+    .city .typeahead.dropdown-menu{
+        top: 107.5% !important;
+        margin-right: 24px;
+    }
+}
+
+/* Small Devices (Tablets) */
+@media (min-width: 481px) and (max-width: 768px) {
+  /* CSS rules for tablets */
+    .city .typeahead.dropdown-menu{
+        top: 109.1% !important;
+        margin-right: 33px;
+    }
+}
+
+/* Medium Devices (Desktops) */
+@media (min-width: 769px) and (max-width: 992px) {
+  /* CSS rules for desktops */
+    .city .typeahead.dropdown-menu{
+        top: 99% !important;
+        margin-right: 33px;
+    }
+}
+
+/* Large Devices (Large Screens) */
+@media (min-width: 993px) and (max-width: 1300px) {
+  /* CSS rules for large screens */
+    .city .typeahead.dropdown-menu{
+        top: 99% !important;
+        margin-right: 33px;
+    }
+}
+/* Large Devices (Large Screens) */
+@media (min-width: 1301px) and (max-width: 1330px) {
+  /* CSS rules for large screens */
+    .city .typeahead.dropdown-menu{
+        top: 97.2% !important;
+        margin-right: 24px;
+    }
+}
+
 </style>
 @php
     $country_id = (!empty($user->country_id))?$user->country_id:$ip_data['country_id'];
@@ -49,9 +118,9 @@
                         </h1>
                         {!! Form::open(array('method' => 'post', 'route' => array('career-info-save'), 'class' => 'form', 'onSubmit' => 'return validateCareerInfoForm()')) !!}
                         <div class="container">
-                            <div class="mb-3">
+                            <div class="mb-3 career_title">
                                 <label for="career_title" class="form-label">@if($user->employment_status=='fresher') Jobs looking for @else Your designation @endif</label>
-                                {!! Form::text('career_title', $user->career_title??null, array('class'=>'form-control required', 'id'=>'career_title', 'placeholder'=>__('ex:auditor, doctor'))) !!}
+                                {!! Form::text('career_title', $user->career_title??null, array('class'=>'form-control required typeahead', 'id'=>'career_title', 'placeholder'=>__('ex:auditor, doctor'), 'autocomplete'=>'off')) !!}
                                 <small class="form-text text-muted text-danger err_msg" id="err_career_title"></small>
                             </div>
                             @php
@@ -90,9 +159,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3 city">
                                 <label for="" class="form-label">City</label>
-                                {!! Form::text('location', $user->location??null, array('class'=>'form-control-2 required typeahead', 'id'=>'location', 'placeholder'=>__('Enter your location'),' aria-label'=>'Enter your location')) !!}
+                                {!! Form::text('location', $user->location??null, array('class'=>'form-control required typeahead', 'id'=>'location', 'placeholder'=>__('Enter your location'), 'aria-label'=>'Enter your location', 'autocomplete'=>'off')) !!}
                                 <small class="form-text text-muted text-danger err_msg" id="err_location"></small>
                             </div>
                             <div class="mb-4">
@@ -132,11 +201,12 @@
 @endsection
 @push('scripts')
 <script>
+var baseurl = '{{ url("/") }}';
  var expected_salary = "{{$user->expected_salary??''}}";
  var employment_status = "{{$user->employment_status??''}}";
  var setcountry = '{{$user->phone}}';
 
 </script>
-<script type="text/javascript" src="{{ asset('site_assets_1/assets/vendor/typehead/typeahead.bundle.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" integrity="sha512-HWlJyU4ut5HkEj0QsK/IxBCY55n5ZpskyjVlAoV9Z7XQwwkqXoYdCIC93/htL3Gu5H3R4an/S0h2NXfbZk3g7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/user@ie3e2!/js/formwizard/usiup@4h6i1.js') }}"></script>
 @endpush

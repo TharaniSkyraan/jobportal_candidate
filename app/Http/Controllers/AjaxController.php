@@ -161,6 +161,14 @@ class AjaxController extends Controller
 
     /*     * ***************************************** */
 
+    public function suggestionEducationTypes(Request $request)
+    {
+
+        $term = $request->q??'';
+        $education_level_id = $request->education_level_id??'';
+        $results = DataArrayHelper::autocompleteEducationType($term,$education_level_id);
+        return response()->json($results);
+    }
     public function filterEducationTypes(Request $request)
     {
         $education_level_id = $request->input('education_level_id');

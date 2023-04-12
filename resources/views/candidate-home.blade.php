@@ -1,90 +1,39 @@
 @extends('layouts.app')
 
 @section('custom_scripts')
-<link href="{{ asset('site_assets_1/assets/vendor/select2/select2.min.css') }}" rel="stylesheet">
-
-<link rel="stylesheet" href="{{ asset('site_assets_1/assets/date_flatpicker/flatpickr.min.css')}}">
-<script src="{{ asset('site_assets_1/assets/date_flatpicker/flatpickr.js')}}"></script>
 <link href="{{ asset('site_assets_1/assets/1a9ve2/css/userbasic.w2fr4ha2.css')}}" rel="stylesheet">
-<script  type="text/javascript" src="{{ asset('site_assets_1/assets/vendor/typehead/typeahead.bundle.js') }}"></script>
+<link href="{{ asset('site_assets_1/assets/1a9ve2/css/chpg.er23fw.css')}}" rel="stylesheet">
 <link href="{{asset('css/main_2.css')}}" rel="stylesheet">
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 <style>
-    .hme_banner{
-        background: url('{{asset('images/candidate_hpg.png')}}');
-        background-size: cover;
-        padding-bottom: 75px;
-        background-repeat:no-repeat;
-       
-    }
+.hme_banner{
+    background: url('{{asset('images/candidate_hpg.png')}}');
+    background-size: cover;
+    padding-bottom: 75px;
+    background-repeat:no-repeat;
+   
+}
 
+.candidate_img{
+   background:url('{{asset('images/candidate_hpg_bg.png')}}');
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 110px;
+    background-position: center;
+
+}
+
+@media(min-width: 280px) and (max-width: 767px)  {
     .candidate_img{
-       background:url('{{asset('images/candidate_hpg_bg.png')}}');
-        background-repeat: no-repeat;
-        background-size: cover;
-        padding-bottom: 110px;
+        background: url('{{asset('images/responsive_hpg_bg_infinity.png')}}');
+        background-repeat: no-repeat !important;
+        background-size: contain;
         background-position: center;
+        width:100%;
+        padding-bottom: 0px;
 
     }
-
-    .page-inner{
-        background:#fff;
-    }
-
-    @media(min-width: 280px) and (max-width: 767px)  {
-        .candidate_img{
-            background: url('{{asset('images/responsive_hpg_bg_infinity.png')}}');
-            background-repeat: no-repeat !important;
-            background-size: contain;
-            background-position: center;
-            width:100%;
-            padding-bottom: 0px;
-
-        }
-    }
-
-    .pfcmpletalert .fa-warning{
-        color: #f9e955;
-        font-size: 40px;
-    }
-
-    .pfcmpletalert{
-        background:#F6F6F6;
-        width: 60%;
-        margin: 0 auto;
-        position: absolute;
-        padding:0px;
-        
-        border-radius:13px;
-        margin-top: 10px;
-        box-shadow:1px 1px 14px 0 rgb(18 38 63 / 20%) !important;
-    }
-
-    .pfcmpletalert .wrning{
-        background:#D0DEF5;
-        height: 60px;
-        clip-path: polygon(0% 0%, 0% 280%, 100% 0%);
-        border-top-left-radius: 13px;
-        border-bottom-left-radius:13px;
-        align-items: center;
-        justify-content: center;
-        display: flex;
-    }
-
-    .alert_prnt{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    #exampleModal .modal-content{
-
-        background:#f3f7fe;
-    }
-
-
+}
 </style>
 @endsection
 @section('content')
@@ -139,7 +88,7 @@
                                 <span class="form-text text-white err_msg designation-error"></span>
                             </div>
                             <div class="col-md-5">
-                                {!! Form::search('location', null, array('class'=>'form-control-2 typeahead', 'id'=>'location', 'placeholder'=>__('On Location'),' aria-label'=>'On Location')) !!}
+                                {!! Form::search('location', null, array('class'=>'form-control-2 typeahead', 'autocomplete'=>'off', 'id'=>'location', 'placeholder'=>__('On Location'),' aria-label'=>'On Location')) !!}
                                 <span class="form-text text-white err_msg"></span>                        
                             </div>
                             <div class="col-md-2">
@@ -541,176 +490,20 @@
             
 
 <script type="text/javascript">   
-
-    $("#passbtn").click(function(){
-        var data ="{{$ip_data['city']??''}}";
-        search('',data);
-    });
-
-    $('.titsearch').on('click', function(){
-        var designation =  $(this).attr('data-d');
-        var location =  $(this).attr('data-l');
-        search(designation,location);
-    });
-
-    $(".jobsearch").click(function(){
-
-        var location ="{{$ip_data['city']??''}}";
-
-        $div = $(this).parent("div");
-
-        id = $div.attr("class");
-
-        position = $div.find(".fw-bolder").text();
-
-        search(position, location);
-
-    });
-  
-    $(".topcities").click(function(){
-
-        $div = $(this).parent("div");
-
-        id = $div.attr("class");
-
-        position = $div.find(".fw-bolder").text();
-
-        search('', position);
-
-    });
-
-    document.onkeyup = enter;
-    function enter(e) {
-        if (e.which == 13) {
-            var myElement = document.getElementById('designation');
-            var myElement1 = document.getElementById('location');
-            if(myElement === document.activeElement || myElement1 === document.activeElement){
-                $('#msearch_btn').trigger('click');
-            }
-        }
-    } 
-
-    $('.resentsearch').on('click', function(){
-    search($(this).data('d'),$(this).data('l'));
-    });
-
-    function search(d, l){
-        $('#designation').css('border','1px solid lightgray');
-        $('.err_msg').html('');
-        if($.trim(d) != '' || $.trim(l) !=''){      
-            $.post("{{ route('job.checkkeywords') }}", {designation: d, location: l, _method: 'POST', _token: '{{ csrf_token() }}'})
-                .done(function (response) {
-                    var l = '';
-                    var d = '';
-                if(response.d !=''){
-                    d = 'd='+response.d;
-                }
-                if(response.l !=''){
-                    if(response.d !=''){
-                        l += '&';
-                    }
-                    l += 'l='+response.l;
-                }
-                url = '{{ url("/") }}/';
-                window.location = url+response.sl+'?'+d+l;
-            });
-        }else{
-            $('.designation-error').html('Please enter title, keyword or company');
-            $('#designation').css('border','1px solid #f25961');
-        }
-    }
-
-    $('#designation').on('keyup', function(){
-        $('#designation').css('border','1px solid lightgray');
-    });
-
-    $('#msearch_btn').on('click', function(){
-        //myElement Has Focus
-    search($('#designation').val(),$('#location').val());
-    });
+    var baseurl = '{{ url("/") }}/';
+    var current_city = "{{$ip_data['city']??''}}";
+    
+    var path1 = '{{ url("api/autocomplete/search_designation") }}';
+    var path = '{{ url("api/autocomplete/search_location") }}';
 </script>
 {{-- @include('layouts.footer') --}}
 @endsection
 
 @section('footer')
     @include('layouts.footer')
-
-    <script  type="text/javascript" src="{{ asset('site_assets_1/assets/vendor/typehead/typeahead.bundle.js') }}"></script>
-
-    <script type="text/javascript">
-        $(function(){
-            var stocks = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.whitespace,
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            prefetch: 'api/autocomplete/search_designation_default',
-            remote: {
-                url: "api/autocomplete/search_designation",
-                replace: function(url, query) {
-                    return url + "?q=" + query;
-                },        
-                filter: function(stocks) {
-                    return $.map(stocks, function(data) {
-                        return {
-                            // tokens: data.tokens,
-                            // symbol: data.symbol,
-                            name: data.name
-                        }
-                    });
-                }
-            }
-        });
-        
-        stocks.initialize();
-        $('#designation.typeahead').typeahead({
-            hint: true,
-            highlight: false,
-            minLength: 1,
-        },{
-            name: 'stocks',
-            displayKey: 'name',
-            source: stocks.ttAdapter(),
-            limit:Number.MAX_VALUE
-            }); 
-        });
-        $(function(){
-            var location_s = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.whitespace,
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            prefetch: 'api/autocomplete/search_location_default',
-            remote: {
-                url: "api/autocomplete/search_location",
-                replace: function(url, query) {
-                    return url + "?q=" + query;
-                },        
-                filter: function(stocks) {
-                    return $.map(stocks, function(data) {
-                        return {
-                            // tokens: data.tokens,
-                            // symbol: data.symbol,
-                            name: data.name
-                        }
-                    });
-                }
-            }
-        });
-        
-        location_s.initialize();
-            $('#location.typeahead').typeahead({
-            hint: true,
-            highlight: false,
-            minLength: 1,
-        },{
-            name: 'location_s',
-            displayKey: 'name',
-            source: location_s.ttAdapter(),
-            limit:Number.MAX_VALUE
-            }); 
-        });
-    </script>
-
 @endsection
 
 @section('custom_bottom_scripts')
-<script type="text/javascript" src="{{ asset('site_assets_1/assets/vendor/select2/select2.min.js') }}"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" integrity="sha512-HWlJyU4ut5HkEj0QsK/IxBCY55n5ZpskyjVlAoV9Z7XQwwkqXoYdCIC93/htL3Gu5H3R4an/S0h2NXfbZk3g7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript" src="{{ asset('site_assets_1/assets/1a9ve2/js/chpag.fquiv23.js') }}"></script>
 @endsection

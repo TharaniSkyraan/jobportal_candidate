@@ -11,6 +11,7 @@ Route::get('deleteparticulargalary/{id?}', 'AjaxController@DeleteParticularGalar
 Route::get('filter-default-countries-dropdown', 'AjaxController@filterDefaultCountries')->name('filter.default.countries.dropdown');
 Route::post('filter-lang-cities-dropdown', 'AjaxController@filterLangCities')->name('filter.lang.cities.dropdown');
 Route::post('filter-lang-states-dropdown', 'AjaxController@filterLangStates')->name('filter.lang.states.dropdown');
+Route::post('suggestion-education-types-dropdown', 'AjaxController@suggestionEducationTypes')->name('suggestion.education.types.dropdown');
 Route::post('filter-education-types-dropdown', 'AjaxController@filterEducationTypes')->name('filter.education.types.dropdown');
 Route::post('filter-education-types-dropdown-multiselect', 'AjaxController@filterMultiselectEducationTypes')->name('filter.education.types.dropdown.multiselect');
 Route::post('filter-default-sub-industry-dropdown', 'AjaxController@filterDefaultSubIndustries')->name('filter.default.sub.industries.dropdown');

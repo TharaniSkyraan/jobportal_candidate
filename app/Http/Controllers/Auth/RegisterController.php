@@ -116,7 +116,7 @@ class RegisterController extends Controller
         }
         $userEducation->user_id = $user->id;
         $userEducation->education_level_id = $request->education_level_id;
-        $userEducation->education_type_id = $request->education_type_id;
+        $userEducation->education_type = $request->education_type;
         $userEducation->pursuing = 'no';
         $userEducation->save();
 

@@ -1,4 +1,16 @@
 @extends('layouts.app')
+<style>
+ul.typeahead.dropdown-menu {
+    max-height: 188px !important;
+    overflow: auto;
+    display: block;
+    margin-right: 25px;
+    width: -webkit-fill-available;
+}
+li {
+    font-family: 'Nunito', sans-serif !important;
+}
+</style>
 @section('custom_scripts')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <link href="{{asset('css/candidate_wzrd.css')}}" rel="stylesheet">
@@ -37,16 +49,11 @@
                                 <small class="help-block form-text text-muted text-danger err_msg education_level_id-error" id="err_education_level_id"></small> 
                             </div>
 
-                            <div class="mb-4 education_type_div" @if(empty($educationTypes)) style="display:none;" @endif>
+                            <div class="mb-4 education_type_div" @if(empty($education->education_type)) style="display:none;" @endif>
                                 <label for="exampleInputEmail1" class="form-label grytxtv">Education</label>
-                                <div class="" id="education_types_dd">    
-                                    @if(!empty($educationTypes))            
-                                        {!! Form::select('education_type_id', [''=>__('Select Education Type')]+$educationTypes, $education->education_type_id??null, array('class'=>'form-select required', 'id'=>'education_type_id')) !!}
-                                    @else
-                                        {!! Form::select('education_type_id', [''=>__('Select Education Type')], null, array('class'=>'form-select required', 'id'=>'education_type_id')) !!}
-                                    @endif    
-                                </div>
-                                <small class="help-block form-text text-muted text-danger err_msg education_type_id-error" id="err_education_type_id"></small> 
+                                {!! Form::text('education_type', $education->education_type??null, array('class'=>'form-control required typeahead', 'id'=>'education_type', 'placeholder'=>__('Select education type'),'autocomplete'=>'off')) !!}
+                                <small class="form-text text-muted text-danger err_msg" id="err_education_type"></small>
+                                <small class="help-block form-text text-muted text-danger err_msg education_type-error" id="err_education_type"></small> 
                             </div>
 
                             <div class="mb-5 text-end">
@@ -68,9 +75,11 @@
 </section>
 
 @endsection
+
 @push('scripts')
 <script type="text/javascript">
 var baseurl = '{{ url("/") }}';
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" integrity="sha512-HWlJyU4ut5HkEj0QsK/IxBCY55n5ZpskyjVlAoV9Z7XQwwkqXoYdCIC93/htL3Gu5H3R4an/S0h2NXfbZk3g7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/user@ie3e2!/js/formwizard/usiup@4h6i1.js') }}"></script>
 @endpush

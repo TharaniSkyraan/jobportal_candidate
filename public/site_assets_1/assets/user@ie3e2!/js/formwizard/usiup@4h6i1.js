@@ -1,14 +1,52 @@
     let csrf_token = $('meta[name=csrf-token]').attr('content');
-
+ 
     /** Education Form Script */
+    $(function(){
+
+
+      // if (education_level_id != ''){                      
+      var path = baseurl + "/suggestion-education-types-dropdown";
+    
+      var cache = {};
+      $('#education_type').typeahead({ // focus on first result in dropdown
+          displayText: function(item) {
+              return item.name
+          },
+          afterSelect: function(item) {
+            this.$element[0].id = item.id
+          },
+          source: function(query, result) {
+              var education_level_id = $('#education_level_id').val();
+              if ((query in cache)) {
+                  // If result is already in local_cache, return it
+                  result(cache[query]);
+                  return;
+              }
+              $.ajax({
+                  url: path,
+                  method: 'POST',
+                  data: {q: query,education_level_id:education_level_id, _token: csrf_token},
+                  dataType: 'json',
+                  success: function(data) {
+                      cache[query] = data;
+                      result(data);
+                  }
+              });
+          },
+          autoSelect: true,
+          showHintOnFocus: true
+       }).focus(function () {
+           $(this).typeahead("search", "");
+       });
+    });
     /**  Submit */
 
     function validateAccountForm() {
       clrErr();
       var errStaus = false; 
       if(validateFormFields('education_level_id','Please enter education level','')) errStaus=true;
-      if(document.getElementById('education_type_id')!=null){
-        if(validateFormFields('education_type_id','Please enter the Education type','')) errStaus=true;
+      if(document.getElementById('education_type')!=null){
+        if(validateFormFields('education_type','Please enter the Education type','')) errStaus=true;
       }
       // form validation ends
       
@@ -24,32 +62,24 @@
 
     $(document).on('change', '#education_level_id', function (e) {
       e.preventDefault();
-      filterEducationTypes(0);
+      $('#education_type').val('');
+      filterEducationTypes();
     });
 
-    function filterEducationTypes(education_type_id)
+    function filterEducationTypes(education_type_id=0)
     {
-
         var education_level_id = $('#education_level_id').val();
+          
+        $.post(baseurl + "/filter-education-types-dropdown", {education_level_id: education_level_id, education_type_id: education_type_id, _method: 'POST', _token: csrf_token})
+        .done(function (response) {
 
-        // if (education_level_id != ''){                      
-            $.post(baseurl + "/filter-education-types-dropdown", {education_level_id: education_level_id, education_type_id: education_type_id, _method: 'POST', _token: csrf_token})
-            .done(function (response) {
+          if(response!=''){
+            $('.education_type_div').show();
+          }else{
+            $('.education_type_div').hide();
+          }
 
-              if(response!=''){
-                $('.education_type_div').show();
-              }else{
-                $('.education_type_div').hide();
-              }
-              $('#education_types_dd').html(response);
-              if(document.getElementById('education_type_id')){
-                $('#education_type_id').select2();
-              }
-
-          });
-
-        // }
-
+        });
     }
     /**EMployment status */
     $(document).on('click', '.employment_status', function (e) {
@@ -121,43 +151,64 @@
       * Search Location
       */
       
-      var country_code = $('#country_id').find(':selected').attr('data-code');
       $(function(){
-        var location = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.whitespace,
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        prefetch: 'api/autocomplete/search_location?country_code='+country_code,
-        remote: {
-            url: "api/autocomplete/search_location",
-            replace: function(url, query) {
-              var country_code = $('#country_id').find(':selected').attr('data-code')
-              return url + "?q=" + query+"&country_code="+country_code;
-            },        
-            filter: function(stocks) {
-              return $.map(stocks, function(data) {
-                return {
-                    // tokens: data.tokens,
-                    // symbol: data.symbol,
-                    name: data.name
-                }
-              });
-            }
-        }
+          var cache1 = JSON.parse(localStorage.getItem('city'))??{};
+          $('#location.typeahead').typeahead({ // focus on first result in dropdown
+              source: function(query, result) {
+                  var country_code = $('#country_id').find(':selected').attr('data-code');
+                  var local_cache = JSON.parse(localStorage.getItem('city'));
+                  if ((local_cache!=null) && (query in local_cache)) {
+                      // If result is already in local_cache, return it
+                      result(cache1[query]);
+                      return;
+                  }
+                  $.ajax({
+                      url: 'api/autocomplete/search_location',
+                      method: 'GET',
+                      data: {q: query,country_code:country_code},
+                      dataType: 'json',
+                      success: function(data) {
+                          cache1[query] = data;
+                          localStorage.setItem('city',JSON.stringify(cache1));
+                          result(data);
+                      }
+                  });
+              },
+              autoSelect: true,
+              showHintOnFocus: true
+          }).focus(function () {
+              $(this).typeahead("search", "");
+          });
+
+          
+          var cache2 = JSON.parse(localStorage.getItem('designation'))??{};
+          $('#career_title.typeahead').typeahead({ // focus on first result in dropdown
+              source: function(query, result) {
+                  var local_cache = JSON.parse(localStorage.getItem('designation'));
+                  if ((local_cache!=null) && (query in local_cache)) {
+                      // If result is already in local_cache, return it
+                      result(cache2[query]);
+                      return;
+                  }
+                  $.ajax({
+                      url: 'api/autocomplete/search_designation',
+                      method: 'GET',
+                      data: {q: query},
+                      dataType: 'json',
+                      success: function(data) {
+                          cache2[query] = data;
+                          localStorage.setItem('designation',JSON.stringify(cache2));
+                          result(data);
+                      }
+                  });
+              },
+              autoSelect: true,
+              showHintOnFocus: true
+          }).focus(function () {
+              $(this).typeahead("search", "");
+          });
       });
-  
-      location.initialize();
-          $('#location.typeahead').typeahead({
-          hint: true,
-          highlight: false,
-          minLength: 1,
-      },{
-          name: 'location',
-          displayKey: 'name',
-          source: location.ttAdapter(),
-          limit:Number.MAX_VALUE
-          }); 
-      });
-  
+    
       function validateCareerInfoForm() {
         clrErr();
         var errStaus = false; 
@@ -211,133 +262,69 @@
     /**Skill */
 
     // input tag start
-  
+
   if(document.getElementById('skills'))
   {
       
+      var cache = JSON.parse(localStorage.getItem('skill'))??{};
+      
+      var inputElm = document.querySelector('input[name=skills]');
+      var tagify = new Tagify(inputElm, {
+              whitelist: []
+          });
+
+      function fetchTags(query) {
+          return $.ajax({
+              url     : baseurl+"/skillsdata",
+              type    : 'GET',
+              data    : {"key": query},
+              dataType: 'json',          
+          });
+      }
+      
+      tagify.on('input', function(event)
+      { 
+          var query = event.detail.value;  
+          var local_cache = JSON.parse(localStorage.getItem('skill'));
+          if ((local_cache!=null) && (query in local_cache)) {
+              // If result is already in cache, return it
+              response = local_cache[query];
+              tagify.settings.whitelist.length = 0; // clear the current whitelist
+              tagify.settings.whitelist.push(...response, ...tagify.value); // add the new tags to the whitelist
+              //tagify.settings.whitelist.push(...result, ...tagify.value)
+              tagify.dropdown.show.call(tagify, query); // show the dropdown with the new tags
+          }else{ 
+              fetchTags(query).done(function(response) {
+                  cache[query] = response;
+                  localStorage.setItem('skill',JSON.stringify(cache));
+                  tagify.settings.whitelist.length = 0; // clear the current whitelist
+                  tagify.settings.whitelist.push(...response, ...tagify.value); // add the new tags to the whitelist
+                  //tagify.settings.whitelist.push(...result, ...tagify.value)
+                  tagify.dropdown.show.call(tagify, query); // show the dropdown with the new tags
+              });
+          }    
+
+      });
       $(".tag-plus").click(function() {
         var sid = $(this).attr('data-sid');
         var sval = $(this).attr('data-sval');
         $(this).closest('.skls_cdte').remove();
         tagify.addTags([{id: sid, value: sval}]);
       });
-
-      var inputElm = document.querySelector('input[name=skills]'),
-      whitelist = [
-          {'id':1,'value':'coimbatore'},
-          {'id':2,'value':'chennai'}
-      ];
-      // initialize Tagify on the above input node reference
-      var tagify = new Tagify(inputElm, {
-        // enforceWhitelist: true,
-        // maxTags: 5,
-        // make an array from the initial input value
-        whitelist: inputElm.value.trim().split(/\s*,\s*/) 
-      })
-
-      // Chainable event listeners
-      tagify.on('add', onAddTag)
-        .on('remove', onRemoveTag)
-        .on('input', onInput)
-        .on('edit', onTagEdit)
-        .on('invalid', onInvalidTag)
-        .on('click', onTagClick)
-        .on('focus', onTagifyFocusBlur)
-        .on('blur', onTagifyFocusBlur)
-        .on('dropdown:hide dropdown:show', e => console.log(e.type))
-        .on('dropdown:select', onDropdownSelect)
-
-      var mockAjax = (function mockAjax(){
-        var timeout;
-        return function(duration){
-            clearTimeout(timeout); // abort last request
-            return new Promise(function(resolve, reject){
-                timeout = setTimeout(resolve, duration || 700, whitelist)
-            })
-        }
-      })()
-
-      // tag added callback
-      function onAddTag(e){
+      
+      function validateSkillForm() {
         clrErr();
-        // console.log("onAddTag: ", e.detail);
-        // console.log("original input value: ", inputElm.value)
-        tagify.off('add', onAddTag) // exmaple of removing a custom Tagify event
+        var errStaus = false; 
+        if(validateFormFields('skills','Please enter Skill','')) errStaus=true;
+        // form validation ends
+        
+        if(errStaus == false){
+          return true;
+        }else{
+          return false;
+        }
+        
       }
-
-      // tag remvoed callback
-      function onRemoveTag(e){
-        // console.log("onRemoveTag:", e.detail, "tagify instance value:", tagify.value)
-      }
-
-      // on character(s) added/removed (user is typing/deleting)
-      function onInput(e){
-        // console.log("onInput: ", e.detail);
-        tagify.settings.whitelist.length = 0; // reset current whitelist
-        tagify.loading(true).dropdown.hide.call(tagify) // show the loader animation
-
-        // get new whitelist from a delayed mocked request (Promise)
-        mockAjax()
-            .then(function(result){
-            
-                $.ajax({
-                    url     : baseurl+"/skillsdata",
-                    type    : 'GET',
-                    data    : {"key": e.detail.value},
-                    dataType: 'json',
-                    success:function(result) {
-                      // console.log(result);
-                      // return false;
-                        // replace tagify "whitelist" array values with new values
-                        // and add back the ones already choses as Tagsx`
-                        tagify.settings.whitelist.push(...result, ...tagify.value)
-
-                        // render the suggestions dropdown.
-                        tagify.loading(false).dropdown.show.call(tagify, e.detail.value);
-                    }
-                    
-                });
-                
-            })
-      }
-
-      function onTagEdit(e){
-        // console.log("onTagEdit: ", e.detail);
-      }
-
-      // invalid tag added callback
-      function onInvalidTag(e){
-        // console.log("onInvalidTag: ", e.detail);
-      }
-
-      // invalid tag added callback
-      function onTagClick(e){
-        // console.log(e.detail);
-        // console.log("onTagClick: ", e.detail);
-      }
-
-      function onTagifyFocusBlur(e){
-        // console.log(e.type, "event fired")
-      }
-
-      function onDropdownSelect(e){
-        // console.log("onDropdownSelect: ", e.detail)
-      }
-
-      
-    function validateSkillForm() {
-      clrErr();
-      var errStaus = false; 
-      if(validateFormFields('skills','Please enter Skill','')) errStaus=true;
-      // form validation ends
-      
-      if(errStaus == false){
-        return true;
-      }else{
-        return false;
-      }
-      
-    }
   }
 
   /**Resume Upload */

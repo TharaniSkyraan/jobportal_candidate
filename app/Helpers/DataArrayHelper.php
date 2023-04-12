@@ -775,6 +775,12 @@ class DataArrayHelper
         return $locations;
     }
     
+    public static function autocompleteEducationType($key='',$education_level_id='')
+    {            
+        $array = EducationType::select('id','education_type as name')->where('education_level_id',$education_level_id)->where('education_type', 'like', "%$key%")->isDefault()->active()->take(10)->get();
+        return $array;
+    }
+    
     public static function autocompleteInstitute($key='',$country_code='')
     {
         if($country_code!=''){
