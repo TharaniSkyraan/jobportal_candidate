@@ -11,21 +11,26 @@
                 <small class="help-block form-text text-muted text-danger err_msg education_level_id-error" id="err_education_level_id"></small> 
             </div>
         </div>
+        @php
+            $education_type = null;
+            if(isset($userEducation)){
+                $education_type = $userEducation->education_type??$userEducation->getEducationType('education_type');
+            }
+        @endphp
+
         <div class="col-md-12 education_type_div" @if(count($educationTypes)==0) style="display:none;" @endif>
-            <label for="education_type_id" class="form-label fw-bolder">Education</label>
-            <div class="">                    
-                {{-- {!! Form::select('education_type_id', [''=>__('Select Education Type')]+$educationTypes, null, array('class'=>'form-select required', 'id'=>'education_type_id')) !!} --}}
-            </div> <div class="">                    
-                {!! Form::select('education_type_id', [''=>__('Select Education Type')], null, array('class'=>'form-select required', 'id'=>'education_type_id')) !!}
-            </div>
-            <small class="help-block form-text text-muted text-danger err_msg education_type_id-error" id="err_education_type_id"></small> 
+            <label for="exampleInputEmail1" class="form-label grytxtv">Education</label>
+            {!! Form::text('education_type', $education_type, array('class'=>'form-control required typeahead', 'id'=>'education_type', 'placeholder'=>__('Select education type'),'autocomplete'=>'off')) !!}
+            <small class="form-text text-muted text-danger err_msg" id="err_education_type"></small>
+            <small class="help-block form-text text-muted text-danger err_msg education_type-error" id="err_education_type"></small> 
         </div>
+
 
         <hr/>
 
         <div class="col-md-12 mb-4">
             <label for="exampleInputEmail1" class="form-label fw-bolder">Institution name</label>
-            {!! Form::text('institution', null, array('class'=>'form-control-2 required typeahead mb-2', 'id'=>'institution', 'placeholder'=>__('Institution Name'))) !!}
+            {!! Form::text('institution', null, array('class'=>'form-control-2 required typeahead mb-2', 'id'=>'institution', 'placeholder'=>__('Institution Name'),'autocomplete'=>'off')) !!}
             <small class="help-block form-text text-muted text-danger err_msg institution-error" id="err_institution"></small>  
         </div>
         @php
@@ -45,7 +50,7 @@
         
         <div class="col-md-12 mb-4">
             <label for="location" class="form-label fw-bolder">City</label>
-            {!! Form::text('location', null, array('class'=>'form-control-2 required typeahead', 'id'=>'location', 'placeholder'=>__('Enter city'),' aria-label'=>'Enter city')) !!}
+            {!! Form::text('location', null, array('class'=>'form-control-2 required typeahead', 'id'=>'location', 'placeholder'=>__('Enter city'),' aria-label'=>'Enter city','autocomplete'=>'off')) !!}
             <small class="form-text text-muted text-danger err_msg" id="err_location"></small>                          
         </div>
 
@@ -132,78 +137,97 @@
     </div>
 <script>
 
-    /**
-    * Search Location
-    */
+    var education_level_text = $('#education_level_id option:selected').text(); 
+    $('.education_level_id').html(' - '+education_level_text);
+    
     $(function(){
-        var location_s = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.whitespace,
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            prefetch: 'api/autocomplete/search_location',
-            remote: {
-                url: "api/autocomplete/search_location",
-                replace: function(url, query) {
-                    var country_code = $('#country_id_dd').find(':selected').attr('data-code');
-                    return url + "?q=" + query+"&country_code="+country_code;
-                },        
-                filter: function(stocks) {
-                    return $.map(stocks, function(data) {
-                        return {
-                            // tokens: data.tokens,
-                            // symbol: data.symbol,
-                            name: data.name
-                        }
-                    });
-                }
-            }
-        });
+        // if (education_level_id != ''){                      
+        var path = baseurl + "suggestion-education-types-dropdown";
         
-        location_s.initialize();
-        $('#location.typeahead').typeahead({
-            hint: true,
-            highlight: false,
-            minLength: 1,
-        },{
-            name: 'location_s',
-            displayKey: 'name',
-            source: location_s.ttAdapter(),
-            limit:Number.MAX_VALUE
-        }); 
-    });
-    $(function(){
-        var stocks = new Bloodhound({
-            datumTokenizer: Bloodhound.tokenizers.whitespace,
-            queryTokenizer: Bloodhound.tokenizers.whitespace,
-            prefetch: 'api/autocomplete/search_institute',
-            remote: {
-                url: "api/autocomplete/search_institute",
-                replace: function(url, query) {
-                    var country_code = $('#country_id_dd').find(':selected').attr('data-code')
-                    return url + "?q=" + query+"&country_code="+country_code;
-                },        
-                filter: function(stocks) {
-                    return $.map(stocks, function(data) {
-                        return {
-                            // tokens: data.tokens,
-                            // symbol: data.symbol,
-                            name: data.name
-                        }
-                    });
+        var cache = {};
+        $('#education_type').typeahead({ // focus on first result in dropdown
+            source: function(query, result) {
+                var education_level_id = $('#education_level_id').val();
+                if ((query in cache)) {
+                    // If result is already in local_cache, return it
+                    result(cache[query]);
+                    return;
                 }
-            }
+                $.ajax({
+                    url: path,
+                    method: 'POST',
+                    data: {q: query,education_level_id:education_level_id, _token: csrf_token},
+                    dataType: 'json',
+                    success: function(data) {
+                        cache[query] = data;
+                        result(data);
+                    }
+                });
+            },
+            autoSelect: true,
+            showHintOnFocus: true
+        }).focus(function () {
+            $(this).typeahead("search", "");
         });
 
-        stocks.initialize();
-        $('#institution.typeahead').typeahead({
-            hint: true,
-            highlight: false,
-            minLength: 0,
-        },{
-            name: 'stocks',
-            displayKey: 'name',
-            source: stocks.ttAdapter(),
-            limit:Number.MAX_VALUE
-        }); 
+                        
+        /**
+        * Search Location
+        */
+        var cache1 = JSON.parse(localStorage.getItem('search_city'))??{};
+        $('#location').typeahead({ // focus on first result in dropdown
+            source: function(query, result) {
+                var country_code = $('#country_id_dd').find(':selected').attr('data-code')
+                var local_cache1 = JSON.parse(localStorage.getItem('search_city'));
+                if ((local_cache1!=null) && (query in local_cache1)) {
+                    // If result is already in local_cache1, return it
+                    result(cache1[query]);
+                    return;
+                }
+                $.ajax({
+                    url: "{{ url('api/autocomplete/search_location') }}",
+                    method: 'GET',
+                    data: {q: query,country_code:country_code},
+                    dataType: 'json',
+                    success: function(data) {
+                        cache1[query] = data;
+                        localStorage.setItem('search_city',JSON.stringify(cache1));
+                        result(data);
+                    }
+                });
+            },
+            autoSelect: true,
+            showHintOnFocus: true
+        }).focus(function () {
+            $(this).typeahead("search", "");
+        });             
+        /**
+        * Search Institute
+        */
+        var cache2 = {};
+        $('#institution').typeahead({ // focus on first result in dropdown
+            source: function(query, result) {
+                var country_code = $('#country_id_dd').find(':selected').attr('data-code')
+                if (query in cache2) {
+                    // If result is already in local_cache2, return it
+                    result(cache2[query]);
+                    return;
+                }
+                $.ajax({
+                    url: "{{ url('api/autocomplete/search_institute') }}",
+                    method: 'GET',
+                    data: {q: query,country_code:country_code},
+                    dataType: 'json',
+                    success: function(data) {
+                        cache2[query] = data;
+                        result(data);
+                    }
+                });
+            },
+            autoSelect: true,
+            showHintOnFocus: true
+        }).focus(function () {
+            $(this).typeahead("search", "");
+        });
     });
-
 </script>

@@ -336,7 +336,7 @@ class RegisterController extends Controller
                 {                
                     $updateSkill = new UserSkill();
                     $updateSkill->user_id = $user->id;
-                    $updateSkill->skill  = $skill->value;
+                    $updateSkill->skills  = $skill->value;
                     $updateSkill->skill_id  = $skill_id;
                     $updateSkill->save();
                 }

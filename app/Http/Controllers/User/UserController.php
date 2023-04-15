@@ -222,6 +222,7 @@ class UserController extends Controller
         }
         $user->phone = $request->phone;
         $user->verification_token = null;
+        $user->is_mobile_verified = 'yes';
         $user->save();
 
         return response()->json(array('success' => true, 'status' => 200), 200);

@@ -105,6 +105,7 @@ trait UserEducationTrait
         $userEducation->user_id = $user_id;
         $userEducation->education_level_id = $request->input('education_level_id');
         $userEducation->education_type_id = $request->input('education_type_id');
+        $userEducation->education_type = $request->input('education_type');
         $userEducation->country_id = $request->input('country_id_dd');
         $userEducation->from_year = $request->input('from_year');
         $userEducation->to_year = $request->input('to_year');

@@ -81,13 +81,32 @@
 }
 /*profilepic ends */
 
-/* otp starts*/
-
-.inputs input{
-  width:44px;height:40px
+/* otp starts*/ 
+#otp_code {
+  padding: 0px;
+  letter-spacing: 30px;
+  border: 0;
+  background: url('{{ asset("images/artboard2.png")}}');
+  background-repeat: space;
+  min-width: 230px;
+  background-size: 34px auto;
+  padding-left: 12px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
-input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button{
-  -webkit-appearance: none;-moz-appearance: none;appearance: none;margin: 0
+
+#otp-content {
+  left: 0;
+  position: sticky;
+}
+
+#otp-holder {
+  width: 250px;
+  overflow: hidden
+}
+
+#otp_code:focus-visible {
+  outline: unset;
 }
 /** otp ends */
 
@@ -360,15 +379,12 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
                   </h2>
                   <h5>Verify by providing the received OTP</h5>
                   <h5>An OTP was sent to the Email provided</h5>
-                  {!! Form::hidden('otp_code', null, array('id'=>'otp_code', 'class'=>'otp')) !!}
+                  {{-- {!! Form::hidden('otp_code', null, array('id'=>'otp_code', 'class'=>'otp')) !!} --}}
                   {!! Form::hidden('full_number', null, array('id'=>'full_number', 'class'=>'otp')) !!}
-                  <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2"> 
-                    <input class="m-2 text-center form-control rounded otp" name="otp" type="text" id="first" maxlength="1" /> 
-                    <input class="m-2 text-center form-control rounded otp" name="otp" type="text" id="second" maxlength="1" /> 
-                    <input class="m-2 text-center form-control rounded otp" name="otp" type="text" id="third" maxlength="1" /> 
-                    <input class="m-2 text-center form-control rounded otp" name="otp" type="text" id="fourth" maxlength="1" /> 
-                    <input class="m-2 text-center form-control rounded otp" name="otp" type="text" id="fifth" maxlength="1" /> 
-                    <input class="m-2 text-center form-control rounded otp" name="otp" type="text" id="sixth" maxlength="1" /> 
+                  <div id="otp-holder text-center">
+                    <div id="otp-content">
+                      <input id="otp_code" name="otp_code" type="tel" maxlength="6" pattern="\d{6}" value="" autocomplete="off"/>
+                    </div>
                   </div>
                   <small class="form-text text-muted text-danger err_msg" id="err_otp_code"></small> 
 
@@ -557,11 +573,12 @@ $('.btn-upload-image').on('click', function (ev) {
     clrErr();
     var errStaus = false;
     var old_num = '{{ Auth::user()->phone }}';
+    var verified = '{{ Auth::user()->is_mobile_verified }}';
     $("#full_number").val($('.iti__selected-dial-code').html()+String($("#phone").val()).replace(/ /g, ""));
     if(validateFormFields('phone','Please enter your phone number','')) errStaus=true;
     if(errStaus == false){
       var phone = $("#full_number").val();
-      if(phone == old_num)
+      if(phone == old_num && verified=='yes')
       {  
         $("#phone").removeClass('is-valid').addClass('is-invalid');   
         $("#err_phone").html('Given number is already Existing.');
@@ -595,11 +612,6 @@ $('.btn-upload-image').on('click', function (ev) {
   
   function VerifyPasswordChange(){
      var errStaus = false;
-     var get_val = $('input[name=otp]').map(function(idx, elem) {
-       return $(elem).val();
-     }).get();
-    
-     $('#otp_code').val(String(get_val).replace(/,/g, ""));
 
      if(validateFormFields('otp_code','Please enter otp','')) errStaus=true;
      if(errStaus == false){
@@ -691,5 +703,20 @@ $('.btn-upload-image').on('click', function (ev) {
         cpwd.attr("type", "password");
       }
   }
+  $('#otp_code').on('keypress', function(e) {
+    var count = $(this).val().length;
+    if(count==5){
+      e.preventDefault();
+      $(this).val($(this).val()+e.originalEvent.key)
+    }if(count>5){
+      e.preventDefault();      
+    }
+  });  
+  $("#otp_code").bind("paste", function(e){
+    var pastedData = e.originalEvent.clipboardData.getData('text');
+      e.preventDefault();
+      $(this).val(pastedData.slice(0,6));
+  });
+
   </script>
 @endpush

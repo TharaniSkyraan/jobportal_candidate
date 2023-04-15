@@ -12,9 +12,9 @@
                 <div class="fw-bolder">{{$education->getEducationLevel('education_level')}}</div>
             </div>
             <div class="col-md-6">
-                @if(!empty($education->education_type_id))
+                @if(!empty($education->education_type_id) || !empty($education->education_type))
                 <label for="" class="mb-2">Education</label>
-                <div class="fw-bolder">{{$education->getEducationType('education_type')?? ' - '}}</div>
+                <div class="fw-bolder">{{$education->education_type??$education->getEducationType('education_type')}}</div>
                 @endif
             </div>
         </div>

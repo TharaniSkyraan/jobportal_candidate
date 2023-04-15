@@ -2,8 +2,6 @@
  
     /** Education Form Script */
     $(function(){
-
-
       // if (education_level_id != ''){                      
       var path = baseurl + "/suggestion-education-types-dropdown";
     

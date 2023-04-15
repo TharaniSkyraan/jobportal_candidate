@@ -37,8 +37,8 @@
             // }else{
             //   filterEducationTypes(0);
             // }
-            $('#education_level_id').select2();
-            $('#country_id_dd').select2();
+            // $('#education_level_id').select2();
+            // $('#country_id_dd').select2();
           }
 
         });      
@@ -176,26 +176,24 @@
     function filterEducationTypes(education_type_id)
     {
 
-        var education_level_id = $('#education_level_id').val();
+        // var education_level_id = $('#education_level_id').val();
 
         // if (education_level_id != ''){
                       
-        $.post(baseurl + "filter-education-types-dropdown", {education_level_id: education_level_id, education_type_id: education_type_id, _method: 'POST', _token: csrf_token})
+        // $.post(baseurl + "filter-education-types-dropdown", {education_level_id: education_level_id, education_type_id: education_type_id, _method: 'POST', _token: csrf_token})
 
-          .done(function (response) {
-            if(response==''){
-              $('.education_type_div').hide();
-              $('#education_types_dd').html(response); 
-            }else{              
-              $('.education_type_div').show();
-              $('#education_types_dd').html(response); 
-            }
+        //   .done(function (response) {
+        //     if(response==''){
+        //       $('.education_type_div').hide();
+        //       $('#education_types_dd').html(response); 
+        //     }else{              
+        //       $('.education_type_div').show();
+        //       $('#education_types_dd').html(response); 
+        //     }
 
-          });
+        //   });
 
         // }
-        var education_level_text = $('#education_level_id option:selected').text();
-        $('.education_level_id').html(' - '+education_level_text);
     }
 
     

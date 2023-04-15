@@ -478,7 +478,7 @@ var is_login = '{{ Cookie::get("is_login") }}';
     {
         //myElement Has Focus
         $('.err_msg').html('');
-        if(designation != '' || location !=''){
+        if($.trim(designation) != '' || $.trim(location) !=''){   
     
             filterResetallActions();
 

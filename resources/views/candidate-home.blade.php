@@ -5,6 +5,11 @@
 <link href="{{ asset('site_assets_1/assets/1a9ve2/css/chpg.er23fw.css')}}" rel="stylesheet">
 <link href="{{asset('css/main_2.css')}}" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+@endsection
+@section('content')
+    
+@include('layouts.header')
+
 <style>
 .hme_banner{
     background: url('{{asset('images/candidate_hpg.png')}}');
@@ -34,13 +39,59 @@
 
     }
 }
+
+    /* Extra Small Devices (Phones) */
+    @media only screen and (max-width: 353px) {
+        /* CSS rules for phones */
+        .location .typeahead.dropdown-menu{
+
+        }
+        .designation .typeahead.dropdown-menu{
+
+        }
+    }
+
+    /* Extra Small Devices (Phones) */
+    @media (min-width: 426px) and (max-width: 570px) {
+        /* CSS rules for phones */
+        .location .typeahead.dropdown-menu, .designation .typeahead.dropdown-menu{
+            width: 87%;
+        }
+    }
+
+    /* Small Devices (Tablets) */
+    @media (min-width: 568px) and (max-width: 767px) {
+        /* CSS rules for tablets */
+        .location .typeahead.dropdown-menu, .designation .typeahead.dropdown-menu{
+            width: 91%;
+            top: unset !important;
+            left: unset !important;
+        }
+    }
+
+    /* Medium Devices (Desktops) */
+    @media (min-width: 768px) and (max-width: 991px) {
+        /* CSS rules for desktops */
+        .location .typeahead.dropdown-menu, .designation .typeahead.dropdown-menu{
+            width: 34%;
+        }
+    }
+
+    /* Large Devices (Large Screens) */
+    @media (min-width: 992px) and (max-width: 1199px) {
+        /* CSS rules for large screens */
+        .location .typeahead.dropdown-menu, .designation .typeahead.dropdown-menu{
+            width: 36% !important;
+        }  
+    }
+    /* Large Devices (Large Screens) */
+    @media (min-width: 1200px) and (max-width: 1399) {
+        /* CSS rules for large screens */
+        .location .typeahead.dropdown-menu, .designation .typeahead.dropdown-menu{
+            width: 37% !important;  
+        }
+    }
 </style>
-@endsection
-@section('content')
-    
-@include('layouts.header')
-
-
 <!-- <div class="main-panel main-panel-custom"> -->
     <div class="content">
         
@@ -82,12 +133,12 @@
                     <div class="card p-5 bg-primary">
                         <div class="row">
                         
-                            <div class="col-md-5">
+                            <div class="col-md-5 designation">
                                 {!! Form::search('designation', null, array('class'=>'form-control-2  typeahead', 'id'=>'designation',
                                 'placeholder'=>__('Job title, keywords or company'),  'autocomplete'=>'off', 'spellcheck'=>'false' ) ) !!}
                                 <span class="form-text text-white err_msg designation-error"></span>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-5 location">
                                 {!! Form::search('location', null, array('class'=>'form-control-2 typeahead', 'autocomplete'=>'off', 'id'=>'location', 'placeholder'=>__('On Location'),' aria-label'=>'On Location')) !!}
                                 <span class="form-text text-white err_msg"></span>                        
                             </div>

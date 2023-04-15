@@ -53,6 +53,8 @@ class UserProject extends Model
                 } else {
                     return $user_experience;
                 }
+            }else{
+                return 'Other';
             }
         }
         return '';

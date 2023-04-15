@@ -78,6 +78,9 @@ function validateprojectForm(){
       }
     }
   }
+  if($('#user_experience_id').val() == ""){
+    setMsg('user_experience_id','Please enter Your project done by'); errStaus=true;
+  }
 
   if(errStaus) {
     return false;

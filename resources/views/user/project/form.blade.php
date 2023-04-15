@@ -18,12 +18,12 @@
 
         <div class="mb-4">    
             <label for="" class="form-label fw-bold">Project done By </label>    
-            <select class="form-control required" name="user_experience_id" id="user_experience_id"> 
+            <select class="form-control" name="user_experience_id" id="user_experience_id"> 
                 <option value=""> Select Company </option>
                 @foreach($experience_companies as $key => $company)
                     <option value="{{$key}}" @isset($userProject) @if($userProject->user_experience_id==$key) selected @endif @endisset>{{$company}}</option>
                 @endforeach
-                <!-- <option value="0" @isset($userProject) @if($userProject->user_experience_id==0) selected @endif @endisset> Other </option> -->
+                <option value="0" @isset($userProject) @if($userProject->user_experience_id==0) selected @endif @endisset> Other </option> 
             </select>
             <small class="help-block form-text text-muted text-danger err_msg user_experience_id-error" id="err_user_experience_id"></small>            
 
