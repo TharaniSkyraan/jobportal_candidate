@@ -90,6 +90,11 @@ class Job extends Model
         return $str;
     }
 
+    public function companyuser()
+    {
+        return $this->belongsTo(CompanySubuser::class, 'created_by', 'id');
+    }
+
     public function getSkillsList()
     {
         $str = '';

@@ -496,7 +496,7 @@
                             
                             <div class="">
                                 <h5 class="mb-1 fw-bolder text-green-color">Company Info</h5>
-                                @if($job->company->website_url)
+                                @isset($job->company->website_url)
                                 <div class="row col-md-12 cmpinfo-detail mb-2">
                                     <div class="col-md-12">
                                         <label><b>Website : </b></label>
@@ -505,7 +505,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                @endif
+                                @endisset
 
                                 <div class="row col-md-12 cmpinfo-detail">
                                     <div class="col-md-6">

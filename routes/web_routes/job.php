@@ -18,7 +18,7 @@ Route::name('job.')->namespace('Job')->group(function () {
     Route::post('save/{slug}', 'FavouriteJobController@SaveJob')->name('save');
 
     // Search
-    Route::get('/{slug}', 'JobsController@search')->name('search');
+    Route::get('/{slug}', 'JobsController@search');
     Route::post('/api/search', 'JobsController@searchJob')->name('search-job');
 });
 ?>
