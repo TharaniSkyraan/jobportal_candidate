@@ -376,7 +376,7 @@ class UserController extends Controller
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         
             $headers = [
-                'Authorization: Bearer EAALy6BVbtlMBACz2abQ9FzLXf9fPVSxwUxOL5Md7cdYzsJ3v0QkZCTCx5DBqRB5P1kGIONvYF2rHCPZAPKE4sksJDdCN0178S9G8ZAKRK2YVO0hO4X4KYiKDLzLal1kRfak0uBoC7rp5Ek1wEmLs9DSU7WuowAFxxWRfbAF95JSrMXEttMWPCJwX9KX56g9qkMlSeabQQZDZD', 
+                'Authorization: Bearer '.config('services.whatsapp.access_token'),
                 'Content-Type: application/json' 
             ];
         

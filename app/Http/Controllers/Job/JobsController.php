@@ -361,18 +361,19 @@ class JobsController extends Controller
     public function Notification($id)
     {
         $job = JobApply::find($id);
-        $phone = str_replace("+","",$job->user->phone);
+        $phone = str_replace("+","",$job->job->company->phone);
 
         if(!empty($phone)){
 
-            $name = $job->user->getName();
+            $user =  $job->userdetail;
             $title = $job->job->title;
+            $company_name = $job->job->company_name;
             $data = [
                 "to"=>$phone,
                 "messaging_product"=>"whatsapp",
                 "type"=>"template",
                 "template"=>[
-                    "name"=>"job_applied_notification",
+                    "name"=>"candidate_applied",
                     "language"=>[
                         "code"=>"en_US"
                     ],
@@ -382,11 +383,42 @@ class JobsController extends Controller
                             "parameters"=>[
                                 [
                                     "type"=>"text",
-                                    "text"=>"*$name*"
+                                    "text"=>"$user->name"
                                 ],
                                 [
                                     "type"=>"text",
-                                    "text"=>"*$title*"
+                                    "text"=>"$title"
+                                ],
+                                [
+                                    "type"=>"text",
+                                    "text"=>"$company_name"
+                                ],
+                                [
+                                    "type"=>"text",
+                                    "text"=>"$user->education"
+                                ],
+                                [
+                                    "type"=>"text",
+                                    "text"=>"$user->total_experience"
+                                ],
+                                [
+                                    "type"=>"text",
+                                    "text"=>"$user->location"
+                                ],
+                                [
+                                    "type"=>"text",
+                                    "text"=>"$user->skill"
+                                ]
+                            ]
+                        ],
+                        [
+                            "type"=> "button",
+                            "sub_type"=> "url",
+                            "index"=> 0,
+                            "parameters"=> [
+                                [
+                                    "type"=> "text",
+                                    "text"=> $job->id // dynamic url
                                 ]
                             ]
                         ]
@@ -401,7 +433,7 @@ class JobsController extends Controller
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         
             $headers = [
-                'Authorization: Bearer EAALy6BVbtlMBACz2abQ9FzLXf9fPVSxwUxOL5Md7cdYzsJ3v0QkZCTCx5DBqRB5P1kGIONvYF2rHCPZAPKE4sksJDdCN0178S9G8ZAKRK2YVO0hO4X4KYiKDLzLal1kRfak0uBoC7rp5Ek1wEmLs9DSU7WuowAFxxWRfbAF95JSrMXEttMWPCJwX9KX56g9qkMlSeabQQZDZD', 
+                'Authorization: Bearer '.config('services.whatsapp.access_token'), 
                 'Content-Type: application/json' 
             ];
         

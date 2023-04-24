@@ -433,8 +433,8 @@ class RegisterController extends Controller
         $user->save();
 
         // User signup
-        // event(new Registered($user));
-        // event(new UserRegistered($user));   
+        event(new Registered($user));
+        event(new UserRegistered($user));   
         Auth::login($user, true);
 
         Session::forget('id');
