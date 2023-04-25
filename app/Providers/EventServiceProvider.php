@@ -16,6 +16,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         'App\Events\UserRegistered' => [
             'App\Listeners\UserRegisterdListener',
+            'App\Listeners\WelcomeUserListener',
         ],
         'App\Events\JobApplied' => [
             'App\Listeners\JobAppliedCompanyListener',
