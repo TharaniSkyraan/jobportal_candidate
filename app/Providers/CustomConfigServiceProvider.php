@@ -171,6 +171,9 @@ class CustomConfigServiceProvider extends ServiceProvider
                     'redirect' => url('signinorsignup/google/callback'),
 
                 ],
+                'whatsapp' => [
+                    'access_token' => $settings->whatsapp_token,
+                ],
 
             ];
 

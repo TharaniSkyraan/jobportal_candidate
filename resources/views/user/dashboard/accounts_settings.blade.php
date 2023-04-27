@@ -9,15 +9,14 @@
 
 
 @section('content')
-
 <style>
 
 /*profilepic start*/
 .profilepic {
 	border: 0.5px solid lightgrey;
 	position: relative;
-	width: 120px;
-    height: 120px;
+	width: 100px;
+    height: 100px;
 	/* height: 125px; */
 	border-radius: 50%;
 	overflow: hidden;
@@ -81,6 +80,8 @@
 }
 /*profilepic ends */
 
+/* otp starts*/
+
 /* otp starts*/ 
 #otp_code {
   padding: 0px;
@@ -129,14 +130,16 @@
   border-color: #d1f3fb;
 }
 @media(max-width:480px){
-  .change_phone_number .iti--allow-dropdown{
-    margin-bottom:10px;
+
+.change_phone_number .iti--allow-dropdown{
+  margin-bottom:10px;
+}
+}
+@media(max-width: 767px){
+  #header .sidenav-toggler{
+    display: block !important;
   }
 }
-.main-panel>.content{
-  overflow: unset !important;  
-}
-
 .card-title{
   background: #4285f4;
   color:#fff;
@@ -145,7 +148,6 @@
 .acc-set{  
   border-radius: 15px !important;
 }
-
 </style>
 
 <div class="wrapper" >
@@ -503,7 +505,7 @@ $('.btn-upload-image').on('click', function (ev) {
 <script>
 
   $(document.body).on('hidden.bs.modal', function () {
-    $(".reset-modal" ).load(document.URL + ".reset-modal>*", "" );
+    $(".reset-modal" ).load(document.URL + ".reset-modal", "" );
   });
 
 	function openModal(){
@@ -717,6 +719,5 @@ $('.btn-upload-image').on('click', function (ev) {
       e.preventDefault();
       $(this).val(pastedData.slice(0,6));
   });
-
   </script>
 @endpush

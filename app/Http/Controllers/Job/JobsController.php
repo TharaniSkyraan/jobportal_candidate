@@ -361,7 +361,7 @@ class JobsController extends Controller
     public function Notification($id)
     {
         $job = JobApply::find($id);
-        $phone = str_replace("+","",$job->job->company->phone);
+        $phone = str_replace("+","",$job->job->company->phone??'');
 
         if(!empty($phone)){
 
@@ -383,7 +383,7 @@ class JobsController extends Controller
                             "parameters"=>[
                                 [
                                     "type"=>"text",
-                                    "text"=>"$user->name"
+                                    "text"=>$user['name']
                                 ],
                                 [
                                     "type"=>"text",
@@ -395,19 +395,19 @@ class JobsController extends Controller
                                 ],
                                 [
                                     "type"=>"text",
-                                    "text"=>"$user->education"
+                                    "text"=>$user['education']
                                 ],
                                 [
                                     "type"=>"text",
-                                    "text"=>"$user->total_experience"
+                                    "text"=>$user['total_experience']
                                 ],
                                 [
                                     "type"=>"text",
-                                    "text"=>"$user->location"
+                                    "text"=>$user['location']
                                 ],
                                 [
                                     "type"=>"text",
-                                    "text"=>"$user->skill"
+                                    "text"=>$user['skill']
                                 ]
                             ]
                         ],
