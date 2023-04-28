@@ -42,7 +42,8 @@
     .footer-content{
         font-size:10px;
         text-align:center !important;
-        padding: 2rem;
+        padding: 1.5rem 0rem;
+        font-size: 14px;
     }
     .content{
         box-shadow: 2px 6px 15px 0 rgb(69 65 78 / 10%) !important;

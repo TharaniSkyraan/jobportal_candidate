@@ -44,9 +44,10 @@
     }
     .footer-content{
         text-align:center !important;
-        padding: 1.2rem;
+        padding: 1.5rem 0rem;
         border-top: 2px #4285f4 solid;
         margin: 0px 30px;
+        font-size: 14px;
     }
     .content{
         box-shadow: 2px 6px 15px 0 rgb(69 65 78 / 10%) !important;
