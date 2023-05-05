@@ -15,7 +15,7 @@
 	<div class="main-panel main-panel-custom">
 		<div class="content">
 			<div class="page-inner">
-                <div id="my_skills1" class="mt-4">
+                <div id="my_expernce2" class="mt-4">
                     <div class="text-center ttleicn">
                         <h2 class="fw-bolder"><img src="{{asset('images/skills.png')}}">&nbsp;My skills</h2>
                     </div>

@@ -40,57 +40,46 @@
     }
 }
 
-    /* Extra Small Devices (Phones) */
-    @media only screen and (max-width: 353px) {
-        /* CSS rules for phones */
-        .location .typeahead.dropdown-menu{
-
-        }
-        .designation .typeahead.dropdown-menu{
-
-        }
+.location .typeahead.dropdown-menu, .designation .typeahead.dropdown-menu{
+    max-height: 188px !important;
+    overflow: auto;
+    display: block;         
+    width: -webkit-fill-available;
+    top: unset !important;
+    left: unset !important;
+}
+    
+@media (min-width: 768px) and (max-width: 1399px) {
+    .designation .typeahead.dropdown-menu{
+        margin-right: 59% !important;
     }
+}
 
-    /* Extra Small Devices (Phones) */
-    @media (min-width: 426px) and (max-width: 570px) {
-        /* CSS rules for phones */
-        .location .typeahead.dropdown-menu, .designation .typeahead.dropdown-menu{
-            width: 87%;
-        }
+    
+@media (min-width: 768px) and (max-width: 991px) {
+    .location .typeahead.dropdown-menu{
+        margin-right: 22% !important;
     }
-
-    /* Small Devices (Tablets) */
-    @media (min-width: 568px) and (max-width: 767px) {
-        /* CSS rules for tablets */
-        .location .typeahead.dropdown-menu, .designation .typeahead.dropdown-menu{
-            width: 91%;
-            top: unset !important;
-            left: unset !important;
-        }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+    .location .typeahead.dropdown-menu{
+        margin-right: 20.5% !important;
     }
-
-    /* Medium Devices (Desktops) */
-    @media (min-width: 768px) and (max-width: 991px) {
-        /* CSS rules for desktops */
-        .location .typeahead.dropdown-menu, .designation .typeahead.dropdown-menu{
-            width: 34%;
-        }
+}
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .location .typeahead.dropdown-menu{
+        margin-right: 19.8% !important;
     }
-
-    /* Large Devices (Large Screens) */
-    @media (min-width: 992px) and (max-width: 1199px) {
-        /* CSS rules for large screens */
-        .location .typeahead.dropdown-menu, .designation .typeahead.dropdown-menu{
-            width: 36% !important;
-        }  
+}
+@media only screen and (max-width: 767px) {
+    /* CSS rules for phones */
+    .location .typeahead.dropdown-menu, .designation .typeahead.dropdown-menu{
+        margin-right: 25px !important;
     }
-    /* Large Devices (Large Screens) */
-    @media (min-width: 1200px) and (max-width: 1399) {
-        /* CSS rules for large screens */
-        .location .typeahead.dropdown-menu, .designation .typeahead.dropdown-menu{
-            width: 37% !important;  
-        }
+    .location .typeahead.dropdown-menu{
+        top: 120px !important;
     }
+}
 </style>
 <!-- <div class="main-panel main-panel-custom"> -->
     <div class="content">

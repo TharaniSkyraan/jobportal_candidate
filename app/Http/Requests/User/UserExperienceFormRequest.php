@@ -36,6 +36,7 @@ class UserExperienceFormRequest extends Request
                         // "state_id_dd" => "required",
                         // "city_id_dd" => "required",
                         "date_start" => "required",
+                        // "description" => "required|max:4000",
                     ];
 
                     if(empty($this->input('is_currently_working'))){

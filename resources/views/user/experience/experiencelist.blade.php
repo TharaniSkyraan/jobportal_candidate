@@ -2,23 +2,24 @@
 @foreach ($experiences as $experience)
     <div class="card mt-4 experience_div experience_edited_div_{{$experience->id}}">
         <div class="row">
-            <div class="col-md-8"></div>
-            <div class="col-md-4 text-end">
+            <div class="col-md-8 col-lg-8 col-sm-8 col-8">
+                <div class="dtls">
+                    <h3 class="fw-bolder mb-1">{{$experience->title}}</h3>
+                    <p class="mb-0">{{$experience->company}}</p>
+                    <p class="mb-0">{{$experience->location}}</p>
+                    <p>{{Carbon\Carbon::parse($experience->date_start)->Format('M Y')}} - {{ ($experience->is_currently_working!=1? Carbon\Carbon::parse($experience->date_end)->Format('M Y') : 'Currently working') }}.</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-4 col-4">
                 <div class="row">
-                    <div class="col-6 edit_experience edit_experience_{{$experience->id}}"><i class="fa fa-edit openForm" data-form="edit" data-id="{{$experience->id}}"></i></div>
-                    <div class="col-6 delete_experience delete_experience_{{$experience->id}}"  @if(count(Auth::user()->userExperience)<2) style="display:none" @endif onclick="delete_user_experience({{$experience->id}});"><i class="fa fa-trash"></i></div>
-                    <div class="col-6 undo_experience_{{$experience->id}}" onclick="undo_user_experience({{$experience->id}});" style="display:none;"><i class="fa-solid fa-arrow-rotate-left text-green-color border-0 rounded p-2"></i></div>
+                    <div class="col-12 justify-content-evenly d-flex">
+                        <span class="m-2 edit_experience edit_experience_{{$experience->id}}"><i class="fa fa-edit openForm" data-form="edit" data-id="{{$experience->id}}"></i></span>
+                        <span class="m-2 delete_experience delete_experience_{{$experience->id}}"  @if(count(Auth::user()->userExperience)<2) style="display:none" @endif onclick="delete_user_experience({{$experience->id}});"><i class="fa fa-trash"></i></span>
+                        <span class="m-2 undo_experience_{{$experience->id}}" onclick="undo_user_experience({{$experience->id}});" style="display:none;"><i class="fa-solid fa-arrow-rotate-left text-green-color border-0 rounded p-2"></i></span>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="dtls">
-            <h3 class="fw-bolder mb-1">{{$experience->title}}</h3>
-            <p class="mb-0">{{$experience->company}}</p>
-            <p class="mb-0">{{$experience->location}}</p>
-            <p>{{Carbon\Carbon::parse($experience->date_start)->Format('M Y')}} - {{ ($experience->is_currently_working!=1? Carbon\Carbon::parse($experience->date_end)->Format('M Y') : 'Currently working') }}.</p>
-        </div>
-
         <div class="more-details-show-hide collapse mt-2" id="collapseExample{{$experience->id}}">
             @if(!empty($experience->description))
             <div class="mb-4">

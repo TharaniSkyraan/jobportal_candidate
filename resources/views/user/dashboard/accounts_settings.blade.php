@@ -215,7 +215,7 @@
                       </div>
 										</div>
 
-										<div class="mb-4">
+										<div class="mb-4"  style="display:none !important;">
                       <label for="" class="form-label fw-bolder">Phone Number</label>
                       <div class="row align-items-center current_phone_number">
                         <div class="col-md-6 col-sm-8 col-xs-6 col-8">
@@ -232,7 +232,7 @@
                         </div>
                       </div>
 
-                      <div class="row">
+                      <div class="row" >
                         <div class="col-md-12 change_phone_number" style="display:none !important;">
                           <div class="row align-items-center">
                             <div class="col-md-6 col-sm-12 col-xs-6 col-12">

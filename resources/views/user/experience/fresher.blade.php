@@ -18,7 +18,7 @@
                     @endphp
                     {!! Form::open(array('method' => 'post', 'route' => array('employementstatus-update'), 'class' => 'form')) !!}
                         <div class="row text-center">
-                            <div class="col-md-6">
+                            <div class="col-md-6 col-6">
                                 <input class="employment_status" type="radio" id="fresher" name="employment_status" style="display:none" value="fresher" checked>
                                 <label for="fresher">
                                     <div class="levtstge_fre">
@@ -26,7 +26,7 @@
                                     <div class="text-center fw-bolder mt-3">A Fresher</div>
                                 </label>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 col-6">
                                 <input class="employment_status" type="radio" id="experienced" name="employment_status" style="display:none" value="experienced">
                                 <label for="experienced">
                                     <div class="levtstge_exp">

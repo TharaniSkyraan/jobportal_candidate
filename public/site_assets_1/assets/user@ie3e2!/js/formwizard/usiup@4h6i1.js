@@ -43,7 +43,7 @@
       clrErr();
       var errStaus = false; 
       if(validateFormFields('education_level_id','Please enter education level','')) errStaus=true;
-      if(document.getElementById('education_type')!=null){
+      if($('.education_type_div').is(":visible")==true){
         if(validateFormFields('education_type','Please enter the Education type','')) errStaus=true;
       }
       // form validation ends
@@ -105,16 +105,16 @@
     if(document.getElementById('country_id'))
     {
 
-     
+      if(document.getElementById('phone'))
+      {
+       
         var input = document.querySelector("#phone");
         var iti = window.intlTelInput(input, {
             separateDialCode: true,
             formatOnDisplay: false,
-            utilsScript: "{{ asset('site_assets_1/assets/intl-tel-input/js/utils.js')}}",
+            utilsScript: baseurl+"/site_assets_1/assets/intl-tel-input/js/utils.js",
         });
-        if(!setcountry){
-            iti.setCountry("in");
-        } 
+        iti.setCountry("in"); 
       
         $(document).on('keyup change', ".validMob", function() {
             
@@ -139,11 +139,12 @@
               }
           }
         });
+      }
 
-        function CountryChange(){
-          $('.country_change').show();
-          $('.country_text').hide();
-        }
+      function CountryChange(){
+        $('.country_change').show();
+        $('.country_text').hide();
+      }
   
       /**
       * Search Location

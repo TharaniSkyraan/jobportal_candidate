@@ -1540,7 +1540,8 @@ filter search
     height: 12vw;
     object-fit: cover;
 }
-@media(min-width: 280px) and (max-width: 767px){
+/* @media(min-width: 280px) and (max-width: 767px){ */
+@media(min-width: 280px) and (max-width: 991px){
     .galaryappendcontent img{
         width: 100%;
         height: auto;

@@ -12,8 +12,8 @@
                 <img src="{{asset('images/candidate_left.png')}}" alt="">
             </div>
            
-            <div class="col-md-6">
-              <div class="card lgncard1">
+            <div class="col-md-6 card-size">
+                <div class="card lgncard1">
                   <div class="site2_logo mb-4 mt-2 text-center">
                       <a href="{{url('/')}}" class="href">
                           <img src="{{asset('images/footer_logo.png')}}" alt="logo">

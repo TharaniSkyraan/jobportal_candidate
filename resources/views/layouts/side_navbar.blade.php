@@ -100,14 +100,14 @@
                     
                     <div class="side_rgt" style="{{(Request::is('education-details')) ? '' : 'display:none' }}">
                         @foreach ($eduLevels as $key => $eduLevel)                              
-                            <div class="row mb-3 {{ (!in_array($key, $eduLevelids)) ? 'no_fillfield' : '' }}" >
+                            <div class="row mb-3 {{ (!in_array($key, $eduLevelids)) ? 'no_fillfield' : '' }} edu-{{$key}}" >
                                 <div class="col-10">
                                     <div class="sideb_icn">
                                         <a href="javascript:;">&nbsp;{{$eduLevel}}</a>
                                     </div>
                                 </div>
                                 <div class="col-2 align-self-center text-center">
-                                    <i class="{{ (!in_array($key, $eduLevelids)) ? 'fa fa-plus' : 'fa fa-check' }}"></i>
+                                    <i class="{{ (!in_array($key, $eduLevelids)) ? 'fa fa-plus' : 'fa fa-check' }} edui-{{$key}}"></i>
                                 </div>
                             </div>
                         @endforeach

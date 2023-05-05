@@ -206,6 +206,13 @@
     overflow-y: scroll;
     max-height: 400px;
 }
+@media screen and (min-height:800px){
+    .educationForm .modal-body{
+        overflow-y: unset;
+        max-height: unset;
+    }
+}
+
 .educationForm .modal-header{
     border-bottom:unset !important;
     background: #f3f7fe;
@@ -213,8 +220,14 @@
 /******************
 **1.4.my experience**
 *******************/
+
 #my_expernce{
     width:65%;
+}
+@media screen and (max-width:767px){
+    #my_expernce{
+        width:unset;
+}
 }#my_expernce h2 {
     font-size: 30px;
     align-items: center;
@@ -224,7 +237,7 @@
     width: 40%;
 } 
 .select2-container{
-    z-index: 9999 !important;
+    z-index: initial;
 }
 /******************
 **1.5.choose experience**
@@ -377,7 +390,7 @@
 *******************/
 #my_skills1 .card {
     background: #F3F7FE;
-    padding: 20px;
+    padding: 35px;
     box-shadow: 0px 0px 6px #00000029;
 }#my_skills1{
     width: 65%;
@@ -517,7 +530,7 @@
     color: #FF3434;
     cursor: pointer;
 }
-@media(min-width: 280px) and (max-width: 480px){
+@media screen and (max-width: 480px){
     #my_resme, #abt_meusr, #language_knwn1, #language_knwn, #my_eductin, #my_expernce2, #my_skills1{
         width: 100%;
     }#abt_meusr .card, #language_knwn1 .card {
@@ -537,12 +550,14 @@
     }.cmpinfo-detail .text-end{
         text-align: start !important;
         margin-top: 1rem;
+    }#language_knwn .crdbxpl button {
+        padding: 1px 6px;
     }
 }
 
 
 @media(min-width: 481px) and (max-width: 767px){
-    #abt_meusr, #my_resme, #my_eductin, #my_expernce2, #my_skills1{
+    #abt_meusr, #my_resme, #my_eductin, #my_expernce2, #my_skills1, #language_knwn{
         width: 100%;
     }.header-space-search .jdcarc .justify-content-end{
         justify-content: start !important;
@@ -562,12 +577,15 @@
         width: 100%;
     }#language_knwn1 .card{
         padding: 25px;
-    }#language_div .table{
+    }
+}
+
+@media(min-width: 768px) and (max-width: 918px){
+    #language_div .table{
         overflow-x: auto;
         display: block;
     }
 }
-
 @media(min-width: 1025px) and (max-width: 1300px){
     #abt_meusr, #my_resme, #my_eductin, #my_expernce2, #my_skills1{
         width: 100%;

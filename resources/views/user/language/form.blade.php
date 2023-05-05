@@ -1,4 +1,4 @@
-<div class="card mt-5">
+<div class="card p-4">
     <div class="mb-2">
     <label for="" class="form-label fw-bolder">Languages Known</label>
     </div>

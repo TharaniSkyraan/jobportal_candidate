@@ -2418,3 +2418,16 @@ border-radius: 20px;
 .pe-1 i{
   margin: 0px 2px 0px 2px;
 }
+
+/* Career Info */
+
+@media (min-width: 310px) and (max-width: 409px) {
+  input#expected_salary {
+    width: 30% !important;
+  }
+}
+@media (min-width: 410px) {
+  input#expected_salary {
+    width: 50% !important;
+  }
+}

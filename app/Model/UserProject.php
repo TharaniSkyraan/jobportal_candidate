@@ -57,7 +57,7 @@ class UserProject extends Model
                 return 'Other';
             }
         }
-        return '';
+        return $this->company_name;
        
     }
 

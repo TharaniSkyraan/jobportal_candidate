@@ -155,6 +155,12 @@
 
               showEducation(education_level_id);
               $('.educationFromclose').trigger('click');
+              if($('.edui-'+education_level_id).hasClass("fa-plus")==true)
+              {
+                $('.edui-'+education_level_id).removeClass('fa-plus');
+                $('.edui-'+education_level_id).addClass('fa-check');
+                $('.edu-'+education_level_id).removeClass('no_fillfield');
+              }
              
             },
             error: function(json){

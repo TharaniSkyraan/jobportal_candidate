@@ -24,24 +24,20 @@
     li {
         font-family: 'Nunito', sans-serif !important;
     }
-    .career_title .typeahead.dropdown-menu{
-        max-height: 188px !important;
-        overflow: auto;
-        display: block;
-        margin-right: 25px;
-        width: -webkit-fill-available;
-    }
-    .city .typeahead.dropdown-menu{
+    .city .typeahead.dropdown-menu, .career_title .typeahead.dropdown-menu{
         max-height: 188px !important;
         overflow: auto;
         display: block;         
         width: -webkit-fill-available;
+        top: unset !important;
+        left: unset !important;
+        margin-right: 25px;
+
     }
     /* Extra Small Devices (Phones) */
 @media only screen and (max-width: 353px) {
   /* CSS rules for phones */
-    .city .typeahead.dropdown-menu{
-        top: 111.5% !important;
+    .city .typeahead.dropdown-menu, .career_title .typeahead.dropdown-menu{
         margin-right: 24px;
     }
 }
@@ -49,8 +45,7 @@
     /* Extra Small Devices (Phones) */
 @media (min-width: 354px) and (max-width: 480px) {
   /* CSS rules for phones */
-    .city .typeahead.dropdown-menu{
-        top: 107.5% !important;
+    .city .typeahead.dropdown-menu, .career_title .typeahead.dropdown-menu{
         margin-right: 24px;
     }
 }
@@ -58,8 +53,7 @@
 /* Small Devices (Tablets) */
 @media (min-width: 481px) and (max-width: 768px) {
   /* CSS rules for tablets */
-    .city .typeahead.dropdown-menu{
-        top: 109.1% !important;
+    .city .typeahead.dropdown-menu, .career_title .typeahead.dropdown-menu{
         margin-right: 33px;
     }
 }
@@ -67,8 +61,7 @@
 /* Medium Devices (Desktops) */
 @media (min-width: 769px) and (max-width: 992px) {
   /* CSS rules for desktops */
-    .city .typeahead.dropdown-menu{
-        top: 99% !important;
+    .city .typeahead.dropdown-menu, .career_title .typeahead.dropdown-menu{
         margin-right: 33px;
     }
 }
@@ -76,16 +69,14 @@
 /* Large Devices (Large Screens) */
 @media (min-width: 993px) and (max-width: 1300px) {
   /* CSS rules for large screens */
-    .city .typeahead.dropdown-menu{
-        top: 99% !important;
+    .city .typeahead.dropdown-menu, .career_title .typeahead.dropdown-menu{
         margin-right: 33px;
     }
 }
 /* Large Devices (Large Screens) */
 @media (min-width: 1301px) and (max-width: 1330px) {
   /* CSS rules for large screens */
-    .city .typeahead.dropdown-menu{
-        top: 97.2% !important;
+    .city .typeahead.dropdown-menu, .career_title .typeahead.dropdown-menu{
         margin-right: 24px;
     }
 }

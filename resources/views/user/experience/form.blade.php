@@ -33,14 +33,14 @@
         <div class="mb-4">
             <label class="form-label fw-bolder"> Location <span class="country_text">- {{ $country }} <a href="javascript:void(0);" onClick="CountryChange()">Change</a></span></label>  
             <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-12 mb-3 country_change"  style="display:none;">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-12 mb-3 country_change"  style="display:none;">
                     <label class="form-label fw-bolder"> Country </label>  
                     {!! Form::select('country_id_dd', [''=>__('Select Country')]+$countries['value'], $country_id, array('class'=>'form-select country_id required', 'id'=>'country_id_dd'), $countries['attribute']) !!}
                     <small class="help-block form-text text-muted text-danger err_msg country_id_dd-error" id="err_country_id_dd"></small>                        
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 col-sm-6 col-xs-12 mb-2">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-12 mb-2">
                     <label class="form-label fw-bolder">City </label>  
                     {!! Form::text('location', null, array('class'=>'form-control-2 required typeahead', 'id'=>'location', 'placeholder'=>__('Enter city'),' aria-label'=>'Enter city')) !!}
                     <small class="form-text text-muted text-danger err_msg" id="err_location"></small>                          
@@ -54,21 +54,21 @@
             @endphp
         <div class="row align-items-baseline mb-3">
             <label for="" class="form-label fw-bolder">Year of Experience</label>
-            <div class="col-md-6 col-lg-4 col-sm-6 col-xs-12 mb-2">
+            <div class="col-md-6 col-lg-4 col-sm-6 col-xs-12 col-12 mb-2">
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">From</span>
                     {!! Form::month('date_start', $date_start??null, array('class'=>'form-control date_start required', 'id'=>'date_start', 'max'=>date("Y-m"), 'min'=>'1980-01', 'placeholder'=>__('From'), 'autocomplete'=>'off')) !!}
                 </div>
                 <small class="help-block form-text text-muted text-danger err_msg date_start-error" id="err_date_start"></small>
             </div>
-            <div class="col-md-6 col-lg-4 col-sm-6 col-xs-12 mb-2 hide_currently_working_checked">
+            <div class="col-md-6 col-lg-4 col-sm-6 col-xs-12 col-12 mb-2 hide_currently_working_checked">
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">To</span>
                     {!! Form::month('date_end', $date_end??null, array('class'=>'form-control date_end required', 'id'=>'date_end', 'max'=>date("Y-m"), 'min'=>'1980-01', 'placeholder'=>__('Completed Year'), 'autocomplete'=>'off')) !!}
                 </div>
                 <small class="help-block form-text text-muted text-danger err_msg date_end-error" id="err_date_end"></small>
             </div>
-            <div class="col-md-6 col-lg-4 col-sm-6 col-xs-12 mb-2 justify-content-center">
+            <div class="col-md-6 col-lg-4 col-sm-6 col-xs-12 col-21 mb-2 justify-content-center">
                 <input class="form-check-input" type="checkbox" name="is_currently_working" value="1" id="flexCheckDefault" @if(isset($userExperience) && $userExperience->is_currently_working == 1) checked @endif>
                 <label class="form-check-label" for="flexCheckDefault">Still Working</label>
             </div>
@@ -76,7 +76,7 @@
 
         <div class="mb-4">    
             <label for="" class="form-label fw-bolder">Job Description (Optional)</label>
-            <textarea name="description" rows="3" class="form-control" maxlength='255' placeholder="Write about your roles and responsibilities in this industry/ Organaisation" id="job_description">{{(isset($userExperience)? $userExperience->description:'')}}</textarea>
+            <textarea name="description" rows="3" class="form-control" maxlength='4000' placeholder="Write about your roles and responsibilities in this industry/ Organaisation" id="job_description">{{(isset($userExperience)? $userExperience->description:'')}}</textarea>
             <small class="job_desc_remain_char text-muted fw-bold"></small>
             <small class="description_remain_char"></small>
         </div>
@@ -99,20 +99,20 @@
   
 <script>
 
-{{-- $(document).on("keyup","#job_description",function(e){
-    var len = $(this).val().length;
-    set = 255;
-    if(len == 0){
-           $('.description_remain_char').hide();
+    $(document).on("keyup","#job_description",function(e){
+        var len = $(this).val().length;
+        set = 4000;
+        if(len == 0){
+            $('.description_remain_char').hide();
+            }else{
+            $('.description_remain_char').show();
+            }
+        if(len >= set) {
+            $('.description_remain_char').html('Maximum characters reached: <span class="text-danger">'+set+'</span>');
         }else{
-           $('.description_remain_char').show();
+            $('.description_remain_char').html('Remaining Maximum characters: <span class="text-success">'+(set-len)+'</span>');
         }
-    if(len >= set) {
-        $('.description_remain_char').html('Maximum characters reached: <span class="text-danger">'+set+'</span>');
-    }else{
-        $('.description_remain_char').html('Remaining Maximum characters: <span class="text-success">'+(set-len)+'</span>');
-    }
-}); --}}
+    });
 
     $('.country_id').select2();
     $(function() {	
