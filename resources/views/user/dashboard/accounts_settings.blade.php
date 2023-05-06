@@ -630,6 +630,7 @@ $('.btn-upload-image').on('click', function (ev) {
             data    : {"phone": phone, "otp": otp, "_token": "{{ csrf_token() }}"},
             dataType: 'json',
             success : function (json){  
+               $("#otp_code").val('');
                toastr.options.timeOut = 10000;
                toastr.success('Successfully Updated.');
                window.location = "{{ route('accounts_settings') }}";
