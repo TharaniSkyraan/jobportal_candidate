@@ -119,8 +119,8 @@ class JobsController extends Controller
             abort(404);
         }
         $this->shareSeoToLayout('job_search',$d,$l);
-
-        return view('jobs.search', compact('d','l'));
+        $slug = $data;
+        return view('jobs.search', compact('d','l','slug'));
     }
     
     public function searchJob(Request $request)

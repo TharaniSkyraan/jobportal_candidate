@@ -73,7 +73,7 @@
     justify-content: center;
     display: flex;
 }#abt_meusr .profilepictureappend img {
-    width: 80%;
+    width: 100%;
     box-shadow: 0 3px 10px rgb(0 0 0 / 20%);
     border-radius: 50%;
     height: 125px;

@@ -9,59 +9,53 @@
 		{{-- <span>Post a Job</span> --}}
 			
 		@if(Route::is('job.search')?'active':'')
-					<div class="mobile_r">
-						<a href="{{ route('index') }}" class="logo d-flex align-items-center">
-							<img src="{{ asset('/') }}sitesetting_images/thumb/{{ $siteSetting->site_logo }}" alt="logo" class="img-fluid">
-						</a>
+			<div class="mobile_r">
+				<a href="{{ route('index') }}" class="logo d-flex align-items-center">
+					<img src="{{ asset('/') }}sitesetting_images/thumb/{{ $siteSetting->site_logo }}" alt="logo" class="img-fluid">
+				</a>
+			</div>
+			<div class="desktop_r mx-3">
+				<div class="input-group b-0">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
 					</div>
-					<div class="desktop_r mx-3">
-						<div class="input-group b-0">
-							<div class="input-group-prepend">
-								<span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
+					
+					<input type="text" id="search" class="form-control" placeholder="Search jobs in india" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" readonly aria-controls="offcanvasTop" value="{{ucwords(str_replace('-',' ',$slug))}}">
+				</div>
+				<div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+					<div class="offcanvas-body" id="search-canvas">
+						<div class="container">
+							<div class="mb-3 mt-3">
+								{!! Form::search('mdesignation', $d, array('class'=>'form-control-2  typeahead', 'id'=>'mdesignation',
+								'placeholder'=>__('Job title, keywords or company'),  'autocomplete'=>'off', 'spellcheck'=>'false' ) ) !!}
+								<span class="form-text text-danger err_msg designation-error"></span>
 							</div>
-							
-							<input type="search" id="search" class="form-control" placeholder="Search jobs in india" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
-						</div>
-						<div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
-							<div class="offcanvas-body" id="search-canvas">
-								<div class="container">
-									<div class="mb-3 mt-3">
-										{!! Form::search('mdesignation', $d, array('class'=>'form-control-2  typeahead', 'id'=>'mdesignation',
-										'placeholder'=>__('Job title, keywords or company'),  'autocomplete'=>'off', 'spellcheck'=>'false' ) ) !!}
-										<span class="form-text text-danger err_msg designation-error"></span>
-									</div>
-									<div class="mb-3">
-										{!! Form::search('mlocation', $l, array('class'=>'form-control-2 typeahead', 'id'=>'mlocation', 'placeholder'=>__('On Location'),' aria-label'=>'On Location')) !!}
-										<span class="form-text text-danger err_msg"></span>
-									</div>
+							<div class="mb-3">
+								{!! Form::search('mlocation', $l, array('class'=>'form-control-2 typeahead', 'id'=>'mlocation', 'placeholder'=>__('On Location'),' aria-label'=>'On Location')) !!}
+								<span class="form-text text-danger err_msg"></span>
+							</div>
+							<div class="row">
+								<div class="col-4"></div>
+								<div class="col-8 mb-4">
 									<div class="row">
-										<div class="col-4"></div>
-										<div class="col-8 mb-4">
-											<div class="row">
-												<div class="col-6 text-center align-self-center">
-													<a class="close_m" href="#" data-bs-dismiss="offcanvas" aria-label="Close">Cancel</a>
-												</div>
-												<div class="col-6 align-self-center">
-													{!! Form::button('Search', array('class' => 'btn search-button-bg ','id'=>'mobsearch_btn', 'type' => 'submit')) !!}                       
-												</div>
-											</div>
+										<div class="col-6 text-center align-self-center">
+											<a class="close_m" href="#" data-bs-dismiss="offcanvas" aria-label="Close">Cancel</a>
+										</div>
+										<div class="col-6 align-self-center">
+											{!! Form::button('Search', array('class' => 'btn search-button-bg ','id'=>'mobsearch_btn', 'type' => 'submit')) !!}                       
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				@else
-				<a href="{{ route('index') }}" class="logo d-flex align-items-center">
-					<img src="{{ asset('/') }}sitesetting_images/thumb/{{ $siteSetting->site_logo }}" alt="logo" class="img-fluid">
-				</a>
-				@endif
-
-
-
-
-			
-				
+				</div>
+			</div>
+		@else
+		<a href="{{ route('index') }}" class="logo d-flex align-items-center">
+			<img src="{{ asset('/') }}sitesetting_images/thumb/{{ $siteSetting->site_logo }}" alt="logo" class="img-fluid">
+		</a>
+		@endif				
 		<div class="align-self-center">
 			<nav id="navbar" class="navbar">
 				<ul class="">
