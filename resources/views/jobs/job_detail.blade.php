@@ -57,7 +57,7 @@
         </div>
     </div>
 </div>
-<div class="container mb-5">
+<div class="container container-detail mb-5">
     <div class="w-85 mx-auto header-space-search" >
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
