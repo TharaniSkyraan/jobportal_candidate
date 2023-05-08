@@ -137,24 +137,24 @@
                             </div>
                         </div>
                     </div>
-                        {{-- <p class="text-center fw-bolder align-items-center justify-content-center d-flex accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseOne">Recent searches &nbsp;</p>
+                
 
+                    <!-- <p class="text-center fw-bolder align-items-center justify-content-center d-flex accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseOne">Recent searches &nbsp;</p>
+                        <div id="collapseOne" class="mt-4" data-bs-parent="#myAccordion">
+                            <div class="card-body text-center">
+                                <div class="recent_searches">
+                                    <a href="#"><img src="{{asset('images/search_img.png')}}" width="18px"> &nbsp;new</a>
+                                    <a href="#"><img src="{{asset('images/search_img.png')}}" width="18px"> &nbsp;hello,new</a>
+                                    <a href="#"><img src="{{asset('images/search_img.png')}}" width="18px"> &nbsp;developer</a>
+                                    <a href="#"><img src="{{asset('images/search_img.png')}}" width="18px"> &nbsp;software</a>
 
-                            <div id="collapseOne" class="mt-4" data-bs-parent="#myAccordion">
-                                <div class="card-body text-center">
-                                    <div class="recent_searches">
-                                        <a href="#"><img src="{{asset('images/search_img.png')}}" width="18px"> &nbsp;new</a>
-                                        <a href="#"><img src="{{asset('images/search_img.png')}}" width="18px"> &nbsp;hello,new</a>
-                                        <a href="#"><img src="{{asset('images/search_img.png')}}" width="18px"> &nbsp;developer</a>
-                                        <a href="#"><img src="{{asset('images/search_img.png')}}" width="18px"> &nbsp;software</a>
-
-                                    </div>
-                                    
                                 </div>
-                            </div> -->
+                                
+                            </div>
+                        </div> -->
 
 
-                            <!-- @if(1)
+                        <!-- @if(1)
                             <div class="rectsear_hme">
                                 <div class="row">
                                     <div class="col rectsear_col">
@@ -191,7 +191,7 @@
                                     </div>
                                 </div>
                             </div>
-                            @endif --}}
+                            @endif -->
 
                     <div class="content hometabcndte">
                         <ul class="nav nav-tabs" id="candsearchs" role="tablist">
