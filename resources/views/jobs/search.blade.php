@@ -210,13 +210,15 @@
             </div>
             <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                 <div class="row mt-1 mb-3">
-                    <div class="col-lg-6 col-xs-12 align-self-center align-items-center d-inline justify-content-start">
-                        <h5 class="fmftxt fw-bold t_pgres"></h5>									
-                        {{-- <small class="ellipsis">1 - 20 of 379 jobs</small> --}}
-                    </div>
-                    <div class="col-lg-6 col-xs-12 align-items-center d-flex justify-content-end">Sort By : &nbsp;
-                        @php $arrDays = ['relevance'=> 'Relevance' ,'date'=>'Date']; @endphp
-                        {!! Form::select('sortby', [] + $arrDays, null, array('class'=>'form-select w-50', 'id'=>'sortby')) !!}
+                    <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12 col-12 align-items-center d-flex">
+                        <span class="w-50"><h5 class="fmftxt fw-bold t_pgres"></h5>	</span>
+                        <span class="w-25 text-align-last">		
+                            Sort By : &nbsp;
+                        </span>
+                        <span class="w-25">
+                            @php $arrDays = ['relevance'=> 'Relevance' ,'date'=>'Date']; @endphp
+                            {!! Form::select('sortby', [] + $arrDays, null, array('class'=>'form-select', 'id'=>'sortby')) !!}
+                        </span>
                     </div>
                 </div>
                 <div class="job-list">

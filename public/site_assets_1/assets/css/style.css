@@ -2440,3 +2440,7 @@ border-radius: 20px;
 .typeahead li.li-active {
   background: #eee;
 }
+
+.text-align-last{
+  text-align-last: end;
+}

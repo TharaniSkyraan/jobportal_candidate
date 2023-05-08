@@ -333,107 +333,109 @@
                         <div class="row">
                             <div class="home_pgecities cities">
                                 <div class="card-body wizard-tab">
-
                                     <!-- Nav tabs -->
-                                    <ul class="nav nav-tabs justify-content-between" id="candiftabs" role="tablist">
+                                    <ul class="nav nav-tabs justify-content-around" id="candiftabs" role="tablist">
                                         @if(count($job_list)!=0)
                                         <li class="nav-item" role="presentation">
                                         <button class="nav-link active" id="received-tab" data-bs-toggle="tab" data-bs-target="#topjoblistings" type="button" role="tab" aria-controls="received" aria-selected="true">TOP JOB LISTINGS</button>
+                                        </li>  
+                                        @endif
+                                        @if(count($top_cities)!=0)
+                                        <li class="nav-item" role="presentation">
+                                        <button class="nav-link @if(count($job_list)==0) active @endif" id="suggested-tab" data-bs-toggle="tab" data-bs-target="#topcities" type="button" role="tab" aria-controls="suggested" aria-selected="false">TOP CITIES</button>
                                         </li>
                                         @endif
+                                        @if(count($top_sector)!=0)
                                         <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="suggested-tab" data-bs-toggle="tab" data-bs-target="#topcities" type="button" role="tab" aria-controls="suggested" aria-selected="false">TOP CITIES</button>
+                                        <button class="nav-link @if(count($job_list)==0 && count($top_cities)==0) active @endif" id="shortlisted-tab" data-bs-toggle="tab" data-bs-target="#topjobsector" type="button" role="tab" aria-controls="shortlisted" aria-selected="false">TOP JOB SECTORS</button>
                                         </li>
-                                        <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="shortlisted-tab" data-bs-toggle="tab" data-bs-target="#topjobsector" type="button" role="tab" aria-controls="shortlisted" aria-selected="false">TOP JOB SECTORS</button>
-                                        </li>
+                                        @endif
                                     </ul>
 
                                     <!-- Tab panes -->
                                     <div class="tab-content mt-5">
                                         @if(count($job_list)!=0)
-                                        <div class="tab-pane active" id="topjoblistings" role="tabpanel" aria-labelledby="received-tab">
-                                            <div class="caconsection-disabl" id="received-c">
-                                                <div class="card-body candpcard" data-id="10" data-appstatus="view">
-                                                    <div class="row">
-                                                    @foreach($job_list as $joblist)
-                                                        <div class="col-md-6 col-sm-6 col-lg-3 col-xs-6">
-                                                            <div class="card hm_grn cursor-pointer jobsearch">
-                                                                <div class="row">
-                                                                
-                                                                    <div class="col-8">
-                                                                        
-                                                                        <h3 class="fw-bolder">{{$joblist->title}}</h3>
-                                                                        <p>{{$joblist->total_count}} + jobs</p>
-
-                                                                    </div>
-                                                                    <div class="col-4 d-flex justify-content-center">
-                                                                        
-                                                                        <p>&nbsp;&nbsp;&nbsp;<i class="fas fa-angle-right"></i></p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        @endforeach
-                                                    </div>                                         
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @endif
-
-                                        <div class="tab-pane" id="topcities" role="tabpanel" aria-labelledby="suggested-tab">
-                                            <div class="caconsection-disabl" id="suggested-c">
-                                                <div class="card-body candpcard" data-id="10" data-appstatus="view">
-                                                    <div class="row">
-                                                    @foreach($top_cities as $cities)
-                                                        <div class="col-md-6 col-sm-6 col-lg-3 col-xs-6">
-                                                            <div class="card hm_grn cursor-pointer topcities">
-                                                                <div class="row">
-                                                                    <div class="col-6">
-                                                                        <h3 class="fw-bolder">{{$cities->city}}</h3>
-                                                                        <p>{{$cities->total_count}} + jobs</p>
-                                                                    </div>
-                                                                    <div class="col-6 d-flex align-items-center justify-content-center">
-                                                                        <h5>View all</h5>
-                                                                        <p class="align-items-center justify-content-center d-flex">&nbsp;&nbsp;&nbsp;<i class="far fa-arrow-alt-circle-right"></i></p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                    </div>                                                  
-                                                </div>
-                                            </div>
-                                        </div>
-                                    
-
-                                        <div class="tab-pane" id="topjobsector" role="tabpanel" aria-labelledby="shortlisted-tab">
-                                            <div class="caconsection-disabl" id="shortlisted-c">
-                                                <div class="card-body candpcard" data-id="10" data-appstatus="view">
-                                                    <div class="row">
-                                                        @foreach($top_sector as $sector)
-                                                        <div class="col-md-6 col-sm-6 col-lg-3 col-xs-6">
-                                                            <div class="card hm_grn cursor-pointer topcities">
-                                                                <div class="row">
-                                                                    <div class="col-4">
-                                                                        <img src="{{url('images/hme_designing.png')}}" width="100%">
-                                                                    </div>
-                                                                    <div class="col-8 align-self-center">
-                                                                        <h3 class="fw-bolder">{{$sector->industry}}</h3>
-                                                                        <p>{{$sector->jobsearch_count}} + jobs
-                                                                        <div class="test22"><i class="fas fa-angle-right"></i></div>
-                                                                        </p>
-                                                                        
-                                                                    </div>
+                                            <div class="tab-pane active" id="topjoblistings" role="tabpanel" aria-labelledby="received-tab">
+                                                <div class="caconsection-disabl" id="received-c">
+                                                    <div class="card-body candpcard" data-id="10" data-appstatus="view">
+                                                        <div class="row">
+                                                        @foreach($job_list as $joblist)
+                                                            <div class="col-md-6 col-sm-6 col-lg-3 col-xs-6">
+                                                                <div class="card hm_grn cursor-pointer jobsearch">
+                                                                    <div class="row">
                                                                     
+                                                                        <div class="col-8">
+                                                                            
+                                                                            <h3 class="fw-bolder">{{$joblist->title}}</h3>
+                                                                            <p>{{$joblist->total_count}} + jobs</p>
+
+                                                                        </div>
+                                                                        <div class="col-4 d-flex justify-content-center">
+                                                                            
+                                                                            <p>&nbsp;&nbsp;&nbsp;<i class="fas fa-angle-right"></i></p>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        @endforeach
-                                                    </div>                                                       
+                                                            @endforeach
+                                                        </div>                                         
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        @endif
+                                        @if(count($top_cities)!=0)
+                                            <div class="tab-pane @if(count($job_list)==0) active @endif" id="topcities" role="tabpanel" aria-labelledby="suggested-tab">
+                                                <div class="caconsection-disabl" id="suggested-c">
+                                                    <div class="card-body candpcard" data-id="10" data-appstatus="view">
+                                                        <div class="row">
+                                                        @foreach($top_cities as $cities)
+                                                            <div class="col-md-6 col-sm-6 col-lg-3 col-xs-6">
+                                                                <div class="card hm_grn cursor-pointer topcities">
+                                                                    <div class="row">
+                                                                        <div class="col-6">
+                                                                            <h3 class="fw-bolder">{{$cities->city}}</h3>
+                                                                            <p>{{$cities->total_count}} + jobs</p>
+                                                                        </div>
+                                                                        <div class="col-6 d-flex align-items-center justify-content-center">
+                                                                            <h5>View all</h5>
+                                                                            <p class="align-items-center justify-content-center d-flex">&nbsp;&nbsp;&nbsp;<i class="far fa-arrow-alt-circle-right"></i></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                        </div>                                                  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        @if(count($top_sector)!=0)
+                                            <div class="tab-pane @if(count($job_list)==0 && count($top_cities)==0) active @endif" id="topjobsector" role="tabpanel" aria-labelledby="shortlisted-tab">
+                                                <div class="caconsection-disabl" id="shortlisted-c">
+                                                    <div class="card-body candpcard" data-id="10" data-appstatus="view">
+                                                        <div class="row">
+                                                            @foreach($top_sector as $sector)
+                                                            <div class="col-md-6 col-sm-6 col-lg-3 col-xs-6">
+                                                                <div class="card hm_grn cursor-pointer topcities">
+                                                                    <div class="row">
+                                                                        <div class="col-4">
+                                                                            <img src="{{url('images/hme_designing.png')}}" width="100%">
+                                                                        </div>
+                                                                        <div class="col-8 align-self-center">
+                                                                            <h3 class="fw-bolder">{{$sector->industry}}</h3>
+                                                                            <p>{{$sector->jobsearch_count}} + jobs
+                                                                            <div class="test22"><i class="fas fa-angle-right"></i></div>
+                                                                            </p>
+                                                                        </div>                                                                    
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            @endforeach
+                                                        </div>                                                       
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

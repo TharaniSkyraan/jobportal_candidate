@@ -89,9 +89,9 @@ class JobsController extends Controller
                                     ->get();
 
         $top_sector = Industry::withCount('jobsearch')
-                            ->orderBy('jobsearch_count','DESC')
-                            ->limit(3)
-                            ->get();
+                                ->orderBy('jobsearch_count','DESC')
+                                ->limit(3)
+                                ->get();
 
         $titles = Title::where('hit_count','!=',0)->orderBy('hit_count','desc')->take(5)->get();
         $this->shareSeoToLayout('candidate_home');
