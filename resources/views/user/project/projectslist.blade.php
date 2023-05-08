@@ -14,21 +14,24 @@ if ($project->is_on_going == 1)
 @endphp
 <div class="card mt-4 project_div project_edited_div_{{$project->id}}">
     <div class="row">
-        <div class="col-md-8"></div>
-        <div class="col-md-4 text-end">
+        <div class="col-md-8 col-lg-8 col-sm-8 col-8">
+            <div class="mb-2 dtls">
+                <h3 class="fw-bolder mb-1">{{$project->name}}</h3>
+                <p class="mb-0">{{ $project->getCompany('company') }}</p>
+                <p class="mb-2">{{ $date }}.</p>
+            </div>
+        </div>
+        <div class="col-md-4 col-lg-4 col-sm-4 col-4">
             <div class="row">
-                <div class="col-6 edit_project_{{$project->id}}"><i class="fa fa-edit  openForm" data-form="edit" data-id="{{$project->id}}"></i></div>
-                <div class="col-6"> <i class="fa fa-trash delete_project delete_project_{{$project->id}}" @if(count(Auth::user()->userProjects)<2) style="display:none" @endif onclick="delete_user_project({{$project->id}});"></i></div>
-                <div class="col-6 undo_project_{{$project->id}}" onclick="undo_user_project({{$project->id}});" style="display:none;"><i class="fa-solid fa-arrow-rotate-left text-green-color border-0 rounded p-2"></i></div>
+                <div class="col-12 justify-content-evenly d-flex">
+                    <span class="m-2 edit_project_{{$project->id}}"><i class="fa fa-edit  openForm" data-form="edit" data-id="{{$project->id}}"></i></span>
+                    <span class="m-2"> <i class="fa fa-trash delete_project delete_project_{{$project->id}}" @if(count(Auth::user()->userProjects)<2) style="display:none" @endif onclick="delete_user_project({{$project->id}});"></i></span>
+                    <span class="m-2 undo_project_{{$project->id}}" onclick="undo_user_project({{$project->id}});" style="display:none;"><i class="fa-solid fa-arrow-rotate-left text-green-color border-0 rounded p-2"></i></span>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="mb-2 dtls">
-        <h3 class="fw-bolder mb-1">{{$project->name}}</h3>
-        <p class="mb-0">{{ $project->getCompany('company') }}</p>
-        <p class="mb-2">{{ $date }}.</p>
-    </div>
         
     <div class="more-details-show-hide collapse" id="collapseprojec{{$project->id}}">
         <div class="mb-2">

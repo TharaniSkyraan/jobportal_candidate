@@ -1,0 +1,19 @@
+.iti__flag { display: none; }
+    .iti--separate-dial-code input[type=tel] {
+        padding-left: 70px !important;
+    }
+    .mob_cp
+    {
+        padding-left: 85px;
+        padding-right: 33px
+    }
+.city .typeahead.dropdown-menu, .career_title .typeahead.dropdown-menu{
+    max-height: 188px !important;
+    overflow: auto;
+    display: block;         
+    width: -webkit-fill-available;
+    top: unset !important;
+    left: unset !important;
+    margin-right: 47px;
+
+}

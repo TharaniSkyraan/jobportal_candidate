@@ -36,7 +36,7 @@ class UserProjectFormRequest extends Request
                         // "location" => "required|max:180",
                         // "noof_team_member" => "required_if:work_as_team,'yes'",
                         // "date_start" => "required",
-                        "description" => "required|max:255",
+                        // "description" => "required|max:4000",
                     ];
 
                     // if(empty($this->is_on_going)){

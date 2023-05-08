@@ -376,21 +376,22 @@ filter search
 ***/
 .fileter.mobile{
     position: fixed; 
-    bottom: 20px;
-    left: 30px; 
-    z-index: 99; 
+    bottom: 2px;
+    left: 8%; 
+    /* left: 30px;  */
+    /* z-index: 99;  */
     border: none; 
     outline: none; 
-    background-color: #4285f4;
+    background-color: #f94739;
     color: white; 
     cursor: pointer; 
     padding: 10px; 
-    width: 45px;
+    width: 40px;
     align-items: center;
     display: flex !important;
     justify-content: center;
-    border-radius: 50%; 
-    font-size: 18px; 
+    border-radius: 60%; 
+    font-size: 20px; 
 }.filter_show{
     display:none;
   }
@@ -1541,6 +1542,7 @@ filter search
     object-fit: cover;
 }
 @media(min-width: 280px) and (max-width: 767px){
+
     .galaryappendcontent img{
         width: 100%;
         height: auto;
@@ -1559,12 +1561,8 @@ filter search
         padding: 0px !important;
     }.search_hme .card.p-5{
         padding: 1.5rem!important;
-    }.filter_show{
-        display:block;
-      }
+    }
 }
-
-
 
 
     /* **

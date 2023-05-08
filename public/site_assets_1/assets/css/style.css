@@ -2387,13 +2387,19 @@ border-radius: 20px;
     width: 100%;
   }
 }
+@media(min-width: 280px) and (max-width: 991px){
+  #search-res-containr .sidebar_content_2{
+    display: none;
+  }
+  .filter_show{
+    display:block !important;
+  }
+}
 @media(min-width: 280px) and (max-width: 767px){
   #header .logo{
     margin: 0 auto;
   }.service-wrapper{
     margin: 0 auto !important;
-  }#search-res-containr .sidebar_content_2{
-    display: none;
   }#header .mobile_r{
     display: none;
   }#header .desktop_r{
@@ -2417,4 +2423,24 @@ border-radius: 20px;
 }
 .pe-1 i{
   margin: 0px 2px 0px 2px;
+}
+
+/* Career Info */
+
+@media (min-width: 310px) and (max-width: 409px) {
+  input#expected_salary {
+    width: 30% !important;
+  }
+}
+@media (min-width: 410px) {
+  input#expected_salary {
+    width: 50% !important;
+  }
+}
+.typeahead li.li-active {
+  background: #eee;
+}
+
+.text-align-last{
+  text-align-last: end;
 }

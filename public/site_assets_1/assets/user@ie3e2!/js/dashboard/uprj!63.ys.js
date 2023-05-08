@@ -103,15 +103,17 @@ function submitUserProjectForm() {
         $(".tabs").animate({scrollTop: $(window).scrollTop(0)},"slow");
         showProjects();
 
-        $('#project_success').html('<div class="alert alert-success alert-dismissible fade show" role="alert" id="success-alert-update">'
-                +'<strong>Success!</strong> Project Updated'
-                +'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
-                +'</div>');
-        $("#project_success").fadeTo(2000, 500).slideUp(500, function() {
-        $("#project_success").slideUp(500);
-        });
+        // $('#project_success').html('<div class="alert alert-success alert-dismissible fade show" role="alert" id="success-alert-update">'
+        //         +'<strong>Success!</strong> Project Updated'
+        //         +'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+        //         +'</div>');
+        // $("#project_success").fadeTo(2000, 500).slideUp(500, function() {
+        // $("#project_success").slideUp(500);
+        // });
 
         $('.addProjects').show();
+        toastr.options.timeOut = 10000;
+        toastr.success('Successfully Updated.');     
         // profilePercentage();
 
       },

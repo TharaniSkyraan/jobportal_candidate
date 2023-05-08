@@ -38,7 +38,7 @@ $(".topcities").click(function(){
 
 });
 
-document.onkeyup = enter;
+// document.onkeyup = enter;
 function enter(e) {
     if (e.which == 13) {
         var myElement = document.getElementById('designation');
@@ -91,6 +91,8 @@ $('#msearch_btn').on('click', function(){
 
 $(function(){
     var cache1 = JSON.parse(localStorage.getItem('designation'))??{};
+    var enter_limit = 1;
+    
     $('#designation').typeahead({ // focus on first result in dropdown
         source: function(query, result) {
             var local_cache = JSON.parse(localStorage.getItem('designation'));
@@ -111,14 +113,35 @@ $(function(){
                 }
             });
         },
-        autoSelect: true,
+        autoSelect: false,
         showHintOnFocus: true
     }).focus(function () {
         $(this).typeahead("search", "");
+    }).on('keydown', function(event){        
+        if(event.keyCode=='40' || event.keyCode=='38'){
+            enter_limit=0;
+            if($('#designation').val()==''){
+                $(".designation").find('.active').removeClass('active');
+                $(".designation").find('li:first-child').addClass('active li-active');
+            }else{
+                $(".designation").find('li').removeClass('li-active');
+                $(".designation").find('.active').addClass('li-active');
+            }
+            var current_designation = $(".designation").find('.active').text();
+            $('#designation').val(current_designation);
+        }else if(event.keyCode=='13'){
+            if(enter_limit==1){
+                document.onkeyup = enter;
+            }else if(enter_limit==0){
+                enter_limit=1;
+            }
+        } 
     });
 
     var cache = JSON.parse(localStorage.getItem('search_city'))??{};
-   $('#location').typeahead({ // focus on first result in dropdown
+    var enter_limit1 = 1;
+ 
+    $('#location').typeahead({ // focus on first result in dropdown
         source: function(query, result) {
             var local_cache = JSON.parse(localStorage.getItem('search_city'));
             if ((local_cache!=null) && (query in local_cache)) {
@@ -138,9 +161,28 @@ $(function(){
                 }
             });
         },
-        autoSelect: true,
+        autoSelect: false,
         showHintOnFocus: true
     }).focus(function () {
         $(this).typeahead("search", "");
+    }).on('keydown', function(event) {
+        if(event.keyCode=='40' || event.keyCode=='38'){
+            enter_limit1=0;
+            if($('#location').val()==''){
+                $(".location").find('.active').removeClass('active');
+                $(".location").find('li:first-child').addClass('active li-active');
+            }else{
+                $(".location").find('li').removeClass('li-active');
+                $(".location").find('.active').addClass('li-active');
+            }
+            var current_location = $(".location").find('.active').text();
+            $('#location').val(current_location);
+        }else if(event.keyCode=='13'){
+            if(enter_limit1==1){
+                document.onkeyup = enter;
+            }else if(enter_limit1==0){
+                enter_limit1=1;
+            }
+        } 
     });
 });

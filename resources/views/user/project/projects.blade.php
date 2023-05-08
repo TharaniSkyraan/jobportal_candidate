@@ -14,9 +14,8 @@
 
 	<div class="main-panel main-panel-custom">
 		<div class="content">
-                <div class="page-inner">
-        
-                    <div id="my_expernce2" class="mt-4">
+            <div class="page-inner">        
+                <div id="my_expernce2" class="mt-4">
                     <div class="text-center ttleicn">
                         <h2 class="fw-bolder"><img src="{{asset('images/my_projects.png')}}">&nbsp;My Projects</h2>
                     </div>

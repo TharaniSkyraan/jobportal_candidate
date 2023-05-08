@@ -1,4 +1,20 @@
+@if(count($educationTypes)!=0)
+<style>
+.institution ul.typeahead.dropdown-menu {
+    top:64% !important
+}
+.education_type_div ul.typeahead.dropdown-menu {  
+    top: 148px !important;
+}
+</style>
+@else
+<style>
 
+.institution ul.typeahead.dropdown-menu {
+    top: 164px !important
+}
+</style>
+@endif
     <div class="modal-header">
         <h4 class="modal-title fw-bolder">Education Detail</h4>
         <button type="button" class="btn-close educationFromclose" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -28,7 +44,7 @@
 
         <hr/>
 
-        <div class="col-md-12 mb-4">
+        <div class="col-md-12 mb-4 institution">
             <label for="exampleInputEmail1" class="form-label fw-bolder">Institution name</label>
             {!! Form::text('institution', null, array('class'=>'form-control-2 required typeahead mb-2', 'id'=>'institution', 'placeholder'=>__('Institution Name'),'autocomplete'=>'off')) !!}
             <small class="help-block form-text text-muted text-danger err_msg institution-error" id="err_institution"></small>  
@@ -48,7 +64,7 @@
             </div>
         </div>
         
-        <div class="col-md-12 mb-4">
+        <div class="col-md-12 mb-4 location">
             <label for="location" class="form-label fw-bolder">City</label>
             {!! Form::text('location', null, array('class'=>'form-control-2 required typeahead', 'id'=>'location', 'placeholder'=>__('Enter city'),' aria-label'=>'Enter city','autocomplete'=>'off')) !!}
             <small class="form-text text-muted text-danger err_msg" id="err_location"></small>                          
@@ -136,7 +152,8 @@
         <button type="button" class="btn bg-green-color" onClick="submitUserEducationForm();">Save</button>
     </div>
 <script>
-
+    $('#country_id_dd').select2({ dropdownParent: ".education-form" });
+    
     var education_level_text = $('#education_level_id option:selected').text(); 
     $('.education_level_id').html(' - '+education_level_text);
     

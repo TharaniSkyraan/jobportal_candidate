@@ -40,57 +40,47 @@
     }
 }
 
-    /* Extra Small Devices (Phones) */
-    @media only screen and (max-width: 353px) {
-        /* CSS rules for phones */
-        .location .typeahead.dropdown-menu{
-
-        }
-        .designation .typeahead.dropdown-menu{
-
-        }
+.location .typeahead.dropdown-menu, .designation .typeahead.dropdown-menu{
+    max-height: 188px !important;
+    overflow: auto;
+    display: block;         
+    width: -webkit-fill-available;
+    top: unset !important;
+    left: unset !important;
+}
+    
+@media (min-width: 768px) and (max-width: 1399px) {
+    .designation .typeahead.dropdown-menu{
+        margin-right: 59% !important;
     }
+}
 
-    /* Extra Small Devices (Phones) */
-    @media (min-width: 426px) and (max-width: 570px) {
-        /* CSS rules for phones */
-        .location .typeahead.dropdown-menu, .designation .typeahead.dropdown-menu{
-            width: 87%;
-        }
+    
+@media (min-width: 768px) and (max-width: 991px) {
+    .location .typeahead.dropdown-menu{
+        margin-right: 22% !important;
     }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+    .location .typeahead.dropdown-menu{
+        margin-right: 20.5% !important;
+    }
+}
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .location .typeahead.dropdown-menu{
+        margin-right: 19.8% !important;
+    }
+}
+@media only screen and (max-width: 767px) {
+    /* CSS rules for phones */
+    .location .typeahead.dropdown-menu, .designation .typeahead.dropdown-menu{
+        margin-right: 25px !important;
+    }
+    .location .typeahead.dropdown-menu{
+        top: 120px !important;
+    }
+}
 
-    /* Small Devices (Tablets) */
-    @media (min-width: 568px) and (max-width: 767px) {
-        /* CSS rules for tablets */
-        .location .typeahead.dropdown-menu, .designation .typeahead.dropdown-menu{
-            width: 91%;
-            top: unset !important;
-            left: unset !important;
-        }
-    }
-
-    /* Medium Devices (Desktops) */
-    @media (min-width: 768px) and (max-width: 991px) {
-        /* CSS rules for desktops */
-        .location .typeahead.dropdown-menu, .designation .typeahead.dropdown-menu{
-            width: 34%;
-        }
-    }
-
-    /* Large Devices (Large Screens) */
-    @media (min-width: 992px) and (max-width: 1199px) {
-        /* CSS rules for large screens */
-        .location .typeahead.dropdown-menu, .designation .typeahead.dropdown-menu{
-            width: 36% !important;
-        }  
-    }
-    /* Large Devices (Large Screens) */
-    @media (min-width: 1200px) and (max-width: 1399) {
-        /* CSS rules for large screens */
-        .location .typeahead.dropdown-menu, .designation .typeahead.dropdown-menu{
-            width: 37% !important;  
-        }
-    }
 </style>
 <!-- <div class="main-panel main-panel-custom"> -->
     <div class="content">
@@ -147,62 +137,12 @@
                             </div>
                         </div>
                     </div>
-                        {{-- <p class="text-center fw-bolder align-items-center justify-content-center d-flex accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseOne">Recent searches &nbsp;</p>
-
-
-                            <div id="collapseOne" class="mt-4" data-bs-parent="#myAccordion">
-                                <div class="card-body text-center">
-                                    <div class="recent_searches">
-                                        <a href="#"><img src="{{asset('images/search_img.png')}}" width="18px"> &nbsp;new</a>
-                                        <a href="#"><img src="{{asset('images/search_img.png')}}" width="18px"> &nbsp;hello,new</a>
-                                        <a href="#"><img src="{{asset('images/search_img.png')}}" width="18px"> &nbsp;developer</a>
-                                        <a href="#"><img src="{{asset('images/search_img.png')}}" width="18px"> &nbsp;software</a>
-
-                                    </div>
-                                    
-                                </div>
-                            </div> -->
-
-
-                            <!-- @if(1)
-                            <div class="rectsear_hme">
-                                <div class="row">
-                                    <div class="col rectsear_col">
-                                        <h3 class="mb-2 fw-bolder">Popular searches</h3>
-                                        @forelse($titles as $title)
-                                            <div>
-                                                <p class="text-dark resentsearch cursor-pointer mb-1" data-d="{{$title->title}}" data-l="">{{$title->title}}</p>
-                                            </div>
-                                        @empty
-                                            No data available
-                                        @endforelse
-                                    </div>
-                                    
-                                    <div class="col rectsear_col">
-                                        <h3 class="mb-2 fw-bolder">Recent searchess</h3>
-
-                                        @php
-                                            $cacheData = Cookie::has('searchJobs') ? json_decode(Cookie::get('searchJobs')):array(); 
-                                            $cachedatas = array_reverse($cacheData); 
-                                        @endphp
-
-                                        @forelse($cachedatas as $key => $search)
-                                            @if($key < 5 && ($search->designation !='' || $search->location !='')  )
-                                                <div class="mb-1">
-                                                    <p class="mb-1 resentsearch cursor-pointer" data-d="{{$search->designation}}" data-l="{{$search->location}}">{{$search->designation}} {{$search->location}}</p>
-                                                </div>
-                                            @endif
-
-                                        @empty
-                                        <div class="mb-5">  
-                                            <text>No search till now</text>
-                                        </div>
-                                        @endforelse             
-                                    </div>
-                                </div>
-                            </div>
-                            @endif --}}
-
+                
+                    @php
+                        $cacheData = Cookie::has('searchJobs') ? json_decode(Cookie::get('searchJobs')):array(); 
+                        $cachedatas = array_reverse($cacheData); 
+                    @endphp
+                    @if(count($cachedatas)!=0)
                     <div class="content hometabcndte">
                         <ul class="nav nav-tabs" id="candsearchs" role="tablist">
                             <li class="nav-item" role="presentation">
@@ -213,6 +153,7 @@
                             </li>
                         </ul>
                     </div>
+                    @endif
                         
                     @if(1)
                     <div class="tab-content home_searchstab" id="pills-applied-jobs-list">
@@ -237,13 +178,10 @@
                             </div>
                         </div>
 
+                        @if(count($cachedatas)!=0)
                         <div class="tab-pane" id="recentsearch" role="tabpanel" aria-labelledby="recentsearch-tab">
                             <div class="popularser_hme mt-5">
                                 <div class="row">
-                                @php
-                                    $cacheData = Cookie::has('searchJobs') ? json_decode(Cookie::get('searchJobs')):array(); 
-                                    $cachedatas = array_reverse($cacheData); 
-                                @endphp
 
                                 @forelse($cachedatas as $key => $search)
                                     @if($key < 5 && ($search->designation !='' || $search->location !='')  )
@@ -269,6 +207,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                     </div>
                     @endif
 
@@ -356,34 +295,37 @@
                             </div>
                             <hr class="mt-1 mb-3"/>
                             
-                            <div class="row">
-                                <h3 class="mb-3 fw-bold mt-3">Top job posts</h3>
-                                @foreach($near_job as $near)
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="card p-4 hm_gr cursor-pointer jobsearch">
-                                        <h3 class="fw-bolder">{{$near->title}}</h3>
-                                        <p>{{$near->company_name}}</p>
-                                    </div>
-                                </div>
-
-                                @endforeach
-                            </div>
-
-                            <div class="row mt-3">
-                                <h3 class="mb-3 fw-bold">Recent posts</h3>
-                                @foreach($recent_job as $recent)
-                                    <div class="col-md-6 col-lg-4">
-                                        <a href="{{url('detail',$recent->slug)}}" class="text-dark">
-                                            <div class="card p-4 hm_gy cursor-pointer">
-                                                <h3 class="fw-bolder">{{$recent->title}}</h3>
-                                                <p>{{$recent->company_name}}</p>
-                                                <p>Experience: {{$recent->experience_string}}</p>
-                                                <p>Salary: {{$recent->salary_string}}</p>
+                            @if(count($near_job)!=0)
+                                <div class="row">
+                                    <h3 class="mb-3 fw-bold mt-3">Top job posts</h3>
+                                    @foreach($near_job as $near)
+                                        <div class="col-md-6 col-lg-4">
+                                            <div class="card p-4 hm_gr cursor-pointer jobsearch">
+                                                <h3 class="fw-bolder">{{$near->title}}</h3>
+                                                <p>{{$near->company_name}}</p>
                                             </div>
-                                        </a>
-                                    </div>
-                                @endforeach
-                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endif
+
+                            @if(count($recent_job)!=0)
+                                <div class="row mt-3">
+                                    <h3 class="mb-3 fw-bold">Recent posts</h3>
+                                    @foreach($recent_job as $recent)
+                                        <div class="col-md-6 col-lg-4">
+                                            <a href="{{url('detail',$recent->slug)}}" class="text-dark">
+                                                <div class="card p-4 hm_gy cursor-pointer">
+                                                    <h3 class="fw-bolder">{{$recent->title}}</h3>
+                                                    <p>{{$recent->company_name}}</p>
+                                                    <p>Experience: {{$recent->experience_string}}</p>
+                                                    <p>Salary: {{$recent->salary_string}}</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endif
                         </div>
                     </div>
 
@@ -391,103 +333,109 @@
                         <div class="row">
                             <div class="home_pgecities cities">
                                 <div class="card-body wizard-tab">
-
                                     <!-- Nav tabs -->
-                                    <ul class="nav nav-tabs justify-content-between" id="candiftabs" role="tablist">
+                                    <ul class="nav nav-tabs justify-content-around" id="candiftabs" role="tablist">
+                                        @if(count($job_list)!=0)
                                         <li class="nav-item" role="presentation">
                                         <button class="nav-link active" id="received-tab" data-bs-toggle="tab" data-bs-target="#topjoblistings" type="button" role="tab" aria-controls="received" aria-selected="true">TOP JOB LISTINGS</button>
-                                        </li>
+                                        </li>  
+                                        @endif
+                                        @if(count($top_cities)!=0)
                                         <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="suggested-tab" data-bs-toggle="tab" data-bs-target="#topcities" type="button" role="tab" aria-controls="suggested" aria-selected="false">TOP CITIES</button>
+                                        <button class="nav-link @if(count($job_list)==0) active @endif" id="suggested-tab" data-bs-toggle="tab" data-bs-target="#topcities" type="button" role="tab" aria-controls="suggested" aria-selected="false">TOP CITIES</button>
                                         </li>
+                                        @endif
+                                        @if(count($top_sector)!=0)
                                         <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="shortlisted-tab" data-bs-toggle="tab" data-bs-target="#topjobsector" type="button" role="tab" aria-controls="shortlisted" aria-selected="false">TOP JOB SECTORS</button>
+                                        <button class="nav-link @if(count($job_list)==0 && count($top_cities)==0) active @endif" id="shortlisted-tab" data-bs-toggle="tab" data-bs-target="#topjobsector" type="button" role="tab" aria-controls="shortlisted" aria-selected="false">TOP JOB SECTORS</button>
                                         </li>
+                                        @endif
                                     </ul>
 
                                     <!-- Tab panes -->
                                     <div class="tab-content mt-5">
-                                        <div class="tab-pane active" id="topjoblistings" role="tabpanel" aria-labelledby="received-tab">
-                                            <div class="caconsection-disabl" id="received-c">
-                                                <div class="card-body candpcard" data-id="10" data-appstatus="view">
-                                                    <div class="row">
-                                                    @foreach($job_list as $joblist)
-                                                        <div class="col-md-6 col-sm-6 col-lg-3 col-xs-6">
-                                                            <div class="card hm_grn cursor-pointer jobsearch">
-                                                                <div class="row">
-                                                                
-                                                                    <div class="col-8">
-                                                                        
-                                                                        <h3 class="fw-bolder">{{$joblist->title}}</h3>
-                                                                        <p>{{$joblist->total_count}} + jobs</p>
-
-                                                                    </div>
-                                                                    <div class="col-4 d-flex justify-content-center">
-                                                                        
-                                                                        <p>&nbsp;&nbsp;&nbsp;<i class="fas fa-angle-right"></i></p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        @endforeach
-                                                    </div>                                         
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="tab-pane" id="topcities" role="tabpanel" aria-labelledby="suggested-tab">
-                                            <div class="caconsection-disabl" id="suggested-c">
-                                                <div class="card-body candpcard" data-id="10" data-appstatus="view">
-                                                    <div class="row">
-                                                    @foreach($top_cities as $cities)
-                                                        <div class="col-md-6 col-sm-6 col-lg-3 col-xs-6">
-                                                            <div class="card hm_grn cursor-pointer topcities">
-                                                                <div class="row">
-                                                                    <div class="col-6">
-                                                                        <h3 class="fw-bolder">{{$cities->city}}</h3>
-                                                                        <p>{{$cities->total_count}} + jobs</p>
-                                                                    </div>
-                                                                    <div class="col-6 d-flex align-items-center justify-content-center">
-                                                                        <h5>View all</h5>
-                                                                        <p class="align-items-center justify-content-center d-flex">&nbsp;&nbsp;&nbsp;<i class="far fa-arrow-alt-circle-right"></i></p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                    </div>                                                  
-                                                </div>
-                                            </div>
-                                        </div>
-                                    
-
-                                        <div class="tab-pane" id="topjobsector" role="tabpanel" aria-labelledby="shortlisted-tab">
-                                            <div class="caconsection-disabl" id="shortlisted-c">
-                                                <div class="card-body candpcard" data-id="10" data-appstatus="view">
-                                                    <div class="row">
-                                                        @foreach($top_sector as $sector)
-                                                        <div class="col-md-6 col-sm-6 col-lg-3 col-xs-6">
-                                                            <div class="card hm_grn cursor-pointer topcities">
-                                                                <div class="row">
-                                                                    <div class="col-4">
-                                                                        <img src="{{url('images/hme_designing.png')}}" width="100%">
-                                                                    </div>
-                                                                    <div class="col-8 align-self-center">
-                                                                        <h3 class="fw-bolder">{{$sector->industry}}</h3>
-                                                                        <p>{{$sector->jobsearch_count}} + jobs
-                                                                        <div class="test22"><i class="fas fa-angle-right"></i></div>
-                                                                        </p>
-                                                                        
-                                                                    </div>
+                                        @if(count($job_list)!=0)
+                                            <div class="tab-pane active" id="topjoblistings" role="tabpanel" aria-labelledby="received-tab">
+                                                <div class="caconsection-disabl" id="received-c">
+                                                    <div class="card-body candpcard" data-id="10" data-appstatus="view">
+                                                        <div class="row">
+                                                        @foreach($job_list as $joblist)
+                                                            <div class="col-md-6 col-sm-6 col-lg-3 col-xs-6">
+                                                                <div class="card hm_grn cursor-pointer jobsearch">
+                                                                    <div class="row">
                                                                     
+                                                                        <div class="col-8">
+                                                                            
+                                                                            <h3 class="fw-bolder">{{$joblist->title}}</h3>
+                                                                            <p>{{$joblist->total_count}} + jobs</p>
+
+                                                                        </div>
+                                                                        <div class="col-4 d-flex justify-content-center">
+                                                                            
+                                                                            <p>&nbsp;&nbsp;&nbsp;<i class="fas fa-angle-right"></i></p>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        @endforeach
-                                                    </div>                                                       
+                                                            @endforeach
+                                                        </div>                                         
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        @endif
+                                        @if(count($top_cities)!=0)
+                                            <div class="tab-pane @if(count($job_list)==0) active @endif" id="topcities" role="tabpanel" aria-labelledby="suggested-tab">
+                                                <div class="caconsection-disabl" id="suggested-c">
+                                                    <div class="card-body candpcard" data-id="10" data-appstatus="view">
+                                                        <div class="row">
+                                                        @foreach($top_cities as $cities)
+                                                            <div class="col-md-6 col-sm-6 col-lg-3 col-xs-6">
+                                                                <div class="card hm_grn cursor-pointer topcities">
+                                                                    <div class="row">
+                                                                        <div class="col-6">
+                                                                            <h3 class="fw-bolder">{{$cities->city}}</h3>
+                                                                            <p>{{$cities->total_count}} + jobs</p>
+                                                                        </div>
+                                                                        <div class="col-6 d-flex align-items-center justify-content-center">
+                                                                            <h5>View all</h5>
+                                                                            <p class="align-items-center justify-content-center d-flex">&nbsp;&nbsp;&nbsp;<i class="far fa-arrow-alt-circle-right"></i></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                        </div>                                                  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        @if(count($top_sector)!=0)
+                                            <div class="tab-pane @if(count($job_list)==0 && count($top_cities)==0) active @endif" id="topjobsector" role="tabpanel" aria-labelledby="shortlisted-tab">
+                                                <div class="caconsection-disabl" id="shortlisted-c">
+                                                    <div class="card-body candpcard" data-id="10" data-appstatus="view">
+                                                        <div class="row">
+                                                            @foreach($top_sector as $sector)
+                                                            <div class="col-md-6 col-sm-6 col-lg-3 col-xs-6">
+                                                                <div class="card hm_grn cursor-pointer topcities">
+                                                                    <div class="row">
+                                                                        <div class="col-4">
+                                                                            <img src="{{url('images/hme_designing.png')}}" width="100%">
+                                                                        </div>
+                                                                        <div class="col-8 align-self-center">
+                                                                            <h3 class="fw-bolder">{{$sector->industry}}</h3>
+                                                                            <p>{{$sector->jobsearch_count}} + jobs
+                                                                            <div class="test22"><i class="fas fa-angle-right"></i></div>
+                                                                            </p>
+                                                                        </div>                                                                    
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            @endforeach
+                                                        </div>                                                       
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

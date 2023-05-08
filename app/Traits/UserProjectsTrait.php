@@ -97,7 +97,8 @@ trait UserProjectsTrait
     private function assignProjectValues($userProject, $request, $user_id=null)
     {
         $userProject->name = $request->input('name');
-        $userProject->user_experience_id = $request->input('user_experience_id');
+        $userProject->user_experience_id = $request->input('user_experience_id')??NULL;
+        $userProject->company_name = $request->input('company_name')??'';
         $userProject->url = $request->input('url');
         if(!empty($request->date_start)){
             $userProject->date_start =Carbon::parse($request->date_start)->format('Y-m-d');
@@ -109,6 +110,7 @@ trait UserProjectsTrait
         }else{
             $userProject->date_end = NULL;
         }
+        // dd($userProject);
         $userProject->is_on_going = $request->input('is_on_going')??NULL;
         $userProject->noof_team_member = $request->input('noof_team_member');
         $userProject->work_as_team = $request->input('work_as_team');

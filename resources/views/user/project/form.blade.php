@@ -15,16 +15,21 @@
             {!! Form::text('name', null, array('class'=>'form-control required', 'id'=>'name', 'placeholder'=>__('Enter your Project name/Title'))) !!}
             <small class="help-block form-text text-muted text-danger err_msg name-error" id="err_name"></small>            
         </div>
+        @isset($userProject)
+            @php $company_name = $userProject->getCompany('company'); @endphp
+        @endisset
 
         <div class="mb-4">    
             <label for="" class="form-label fw-bold">Project done By </label>    
-            <select class="form-control" name="user_experience_id" id="user_experience_id"> 
+            {!! Form::text('company_name', $company_name??null, array('class'=>'form-control required', 'id'=>'company_name', 'placeholder'=>__('Enter your Company name'))) !!}
+
+            <!-- <select class="form-control" name="user_experience_id" id="user_experience_id"> 
                 <option value=""> Select Company </option>
                 @foreach($experience_companies as $key => $company)
                     <option value="{{$key}}" @isset($userProject) @if($userProject->user_experience_id==$key) selected @endif @endisset>{{$company}}</option>
                 @endforeach
                 <option value="0" @isset($userProject) @if($userProject->user_experience_id==0) selected @endif @endisset> Other </option> 
-            </select>
+            </select> -->
             <small class="help-block form-text text-muted text-danger err_msg user_experience_id-error" id="err_user_experience_id"></small>            
 
         </div>
@@ -35,7 +40,6 @@
                     <input class="form-check-input" type="checkbox" value="yes" id="work_as_team" name="work_as_team" @if( isset($userProject) && $userProject->work_as_team=='yes') checked @endif>
                     <label class="form-check-label" for="work_as_team"> Worked as team </label>
                 </div>
-
                 <span class="team-length" style="display:none;">
                     <div class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
                         {!! Form::number('noof_team_member', 0, array('id'=>'number')) !!}
@@ -46,8 +50,7 @@
         </div>
 
         <div class="mb-4">
-            <label class="form-label fw-bold">Project location</label>  
-                
+            <label class="form-label fw-bold">Project location</label>                  
             <div class="form-check form-check-inline ms-3">
                 <input class="form-check-input" type="radio" name="project_location" id="onsite" value="on_site" @if(isset($userProject) && $userProject->project_location=='on_site') checked @endif>
                 <label class="form-check-label" for="onsite">Onsite</label>
@@ -66,14 +69,14 @@
                 <div class="mb-2">
                     <label class="form-label fw-bolder"> Location <span class="country_text">- {{ $country }} <a href="javascript:void(0);" onClick="CountryChange()">Change</a></span></label>  
                     <div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-12 mb-3 country_change"  style="display:none;">
+                        <div class="col-md-8 col-lg-8 col-sm-8 col-xs-12 col-12 mb-3 country_change"  style="display:none;">
                             <label class="form-label fw-bolder"> Country </label>  
                             {!! Form::select('country_id_dd', [''=>__('Select Country')]+$countries['value'], $country_id, array('class'=>'form-select country_id required', 'id'=>'country_id_dd'), $countries['attribute']) !!}
                             <small class="help-block form-text text-muted text-danger err_msg country_id_dd-error" id="err_country_id_dd"></small>                        
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-12 mb-2">
+                        <div class="col-md-8 col-lg-8 col-sm-8 col-xs-12 col-12 mb-2">
                             <label class="form-label fw-bolder">City </label>  
                             {!! Form::text('location', null, array('class'=>'form-control-2 required typeahead', 'id'=>'location', 'placeholder'=>__('Enter city'),' aria-label'=>'Enter city')) !!}
                             <small class="form-text text-muted text-danger err_msg" id="err_location"></small>                          
@@ -82,27 +85,27 @@
                 </div>
             </div>
         </div>
+        @php
+            $fromdate = isset($userProject->date_start)?Carbon\Carbon::parse($userProject->date_start):null;
+            $todate = isset($userProject->date_end)?Carbon\Carbon::parse($userProject->date_end):null;
+        @endphp
         <div class="row align-items-baseline">
             <label for="" class="form-label fw-bold">Period of project</label>
-            @php
-                $fromdate = isset($userProject->date_start)?Carbon\Carbon::parse($userProject->date_start):null;
-                $todate = isset($userProject->date_end)?Carbon\Carbon::parse($userProject->date_end):null;
-            @endphp
-            <div class="col-md-6 col-lg-4 col-6 mb-3">
+            <div class="col-md-6 col-lg-4 col-sm-6 col-xs-12 col-12 mb-3">
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">From</span>
                     {!! Form::month('date_start', $fromdate??null, array('class'=>'form-control required', 'max' =>date("Y-m"), 'min'=>'1980-01','id'=>'date_start', 'placeholder'=>__('Start date'))) !!}
                 </div>
                 <small class="help-block form-text text-muted text-danger err_msg date_start-error" id="err_date_start"></small> 
             </div>
-            <div class="col-md-6 col-lg-4 col-6 hide_currently_working_checked">
+            <div class="col-md-6 col-lg-4 col-sm-6 col-xs-12 col-12 hide_currently_working_checked">
                 <div class="input-group mb-2">
                     <span class="input-group-text" id="basic-addon1">To</span>
                     {!! Form::month('date_end', $todate??null, array('class'=>'form-control required','max' =>date("Y-m"), 'min'=>'1980-01', 'id'=>'date_end', 'placeholder'=>__('End date'))) !!}
                 </div>
                 <small class="help-block form-text text-muted text-danger err_msg date_end-error" id="err_date_end"></small> 
             </div>
-            <div class="col-md-6 col-lg-4 col-6 mb-3 justify-content-center">
+            <div class="col-md-6 col-lg-4 col-sm-6 col-xs-12 col-6 mb-3 justify-content-center">
                 <input class="form-check-input" type="checkbox" value="1" id="is_on_going" name="is_on_going" @if(isset($userProject) && $userProject->is_on_going == 1) checked @endif>
                 <label class="form-check-label" for="is_on_going"> On progress </label>
             </div>
@@ -112,6 +115,7 @@
             <label for="" class="form-label fw-bold">Project Description</label>
             {!! Form::textarea('description', null, array('class'=>'form-control required', 'id'=>'description', 'rows'=>5, 'placeholder'=>'Describe about the project')) !!}
             <small class="help-block form-text text-muted text-danger err_msg description-error" id="err_description"></small>   
+            <small class="description_remain_char"></small>
         </div>
 
         <div class="mb-4">    
@@ -135,6 +139,20 @@
     </div>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/js/input_tag/jquery.tagsinput-revisited.js') }}"></script>
 <script>
+    $(document).on("keyup","#description",function(e){
+        var len = $(this).val().length;
+        set = 4000;
+        if(len == 0){
+            $('.description_remain_char').hide();
+            }else{
+            $('.description_remain_char').show();
+            }
+        if(len >= set) {
+            $('.description_remain_char').html('Maximum characters reached: <span class="text-danger">'+set+'</span>');
+        }else{
+            $('.description_remain_char').html('Remaining Maximum characters: <span class="text-success">'+(set-len)+'</span>');
+        }
+    });
 $(function() {	
     getSkill()
     function getSkill(){

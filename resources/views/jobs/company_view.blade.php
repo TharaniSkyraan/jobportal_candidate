@@ -2,13 +2,9 @@
 @section('custom_styles')
 <link href="{{ asset('site_assets_1/assets/cmpy/japplicant/css/jAk3jne9.css')}}" rel="stylesheet">
 @endsection
-@section('custom_scripts')	  
-@endsection
-
 @section('content')
 @include('layouts.header')
        
-	@include('layouts.header')
     <?php 
     $arra=array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
     ?>  

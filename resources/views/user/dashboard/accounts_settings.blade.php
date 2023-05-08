@@ -200,26 +200,43 @@
 										
 
 										<div class="mb-4">
-                      
-											<label for="" class="form-label fw-bolder">Email</label>
+                      <div class="row">
+                        <div class="col-md-6 col-sm-8 col-xs-6 col-8">
+                          <label for="" class="form-label fw-bolder">Email
+                          </label>
+                        </div>
+                          <div class="col-md-6 col-sm-4 col-xs-6 col-4 text-center">
+                            <img class="align-self-center align-top" src="{{ url('site_assets_1/assets/img/check-mark.png')}}" height="20px" width="20px">
+                          </div>
+                      </div>
                         
                       <div class="row">
                         <div class="col-md-6 col-sm-8 col-xs-6 col-8">
                           <div class="d-flex">
-                            <text class="align-self-center width overflow-auto">{{ Auth::user()->email }}</text>
+                            <text class="align-self-center width overflow-auto">{{ Auth::user()->email }} </text>
                           </div>
                         </div>
                         <div class="col-md-6 col-sm-4 col-xs-6 col-4 text-center">
-                          <img class="align-self-center align-top" src="{{ url('site_assets_1/assets/img/check-mark.png')}}" height="20px" width="20px"> 
-                        </div>
+                          </div>
                       </div>
 										</div>
 
 										<div class="mb-4">
-                      <label for="" class="form-label fw-bolder">Phone Number</label>
+                      <div class="row">
+                        <div class="col-md-6 col-sm-8 col-xs-6 col-8">
+                          <label for="" class="form-label fw-bolder">Phone Number
+                          </label>
+                        </div>
+                        <div class="col-md-6 col-sm-4 col-xs-6 col-4 text-center">
+                          @if(Auth::user()->is_mobile_verified=='yes')
+                          <img class="align-self-center align-top" src="{{ url('site_assets_1/assets/img/check-mark.png')}}" height="20px" width="20px"> 
+                          @endif
+                        </div>
+                      </div>
                       <div class="row align-items-center current_phone_number">
                         <div class="col-md-6 col-sm-8 col-xs-6 col-8">
-                          <text class=" align-self-center">{{Auth::user()->phone ?? 'None'}}</text>
+                          <text class=" align-self-center">{{Auth::user()->phone ?? 'None'}}
+                          </text>
                         </div>
                         <div class="col-md-6 col-sm-4 col-xs-6 col-4">
                           <div class="text-center">
@@ -232,7 +249,7 @@
                         </div>
                       </div>
 
-                      <div class="row">
+                      <div class="row" >
                         <div class="col-md-12 change_phone_number" style="display:none !important;">
                           <div class="row align-items-center">
                             <div class="col-md-6 col-sm-12 col-xs-6 col-12">
@@ -630,6 +647,7 @@ $('.btn-upload-image').on('click', function (ev) {
             data    : {"phone": phone, "otp": otp, "_token": "{{ csrf_token() }}"},
             dataType: 'json',
             success : function (json){  
+               $("#otp_code").val('');
                toastr.options.timeOut = 10000;
                toastr.success('Successfully Updated.');
                window.location = "{{ route('accounts_settings') }}";

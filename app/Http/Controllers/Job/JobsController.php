@@ -58,6 +58,7 @@ class JobsController extends Controller
         $near_job = JobSearch::select('title','location', 'company_name', DB::raw('count(`title`) as total_count'))
                             ->where('location', 'like', "%{$session['city']}%")
                             ->groupBy('title','location', 'company_name')
+                            ->havingRaw("total_count != 0")
                             ->orderBy('total_count','desc')
                             ->limit(3)
                             ->get();
@@ -68,15 +69,21 @@ class JobsController extends Controller
                                 ->limit(3)
                                 ->get();
                                 
-        $job_list = Job::whereIsActive(0)
+        $job_list = Job::whereIsActive(1)
                         ->select('title', DB::raw('count(`title`) as total_count'))
                         ->groupBy('title')
+                        ->whereNotNull('title')
+                        ->havingRaw("total_count != 0")
                         ->orderBy('total_count','DESC')
                         ->limit(4)
                         ->get();
 
-        $top_cities = JobWorkLocation::select('city', DB::raw('count(`job_id`) as total_count'))
+        $top_cities = JobWorkLocation::whereHas('job',function($q){
+                                        $q->where('work_from_home','!=','permanent');
+                                    })
+                                    ->select('city', DB::raw('count(`job_id`) as total_count'))
                                     ->groupBy('city')
+                                    ->havingRaw("total_count != 0")
                                     ->orderBy('total_count','DESC')
                                     ->limit(4)
                                     ->get();
@@ -119,8 +126,8 @@ class JobsController extends Controller
             abort(404);
         }
         $this->shareSeoToLayout('job_search',$d,$l);
-
-        return view('jobs.search', compact('d','l'));
+        $slug = $data;
+        return view('jobs.search', compact('d','l','slug'));
     }
     
     public function searchJob(Request $request)
@@ -287,8 +294,22 @@ class JobsController extends Controller
                     //     $user->update();
                     // }
                     /*         * ******************************* */
-                    $this->Notification($jobApply->id);
-                    event(new JobApplied($job, $jobApply));
+                    if($job->contact_person_details->send_apply_notify_email=='yes'){
+                        event(new JobApplied($job, $jobApply));
+                    }
+                    if($job->contact_person_details->send_apply_notify_mobile=='yes'){
+                        
+                        $phone = str_replace("+","",$job->contact_person_details->phone_1??'');
+                        $phone1 = str_replace("+","",$job->contact_person_details->phone_2??'');
+
+                        if(!empty($phone)){
+                            $this->Notification($jobApply->id,$phone);
+                        }
+                        if(!empty($phone1)){
+                            $this->Notification($jobApply->id,$phone1);
+                        }
+
+                    }
                     $response = array("success" => true, "message" => "You have successfully applied for this job", "return_to" => "");
                 }
                      
@@ -358,10 +379,9 @@ class JobsController extends Controller
         return view('jobs.company_view', compact('company','company_jobs', 'breadcrumbs'));
     }
 
-    public function Notification($id)
+    public function Notification($id,$phone)
     {
         $job = JobApply::find($id);
-        $phone = str_replace("+","",$job->job->company->phone??'');
 
         if(!empty($phone)){
 
