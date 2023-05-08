@@ -31,7 +31,7 @@ use App\Model\Title;
 use App\Model\JobSearch;
 use App\Model\Industry;
 use App\Model\SiteSetting;
-use App\Model\companygalary;
+use App\Model\Companygalary;
 use App\Model\JobWorkLocation;
 
 class AjaxController extends Controller
@@ -49,7 +49,7 @@ class AjaxController extends Controller
     {
 
         $company = Auth::user();
-        $status=companygalary::where('company_id',$company->id)->where('id',$id)->delete();
+        $status=Companygalary::where('company_id',$company->id)->where('id',$id)->delete();
         if($status == true)
         {
             $data['success']=1;
@@ -63,14 +63,14 @@ class AjaxController extends Controller
     public function getAllGalariesCompanyParticular(Request $request)
     {
         $company = Auth::user();
-        $data = companygalary::where('company_id',$company->id)->where('id',$request->id)->get();
+        $data = Companygalary::where('company_id',$company->id)->where('id',$request->id)->get();
         return response()->json(array('success' => true, 'data' => $data));
     }
     public function getAllGalariesCompany(Request $request)
     {
         $company = Auth::user();
 
-        $data = companygalary::where('company_id',$company->id)->get();
+        $data = Companygalary::where('company_id',$company->id)->get();
         
         return response()->json(array('success' => true, 'data' => $data));
     }
@@ -79,7 +79,7 @@ class AjaxController extends Controller
     public function getourcompanygallery(Request $request, $id)
     {
         
-        $data = companygalary::where('company_id',$id)->get();
+        $data = Companygalary::where('company_id',$id)->get();
         
         return response()->json(array('success' => true, 'data' => $data));
     }

@@ -74,6 +74,12 @@ class Company extends Authenticatable
 
     }
 
+    public function gallery()
+    {
+        return $this->hasMany(Companygalary::class, 'company_id', 'id');
+    }
+
+
     public function ownershipType()
     {
         return $this->belongsTo(OwnershipType::class, 'ownership_type_id', 'id');
