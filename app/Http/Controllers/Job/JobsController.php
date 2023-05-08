@@ -58,6 +58,7 @@ class JobsController extends Controller
         $near_job = JobSearch::select('title','location', 'company_name', DB::raw('count(`title`) as total_count'))
                             ->where('location', 'like', "%{$session['city']}%")
                             ->groupBy('title','location', 'company_name')
+                            ->havingRaw("total_count != 0")
                             ->orderBy('total_count','desc')
                             ->limit(3)
                             ->get();
@@ -68,23 +69,29 @@ class JobsController extends Controller
                                 ->limit(3)
                                 ->get();
                                 
-        $job_list = Job::whereIsActive(0)
+        $job_list = Job::whereIsActive(1)
                         ->select('title', DB::raw('count(`title`) as total_count'))
                         ->groupBy('title')
+                        ->whereNotNull('title')
+                        ->havingRaw("total_count != 0")
                         ->orderBy('total_count','DESC')
                         ->limit(4)
                         ->get();
 
-        $top_cities = JobWorkLocation::select('city', DB::raw('count(`job_id`) as total_count'))
+        $top_cities = JobWorkLocation::whereHas('job',function($q){
+                                        $q->where('work_from_home','!=','permanent');
+                                    })
+                                    ->select('city', DB::raw('count(`job_id`) as total_count'))
                                     ->groupBy('city')
+                                    ->havingRaw("total_count != 0")
                                     ->orderBy('total_count','DESC')
                                     ->limit(4)
                                     ->get();
 
         $top_sector = Industry::withCount('jobsearch')
-                                ->orderBy('jobsearch_count','DESC')
-                                ->limit(3)
-                                ->get();
+                            ->orderBy('jobsearch_count','DESC')
+                            ->limit(3)
+                            ->get();
 
         $titles = Title::where('hit_count','!=',0)->orderBy('hit_count','desc')->take(5)->get();
         $this->shareSeoToLayout('candidate_home');

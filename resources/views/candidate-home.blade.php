@@ -138,61 +138,11 @@
                         </div>
                     </div>
                 
-
-                    <!-- <p class="text-center fw-bolder align-items-center justify-content-center d-flex accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseOne">Recent searches &nbsp;</p>
-                        <div id="collapseOne" class="mt-4" data-bs-parent="#myAccordion">
-                            <div class="card-body text-center">
-                                <div class="recent_searches">
-                                    <a href="#"><img src="{{asset('images/search_img.png')}}" width="18px"> &nbsp;new</a>
-                                    <a href="#"><img src="{{asset('images/search_img.png')}}" width="18px"> &nbsp;hello,new</a>
-                                    <a href="#"><img src="{{asset('images/search_img.png')}}" width="18px"> &nbsp;developer</a>
-                                    <a href="#"><img src="{{asset('images/search_img.png')}}" width="18px"> &nbsp;software</a>
-
-                                </div>
-                                
-                            </div>
-                        </div> -->
-
-
-                        <!-- @if(1)
-                            <div class="rectsear_hme">
-                                <div class="row">
-                                    <div class="col rectsear_col">
-                                        <h3 class="mb-2 fw-bolder">Popular searches</h3>
-                                        @forelse($titles as $title)
-                                            <div>
-                                                <p class="text-dark resentsearch cursor-pointer mb-1" data-d="{{$title->title}}" data-l="">{{$title->title}}</p>
-                                            </div>
-                                        @empty
-                                            No data available
-                                        @endforelse
-                                    </div>
-                                    
-                                    <div class="col rectsear_col">
-                                        <h3 class="mb-2 fw-bolder">Recent searchess</h3>
-
-                                        @php
-                                            $cacheData = Cookie::has('searchJobs') ? json_decode(Cookie::get('searchJobs')):array(); 
-                                            $cachedatas = array_reverse($cacheData); 
-                                        @endphp
-
-                                        @forelse($cachedatas as $key => $search)
-                                            @if($key < 5 && ($search->designation !='' || $search->location !='')  )
-                                                <div class="mb-1">
-                                                    <p class="mb-1 resentsearch cursor-pointer" data-d="{{$search->designation}}" data-l="{{$search->location}}">{{$search->designation}} {{$search->location}}</p>
-                                                </div>
-                                            @endif
-
-                                        @empty
-                                        <div class="mb-5">  
-                                            <text>No search till now</text>
-                                        </div>
-                                        @endforelse             
-                                    </div>
-                                </div>
-                            </div>
-                            @endif -->
-
+                    @php
+                        $cacheData = Cookie::has('searchJobs') ? json_decode(Cookie::get('searchJobs')):array(); 
+                        $cachedatas = array_reverse($cacheData); 
+                    @endphp
+                    @if(count($cachedatas)!=0)
                     <div class="content hometabcndte">
                         <ul class="nav nav-tabs" id="candsearchs" role="tablist">
                             <li class="nav-item" role="presentation">
@@ -203,6 +153,7 @@
                             </li>
                         </ul>
                     </div>
+                    @endif
                         
                     @if(1)
                     <div class="tab-content home_searchstab" id="pills-applied-jobs-list">
@@ -227,13 +178,10 @@
                             </div>
                         </div>
 
+                        @if(count($cachedatas)!=0)
                         <div class="tab-pane" id="recentsearch" role="tabpanel" aria-labelledby="recentsearch-tab">
                             <div class="popularser_hme mt-5">
                                 <div class="row">
-                                @php
-                                    $cacheData = Cookie::has('searchJobs') ? json_decode(Cookie::get('searchJobs')):array(); 
-                                    $cachedatas = array_reverse($cacheData); 
-                                @endphp
 
                                 @forelse($cachedatas as $key => $search)
                                     @if($key < 5 && ($search->designation !='' || $search->location !='')  )
@@ -259,6 +207,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                     </div>
                     @endif
 
@@ -346,34 +295,37 @@
                             </div>
                             <hr class="mt-1 mb-3"/>
                             
-                            <div class="row">
-                                <h3 class="mb-3 fw-bold mt-3">Top job posts</h3>
-                                @foreach($near_job as $near)
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="card p-4 hm_gr cursor-pointer jobsearch">
-                                        <h3 class="fw-bolder">{{$near->title}}</h3>
-                                        <p>{{$near->company_name}}</p>
-                                    </div>
-                                </div>
-
-                                @endforeach
-                            </div>
-
-                            <div class="row mt-3">
-                                <h3 class="mb-3 fw-bold">Recent posts</h3>
-                                @foreach($recent_job as $recent)
-                                    <div class="col-md-6 col-lg-4">
-                                        <a href="{{url('detail',$recent->slug)}}" class="text-dark">
-                                            <div class="card p-4 hm_gy cursor-pointer">
-                                                <h3 class="fw-bolder">{{$recent->title}}</h3>
-                                                <p>{{$recent->company_name}}</p>
-                                                <p>Experience: {{$recent->experience_string}}</p>
-                                                <p>Salary: {{$recent->salary_string}}</p>
+                            @if(count($near_job)!=0)
+                                <div class="row">
+                                    <h3 class="mb-3 fw-bold mt-3">Top job posts</h3>
+                                    @foreach($near_job as $near)
+                                        <div class="col-md-6 col-lg-4">
+                                            <div class="card p-4 hm_gr cursor-pointer jobsearch">
+                                                <h3 class="fw-bolder">{{$near->title}}</h3>
+                                                <p>{{$near->company_name}}</p>
                                             </div>
-                                        </a>
-                                    </div>
-                                @endforeach
-                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endif
+
+                            @if(count($recent_job)!=0)
+                                <div class="row mt-3">
+                                    <h3 class="mb-3 fw-bold">Recent posts</h3>
+                                    @foreach($recent_job as $recent)
+                                        <div class="col-md-6 col-lg-4">
+                                            <a href="{{url('detail',$recent->slug)}}" class="text-dark">
+                                                <div class="card p-4 hm_gy cursor-pointer">
+                                                    <h3 class="fw-bolder">{{$recent->title}}</h3>
+                                                    <p>{{$recent->company_name}}</p>
+                                                    <p>Experience: {{$recent->experience_string}}</p>
+                                                    <p>Salary: {{$recent->salary_string}}</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endif
                         </div>
                     </div>
 
@@ -384,9 +336,11 @@
 
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-tabs justify-content-between" id="candiftabs" role="tablist">
+                                        @if(count($job_list)!=0)
                                         <li class="nav-item" role="presentation">
                                         <button class="nav-link active" id="received-tab" data-bs-toggle="tab" data-bs-target="#topjoblistings" type="button" role="tab" aria-controls="received" aria-selected="true">TOP JOB LISTINGS</button>
                                         </li>
+                                        @endif
                                         <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="suggested-tab" data-bs-toggle="tab" data-bs-target="#topcities" type="button" role="tab" aria-controls="suggested" aria-selected="false">TOP CITIES</button>
                                         </li>
@@ -397,6 +351,7 @@
 
                                     <!-- Tab panes -->
                                     <div class="tab-content mt-5">
+                                        @if(count($job_list)!=0)
                                         <div class="tab-pane active" id="topjoblistings" role="tabpanel" aria-labelledby="received-tab">
                                             <div class="caconsection-disabl" id="received-c">
                                                 <div class="card-body candpcard" data-id="10" data-appstatus="view">
@@ -424,6 +379,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @endif
 
                                         <div class="tab-pane" id="topcities" role="tabpanel" aria-labelledby="suggested-tab">
                                             <div class="caconsection-disabl" id="suggested-c">
