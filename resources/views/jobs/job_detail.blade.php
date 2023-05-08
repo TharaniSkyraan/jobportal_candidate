@@ -1,6 +1,6 @@
 @extends('jobs.app')
 @section('custom_styles')
-<script type="text/javascript" src="{{ asset('site_assets_1/assets/2e9ejr3/css/destail.e2k3eu0.css?v=1.1') }}"></script>    
+<script type="text/javascript" src="{{ asset('site_assets_1/assets/2e9ejr3/css/deauiasd.css') }}"></script>    
 @endsection
 @section('content')
 @include('layouts.header')
