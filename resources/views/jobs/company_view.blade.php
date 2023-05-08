@@ -117,31 +117,33 @@
                             </div>
                             <div class="comdetail2list">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    @if($company->CEO_name != null)
+                                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 col-12">
                                         <p>CEO</p>
-                                        <span class="fw-bolder">@if($company->CEO_name != null){{$company->CEO_name}} @else NIL @endif</span>
+                                        <span class="fw-bolder">{{$company->CEO_name}} </span>
                                     </div>
-                                    <div class="col-md-6">
+                                    @endif
+                                    @if($company->founded_on != null) 
+                                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 col-12">
                                         <p>Founded On</p>
-                                        <span class="fw-bolder">@if($company->founded_on != null) {{ date('d',strtotime($company->founded_on)) }}th {{ $arra[intval(date('m',strtotime($company->founded_on)))-1]}} {{date('Y',strtotime($company->founded_on)) }} @else NIL @endif</span>
+                                        <span class="fw-bolder">{{ date('d',strtotime($company->founded_on)) }}th {{ $arra[intval(date('m',strtotime($company->founded_on)))-1]}} {{date('Y',strtotime($company->founded_on)) }} </span>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
+                                    @endif
+                                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 col-12">
                                         <p>Current number of employees</p>
                                         <span class="fw-bolder">{{ $company->no_of_employees }}</span>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 col-12">
                                         <p>Types of industry</p>
                                         <span class="fw-bolder">{{ DataArrayHelper::industryParticular($company->industry_id) }}</p>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
+                                    @if($company->website_url != null)
+                                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 col-12">
                                         <p>Website</p>
-                                        <span class="fw-bolder">@if($company->website_url != null){{$company->website_url}} @else NIL @endif</span>
+                                        <span class="fw-bolder">{{$company->website_url}} </span>
                                     </div>
-                                    <div class="col-md-6">
+                                    @endif
+                                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 col-12">
                                         <p>Social Media profiles</p>
                                         <h5 class="aboutcompany_heading1">
                                             <div class="socialmediaappend">
@@ -179,23 +181,21 @@
                                             </div>
                                         </h5>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
+                                    @if($company->address != null)
+                                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 col-12">
                                         <p>Address</p>
-                                        <span class="fw-bolder">@if($company->address != null){{$company->address}} @else NIL @endif </span>
+                                        <span class="fw-bolder">{{$company->address}} </span>
                                     </div>
-                                    <div class="col-md-6">
+                                    @endif
+                                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 col-12">
                                         <p>City</p>
                                         <span class="fw-bolder">{{ $company->location }}</span>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 col-12">
                                         <p>Country</p>
                                         <span class="fw-bolder">{{ DataArrayHelper::countryParticular($company->country_id) }}</span>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 col-12">
                                         <p>Pincode</p>
                                         <span class="fw-bolder">{{$company->pin_code}}</span>
                                     </div>
@@ -212,7 +212,7 @@
                         <div class="tab-pane" id="activejobs" role="tabpanel" aria-labelledby="review-tab">
                             <div class="row">
                                 @foreach($company_jobs as $job)
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 col-12">
                                         <a class="cursor-pointer text-dark" target="_blank" href="{{url('detail/'.$job->slug)}}">
                                             <div class="card jobsearch p-4">
                                                 <div>
@@ -260,7 +260,7 @@
                     $.each(response.data, function (i, data) 
                     { 
                         $('.galaryappendcontent')
-                        .append(`<div class="col-md-4 col-xl-3">
+                        .append(`<div class="col-md-4 col-xl-3 col-lg-3 col-sm-6 col-xs-6 col-12">
                                     <div class="card zoom opacity savecompanyname" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                         <div class="text-center"><div class="box"> 
                                             <img class="card-img-top imgclass" src=`+data['image_exact_url']+`>
