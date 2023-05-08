@@ -16,6 +16,24 @@
         .search-button-bg:focus{
             box-shadow: 0 0 0 2px #fff, 0 0 0 3px #2557a7f2 !important; 
         }
+        .contact-icons {
+            width: 50px;
+            height: 50px;
+            background: #ea4335;
+            color: #fff;
+            padding: 13.5px 16px;
+            align-items: center;
+            justify-content: center;
+            display: inline-flex;
+            border-radius: 30px;
+            font-size: 22px !important;
+        }
+        .fa-paper-plane{
+            padding: 13.5px 12px !important;
+        }
+        .fa-map-marker{
+           padding: 13.5px 18px !important;
+        }
         </style>
 @endsection
 @section('content')
@@ -44,51 +62,47 @@
 
 <div id="content-wrap">
     <div class="main">
-
-
         <div class="container panel panel-default mb-5">
+            <div class="card mt-5">
+                <div class="row m-3">
+                </div>
+                <form id="contact-form">
+                    <div class="row mx-3">
+                        <div class="col-md-5" style="padding-left:6%">
 
-
-            <form id="contact-form">
-
-
-                <div class="card mt-5">
-                    <div class="row mb-4">
-                        <div class="row mt-5">
-                            <div class="col-md-4">
-                                <div class="dbox w-100 text-center">
-                                    <div class="icon d-flex align-items-center justify-content-center">
-                                        <span class="fa fa-phone"></span>
-                                    </div>
-                                    <div class="text mb-5">
-                                        <p class="h5"><span class="fw-bold">Phone:</span> <a href="tel://+91-987654321">+91-987654321</a></p>
-                                    </div>
-                                </div>
+                            <div class="d-flex mt-5 mb-4">
+                                <span class="m-3">
+                                    <i class="fa fa-phone contact-icons"></i>
+                                </span>
+                                <span class="fw-bold my-3">Phone <br>
+                                    <a href="tel://+91-987654321">+91-987654321</a>
+                                </span>                               
                             </div>
-                            <div class="col-md-4 mb-5">
-                                <div class="dbox w-100 text-center">
-                                    <div class="icon d-flex align-items-center justify-content-center">
-                                        <span class="fa fa-paper-plane"></span>
-                                    </div>
-                                    <div class="text">
-                                        <p class="h5"><span class="fw-bold">Email:</span> <a
-                                                href="mailto:contact@mugaam.com">contact@mugaam.com</a></p>
-                                    </div>
-                                </div>
+                            <div class="d-flex mb-4">
+                                <span class="m-3">
+                                    <i class="fa fa-paper-plane contact-icons"></i>
+                                </span>
+                                <span class="fw-bold my-3">Email <br>
+                                    <a href="mailto:contact@mugaam.com">contact@mugaam.com</a>
+                                </span> 
                             </div>
-                            <div class="col-md-4 mb-5">
-                                <div class="dbox w-100 text-center">
-                                    <div class="icon d-flex align-items-center justify-content-center">
-                                        <span class="fa fa-globe"></span>
-                                    </div>
-                                    <div class="text">
-                                        <p class="h5"><span class="fw-bold">Website:</span> <a href="https://www.mugaam.com/">www.mugaam.com</a>
-                                        </p>
-                                    </div>
-                                </div>
+                            <div class="d-flex mb-4">                        
+                                <span class="m-3">
+                                    <i class="fa fa-globe contact-icons"></i>
+                                </span>
+                                <span class="fw-bold my-3">Website <br>
+                                    <a href="https://www.mugaam.com/">www.mugaam.com</a>
+                                </span>
+                            </div>
+                            <div class="d-flex">                        
+                                <span class="m-3">
+                                    <i class="fa fa-map-marker contact-icons"></i>
+                                </span>
+                                <span class="fw-bold my-3">Address <br>
+                                    <a href="">Saravanam patty, Coimbatore 641002</a>
+                                </span>
                             </div>
                         </div>
-
                         <div class="col-md-7" style="padding:1rem 4rem;">
                             <div id="success"></div>
                             <h3>Send us a message</h3>
@@ -138,14 +152,10 @@
                                     Message</button>
                             </div>
                         </div>
-                        <div class="col-md-5 d-flex align-items-stretch" >
-                            <div class="info-wrap w-100 p-5 img" style="background-image:url('site_assets_1/assets/images/static_pages/contact_banner_image.jpg')">
-                            </div>
-                        </div>
                     </div>
-            </form>
+                </form>
+            </div>
         </div>
-
     </div>
 </div>
 @endsection

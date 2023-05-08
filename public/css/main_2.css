@@ -1545,8 +1545,8 @@ filter search
 
     .galaryappendcontent img{
         width: 100%;
-        height: auto;
-        object-fit: cover;
+        height: 200px;
+        object-fit: none;
     }#navbar li.mobile_m{
         display: none;
     }#topjobsector .card{
