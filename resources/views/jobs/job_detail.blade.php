@@ -4,6 +4,14 @@
 @endsection
 @section('content')
 @include('layouts.header')
+<style>
+    @media (min-width: 576px) and (max-width:767px)
+    {    
+      .container-detail {
+          max-width: 665px !important;
+      }
+    }
+</style>
 
 <div class="header" id="myHeader">
     <div class="row">
