@@ -4,13 +4,32 @@
 @endsection
 @section('content')
 @include('layouts.header')
-       
+    <style>
+        @media (min-width: 576px)
+        {    
+          .container-detail {
+              max-width: 670px !important;
+          }
+        }
+        @media (min-width: 768px)
+        {    
+          .container-detail {
+              max-width: 960px !important;
+          }
+        }
+        @media (min-width: 1200px)
+        {    
+          .container-detail {
+              max-width: 1140px !important;
+          }
+        }
+    </style>
     <?php 
     $arra=array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
     ?>  
 
 <section id="companydetail">
-    <div class="container">
+    <div class="container container-detail">
         <div class="row justify-content-center mb-5">
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 col-12">
                 <div class="row justify-content-center">
@@ -58,7 +77,7 @@
 
                 <div class="tab-content" id="pills-applied-jobs-list">
                     <div class="tab-pane active" id="aboutcompany" role="tabpanel" aria-labelledby="aboutcompany-tab">
-                        <div class="card abtcmpycrd1 p-3">
+                        <div class="card abtcmpycrd1 p-4">
                             <div class="row">
                                 <div class="col-lg-10 col-md-12 col-xs-12 col-sm-12 col-12 col-xl-10">
                                     <div class="row">
@@ -71,9 +90,9 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        <div class="col-md-8 col-xl-10 px-2 text-left align-self-center">
+                                       <div class="col-md-8 col-xl-10 px-2 text-left align-self-center">
                                             <h1 class="fw-bolder">{{$company->name}}</h1>
-                                            <div class="ratings">
+                                            <!-- <div class="ratings">
                                             <span class="review-count ">(12) &nbsp;</span>
                                                 <i class="fa fa-star rating-color"></i>
                                                 <i class="fa fa-star rating-color"></i>
@@ -81,17 +100,17 @@
                                                 <i class="fa fa-star rating-color"></i>
                                                 <i class="fa fa-star"></i>
                                                 <a href="#" class=" text-center">&nbsp;&nbsp;&nbsp; 4.2 rating</a>
-                                            </div>            
+                                            </div>             -->
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-xl-2 follow_btn3ws align-self-center text-center">
-                                    <button class="btn bg-primary text-white rounded-pill" type="button">Following</button>
-                                </div>                            
+                                    <!-- <button class="btn bg-primary text-white rounded-pill" type="button">Following</button> -->
+                                </div>                           
                             </div>
                         </div>
 
-                        <div class="card detail_applierss2 p-3">
+                        <div class="card detail_applierss2 px-5">
                             <div class="text-justify mb-4">
                                 <h2 class="fw-bolder mt-3">About Company / Organization:</h2>
                                 <p>{{$company->description}}</p>
