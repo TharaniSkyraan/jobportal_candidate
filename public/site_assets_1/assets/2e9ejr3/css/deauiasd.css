@@ -1,13 +1,14 @@
-.image-size{
+
+.image-size {
     width: 17px;
     /* vertical-align: text-top; */
     margin-top: -2px;
 }
-.imagesz-2{
+.imagesz-2 {
     width: 19px;
     vertical-align: text-bottom;
 }
-.japply-btn{
+.japply-btn {
     border-color: #4285f470;
     background-color: #48abf717 !important;
     padding: 0.46rem 0.85rem!important;
