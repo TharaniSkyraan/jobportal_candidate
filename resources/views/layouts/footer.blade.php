@@ -81,33 +81,33 @@
 
         <div class="col-md-7 system_vw home_cities">
           <div class="row">
-            <div class="col-md-4 jobsearch">
+            <div class="col-md-4">
               <h3 class="fw-bolder">Jobs by Cities</h3>
               <ul>
-                <li>Coimbatore</li>
-                <li>Chennai</li>
-                <li>Mumbai</li>
-                <li>Banglore</li>
+                <li class="footer-city cursor-pointer">Coimbatore</li>
+                <li class="footer-city cursor-pointer">Chennai</li>
+                <li class="footer-city cursor-pointer">Mumbai</li>
+                <li class="footer-city cursor-pointer">Banglore</li>
               </ul>
             </div>
 
-            <div class="col-md-4 jobsearch">
+            <div class="col-md-4">
               <h3 class="fw-bolder">Jobs by Sectors</h3>
               <ul>
-                <li>Automobile</li>
-                <li>Marketting</li>
-                <li>Information Technology</li>
-                <li>Security</li>
+                <li class="footer-search cursor-pointer">Automobile</li>
+                <li class="footer-search cursor-pointer">Marketting</li>
+                <li class="footer-search cursor-pointer">Information Technology</li>
+                <li class="footer-search cursor-pointer">Security</li>
               </ul>
             </div>
 
-            <div class="col-md-4 jobsearch">
+            <div class="col-md-4">
               <h3 class="fw-bolder">Jobs by type</h3>
               <ul>
-                <li>Shift wise jobs</li>
-                <li>Part-time</li>
-                <li>Full-time</li>
-                <li>Freelance</li>
+                <li class="footer-search cursor-pointer">Shift wise jobs</li>
+                <li class="footer-search cursor-pointer">Part-time</li>
+                <li class="footer-search cursor-pointer">Full-time</li>
+                <li class="footer-search cursor-pointer">Freelance</li>
               </ul>
             </div>
           </div>
@@ -138,6 +138,40 @@
 </div>
 
 </footer>
+<script>
+
+$(".footer-search").click(function(){
+    search($(this).text(), '');
+});
+$(".footer-city").click(function(){
+    search('',$(this).text());
+});
+function search(d, l){
+    $('#designation').css('border','1px solid lightgray');
+    $('.err_msg').html('');
+    if($.trim(d) != '' || $.trim(l) !=''){      
+        $.post('{{ route("job.checkkeywords") }}', {designation: d, location: l, _method: 'POST', _token: '{{ csrf_token() }}'})
+            .done(function (response) {
+                var l = '';
+                var d = '';
+            if(response.d !=''){
+                d = 'd='+response.d;
+            }
+            if(response.l !=''){
+                if(response.d !=''){
+                    l += '&';
+                }
+                l += 'l='+response.l;
+            }
+            url = '{{ url("/") }}/';
+            window.location = url+response.sl+'?'+d+l;
+        });
+    }else{
+        $('.designation-error').html('Please enter title, keyword or company');
+        $('#designation').css('border','1px solid #f25961');
+    }
+}
+</script>
 
 
 

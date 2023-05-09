@@ -476,45 +476,6 @@ var is_login = '{{ Cookie::get("is_login") }}';
             }
         }
     }
-    function search(designation, location)
-    {
-        //myElement Has Focus
-        $('.err_msg').html('');
-        if($.trim(designation) != '' || $.trim(location) !=''){   
-    
-            filterResetallActions();
-
-            $.ajax({
-                url: '{{ route("job.checkkeywords") }}',
-                type: 'POST',
-                data : { "_token": '{{ csrf_token() }}', 'designation': designation, 'location': location },
-                datatype: 'JSON',
-                success: function(response){
-                    // console.log(data)
-                    let l = '';
-                    let d = '';
-                    if(response.d !=''){
-                        d = 'd='+response.d;
-                    }
-                    if(response.l !=''){
-                        if(response.d !=''){
-                            l += '&';
-                        }
-                        l += 'l='+response.l;
-                    }
-                    url = '{{ url("/") }}/';
-                    window.location = url+response.sl+'?'+d+l;
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-                    // var errorMsg = 'Ajax request failed: ' + xhr.responseText;
-                    // console.log(errorMsg)
-                    // $('#content').html(errorMsg);
-                }
-            });
-        }else{
-            $('.designation-error').html('Enter Your Designation');
-        }
-    }
     $('#msearch_btn').on('click', function(){
         //myElement Has Focus
         var designation = $('#designation').val();
