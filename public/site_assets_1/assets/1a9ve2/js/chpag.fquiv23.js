@@ -16,11 +16,11 @@ $(".jobsearch").click(function(){
 
     var location = current_city;
 
-    $div = $(this).parent("div");
+    // $div = $(this).parent("div");
 
-    id = $div.attr("class");
+    // id = $div.attr("class");
 
-    position = $div.find(".fw-bolder").text();
+    position = $(this).find(".jobsearchtitle").text();
 
     search(position, location);
 
@@ -28,13 +28,23 @@ $(".jobsearch").click(function(){
 
 $(".topcities").click(function(){
 
-    $div = $(this).parent("div");
+    // $div = $(this).parent("div");
 
-    id = $div.attr("class");
+    // id = $div.attr("class");
 
-    position = $div.find(".fw-bolder").text();
+    // position = $div.find(".fw-bolder").text();
+
+    position = $(this).find(".city").text();
 
     search('', position);
+
+});
+
+$(".topsector").click(function(){
+
+    position = $(this).find(".sector").text();
+
+    search(position, '');
 
 });
 

@@ -301,7 +301,7 @@
                                     @foreach($near_job as $near)
                                         <div class="col-md-6 col-lg-4">
                                             <div class="card p-4 hm_gr cursor-pointer jobsearch">
-                                                <h3 class="fw-bolder">{{$near->title}}</h3>
+                                                <h3 class="fw-bolder jobsearchtitle">{{$near->title}}</h3>
                                                 <p>{{$near->company_name}}</p>
                                             </div>
                                         </div>
@@ -393,7 +393,7 @@
                                                                 <div class="card hm_grn cursor-pointer topcities">
                                                                     <div class="row">
                                                                         <div class="col-6">
-                                                                            <h3 class="fw-bolder">{{$cities->city}}</h3>
+                                                                            <h3 class="fw-bolder city">{{$cities->city}}</h3>
                                                                             <p>{{$cities->total_count}} + jobs</p>
                                                                         </div>
                                                                         <div class="col-6 d-flex align-items-center justify-content-center">
@@ -416,13 +416,13 @@
                                                         <div class="row">
                                                             @foreach($top_sector as $sector)
                                                             <div class="col-md-6 col-sm-6 col-lg-3 col-xs-6">
-                                                                <div class="card hm_grn cursor-pointer topcities">
+                                                                <div class="card hm_grn cursor-pointer topsector">
                                                                     <div class="row">
                                                                         <div class="col-4">
                                                                             <img src="{{url('images/hme_designing.png')}}" width="100%">
                                                                         </div>
                                                                         <div class="col-8 align-self-center">
-                                                                            <h3 class="fw-bolder">{{$sector->industry}}</h3>
+                                                                            <h3 class="fw-bolder sector">{{$sector->industry}}</h3>
                                                                             <p>{{$sector->jobsearch_count}} + jobs
                                                                             <div class="test22"><i class="fas fa-angle-right"></i></div>
                                                                             </p>
