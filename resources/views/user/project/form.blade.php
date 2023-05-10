@@ -113,7 +113,7 @@
 
         <div class="mb-4">    
             <label for="" class="form-label fw-bold">Project Description</label>
-            {!! Form::textarea('description', null, array('class'=>'form-control required', 'id'=>'description', 'rows'=>5, 'placeholder'=>'Describe about the project')) !!}
+            {!! Form::textarea('description', null, array('class'=>'form-control required', 'maxlength'=>'4000' 'id'=>'description', 'rows'=>5, 'placeholder'=>'Describe about the project')) !!}
             <small class="help-block form-text text-muted text-danger err_msg description-error" id="err_description"></small>   
             <small class="description_remain_char"></small>
         </div>
