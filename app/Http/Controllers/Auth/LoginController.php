@@ -363,8 +363,18 @@ class LoginController extends Controller
         return true;
      }
      
-     public function UserSwitchRedirect()
+     public function UserSwitchRedirect($from='')
      {
+        
+        if($from=='reset_password' && Auth::user()->next_process_level=='verify_otp')
+        {              
+            $user = User::find(Auth::user()->id);     
+            $user->verify_otp = null;
+            $user->verified = 1;
+            $user->next_process_level = 'education';
+            $user->save();
+            return redirect('/education');
+        }
          switch(Auth::user()->next_process_level) {
  
             case 'verify_otp':

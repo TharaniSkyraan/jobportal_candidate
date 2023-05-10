@@ -1,5 +1,5 @@
 <?php
-    Route::get('/redirect_user', 'Auth\LoginController@UserSwitchRedirect')->name('redirect-user');
+    Route::get('/redirect_user/{from?}', 'Auth\LoginController@UserSwitchRedirect')->name('redirect-user');
     Route::any('accountverification', 'Auth\LoginController@accountVerification')->name('accountverification');
 
     Route::get('/verify_otp', 'Auth\LoginController@verifyOtp')->name('verify_otp');
