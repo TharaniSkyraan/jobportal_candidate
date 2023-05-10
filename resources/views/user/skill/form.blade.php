@@ -5,10 +5,10 @@
             Skill Name
         </div>
         <div class="col-md-4 col-lg-6">
-            <?php
+           {{-- <?php
             $skill_id = (isset($userSkill) ? $userSkill->skill_id : $suggested_skill_id);
-            ?>
-            {!! Form::select('skill_id', [''=>__('Select skill')]+$skills, $skill_id, array('class'=>'form-select required', 'id'=>'skill_id')) !!} 
+            ?> --}}
+            {!! Form::select('skill_id', [''=>__('Select skill')]+$skills, null, array('class'=>'form-select required', 'id'=>'skill_id')) !!} 
             <small class="help-block form-text text-muted text-danger err_msg skill_id-error" id="err_skill_id"></small>
         </div>
     </div>

@@ -82,14 +82,12 @@ trait UserSkillTrait
         $user_id = empty($user_id)?Auth::user()->id:$user_id;
         $skill_id = $request->input('skill_id');
         $userSkill = UserSkill::find($skill_id);
-        $array = Skill::select('skills.skill', 'skills.skill_id')->where('id',$userSkill->skill_id)->pluck('skills.skill', 'skills.skill_id')->toArray();
-
+        
         $skills = DataArrayHelper::langSkillsArray();
         $experiences = DataArrayHelper::langExperiencesArray();
         $levels = DataArrayHelper::langLanguageLevelsArray();
-        $skills = array_merge($skills, $array);
         $user = User::find($user_id);
-
+        
         // $returnHTML = view('user.forms.skill.skill_edit_modal')
         $returnHTML = view('user.skill.edit')
                 ->with('user', $user)
@@ -106,6 +104,7 @@ trait UserSkillTrait
     {
         
         $user_id = empty($user_id)?Auth::user()->id:$user_id;
+       
         $userSkill = UserSkill::find($skill_id);
         $userSkill->user_id = $user_id;
         $userSkill->skill_id = $request->input('skill_id');
