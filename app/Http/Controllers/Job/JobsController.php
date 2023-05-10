@@ -65,7 +65,7 @@ class JobsController extends Controller
 
         $recent_job = JobSearch::select('title', 'company_name', 'salary_string', 'experience_string', 'location', 'slug')
                                 ->where('location', 'like', "%{$session['city']}%")
-                                ->orderBy('created_at','asc')
+                                ->orderBy('created_at','desc')
                                 ->limit(3)
                                 ->get();
                                 
