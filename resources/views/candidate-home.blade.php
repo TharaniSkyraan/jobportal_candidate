@@ -49,7 +49,7 @@
     left: unset !important;
 }
     
-@media (min-width: 768px) and (max-width: 1399px) {
+@media (min-width: 768px) {
     .designation .typeahead.dropdown-menu{
         margin-right: 59% !important;
     }
@@ -66,7 +66,7 @@
         margin-right: 20.5% !important;
     }
 }
-@media (min-width: 1200px) and (max-width: 1399px) {
+@media (min-width: 1200px){
     .location .typeahead.dropdown-menu{
         margin-right: 19.8% !important;
     }
