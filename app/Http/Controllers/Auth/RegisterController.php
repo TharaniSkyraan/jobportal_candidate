@@ -417,6 +417,9 @@ class RegisterController extends Controller
             $user->next_process_level = 'completed';
             $user->save();
         
+            // User signup
+            event(new UserRegistered($user)); 
+
             return redirect('/');
 
         }
