@@ -38,7 +38,7 @@
        });
     }).on('keydown', function(event){        
       if(event.keyCode=='40' || event.keyCode=='38'){
-          if($('#education_type').val()==''){
+          if($('.education_type').val()==''){
               $(".education_type_div").find('.active').removeClass('active');
               $(".education_type_div").find('li:first-child').addClass('active li-active');
           }else{
@@ -46,9 +46,9 @@
               $(".education_type_div").find('.active').addClass('li-active');
           }
           var current_education_type = $(".education_type_div").find('.active').text();
-          $('#education_type').val(current_education_type);
+          $('.education_type').val(current_education_type);
       }
-  });;
+  });
     /**  Submit */
 
     function validateAccountForm() {
