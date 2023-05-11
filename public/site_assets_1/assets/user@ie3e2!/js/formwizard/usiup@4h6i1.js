@@ -55,7 +55,7 @@
       clrErr();
       var errStaus = false; 
       if(validateFormFields('education_level_id','Please enter education level','')) errStaus=true;
-       if($('.education_type_div').is(":visible")==true){
+       if($('.education_type_div').is(":visible")==true && $('.education_type').val()==''){
            if(validateFormFields('education_type','Please enter the Education type','')) errStaus=true;    
       }
       // form validation ends
