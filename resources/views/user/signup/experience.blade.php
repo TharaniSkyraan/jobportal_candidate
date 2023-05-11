@@ -58,14 +58,14 @@
 
                                 </label>
                             </div>
+                        </div>
 
-                            <div class="row mb-4 mt-5">
-                                <div class="col-md-5 col-5">
-                                    <a href="{{ route('education') }}" class="btn p-0"><img src="{{asset('images/lefticon.png')}}"> Previous</a >
-                                </div>
-                                <div class="col-md-7 col-7 text-end">
-                                    <button type="submit" class="btn p-0">Save & Continue  <img src="{{asset('images/righticon.png')}}"></button>
-                                </div>
+                        <div class="row mb-4 mt-5">
+                            <div class="col-md-5 col-5">
+                                <a href="{{ route('education') }}" class="btn p-0"><img src="{{asset('images/lefticon.png')}}"> Previous</a >
+                            </div>
+                            <div class="col-md-7 col-7 text-end">
+                                <button type="submit" class="btn p-0">Save & Continue  <img src="{{asset('images/righticon.png')}}"></button>
                             </div>
                         </div>
                     </div> 
