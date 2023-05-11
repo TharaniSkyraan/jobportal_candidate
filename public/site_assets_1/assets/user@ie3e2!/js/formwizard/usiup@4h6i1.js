@@ -203,43 +203,43 @@
             }
         });
           
-          var cache2 = JSON.parse(localStorage.getItem('designation'))??{};
-          $('#career_title.typeahead').typeahead({ // focus on first result in dropdown
-              source: function(query, result) {
-                  var local_cache = JSON.parse(localStorage.getItem('designation'));
-                  if ((local_cache!=null) && (query in local_cache)) {
-                      // If result is already in local_cache, return it
-                      result(cache2[query]);
-                      return;
-                  }
-                  $.ajax({
-                      url: 'api/autocomplete/search_designation',
-                      method: 'GET',
-                      data: {q: query},
-                      dataType: 'json',
-                      success: function(data) {
-                          cache2[query] = data;
-                          localStorage.setItem('designation',JSON.stringify(cache2));
-                          result(data);
-                      }
-                  });
-              },
-              autoSelect: true,
-              showHintOnFocus: true
-          }).focus(function () {
-              $(this).typeahead("search", "");
-          }).on('keydown', function(event){        
-            if(event.keyCode=='40' || event.keyCode=='38'){
-                if($('#career_title').val()==''){
-                    $(".career_title").find('.active').removeClass('active');
-                    $(".career_title").find('li:first-child').addClass('active li-active');
-                }else{
-                    $(".career_title").find('li').removeClass('li-active');
-                    $(".career_title").find('.active').addClass('li-active');
+        var cache2 = JSON.parse(localStorage.getItem('designation'))??{};
+        $('#career_title.typeahead').typeahead({ // focus on first result in dropdown
+            source: function(query, result) {
+                var local_cache = JSON.parse(localStorage.getItem('designation'));
+                if ((local_cache!=null) && (query in local_cache)) {
+                    // If result is already in local_cache, return it
+                    result(cache2[query]);
+                    return;
                 }
-                var current_career_title = $(".career_title").find('.active').text();
-                $('#career_title').val(current_career_title);
-            }
+                $.ajax({
+                    url: 'api/autocomplete/search_designation',
+                    method: 'GET',
+                    data: {q: query},
+                    dataType: 'json',
+                    success: function(data) {
+                        cache2[query] = data;
+                        localStorage.setItem('designation',JSON.stringify(cache2));
+                        result(data);
+                    }
+                });
+            },
+            autoSelect: true,
+            showHintOnFocus: true
+        }).focus(function () {
+            $(this).typeahead("search", "");
+        }).on('keydown', function(event){        
+          if(event.keyCode=='40' || event.keyCode=='38'){
+              if($('#career_title').val()==''){
+                  $(".career_title").find('.active').removeClass('active');
+                  $(".career_title").find('li:first-child').addClass('active li-active');
+              }else{
+                  $(".career_title").find('li').removeClass('li-active');
+                  $(".career_title").find('.active').addClass('li-active');
+              }
+              var current_career_title = $(".career_title").find('.active').text();
+              $('#career_title').val(current_career_title);
+          }
         });
   
       });

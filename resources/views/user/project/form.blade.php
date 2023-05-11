@@ -8,6 +8,15 @@
       background-color: #0d6efd;
       padding: 0.2rem;
     }
+    .location .typeahead.dropdown-menu {
+        width: -webkit-fill-available;
+        margin-right: 35px;
+    }
+    @media (min-width: 576px){
+        .location .typeahead.dropdown-menu {
+            margin-right: 36.2%;
+        }
+    }
   </style> 
     <div class="card mt-4">
         <div class="mb-4">    
@@ -76,9 +85,9 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-8 col-lg-8 col-sm-8 col-xs-12 col-12 mb-2">
+                        <div class="col-md-8 col-lg-8 col-sm-8 col-xs-12 col-12 mb-2 location">
                             <label class="form-label fw-bolder">City </label>  
-                            {!! Form::text('location', null, array('class'=>'form-control-2 required typeahead', 'id'=>'location', 'placeholder'=>__('Enter city'),' aria-label'=>'Enter city')) !!}
+                            {!! Form::text('location', null, array('class'=>'form-control required typeahead', 'autocomplete'=>'off', 'id'=>'location', 'placeholder'=>__('Enter city'),' aria-label'=>'Enter city')) !!}
                             <small class="form-text text-muted text-danger err_msg" id="err_location"></small>                          
                         </div>
                     </div>
@@ -185,39 +194,46 @@ $(function() {
     
 });
 
-$(function(){
-    var stocks = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.whitespace,
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        prefetch: 'api/autocomplete/search_location',
-        remote: {
-            url: "api/autocomplete/search_location",
-            replace: function(url, query) {
-                var country_code = $('#country_id_dd').find(':selected').attr('data-code')
-                return url + "?q=" + query+"&country_code="+country_code;
-            },        
-            filter: function(stocks) {
-                return $.map(stocks, function(data) {
-                    return {
-                        // tokens: data.tokens,
-                        // symbol: data.symbol,
-                        name: data.name
-                    }
-                });
-            }
+/**
+* Search Location
+*/
+var cache1 = JSON.parse(localStorage.getItem('search_city'))??{};
+$('#location').typeahead({ // focus on first result in dropdown
+    source: function(query, result) {
+        var country_code = $('#country_id_dd').find(':selected').attr('data-code')
+        var local_cache1 = JSON.parse(localStorage.getItem('search_city'));
+        if ((local_cache1!=null) && ((country_code+query) in local_cache1)) {
+            // If result is already in local_cache1, return it
+            result(cache1[country_code+query]);
+            return;
         }
-    });
-
-    stocks.initialize();
-    $('#location.typeahead').typeahead({
-        hint: true,
-        highlight: false,
-        minLength: 0,
-    },{
-        name: 'stocks',
-        displayKey: 'name',
-        source: stocks.ttAdapter(),
-        limit:Number.MAX_VALUE
-    }); 
-});
+        $.ajax({
+            url: "{{ url('api/autocomplete/search_location') }}",
+            method: 'GET',
+            data: {q: query,country_code:country_code},
+            dataType: 'json',
+            success: function(data) {
+                cache1[country_code+query] = data;
+                localStorage.setItem('search_city',JSON.stringify(cache1));
+                result(data);
+            }
+        });
+    },
+    autoSelect: true,
+    showHintOnFocus: true
+}).focus(function () {
+    $(this).typeahead("search", "");
+}).on('keydown', function(event){        
+    if(event.keyCode=='40' || event.keyCode=='38'){
+        if($('#location').val()==''){
+            $(".location").find('.active').removeClass('active');
+            $(".location").find('li:first-child').addClass('active li-active');
+        }else{
+            $(".location").find('li').removeClass('li-active');
+            $(".location").find('.active').addClass('li-active');
+        }
+        var current_location = $(".location").find('.active').text();
+        $('#location').val(current_location);
+    }
+});  
 </script>

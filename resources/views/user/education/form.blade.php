@@ -185,6 +185,18 @@
             showHintOnFocus: true
         }).focus(function () {
             $(this).typeahead("search", "");
+        }).on('keydown', function(event){        
+            if(event.keyCode=='40' || event.keyCode=='38'){
+                if($('#education_type').val()==''){
+                    $(".education_type_div").find('.active').removeClass('active');
+                    $(".education_type_div").find('li:first-child').addClass('active li-active');
+                }else{
+                    $(".education_type_div").find('li').removeClass('li-active');
+                    $(".education_type_div").find('.active').addClass('li-active');
+                }
+                var current_education_type = $(".education_type_div").find('.active').text();
+                $('#education_type').val(current_education_type);
+            }
         });
 
                         
@@ -196,9 +208,9 @@
             source: function(query, result) {
                 var country_code = $('#country_id_dd').find(':selected').attr('data-code')
                 var local_cache1 = JSON.parse(localStorage.getItem('search_city'));
-                if ((local_cache1!=null) && (query in local_cache1)) {
+                if ((local_cache1!=null) && ((country_code+query) in local_cache1)) {
                     // If result is already in local_cache1, return it
-                    result(cache1[query]);
+                    result(cache1[country_code+query]);
                     return;
                 }
                 $.ajax({
@@ -207,7 +219,7 @@
                     data: {q: query,country_code:country_code},
                     dataType: 'json',
                     success: function(data) {
-                        cache1[query] = data;
+                        cache1[country_code+query] = data;
                         localStorage.setItem('search_city',JSON.stringify(cache1));
                         result(data);
                     }
@@ -217,6 +229,18 @@
             showHintOnFocus: true
         }).focus(function () {
             $(this).typeahead("search", "");
+        }).on('keydown', function(event){        
+            if(event.keyCode=='40' || event.keyCode=='38'){
+                if($('#location').val()==''){
+                    $(".location").find('.active').removeClass('active');
+                    $(".location").find('li:first-child').addClass('active li-active');
+                }else{
+                    $(".location").find('li').removeClass('li-active');
+                    $(".location").find('.active').addClass('li-active');
+                }
+                var current_location = $(".location").find('.active').text();
+                $('#location').val(current_location);
+            }
         });             
         /**
         * Search Institute
@@ -245,6 +269,18 @@
             showHintOnFocus: true
         }).focus(function () {
             $(this).typeahead("search", "");
+        }).on('keydown', function(event){        
+            if(event.keyCode=='40' || event.keyCode=='38'){
+                if($('#institution').val()==''){
+                    $(".institution").find('.active').removeClass('active');
+                    $(".institution").find('li:first-child').addClass('active li-active');
+                }else{
+                    $(".institution").find('li').removeClass('li-active');
+                    $(".institution").find('.active').addClass('li-active');
+                }
+                var current_institution = $(".institution").find('.active').text();
+                $('#institution').val(current_institution);
+            }
         });
     });
 </script>
