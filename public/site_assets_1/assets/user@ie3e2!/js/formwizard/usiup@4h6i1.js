@@ -6,7 +6,7 @@
       var path = baseurl + "/suggestion-education-types-dropdown";
     
       var cache = {};
-      $('.education_type').typeahead({ // focus on first result in dropdown
+      $('#education_type').typeahead({ // focus on first result in dropdown
           displayText: function(item) {
               return item.name
           },
@@ -43,8 +43,8 @@
       clrErr();
       var errStaus = false; 
       if(validateFormFields('education_level_id','Please enter education level','')) errStaus=true;
-      if($('.education_type_div').is(":visible")==true){
-        if(validateFormFields('education_type','Please enter the Education type','')) errStaus=true;
+       if($('.education_type_div').is(":visible")==true && $('.education_type').val()==''){
+           if(validateFormFields('education_type','Please enter the Education type','')) errStaus=true;    
       }
       // form validation ends
       
@@ -60,7 +60,7 @@
 
     $(document).on('change', '#education_level_id', function (e) {
       e.preventDefault();
-      $('#education_type').val('');
+      $('.education_type').val('');
       filterEducationTypes();
     });
 
