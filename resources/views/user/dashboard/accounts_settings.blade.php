@@ -614,6 +614,7 @@ $('.btn-upload-image').on('click', function (ev) {
             console.log(json);
             $('.err_msg').html('');  
             $('#changephone').modal('show');
+            $("#otp_code").val('');
           },
           error: function(json){
             $('.err_msg').html('');   
@@ -628,7 +629,6 @@ $('.btn-upload-image').on('click', function (ev) {
       }
     }
   }
-  
   function VerifyPasswordChange(){
      var errStaus = false;
 
