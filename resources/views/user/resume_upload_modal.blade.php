@@ -80,7 +80,7 @@
                   <div style="text-align: -webkit-center;">             
                       <img src="{{asset('images/upload_img.png')}}" class="file_upload"> 
                   </div>  
-                  <div class="file_upld text-center mt-2"><p>Drop your Resume here or Browse</p></div>
+                  <p class="file_upld text-center mt-2">Drop your Resume here or Browse</p>
                   <input class="file-input" type="file" name="file" id="file" accept=".doc,.docx,.pdf,.rtf">
                 </div>
              
