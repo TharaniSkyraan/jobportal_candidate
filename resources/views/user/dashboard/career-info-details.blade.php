@@ -34,7 +34,6 @@
                     @endphp
                     <div class="card mt-5">                        
                         {!! Form::open(array('method' => 'put', 'route' => array('career_info_save'), 'class' => 'form', 'onSubmit' => 'return validateCareerInfoForm()')) !!}
-                        <div class="container">
                             <div class="mb-3 career_title">
                                 <label for="career_title" class="form-label">@if($user->employment_status=='fresher') Jobs looking for @else Your designation @endif</label>
                                 {!! Form::text('career_title', $user->career_title??null, array('class'=>'form-control required typeahead', 'id'=>'career_title', 'placeholder'=>__('ex:auditor, doctor'))) !!}
@@ -101,8 +100,6 @@
                                     <button class="btn btn-submit bg-green-color" id="basic-info-submit-button" type="submit">Save</button>
                                 </div>
                             </div>
-
-                        </div>
                         {!! Form::close() !!}
                     </div>  
                 </div>
