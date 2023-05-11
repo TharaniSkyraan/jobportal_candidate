@@ -166,9 +166,13 @@
                                 {!! Form::checkbox('is_watsapp_number', 'yes', $user->is_watsapp_number??'', array('class'=>'form-check-input', 'id'=>'is_watsapp_number')) !!}
                                 <label class="form-check-label" for="is_watsapp_number">Is this watsapp number.</label>
                             </div>
-                            <div class="button-row d-flex mt-4 col-12 justify-content-between">
-                                <a href="{{ route('experience')}}" class="btn d-flex"><img src="{{asset('images/lefticon.png')}}"> Previous</a>
-                                <button class="btn d-flex" type="submit">Save & Continue  <img src="{{asset('images/righticon.png')}}"></button>
+                            <div class="row mb-4 mt-5">
+                                <div class="col-md-6 col-5">
+                                    <a href="{{ route('experience')}}" class="btn p-0"><img src="{{asset('images/lefticon.png')}}"> Previous</a>
+                                </div>
+                                <div class="col-md-6 col-7 text-end">
+                                    <button class="btn p-0" type="submit">Save & Continue  <img src="{{asset('images/righticon.png')}}"></button>
+                                </div>
                             </div>
                         </div>
                         <div class="progress">
