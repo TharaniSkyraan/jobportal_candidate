@@ -3,18 +3,20 @@
 <style>
 
     .file-drop-area {
-        position: relative;
-        align-items: center;
-        /* width: 450px; */
-        max-width: 100%;
-        border: 3px solid #ccc;
-        border-radius: 3px;
-        transition: 0.2s;
-        height: 190px;
-        white-space: pre-line;
-        text-align: center;
-        place-content: center;
-        border-style: dashed;
+      align-items: center;
+      justify-content: center;
+      /* display: flex; */
+      margin: 0 auto;
+      border: 3px solid #ccc;
+      border-style: dashed;
+      width: 80%;
+      /* height: 150px; */
+      border-radius: 10px;
+    }
+    
+    .file-drop-area img{
+      width: 100px;
+      height: 100px;
     }
     .file-drop-area.is-active {
       background-color: rgba(255, 255, 255, 0.05);
@@ -73,12 +75,15 @@
             <form>
               {{csrf_field()}}
                {!! Form::hidden('resume_id', null, array('id'=>'resume_id')) !!}
-              <div class="resume">
-                <div class="file-drop-area m-4">                   
-                      <img src="{{asset('images/upload_img.png')}}" width="20%" class="p-1 file_upload file_upld"> 
-                      <div class="file_upld">Drop your Resume here or Browse</div>
-                      <input class="file-input" type="file" name="file" id="file" accept=".doc,.docx,.pdf,.rtf">
+              <div class="resume m-4">
+                <div class="file-drop-area p-3">      
+                  <div style="text-align: -webkit-center;">             
+                      <img src="{{asset('images/upload_img.png')}}" class="file_upload"> 
+                  </div>  
+                  <div class="file_upld text-center mt-2"><p>Drop your Resume here or Browse</p></div>
+                  <input class="file-input" type="file" name="file" id="file" accept=".doc,.docx,.pdf,.rtf">
                 </div>
+             
                 <div class="text-center">
                   <span class="help-block form-text text-danger err_msg file-error"></span>
                 </div>
