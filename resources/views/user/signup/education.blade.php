@@ -51,7 +51,7 @@ li {
 
                             <div class="mb-4 education_type_div" @if(empty($education->education_type)) style="display:none;" @endif>
                                 <label for="exampleInputEmail1" class="form-label grytxtv">Education</label>
-                                {!! Form::text('education_type', $education->education_type??null, array('class'=>'form-control required typeahead', 'id'=>'education_type', 'placeholder'=>__('Select education type'),'autocomplete'=>'off')) !!}
+                                {!! Form::text('education_type', $education->education_type??null, array('class'=>'form-control required typeahead education_type', 'id'=>'education_type', 'placeholder'=>__('Select education type'),'autocomplete'=>'off')) !!}
                                 <small class="form-text text-muted text-danger err_msg" id="err_education_type"></small>
                                 <small class="help-block form-text text-muted text-danger err_msg education_type-error" id="err_education_type"></small> 
                             </div>

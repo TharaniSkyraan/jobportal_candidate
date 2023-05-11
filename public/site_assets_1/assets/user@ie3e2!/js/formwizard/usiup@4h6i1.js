@@ -6,7 +6,7 @@
       var path = baseurl + "/suggestion-education-types-dropdown";
     
       var cache = {};
-      $('#education_type').typeahead({ // focus on first result in dropdown
+      $('.education_type').typeahead({ // focus on first result in dropdown
           displayText: function(item) {
               return item.name
           },
