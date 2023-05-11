@@ -156,9 +156,9 @@
               source: function(query, result) {
                   var country_code = $('#country_id').find(':selected').attr('data-code');
                   var local_cache = JSON.parse(localStorage.getItem('city'));
-                  if ((local_cache!=null) && (query in local_cache)) {
+                  if ((local_cache!=null) && ((country_code+query) in local_cache)) {
                       // If result is already in local_cache, return it
-                      result(cache1[query]);
+                      result(cache1[country_code+query]);
                       return;
                   }
                   $.ajax({
@@ -167,7 +167,7 @@
                       data: {q: query,country_code:country_code},
                       dataType: 'json',
                       success: function(data) {
-                          cache1[query] = data;
+                          cache1[country_code+query] = data;
                           localStorage.setItem('city',JSON.stringify(cache1));
                           result(data);
                       }
