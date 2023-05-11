@@ -6,7 +6,7 @@
       var path = baseurl + "/suggestion-education-types-dropdown";
     
       var cache = {};
-      $('#education_type').typeahead({ // focus on first result in dropdown
+      $('#education_type.typeahead').typeahead({ // focus on first result in dropdown
           displayText: function(item) {
               return item.name
           },
@@ -36,14 +36,26 @@
        }).focus(function () {
            $(this).typeahead("search", "");
        });
-    });
+    }).on('keydown', function(event){        
+      if(event.keyCode=='40' || event.keyCode=='38'){
+          if($('#education_type').val()==''){
+              $(".education_type_div").find('.active').removeClass('active');
+              $(".education_type_div").find('li:first-child').addClass('active li-active');
+          }else{
+              $(".education_type_div").find('li').removeClass('li-active');
+              $(".education_type_div").find('.active').addClass('li-active');
+          }
+          var current_education_type = $(".education_type_div").find('.active').text();
+          $('#education_type').val(current_education_type);
+      }
+  });;
     /**  Submit */
 
     function validateAccountForm() {
       clrErr();
       var errStaus = false; 
       if(validateFormFields('education_level_id','Please enter education level','')) errStaus=true;
-       if($('.education_type_div').is(":visible")==true && $('.education_type').val()==''){
+       if($('.education_type_div').is(":visible")==true){
            if(validateFormFields('education_type','Please enter the Education type','')) errStaus=true;    
       }
       // form validation ends
@@ -177,8 +189,19 @@
               showHintOnFocus: true
           }).focus(function () {
               $(this).typeahead("search", "");
-          });
-
+          }).on('keydown', function(event){        
+            if(event.keyCode=='40' || event.keyCode=='38'){
+                if($('#location').val()==''){
+                    $(".city").find('.active').removeClass('active');
+                    $(".city").find('li:first-child').addClass('active li-active');
+                }else{
+                    $(".city").find('li').removeClass('li-active');
+                    $(".city").find('.active').addClass('li-active');
+                }
+                var current_location = $(".city").find('.active').text();
+                $('#location').val(current_location);
+            }
+        });
           
           var cache2 = JSON.parse(localStorage.getItem('designation'))??{};
           $('#career_title.typeahead').typeahead({ // focus on first result in dropdown
@@ -205,7 +228,20 @@
               showHintOnFocus: true
           }).focus(function () {
               $(this).typeahead("search", "");
-          });
+          }).on('keydown', function(event){        
+            if(event.keyCode=='40' || event.keyCode=='38'){
+                if($('#career_title').val()==''){
+                    $(".career_title").find('.active').removeClass('active');
+                    $(".career_title").find('li:first-child').addClass('active li-active');
+                }else{
+                    $(".career_title").find('li').removeClass('li-active');
+                    $(".career_title").find('.active').addClass('li-active');
+                }
+                var current_career_title = $(".career_title").find('.active').text();
+                $('#career_title').val(current_career_title);
+            }
+        });
+  
       });
     
       function validateCareerInfoForm() {
