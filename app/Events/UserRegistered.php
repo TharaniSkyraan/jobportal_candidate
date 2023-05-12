@@ -19,9 +19,7 @@ class UserRegistered
      */
     public function __construct(User $user)
     {
-        \Log::info($user);
-        $this->user = $user;
-        
+        $this->user = $user;        
     }
 
 }
