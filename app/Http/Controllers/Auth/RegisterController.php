@@ -419,7 +419,6 @@ class RegisterController extends Controller
         
             // User signup
             event(new UserRegistered($user)); 
-            dd('tes');
 
             return redirect('/');
 
