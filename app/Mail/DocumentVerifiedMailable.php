@@ -32,7 +32,8 @@ class DocumentVerifiedMailable extends Mailable
     public function build()
     {
    
-        return $this->to(config('mail.recieve_to.address'), config('mail.recieve_to.name'))
+        return $this->from(config('mail.recieve_to.address'), config('mail.recieve_to.name'))
+                        ->to($this->company->email, $this->company->name)
                         ->subject('Document Required')
                         ->markdown('emails.document_verified_message')
                         ->with(
@@ -40,7 +41,7 @@ class DocumentVerifiedMailable extends Mailable
                                 'title' => $this->job->title,
                                 'name' => $this->company->name,
                                 'email' => $this->company->email,
-                                'link' => "{{ route('job.post_job') }}",
+                                'link' => "#",
                             ]);
     }
 

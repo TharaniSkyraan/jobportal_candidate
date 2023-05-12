@@ -33,7 +33,8 @@ class DocumentRejectedMailable extends Mailable
     public function build()
     {
    
-        return $this->to(config('mail.recieve_to.address'), config('mail.recieve_to.name'))
+        return $this->from(config('mail.recieve_to.address'), config('mail.recieve_to.name'))
+                        ->to($this->company->email, $this->company->name)
                         ->subject('Document Required')
                         ->markdown('emails.document_rejected_message')
                         ->with([
