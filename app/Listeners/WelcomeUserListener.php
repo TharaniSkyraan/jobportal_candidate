@@ -29,7 +29,6 @@ class WelcomeUserListener implements ShouldQueue
      */
     public function handle(UserRegistered $event)
     {
-        \Log::info("welcomw=e!");
         Mail::send(new WelcomeUserMailable($event->user));
     }
 
