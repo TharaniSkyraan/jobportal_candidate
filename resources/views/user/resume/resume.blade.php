@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="card mt-5">
-                        <span class="fw-bolder">Resume( <span class="fw-normal">You can keep up to 2 resumes</span> )</span>
+                        <span class="fw-bolder">Resume (<span class="fw-normal m-1">You can keep up to 2 resumes</span>)</span>
                         <!-- resume store 1 -->
                         <div class="row mt-3 resume{{$resume1->id}}">
                             <div class="col-lg-6 col-md-8 col-sm-8 col-12">

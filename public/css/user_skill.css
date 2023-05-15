@@ -73,7 +73,7 @@
     justify-content: center;
     display: flex;
 }#abt_meusr .profilepictureappend img {
-    width: 100%;
+    width: 125px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 20%);
     border-radius: 50%;
     height: 125px;
@@ -571,7 +571,7 @@
     #abt_meusr, #my_resme, #my_eductin, #my_expernce2, #my_skills1{
         width: 100%;
     }#abt_meusr .profilepictureappend img{
-        width: 100%;
+        /* width: 100%; */
         height: auto;
     }#language_knwn, #language_knwn1{
         width: 100%;
@@ -590,7 +590,7 @@
     #abt_meusr, #my_resme, #my_eductin, #my_expernce2, #my_skills1{
         width: 100%;
     }#abt_meusr .profilepictureappend img{
-        width: 100%;
+        /* width: 100%; */
         height: auto;
     }
 

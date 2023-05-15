@@ -47,11 +47,10 @@
                     <div class="text-center ttleicn">
                         <h2 class="fw-bolder"><img src="{{asset('images/about_me.png')}}">&nbsp;About me</h2>
                     </div>
-
                     <div class="card mt-5">
                         <div class="prof_bg">
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-xs-4 col-6">
                                     <div class="profilepictureappend">
                                         @if(Auth::user()->image)
                                             <img src="{{Auth::user()->image}}" alt="profile-img" class="savecompanyname updateprofilepicture">
@@ -60,7 +59,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-md-9 align-self-center">
+                                <div class="col-xl-9 col-lg-9 col-md-8 col-sm-8 col-xs-8 col-6 align-self-center">
                                     <div class="mb-4">
                                         <label for="exampleInputPassword1" class="form-label fw-bolder"> Email ID</label>
                                         <div class="fw-bolder d-flex align-items-center">{{$user->email}} &nbsp;<i class="fa-solid fa-check"></i></div>
@@ -70,7 +69,7 @@
                                         <div class="fw-bolder">{{$user->phone??'None'}}</div>
                                     </div> -->
                                     <div class="col-md-12 text-end">
-                                    <a href="{{route('accounts_settings')}}"><div class="fw-bolder d-flex align-items-end justify-content-end cursor-pointer"><i class="fa-solid fa fa-key"></i>&nbsp;Account Settings</div></a>
+                                        <a href="{{route('accounts_settings')}}"><div class="fw-bolder d-flex align-items-end justify-content-end cursor-pointer"><i class="fa-solid fa fa-key"></i>&nbsp;Account Settings</div></a>
                                     </div>
                                 </div>
                             </div>
@@ -80,20 +79,20 @@
                             <div class="row mt-5">
                                 <div class="col-md-3 col-lg-3"></div>                            
                                 <div class="col-md-9">  
-                                    <div class="col-md-12 col-lg-10 mb-4">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
                                         <div class="{!! APFrmErrHelp::hasError($errors, 'first_name') !!}">
                                             <label for="first_name" class="form-label fw-bolder">First Name</label>
                                             {!! Form::text('first_name', $user->first_name, array('class'=>'form-control required', 'id'=>'first_name', 'placeholder'=>__('First Name'))) !!}
                                             <small class="form-text text-muted text-danger err_msg" id="err_first_name"></small>
                                         </div>                          
                                     </div>                          
-                                    <div class="col-md-12 col-lg-10 mb-4 mt-3">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-4 mt-3">
                                         <label for="last_name" class="form-label fw-bolder">Last Name</label>
                                         {!! Form::text('last_name', null, array('class'=>'form-control required', 'id'=>'last_name', 'placeholder'=>__('Last Name'))) !!}
                                         <small class="form-text text-muted text-danger err_msg" id="err_last_name"></small>
                                     </div>
-                                    <div class="col-md-12 col-lg-10 mb-4">
-                                        <label for="" class="form-label fw-bolder">Gender</label>
+                                    <label for="" class="form-label fw-bolder">Gender</label>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
                                         @php $cgender = (!empty($user->gender))?$user->gender:2; @endphp
                                         @foreach($genders as $key => $gender)
                                         <div class="form-check form-check-inline ms-3">
@@ -102,13 +101,13 @@
                                         </div>
                                         @endforeach
                                     </div>
-                                    <div class="col-md-12 col-lg-10 mb-4">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
                                         <label for="date_of_birth" class=" col-form-label fw-bolder">Date of Birth</label>
                                         {!! Form::date('date_of_birth', $user->date_of_birth??null, array('class'=>'form-control required', 'id'=>'date_of_birth', 'min'=>'1900-01-02', 'max'=>'2008-12-31', 'placeholder'=>__('Date of Birth'), 'autocomplete'=>'off')) !!}
                                         <small class="form-text text-muted text-danger err_msg" id="err_date_of_birth"></small>
                                     </div>
                         
-                                    <div class="col-md-12 col-lg-10 mb-4">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
                                         <label for="marital_status_id" class=" col-form-label fw-bolder">Marital status</label>
                                         {!! Form::select('marital_status_id', [''=>__('Select Marital Status')]+$maritalStatuses, null, array('class'=>'form-select required', 'id'=>'marital_status_id')) !!}
                                         <small class="form-text text-muted text-danger err_msg" id="err_marital_status_id"></small>

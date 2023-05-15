@@ -373,6 +373,9 @@ section {
   color: #fff;
 }
 
+.mob-nav{
+  display: none !important;
+}
 @media (max-width: 767px) {
   .mobile-nav-toggle {
     display: block;
@@ -380,6 +383,12 @@ section {
 
   .navbar ul {
     display: none;
+  }
+  .web-nav{
+    display: none !important;
+  }
+  .navbar-mobile .mob-nav{
+    display: block !important;
   }
 }
 .navbar-mobile {
