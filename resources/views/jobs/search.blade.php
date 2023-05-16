@@ -210,15 +210,12 @@
             </div>
             <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                 <div class="row mt-1 mb-3">
-                    <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12 col-12 align-items-center d-flex">
-                        <span class="w-50"><h5 class="fmftxt fw-bold t_pgres"></h5>	</span>
-                        <span class="w-25 text-align-last">		
-                            Sort By : &nbsp;
-                        </span>
-                        <span class="w-25">
-                            @php $arrDays = ['relevance'=> 'Relevance' ,'date'=>'Date']; @endphp
-                            {!! Form::select('sortby', [] + $arrDays, null, array('class'=>'form-select', 'id'=>'sortby')) !!}
-                        </span>
+                    <div class="col-lg-4  col-md-4 col-sm-4 col-xs-4 col-5 align-items-center d-flex">
+                        <h5 class="fmftxt fw-bold t_pgres"></h5>
+                    </div>
+                    <div class="col-lg-8  col-md-8 col-sm-8 col-xs-8 col-7 align-items-center justify-content-end d-flex">
+                        Sort By :  @php $arrDays = ['relevance'=> 'Relevance' ,'date'=>'Date']; @endphp
+                        {!! Form::select('sortby', [] + $arrDays, null, array('class'=>'form-select', 'id'=>'sortby')) !!}
                     </div>
                 </div>
                 <div class="job-list">
@@ -441,18 +438,6 @@
     });
     
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
 
 <script type="text/javascript">
 var baseurl = '{{ url("/") }}/';

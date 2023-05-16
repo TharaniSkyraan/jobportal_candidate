@@ -130,7 +130,8 @@ body {
     background-color: #f9fbfd;
 }
 .form-select {
-    padding: 5px 10px;
+    width: fit-content !important;
+    padding: 5px 30px 5px 10px;
 }
 .small, small {
     font-size: .865em;
