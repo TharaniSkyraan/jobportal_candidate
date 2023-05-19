@@ -19,7 +19,7 @@
                           <img src="{{asset('images/footer_logo.png')}}" alt="logo">
                       </a>
                       <h2 class="fw-bolder mt-3"> Reset Password </h2>
-                      <p class="grytxtv">Enter the email associated with your account and we'll send you instructions to reset your password.</p>
+                      <p class="grytxtv px-2">Enter the email associated with your account and we'll send you instructions to reset your password.</p>
                   </div>
                        
               
