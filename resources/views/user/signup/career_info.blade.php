@@ -162,10 +162,10 @@
                                 <small class="form-text text-muted text-danger err_msg" id="err_phone"></small> 
                                 {!! APFrmErrHelp::showErrors($errors, 'phone') !!}
                             </div>
-                            <div class="form-check mb-2 is_watsapp_number">
+                            <!-- <div class="form-check mb-2 is_watsapp_number">
                                 {!! Form::checkbox('is_watsapp_number', 'yes', $user->is_watsapp_number??'', array('class'=>'form-check-input', 'id'=>'is_watsapp_number')) !!}
                                 <label class="form-check-label" for="is_watsapp_number">Is this watsapp number.</label>
-                            </div>
+                            </div> -->
                             <div class="row mb-4 mt-5">
                                 <div class="col-md-6 col-5">
                                     <a href="{{ route('experience')}}" class="btn p-0"><img src="{{asset('images/lefticon.png')}}"> Previous</a>

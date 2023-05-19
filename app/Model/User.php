@@ -17,6 +17,7 @@ use App\Traits\CountryStateCity;
 use App\Traits\CommonUserFunctions;
 use App\Mail\UserResetPasswordMailable;
 
+use Laravel\Passport\HasApiTokens;
 
 
 class User extends Authenticatable
@@ -25,11 +26,7 @@ class User extends Authenticatable
 
 
 
-    use Notifiable;
-
-    use CountryStateCity;
-
-    use CommonUserFunctions;
+    use Notifiable, CountryStateCity, CommonUserFunctions, HasApiTokens;
 
 
 
