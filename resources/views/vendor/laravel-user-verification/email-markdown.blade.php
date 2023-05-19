@@ -95,9 +95,9 @@
             <img src="{{ asset('/') }}sitesetting_images/thumb/{{ $siteSetting->site_logo }}" />
         </a>
     </div>
-    <p class="title" style=""><b>Otp for secure signup</b><br></p>    
+    <p class="title" style=""><b>OTP For Secure Signup</b><br></p>    
     <p class="text-left">Please use the one-time-password below for secure signup.</p>
-    <p class="text-left">
+    <p class="text-center">
         <span class="otp">{{ $user->verify_otp }}</span>
     </p>
     <p class="text-left expiry_date">This code is valid for 5 minutes.</p>
@@ -112,7 +112,7 @@
     @slot('footer')
         @component('mail::footer')   
             You have received this mail because your e-mail ID
-            is registered with employer.mugaam.com. This is a system-generated e-mail 
+            is registered with mugaam.com. This is a system-generated e-mail 
             regarding your account preferences, please don't reply to this message. 
             The jobs sent in this mail have been posted by the clients. <br> © {{ date('Y') }} {{ $siteSetting->site_name }}, All rights reserved
         @endcomponent
