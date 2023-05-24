@@ -44,7 +44,7 @@ class User extends Authenticatable
 
         'first_name','middle_name','last_name','father_name','marital_status_id',
         'date_of_birth','gender','country_id','state_id','city_id','name', 'email', 
-        'password','employment_status','notice_period','verified',
+        'password','employment_status','notice_period','verified','verify_otp','session_otp',
         'is_active', 'token', 'location', 'career_title', 'expected_salary', 
         'current_salary', 'total_experience','provider_id','provider','next_process_level'
 

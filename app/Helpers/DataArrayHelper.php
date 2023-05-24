@@ -163,7 +163,7 @@ class DataArrayHelper
 
     public static function defaultCountriesArray()
     {
-        $array = Country::select('countries.country', 'countries.country_id')->isDefault()->active()->sorted()->pluck('countries.country', 'countries.country_id')->toArray();
+        $array = Country::select('countries.country','countries.country', 'countries.country_id')->isDefault()->active()->sorted()->pluck('countries.country', 'countries.country_id')->toArray();
         return $array;
     }
 

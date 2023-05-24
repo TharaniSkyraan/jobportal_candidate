@@ -8,7 +8,7 @@ Route::get('getourcompanygallery/{id?}', 'AjaxController@getourcompanygallery')-
 Route::get('getallgalariescompany', 'AjaxController@getAllGalariesCompany')->name('getAllGalariesCompany');
 Route::post('getallgalariescompanyparticular', 'AjaxController@getAllGalariesCompanyParticular')->name('getAllGalariesCompanyParticular');
 Route::get('deleteparticulargalary/{id?}', 'AjaxController@DeleteParticularGalary')->name('DeleteParticularGalary');
-Route::get('filter-default-countries-dropdown', 'AjaxController@filterDefaultCountries')->name('filter.default.countries.dropdown');
+// Route::get('filter-default-countries-dropdown', 'AjaxController@filterDefaultCountries')->name('filter.default.countries.dropdown');
 Route::post('filter-lang-cities-dropdown', 'AjaxController@filterLangCities')->name('filter.lang.cities.dropdown');
 Route::post('filter-lang-states-dropdown', 'AjaxController@filterLangStates')->name('filter.lang.states.dropdown');
 Route::post('suggestion-education-types-dropdown', 'AjaxController@suggestionEducationTypes')->name('suggestion.education.types.dropdown');

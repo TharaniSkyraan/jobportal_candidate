@@ -26,6 +26,7 @@ use App\Model\Company;
 use App\Model\SuggestedCandidate;
 
 
+use App\Model\Country;
 use App\Model\City;
 use App\Model\Title;
 use App\Model\JobSearch;
@@ -224,6 +225,13 @@ class AjaxController extends Controller
         echo $skills;
     }
 
+    public function GetSkills(Request $request)
+    {
+        $skills = DataArrayHelper::suggestionSkills($request->q);      
+        
+        return response()->json($skills);
+    }
+
     public function filterSubIndustries(Request $request)
     {
         $industry_id = $request->input('industry_id');
@@ -287,6 +295,24 @@ class AjaxController extends Controller
         $results = DataArrayHelper::autocompleteCity($term,$country_code);
         
         echo $results;
+    }
+
+    public function getCities(Request $request)
+    {
+        $term = $request->q;
+        $country_code = $request->country_code;
+        $results = DataArrayHelper::autocompleteCity($term,$country_code);
+        return response()->json($results);
+    }
+
+    public function getCountries(Request $request)
+    {
+        $array = Country::lang()->active()->sorted()->get();
+        $results = $array->mapWithKeys(function ($item) {
+            return [$item->country_id => ['name' => $item->country, 'data-code' => $item->country_detail->sort_name]];
+        })->toArray();
+        return response()->json($results);
+
     }
 
     public function SendOtp()

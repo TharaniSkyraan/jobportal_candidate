@@ -32,12 +32,12 @@ class AlertJobsMail extends Mailable
      */
     public function build()
     {
-        return $this->from(config('mail.recieve_to.address'), config('mail.recieve_to.name'))
-                        ->to($this->data['email'], $this->data['email'])
-                        ->subject($this->data['subject'])
+        return $this->to(config('mail.recieve_to.address'), config('mail.recieve_to.name'))
+                        // ->to($this->data['email'], $this->data['email'])
+                        ->subject('test')
                         ->markdown('emails.send_job_alerts')
-                        ->with('subject',$this->data['subject'])
-                        ->with('jobs',$this->data['jobs']);
+                        ->with('subject','test')
+                        ->with('jobs',$this->data);
     }
 
 }

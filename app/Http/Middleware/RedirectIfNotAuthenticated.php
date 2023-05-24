@@ -18,6 +18,11 @@ class RedirectIfNotAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
+        $api = explode('/',$request->getPathInfo())[1];
+        dd($api);
+        if($api=='api'){           
+            dd(Auth::check());
+        }
         if (Auth::check() && Auth::user()->is_active==0) {
             return redirect('/redirect_user');
         }

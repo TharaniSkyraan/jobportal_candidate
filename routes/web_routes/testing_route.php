@@ -1,9 +1,9 @@
 <?php
-
+use App\Mail\AlertJobsMail;
 Route:: get ('/email_template', function () {
-    $job = App\Model\Job::find(1);
+    $job = App\Model\Job::get();
     $jobaapply = App\Model\Company::find(1);
-    return new CompanyRegisteredMailable($jobaapply);
+    return new AlertJobsMail($job);
 });
 
 Route::get('sendotp', 'AjaxController@SendOtp');

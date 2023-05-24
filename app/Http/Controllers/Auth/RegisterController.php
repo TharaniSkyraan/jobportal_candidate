@@ -69,8 +69,8 @@ class RegisterController extends Controller
      
      */
 
-     public function Education()
-     {
+    public function Education()
+    {
         $user = User::findOrFail(Auth::user()->id);
         $educationLevels = DataArrayHelper::langEducationlevelsArray();
         $educationTypes = '';
