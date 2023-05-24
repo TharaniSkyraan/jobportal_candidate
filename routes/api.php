@@ -19,6 +19,7 @@ use App\Http\Controllers\AjaxController;
  */
 
 Route::post('login', [RegisterController::class, 'login']);
+Route::post('forget_password', [RegisterController::class, 'forgetPassword']);
 Route::post('register', [RegisterController::class, 'register']);
 Route::post('resent_otp', [RegisterController::class, 'resentOtp']);
 Route::post('verify_otp', [RegisterController::class, 'verifyOTP']);

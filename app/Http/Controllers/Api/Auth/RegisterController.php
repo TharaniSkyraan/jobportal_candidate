@@ -25,11 +25,13 @@ use App\Mail\UserResetPasswordMailable;
 use Jrean\UserVerification\Traits\VerifiesUsers;
 use Jrean\UserVerification\Facades\UserVerification;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use App\Events\UserRegistered;
 use Carbon\Carbon;
 use Validator;
 use DB;
 use Hash;
+use Mail;
    
 class RegisterController extends BaseController
 {
@@ -471,7 +473,7 @@ class RegisterController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function forgetpassword(ForgetPasswordRequest $request)
+    public function forgetPassword(ForgetPasswordRequest $request)
     {
 
         $token = Str::random(64);
@@ -482,7 +484,7 @@ class RegisterController extends BaseController
             'created_at' => Carbon::now()
         ]);
 
-        Mail::send(new UserResetPasswordMailable($token, $this->email, $this->name));
+        Mail::send(new UserResetPasswordMailable($token, $request->email, $request->name));
         
         return $this->sendResponse('', 'Password Reset Mail Sent Successfully!');
 
