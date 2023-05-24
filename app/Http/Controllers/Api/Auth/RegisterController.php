@@ -477,8 +477,8 @@ class RegisterController extends BaseController
     {
 
         // $token = Str::random(64);
-
-        Password::sendResetLink($request->email);
+        $credentials = ['email' => $request->email];
+        Password::sendResetLink($credentials);
         // DB::table('password_resets')->insert([
         //     'email' => $request->email, 
         //     'token' => Hash::make($token), 
