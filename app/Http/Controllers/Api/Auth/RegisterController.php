@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
-
+use Illuminate\Support\Facades\Password;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\Model\User;
