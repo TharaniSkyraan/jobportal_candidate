@@ -479,7 +479,7 @@ class RegisterController extends BaseController
         $token = Str::random(64);
 
         DB::table('password_resets')->insert([
-            'email' => $request->email, 
+            'email' => Hash::make($request->email), 
             'token' => $token, 
             'created_at' => Carbon::now()
         ]);
