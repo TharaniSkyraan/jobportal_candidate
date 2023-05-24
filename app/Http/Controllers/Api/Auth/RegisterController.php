@@ -476,15 +476,16 @@ class RegisterController extends BaseController
     public function forgetPassword(ForgetPasswordRequest $request)
     {
 
-        $token = Str::random(64);
+        // $token = Str::random(64);
 
-        DB::table('password_resets')->insert([
-            'email' => $request->email, 
-            'token' => Hash::make($token), 
-            'created_at' => Carbon::now()
-        ]);
+        Password::sendResetLink($request->email);
+        // DB::table('password_resets')->insert([
+        //     'email' => $request->email, 
+        //     'token' => Hash::make($token), 
+        //     'created_at' => Carbon::now()
+        // ]);
 
-        Mail::send(new UserResetPasswordMailable($token, $request->email, $request->name));
+        // Mail::send(new UserResetPasswordMailable($token, $request->email, $request->name));
         
         return $this->sendResponse('', 'Password Reset Mail Sent Successfully!');
 
