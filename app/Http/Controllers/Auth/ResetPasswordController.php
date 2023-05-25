@@ -38,7 +38,7 @@ class ResetPasswordController extends Controller
     public function __construct(Request $request)
     {
         if($request->via=='app'){
-            $this->redirectTo = '/password/reset/success?email='.$request->email;
+            $this->redirectTo = '/redirect_user/success?email='.$request->email;
         }else{
             $this->redirectTo = '/redirect_user/reset_password';
         }
