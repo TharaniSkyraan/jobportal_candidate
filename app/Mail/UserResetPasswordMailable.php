@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\User;
+use App\Model\User;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
