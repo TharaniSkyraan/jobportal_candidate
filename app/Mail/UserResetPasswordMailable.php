@@ -34,7 +34,7 @@ class UserResetPasswordMailable extends Mailable
     {
         $user = User::whereEmail($this->email)->first();
         $via = $user->reset_via??'';
-        $user->reset_via = '';
+        $user->reset_via = Null;
         $user->save();
         return $this->from(config('mail.from.address'), config('mail.from.name'))
                     ->to($this->email, $this->name)
