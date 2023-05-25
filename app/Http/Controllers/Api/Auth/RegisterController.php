@@ -489,7 +489,6 @@ class RegisterController extends BaseController
         $token = $request->user()->token();
         $token->revoke();
         return $this->sendResponse('', 'You have been successfully logged out!');
-
     }
 
 }
