@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\User;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -31,13 +32,16 @@ class UserResetPasswordMailable extends Mailable
      */
     public function build()
     {
-   
+        $user = User::whereEmail($this->email)->first();
+        $via = $user->reset_via;
+        $user->reset_via = '';
+        $user->save();
         return $this->from(config('mail.from.address'), config('mail.from.name'))
                     ->to($this->email, $this->name)
                     ->subject('Password Reset')
                     ->markdown('vendor.notifications.reset-password')
                     ->with([
-                                'link' => 'https://mugaam.com/password/reset/'.$this->token.'?email='.$this->email,
+                                'link' => 'https://mugaam.com/password/reset/'.$this->token.'?email='.$this->email.'?via='.$via,
                             ]);
     }
 

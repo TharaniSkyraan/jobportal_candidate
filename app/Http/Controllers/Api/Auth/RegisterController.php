@@ -477,6 +477,9 @@ class RegisterController extends BaseController
     {
         $credentials = ['email' => $request->email];
         Password::sendResetLink($credentials);
+        $user = User::whereEmail($request->email)->first();
+        $user->reset_via = 'app';
+        $user->save();                            
 
         return $this->sendResponse('', 'Password Reset Mail Sent Successfully!');
     } 
