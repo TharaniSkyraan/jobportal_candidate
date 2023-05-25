@@ -25,6 +25,11 @@
               
             
                   <div class="container">
+                    @if(session()->has('message'))
+                      <div class="alert alert-success">
+                          {{ session()->get('message') }}
+                      </div>
+                    @endif
                     <form class="mt-4 mb-3" method="POST" action="{{ route('password.request') }}" onsubmit="return changepwdform()">
                       {{ csrf_field() }}
                       <input type="hidden" name="token" value="{{ $token }}">
@@ -37,14 +42,7 @@
                               <h4 class="text-danger fw-bold">{{ $errors->first('email') }}</h4>
                           {{-- </span> --}}
                           @endif
-                        </div>
-
-                        @if(session()->has('message'))
-                          <div class="alert alert-success">
-                              {{ session()->get('message') }}
-                          </div>
-                        @endif
-                        
+                        </div>                        
                         <div class="mb-4 {{ $errors->has('password') ? ' has-error' : '' }}">
                           <label class="form-label fw-bold">{{__('Password')}}</label>
                           <input type="password" name="password" id="password" class="form-control required" value="{{ old('password') }}" placeholder="{{__('Enter Password')}}" >
