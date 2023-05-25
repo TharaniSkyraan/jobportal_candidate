@@ -41,7 +41,7 @@ class UserResetPasswordMailable extends Mailable
                     ->subject('Password Reset')
                     ->markdown('vendor.notifications.reset-password')
                     ->with([
-                                'link' => 'https://mugaam.com/password/reset/'.$this->token.'?email='.$this->email.'?via='.$via,
+                                'link' => 'https://mugaam.com/password/reset/'.$this->token.'?email='.$this->email.'&via='.$via,
                             ]);
     }
 
