@@ -365,7 +365,13 @@ class LoginController extends Controller
      
      public function UserSwitchRedirect($from='')
      {
-        if($from=='success'){
+
+        if(Auth::check() && !empty(Auth::user()->reset_via)){
+            dd('test');
+            $user = User::find(Auth::user()->id);
+            $via = $user->reset_via??'';
+            $user->reset_via = Null;
+            $user->save();
             Auth::logout();
             return redirect('/password/reset/success?email=')->with("message", 'Password Updated Successfully.'); 
         }
