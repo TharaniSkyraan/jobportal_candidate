@@ -365,7 +365,10 @@ class LoginController extends Controller
      
      public function UserSwitchRedirect($from='')
      {
-        
+        if($from=='success'){
+            Auth::logout();
+            return redirect('/password/reset/success?email=')->with("message", 'Password Updated Successfully.'); 
+        }
         if($from=='reset_password' && Auth::user()->next_process_level=='verify_otp')
         {              
             $user = User::find(Auth::user()->id);     

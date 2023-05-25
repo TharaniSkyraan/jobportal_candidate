@@ -38,6 +38,12 @@
                           {{-- </span> --}}
                           @endif
                         </div>
+
+                        @if(session()->has('message'))
+                          <div class="alert alert-success">
+                              {{ session()->get('message') }}
+                          </div>
+                        @endif
                         
                         <div class="mb-4 {{ $errors->has('password') ? ' has-error' : '' }}">
                           <label class="form-label fw-bold">{{__('Password')}}</label>
