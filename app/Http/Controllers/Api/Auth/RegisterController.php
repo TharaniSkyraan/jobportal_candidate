@@ -475,7 +475,7 @@ class RegisterController extends BaseController
      */
     public function forgetPassword(ForgetPasswordRequest $request)
     {
-        $credentials = ['email' => $request->email,'via' => 'api'];
+        $credentials = ['email' => $request->email];
         Password::sendResetLink($credentials);
 
         return $this->sendResponse('', 'Password Reset Mail Sent Successfully!');
