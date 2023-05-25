@@ -28,7 +28,7 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/redirect_user/reset_password';
+    protected $redirectTo;
 
     /**
      * Create a new controller instance.
@@ -37,7 +37,12 @@ class ResetPasswordController extends Controller
      */
     public function __construct(Request $request)
     {
-        dd($request->all());
+        if($request->via=='app'){
+            $this->redirectTo = '/password/reset/success?email='.$request->email;
+        }else{
+            $this->redirectTo = '/redirect_user/reset_password';
+        }
+
         // $this->middleware('guest');
     }
     
