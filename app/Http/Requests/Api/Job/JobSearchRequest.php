@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Api;
+namespace App\Http\Requests\Api\Job;
 
 use Auth;
 use App\Http\Requests\Request;
@@ -8,7 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 
-class ResumeUploadRequest extends Request
+class JobSearchRequest extends Request
 {
 
     /**
@@ -28,13 +28,14 @@ class ResumeUploadRequest extends Request
      */
     public function rules()
     {
-
-
-        $rules =  [
-            'device_token' => 'required',
-            'device_type' => 'required',
-            'file' => 'required|file|mimes:pdf,docx,doc,txt,rtf|max:2048',
-        ];
+        $rules =  [];
+        if(empty($this->location) && empty($this->location))
+        {            
+            $rules =  [
+                'designation' => 'required',
+                'location' => 'required',
+            ];
+        }
 
         return $rules;
     }
@@ -55,7 +56,7 @@ class ResumeUploadRequest extends Request
     public function messages()
     {
         return [
-            'file.required' => __('File is required'),
+            'id.required' => __('Id is required'),
         ];
     }
 

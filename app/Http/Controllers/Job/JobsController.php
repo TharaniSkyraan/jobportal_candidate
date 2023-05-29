@@ -27,6 +27,7 @@ use App\Http\Requests\Front\ApplyJobFormRequest;
 use App\Http\Controllers\Controller;
 use App\Traits\FetchJobsList;
 use App\Traits\BlockedKeywords;
+use App\Traits\JobTrait;
 use App\Traits\ShareToLayout;
 use App\Events\JobApplied;
 use Illuminate\Support\Facades\Crypt;
@@ -36,7 +37,7 @@ class JobsController extends Controller
 {
 
     //use Skills;
-    use FetchJobsList, BlockedKeywords, ShareToLayout;
+    use FetchJobsList, BlockedKeywords, ShareToLayout, JobTrait;
 
     /**
      * Create a new controller instance.
@@ -377,93 +378,6 @@ class JobsController extends Controller
         $company_jobs=$company->getOpenJobs();
 
         return view('jobs.company_view', compact('company','company_jobs', 'breadcrumbs'));
-    }
-
-    public function Notification($id,$phone)
-    {
-        $job = JobApply::find($id);
-
-        if(!empty($phone)){
-
-            $user =  $job->userdetail;
-            $title = $job->job->title;
-            $company_name = $job->job->company_name;
-            $data = [
-                "to"=>$phone,
-                "messaging_product"=>"whatsapp",
-                "type"=>"template",
-                "template"=>[
-                    "name"=>"candidate_applied",
-                    "language"=>[
-                        "code"=>"en_US"
-                    ],
-                    "components"=>[
-                        [
-                            "type"=>"body",
-                            "parameters"=>[
-                                [
-                                    "type"=>"text",
-                                    "text"=>$user['name']
-                                ],
-                                [
-                                    "type"=>"text",
-                                    "text"=>"$title"
-                                ],
-                                [
-                                    "type"=>"text",
-                                    "text"=>"$company_name"
-                                ],
-                                [
-                                    "type"=>"text",
-                                    "text"=>$user['education']
-                                ],
-                                [
-                                    "type"=>"text",
-                                    "text"=>$user['total_experience']
-                                ],
-                                [
-                                    "type"=>"text",
-                                    "text"=>$user['location']
-                                ],
-                                [
-                                    "type"=>"text",
-                                    "text"=>$user['skill']
-                                ]
-                            ]
-                        ],
-                        [
-                            "type"=> "button",
-                            "sub_type"=> "url",
-                            "index"=> 0,
-                            "parameters"=> [
-                                [
-                                    "type"=> "text",
-                                    "text"=> $job->id // dynamic url
-                                ]
-                            ]
-                        ]
-                    ]            
-                ]
-            ];
-            
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL,"https://graph.facebook.com/v15.0/108875332057674/messages");
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS,json_encode($data));  //Post Fields
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        
-            $headers = [
-                'Authorization: Bearer '.config('services.whatsapp.access_token'), 
-                'Content-Type: application/json' 
-            ];
-        
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        
-            $server_output = curl_exec ($ch);
-        
-            curl_close ($ch); 
-        }
-
     }
 
 
