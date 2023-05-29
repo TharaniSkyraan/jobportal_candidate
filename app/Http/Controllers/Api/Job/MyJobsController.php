@@ -71,7 +71,7 @@ class MyJobsController extends BaseController
     public function Savejob(Request $request, $job_slug)
     {
 
-        $save_as_fav = $request->fav=='yes'? 'no' : 'yes';
+        $save_as_fav = $request->fav;
         $user = Auth::user();
         $user_id = $user->id;
         $job = Job::where('slug', 'like', $job_slug)->first();
