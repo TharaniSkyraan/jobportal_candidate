@@ -53,7 +53,8 @@ class RegisterController extends BaseController
             // social login
             $user = User::whereEmail($request->email)->first();
             if(isset($user)){
-                $user = Auth::login($user, true);
+                Auth::login($user, true);
+                $user = Auth::user();
             }
         }        
 

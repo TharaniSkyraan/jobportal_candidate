@@ -367,7 +367,6 @@ class LoginController extends Controller
      {
 
         if(Auth::check() && !empty(Auth::user()->reset_via)){
-            dd('test');
             $user = User::find(Auth::user()->id);
             $via = $user->reset_via??'';
             $user->reset_via = Null;
