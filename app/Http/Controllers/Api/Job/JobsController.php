@@ -102,13 +102,10 @@ class JobsController extends BaseController
     public function jobDetail($slug)
     {  
         
-        $job = Job::whereSlug($slug)->first(); 
+        $job = Job::whereSlug($slug)->with(['screeningquiz'])->first(); 
         if($job==NULL){
             return $this->sendError('No Job Available.'); 
         }
-        unset($job->job_work_location);
-        unset($job->jobbenefits);
-        unset($job->jobsupplementals);
         $breakpoint = JobScreeningQuiz::whereJobId($job->id)->whereBreakpoint('yes')->first();
         $response = array(
                 'job' => $job, 
