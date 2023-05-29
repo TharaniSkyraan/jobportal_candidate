@@ -70,7 +70,7 @@ class RegisterController extends BaseController
                 $update->session_otp = Carbon::now();
                 UserVerification::generate($user);
                 UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
-                Auth::logout();
+                // Auth::logout();
             }
             $update->save();
             return $this->sendResponse($response, 'User login successfully.');
@@ -197,7 +197,7 @@ class RegisterController extends BaseController
             'education_type_id' => $education_type_id??""
         ); 
         $response['educationLevels'] = $educationLevels;
-        return $this->sendResponse($response, '');
+        return $this->sendResponse($response);
     }
     /**
      *  View Blade file of Candidate Basic Information Form
@@ -228,7 +228,7 @@ class RegisterController extends BaseController
             $user->save();
         }
 
-        return $this->sendResponse('', 'Success');
+        return $this->sendResponse();
 
     }
 
@@ -240,7 +240,7 @@ class RegisterController extends BaseController
     public function experience()
     {
         $user =  User::find(Auth::user()->id);
-        return $this->sendResponse($user->employment_status, '');
+        return $this->sendResponse($user->employment_status);
     }
 
     /**
@@ -261,7 +261,7 @@ class RegisterController extends BaseController
        }
        $user->save();
         
-       return $this->sendResponse('', 'Success');
+       return $this->sendResponse();
     }
     
     /**
@@ -286,7 +286,7 @@ class RegisterController extends BaseController
             'phone' => $user->phone,
         );
         
-       return $this->sendResponse($response, 'Success');
+       return $this->sendResponse($response);
     }
     /**
      *  View Blade file of Candidate Basic Information Form
@@ -318,7 +318,7 @@ class RegisterController extends BaseController
        }
        $user->save();
        
-       return $this->sendResponse('', 'Success');
+       return $this->sendResponse();
     
     }
  
@@ -354,7 +354,7 @@ class RegisterController extends BaseController
        }
        $reponse['suggested_skill'] = $skills??[];
        
-       return $this->sendResponse($reponse, 'Success');
+       return $this->sendResponse($reponse);
     }
   
     /**
@@ -422,7 +422,7 @@ class RegisterController extends BaseController
        $user->skill = json_encode($skills);
        $user->save();
 
-       return $this->sendResponse('', 'Success');
+       return $this->sendResponse();
 
      }
     /**
@@ -445,9 +445,11 @@ class RegisterController extends BaseController
         $UserCv->is_default = 1;
         $UserCv->save();
         
-        $user = User::findOrFail(Auth::user()->id);             
-        $user->is_active = 1;
+        $user = User::findOrFail(Auth::user()->id);  
+        $user->device_token = $request->device_token;
+        $user->device_type = $request->device_type;           
         $user->next_process_level = 'completed';
+        $user->is_active = 1;
         $user->save();
     
         // User signup

@@ -14,16 +14,13 @@
            
             <div class="col-md-6 card-size">
                 <div class="card lgncard1">
-                  <div class="site2_logo mb-4 mt-2 text-center">
+                  <div class="site2_logo mb-2 mt-2 text-center">
                       <a href="{{url('/')}}" class="href">
                           <img src="{{asset('images/footer_logo.png')}}" alt="logo">
                       </a>
                       <h2 class="fw-bolder mt-3"> Reset Password </h2>
                       <p class="grytxtv px-2">Enter the email associated with your account and we'll send you instructions to reset your password.</p>
                   </div>
-                       
-              
-            
                   <div class="container">
                     @if(session()->has('message'))
                       <div class="alert alert-success">
