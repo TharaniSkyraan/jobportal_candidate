@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\BaseController as BaseController;
 use App\Model\JobApply;
 use App\Model\Job;
 use App\Model\JobSearch;
+use App\Model\Company;
 use App\Helpers\DataArrayHelper;
 use App\Traits\FetchJobsList;
 use App\Traits\BlockedKeywords;
