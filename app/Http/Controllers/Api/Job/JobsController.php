@@ -105,9 +105,13 @@ class JobsController extends BaseController
         if($job==NULL){
             return $this->sendError('No Job Available.'); 
         }
+        unset($job['job_work_location']);
+        unset($job['jobbenefits']);
+        unset($job['jobsupplementals']);
         $breakpoint = JobScreeningQuiz::whereJobId($job->id)->whereBreakpoint('yes')->first();
         $response = array(
                 'job' => $job, 
+                'company_slug' => $job->company->slug??'', 
                 'breakpoint' => $breakpoint
             );
         return $this->sendResponse($response);
