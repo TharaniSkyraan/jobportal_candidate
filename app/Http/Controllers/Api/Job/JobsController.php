@@ -25,16 +25,16 @@ class JobsController extends BaseController
 
     public function index()
     {
-        $user_id = Auth::user()->id??710;
+        $user_id = Auth::user()->id??1;
         $appliedjobs = JobApply::where('user_id',$user_id)
                         ->whereIn('application_status',['view','shortlist','consider'])
                         ->take(3)
                         ->orderBy('created_at','desc')
                         ->get();
-        $shortlist = [];
+        $appliedlist = [];
         foreach($appliedjobs as $job){
             if(isset($job->job)){                    
-                $shortlist[] = array(
+                $appliedlist[] = array(
                     'slug' => $job->job->slug,
                     'title' => $job->job->title??'Php Developer',
                     'company_name' => $job->job->company_name??'Skyraan',
@@ -59,6 +59,7 @@ class JobsController extends BaseController
         
         $user['final_percentage'] = $percentage > 100 ? 100 : $percentage;
 
+        // $jobs = $this->fetchJobs($user->career_title, '', [], 15);
         $jobs = $this->fetchJobs('', '', [], 15);
         $joblist = $jobs['joblist']->items();  
         foreach($joblist as $job)
@@ -68,7 +69,7 @@ class JobsController extends BaseController
         }
 
         $response = array(
-                        'shortlist' => $shortlist, 
+                        'appliedlist' => $appliedlist, 
                         'jobs' => $joblist, 
                         'user' => "", 
                     );
