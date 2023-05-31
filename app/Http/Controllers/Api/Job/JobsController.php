@@ -25,12 +25,26 @@ class JobsController extends BaseController
 
     public function index()
     {
-        $user_id = Auth::user()->id??710;
-        $sortBy = $request->sortBy??'all';
-        $shortlist = JobApply::where('user_id',$user_id)
-                        ->whereApplicationStatus('shortlist')
-                        ->take(5)->get();
-                    
+        $user_id = Auth::user()->id??1;
+        $appliedjobs = JobApply::where('user_id',$user_id)
+                        ->whereIn('application_status',['view','shortlist','consider'])
+                        ->take(3)
+                        ->orderBy('created_at','desc')
+                        ->get();
+        $shortlist = [];
+        foreach($appliedjobs as $job){
+            if(isset($job->job)){                    
+                $shortlist[] = array(
+                    'slug' => $job->job->slug,
+                    'title' => $job->job->title??'Php Developer',
+                    'company_name' => $job->job->company_name??'Skyraan',
+                    'company_image' => $job->job->company->company_image??'',
+                    'status' => $job->application_status,
+                    'applied_at' => strtotime($job->created_at),
+                    'status_updated_at' => strtotime($job->updated_at),
+                );
+            }
+        }
         
         $percentage_profile = ProfilePercentage::pluck('value','key')->toArray();
         $percentage = $percentage_profile['user_basic_info'];
@@ -46,12 +60,17 @@ class JobsController extends BaseController
         $user['final_percentage'] = $percentage > 100 ? 100 : $percentage;
 
         $jobs = $this->fetchJobs('', '', [], 15);
-        $joblist = $jobs['joblist'];   
+        $joblist = $jobs['joblist']->items();  
+        foreach($joblist as $job)
+        {   
+            $jobc = Job::find($job->job_id);
+            $job['company_image'] = $jobc->company->company_image??'';
+        }
 
         $response = array(
                         'shortlist' => $shortlist, 
                         'jobs' => $joblist, 
-                        'user' => $user, 
+                        'user' => "", 
                     );
         return $this->sendResponse($response);
 
