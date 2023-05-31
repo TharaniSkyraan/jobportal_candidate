@@ -25,7 +25,7 @@ class JobsController extends BaseController
 
     public function index()
     {
-        $user_id = Auth::user()->id??1;
+        $user_id = Auth::user()->id??710;
         $appliedjobs = JobApply::where('user_id',$user_id)
                         ->whereIn('application_status',['view','shortlist','consider'])
                         ->take(3)
