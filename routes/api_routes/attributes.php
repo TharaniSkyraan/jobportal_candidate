@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AjaxController;
+use App\Helpers\DataArrayHelper;
 
 Route::post('education_types', [AjaxController::class,'suggestionEducationTypes']);
 Route::post('cities', [AjaxController::class,'getCities']);

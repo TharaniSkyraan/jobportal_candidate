@@ -3,6 +3,8 @@
     use App\Http\Controllers\Api\Job\JobsController;
     use App\Http\Controllers\Api\Job\MyJobsController;
 
+    Route::get('index', [JobsController::class, 'index']);
+    Route::get('advanced_filter', [JobsController::class, 'advancedFilter']);
     Route::post('search-job', [JobsController::class, 'searchJob']);
     Route::get('job-detail/{slug}', [JobsController::class, 'jobDetail']);
     Route::get('company-detail/{slug}', [JobsController::class, 'companyDetail']);

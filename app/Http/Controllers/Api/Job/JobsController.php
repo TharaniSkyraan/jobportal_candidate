@@ -10,9 +10,11 @@ use App\Model\JobApply;
 use App\Model\Job;
 use App\Model\JobSearch;
 use App\Model\Company;
+use App\Model\User;
 use App\Helpers\DataArrayHelper;
 use App\Traits\FetchJobsList;
 use App\Traits\BlockedKeywords;
+use App\Model\ProfilePercentage;
 use App\Model\JobScreeningQuiz;
 use App\Http\Requests\Api\Job\JobSearchRequest;
 
@@ -20,6 +22,40 @@ class JobsController extends BaseController
 {
     //
     use FetchJobsList, BlockedKeywords;
+
+    public function index()
+    {
+        $user_id = Auth::user()->id??710;
+        $sortBy = $request->sortBy??'all';
+        $shortlist = JobApply::where('user_id',$user_id)
+                        ->whereApplicationStatus('shortlist')
+                        ->take(5)->get();
+                    
+        
+        $percentage_profile = ProfilePercentage::pluck('value','key')->toArray();
+        $percentage = $percentage_profile['user_basic_info'];
+        $user = User::find($user_id);
+        $percentage += count($user->userEducation) > 0 ? $percentage_profile['user_education'] : 0;
+        $percentage += count($user->userExperience) > 0 ? $percentage_profile['user_experience'] : 0;
+        $percentage += count($user->userSkills) > 0 ? $percentage_profile['user_skill'] : 0;
+        $percentage += count($user->userProjects) > 0 ? $percentage_profile['user_project'] : 0;
+        $percentage += count($user->userLanguages) > 0 ? $percentage_profile['user_language'] : 0;
+        $percentage += ($user->countUserCvs() > 0) ? $percentage_profile['user_resume'] : 0;
+        $percentage += $user->image != null ? $percentage_profile['user_profile'] : 0;
+        
+        $user['final_percentage'] = $percentage > 100 ? 100 : $percentage;
+
+        $jobs = $this->fetchJobs('', '', [], 15);
+        $joblist = $jobs['joblist'];   
+
+        $response = array(
+                        'shortlist' => $shortlist, 
+                        'jobs' => $joblist, 
+                        'user' => $user, 
+                    );
+        return $this->sendResponse($response);
+
+    }
 
     public function searchJob(JobSearchRequest $request)
     {
@@ -128,5 +164,11 @@ class JobsController extends BaseController
         return $this->sendResponse($response);
     }
     
+    public function advancedFilter()
+    {
+        $queries = JobSearch::whereIsActive(1);
+        $filters = $this->getFilters($queries);
+        return $this->sendResponse($filters);
+    }
 
 }
