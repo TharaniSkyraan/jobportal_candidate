@@ -92,6 +92,11 @@ trait FetchJobsList
                        ->where('max_experience', '>=', $filter['experienceFid']);
         }
         
+        if (!empty($filter['posteddateFid']) && $filter['posteddateFid'] != 'all') { 
+            $startDate = Carbon::now()->subDays($filter['posteddateFid']);
+            $queries->where('posted_date', '>=', $startDate);
+        }
+        
         $filters = $this->getFilters($queries);
         $joblist = $queries->select('job_id','title','description','company_name','experience_string as experience','salary_string as salary','posted_date','quick_hiring_deadline as immediate_join','location','have_break_point','have_screening_quiz','slug');
         if (!empty($filter['sortBy']) && $filter['sortBy'] == 'date') { 

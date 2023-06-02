@@ -1012,49 +1012,33 @@ class DataArrayHelper
                 'id'=>'1',
                 'label'=>'Last 24 hours', 
                 'count'=>JobSearch::whereIn('job_id',$jobids)->where(function($q) use($endDate){
-                    $startDate = $endDate->subDays(1);
-                    $q->where(function($q1){
-                        $q1->where('annum_salary_from', '>=', 3)->where('annum_salary_from', '<=', 6);
-                    })->orwhere(function($q2){
-                        $q2->where('annum_salary_to', '<=', 6)->where('annum_salary_to', '>=', 3);
-                    });
-                })->count()
+                                        $startDate = $endDate->subDays(1);
+                                        $q->where('posted_date', '>=', $startDate);
+                                    })->count()
             ),
             array(
                 'id'=>'3',
                 'label'=>'Last 3 days', 
                 'count'=>JobSearch::whereIn('job_id',$jobids)->where(function($q) use($endDate){
-                    $startDate = $endDate->subDays(3);
-                    $q->where(function($q1){
-                        $q1->where('annum_salary_from', '>=', 6)->where('annum_salary_from', '<=', 10);
-                    })->orwhere(function($q2){
-                        $q2->where('annum_salary_to', '<=', 10)->where('annum_salary_to', '>=', 6);
-                    });
-                })->count()
+                                        $startDate = $endDate->subDays(3);
+                                        $q->where('posted_date', '>=', $startDate);
+                                    })->count()
             ),
             array(
                 'id'=>'7',
                 'label'=>'Last 7 days',
                 'count'=>JobSearch::whereIn('job_id',$jobids)->where(function($q) use($endDate){
-                    $startDate = $endDate->subDays(7);
-                    $q->where(function($q1){
-                        $q1->where('annum_salary_from', '>=', 10)->where('annum_salary_from', '<=', 15);
-                    })->orwhere(function($q2){
-                        $q2->where('annum_salary_to', '<=', 15)->where('annum_salary_to', '>=', 10);
-                    });
-                })->count()
+                                        $startDate = $endDate->subDays(7);
+                                        $q->where('posted_date', '>=', $startDate);
+                                    })->count()
             ),
             array(
                 'id'=>'14',
                 'label'=>'Last 14 days',
                 'count'=>JobSearch::whereIn('job_id',$jobids)->where(function($q) use($endDate){
-                    $startDate = $endDate->subDays(14);
-                    $q->where(function($q1){
-                        $q1->where('annum_salary_from', '>=', 15)->where('annum_salary_from', '<=', 25);
-                    })->orwhere(function($q2){
-                        $q2->where('annum_salary_to', '<=', 25)->where('annum_salary_to', '>=', 15);
-                    });
-                })->count()
+                                        $startDate = $endDate->subDays(14);
+                                        $q->where('posted_date', '>=', $startDate);
+                                    })->count()
             )
         );
         $arr =  array();
