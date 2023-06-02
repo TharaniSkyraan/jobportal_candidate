@@ -146,7 +146,7 @@ class JobsController extends BaseController
             $filter['functionalareaGid']  = $functionalareaGid;
             $filter['sortBy']  = $sortBy;
             
-            $jobs = $this->fetchJobs($designation, $location, $filter, 15);
+            $jobs = $this->fetchJobs($designation, $location, $filter, 2);
             
             $joblist = $jobs['joblist'];          
             $filters = $jobs['filters'];
