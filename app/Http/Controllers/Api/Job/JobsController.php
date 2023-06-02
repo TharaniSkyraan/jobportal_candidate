@@ -168,8 +168,8 @@ class JobsController extends BaseController
         }
         
         if(!empty($user_id)){
-            $datas = $joblist->toArray();
-            $jobids = array_column($datas['data'], 'job_id');
+            // $datas = $joblist->toArray();
+            $jobids = array_column($joblist, 'job_id');
             $appliedjodids = JobApply::where('user_id',$user_id)->whereIn('job_id',$jobids)->pluck('job_id')->toArray();
         }
         
