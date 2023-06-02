@@ -60,8 +60,8 @@ class JobsController extends BaseController
         $percentage += $user->image != null ? $percentage_profile['user_profile'] : 0;
         
 
-        // $jobs = $this->fetchJobs($user->career_title, '', [], 15);
-        $jobs = $this->fetchJobs('', '', [], 15);
+        $jobs = $this->fetchJobs($user->career_title, '', [], 15);
+        // $jobs = $this->fetchJobs('', '', [], 15);
         $joblist = $jobs['joblist']->items();  
 
         foreach($joblist as $job)
@@ -203,7 +203,7 @@ class JobsController extends BaseController
     public function advancedFilter()
     {
         $queries = JobSearch::whereIsActive(1);
-        
+
         $filters = $this->getFilters($queries);
         return $this->sendResponse($filters);
     }
