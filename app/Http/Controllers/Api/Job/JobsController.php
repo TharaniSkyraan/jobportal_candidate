@@ -159,7 +159,7 @@ class JobsController extends BaseController
                 $job['company_image'] = $jobc->company->company_image??'';
                 $job['job_type'] = $jobc->getTypesStr();
                 $job['skills'] = $jobc->getSkillsStr();
-                $job['posted_date'] = strtotime($jobc->posted_date);
+                $job['posted_at'] = strtotime($jobc->posted_date);
             }     
             $joblist = $joblist;
             $filters = $jobs['filters'];
