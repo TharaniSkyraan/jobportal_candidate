@@ -28,7 +28,8 @@ class JobsController extends BaseController
     {
         $user_id = Auth::user()->id??710;
         $appliedjobs = JobApply::where('user_id',$user_id)
-                        ->whereIn('application_status',['view','shortlist','consider'])
+                        ->whereNotNull('application_status')
+                        ->where('application_status','!=','reject')
                         ->take(3)
                         ->orderBy('created_at','desc')
                         ->get();
