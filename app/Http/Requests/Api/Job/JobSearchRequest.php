@@ -29,7 +29,7 @@ class JobSearchRequest extends Request
     public function rules()
     {
         $rules =  [];
-        if(empty($this->location) && empty($this->location))
+        if(empty($this->location) && empty($this->designation))
         {            
             $rules =  [
                 'designation' => 'required',
