@@ -148,9 +148,7 @@ class JobsController extends BaseController
             
             $jobs = $this->fetchJobs($designation, $location, $filter, 15);
             
-            $joblist = array_map(function($job) {
-                return $job['posted_date'] = strtotime($job->posted_date);
-            },$jobs['joblist']);          
+            $joblist = $jobs['joblist'];          
             $filters = $jobs['filters'];
 
         }
