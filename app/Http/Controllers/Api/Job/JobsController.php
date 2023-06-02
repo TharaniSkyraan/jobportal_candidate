@@ -67,6 +67,7 @@ class JobsController extends BaseController
 
         foreach($joblist as $job)
         {   
+            unset($job['posted_date']);
             $jobc = Job::find($job->job_id);
             $job['company_image'] = $jobc->company->company_image??'';
             $job['job_type'] = $jobc->getTypesStr();
@@ -100,6 +101,7 @@ class JobsController extends BaseController
 
         $sortBy = $request->sortBy??'relevance';
         $experienceFid = $request->experinceFv??'';
+        $posteddateFid = $request->posteddateFid??'';
         $designation = $request->designation??'';
         $location = $request->location??'';
         $words = DataArrayHelper::blockedKeywords();
@@ -134,9 +136,6 @@ class JobsController extends BaseController
             }
             if(isset($request->functionalareaGid)){
                 $functionalareaGid = explode(',',$request->functionalareaGid);
-            }
-            if(isset($request->posteddateFid)){
-                $posteddateFid = $request->posteddateFid;
             }
             $filter['experienceFid']  = $experienceFid;        
             $filter['citylFGid']  = count($citylFGid)!=0?',('.implode('|',$citylFGid).'),':'';

@@ -89,7 +89,7 @@ trait FetchJobsList
 
         if (!empty($filter['experienceFid'])) { 
             $queries->where('min_experience', '<=', $filter['experienceFid'])
-                       ->where('max_experience', '>=', $filter['experienceFid']);
+                    ->where('max_experience', '>=', $filter['experienceFid']);
         }
         
         if (!empty($filter['posteddateFid']) && $filter['posteddateFid'] != 'all') { 

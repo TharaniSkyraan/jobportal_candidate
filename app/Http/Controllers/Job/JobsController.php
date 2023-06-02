@@ -138,6 +138,7 @@ class JobsController extends Controller
 
         $sortBy = $request->sortBy??'relevance';
         $experienceFid = $request->experinceFv??'';
+        $posteddateFid = $request->posteddateFid??'';
         $designation = $request->d??'';
         $location = $request->l??'';
         $slug = $request->sl??'';
@@ -190,6 +191,7 @@ class JobsController extends Controller
             $filter['wfhtypeFid']  = $wfhtypeFid;
             $filter['industrytypeGid']  = $industrytypeGid;
             $filter['functionalareaGid']  = $functionalareaGid;
+            $filter['posteddateFid']  = $posteddateFid;
             $filter['sortBy']  = $sortBy;
             
             $jobs = $this->fetchJobs($designation, $location, $filter, 15);
