@@ -148,6 +148,8 @@ class JobsController extends BaseController
             
             $jobs = $this->fetchJobs($designation, $location, $filter, 2);
             
+            dd($jobs['joblist']->nextPageUrl());
+
             $joblist = $jobs['joblist']->items();     
             foreach($joblist as $job)
             {   
@@ -157,10 +159,9 @@ class JobsController extends BaseController
                 $job['skills'] = $jobc->getSkillsStr();
                 $job['posted_date'] = strtotime($jobc->posted_date);
             }     
-            $joblist = $joblist;
+            $joblist = $jobs['joblist'];
             $filters = $jobs['filters'];
             
-            dd($jobs['joblist']);
         
         }
         
