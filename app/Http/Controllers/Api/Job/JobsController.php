@@ -61,7 +61,7 @@ class JobsController extends BaseController
         $percentage += $user->image != null ? $percentage_profile['user_profile'] : 0;
         
 
-        $jobs = $this->fetchJobs($user->career_title, '', [], 15);
+        $jobs = $this->fetchJobs($user->career_title, '', [], 5);
         // $jobs = $this->fetchJobs('', '', [], 15);
         $joblist = $jobs['joblist']->items();  
 
@@ -148,9 +148,20 @@ class JobsController extends BaseController
             
             $jobs = $this->fetchJobs($designation, $location, $filter, 2);
             
-            $joblist = $jobs['joblist'];          
+            $joblist = $jobs['joblist']->items();     
+            foreach($joblist as $job)
+            {   
+                $jobc = Job::find($job->job_id);
+                $job['company_image'] = $jobc->company->company_image??'';
+                $job['job_type'] = $jobc->getTypesStr();
+                $job['skills'] = $jobc->getSkillsStr();
+                $job['posted_date'] = strtotime($jobc->posted_date);
+            }     
+            $joblist = $joblist;
             $filters = $jobs['filters'];
-
+            
+            dd($jobs['joblist']->next_page_url());
+        
         }
         
         if(Auth::check()){
