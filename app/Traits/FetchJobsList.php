@@ -127,7 +127,7 @@ trait FetchJobsList
         $filter['jobshiftFGid'] = DataArrayHelper::jobShifts($jobshift, $jobids);
         $filter['wfhtypeFid'] = DataArrayHelper::jobWfhTypes($jobids);
         $filter['salaryFGid'] = DataArrayHelper::jobSalaries($jobids);
-        $filter['salaryFGid'] = DataArrayHelper::jobSalaries($jobids);
+        $filter['posteddateFid'] = DataArrayHelper::jobPostedDate($jobids);
         
         return $filter;
 
