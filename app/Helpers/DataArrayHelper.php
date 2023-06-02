@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use DB;
 use Request;
+use Carbon\Carbon;
 use App\Model\JobSearch;
 use App\Model\Language;
 use App\Model\EducationLevel;
@@ -1000,22 +1001,18 @@ class DataArrayHelper
     
     public static function jobPostedDate($jobids)
     {
+        $endDate = Carbon::now();
         $result = array(
             array(
                 'id'=>'all',
                 'label'=>'All', 
-                'count'=>JobSearch::whereIn('job_id',$jobids)->where(function($q){
-                    $q->where(function($q1){
-                        $q1->where('annum_salary_from', '>=', 0)->where('annum_salary_from', '<=', 3);
-                    })->orwhere(function($q2){
-                        $q2->where('annum_salary_to', '<=', 3)->where('annum_salary_to', '>=', 0);
-                    });
-                })->count()
+                'count'=>JobSearch::whereIn('job_id',$jobids)->count()
             ),
             array(
                 'id'=>'1',
                 'label'=>'Last 24 hours', 
-                'count'=>JobSearch::whereIn('job_id',$jobids)->where(function($q){
+                'count'=>JobSearch::whereIn('job_id',$jobids)->where(function($q) use($endDate){
+                    $startDate = $endDate->subDays(1);
                     $q->where(function($q1){
                         $q1->where('annum_salary_from', '>=', 3)->where('annum_salary_from', '<=', 6);
                     })->orwhere(function($q2){
@@ -1026,7 +1023,8 @@ class DataArrayHelper
             array(
                 'id'=>'3',
                 'label'=>'Last 3 days', 
-                'count'=>JobSearch::whereIn('job_id',$jobids)->where(function($q){
+                'count'=>JobSearch::whereIn('job_id',$jobids)->where(function($q) use($endDate){
+                    $startDate = $endDate->subDays(3);
                     $q->where(function($q1){
                         $q1->where('annum_salary_from', '>=', 6)->where('annum_salary_from', '<=', 10);
                     })->orwhere(function($q2){
@@ -1037,7 +1035,8 @@ class DataArrayHelper
             array(
                 'id'=>'7',
                 'label'=>'Last 7 days',
-                'count'=>JobSearch::whereIn('job_id',$jobids)->where(function($q){
+                'count'=>JobSearch::whereIn('job_id',$jobids)->where(function($q) use($endDate){
+                    $startDate = $endDate->subDays(7);
                     $q->where(function($q1){
                         $q1->where('annum_salary_from', '>=', 10)->where('annum_salary_from', '<=', 15);
                     })->orwhere(function($q2){
@@ -1048,7 +1047,8 @@ class DataArrayHelper
             array(
                 'id'=>'14',
                 'label'=>'Last 14 days',
-                'count'=>JobSearch::whereIn('job_id',$jobids)->where(function($q){
+                'count'=>JobSearch::whereIn('job_id',$jobids)->where(function($q) use($endDate){
+                    $startDate = $endDate->subDays(14);
                     $q->where(function($q1){
                         $q1->where('annum_salary_from', '>=', 15)->where('annum_salary_from', '<=', 25);
                     })->orwhere(function($q2){

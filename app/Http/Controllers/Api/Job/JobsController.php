@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Job;
 
 use Auth;
+use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
@@ -69,6 +70,7 @@ class JobsController extends BaseController
             $jobc = Job::find($job->job_id);
             $job['company_image'] = $jobc->company->company_image??'';
             $job['job_type'] = $jobc->getTypesStr();
+            $job['skills'] = $jobc->getSkillsStr();
             $job['posted_date'] = strtotime($jobc->posted_date);
         }
 
