@@ -28,8 +28,7 @@ class JobsController extends BaseController
     {
         $user_id = Auth::user()->id??710;
         $appliedjobs = JobApply::where('user_id',$user_id)
-                        ->whereNotNull('application_status')
-                        ->where('application_status','!=','reject')
+                        ->where('application_status',['view','shortlist','consider'])
                         ->take(3)
                         ->orderBy('created_at','desc')
                         ->get();
@@ -98,6 +97,7 @@ class JobsController extends BaseController
     public function searchJob(JobSearchRequest $request)
     {
 
+        $user_id = Auth::user()->id??710;
         $filters = $jobs = $filter = $citylFGid  = $salaryFGid = $jobtypeFGid = $jobshiftFGid = $edulevelFGid = $wfhtypeFid = $industrytypeGid = $functionalareaGid = array();
 
         $sortBy = $request->sortBy??'relevance';
@@ -167,10 +167,10 @@ class JobsController extends BaseController
         
         }
         
-        if(Auth::check()){
+        if(!empty($user_id)){
             $datas = $joblist->toArray();
             $jobids = array_column($datas['data'], 'job_id');
-            $appliedjodids = JobApply::where('user_id',Auth::user()->id)->whereIn('job_id',$jobids)->pluck('job_id')->toArray();
+            $appliedjodids = JobApply::where('user_id',$user_id)->whereIn('job_id',$jobids)->pluck('job_id')->toArray();
         }
         
         $response = array(
