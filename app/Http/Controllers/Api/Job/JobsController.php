@@ -135,6 +135,9 @@ class JobsController extends BaseController
             if(isset($request->functionalareaGid)){
                 $functionalareaGid = explode(',',$request->functionalareaGid);
             }
+            if(isset($request->posteddateFid)){
+                $posteddateFid = $request->posteddateFid;
+            }
             $filter['experienceFid']  = $experienceFid;        
             $filter['citylFGid']  = count($citylFGid)!=0?',('.implode('|',$citylFGid).'),':'';
             $filter['jobtypeFGid']  = count($jobtypeFGid)!=0?',('.implode('|',$jobtypeFGid).'),':'';
@@ -144,13 +147,15 @@ class JobsController extends BaseController
             $filter['wfhtypeFid']  = $wfhtypeFid;
             $filter['industrytypeGid']  = $industrytypeGid;
             $filter['functionalareaGid']  = $functionalareaGid;
+            $filter['posteddateFid']  = $posteddateFid;
             $filter['sortBy']  = $sortBy;
             
-            $jobs = $this->fetchJobs($designation, $location, $filter, 2);
+            $jobs = $this->fetchJobs($designation, $location, $filter, 15);
             
             $joblist = $jobs['joblist']->items();     
             foreach($joblist as $job)
             {   
+                unset($job['posted_date']);
                 $jobc = Job::find($job->job_id);
                 $job['company_image'] = $jobc->company->company_image??'';
                 $job['job_type'] = $jobc->getTypesStr();
