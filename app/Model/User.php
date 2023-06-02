@@ -19,16 +19,10 @@ use App\Mail\UserResetPasswordMailable;
 
 use Laravel\Passport\HasApiTokens;
 
-
 class User extends Authenticatable
-
 {
 
-
-
     use Notifiable, CountryStateCity, CommonUserFunctions, HasApiTokens;
-
-
 
     /**
 
@@ -52,8 +46,6 @@ class User extends Authenticatable
 
     protected $dates = ['created_at', 'updated_at', 'date_of_birth', 'package_start_date', 'package_end_date'];
 
-
-
     /**
 
      * The attributes that should be hidden for arrays.
@@ -62,8 +54,7 @@ class User extends Authenticatable
 
      * @var array
 
-     */
-
+    */
     protected $hidden = [
         'password', 'remember_token',
     ];
@@ -103,91 +94,52 @@ class User extends Authenticatable
 
     }
 
-
-
     public function userProjects()
-
     {
-
         return $this->hasMany(UserProject::class, 'user_id', 'id');
-
     }
-
-
 
     public function getUserProjectsArray()
-
     {
-
         return $this->userProjects->pluck('id')->toArray();
-
     }
 
-
-
     public function getDefaultCv()
-
     {
 
         $cv = UserCv::where('user_id', '=', $this->id)->where('is_default', '=', 1)->first();
-
-
 
         if (null === $cv)
 
             $cv = UserCv::where('user_id', '=', $this->id)->first();
 
-
-
         return $cv;
 
     }
 
-
-
     public function UserCvs()
-
     {
-
         return $this->hasMany(UserCv::class, 'user_id', 'id');
-
     }
 
-
     public function getUserCvsArray()
-
     {
-
         return $this->UserCvs->pluck('id')->toArray();
-
     }
 
     public function countUserCvs()
-
     {
-
         return $this->UserCvs->count();
-
     }
-
-
 
     public function userExperience()
-
     {
-
         return $this->hasMany(UserExperience::class, 'user_id', 'id');
-
     }
 
-
-
     public function userEducation()
-
     {
-
         return $this->hasMany(UserEducation::class, 'user_id', 'id')->orderBy('to_year','DESC');
-
     }
 
     public function getuserEducationLast()
@@ -197,26 +149,15 @@ class User extends Authenticatable
         return isset($education)?$education->getEducationLevel('education_level'):'';
     }
 
-
     public function userSkills()
-
     {
-
         return $this->hasMany(UserSkill::class, 'user_id', 'id');
-
     }
-
-
 
     public function getUserSkills()
-
     {
-
         return $this->userSkills->get();
-
     }
-
-
 
     public function getUserSkillsStr()
     {
@@ -239,40 +180,22 @@ class User extends Authenticatable
         return $str;
     }
 
-
-
     public function userLanguages()
-
     {
-
         return $this->hasMany(UserLanguage::class, 'user_id', 'id');
-
     }
-
-
 
     public function favouriteJobs()
-
     {
-
         return $this->hasMany(FavouriteJob::class, 'user_id', 'id');
-
     }
-
-
 
     public function getFavouriteJobSlugsArray()
-
     {
-
         return $this->favouriteJobs->pluck('job_slug')->toArray();
-
     }
 
-
-
     public function isFavouriteJob($job_slug)
-
     {
 
         $return = false;
@@ -291,24 +214,14 @@ class User extends Authenticatable
 
     }
 
-
-
     public function favouriteCompanies()
-
     {
-
         return $this->hasMany(FavouriteCompany::class, 'user_id', 'id');
-
     }
 
-
-
     public function getFavouriteCompanies()
-
     {
-
         return $this->favouriteCompanies->pluck('company_slug')->toArray();
-
     }
 
 
@@ -699,17 +612,12 @@ class User extends Authenticatable
 
 
     public function functionalArea()
-
     {
-
         return $this->belongsTo(FunctionalArea::class, 'functional_area_id', 'functional_area_id');
 
     }
 
-
-
     public function getFunctionalArea($field = '')
-
     {
 
         $functionalArea = $this->functionalArea()->lang()->first();
@@ -739,20 +647,9 @@ class User extends Authenticatable
         return CompanyMessage::where('seeker_id', '=', $this->id)->where('status', '=', 'unviewed')->where('type', '=', 'message')->count();
     }
 
-
-
     public function countMessages($id)
-
-
-
     {
-
-
-
         return CompanyMessage::where('seeker_id', '=', $this->id)->where('company_id', '=', $id)->where('status', '=', 'unviewed')->where('type', '=', 'message')->count();
-
-
-
     }
     
     public function NoticePeriod()

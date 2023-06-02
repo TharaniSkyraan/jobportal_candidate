@@ -997,6 +997,116 @@ class DataArrayHelper
 
     }
 
+    
+    public static function jobDatePosted($jobids)
+    {
+        // dd($jobids);
+        $result = array(
+            array(
+                'id'=>'0to3',
+                'label'=>'0 to 3 Lakhs / annum', 
+                'count'=>JobSearch::whereIn('job_id',$jobids)->where(function($q){
+                    $q->where(function($q1){
+                        $q1->where('annum_salary_from', '>=', 0)->where('annum_salary_from', '<=', 3);
+                    })->orwhere(function($q2){
+                        $q2->where('annum_salary_to', '<=', 3)->where('annum_salary_to', '>=', 0);
+                    });
+                })->count()
+            ),
+            array(
+                'id'=>'3to6',
+                'label'=>'3 to 6 Lakhs / annum', 
+                'count'=>JobSearch::whereIn('job_id',$jobids)->where(function($q){
+                    $q->where(function($q1){
+                        $q1->where('annum_salary_from', '>=', 3)->where('annum_salary_from', '<=', 6);
+                    })->orwhere(function($q2){
+                        $q2->where('annum_salary_to', '<=', 6)->where('annum_salary_to', '>=', 3);
+                    });
+                })->count()
+            ),
+            array(
+                'id'=>'6to10',
+                'label'=>'6 to 10 Lakhs / annum', 
+                'count'=>JobSearch::whereIn('job_id',$jobids)->where(function($q){
+                    $q->where(function($q1){
+                        $q1->where('annum_salary_from', '>=', 6)->where('annum_salary_from', '<=', 10);
+                    })->orwhere(function($q2){
+                        $q2->where('annum_salary_to', '<=', 10)->where('annum_salary_to', '>=', 6);
+                    });
+                })->count()
+            ),
+            array(
+                'id'=>'10to15',
+                'label'=>'10 to 15 Lakhs / annum',
+                'count'=>JobSearch::whereIn('job_id',$jobids)->where(function($q){
+                    $q->where(function($q1){
+                        $q1->where('annum_salary_from', '>=', 10)->where('annum_salary_from', '<=', 15);
+                    })->orwhere(function($q2){
+                        $q2->where('annum_salary_to', '<=', 15)->where('annum_salary_to', '>=', 10);
+                    });
+                })->count()
+            ),
+            array(
+                'id'=>'15to25',
+                'label'=>'15 to 25 Lakhs / annum',
+                'count'=>JobSearch::whereIn('job_id',$jobids)->where(function($q){
+                    $q->where(function($q1){
+                        $q1->where('annum_salary_from', '>=', 15)->where('annum_salary_from', '<=', 25);
+                    })->orwhere(function($q2){
+                        $q2->where('annum_salary_to', '<=', 25)->where('annum_salary_to', '>=', 15);
+                    });
+                })->count()
+            ),
+            array(
+                'id'=>'25to50',
+                'label'=>'25 to 50 Lakhs / annum',
+                'count'=>JobSearch::whereIn('job_id',$jobids)->where(function($q){
+                    $q->where(function($q1){
+                        $q1->where('annum_salary_from', '>=', 25)->where('annum_salary_from', '<=', 50);
+                    })->orwhere(function($q2){
+                        $q2->where('annum_salary_to', '<=', 50)->where('annum_salary_to', '>=', 25);
+                    });
+                })->count()
+            ),
+            array(
+                'id'=>'50to75',
+                'label'=>'50 to 75 Lakhs / annum',
+                'count'=>JobSearch::whereIn('job_id',$jobids)->where(function($q){
+                    $q->where(function($q1){
+                        $q1->where('annum_salary_from', '>=', 50)->where('annum_salary_from', '<=', 75);
+                    })->orwhere(function($q2){
+                        $q2->where('annum_salary_to', '<=', 75)->where('annum_salary_to', '>=', 50);
+                    });
+                })->count()
+            ),
+            array(
+                'id'=>'75to100',
+                'label'=>'75 to 100 Lakhs / annum',
+                'count'=>JobSearch::whereIn('job_id',$jobids)->where(function($q){
+                    $q->where(function($q1){
+                        $q1->where('annum_salary_from', '>=', 75)->where('annum_salary_from', '<=', 100);
+                    })->orwhere(function($q2){
+                        $q2->where('annum_salary_to', '<=', 100)->where('annum_salary_to', '>=', 75);
+                    });
+                })->count()
+            ),
+            array(
+                'id'=>'100',
+                'label'=>'100+ Lakhs / annum', 
+                'count'=>JobSearch::whereIn('job_id',$jobids)->where('annum_salary_from', '>=', 100)->count()
+            ),
+        );
+        $arr =  array();
+        foreach($result as $row){
+            if($row['count'] != 0 ){
+                $arr[]=$row;
+            }
+        }
+
+        return $arr;
+
+    }
+
     public static function jobSalaries_2($jobids)
     {
        return $result = array(

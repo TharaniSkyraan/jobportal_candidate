@@ -25,15 +25,17 @@ class JobsController extends BaseController
 
     public function index()
     {
-        $user_id = Auth::user()->id??710;
+        $user_id = Auth::user()->id??1;
         $appliedjobs = JobApply::where('user_id',$user_id)
                         ->whereIn('application_status',['view','shortlist','consider'])
                         ->take(3)
                         ->orderBy('created_at','desc')
                         ->get();
         $appliedlist = [];
-        foreach($appliedjobs as $job){
-            if(isset($job->job)){                    
+        foreach($appliedjobs as $job)
+        {
+            if(isset($job->job))
+            {                    
                 $appliedlist[] = array(
                     'slug' => $job->job->slug,
                     'title' => $job->job->title??'Php Developer',
@@ -57,24 +59,36 @@ class JobsController extends BaseController
         $percentage += ($user->countUserCvs() > 0) ? $percentage_profile['user_resume'] : 0;
         $percentage += $user->image != null ? $percentage_profile['user_profile'] : 0;
         
-        $user['final_percentage'] = $percentage > 100 ? 100 : $percentage;
 
         // $jobs = $this->fetchJobs($user->career_title, '', [], 15);
         $jobs = $this->fetchJobs('', '', [], 15);
         $joblist = $jobs['joblist']->items();  
+
         foreach($joblist as $job)
         {   
             $jobc = Job::find($job->job_id);
             $job['company_image'] = $jobc->company->company_image??'';
+            $job['job_type'] = $jobc->getTypesStr();
+            $job['posted_date'] = strtotime($jobc->posted_date);
         }
+
+        $userData = array(
+                'name' => $user->getName(),
+                'final_percentage' => $percentage > 100 ? 100 : $percentage,
+                'image' => $user->image,
+                'career_title' => $user->career_title,
+                'updated_at' => strtotime($user->updated_at),  
+                'resume' => $user->getDefaultCv()->cv_file,            
+                'location' => $user->location,            
+            );
 
         $response = array(
                         'appliedlist' => $appliedlist, 
                         'jobs' => $joblist, 
-                        'user' => "", 
+                        'user' => $userData, 
                     );
-        return $this->sendResponse($response);
 
+        return $this->sendResponse($response);
     }
 
     public function searchJob(JobSearchRequest $request)
@@ -131,8 +145,10 @@ class JobsController extends BaseController
             $filter['sortBy']  = $sortBy;
             
             $jobs = $this->fetchJobs($designation, $location, $filter, 15);
-
-            $joblist = $jobs['joblist'];           
+            
+            $joblist = array_map(function($job) {
+                return $job['posted_date'] = strtotime($job->posted_date);
+            },$jobs['joblist']);          
             $filters = $jobs['filters'];
 
         }
@@ -187,6 +203,7 @@ class JobsController extends BaseController
     public function advancedFilter()
     {
         $queries = JobSearch::whereIsActive(1);
+        
         $filters = $this->getFilters($queries);
         return $this->sendResponse($filters);
     }
