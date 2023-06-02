@@ -160,7 +160,7 @@ class JobsController extends BaseController
             $joblist = $joblist;
             $filters = $jobs['filters'];
             
-            dd($jobs['joblist']->next_page_url());
+            dd($jobs['joblist']);
         
         }
         
