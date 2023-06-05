@@ -25,9 +25,7 @@ class Job extends Model
     protected $dates = ['created_at', 'updated_at', 'expiry_date', 'posted_date'];
     protected $appends = ['designation','experience_string','salary_string','work_locations','benefits','supplementals','shortlistedcount'];
     protected $fillable = [
-
         'company_id', 'employer_name', 'jkey', 'employer_role_id', 'start_date', 'is_active', 'expiry_date'
-
     ];
 
     public function company()

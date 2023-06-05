@@ -25,7 +25,7 @@ class JobsController extends BaseController
     use FetchJobsList, BlockedKeywords;
 
     /**
-     * return error response.
+     * return Success json response.
      *
      * @return \Illuminate\Http\Response
      */
@@ -59,7 +59,7 @@ class JobsController extends BaseController
         $jobs = $this->fetchJobs($user->career_title, '', [], 5);
         // $jobs = $this->fetchJobs('', '', [], 15);
         
-        $jobs->each(function ($job, $key) use($user) {
+        $jobs['joblist']->each(function ($job, $key) use($user) {
             $jobc = Job::find($job->job_id);
             $job['company_image'] = $jobc->company->company_image??'';
             $job['job_type'] = $jobc->getTypesStr();
@@ -89,7 +89,7 @@ class JobsController extends BaseController
     }
 
     /**
-     * return error response.
+     * return Success json response.
      *
      * @return \Illuminate\Http\Response
      */
@@ -152,7 +152,7 @@ class JobsController extends BaseController
             
             $jobs = $this->fetchJobs($designation, $location, $filter, 15);
             
-            $jobs->each(function ($job, $key) use($user) {
+            $jobs['joblist']->each(function ($job, $key) use($user) {
                 $jobc = Job::find($job->job_id);
                 $job['company_image'] = $jobc->company->company_image??'';
                 $job['job_type'] = $jobc->getTypesStr();
@@ -180,7 +180,7 @@ class JobsController extends BaseController
     }
 
     /**
-     * return error response.
+     * return Success json response.
      *
      * @return \Illuminate\Http\Response
      */
@@ -193,8 +193,29 @@ class JobsController extends BaseController
         if($job==NULL){
             return $this->sendError('No Job Available.'); 
         }
+        $jobd = array(
+            'id'=>$job->id,
+            'slug'=>$job->slug,
+            'title'=>$job->title,
+            'description'=>$job->description,
+            'location'=>$job->work_locations,
+            'company_image'=>$job->company->company_image??'',
+            'company_name'=>$job->company->name??'',
+            'experience'=>$job->experience_string,
+            'salary'=>$job->salary_string,
+            'job_type'=>$job->getTypesStr(),
+            'skills'=>$job->getSkillsStr(),
+            'supplementals'=>$job->supplementals,
+            'benefits'=>$job->benefits,
+            'education_level'=>$job->getEducationLevel('education_level'),
+            'education_type'=>$job->getEducationTypesStr(),
+            'posted_at'=>strtotime($job->posted_date),
+            'is_applied'=>$user->isAppliedOnJob($job->id),
+            'contact_info'=>strtotime($job->posted_date),
+        );
+
         $jobs = $this->fetchJobs($job->title, '', [], 10);
-        $jobs->each(function ($job, $key) use($user) {
+        $jobs['joblist']->each(function ($job, $key) use($user) {
             $jobc = Job::find($job->job_id);
             $job['company_image'] = $jobc->company->company_image??'';
             $job['location'] = $job->work_locations;
@@ -217,7 +238,7 @@ class JobsController extends BaseController
     }
 
     /**
-     * return error response.
+     * return Success json response.
      *
      * @return \Illuminate\Http\Response
      */
@@ -235,7 +256,7 @@ class JobsController extends BaseController
     }
     
     /**
-     * return error response.
+     * return Success json response.
      *
      * @return \Illuminate\Http\Response
      */
