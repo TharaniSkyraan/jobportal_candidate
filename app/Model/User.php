@@ -229,6 +229,22 @@ class User extends Authenticatable
     /*     * ****************************** */
 
 
+    public function getProfilePercentage()
+    {
+
+        $percentage_profile = ProfilePercentage::pluck('value','key')->toArray();
+        $percentage = $percentage_profile['user_basic_info'];
+        $percentage += count($this->userEducation) > 0 ? $percentage_profile['user_education'] : 0;
+        $percentage += count($this->userExperience) > 0 ? $percentage_profile['user_experience'] : 0;
+        $percentage += count($this->userSkills) > 0 ? $percentage_profile['user_skill'] : 0;
+        $percentage += count($this->userProjects) > 0 ? $percentage_profile['user_project'] : 0;
+        $percentage += count($this->userLanguages) > 0 ? $percentage_profile['user_language'] : 0;
+        $percentage += ($this->countUserCvs() > 0) ? $percentage_profile['user_resume'] : 0;
+        $percentage += $this->image != null ? $percentage_profile['user_profile'] : 0;
+        
+        return $percentage > 100 ? 100 : $percentage;
+    }
+
 
     public function isAppliedOnJob($job_id)
 

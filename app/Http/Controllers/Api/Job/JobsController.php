@@ -24,9 +24,15 @@ class JobsController extends BaseController
     //
     use FetchJobsList, BlockedKeywords;
 
+    /**
+     * return error response.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $user_id = Auth::user()->id??710;
+        $user_id = Auth::user()->id??710;        
+        $user = User::find($user_id);
         $appliedjobs = JobApply::where('user_id',$user_id)
                         ->where('application_status',['view','shortlist','consider'])
                         ->take(3)
@@ -49,35 +55,23 @@ class JobsController extends BaseController
             }
         }
         
-        $percentage_profile = ProfilePercentage::pluck('value','key')->toArray();
-        $percentage = $percentage_profile['user_basic_info'];
-        $user = User::find($user_id);
-        $percentage += count($user->userEducation) > 0 ? $percentage_profile['user_education'] : 0;
-        $percentage += count($user->userExperience) > 0 ? $percentage_profile['user_experience'] : 0;
-        $percentage += count($user->userSkills) > 0 ? $percentage_profile['user_skill'] : 0;
-        $percentage += count($user->userProjects) > 0 ? $percentage_profile['user_project'] : 0;
-        $percentage += count($user->userLanguages) > 0 ? $percentage_profile['user_language'] : 0;
-        $percentage += ($user->countUserCvs() > 0) ? $percentage_profile['user_resume'] : 0;
-        $percentage += $user->image != null ? $percentage_profile['user_profile'] : 0;
-        
 
         $jobs = $this->fetchJobs($user->career_title, '', [], 5);
         // $jobs = $this->fetchJobs('', '', [], 15);
-        $joblist = $jobs['joblist']->items();  
-
-        foreach($joblist as $job)
-        {   
-            unset($job['posted_date']);
+        
+        $jobs->each(function ($job, $key) use($user) {
             $jobc = Job::find($job->job_id);
             $job['company_image'] = $jobc->company->company_image??'';
             $job['job_type'] = $jobc->getTypesStr();
             $job['skills'] = $jobc->getSkillsStr();
             $job['posted_at'] = strtotime($jobc->posted_date);
-        }
+            $job['is_applied'] = $user->isAppliedOnJob($job->job_id);
+        });   
+        $joblist = $jobs['joblist']->items();     
 
         $userData = array(
                 'name' => $user->getName(),
-                'final_percentage' => $percentage > 100 ? 100 : $percentage,
+                'final_percentage' => $user->getProfilePercentage(),
                 'image' => $user->image,
                 'career_title' => $user->career_title,
                 'updated_at' => strtotime($user->updated_at),  
@@ -94,10 +88,16 @@ class JobsController extends BaseController
         return $this->sendResponse($response);
     }
 
+    /**
+     * return error response.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function searchJob(JobSearchRequest $request)
     {
 
         $user_id = Auth::user()->id??710;
+        $user = User::find($user_id);
         $filters = $jobs = $filter = $citylFGid  = $salaryFGid = $jobtypeFGid = $jobshiftFGid = $edulevelFGid = $wfhtypeFid = $industrytypeGid = $functionalareaGid = array();
 
         $sortBy = $request->sortBy??'relevance';
@@ -152,25 +152,19 @@ class JobsController extends BaseController
             
             $jobs = $this->fetchJobs($designation, $location, $filter, 15);
             
-            $joblist = $jobs['joblist']->items();     
-            foreach($joblist as $job)
-            {   
-                unset($job['posted_date']);
+            $jobs->each(function ($job, $key) use($user) {
                 $jobc = Job::find($job->job_id);
                 $job['company_image'] = $jobc->company->company_image??'';
                 $job['job_type'] = $jobc->getTypesStr();
                 $job['skills'] = $jobc->getSkillsStr();
                 $job['posted_at'] = strtotime($jobc->posted_date);
-            }     
+                $job['is_applied'] = $user->isAppliedOnJob($job->job_id);
+            });   
+            $joblist = $jobs['joblist']->items();     
+
             $joblist = $joblist;
             $filters = $jobs['filters'];
         
-        }
-        
-        if(!empty($user_id)){
-            // $datas = $joblist->toArray();
-            $jobids = array_column($joblist, 'job_id');
-            $appliedjodids = JobApply::where('user_id',$user_id)->whereIn('job_id',$jobids)->pluck('job_id')->toArray();
         }
         
         $response = array(
@@ -178,7 +172,6 @@ class JobsController extends BaseController
                         'location' => $location,
                         'joblist' => $joblist,    
                         'next_page' => (!empty($jobs['joblist']->nextPageUrl())?($jobs['joblist']->currentPage()+1):""),
-                        'appliedJobids' => $appliedjodids??array(),                           
                         'filters' => $filters,
                         'sortBy' => $sortBy
                     );
@@ -186,22 +179,48 @@ class JobsController extends BaseController
         return $this->sendResponse($response);
     }
 
+    /**
+     * return error response.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function jobDetail($slug)
     {  
         
+        $user_id = Auth::user()->id??710;
+        $user = User::find($user_id);
         $job = Job::whereSlug($slug)->with(['screeningquiz'])->first(); 
         if($job==NULL){
             return $this->sendError('No Job Available.'); 
         }
+        $jobs = $this->fetchJobs($job->title, '', [], 10);
+        $jobs->each(function ($job, $key) use($user) {
+            $jobc = Job::find($job->job_id);
+            $job['company_image'] = $jobc->company->company_image??'';
+            $job['location'] = $job->work_locations;
+            $job['job_type'] = $jobc->getTypesStr();
+            $job['skills'] = $jobc->getSkillsStr();
+            $job['posted_at'] = strtotime($jobc->posted_date);
+            $job['is_applied'] = $user->isAppliedOnJob($job->id);
+            $job['skillmatches'] = $user->profileMatch($job->id);
+        });   
+        $joblist = $jobs['joblist']->items();     
+
         $breakpoint = JobScreeningQuiz::whereJobId($job->id)->whereBreakpoint('yes')->first();
         $response = array(
                 'job' => $job, 
+                'relevant_job' => $joblist, 
                 'company_slug' => $job->company->slug??'', 
                 'breakpoint' => $breakpoint
             );
         return $this->sendResponse($response);
     }
 
+    /**
+     * return error response.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function companyDetail($slug)
     {
         $companies= Company::where('slug', $slug)->pluck('id')->first();
@@ -215,6 +234,11 @@ class JobsController extends BaseController
         return $this->sendResponse($response);
     }
     
+    /**
+     * return error response.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function advancedFilter()
     {
         $queries = JobSearch::whereIsActive(1);
