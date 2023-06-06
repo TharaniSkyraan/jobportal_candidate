@@ -213,6 +213,7 @@ class JobsController extends BaseController
             'contact_email'=>$job->contact_person_details->email??'',
             'contact_phone'=>$job->contact_person_details->phone_1??'',
             'contact_alternative'=>$job->contact_person_details->phone_2??'',
+            'skillmatches' => $user->profileMatch($job->id)
        
         );
 
@@ -226,7 +227,6 @@ class JobsController extends BaseController
             $rjob['posted_at'] = strtotime($jobc->posted_date);
             $rjob['is_applied'] = $user->isAppliedOnJob($jobc->id);
             $rjob['is_favourite'] = $user->isFavouriteJob($jobc->slug);
-            $rjob['skillmatches'] = $user->profileMatch($jobc->id);
         });   
         $joblist = $jobs['joblist']->items();     
 
