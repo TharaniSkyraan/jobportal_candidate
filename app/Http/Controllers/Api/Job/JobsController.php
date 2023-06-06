@@ -33,6 +33,7 @@ class JobsController extends BaseController
     {
         $user_id = Auth::user()->id??710;        
         $user = User::find($user_id);
+        dd($user_id);
         $appliedjobs = JobApply::where('user_id',$user_id)
                         ->where('application_status',['view','shortlist','consider'])
                         ->take(3)
@@ -115,30 +116,15 @@ class JobsController extends BaseController
             $joblist = JobSearch::where('id',0)->paginate(15);
             $filters = array();
         }else{
-            if(isset($request->citylFGid)){
-                $citylFGid = explode(',',$request->citylFGid);
-            }
-            if(isset($request->salaryFGid)){
-                $salaryFGid = explode(',',$request->salaryFGid);
-            }
-            if(isset($request->jobtypeFGid)){
-                $jobtypeFGid = explode(',',$request->jobtypeFGid);
-            }
-            if(isset($request->jobshiftFGid)){
-                $jobshiftFGid = explode(',',$request->jobshiftFGid);
-            }
-            if(isset($request->edulevelFGid)){
-                $edulevelFGid = explode(',',$request->edulevelFGid);
-            }
-            if(isset($request->wfhtypeFid)){
-                $wfhtypeFid = explode(',',$request->wfhtypeFid);
-            }
-            if(isset($request->industrytypeGid)){
-                $industrytypeGid = explode(',',$request->industrytypeGid);
-            }
-            if(isset($request->functionalareaGid)){
-                $functionalareaGid = explode(',',$request->functionalareaGid);
-            }
+            $citylFGid = $request->citylFGid;
+            $salaryFGid = $request->salaryFGid;
+            $jobtypeFGid = $request->jobtypeFGid;
+            $jobshiftFGid = $request->jobshiftFGid;
+            $edulevelFGid = $request->edulevelFGid;
+            $wfhtypeFid = $request->wfhtypeFid;
+            $industrytypeGid = $request->industrytypeGid;
+            $functionalareaGid = $request->functionalareaGid;
+
             $filter['experienceFid']  = $experienceFid;        
             $filter['citylFGid']  = count($citylFGid)!=0?',('.implode('|',$citylFGid).'),':'';
             $filter['jobtypeFGid']  = count($jobtypeFGid)!=0?',('.implode('|',$jobtypeFGid).'),':'';
@@ -162,8 +148,8 @@ class JobsController extends BaseController
                 $job['is_applied'] = $user->isAppliedOnJob($job->job_id);
                 $job['is_favourite'] = $user->isFavouriteJob($job->slug);
             });   
-            $joblist = $jobs['joblist']->items();     
 
+            $joblist = $jobs['joblist']->items();  
             $joblist = $joblist;
             $filters = $jobs['filters'];
         
