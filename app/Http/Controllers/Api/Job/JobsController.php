@@ -217,16 +217,16 @@ class JobsController extends BaseController
         );
 
         $jobs = $this->fetchJobs($job->title, '', [], 10);
-        $jobs['joblist']->each(function ($job, $key) use($user) {
-            $jobc = Job::find($job->job_id);
-            $job['company_image'] = $jobc->company->company_image??'';
-            $job['location'] = $job->work_locations;
-            $job['job_type'] = $jobc->getTypesStr();
-            $job['skills'] = $jobc->getSkillsStr();
-            $job['posted_at'] = strtotime($jobc->posted_date);
-            $job['is_applied'] = $user->isAppliedOnJob($job->id);
-            $job['is_favourite'] = $user->isFavouriteJob($job->slug);
-            $job['skillmatches'] = $user->profileMatch($job->id);
+        $jobs['joblist']->each(function ($rjob, $key) use($user) {
+            $jobc = Job::find($rjob->job_id);
+            $rjob['company_image'] = $jobc->company->company_image??'';
+            $rjob['location'] = $job->work_locations;
+            $rjob['job_type'] = $jobc->getTypesStr();
+            $rjob['skills'] = $jobc->getSkillsStr();
+            $rjob['posted_at'] = strtotime($jobc->posted_date);
+            $rjob['is_applied'] = $user->isAppliedOnJob($rjob->id);
+            $rjob['is_favourite'] = $user->isFavouriteJob($rjob->slug);
+            $rjob['skillmatches'] = $user->profileMatch($rjob->id);
         });   
         $joblist = $jobs['joblist']->items();     
 
