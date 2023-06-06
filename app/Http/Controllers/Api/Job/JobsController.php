@@ -198,6 +198,9 @@ class JobsController extends BaseController
         $exclude_days = isset($job->walkin->exclude_days)?'(Excluding'. $job->walkin->exclude_days.')':'';
         $job_skill_id = $job->getSkillsArray();
         $skills = DataArrayHelper::langSkillsArray();
+
+        dd($skills);
+        
         $jobd = array(
             'id'=>$job->id,
             'slug'=>$job->slug,
