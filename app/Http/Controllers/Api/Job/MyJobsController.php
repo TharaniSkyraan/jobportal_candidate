@@ -193,6 +193,7 @@ class MyJobsController extends BaseController
                                 'skills'=>$job->getSkillsStr(),
                                 'posted_at'=>strtotime($job->posted_date),
                                 'is_applied'=>$user->isAppliedOnJob($job->id),
+                                'is_favourite' => $user->isFavouriteJob($job->slug)
                             );
                             return $val;
                         }, $jobs->toArray()['data']); 

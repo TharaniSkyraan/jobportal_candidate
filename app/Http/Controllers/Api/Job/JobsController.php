@@ -66,6 +66,7 @@ class JobsController extends BaseController
             $job['skills'] = $jobc->getSkillsStr();
             $job['posted_at'] = strtotime($jobc->posted_date);
             $job['is_applied'] = $user->isAppliedOnJob($job->job_id);
+            $job['is_favourite'] = $user->isFavouriteJob($job->slug);
         });   
         $joblist = $jobs['joblist']->items();     
 
@@ -159,6 +160,7 @@ class JobsController extends BaseController
                 $job['skills'] = $jobc->getSkillsStr();
                 $job['posted_at'] = strtotime($jobc->posted_date);
                 $job['is_applied'] = $user->isAppliedOnJob($job->job_id);
+                $job['is_favourite'] = $user->isFavouriteJob($job->slug);
             });   
             $joblist = $jobs['joblist']->items();     
 
@@ -211,6 +213,7 @@ class JobsController extends BaseController
             'education_type'=>$job->getEducationTypesStr(),
             'posted_at'=>strtotime($job->posted_date),
             'is_applied'=>$user->isAppliedOnJob($job->id),
+            'is_favourite'=>$user->isFavouriteJob($job->slug),
             'contact_info'=>strtotime($job->posted_date),
         );
 
@@ -223,13 +226,14 @@ class JobsController extends BaseController
             $job['skills'] = $jobc->getSkillsStr();
             $job['posted_at'] = strtotime($jobc->posted_date);
             $job['is_applied'] = $user->isAppliedOnJob($job->id);
+            $job['is_favourite'] = $user->isFavouriteJob($job->slug);
             $job['skillmatches'] = $user->profileMatch($job->id);
         });   
         $joblist = $jobs['joblist']->items();     
 
         $breakpoint = JobScreeningQuiz::whereJobId($job->id)->whereBreakpoint('yes')->first();
         $response = array(
-                'job' => $job, 
+                'job' => $jobd, 
                 'relevant_job' => $joblist, 
                 'company_slug' => $job->company->slug??'', 
                 'breakpoint' => $breakpoint
