@@ -81,7 +81,6 @@ class JobsController extends BaseController
             );
 
         $response = array(
-                        'appliedlist' => $appliedlist, 
                         'jobs' => $joblist, 
                         'user' => $userData, 
                     );
@@ -236,7 +235,7 @@ class JobsController extends BaseController
                 'job' => $jobd, 
                 'relevant_job' => $joblist, 
                 'company_slug' => $job->company->slug??'', 
-                'breakpoint' => $breakpoint
+                'breakpoint' => $breakpoint??''
             );
         return $this->sendResponse($response);
     }
