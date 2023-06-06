@@ -199,7 +199,7 @@ class JobsController extends BaseController
             'salary'=>$job->salary_string,
             'job_type'=>$job->getTypesStr(),
             'skills'=>$job->getSkillsStr(),
-            'match_skills'=>$skill,
+            'match_skills'=>implode(',',$skill),
             'supplementals'=>$job->supplementals,
             'benefits'=>$job->benefits,
             'education_level'=>$job->getEducationLevel('education_level'),
