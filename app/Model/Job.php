@@ -14,14 +14,12 @@ use Illuminate\Support\Arr;
 
 class Job extends Model
 {
-
-
     use Active, featured, CountryStateCity, SoftDeletes;
 
     protected $table = 'jobs';
     public $timestamps = true;
     protected $guarded = ['id'];
-    // protected $dateFormat = 'U';
+// protected $dateFormat = 'U';
     protected $dates = ['created_at', 'updated_at', 'expiry_date', 'posted_date'];
     protected $appends = ['designation','experience_string','salary_string','work_locations','benefits','supplementals','shortlistedcount'];
     protected $fillable = [

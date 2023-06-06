@@ -83,6 +83,7 @@ class JobsController extends BaseController
         $response = array(
                         'jobs' => $joblist, 
                         'user' => $userData, 
+                        'appliedlist' => $appliedlist
                     );
 
         return $this->sendResponse($response);
@@ -194,6 +195,9 @@ class JobsController extends BaseController
         if($job==NULL){
             return $this->sendError('No Job Available.'); 
         }
+        $exclude_days = isset($job->walkin->exclude_days)?'(Excluding'. $job->walkin->exclude_days.')':'';
+        $job_skill_id = $job->getSkillsArray();
+        $skills = DataArrayHelper::langSkillsArray();
         $jobd = array(
             'id'=>$job->id,
             'slug'=>$job->slug,
@@ -205,7 +209,7 @@ class JobsController extends BaseController
             'experience'=>$job->experience_string,
             'salary'=>$job->salary_string,
             'job_type'=>$job->getTypesStr(),
-            'skills'=>$job->getSkillsStr(),
+            'skills'=>$job->getSkillsArray(),
             'supplementals'=>$job->supplementals,
             'benefits'=>$job->benefits,
             'education_level'=>$job->getEducationLevel('education_level'),
@@ -213,7 +217,14 @@ class JobsController extends BaseController
             'posted_at'=>strtotime($job->posted_date),
             'is_applied'=>$user->isAppliedOnJob($job->id),
             'is_favourite'=>$user->isFavouriteJob($job->slug),
-            'contact_info'=>strtotime($job->posted_date),
+            'walkin' => isset($job->walkin)?'yes':'no',
+            'walkin_date' => (isset($job->walkin)?(Carbon::parse($job->walkin->walk_in_from_date)->format('d F, Y').' to '.Carbon::parse($job->walkin->walk_in_to_date)->format('d F, Y')).$exclude_days:''),
+            'walkin_time' => (isset($job->walkin)?(Carbon::parse($job->walkin->walk_in_from_time)->format('H:i A').' to '.Carbon::parse($job->walkin->walk_in_to_time)->format('H:i A')):''),
+            'contact_name'=>$job->contact_person_details->name??'',
+            'contact_email'=>$job->contact_person_details->email??'',
+            'contact_phone'=>$job->contact_person_details->phone_1??'',
+            'contact_alternative'=>$job->contact_person_details->phone_2??'',
+       
         );
 
         $jobs = $this->fetchJobs($job->title, '', [], 10);
