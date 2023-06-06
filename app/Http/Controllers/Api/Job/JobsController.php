@@ -220,7 +220,7 @@ class JobsController extends BaseController
         $jobs['joblist']->each(function ($rjob, $key) use($user) {
             $jobc = Job::find($rjob->job_id);
             $rjob['company_image'] = $jobc->company->company_image??'';
-            $rjob['location'] = $job->work_locations;
+            $rjob['location'] = $rjob->work_locations;
             $rjob['job_type'] = $jobc->getTypesStr();
             $rjob['skills'] = $jobc->getSkillsStr();
             $rjob['posted_at'] = strtotime($jobc->posted_date);
