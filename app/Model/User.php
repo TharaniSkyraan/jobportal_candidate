@@ -341,7 +341,7 @@ class User extends Authenticatable
             $percentage = round($percent,2);
         }
 
-        return $percentage;
+        return round($percentage,2);
 
     }
     /******************** */
