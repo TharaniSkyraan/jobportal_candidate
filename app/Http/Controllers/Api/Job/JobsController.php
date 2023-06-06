@@ -182,10 +182,9 @@ class JobsController extends BaseController
             return $this->sendError('No Job Available.'); 
         }
         $exclude_days = isset($job->walkin->exclude_days)?'(Excluding'. $job->walkin->exclude_days.')':'';
-        $job_skill_id = $job->getSkillsArray();
-        $skills = DataArrayHelper::langSkillsArray();
-
-        dd($skills);
+        $job_skill_id = explode(',',$job->getSkillsStr());
+        $skills = explode(',',$user->getUserSkillsStr('skill'));
+        $skill = array_intersect($job_skill_id,$skills);
         
         $jobd = array(
             'id'=>$job->id,
@@ -198,7 +197,8 @@ class JobsController extends BaseController
             'experience'=>$job->experience_string,
             'salary'=>$job->salary_string,
             'job_type'=>$job->getTypesStr(),
-            'skills'=>$job->getSkillsArray(),
+            'skills'=>$job->getSkillsStr(),
+            'match_skills'=>$skill,
             'supplementals'=>$job->supplementals,
             'benefits'=>$job->benefits,
             'education_level'=>$job->getEducationLevel('education_level'),
