@@ -67,7 +67,7 @@ class JobsController extends BaseController
             $job['skills'] = $jobc->getSkillsStr();
             $job['posted_at'] = strtotime($jobc->posted_date);
             $job['is_applied'] = $user->isAppliedOnJob($job->job_id);
-            $job['is_favourite'] = $user->isFavouriteJob($job->slug);
+            $job['is_favourite'] = $user->isFavouriteJob($jobc->slug);
         });   
         $joblist = $jobs['joblist']->items();     
 
@@ -146,7 +146,7 @@ class JobsController extends BaseController
                 $job['skills'] = $jobc->getSkillsStr();
                 $job['posted_at'] = strtotime($jobc->posted_date);
                 $job['is_applied'] = $user->isAppliedOnJob($job->job_id);
-                $job['is_favourite'] = $user->isFavouriteJob($job->slug);
+                $job['is_favourite'] = $user->isFavouriteJob($jobc->slug);
             });   
 
             $joblist = $jobs['joblist']->items();  
@@ -182,7 +182,7 @@ class JobsController extends BaseController
             return $this->sendError('No Job Available.'); 
         }
         $exclude_days = isset($job->walkin->exclude_days)?'(Excluding'. $job->walkin->exclude_days.')':'';
-       dd($job->getSkillsStr());
+        dd($job->getSkillsStr());
         $job_skill_id = explode(',',$job->getSkillsStr());
         $skills = explode(',',$user->getUserSkillsStr('skill'));
         $skill = array_intersect($job_skill_id,$skills);
@@ -225,9 +225,9 @@ class JobsController extends BaseController
             $rjob['job_type'] = $jobc->getTypesStr();
             $rjob['skills'] = $jobc->getSkillsStr();
             $rjob['posted_at'] = strtotime($jobc->posted_date);
-            $rjob['is_applied'] = $user->isAppliedOnJob($rjob->id);
-            $rjob['is_favourite'] = $user->isFavouriteJob($rjob->slug);
-            $rjob['skillmatches'] = $user->profileMatch($rjob->id);
+            $rjob['is_applied'] = $user->isAppliedOnJob($jobc->id);
+            $rjob['is_favourite'] = $user->isFavouriteJob($jobc->slug);
+            $rjob['skillmatches'] = $user->profileMatch($jobc->id);
         });   
         $joblist = $jobs['joblist']->items();     
 
