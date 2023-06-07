@@ -116,6 +116,32 @@ class JobsController extends BaseController
             $joblist = JobSearch::where('id',0)->paginate(15);
             $filters = array();
         }else{
+            
+            if(isset($request->citylFGid)){
+                $citylFGid = explode(',',$request->citylFGid);
+            }
+            if(isset($request->salaryFGid)){
+                $salaryFGid = explode(',',$request->salaryFGid);
+            }
+            if(isset($request->jobtypeFGid)){
+                $jobtypeFGid = explode(',',$request->jobtypeFGid);
+            }
+            if(isset($request->jobshiftFGid)){
+                $jobshiftFGid = explode(',',$request->jobshiftFGid);
+            }
+            if(isset($request->edulevelFGid)){
+                $edulevelFGid = explode(',',$request->edulevelFGid);
+            }
+            if(isset($request->wfhtypeFid)){
+                $wfhtypeFid = explode(',',$request->wfhtypeFid);
+            }
+            if(isset($request->industrytypeGid)){
+                $industrytypeGid = explode(',',$request->industrytypeGid);
+            }
+            if(isset($request->functionalareaGid)){
+                $functionalareaGid = explode(',',$request->functionalareaGid);
+            }
+
             $citylFGid = $request->citylFGid;
             $salaryFGid = $request->salaryFGid;
             $jobtypeFGid = $request->jobtypeFGid;
@@ -134,6 +160,7 @@ class JobsController extends BaseController
             $filter['wfhtypeFid']  = $wfhtypeFid;
             $filter['industrytypeGid']  = $industrytypeGid;
             $filter['functionalareaGid']  = $functionalareaGid;
+
             $filter['posteddateFid']  = $posteddateFid;
             $filter['sortBy']  = $sortBy;
             
@@ -204,8 +231,6 @@ class JobsController extends BaseController
             'education_level'=>$job->getEducationLevel('education_level'),
             'education_type'=>$job->getEducationTypesStr(),
             'posted_at'=>strtotime($job->posted_date),
-            'is_applied'=>$user->isAppliedOnJob($job->id),
-            'is_favourite'=>$user->isFavouriteJob($job->slug),
             'walkin' => isset($job->walkin)?'yes':'no',
             'walkin_date' => (isset($job->walkin)?(Carbon::parse($job->walkin->walk_in_from_date)->format('d F, Y').' to '.Carbon::parse($job->walkin->walk_in_to_date)->format('d F, Y')).$exclude_days:''),
             'walkin_time' => (isset($job->walkin)?(Carbon::parse($job->walkin->walk_in_from_time)->format('H:i A').' to '.Carbon::parse($job->walkin->walk_in_to_time)->format('H:i A')):''),
@@ -213,7 +238,9 @@ class JobsController extends BaseController
             'contact_email'=>$job->contact_person_details->email??'',
             'contact_phone'=>$job->contact_person_details->phone_1??'',
             'contact_alternative'=>$job->contact_person_details->phone_2??'',
-            'skillmatches' => $user->profileMatch($job->id)
+            'skillmatches' => $user->profileMatch($job->id),
+            'is_applied'=>$user->isAppliedOnJob($job->id),
+            'is_favourite'=>$user->isFavouriteJob($job->slug)
        
         );
 
