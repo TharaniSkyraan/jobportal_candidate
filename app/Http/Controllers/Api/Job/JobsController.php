@@ -142,15 +142,6 @@ class JobsController extends BaseController
                 $functionalareaGid = explode(',',$request->functionalareaGid);
             }
 
-            $citylFGid = $request->citylFGid;
-            $salaryFGid = $request->salaryFGid;
-            $jobtypeFGid = $request->jobtypeFGid;
-            $jobshiftFGid = $request->jobshiftFGid;
-            $edulevelFGid = $request->edulevelFGid;
-            $wfhtypeFid = $request->wfhtypeFid;
-            $industrytypeGid = $request->industrytypeGid;
-            $functionalareaGid = $request->functionalareaGid;
-
             $filter['experienceFid']  = $experienceFid;        
             $filter['citylFGid']  = count($citylFGid)!=0?',('.implode('|',$citylFGid).'),':'';
             $filter['jobtypeFGid']  = count($jobtypeFGid)!=0?',('.implode('|',$jobtypeFGid).'),':'';
