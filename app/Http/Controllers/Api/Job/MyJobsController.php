@@ -243,7 +243,7 @@ class MyJobsController extends BaseController
     {
         $user_id = Auth::user()->id??1;
         $user = User::find($user_id);
-        $list = JobAlert::select('title','location','created_at')
+        $list = JobAlert::select('id','title','location','created_at')
                         ->whereUserId($user_id)
                         ->orderBy('created_at','asc')
                         ->paginate(10);
