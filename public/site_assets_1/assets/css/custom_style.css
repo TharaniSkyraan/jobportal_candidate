@@ -68,9 +68,8 @@
   padding: 0px 0 !important;
   
 } 
-
-.form-select{
-  font-size: unset !important;
+.form-select {
+  font-size: 14px !important;
 }
 
 .form-check-input{
@@ -82,7 +81,7 @@
   color: black !important;
   background-color: unset !important;
   border-radius: unset !important;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .wizard-tab ul .nav-item .nav-link{
@@ -147,7 +146,9 @@
 
 .tagsinput {
   border-color: #c5c5c5 !important;
-  font-family:  unset !important;
+  /* font-family:  unset !important; */
+	font-family: "Poppins";
+
 }
 
 .top-recruiters{
@@ -414,7 +415,8 @@
 [role="progressbar-after"]::after {
   counter-reset: percentage var(--value);
   content: counter(percentage) '% complete';
-  font-family: Helvetica, Arial, sans-serif;
+  /* font-family: Helvetica, Arial, sans-serif; */
+	font-family: "Poppins";
   font-size: calc(var(--size) / 5);
   color: var(--primary);
 }

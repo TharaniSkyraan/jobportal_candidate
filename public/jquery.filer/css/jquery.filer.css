@@ -15,7 +15,8 @@
 }
 
 .jFiler {
-    font-family: sans-serif;
+    /* font-family: sans-serif; */
+	font-family: "Poppins";
     font-size: 14px;
     color: #494949;
 }
@@ -146,7 +147,8 @@ span.jFiler-icon-file.f-audio {
     background: #fefefe;
     border: 1px solid #cecece;
     font-size: 12px;
-    font-family: sans-serif;
+    /* font-family: sans-serif; */
+	font-family: "Poppins";
     color: #888;
     border-radius: 4px;
     cursor: pointer;

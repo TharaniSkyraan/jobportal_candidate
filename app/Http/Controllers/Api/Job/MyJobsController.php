@@ -189,6 +189,7 @@ class MyJobsController extends BaseController
                                 'company_name'=>$job->company->name??'',
                                 'experience'=>$job->experience_string,
                                 'salary'=>$job->salary_string,
+                                'immediate_join' => $job->NoticePeriod !=null?$job->NoticePeriod->notice_period:'',
                                 'job_type'=>$job->getTypesStr(),
                                 'skills'=>$job->getSkillsStr(),
                                 'posted_at'=>strtotime($job->posted_date),
@@ -234,6 +235,15 @@ class MyJobsController extends BaseController
 
     }
 
+    /**
+     * return error response.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function AdvanceFilter()
+    {
+
+    }
     /**
      * return error response.
      *

@@ -222,6 +222,7 @@ class JobsController extends BaseController
             'education_level'=>$job->getEducationLevel('education_level'),
             'education_type'=>$job->getEducationTypesStr(),
             'posted_at'=>strtotime($job->posted_date),
+            'immediate_join' => $job->NoticePeriod !=null?$job->NoticePeriod->notice_period:'',
             'walkin' => isset($job->walkin)?'yes':'no',
             'walkin_date' => (isset($job->walkin)?(Carbon::parse($job->walkin->walk_in_from_date)->format('d F, Y').' to '.Carbon::parse($job->walkin->walk_in_to_date)->format('d F, Y')).$exclude_days:''),
             'walkin_time' => (isset($job->walkin)?(Carbon::parse($job->walkin->walk_in_from_time)->format('H:i A').' to '.Carbon::parse($job->walkin->walk_in_to_time)->format('H:i A')):''),

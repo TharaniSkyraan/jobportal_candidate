@@ -1081,7 +1081,7 @@ function createJoblistDiv(data,appliedJobids){
         html += '<div class="card jobcard" data-jobid="'+jobslug+'">';
             html += '<div class="card-body">';
                 html += '<div class="row mb-2">';
-                    html +='<div class="col-md-9 col-sm-9 col-xs-9 col-6"><h3 class="fw-bolder text-green-color ellipsis">'+title+'</h3></div>';
+                    html +='<div class="col-md-9 col-sm-9 col-xs-9 col-6"><h3 class="text-green-color ellipsis">'+title+'</h3></div>';
                     // html +='<div class="col-md-2 col-sm-2 col-xs-12" style="text-align: -webkit-right;"><button class="p-1 shadow-sm bg-color-blue rounded-pill" style="width:max-content"><img class="image-size" src="'+baseurl+''+baseurl+'site_assets_1/assets/img/apply2.png" alt="apply"> Apply</button></div>';
                     html +='<div class="col-md-3 col-sm-3 col-xs-3 col-6" style="text-align: -webkit-right;">';
                         if(appliedJobids.includes(job_id)){

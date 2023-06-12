@@ -37,7 +37,8 @@
       margin-top: 2px;
       width: 100%;
       box-sizing: border-box;
-      font-family: montserrat;
+      /* font-family: montserrat; */
+	  font-family: "Poppins";
       color: #2C3E50;
       background-color: #ECEFF1;
       font-size: 16px;
@@ -124,34 +125,41 @@
 
 
   #progressbar #personal:before {
-      font-family: FontAwesome;
+      /* font-family: FontAwesome; */
+	  font-family: "Poppins";
       content: "\f007"
   }
 
   #progressbar #job_info:before {
-      font-family: FontAwesome;
+      /* font-family: FontAwesome; */
+	  font-family: "Poppins";
       content: "\f0b1"
   }
 
   #progressbar #job_requirements:before {
-      font-family: FontAwesome;
+      /* font-family: FontAwesome; */
+	  font-family: "Poppins";
       content: "\f27e"
   }
 
   #progressbar #benefits:before {
-      font-family: FontAwesome;
+      /* font-family: FontAwesome; */
+	  font-family: "Poppins";
       content: "\f4c0"
   }
   #progressbar #contact_person:before {
-      font-family: FontAwesome;
+      /* font-family: FontAwesome; */
+	  font-family: "Poppins";
       content: "\f0c0"
   }
   #progressbar #screening:before {
-      font-family: FontAwesome;
+      /* font-family: FontAwesome; */
+	  font-family: "Poppins";
       content: "\f0b0"
   }
   #progressbar #budget:before {
-      font-family: FontAwesome;
+      /* font-family: FontAwesome; */
+	  font-family: "Poppins";
       content: "\f53c"
   }
 

@@ -100,13 +100,13 @@
             <div class="container">
                 <div class="hme_banner">
                     <div class="row">
-                        <div class="col-md-5 col-6 col-lg-5 mobile_bnr align-self-center">
+                        <div class="col-5 mobile_bnr align-self-center">
 
                             <img src="{{url('images/responsive_hpg_mobile.png')}}" alt="" width="100%">
 
                         </div>
-                        <div class="col-md-4  col-6 col-lg-4  align-self-center">
-                            <h1 class="mt-5">Begin your <br/><strong class="fw-bolder">Dream career.</strong></h1>
+                        <div class="col-5 align-self-center">
+                            <h1 class="mt-5">Begin your <br/><strong>Dream career.</strong></h1>
 
                             <p>
                                 1000+ Jobs posted all over the world
@@ -287,8 +287,8 @@
                     <div class="hmenear_job mt-5">
                         <div class="row">
                             <div class="col-md-6 col-6">
-                                <h2 class="fw-bolder">Jobs near you</h2>
-                                <h2 class="fw-bolder">{{$ip_data['city']??''}}</h2>
+                                <h2>Jobs near you</h2>
+                                <h2>{{$ip_data['city']??''}}</h2>
                             </div>
                             <div class="col-md-6 col-6 text-end align-self-end">
                                 <i id="passbtn" class="far fa-arrow-alt-circle-right cursor-pointer"></i>
@@ -301,7 +301,7 @@
                                     @foreach($near_job as $near)
                                         <div class="col-md-6 col-lg-4">
                                             <div class="card p-4 hm_gr cursor-pointer jobsearch">
-                                                <h3 class="fw-bolder jobsearchtitle">{{$near->title}}</h3>
+                                                <h3 class="jobsearchtitle">{{$near->title}}</h3>
                                                 <p>{{$near->company_name}}</p>
                                             </div>
                                         </div>
@@ -316,7 +316,7 @@
                                         <div class="col-md-6 col-lg-4">
                                             <a href="{{url('detail',$recent->slug)}}" class="text-dark">
                                                 <div class="card p-4 hm_gy cursor-pointer">
-                                                    <h3 class="fw-bolder">{{$recent->title}}</h3>
+                                                    <h3>{{$recent->title}}</h3>
                                                     <p>{{$recent->company_name}}</p>
                                                     <p>Experience: {{$recent->experience_string}}</p>
                                                     <p>Salary: {{$recent->salary_string}}</p>
@@ -366,7 +366,7 @@
                                                                     
                                                                         <div class="col-8">
                                                                             
-                                                                            <h3 class="fw-bolder">{{$joblist->title}}</h3>
+                                                                            <h4 class="fw-bolder">{{$joblist->title}}</h4>
                                                                             <p>{{$joblist->total_count}} + jobs</p>
 
                                                                         </div>
@@ -393,7 +393,7 @@
                                                                 <div class="card hm_grn cursor-pointer topcities">
                                                                     <div class="row">
                                                                         <div class="col-6">
-                                                                            <h3 class="fw-bolder city">{{$cities->city}}</h3>
+                                                                            <h4 class="fw-bolder city">{{$cities->city}}</h4>
                                                                             <p>{{$cities->total_count}} + jobs</p>
                                                                         </div>
                                                                         <div class="col-6 d-flex align-items-center justify-content-center">
@@ -422,7 +422,7 @@
                                                                             <img src="{{url('images/hme_designing.png')}}" width="100%">
                                                                         </div>
                                                                         <div class="col-8 align-self-center">
-                                                                            <h3 class="fw-bolder sector">{{$sector->industry}}</h3>
+                                                                            <h4 class="fw-bolder sector">{{$sector->industry}}</h4>
                                                                             <p>{{$sector->jobsearch_count}} + jobs
                                                                             <div class="test22"><i class="fas fa-angle-right"></i></div>
                                                                             </p>

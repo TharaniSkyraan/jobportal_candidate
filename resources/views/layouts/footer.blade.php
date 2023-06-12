@@ -82,7 +82,7 @@
         <div class="col-md-7 system_vw home_cities">
           <div class="row">
             <div class="col-md-4">
-              <h3 class="fw-bolder">Jobs by Cities</h3>
+              <h3 class="">Jobs by Cities</h3>
               <ul>
                 <li class="footer-city cursor-pointer">Coimbatore</li>
                 <li class="footer-city cursor-pointer">Chennai</li>
@@ -92,7 +92,7 @@
             </div>
 
             <div class="col-md-4">
-              <h3 class="fw-bolder">Jobs by Sectors</h3>
+              <h3 class="">Jobs by Sectors</h3>
               <ul>
                 <li class="footer-search cursor-pointer">Automobile</li>
                 <li class="footer-search cursor-pointer">Marketting</li>
@@ -102,7 +102,7 @@
             </div>
 
             <div class="col-md-4">
-              <h3 class="fw-bolder">Jobs by type</h3>
+              <h3 class="">Jobs by type</h3>
               <ul>
                 <li class="footer-search cursor-pointer">Shift wise jobs</li>
                 <li class="footer-search cursor-pointer">Part-time</li>

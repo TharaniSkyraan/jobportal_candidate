@@ -2,7 +2,9 @@ body {
     background: #F3F7FE !important;
     min-height: auto !important;
 }
-
+.fw-bold{
+    font-weight: 500!important;
+}
 /* typehead css starts*/
 .navbar-toggler, .sidenav-toggler, .ml-auto{
     display:none !important;
@@ -147,9 +149,11 @@ body {
 }
 .jd_txt{
     font-size:.865rem;
+    color: #313131;
 }
 .cmp_name{
-    font-size:1rem;
+    font-size:14px;
+    color: #535353;
 }
 .tt_txt{
     /* font-size:.95rem; */
@@ -666,19 +670,11 @@ section.registrationContainer .registrationBody .registerText {
     border-radius: 0.25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
-.search-button-bg{
-    background-color: #4285F4;
-    color: #fff;
-}
-.search-button-bg:hover{
-    background-color: #4285F4;
-    color: #fff;
-    opacity: 1;
-}
 
 .search-button-bg:focus{
     /* box-shadow: 0 0 0 2px #fff, 0 0 0 3px #2557a7f2 !important; */
     box-shadow: 0 0 0 2px #4285f4, 0 0 0 4px #fff !important;
+
 }
 
 input[type=range] {
@@ -799,12 +795,12 @@ input[type="range" i] {
 .search-button-bg {
     background-color: #F9E955;
     color: #000;
-    font-weight: 600;
+    /* font-weight: 500; */
 }
 .search-button-bg:hover {
-background-color: #fef392;
-color: #212529;
-opacity: 1;
+    background-color: #fef392;
+    color: #212529;
+    opacity: 1;
 }
 .resentsearch{
     font-size: 1rem;

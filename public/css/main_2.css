@@ -599,19 +599,16 @@ filter search
     }
     
 
-    #homepage_stn p{
-        font-size: 16px;
-    }
-
     #homepage_stn h1{
         font-size: 40px;
+        font-weight: 400;
     }
 
     .search_hme .btn-success {
         background: #f9e955 !important;
         border-color: #f9e955 !important;
         color: #000;
-        font-weight: bold;
+        /* font-weight: bold; */
     }
 
     .search_hme .bg-primary{
@@ -694,7 +691,7 @@ filter search
     }
 
     .candimg_col h2.fw-bolder{
-        font-weight: bolder!important;
+        font-weight: 500!important;
         font-size: 18px;
         text-transform: uppercase;
 
@@ -927,6 +924,7 @@ filter search
         -webkit-box-orient: vertical;
         text-overflow: ellipsis;
         overflow: hidden;
+        font-weight: 500 !important;
     } 
 
     .candpcard .fa-angle-right:hover{
@@ -2177,10 +2175,6 @@ filter search
             font-size: 1.1rem;
         }
 
-        #homepage_stn p{
-            font-size: 14px;
-        }
-
         .rectsear_hme h3{
             font-size: 16px;
         }
@@ -2343,10 +2337,6 @@ filter search
             display: flex;
         }
 
-
-        #homepage_stn p{
-            font-size: 16px;
-        }
 
         .hme_banner {
             
@@ -2580,10 +2570,6 @@ filter search
 
 
     @media(min-width: 768px) and (max-width:1024px)  {
-
-    #homepage_stn p{
-        font-size: 16px;
-    }
 
     #cdate_assesment{
         height: 1000px;

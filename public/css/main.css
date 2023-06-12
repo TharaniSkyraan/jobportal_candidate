@@ -90,7 +90,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 body {
 	line-height: 1;
-	font-family: 'Open Sans', sans-serif;
+	/* font-family: 'Open Sans', sans-serif; */
+font-family: "Poppins";
+
 	font-size: 14px;
 }
 ol, ul {
@@ -108,7 +110,9 @@ table {
 	border-spacing: 0;
 }
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Montserrat', sans-serif;
+	/* font-family: 'Montserrat', sans-serif; */
+font-family: "Poppins";
+
 	margin-bottom: 10px;
 	font-weight: 600;
 }
@@ -776,7 +780,9 @@ h3.seekertxt span{color: #009c46;}
 	color: #fff;
 	text-align: center;
 	font-size: 30px;
-	font-family: 'FontAwesome';
+	/* font-family: 'FontAwesome'; */
+font-family: "Poppins";
+
 	line-height: 60px;
 }
 .tp-leftarrow .tp-arr-iwrapper {
@@ -1053,7 +1059,8 @@ background:#adb5bd
 }
 .icon-envelope {
 	content: "\f003";
-	font-family: 'FontAwesome';
+	font-family: "Poppins";
+	/* font-family: 'FontAwesome'; */
 }
 .ps-scrollbar-x-rail {
 	display: none;
@@ -1332,7 +1339,9 @@ background:#adb5bd
 	line-height: 48px !important;
 	padding: 15px 0 !important;
 	text-transform: none !important;
-	font-family: 'Montserrat', sans-serif;
+	/* font-family: 'Montserrat', sans-serif; */
+font-family: "Poppins";
+
 	max-width: 550px;
     white-space: break-spaces;
 }
@@ -1354,7 +1363,9 @@ background:#adb5bd
 	text-transform: capitalize !important;
 	text-align: left;
 	background: #5e2dfa;
-	font-family: 'Montserrat', sans-serif;
+	/* font-family: 'Montserrat', sans-serif; */
+font-family: "Poppins";
+
 	border-radius:45px;
 }
 /************************************************
@@ -1483,7 +1494,9 @@ background:#adb5bd
 	position: absolute;
 	left: 0;
 	content: '\f0da';
-	font-family: 'FontAwesome';
+	/* font-family: 'FontAwesome'; */
+font-family: "Poppins";
+
 	font-weight: 400;
 }
 .catelist li span {
@@ -1770,7 +1783,9 @@ label.partTime[title="Rotating"] {
 	font-weight: 700;
 	padding:15px 0 5px 0;
 	color: #333;
-	font-family: 'Montserrat', sans-serif;
+	font-family: "Poppins";
+	/* font-family: 'Montserrat', sans-serif; 
+	*/
 }
 .testimonialsList li p {
 	font-style: italic;
@@ -1779,7 +1794,9 @@ label.partTime[title="Rotating"] {
 	color: #333;
 }
 .testimonialsList li .clientinfo {
-	font-family: 'Montserrat', sans-serif;
+	/* font-family: 'Montserrat', sans-serif; */
+font-family: "Poppins";
+
 	font-weight: 600;
 	color: #17d27c;
 	margin-bottom: 15px;
@@ -1982,7 +1999,9 @@ label.partTime[title="Rotating"] {
 }
 .optionlist li input[type=checkbox]:checked + label:before {
 	content: '\f00c';
-	font-family: 'FontAwesome';
+	/* font-family: 'FontAwesome'; */
+font-family: "Poppins";
+
 	color: #4ece00;
 	padding-left: 2px;
 	position: relative;
@@ -2378,7 +2397,9 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endCo
 }
 .job-header .contentbox ul li:before {
 	content: '\f00c';
-	font-family: 'FontAwesome';
+	/* font-family: 'FontAwesome'; */
+font-family: "Poppins";
+
 	color: #17d27c;
 	position: absolute;
 	left: 0;
@@ -2742,7 +2763,9 @@ ul.skillslist li a:hover{text-decoration: none; background:#17d27c; color: #fff;
 .faqs h4 a:before {
 	content: "\f068";
 	background: #fff;
-	font-family: 'FontAwesome';
+	/* font-family: 'FontAwesome'; */
+font-family: "Poppins";
+
 	width: 30px;
 	padding: 6px 0;
 	color: #5e2dfa;
@@ -2759,7 +2782,9 @@ ul.skillslist li a:hover{text-decoration: none; background:#17d27c; color: #fff;
 }
 .faqs h4 .collapsed:before {
 	content: "\f067";
-	font-family: 'FontAwesome';
+	/* font-family: 'FontAwesome'; */
+font-family: "Poppins";
+
 	background: #666;
 	width: 30px;
 	padding: 6px 0;
@@ -3049,7 +3074,9 @@ ul.skillslist li a:hover{text-decoration: none; background:#17d27c; color: #fff;
 }
 .about-wraper ul li:before {
 	content: '\f18e';
-	font-family: 'FontAwesome';
+	/* font-family: 'FontAwesome'; */
+font-family: "Poppins";
+
 	position: absolute;
 	left: 0;
 }
@@ -3120,7 +3147,9 @@ ul.orderlist li {
 }
 ul.orderlist li:before {
 	content: '\f00c';
-	font-family: 'FontAwesome';
+	/* font-family: 'FontAwesome'; */
+font-family: "Poppins";
+
 	display: inline-block;
 	margin-right: 10px;
 	vertical-align: middle;
@@ -3641,7 +3670,9 @@ blockquote p {
 blockquote:before {
 	color: #ddd;
 	content: "\f10d";
-	font-family: 'FontAwesome';
+	/* font-family: 'FontAwesome'; */
+font-family: "Poppins";
+
 	font-size: 22px;
 	font-style: normal;
 	left: 24px;
@@ -3653,7 +3684,9 @@ blockquote:after {
 	color: #ddd;
 	content: "\f10e";
 	display: inline-block;
-	font-family: 'FontAwesome';
+	/* font-family: 'FontAwesome'; */
+font-family: "Poppins";
+
 	font-size: 22px;
 	font-style: normal;
 	margin: 0 0 0 8px;
@@ -3806,7 +3839,9 @@ blockquote:after {
 }
 .categories li:before {
 	content: "\f0da ";
-	font-family: 'FontAwesome';
+	/* font-family: 'FontAwesome'; */
+font-family: "Poppins";
+
 	position: absolute;
 	left: 0px;
 	color: #17d27c;
@@ -4330,7 +4365,9 @@ blockquote:after {
 }
 .footerWrap .quicklinks li a:before {
 	content: '\f0da';
-	font-family: 'FontAwesome';
+	/* font-family: 'FontAwesome'; */
+font-family: "Poppins";
+
 	margin-right: 7px;
 }
 .footerWrap .quicklinks li a:hover {

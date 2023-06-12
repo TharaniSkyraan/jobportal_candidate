@@ -15,7 +15,7 @@
         border-color: #4285f470;
         background-color: #48abf717 !important;
         padding: 0.46rem 0.85rem!important;
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
     .japply-btn:hover{
         opacity: 1;
@@ -140,6 +140,9 @@
           max-width: 665px !important;
       }
     }
+    .fw-bold{
+        font-weight:500 !important;
+    }
 </style>
 
 <div class="header" id="myHeader">
@@ -149,8 +152,8 @@
                 <div class="row">
                     <div class="col-6">
                         <div class="col-md-8 col-sm-8 col-xs-12 mx-2">
-                            <h4 class="fw-bolder text-green-color jt-ellip">{{ ucwords($job->title) }}</h4>
-                            <h6 class="fw-bolder text-dark m-0">{{ ucwords($job->company_name??$job->company->name) }}.</h6>
+                            <h4 class=" text-green-color jt-ellip">{{ ucwords($job->title) }}</h4>
+                            <h6 class=" text-dark m-0">{{ ucwords($job->company_name??$job->company->name) }}.</h6>
                         </div>
                     </div>
                     <div class="col-6 text-end align-self-center">
@@ -167,7 +170,7 @@
                                 @endif
                                 
                                 <label class="japplied-btn">
-                                    <img class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class="fw-bolder fs-6">Applied</span>
+                                    <img class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class=" fs-6">Applied</span>
                                 </label>
                             </div>
                             <div class="col-2 align-self-center text-center">
@@ -209,8 +212,8 @@
                         <div class="mb-1">
                             <div class="row">
                                 <div class="col-md-8 col-sm-8 col-xs-12">
-                                    <h2 class="fw-bolder text-green-color jt-ellip">{{ ucwords($job->title) }}</h2>
-                                    <h4 class="fw-bolder pb-2">{{ ucwords($job->company_name??$job->company->name) }}.</h4>
+                                    <h2 class=" text-green-color jt-ellip">{{ ucwords($job->title) }}</h2>
+                                    <h4 class=" pb-2">{{ ucwords($job->company_name??$job->company->name) }}.</h4>
                                 </div>
                                 <div class="col-md-4 col-sm-8 col-xs-12" style="text-align: -webkit-right;">
                                     <div class="d-flex align-items-center justify-content-end">
@@ -225,7 +228,7 @@
                                         @endif
                                         
                                         <label class="japplied-btn">
-                                            <img class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class="fw-bolder fs-6">Applied</span>
+                                            <img class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class=" fs-6">Applied</span>
                                         </label>
                                         @php
                                         $is_fav = 'no';
@@ -260,14 +263,14 @@
                     </div>
                     <div class="card-body jdcarc">
                         <div class="mb-1">
-                            <h4 class="mb-3 text-green-color fw-bolder">Job Description</h4>
+                            <h4 class="mb-3 text-green-color ">Job Description</h4>
                             <div class="jobdesbcontar">{!! $job->description !!}</div>
                         </div>
                     </div>
                     @if(!empty($job->additional_description))
                     <div class="card-body jdcarc">
                         <div class="mb-1">
-                            <h4 class="mb-3 text-green-color fw-bolder">Required Candidate Profile</h4>
+                            <h4 class="mb-3 text-green-color ">Required Candidate Profile</h4>
                             <div>{!! $job->additional_description !!}</div>
                         </div>
                     </div>
@@ -275,7 +278,7 @@
                     
                     <div class="card-body jdcarc">
                         <div class="mb-1">
-                            <h4 class="mb-2 text-green-color fw-bolder">Skills</h4>
+                            <h4 class="mb-2 text-green-color ">Skills</h4>
                             <div>
                                 @php
                                     $skillarr = $job->skill?array_column(json_decode($job->skill), 'value'):null;
@@ -292,7 +295,7 @@
                     
                     <div class="card-body jdcarc">
                         <div class="mb-3">
-                            <h4 class="mb-1 text-green-color fw-bolder">Education</h4>
+                            <h4 class="mb-1 text-green-color ">Education</h4>
                             <div><p class="jejed">{{$job->educationLevel->education_level??'Any Degree'}} @if($job->is_any_education_level !='yes' && $job->is_any_education=='yes') - (Any) @endif</p></div>
                             <div class="jejedtype">@if($job->is_any_education!='yes') <li class="mb-2">Specialization : {{ $job->getEducationTypesStr() }} </li>@endif</div>
                         </div>
@@ -300,7 +303,7 @@
 
                     <div class="card-body jdcarc">
                         <div class="mb-3">
-                            <h4 class="mb-1 text-green-color fw-bolder">Job Type</h4>
+                            <h4 class="mb-1 text-green-color ">Job Type</h4>
                             {{-- <ul>
                                 @foreach($job->jobtypes as $types)
                                 <li>{{$types->type->type}}</li>
@@ -339,7 +342,7 @@
 
                         @if(count($job->jobshifts)!=0)
                         <div class="mb-3">
-                            <h4 class="mb-1 text-green-color fw-bolder">Job Shift</h4>
+                            <h4 class="mb-1 text-green-color ">Job Shift</h4>
                             <ul>
                                 @foreach($job->jobshifts as $shifts)
                                 <li>{{$shifts->shift->shift}}</li>
@@ -353,19 +356,19 @@
                     <div class="card-body jdcarc">
                         @if(!empty($job->benefits))
                         <div class="mb-3">
-                            <h4 class="mb-1 text-green-color fw-bolder">Cash Benefits</h4>
+                            <h4 class="mb-1 text-green-color ">Cash Benefits</h4>
                             <div><p>{{ rtrim($job->benefits,', ') }}</p></div>
                         </div>
                         @endif
                         @if(!empty($job->supplementals))
                         <div class="mb-3">
-                            <h4 class="mb-1 text-green-color fw-bolder">Supplemental Pay</h4>
+                            <h4 class="mb-1 text-green-color ">Supplemental Pay</h4>
                             <div><p>{{ rtrim($job->supplementals,', ') }}</p></div>
                         </div>
                         @endif
                         @if(!empty($job->other_benefits))
                         <div class="mb-3">
-                            <h4 class="mb-1 text-green-color fw-bolder">Other Benefits</h4>
+                            <h4 class="mb-1 text-green-color ">Other Benefits</h4>
                             <div><p>{{ rtrim($job->other_benefits,', ') }}</p></div>
                         </div>
                         @endif
@@ -375,7 +378,7 @@
                     @if($job->walkin)
                     <div class="card-body jdcarc">
                         <div class="mb-3">
-                            <h4 class="mb-1 fw-bolder text-green-color">@if($job->walkin) Walk-In @else Contact Details @endif</h4>
+                            <h4 class="mb-1  text-green-color">@if($job->walkin) Walk-In @else Contact Details @endif</h4>
                             <div class="row">
                                 @if($job->walkin)
                                 <div>
@@ -410,7 +413,7 @@
                     <div class="card-body jdcarc">
                         <div class="mb-1">
                             <div class="mb-2">
-                                <h4 class="fw-bolder text-green-color">Contact Details</h4>
+                                <h4 class=" text-green-color">Contact Details</h4>
                             </div>
                             <div class="mb-2 row col-md-12 justify-content-between">                                
                                 <div class="col-md-12 align-self-center d-flex">
@@ -455,14 +458,14 @@
                                     {{-- <div class="pe-1">
                                         <div class="bg-color-blue border p-2 rounded-pill">
                                             <img class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_message.png')}}" alt="contact message">
-                                            <text class="fw-bolder">Send Message</text> 
+                                            <text class="">Send Message</text> 
                                         </div>   
                                     </div> --}}
                                 {{-- </div> --}}
                             </div>
                             
                             <div class="d-flex justify-content-between" style="display: @if( ($job->contact_person_details->morning_section_from && $job->contact_person_details->morning_section_to)||($job->contact_person_details->evening_section_from && $job->contact_person_details->evening_section_to)){{'block'}}@else{{'none !important;'}}@endif">
-                                <h4 class="fw-bolder text-green-color">Best time to contact</h4>
+                                <h4 class=" text-green-color">Best time to contact</h4>
                                 {{-- <button class="edit-btn" data-form="job-contact-person-edit"><i class="fa-solid fa-pen-to-square text-green-color edit-icon"></i></button> --}}
                             </div>
                             <div class="row">                                
@@ -491,13 +494,13 @@
                         <div class="mb-2">
                             @if(!empty($job->company->description))
                             <div class="mb-4">
-                                <h4 class="mb-1 fw-bolder text-green-color">About Company<h4>
+                                <h4 class="mb-1  text-green-color">About Company<h4>
                                 <p>{{ $job->company->description }}</p>
                             </div>
                             @endif
                             
                             <div class="">
-                                <h5 class="mb-1 fw-bolder text-green-color">Company Info</h5>
+                                <h5 class="mb-1  text-green-color">Company Info</h5>
                                 @isset($job->company->website_url)
                                 <div class="row col-md-12 cmpinfo-detail mb-2">
                                     <div class="col-md-12">
@@ -511,7 +514,7 @@
 
                                 <div class="row col-md-12 cmpinfo-detail">
                                     <div class="col-md-6">
-                                        <label><b>Address : </b></label>
+                                        <label class="fw-bold">Address :</label>
                                         <span>
                                             @php
                                                 $pincode= $job->company->pin_code ?? '';
@@ -539,11 +542,11 @@
                     <div class="card-body">
                         <div class="mb-3">
                             <div class="row mb-3">
-                                <h4 class="fw-bolder text-green-color"> Related Jobs </h4>
+                                <h4 class=" text-green-color"> Related Jobs </h4>
                                 <div class="">
                                     <article class="rjarti mt-2">
                                         <div class="col-md-8 col-sm-8 col-xs-12">
-                                            <h5 class="fw-bolder">{{ ucwords($job->title) }}</h5>
+                                            <h5 class="">{{ ucwords($job->title) }}</h5>
                                             <div class="fw-bold">{{ ucwords($job->company_name??$job->company->name) }}.</div>
                                             <div class="py-2 ">
                                                 <span class="">
@@ -554,7 +557,7 @@
                                     </article>
                                     <article class="rjarti mt-2">
                                         <div class="col-md-8 col-sm-8 col-xs-12">
-                                            <h5 class="fw-bolder">{{ ucwords($job->title) }}</h5>
+                                            <h5 class="">{{ ucwords($job->title) }}</h5>
                                             <div class="fw-bold">{{ ucwords($job->company_name??$job->company->name) }}.</div>
                                             <div class="py-2 ">
                                                 <span class="">
@@ -565,7 +568,7 @@
                                     </article>
                                     <article class="rjarti mt-2">
                                         <div class="col-md-8 col-sm-8 col-xs-12">
-                                            <h5 class="fw-bolder">{{ ucwords($job->title) }}</h5>
+                                            <h5 class="">{{ ucwords($job->title) }}</h5>
                                             <div class="fw-bold">{{ ucwords($job->company_name??$job->company->name) }}.</div>
                                             <div class="py-2 ">
                                                 <span class="">

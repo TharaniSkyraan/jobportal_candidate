@@ -9,7 +9,7 @@
                <td width="192" style="width: 192px;" valign="top">
                   <![endif]--> 
 
-			<p style="font-family: Helvetica, Arial, sans-serif; font-size: 16px;font-weight:400;color: #000;text-align: left; margin:15px 0 0 0;">{{ $subject }}</p>
+			<p style="font-family:'Poppins'; font-size: 16px;font-weight:400;color: #000;text-align: left; margin:15px 0 0 0;">{{ $subject }}</p>
 			
 			
 			
@@ -18,16 +18,16 @@
 		<?php $company = $job->company??"skyraan"; ?> 
 		<?php if(isset($company)){?>
 			<div style="border-top: 1px solid #ddd; padding-top: 15px; margin-top: 15px;">
-			<a href="{{route('job.detail', [$job->slug])}}" target="_blank" data-saferedirecturl="https://www.google.com/url?q={{route('job.detail', [$job->slug])}}" style="font-family:Helvetica, Arial, sans-serif; color: #0036CA; display: inline-block;">{{$job->title}}</a>
+			<a href="{{route('job.detail', [$job->slug])}}" target="_blank" data-saferedirecturl="https://www.google.com/url?q={{route('job.detail', [$job->slug])}}" style="font-family:'Poppins'; color: #0036CA; display: inline-block;">{{$job->title}}</a>
 			
-			<p style="font-family: Helvetica, Arial, sans-serif; font-size: 16px;font-weight:400;color: #000;text-align: left; margin:15px 0 0 0;">{{$company->name}}</p>
+			<p style="font-family:'Poppins'; font-size: 16px;font-weight:400;color: #000;text-align: left; margin:15px 0 0 0;">{{$company->name}}</p>
 				
-			<p style="font-family: Helvetica, Arial, sans-serif; font-size: 16px;font-weight:400;color: #000;text-align: left; margin:15px 0 0 0;">{{$company->location}}</p>
+			<p style="font-family:'Poppins'; font-size: 16px;font-weight:400;color: #000;text-align: left; margin:15px 0 0 0;">{{$company->location}}</p>
 				
-			<p style="font-family: Helvetica, Arial, sans-serif; font-size: 16px;font-weight:400;color: #000;text-align: left; margin:15px 0 0 0;">{{ \Carbon\Carbon::parse($job->created_at)->diffForHumans()}}</p>
+			<p style="font-family:'Poppins'; font-size: 16px;font-weight:400;color: #000;text-align: left; margin:15px 0 0 0;">{{ \Carbon\Carbon::parse($job->created_at)->diffForHumans()}}</p>
 				
 			@if(isset($link))
-				<a style="font-family:Helvetica, Arial, sans-serif; color: #0036CA; display: inline-block; margin-top: 10px;" href="{{$link}}">Make Disable</a>
+				<a style="font-family:'Poppins'; color: #0036CA; display: inline-block; margin-top: 10px;" href="{{$link}}">Make Disable</a>
 			@endif
 			</div>
 		<?php } ?>

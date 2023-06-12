@@ -37,7 +37,9 @@
     box-shadow: 0px 5px 25px rgb(65 84 241 / 30%);
 }
 .btnc1 span {
-    font-family: "Nunito", sans-serif;
+    /* font-family: "Nunito", sans-serif; */
+    
+	font-family: "Poppins";
     font-weight: 500;
     font-size: 14px;
     letter-spacing: 1px;

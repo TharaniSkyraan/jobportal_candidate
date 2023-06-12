@@ -14,7 +14,8 @@
             body {
                 margin: 0;
                 padding: 0;
-                font-family: 'Roboto', 'Open Sans', Helvetica, Arial, sans-serif !important;
+            	font-family: "Poppins";
+                /* font-family: 'Roboto', 'Open Sans', Helvetica, Arial, sans-serif !important; */
                 -ms-text-size-adjust: 100%;
                 -webkit-text-size-adjust: 100%;
             }
@@ -23,7 +24,8 @@
             }
             table td {
                 border-collapse: collapse;
-                font-family: 'Roboto', 'Open Sans', Helvetica, Arial, sans-serif !important;
+            	font-family: "Poppins";
+                /* font-family: 'Roboto', 'Open Sans', Helvetica, Arial, sans-serif !important; */
             }
             .col {
                 padding: 5% 25%;

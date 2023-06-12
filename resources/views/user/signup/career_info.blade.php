@@ -22,7 +22,9 @@
         padding-right: 33px
     }
     li {
-        font-family: 'Nunito', sans-serif !important;
+        /* font-family: 'Nunito', sans-serif !important; */
+        
+	font-family: "Poppins";
     }
     .city .typeahead.dropdown-menu, .career_title .typeahead.dropdown-menu{
         max-height: 188px !important;

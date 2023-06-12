@@ -8,7 +8,8 @@ ul.typeahead.dropdown-menu {
     width: -webkit-fill-available;
 }
 li {
-    font-family: 'Nunito', sans-serif !important;
+    /* font-family: 'Nunito', sans-serif !important; */
+	font-family: "Poppins";
 }
 </style>
 @section('custom_scripts')

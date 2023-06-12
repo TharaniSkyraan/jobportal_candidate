@@ -75,7 +75,7 @@
 }
 
 .common-header-footer .clrFx,.common-header-footer .section_white_title,.common-header-footer .wrap {
-    *zoom:1}
+zoom:1}
 
 .common-header-footer .clrFx:after,.common-header-footer .clrFx:before,.common-header-footer .section_white_title:after,.common-header-footer .section_white_title:before,.common-header-footer .wrap:after,.common-header-footer .wrap:before {
     display: table;
@@ -93,8 +93,8 @@
 
 .common-header-footer .smArw {
     display: inline-block;
-    *display: inline;
-    *zoom:1}
+display: inline;
+zoom:1}
 
 .common-header-footer .nCarousel {
     -webkit-user-select: none;
@@ -201,7 +201,8 @@
 .common-header-footer * {
     padding: 0;
     margin: 0;
-    font-family: Roboto,sans-serif
+	font-family: "Poppins";
+    /* font-family: Roboto,sans-serif */
 }
 
 .common-header-footer body {
@@ -295,7 +296,7 @@
 
 .common-header-footer .dspIB {
     display: inline-block;
-    *zoom:1;*display: inline
+    display: inline
 }
 
 .common-header-footer .ml5 {
@@ -988,11 +989,11 @@
 .common-header-footer .headGNB .rghtSec .immediate {
     text-align: right;
     padding: 6px 0 11px;
-    *width: 88px
+   width: 88px
 }
 
 .common-header-footer .headGNB .rghtSec .immediate .smArw {
-    *vertical-align: top
+    vertical-align: top
 }
 
 .common-header-footer .headGNB .rghtSec.nonLogged li {
@@ -1089,8 +1090,8 @@
 
 .common-header-footer .headGNB .rghtSec li.last-child {
     position: relative;
-    *height: 100%;
-    *margin-top: 0
+height: 100%;
+margin-top: 0
 }
 
 .common-header-footer .headGNB .rghtSec li.last-child .immediate {
@@ -1223,8 +1224,8 @@
     top: 0;
     bottom: 0;
     z-index: 1;
-    *top: 50%;
-    *margin-top: -6px;
+top: 50%;
+margin-top: -6px;
     width: 11px;
     height: 12px
 }
@@ -1323,8 +1324,8 @@
 
 .common-header-footer .footer.carousel .nCarousel .item a {
     display: inline-block;
-    *display: inline;
-    *zoom:1}
+display: inline;
+zoom:1}
 
 .common-header-footer .footer .nCarousel .item a {
     background-image: url(//static.naukimg.com/s/4/101/i/footerIcons_v2.jpg);

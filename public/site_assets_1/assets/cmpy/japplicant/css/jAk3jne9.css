@@ -342,7 +342,8 @@
     outline: 2px solid #4285f4 !important;
   }
   #profileImage {
-    font-family: inherit;
+    /* font-family: inherit; */
+	  font-family: "Poppins";
     border-radius: 50%;
     background: #004D3C;
     font-size: 2.1rem;

@@ -136,7 +136,8 @@ input[type=checkbox]:checked+label span {
 
 .slider-Container .bottom-label {
     color: #8993a4;
-    font-family: Roboto;
+	font-family: "Poppins";
+    /* font-family: Roboto; */
     font-size: 10px;
     font-weight: 400;
     line-height: 12px;
