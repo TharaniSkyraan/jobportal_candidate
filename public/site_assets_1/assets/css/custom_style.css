@@ -387,7 +387,7 @@
   --percentage: var(--value);
   --secondary: rgb(241, 243, 245);
   --primary: #00D599;
-  --size: 61px;
+  --size: 60px;
   animation: progress 2s 0.5s forwards;
   width: var(--size);
   aspect-ratio: 1;
@@ -396,6 +396,9 @@
   overflow: hidden;
   display: grid;
   place-items: center;
+  font-size: 12px;
+  margin-left: 12px;
+  transition: all 0.4s ease;
 }
 
 [role="progressbar"]::before {

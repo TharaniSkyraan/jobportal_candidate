@@ -12,6 +12,7 @@
       width: 80%;
       /* height: 150px; */
       border-radius: 10px;
+      cursor: pointer;
     }
     
     .file-drop-area img{
@@ -46,13 +47,16 @@
       position: absolute;
       left: 0;
       top: 0;
-      height: 100%;
-      width: 100%;
+      /* height: 100%;
+      width: 100%; */
       cursor: pointer;
       opacity: 0;
     }
     .file-input:focus {
       outline: none;
+    }
+    .modal-header .close .fa-close{
+      font-size:1.1rem;
     }
     
 </style>
@@ -65,24 +69,23 @@
 <div class="modal fade" id="resume_upload_modal" tabindex="-1" aria-labelledby="resume_upload_modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-      <div class="modal-header" style="background: #f3f7fe;">
-        <h3 class="modal-title" id="exampleModalCenterTitle">Upload Your Resume</h3>
+      <div class="modal-header" style="background: #4285F4;">
+        <h3 class="modal-title text-white" id="exampleModalCenterTitle">Upload Your Resume</h3>
         <button type="button" class="close border-0" data-bs-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+          <i class="fa fa-close"></i>
         </button>
       </div>
         <div class="modal-body h-100">
             <form>
               {{csrf_field()}}
                {!! Form::hidden('resume_id', null, array('id'=>'resume_id')) !!}
-              <div class="resume m-4">
-                <div class="file-drop-area p-3">      
-                  <div style="text-align: -webkit-center;">             
-                      <img src="{{asset('images/upload_img.png')}}" class="file_upload"> 
-                  </div>  
+              <div class="resume m-4 text-center">
+                <label class="file-drop-area p-3" for="file">      
+                  <img src="{{asset('images/upload_img.png')}}" class="file_upload"> 
+                  <br>
                   <p class="file_upld text-center mt-2">Drop your Resume here or Browse</p>
                   <input class="file-input" type="file" name="file" id="file" accept=".doc,.docx,.pdf,.rtf">
-                </div>
+                </label>
              
                 <div class="text-center">
                   <span class="help-block form-text text-danger err_msg file-error"></span>

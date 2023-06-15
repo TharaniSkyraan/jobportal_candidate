@@ -2148,8 +2148,8 @@ section {
     border-radius: 4px; */
     transition: 0.5s;
     color: #fff;
-    background: #ea4335 !important;
-    border-color: #ea4335!important;
+    background: #4285F4 !important;
+    border-color: #4285F4!important;
     border-radius: 25px !important;
     /* background: #4285F4; */
     /* box-shadow: 0px 5px 30px rgb(65 84 241 / 40%); */
@@ -2468,3 +2468,5 @@ border-radius: 20px;
 .text-align-last{
   text-align-last: end;
 }
+
+/* Side Bar */

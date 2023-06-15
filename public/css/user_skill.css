@@ -90,6 +90,12 @@
     display: flex;
 }#page-container{
     min-height:auto !important;
+}#abt_meusr .fa-user{
+    color: #1572ea;
+    border: 1px #1572ea solid;
+    border-radius: 62px;
+    padding: 9px 11px;
+    background: #fff;
 }#abt_meusr .card{
     padding: 35px;
     background: #F3F7FE;
@@ -487,7 +493,7 @@
 ****12.my resume****
 *******************/
 #resume_upload_modal .close{
-    background: #ea4335;
+    background:none;
     color: #ffff;
     border-radius: 5px;
 }

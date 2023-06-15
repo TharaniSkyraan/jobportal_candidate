@@ -47,7 +47,7 @@
         display: inline-block;
         margin-right: 10px;
         font-size: 14px!important;
-        font-weight: 600;
+        font-weight: 400;
         color: #333;
         border: 1px solid #4285f47a;
         border-radius: 14px;
