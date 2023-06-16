@@ -1,7 +1,7 @@
 
 <div class="card mt-5">
     <div class="row d-flex mb-4">
-        <div class="col-md-4 col-lg-2 fw-bolder mb-2">
+        <div class="col-md-4 col-lg-2 mb-2">
             Skill Name
         </div>
         <div class="col-md-4 col-lg-6">
@@ -14,7 +14,7 @@
     </div>
     <div class="row mb-4">
         <div class="col-md-4 col-lg-2 align-align-self-center">
-            <label for="" class="form-label fw-bolder">Skill Level</label>
+            <label for="" class="form-label">Skill Level</label>
         </div>
         <div class="col-lg-10 col-md-10">
         <div class="d-grid gap-2 d-md-flex justify-content-md-left">    
@@ -33,7 +33,7 @@
         $end_date = isset($userSkill->end_date)?Carbon\Carbon::parse($userSkill->end_date):null;
     @endphp            
     <div class="row align-items-baseline">
-        <label for="" class="form-label fw-bold">Practising from (Optional) </label>
+        <label for="" class="form-label">Practising from (Optional) </label>
         <div class="col-md-6 col-lg-4 col-sm-6 col-xs-12 col-12 mb-3">
             <div class="input-group">
                 <span class="input-group-text" id="basic-addon1">From</span>
