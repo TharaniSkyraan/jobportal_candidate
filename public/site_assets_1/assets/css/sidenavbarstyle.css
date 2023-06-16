@@ -288,12 +288,11 @@
 .collapses .link{
   color:#305695;
 }
-.collapses .link:hover{
+.collapses .link:hover, .collapses .link.active{
+  margin-left: 5px !important;
+  margin-right: -1px !important; 
   color: #fff;
   background-color: #4070f4;  
-}
-.sidenavbar.close .collapses .link:hover, .collapses .link.active{ 
-    margin: 0.25rem!important; 
 }
 .collapses .link img {
   filter: invert(76%) sepia(30%) saturate(3461%) hue-rotate(179deg) brightness(98%) contrast(91%)
@@ -312,14 +311,14 @@
     color: #717171;
     font-weight: 500;
 }
-.collapses .link:hover > img {
+.collapses .link:hover > img, .collapses .link.active > img{
   filter: brightness(0) invert(1);
 }
-.collapses .link:hover > span {
+.collapses .link:hover > span, .collapses .link.active > span{
   color:#fff;
   /* font-weight: 500; */
 }
-.sidenavbar.close .collapses .link:hover > img {
+.sidenavbar.close .collapses .link:hover > img ,  .sidenavbar.close .collapses .link.active > img{
   margin: 10px 10px;
 }
 

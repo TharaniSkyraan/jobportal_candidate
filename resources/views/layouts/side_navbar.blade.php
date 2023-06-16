@@ -44,7 +44,7 @@
             <div class="menu_items">
               <ul class="menu_item">
                 <li class="item">
-                  <a href="{{route('home')}}" class="link flex {{ (empty(Auth::user()->date_of_birth))? 'no_fillfield' : '' }}">
+                  <a href="{{route('home')}}" class="link flex {{ (empty(Auth::user()->date_of_birth))? 'no_fillfield' : '' }} {{ Request::is('home') ? 'active' : '' }}">
                     <img src="{{asset('images/sidebar/my_info.svg')}}" alt="">
                     <span>About Me</span>
                   </a>
