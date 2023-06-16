@@ -57,7 +57,7 @@
             <button class="btn bg-grey-color user-language-cancel" onClick="cancelUserLanguageForm({{$userLanguage->id??0}})" type="button">Cancel</button>
         </div>
         <div class="col-6 text-center">
-            <button class="btn btn-submit bg-green-color" type="button" onClick="submitUserLanguageForm();">Save</button>
+            <button class="btn btn-submit btn_c_s1" type="button" onClick="submitUserLanguageForm();">Save</button>
         </div>
     </div>
 </div>

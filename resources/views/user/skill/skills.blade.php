@@ -9,7 +9,7 @@
 @endsection
 @section('content')
 <div class="wrapper" >
-	@include('layouts.header')
+	@include('layouts.dashboard_header')
 	@include('layouts.side_navbar')
 
 	<div class="main-panel main-panel-custom">
@@ -17,7 +17,7 @@
 			<div class="page-inner">
                 <div id="my_expernce2" class="mt-4">
                     <div class="text-center ttleicn">
-                        <h2 class="fw-bolder"><img src="{{asset('images/skills.png')}}">&nbsp;My skills</h2>
+                        <h2 class="fw-bolder"><img src="{{asset('images/sidebar/skill.svg')}}">&nbsp;My skills</h2>
                     </div>
 
 

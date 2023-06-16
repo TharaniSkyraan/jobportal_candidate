@@ -26,7 +26,7 @@ ul.typeahead.dropdown-menu {
 </style>
 <div class="wrapper" >
         
-	@include('layouts.header')
+	@include('layouts.dashboard_header')
 	@include('layouts.side_navbar')
 
 	<div class="main-panel main-panel-custom">
@@ -34,7 +34,7 @@ ul.typeahead.dropdown-menu {
 			<div class="page-inner">
                 <div id="my_eductin" class="mt-4">
                     <div class="text-center ttleicn">
-                        <h2 class="fw-bolder"><img src="{{asset('images/candidate_educ.png')}}">&nbsp;My Eduaction</h2>
+                        <h2 class="fw-bolder"><img src="{{asset('images/sidebar/experience.svg')}}">&nbsp;My Eduaction</h2>
                     </div>
                     @php
                         $eduLevels = App\Helpers\DataArrayHelper::langEducationlevelsArray();

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="wrapper" >
-	@include('layouts.header')
+	@include('layouts.dashboard_header')
 	@include('layouts.side_navbar')
 
 	<div class="main-panel main-panel-custom">
@@ -9,7 +9,7 @@
 			<div class="page-inner">
                 <div id="my_expernce" class="mt-4">
                     <div class="text-center ttleicn">
-                        <h2 class="fw-bolder"><img src="{{asset('images/candidate_educ.png')}}">&nbsp;My Experience</h2>
+                        <h2 class="fw-bolder"><img src="{{asset('images/sidebar/experience.svg')}}">&nbsp;My Experience</h2>
                     </div>
 
                     <h2 class="mt-5 mb-3 text-center fw-bolder">I am</h2>
@@ -36,7 +36,7 @@
                             </div>
         
                             <div class="gap-2 m-4 justify-content-md-around pt-5 submit-button" style="display:none">
-                                <button class="btn btn-submit bg-green-color text-white w-75" type="submit">Continue</button>
+                                <button class="btn btn-submit btn_c_s text-white w-75" type="submit">Continue</button>
                             </div>
                         </div>
                     {!! Form::close() !!}

@@ -102,7 +102,7 @@
                 <button class="btn bg-grey-color user-experience-cancel" type="button"  onClick="cancelUserExperienceForm({{$userExperience->id??0}});">Cancel</button>
             </div>
             <div class="col-6 text-center">
-                <button class="btn btn-submit bg-green-color" type="button" onClick="submitUserExperienceForm();">Save</button>
+                <button class="btn btn-submit btn_c_s1" type="button" onClick="submitUserExperienceForm();">Save</button>
             </div>
         </div>
     </div>

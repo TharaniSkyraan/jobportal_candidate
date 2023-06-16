@@ -13,7 +13,7 @@
             <div class="col-md-4 col-lg-4 col-sm-4 col-4">
                 <div class="row">
                     <div class="col-12 justify-content-evenly d-flex">
-                        <span class="m-2 edit_experience edit_experience_{{$experience->id}}"><i class="fa fa-edit openForm" data-form="edit" data-id="{{$experience->id}}"></i></span>
+                        <span class="m-2 edit_experience edit_experience_{{$experience->id}}"><i class="fa fa-pencil openForm" data-form="edit" data-id="{{$experience->id}}"></i></span>
                         <span class="m-2 delete_experience delete_experience_{{$experience->id}}"  @if(count(Auth::user()->userExperience)<2) style="display:none" @endif onclick="delete_user_experience({{$experience->id}});"><i class="fa fa-trash"></i></span>
                         <span class="m-2 undo_experience_{{$experience->id}}" onclick="undo_user_experience({{$experience->id}});" style="display:none;"><i class="fa-solid fa-arrow-rotate-left text-green-color border-0 rounded p-2"></i></span>
                     </div>

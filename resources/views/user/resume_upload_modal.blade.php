@@ -61,16 +61,13 @@
     
 </style>
 
-{{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#resume_upload_modal">
-    Launch demo modal
-</button> --}}
   
 <!-- Modal -->
 <div class="modal fade" id="resume_upload_modal" tabindex="-1" aria-labelledby="resume_upload_modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-      <div class="modal-header" style="background: #4285F4;">
-        <h3 class="modal-title text-white" id="exampleModalCenterTitle">Upload Your Resume</h3>
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalCenterTitle">Upload Your Resume</h3>
         <button type="button" class="close border-0" data-bs-dismiss="modal" aria-label="Close">
           <i class="fa fa-close"></i>
         </button>

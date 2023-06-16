@@ -16,12 +16,12 @@
 </style>
 @endif
     <div class="modal-header">
-        <h4 class="modal-title fw-bolder">Education Detail</h4>
+        <h4 class="modal-title">Education Detail</h4>
         <button type="button" class="btn-close educationFromclose" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class="modal-body modal-dialog-scrollable">
         <div class="col-md-12 mb-4" id="div_education_level_id">
-            <label for="div_education_level_id" class="form-label fw-bolder">Highest Qualification Level <strong class="education_level_id"></strong></label>
+            <label for="div_education_level_id" class="form-label">Highest Qualification Level <strong class="education_level_id"></strong></label>
             <div class="" id="education_level_dd" style="display:none;">                    
                 {!! Form::select('education_level_id', [''=>__('Select Education')]+$educationLevels, $education_level_id??null, array('class'=>'form-select required', 'id'=>'education_level_id')) !!}
                 <small class="help-block form-text text-muted text-danger err_msg education_level_id-error" id="err_education_level_id"></small> 
@@ -45,7 +45,7 @@
         <hr/>
 
         <div class="col-md-12 mb-4 institution">
-            <label for="exampleInputEmail1" class="form-label fw-bolder">Institution name</label>
+            <label for="exampleInputEmail1" class="form-label">Institution name</label>
             {!! Form::text('institution', null, array('class'=>'form-control-2 required typeahead mb-2', 'id'=>'institution', 'placeholder'=>__('Institution Name'),'autocomplete'=>'off')) !!}
             <small class="help-block form-text text-muted text-danger err_msg institution-error" id="err_institution"></small>  
         </div>
@@ -56,23 +56,23 @@
         @endphp
 
         <div class="col-md-12 mb-4">
-            <label class="form-label fw-bolder">Place of Education <span class="country_text"> - {{ $country }} <a href="javascript:void(0);" onClick="CountryChange()">Change</a></span> </label>
+            <label class="form-label">Place of Education <span class="country_text"> - {{ $country }} <a href="javascript:void(0);" onClick="CountryChange()">Change</a></span> </label>
             <div class="country_change"  style="display:none;">
-                <label for="country_id" class="form-label fw-bolder">Country</label>
+                <label for="country_id" class="form-label">Country</label>
                 {!! Form::select('country_id_dd', [''=>__('Select Country')]+$countries['value'], $country_id, array('class'=>'form-select country_id required', 'id'=>'country_id_dd'), $countries['attribute']) !!}
                 <small class="help-block form-text text-muted text-danger err_msg country_id_dd-error" id="err_country_id_dd"></small>                        
             </div>
         </div>
         
         <div class="col-md-12 mb-4 location">
-            <label for="location" class="form-label fw-bolder">City</label>
+            <label for="location" class="form-label">City</label>
             {!! Form::text('location', null, array('class'=>'form-control-2 required typeahead', 'id'=>'location', 'placeholder'=>__('Enter city'),' aria-label'=>'Enter city','autocomplete'=>'off')) !!}
             <small class="form-text text-muted text-danger err_msg" id="err_location"></small>                          
         </div>
 
         {{-- <hr/> --}}
 
-        <label for="" class="form-label fw-bolder">Year of education</label>
+        <label for="" class="form-label">Year of education</label>
         <div class="row mb-4">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="row">
@@ -110,7 +110,7 @@
 
         {{-- <hr/> --}}
 
-        <label for="" class="form-label fw-bolder">Secured</label>
+        <label for="" class="form-label">Secured</label>
         <div class=" mb-3">
             @foreach($resultTypes as $key => $resultType)
             <div class="form-check form-check-inline">
@@ -149,7 +149,7 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn bg-grey-color user-education-cancel" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn bg-green-color" onClick="submitUserEducationForm();">Save</button>
+        <button type="button" class="btn btn_c_s1" onClick="submitUserEducationForm();">Save</button>
     </div>
 <script>
     $('#country_id_dd').select2({ dropdownParent: ".education-form" });

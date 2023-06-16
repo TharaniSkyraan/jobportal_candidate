@@ -20,7 +20,7 @@
   </style> 
     <div class="card mt-4">
         <div class="mb-4">    
-            <label for="" class="form-label fw-bold">Project Title</label>
+            <label for="" class="form-label">Project Title</label>
             {!! Form::text('name', null, array('class'=>'form-control required', 'id'=>'name', 'placeholder'=>__('Enter your Project name/Title'))) !!}
             <small class="help-block form-text text-muted text-danger err_msg name-error" id="err_name"></small>            
         </div>
@@ -29,7 +29,7 @@
         @endisset
 
         <div class="mb-4">    
-            <label for="" class="form-label fw-bold">Project done By </label>    
+            <label for="" class="form-label">Project done By </label>    
             {!! Form::text('company_name', $company_name??null, array('class'=>'form-control required', 'id'=>'company_name', 'placeholder'=>__('Enter your Company name'))) !!}
 
             <!-- <select class="form-control" name="user_experience_id" id="user_experience_id"> 
@@ -59,7 +59,7 @@
         </div>
 
         <div class="mb-4">
-            <label class="form-label fw-bold">Project location</label>                  
+            <label class="form-label">Project location</label>                  
             <div class="form-check form-check-inline ms-3">
                 <input class="form-check-input" type="radio" name="project_location" id="onsite" value="on_site" @if(isset($userProject) && $userProject->project_location=='on_site') checked @endif>
                 <label class="form-check-label" for="onsite">Onsite</label>
@@ -76,17 +76,17 @@
                 @endphp
 
                 <div class="mb-2">
-                    <label class="form-label fw-bolder"> Location <span class="country_text">- {{ $country }} <a href="javascript:void(0);" onClick="CountryChange()">Change</a></span></label>  
+                    <label class="form-labeler"> Location <span class="country_text">- {{ $country }} <a href="javascript:void(0);" onClick="CountryChange()">Change</a></span></label>  
                     <div class="row">
                         <div class="col-md-8 col-lg-8 col-sm-8 col-xs-12 col-12 mb-3 country_change"  style="display:none;">
-                            <label class="form-label fw-bolder"> Country </label>  
+                            <label class="form-labeler"> Country </label>  
                             {!! Form::select('country_id_dd', [''=>__('Select Country')]+$countries['value'], $country_id, array('class'=>'form-select country_id required', 'id'=>'country_id_dd'), $countries['attribute']) !!}
                             <small class="help-block form-text text-muted text-danger err_msg country_id_dd-error" id="err_country_id_dd"></small>                        
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-8 col-lg-8 col-sm-8 col-xs-12 col-12 mb-2 location">
-                            <label class="form-label fw-bolder">City </label>  
+                            <label class="form-labeler">City </label>  
                             {!! Form::text('location', null, array('class'=>'form-control required typeahead', 'autocomplete'=>'off', 'id'=>'location', 'placeholder'=>__('Enter city'),' aria-label'=>'Enter city')) !!}
                             <small class="form-text text-muted text-danger err_msg" id="err_location"></small>                          
                         </div>
@@ -99,7 +99,7 @@
             $todate = isset($userProject->date_end)?Carbon\Carbon::parse($userProject->date_end):null;
         @endphp
         <div class="row align-items-baseline">
-            <label for="" class="form-label fw-bold">Period of project</label>
+            <label for="" class="form-label">Period of project</label>
             <div class="col-md-6 col-lg-4 col-sm-6 col-xs-12 col-12 mb-3">
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">From</span>
@@ -121,19 +121,19 @@
         </div>
 
         <div class="mb-4">    
-            <label for="" class="form-label fw-bold">Project Description</label>
+            <label for="" class="form-label">Project Description</label>
             {!! Form::textarea('description', null, array('class'=>'form-control required', 'maxlength'=>'4000', 'id'=>'description', 'rows'=>5, 'placeholder'=>'Describe about the project')) !!}
             <small class="help-block form-text text-muted text-danger err_msg description-error" id="err_description"></small>   
             <small class="description_remain_char"></small>
         </div>
 
         <div class="mb-4">    
-            <label for="" class="form-label fw-bold">Your role on the project (Optional)</label>
+            <label for="" class="form-label">Your role on the project (Optional)</label>
             {!! Form::textarea('role_on_project', null, array('class'=>'form-control', 'id'=>'role_on_project', 'rows'=>3, 'placeholder'=>'Write about your role and responsiblities in this project')) !!}
         </div>
 
         <div class="mb-4">    
-            <label for="" class="form-label fw-bold">Tools / Softwares Used (Optional)</label>   
+            <label for="" class="form-label">Tools / Softwares Used (Optional)</label>   
             <input  type="text" name="used_tools" class="form-control" value="{{$userProject->used_tools??''}}" id="tagsinputproj">
         </div>
 
@@ -142,7 +142,7 @@
                 <button class="btn bg-grey-color user-project-cancel"  onClick="cancelUserProjectForm({{$userProject->id??0}})" type="button">Cancel</button>
             </div>
             <div class="col-6 text-center">
-                <button class="btn btn-submit bg-green-color" type="button" onclick="submitUserProjectForm()">Save</button>
+                <button class="btn btn-submit btn_c_s1" type="button" onclick="submitUserProjectForm()">Save</button>
             </div>
         </div>
     </div>

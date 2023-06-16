@@ -60,7 +60,7 @@
             <button class="btn bg-grey-color user-skill-cancel" onClick="cancelUserSkillForm({{$userSkill->id??0}})" type="button">Cancel</button>
         </div>
         <div class="col-6 text-center">
-            <button class="btn btn-submit bg-green-color" type="button" onClick="submitUserSkillForm();">Save</button>
+            <button class="btn btn-submit btn_c_s1" type="button" onClick="submitUserSkillForm();">Save</button>
         </div>
     </div>
 </div>

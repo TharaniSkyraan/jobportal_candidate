@@ -40,11 +40,11 @@
           <a class="text-black text-center toggle" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
             <i class="fa fa-angle-down angle-toggle"></i> 
           </a>   
-          <div class="collapse" id="collapseExample">
+          <div class="collapse collapses" id="collapseExample">
             <div class="menu_items">
               <ul class="menu_item">
                 <li class="item">
-                  <a href="{{route('home')}}" class="link flex {{ (empty(Auth::user()->date_of_birth))? 'active' : '' }}">
+                  <a href="{{route('home')}}" class="link flex {{ (empty(Auth::user()->date_of_birth))? 'no_fillfield' : '' }}">
                     <img src="{{asset('images/sidebar/my_info.svg')}}" alt="">
                     <span>About Me</span>
                   </a>
@@ -56,7 +56,7 @@
                   </a>
                 </li>
                 <li class="item">
-                  <a href="{{route('education-details')}}" class="link flex">
+                  <a href="{{route('education-details')}}" class="link flex {{ (count($eduLevelids)==0)? 'no_fillfield' : '' }}">
                     <img src="{{asset('images/sidebar/education.svg')}}" alt="">
                     <span>Education</span>
                   </a>
@@ -68,25 +68,25 @@
                   </a>
                 </li>
                 <li class="item">
-                  <a href="{{route('project-details')}}" class="link flex">
+                  <a href="{{route('project-details')}}" class="link flex {{ (count(Auth::user()->userProjects)==0)? 'no_fillfield' : '' }}">
                     <img src="{{asset('images/sidebar/project.svg')}}" alt="">
                     <span>Project</span>
                   </a>
                 </li>
                 <li class="item">
-                  <a href="{{route('skill-details')}}" class="link flex">
+                  <a href="{{route('skill-details')}}" class="link flex {{ (count(Auth::user()->userSkills)==0)? 'no_fillfield' : '' }}">
                     <img src="{{asset('images/sidebar/skill.svg')}}" alt="">
                     <span>Skills</span>
                   </a>
                 </li>
                 <li class="item">
-                  <a href="{{route('language-details')}}" class="link flex">
+                  <a href="{{route('language-details')}}" class="link flex {{ (count(Auth::user()->userLanguages)==0)? 'no_fillfield' : '' }}">
                     <img src="{{asset('images/sidebar/language.svg')}}" alt="">
                     <span>Language known</span>
                   </a>
                 </li>
                 <li class="item">
-                  <a href="{{route('career-info-details')}}" class="link flex">
+                  <a href="{{route('career-info-details')}}" class="link flex {{ empty(Auth::user()->career_title)? 'no_fillfield' : '' }}">
                     <img src="{{asset('images/sidebar/career_info.svg')}}" alt="">
                     <span>Career Information</span>
                   </a>
@@ -129,7 +129,7 @@
             </li>
             <li class="item">
               <a href="{{ route('accounts_settings') }}" class="link flex {{ Request::is('accounts_settings') ? 'active' : '' }}">
-                <img src="{{asset('images/sidebar/applied_jobs.svg')}}" alt="">
+                <img src="{{asset('images/sidebar/account_setting.svg')}}" alt="">
                 <span>Accounts Settings</span>
               </a>
             </li>

@@ -128,7 +128,7 @@
     </div>
 
     <div class="text-center mt-5">
-        <button class="btn btn-submit bg-green-color" type="button" onclick="submitUserProjectForm()">Save</button>
+        <button class="btn btn-submit btn_c_s1" type="button" onclick="submitUserProjectForm()">Save</button>
     </div>
 </div>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/js/input_tag/jquery.tagsinput-revisited.js') }}"></script>

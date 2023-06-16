@@ -3,7 +3,7 @@
 }
 
 .text-blue-color{
-  color: #4285F4 !important;
+  color: #2b5baa !important;
 }
 
 .bg-dk-green-color{
@@ -39,7 +39,7 @@
   }
   .rcbtn:focus{
       color:#fff;
-      background-color: #4285F4 !important;
+      background-color: #2b5baa !important;
       outline: 2px solid #4285f0b3 !important;
   }
 
@@ -77,11 +77,11 @@
 }
 
 .wizard-tab ul .nav-item .nav-link.active{
-  border-bottom: 2px solid #F69333 !important;
+  border-bottom: 2px solid #2762c2 !important;
   color: black !important;
   background-color: unset !important;
   border-radius: unset !important;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .wizard-tab ul .nav-item .nav-link{
@@ -183,7 +183,7 @@
 }
 
 .navbar-card{
-  background-color: #4285F4 !important;
+  background-color: #2b5baa !important;
   color: white !important;
   padding: 30px 0px !important;
   /* border-radius: unset !important; */
@@ -193,7 +193,7 @@
 
 
 .btn-verify{
-  background: #4285F4;
+  background: #2b5baa;
   color: white
 }
 

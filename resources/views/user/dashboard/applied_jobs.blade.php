@@ -1,60 +1,14 @@
 @extends('layouts.app')
 
+@section('custom_scripts')
+<link href="{{ asset('css/applied_jobs.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
-<style>
-  .preview_job{
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
-  }
-  .preview_job p{
-    font-size: 14px;
-    margin-bottom: 0.5rem;
-  }
-  .image-size{
-    width: 16px;
-    /* vertical-align: text-top; */
-    margin-top: -2px;
-  }
-  .imagesz-2{
-    width: 21px;
-    /* vertical-align: text-bottom; */
-    margin-top: -2px;
-  }
-  .nav-link{
-    font-size: 1.025rem !important;
-  }
-  .janoimg{
-    width: 50%;    
-  }.btnc1{
-    line-height: 0;
-    padding: 1.165rem 1.7rem;
-    border-radius: 3px;
-    transition: 0.5s;
-    color: #fff;
-    background: #4285F4;
-    box-shadow: 0px 5px 25px rgb(65 84 241 / 30%);
-}
-.btnc1 span {
-    /* font-family: "Nunito", sans-serif; */
-    
-	font-family: "Poppins";
-    font-weight: 500;
-    font-size: 14px;
-    letter-spacing: 1px;
-}
-.btnc1:hover {
-    color: #fff;
-}
-.nav-pills .nav-link {
-    padding: 10px 30px;
-}
-</style>
 
 <div class="wrapper" >
         
-	@include('layouts.header')
+	@include('layouts.dashboard_header')
 	@include('layouts.side_navbar')
         
 	<div class="main-panel main-panel-custom">

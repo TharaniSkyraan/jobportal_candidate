@@ -1,0 +1,25 @@
+
+.prof_bg .fa-key{
+    background-color: #fff;
+    width: 25px;
+    height: 25px;
+    color: #000;
+    text-align: center;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    display: flex;
+    font-size: 12px;
+}
+
+#abt_meusr .card {
+    padding: 30px;
+}
+
+#abt_meusr .prof_bg{
+    padding: 20px;
+    background: #cccccc29;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 20%);
+}

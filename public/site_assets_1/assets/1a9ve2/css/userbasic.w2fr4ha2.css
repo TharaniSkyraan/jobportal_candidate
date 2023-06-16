@@ -2,7 +2,7 @@
 .typeahead, .tt-query, .tt-hint {
     border: 1px solid #CCCCCC;
     border-radius: .25rem;
-    font-size: 0.9rem; /* Set input font size */
+    font-size: 14px; /* Set input font size */
     /* height: 30px; */
     line-height: 24px;
     /* outline: medium none; */
@@ -33,7 +33,7 @@
     border-top-right-radius: 0;
 }
 .tt-suggestion {
-    font-size: 0.9rem;  /* Set suggestion dropdown font size */
+    font-size: 14px;  /* Set suggestion dropdown font size */
     padding: 3px 15px;
 }
 .tt-suggestion:hover {
@@ -86,7 +86,7 @@
     display: block;
     width: 100%;
     padding: 0.6rem 1rem;
-    font-size: 0.9rem;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
     color: #212529;

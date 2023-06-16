@@ -42,7 +42,7 @@ trait UserLanguageTrait
                     <td>' . $read . '</td>
                     <td>' . $speak . '</td>
                     <td>' . $write . '</td>
-                    <td><a href="javascript:;" class="edit_language_'.$language->id.'"><i class="fa-solid fa-pen-to-square text-green-color pe-3 openForm" data-form="edit" data-id="'.$language->id.'"></i></a>';
+                    <td><a href="javascript:;" class="edit_language_'.$language->id.'"><i class="fa fa-pencil pe-3 openForm" data-form="edit" data-id="'.$language->id.'"></i></a>';
                     if(count($user->userLanguages)>1){
                         $html .='<a href="javascript:;" onclick="delete_user_language(' . $language->id . ');" class="delete_language delete_language_'.$language->id.'"><i class="fa-solid fa-trash-can text-danger pe-3"></i></a>
                         <a href="javascript:void(0);" onclick="undo_user_language(' . $language->id . ');" style="display:none;" class="undo_language_'.$language->id.'" ><i class="fa-solid fa-arrow-rotate-left text-green-color border-0 rounded p-2" style="background-color:#6CD038;" ></i></a>';

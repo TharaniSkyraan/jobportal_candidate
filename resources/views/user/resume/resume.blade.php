@@ -2,11 +2,10 @@
 
 @section('content')
 <div class="wrapper" >
-	@include('layouts.header')
+	@include('layouts.dashboard_header')
 	@include('layouts.side_navbar')
 <style>
 @media (min-width: 280px) and (max-width: 767px){
-        
     .replace-resume{
         margin-top:0px !important;
     }
@@ -23,7 +22,7 @@
 			<div class="page-inner">
                 <div id="my_resme" class="mt-4">
                     <div class="text-center ttleicn">
-                        <h2 class="fw-bolder"><img src="{{asset('images/resume.png')}}">&nbsp;My Resume</h2>
+                        <h2><img src="{{asset('images/sidebar/resume.svg')}}">&nbsp;My Resume</h2>
                     </div>
 
                     <div class="card mt-5">

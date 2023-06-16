@@ -5,154 +5,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js"></script>
 <link href="{{ asset('site_assets_1/assets/intl-tel-input/css/intlTelInput.css')}}" rel="stylesheet">
 <script src="{{ asset('site_assets_1/assets/intl-tel-input/js/intlTelInput.js')}}" ></script>
+<link href="{{ asset('css/account_settings.css') }}" rel="stylesheet">
 @endsection
-
-
 @section('content')
-<style>
-
-/*profilepic start*/
-.profilepic {
-	border: 0.5px solid lightgrey;
-	position: relative;
-	width: 100px;
-    height: 100px;
-	/* height: 125px; */
-	border-radius: 50%;
-	overflow: hidden;
-  /* background-color: #111; */
-}
-
-.profilepic-modal{
-	border: 0.5px solid lightgrey;
-	position: relative;
-	width: 39%;
-    /* height: 100px; */
-	/* height: 125px; */
-	border-radius: 50%;
-	overflow: hidden;
-}
-
-.profilepic:hover .profilepic__content {
-	background: #171717;
-  	opacity: 0.7;
-}
-
-.profilepic:hover .profilepic__image {
-  opacity: .5;
-}
-
-.profilepic__image {
-  object-fit: cover;
-  opacity: 1;
-  transition: opacity .2s ease-in-out;
-}
-
-.profilepic__content {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  opacity: 0;
-  transition: opacity .2s ease-in-out;
-}
-
-.profilepic__icon {
-  color: white;
-  padding-bottom: 8px;
-}
-
-.fas {
-  font-size: 20px;
-}
-
-.profilepic__text {
-  text-transform: uppercase;
-  font-size: 12px;
-  width: 50%;
-  text-align: center;
-}
-/*profilepic ends */
-
-/* otp starts*/
-
-/* otp starts*/ 
-#otp_code {
-  padding: 0px;
-  letter-spacing: 30px;
-  border: 0;
-  background: url('{{ asset("images/artboard2.png")}}');
-  background-repeat: space;
-  min-width: 230px;
-  background-size: 34px auto;
-  padding-left: 12px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
-#otp-content {
-  left: 0;
-  position: sticky;
-}
-
-#otp-holder {
-  width: 250px;
-  overflow: hidden
-}
-
-#otp_code:focus-visible {
-  outline: unset;
-}
-/** otp ends */
-
-.field-icon {
-  float: right;
-    margin-left: -25px !important;
-    margin-top: -27px;
-    position: relative;
-    z-index: 5;
-    left: -3%;
-}
-
-.iti__flag { display: none; }
-.iti--separate-dial-code input[type=tel] {
-    padding-left: 70px !important;
-}
-.btns1{
-  padding: 0.45rem 1rem;
-  font-size: 13px;
-  border-color: #d1f3fb;
-}
-@media(max-width:480px){
-
-.change_phone_number .iti--allow-dropdown{
-  margin-bottom:10px;
-}
-}
-@media(max-width: 767px){
-  #header .sidenav-toggler{
-    display: block !important;
-  }
-}
-.card-title{
-  background: #4285f4;
-  color:#fff;
-  border-radius: 15px 15px 0px 0px;
-}
-.acc-set{  
-  border-radius: 15px !important;
-}
-</style>
-
-<div class="wrapper" >
-        
-	@include('layouts.header')
+<div class="wrapper" >        
+	@include('layouts.dashboard_header')
 	@include('layouts.side_navbar')
 
 	<div class="main-panel main-panel-custom">
@@ -372,7 +229,7 @@
                       <button class="btn bg-grey-color" onclick ='window.location.href=document.referrer' type="button">Cancel</button>
                   </div> -->
                   <div class="text-center">
-                      <button class="btn btn-submit bg-green-color" type="button" onClick="SubmitPasswordChange()">Save</button>
+                      <button class="btn btn-submitbtn_c_s" type="button" onClick="SubmitPasswordChange()">Submit</button>
                   </div>
               </div>
             {!! Form::close() !!}
@@ -409,7 +266,7 @@
 
                 </div>
                 <div class="text-center mt-2">
-                  <button class="btn btn-submit bg-green-color verify" type="button"  onClick="VerifyPasswordChange()">verify</button>
+                  <button class="btn btn-submit btn_c_s verify" type="button"  onClick="VerifyPasswordChange()">verify</button>
                 </div>
               {!! Form::close() !!}
           </div>

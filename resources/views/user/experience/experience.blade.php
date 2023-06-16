@@ -9,7 +9,7 @@
 @endsection
 @section('content')
 <div class="wrapper" >
-	@include('layouts.header')
+	@include('layouts.dashboard_header')
 	@include('layouts.side_navbar')
 
 	
@@ -18,7 +18,7 @@
 			<div class="page-inner">
                 <div id="my_expernce2" class="mt-4">
                     <div class="text-center ttleicn">
-                        <h2 class="fw-bolder"><img src="{{asset('images/candidate_exp.png')}}">&nbsp;My Experience</h2>
+                        <h2 class="fw-bolder"><img src="{{asset('images/sidebar/experience.svg')}}">&nbsp;My Experience</h2>
                     </div>
                     @php
                         $total_exp = Auth::user()->total_experience;
@@ -27,7 +27,7 @@
                         $total_month = $total_exp[1]??0;
 
                     @endphp
-                    <h3 class="mt-5 mb-3">Total years of experience :<span class="fw-bolder"> @if($total_year != 0 || $total_month !=0){{$total_year}} years {{$total_month}} month @else Fresher @endif</span></h3>
+                    <h4 class="mt-5 mb-3">Total years of experience :<span class="fw-bolder"> @if($total_year != 0 || $total_month !=0){{$total_year}} years {{$total_month}} month @else Fresher @endif</span></h4>
 
                     <div class="crdbxpl mt-5">
                         <div class="row">

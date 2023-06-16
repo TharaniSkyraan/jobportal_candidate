@@ -12,7 +12,7 @@
 @endsection
 @section('content')
 <div class="wrapper" >
-	@include('layouts.header')
+	@include('layouts.dashboard_header')
 	@include('layouts.side_navbar')
 
     @if(Session::has('message'))
@@ -23,7 +23,7 @@
 			<div class="page-inner">
                 <div id="abt_meusr" class="mt-4">
                     <div class="text-center ttleicn">
-                        <h2 class="fw-bolder"><img src="{{asset('images/career_info.png')}}">&nbsp;Career Information</h2>
+                        <h2 class="fw-bolder"><img src="{{asset('images/sidebar/career_info.svg')}}">&nbsp;Career Information</h2>
                     </div>
                     @php
                         $noticePeriod = app\Helpers\DataArrayHelper::langNoticePeriodsArray();
@@ -89,15 +89,15 @@
                                 <small class="form-text text-muted text-danger err_msg" id="err_phone"></small> 
                                 {!! APFrmErrHelp::showErrors($errors, 'phone') !!}
                             </div>
-                            <div class="form-check mb-2 is_watsapp_number">
+                            <!-- <div class="form-check mb-2 is_watsapp_number">
                                 {!! Form::checkbox('is_watsapp_number', 'yes', $user->is_watsapp_number??'', array('class'=>'form-check-input', 'id'=>'is_watsapp_number')) !!}
                                 <label class="form-check-label" for="is_watsapp_number">Is this watsapp number.</label>
-                            </div>
+                            </div> -->
                             
                             <div class="d-flex justify-content-around mb-3">
 
                                 <div class="text-center mt-2">
-                                    <button class="btn btn-submit bg-green-color" id="basic-info-submit-button" type="submit">Save</button>
+                                    <button class="btn btn-submit btn_c_s1" id="basic-info-submit-button" type="submit">Save</button>
                                 </div>
                             </div>
                         {!! Form::close() !!}
