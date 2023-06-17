@@ -75,7 +75,7 @@
                                     <i class="fa fa-phone contact-icons"></i>
                                 </span>
                                 <span class="fw-bold my-3">Phone <br>
-                                    <a href="tel://+91-987654321">+91-987654321</a>
+                                    <a href="tel://+91-9900559924">+91-9900559924</a>
                                 </span>                               
                             </div>
                             <div class="d-flex mb-4">
@@ -99,7 +99,7 @@
                                     <i class="fa fa-map-marker contact-icons"></i>
                                 </span>
                                 <span class="fw-bold my-3">Address <br>
-                                    <a href="">Saravanam patty, Coimbatore 641002</a>
+                                    <a href=""> Hari Complex, 207/A3, Sathy Rd, opp. Prozone Mall, Saravanampatti, Coimbatore, Tamil Nadu 641035</a>
                                 </span>
                             </div>
                         </div>

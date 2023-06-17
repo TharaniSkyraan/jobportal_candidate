@@ -14,18 +14,18 @@
            
             <div class="col-md-6 card-size">
                 <div class="card lgncard1">
-                    <div class="site2_logo mb-4 mt-2 text-center">
+                    <div class="site2_logo mb-3 mt-2 text-center">
                         <a href="{{url('/')}}" class="href">
                             <img src="{{asset('images/footer_logo.png')}}" alt="logo">
                         </a>
-                        <h1 class="fw-bolder mt-3">
+                        <h2 class="fw-bolder mt-3">
                             OTP Verification
-                        </h1>
+                        </h2>
                         <p class="grytxtv pdngtxt">An OTP was sent to the given email id. Enter it below.</p>
                     </div>
 
-                    <div class="text-center mb-5">
-                        <h3 id="email">{{$user->email}}</h2>
+                    <div class="text-center mb-3">
+                        <h5 id="email">{{$user->email}}</h5>
                     </div>
 
                     <div class="container"> 
@@ -42,7 +42,7 @@
                                 <span class="restnt seconds-counter">Resend OTP <span class="text-primary" id="seconds-counter"> </span></span>
                             </div>
                             <div class="mb-5 cdt_crtect">
-                                <button class="btn form-control subtbtn text-center text-white">Verify</button>
+                                <button class="btn form-control btn_c_s btn-primary text-center text-white">Verify</button>
                             </div>
                         </form>
                     </div>

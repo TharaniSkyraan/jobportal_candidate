@@ -28,10 +28,10 @@
                             {!! Form::hidden('user_type','', array('id'=>'user_type')) !!}
                             
                             <div class="mb-3 text-center display-email" style="display:none;">
-                                <h3>
+                                <h5>
                                     <text id="display-email">...</text> 
-                                    <i class='fa fa-edit cursor-pointer edit-email p-2'></i>
-                                </h3>       
+                                    <i class='fas fa-pencil-alt cursor-pointer edit-email p-2'></i>
+                                </h5>       
                             </div>
                             <div class="mb-3 rtname" style="display:none;">
                                 <label class="form-label">Your Name</label>
@@ -53,7 +53,7 @@
                             </div>
 
                             <div class="d-grid gap-2">
-                               <button class="btn form-control subtbtn btn-primary text-center text-white" type="submit">Continue</button>
+                               <button class="btn form-control btn_c_s btn-primary text-center text-white" type="submit">Continue</button>
                             </div>
                         </form>
                         <div class="small text-center f-pass">

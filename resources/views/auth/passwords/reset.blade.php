@@ -19,7 +19,7 @@
                           <img src="{{asset('images/footer_logo.png')}}" alt="logo">
                       </a>
                       <h2 class="fw-bolder mt-3"> Reset Password </h2>
-                      <p class="grytxtv px-2">Enter the email associated with your account and we'll send you instructions to reset your password.</p>
+                      <p class="grytxtv px-4">Enter the email associated with your account and we'll send you instructions to reset your password.</p>
                   </div>
                   <div class="container">
                     @if(session()->has('message'))
@@ -61,15 +61,15 @@
                           @endif
                           <span class="form-text text-danger err_msg " id="err_password_confirmation"></span> 
                         </div>
-                        <div class="mb-5">
+                        <div class="mb-4">
                           <label class="form-check-label cursor-pointer user-select-none" for="show_p_chk">
                             <input class="form-check-input" type="checkbox" id="show_p_chk" value="">
                             <span class="form-check-sign" for="show_p_chk">Show Password</span>
                           </label>
                         </div>
                         
-                        <div class="d-grid gap-2 ">
-                          <input type="submit" class="btn btn_c_s" value="{{__('Submit')}}">
+                        <div class="mb-4 d-grid gap-2 ">
+                          <input type="submit" class="btn btn_c_s btn-primary " value="{{__('Submit')}}">
                         </div>
                     </form>
                   </div>

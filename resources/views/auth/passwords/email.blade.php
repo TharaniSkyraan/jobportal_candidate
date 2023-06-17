@@ -14,12 +14,12 @@
            
             <div class="col-md-6 card-size">
                 <div class="card lgncard1">
-                  <div class="site2_logo mb-4 mt-2 text-center">
+                  <div class="site2_logo mb-2 mt-2 text-center">
                       <a href="{{url('/')}}" class="href">
                           <img src="{{asset('images/footer_logo.png')}}" alt="logo">
                       </a>
                       <h2 class="fw-bolder mt-3"> Reset Password </h2>
-                      <p class="grytxtv">Enter the email associated with your account and we'll send you instructions to reset your password.</p>
+                      <p class="grytxtv px-4">Enter the email associated with your account and we'll send you instructions to reset your password.</p>
                   </div>
                        
            
@@ -37,7 +37,7 @@
                           <small id="err_email" class="text-muted err_msg text-danger"></small>
                         </div>
                         <div class="d-grid gap-2 mb-4">
-                          <input type="submit" class="btn btn_c_s text-wrap" value="{{__('Send Password Reset Link')}}">
+                          <input type="submit" class="btn btn_c_s btn-primary  text-wrap" value="{{__('Send Password Reset Link')}}">
                         </div>
                     </form>
                   </div>
