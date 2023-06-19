@@ -159,7 +159,7 @@
                     <div class="col-6 text-end align-self-center">
                         <div class="row">
                             <div class="col-10">
-                                @if(count($job->screeningquiz)!=0)
+                                @if(count($job->screeningquiz)!=0 && $job->company->reference_url=='')
                                     <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn " id="japplybtn" data-bs-toggle="modal" href="#screeningQuiz72ers3" role="button">
                                         <img class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
                                     </button>
@@ -217,7 +217,7 @@
                                 </div>
                                 <div class="col-md-4 col-sm-8 col-xs-12" style="text-align: -webkit-right;">
                                     <div class="d-flex align-items-center justify-content-end">
-                                        @if(count($job->screeningquiz)!=0)
+                                        @if(count($job->screeningquiz)!=0 && $job->company->reference_url=='')
                                             <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn " id="japplybtn" data-bs-toggle="modal" href="#screeningQuiz72ers3" role="button">
                                                 <img class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
                                             </button>

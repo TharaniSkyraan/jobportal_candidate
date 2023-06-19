@@ -296,7 +296,7 @@ ul{
                                         @elseif($application_status=='reject')
                                         <label class="japplied-btn" id="japplied-btn" ><img class="imagesz-2" src="{{url('site_assets_1/assets/img/Rejected.png')}}" alt="Rejected"> <span class="fw-bolder fs-6">Rejected</span></label>
                                         @else
-                                            @if(count($job->screeningquiz)!=0)
+                                            @if(count($job->screeningquiz)!=0 && $job->company->is_admin!=1)
                                                 <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn " id="japplybtn" data-bs-toggle="modal" href="#screeningQuiz72ers3" role="button">
                                                     <img class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
                                                 </button>

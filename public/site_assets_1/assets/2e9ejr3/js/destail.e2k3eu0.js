@@ -90,8 +90,13 @@
         }
     });
     $('.japplybtn').click(function(){
-        var data = {"_token": csrf_token,'is_login':v_is_login };
-        jobApply(apply_req_url, data);
+        
+        if(is_admin==1 && reference_url!=''){
+            openInNewTabWithNoopener(reference_url);
+        }else{
+            var data = {"_token": csrf_token,'is_login':v_is_login };
+            jobApply(apply_req_url, data);
+        }
     });
 
     $('.submit').click(function(){
@@ -152,102 +157,95 @@
 
     function jobApply(req_url, data) {
 
-        if(is_admin==1){
-            openInNewTabWithNoopener(reference_url);
-        }else{
-                
-            if(1) {
-                $("#japplied-btn").hide();
-                let btn = $(".japply-btn");
-                $(btn).prop("disabled", true);
+        if(1) {
+            $("#japplied-btn").hide();
+            let btn = $(".japply-btn");
+            $(btn).prop("disabled", true);
 
-                $.ajax({
-                    url: req_url,
-                    type: 'POST',
-                    data : data,
-                    datatype: 'JSON',
-                    beforeSend:function(){
+            $.ajax({
+                url: req_url,
+                type: 'POST',
+                data : data,
+                datatype: 'JSON',
+                beforeSend:function(){
+                    $(btn).html(
+                        `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading..`
+                    );
+                },
+                success: function(resp) {
+                    
+                    let redir='';
+                    let applied_b =false;
+                    let reload_page = resp.reload_page || false;
+                    
+                    if(resp.success == true){
+                        redir = resp.return_to;
+                        applied_b=true;
+                    }
+                    else if(resp.success == false){
+                        redir = resp.return_to;
+                        applied_b=false;
+                    }
+                    else{
+                        redir = resp.return_to;
+                        applied_b=false;
+                    }
+                    
+                    if(applied_b){
+                        $(".japplied-btn").show();
+                        $(btn).hide();
+                    }
+                    else{
                         $(btn).html(
-                            `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading..`
+                            `<img class="image-size" src="${baseurl}site_assets_1/assets/img/apply2.png" alt="Apply"> <span class="fw-bold"> Apply</span></button>`
                         );
-                    },
-                    success: function(resp) {
-                        
-                        let redir='';
-                        let applied_b =false;
-                        let reload_page = resp.reload_page || false;
-                        
-                        if(resp.success == true){
-                            redir = resp.return_to;
-                            applied_b=true;
-                        }
-                        else if(resp.success == false){
-                            redir = resp.return_to;
-                            applied_b=false;
-                        }
-                        else{
-                            redir = resp.return_to;
-                            applied_b=false;
-                        }
-                        
-                        if(applied_b){
-                            $(".japplied-btn").show();
-                            $(btn).hide();
-                        }
-                        else{
-                            $(btn).html(
-                                `<img class="image-size" src="${baseurl}site_assets_1/assets/img/apply2.png" alt="Apply"> <span class="fw-bold"> Apply</span></button>`
-                            );
-                            $(".japplied-btn").hide();
-                            $(btn).show();
-                        }
-                        $(btn).prop("disabled", false);
+                        $(".japplied-btn").hide();
+                        $(btn).show();
+                    }
+                    $(btn).prop("disabled", false);
 
-                        let url ='';
-                        //redir action
-                        if(redir =='login' || redir == 'redirect_user' ){
-                            url = baseurl + redir;
-                            openInNewTabWithNoopener(url);
-                            // alert()
-                        }else if(redir =='company/postedjobslist'){
-                            location.reload();
-                        }
-                        else if(redir == 'already_applied'){
-                            $('#jasuccess').html('<div class="alert alert-success alert-dismissible">'
-                                +resp.message
-                                +'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
-                                +'</div>');
-                                $(".japplied-btn").show();
-                                $(btn).hide();
-                                $('#screeningQuiz72ers3').modal('hide');
-                        }else if(redir == ''){
-                            $('#jasuccess').html('<div class="alert alert-success alert-dismissible">'
+                    let url ='';
+                    //redir action
+                    if(redir =='login' || redir == 'redirect_user' ){
+                        url = baseurl + redir;
+                        openInNewTabWithNoopener(url);
+                        // alert()
+                    }else if(redir =='company/postedjobslist'){
+                        location.reload();
+                    }
+                    else if(redir == 'already_applied'){
+                        $('#jasuccess').html('<div class="alert alert-success alert-dismissible">'
                             +resp.message
                             +'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
                             +'</div>');
                             $(".japplied-btn").show();
                             $(btn).hide();
                             $('#screeningQuiz72ers3').modal('hide');
-                        
-                        }
-                        else{ 
-                            location.reload();
-                        }
-                        
-                        if(reload_page){
-                            location.reload();
-                        }
-
-                    },
-                    error: function (xhr, ajaxOptions, thrownError) {
-                        // $('#content').html(errorMsg);
+                    }else if(redir == ''){
+                        $('#jasuccess').html('<div class="alert alert-success alert-dismissible">'
+                        +resp.message
+                        +'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+                        +'</div>');
+                        $(".japplied-btn").show();
+                        $(btn).hide();
+                        $('#screeningQuiz72ers3').modal('hide');
+                    
                     }
-                });
+                    else{ 
+                        location.reload();
+                    }
+                    
+                    if(reload_page){
+                        location.reload();
+                    }
 
-            }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    // $('#content').html(errorMsg);
+                }
+            });
+
         }
-
-
     }
     
     function openInNewTabWithNoopener(val) {
