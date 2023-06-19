@@ -692,6 +692,8 @@
     $applied = Auth::user()?(Auth::user()->isAppliedOnJob($job->id)??false):false;
 @endphp
 <script>
+    var reference_url = '{{ $job->reference_url }}';
+    var is_admin = '{{ $job->company->is_admin }}';
     var applied = '{{ $applied }}';
     var baseurl = '{{ url("/") }}/';
     var is_login = '{{ Cookie::get("is_login") }}';
