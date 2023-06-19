@@ -1,9 +1,20 @@
+@if(Auth::check())
+  <style>
+  @media(min-width: 280px) and (max-width: 767px){
+    .mobile-nav-toggle{
+        display: block !important; 
+        
+    } 
+  }
+  </style>
+@endif
 <div class="main-header">
 	<header id="header" class="header fixed-top bg-color-blue d-flex justify-content-center align-items-center">
 		
 		<button class="navbar-toggler sidenavv-toggler ml-auto" type="button">
-			<i class="fa fa-bars text-white"></i>
+			<i class="fa fa-bars" id="lock-icon1"></i>
 		</button> 
+		
 		<div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
 		{{-- <span>Post a Job</span> --}}
@@ -145,7 +156,6 @@
 					
 					</ul>
 				@endif
-				
 				<i class="fa-solid fa-ellipsis-vertical mobile-nav-toggle"></i>
 			</nav>
 		</div>

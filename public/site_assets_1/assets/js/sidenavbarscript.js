@@ -5,19 +5,30 @@ const sidenavbarCloseBtn = document.querySelector("#sidenavbar-close");
 const sidenavbarLockBtn = document.querySelector("#lock-icon");
 const header = document.querySelector("#header");
 const mainPanel = document.querySelector(".main-panel");
+
+const navbartoggleBtn = document.querySelector('.navbar-toggler');
 const sidenavbartoggleBtn = document.querySelector('.sidenav-toggler');
+const sidenavbarLockBtn1 = document.querySelector("#lock-icon1");
+
+// Collage Card profile
 const arrowtoggleBtn = document.querySelector('.toggle');
 const angletoggleBtn = document.querySelector('.angle-toggle');
+
 if(sidenavbar!=null){ 
-  // $('.img-fluid').show();
   header.classList.add('header-open'); 
 }
 var screensize= $( window ).width();
 
-if(screensize<=800){
+if(screensize<=800)
+{
   header.classList.replace("header-open", "header-close");
   mainPanel.classList.add("main-panel-customize");
-  // $('.img-fluid').show();
+  
+  if(screensize<=600){
+    // $('#sidenavbar-close').hide();
+    header.classList.replace("header-close", "header-unset");
+  }
+
 }
 
 // Function to toggle the lock state of the sidenavbar
@@ -30,14 +41,27 @@ const toggleLock = () => {
     sidenavbar.classList.add("close");
     sidenavbarLockBtn.classList.replace("fa-close", "fa-bars");
     mainPanel.classList.add("main-panel-customize");
-    // $('.img-fluid').show();
 } else {
     header.classList.replace("header-close", "header-open");
     sidenavbar.classList.remove("hoverable");
     sidenavbar.classList.remove("close");
     sidenavbarLockBtn.classList.replace("fa-bars", "fa-close");
     mainPanel.classList.remove("main-panel-customize");
-    // $('.img-fluid').hide();
+  }
+};
+
+// Function to toggle the lock state of the sidenavbar
+const toggleMobNavLock = () => {
+  if (navbartoggleBtn.classList.contains("sidenavv-toggler")) {
+    navbartoggleBtn.classList.remove('sidenavv-toggler');
+    $('.sidenavbar').show();
+    sidenavbarLockBtn1.classList.replace("fa-bars", "fa-close");
+    header.classList.replace("header-unset", "header-close");  
+  } else{
+    navbartoggleBtn.classList.add('sidenavv-toggler');
+    sidenavbarLockBtn1.classList.replace("fa-close", "fa-bars");
+    $('.sidenavbar').hide();
+    header.classList.replace("header-close", "header-unset"); 
   }
 };
 
@@ -79,6 +103,7 @@ if (window.innerWidth < 800) {
 
 // Adding event listeners to buttons and sidenavbar for the corresponding actions
 sidenavbarLockBtn.addEventListener("click", toggleLock);
+navbartoggleBtn.addEventListener("click", toggleMobNavLock);
 sidenavbartoggleBtn.addEventListener("click", toggleLock);
 arrowtoggleBtn.addEventListener("click", arrowToggle);
 sidenavbar.addEventListener("mouseleave", hideSidenavbar);

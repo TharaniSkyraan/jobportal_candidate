@@ -1,8 +1,31 @@
+@if(Auth::check())
+  <style>
+  @media(min-width: 280px) and (max-width: 767px){
+    .mobile-nav-toggle{
+        display: block !important; 
+        
+    } 
+  }
+  </style>
+@endif
+
+@if(Auth::check())
+  <style>
+    @media(min-width: 280px) and (max-width: 600px){    
+      .sidenavv-toggler{
+        display: block !important;
+      }
+      .header{
+        height: 60px !important;
+      }
+    }
+  </style>
+@endif
 <div class="main-header">
 	<header id="header" class="header header-open fixed-top bg-color-blue d-flex justify-content-center align-items-center">
 		
-		<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
-			<i class="fa-solid fa-ellipsis-vertical"></i>
+		<button class="navbar-toggler sidenavv-toggler ml-auto" type="button">
+			<i class="fa fa-bars" id="lock-icon1"></i>
 		</button> 
 		<div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
@@ -146,7 +169,7 @@
 					</ul>
 				@endif
 				
-				<i class="bi bi-list mobile-nav-toggle"></i>
+				<i class="fa-solid fa-ellipsis-vertical mobile-nav-toggle"></i>
 			</nav>
 		</div>
 	</header>

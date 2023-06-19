@@ -2483,3 +2483,10 @@ border-radius: 20px;
 }
 
 /* Side Bar */
+
+.mobile-nav-toggle{
+  display: none !important;
+  align-self: center;
+  padding-left: 10px;
+  font-size: 20px !important;
+}
