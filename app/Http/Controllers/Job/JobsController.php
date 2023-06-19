@@ -196,7 +196,12 @@ class JobsController extends Controller
             
             $jobs = $this->fetchJobs($designation, $location, $filter, 15);
 
-            $joblist = $jobs['joblist'];           
+            $joblist = $jobs['joblist'];    
+            
+            $jobs['joblist']->each(function ($rjob, $key) {
+                $jobc = Job::find($rjob->job_id);
+                $rjob['is_admin'] = $jobc->company->is_admin??'';
+            });    
             $filters = $jobs['filters'];
 
             // if($joblist->total()!= 0){

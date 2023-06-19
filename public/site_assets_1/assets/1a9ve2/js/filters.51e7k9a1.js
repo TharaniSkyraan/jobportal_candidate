@@ -1087,7 +1087,7 @@ function createJoblistDiv(data,appliedJobids){
                         if(appliedJobids.includes(job_id)){
                             html +='<label class="japplied-btn" ><img class="imagesz-2" src="'+baseurl+'site_assets_1/assets/img/Shortlist.png" alt="applied"> <span class="fw-bold">Applied</span></label>';
                         }else{
-                            if(val.have_screening_quiz=='yes'){
+                            if(val.have_screening_quiz=='yes' || val.is_admin==1){
                                 html +='<button class="btn p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtnredir" id="japplybtn"><img class="image-size" src="'+baseurl+'site_assets_1/assets/img/apply2.png" alt="apply"> Apply</button>';
                             }else{
                                 html +='<button class="btn p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn"><img class="image-size" src="'+baseurl+'site_assets_1/assets/img/apply2.png" alt="apply"> Apply</button>';
