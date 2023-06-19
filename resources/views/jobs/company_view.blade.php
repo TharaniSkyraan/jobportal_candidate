@@ -4,30 +4,29 @@
 @endsection
 @section('content')
 @include('layouts.header')
-    <style>
-        @media (min-width: 576px)
-        {    
-          .container-detail {
-              max-width: 670px !important;
-          }
+<style>
+    @media (min-width: 576px)
+    {    
+        .container-detail {
+            max-width: 670px !important;
         }
-        @media (min-width: 768px)
-        {    
-          .container-detail {
-              max-width: 960px !important;
-          }
+    }
+    @media (min-width: 768px)
+    {    
+        .container-detail {
+            max-width: 960px !important;
         }
-        @media (min-width: 1200px)
-        {    
-          .container-detail {
-              max-width: 1140px !important;
-          }
+    }
+    @media (min-width: 1200px)
+    {    
+        .container-detail {
+            max-width: 1140px !important;
         }
-    </style>
-    <?php 
+    }
+</style>
+<?php 
     $arra=array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
-    ?>  
-
+?>  
 <section id="companydetail">
     <div class="container container-detail">
         <div class="row justify-content-center mb-5">
@@ -45,8 +44,6 @@
                 </div>
             </div>
         </div>
-
-
         <div class="row">
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 col-12">
                 <div class="mx-auto pb-5 w-75">
@@ -250,50 +247,49 @@
 <script src="{{ asset('rating-input/bootstrap4-rating-input.js') }}"></script>
 <script src="https://use.fontawesome.com/5ac93d4ca8.js"></script>
 <script>
-      $.get("{{ route('getourcompanygallery',$company->id) }}")
-            .done(function (response) 
-            {// Get select
-           
-                if(response.data.length > 0)
-                {
-                    
-                    $.each(response.data, function (i, data) 
-                    { 
-                        $('.galaryappendcontent')
-                        .append(`<div class="col-md-4 col-xl-3 col-lg-3 col-sm-6 col-xs-6 col-12">
-                                    <div class="card zoom opacity savecompanyname" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                        <div class="text-center"><div class="box"> 
-                                            <img class="card-img-top imgclass" src=`+data['image_exact_url']+`>
-                                        </div>
-                                        <div class="card-body"> 
-                                            <h5 class="card-title text-start fw-bolder">`+data['title']+`</h5> 
-                                            <p class="card-text text-start">`+data['description']+`</p> 
-                                        </div> 
-                                    </div>
-                                </div>`);
-                    });
-
-                }else{
-                    $('.galaryappendcontent').append('<span class="text-center fw-bolder">No Active Gallery</span>');
-                }
+    $.get("{{ route('getourcompanygallery',$company->id) }}")
+    .done(function (response) 
+    {// Get select
+    
+        if(response.data.length > 0)
+        {
             
+            $.each(response.data, function (i, data) 
+            { 
+                $('.galaryappendcontent')
+                .append(`<div class="col-md-4 col-xl-3 col-lg-3 col-sm-6 col-xs-6 col-12">
+                            <div class="card zoom opacity savecompanyname" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                <div class="text-center"><div class="box"> 
+                                    <img class="card-img-top imgclass" src=`+data['image_exact_url']+`>
+                                </div>
+                                <div class="card-body"> 
+                                    <h5 class="card-title text-start fw-bolder">`+data['title']+`</h5> 
+                                    <p class="card-text text-start">`+data['description']+`</p> 
+                                </div> 
+                            </div>
+                        </div>`);
             });
 
-        $('.new_post').addClass('bg-lit-green-col');
+        }else{
+            $('.galaryappendcontent').append('<span class="text-center fw-bolder">No Active Gallery</span>');
+        }
+    
+    });
 
-        $('input[name=choose_job_post]').on('click', function() 
-        {
-            var val = $('input[name=choose_job_post]:checked').val(); 
+    $('.new_post').addClass('bg-lit-green-col');
 
-            if(val == 'new'){ 
-                $('.new_post').addClass('bg-lit-green-col');
-                $('.old_post').removeClass('bg-lit-green-col');
-            }else if(val == 'old'){
-                $('.new_post').removeClass('bg-lit-green-col');
-                $('.old_post').addClass('bg-lit-green-col');
-            }
-        });
+    $('input[name=choose_job_post]').on('click', function() 
+    {
+        var val = $('input[name=choose_job_post]:checked').val(); 
 
+        if(val == 'new'){ 
+            $('.new_post').addClass('bg-lit-green-col');
+            $('.old_post').removeClass('bg-lit-green-col');
+        }else if(val == 'old'){
+            $('.new_post').removeClass('bg-lit-green-col');
+            $('.old_post').addClass('bg-lit-green-col');
+        }
+    });
 
 </script>
 @endsection

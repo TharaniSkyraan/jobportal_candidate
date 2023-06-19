@@ -1,8 +1,8 @@
 <div class="main-header">
 	<header id="header" class="header fixed-top bg-color-blue d-flex justify-content-center align-items-center">
 		
-		<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
-			<i class="fa-solid fa-ellipsis-vertical"></i>
+		<button class="navbar-toggler sidenavv-toggler ml-auto" type="button">
+			<i class="fa fa-bars text-white"></i>
 		</button> 
 		<div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
@@ -146,7 +146,7 @@
 					</ul>
 				@endif
 				
-				<i class="bi bi-list mobile-nav-toggle"></i>
+				<i class="fa-solid fa-ellipsis-vertical mobile-nav-toggle"></i>
 			</nav>
 		</div>
 	</header>

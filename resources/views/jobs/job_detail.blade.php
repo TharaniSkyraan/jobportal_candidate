@@ -523,10 +523,18 @@
                                             <text>{{ !empty($job->company->address) ? $job->company->address.' '.$job->company->location.$pincode : "-" }}</text>
                                         </span>
                                     </div>
-                                       
-                                    <div class="col-md-6 align-self-center text-end">
-                                        <a href="{{url('company-view/'.$job->company->slug)}}"><label class="chip clickable mt-0 cursor-pointer"><span>View More</span></label></a>                                 
-                                    </div>
+                                    @isset($job->company)
+                                        @if($job->company->is_admin==0)
+                                        <div class="col-md-6 align-self-center text-end">
+                                            <a href="{{url('company-view/'.$job->company->slug)}}"><label class="chip clickable mt-0 cursor-pointer"><span>View More</span></label></a>                                 
+                                        </div>
+                                        @elseif(isset($job->reference_url))
+                                        <div class="col-md-6 align-self-center text-end">
+                                            <a href="{{url('company-view/'.$job->company->slug)}}"><label class="chip clickable mt-0 cursor-pointer"><span>View More</span></label></a>                                 
+                                        </div>
+                                        @endif
+                                    @endisset
+
                                 </div> 
                                 
                                 <hr>

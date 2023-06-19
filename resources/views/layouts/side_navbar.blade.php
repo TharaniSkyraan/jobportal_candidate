@@ -14,7 +14,7 @@
   $eduLevels = App\Helpers\DataArrayHelper::langEducationlevelsArray();
   $eduLevelids = App\Model\UserEducation::whereUserId(Auth::user()->id)->pluck('education_level_id')->toArray();
 @endphp 
-<nav class="sidenavbar locked">
+<nav class="wrapper sidenavbar locked">
   <div class="logo_items flex">
     <i class="fa fa-close text-white" id="lock-icon" title="Unlock Sidenavbar"></i>
     <i class="fa fa-bars text-white" id="sidenavbar-close"></i>
