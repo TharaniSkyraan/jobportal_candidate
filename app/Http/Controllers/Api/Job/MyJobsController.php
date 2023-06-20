@@ -83,6 +83,7 @@ class MyJobsController extends BaseController
         $user_id = Auth::user()->id??710;
         $user = User::find($user_id);
         $sortBy = $request->sortBy??'all';
+        // shortlist // view
         $jobs = JobApply::where('user_id',$user_id)
                                ->where(function($q) use($sortBy){
                                     if($sortBy =='view'){                
@@ -107,6 +108,8 @@ class MyJobsController extends BaseController
                 'company_name'=>$job->company->name??'',
                 'experience'=>$job->experience_string,
                 'salary'=>$job->salary_string,
+                'immediate_join' => $job->NoticePeriod !=null?$job->NoticePeriod->notice_period:'',
+                'is_favourite'=>$user->isFavouriteJob($job->slug),
                 'job_type'=>$job->getTypesStr(),
                 'skills'=>$job->getSkillsStr(),
                 'posted_at'=>strtotime($job->posted_date),
@@ -172,9 +175,23 @@ class MyJobsController extends BaseController
     {      
         $user_id = Auth::user()->id??710;
         $user = User::find($user_id);
+        $sortBy = $request->sortBy;
+        $orderBy = $request->orderBy;
+        // 1 - active // 3 expired // 2 inactive
         $jobs = FavouriteJob::where('user_id',$user_id)
-                            ->orderBy('created_at','asc')
-                            ->paginate(10);
+                            ->whereHas('job', function($q) use($sortBy, $orderBy){                                    
+                                $q->where(function($q) use($sortBy){
+                                    if($sortBy !='all')
+                                    {  
+                                        if($sortBy =='expired')
+                                        {  
+                                            $q->where('is_active',3);
+                                        }else{
+                                            $q->where('is_active','!=',3);
+                                        }
+                                    }
+                                })->orderBy('created_at',$orderBy);
+                            })->paginate(10);
                             
         $savedjobs = array_map(function ($savedjob) use($user) 
                         {

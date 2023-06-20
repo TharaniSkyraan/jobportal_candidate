@@ -470,12 +470,13 @@ class Job extends Model
         $salary_to = $this->salary_to;
         $salary_currency = isset($this->salary_currency)&&!empty($this->salary_currency) ? ' '.$this->salary_currency : '' ;
         if($this->salary_from > 0 && $this->salary_to > 0){
-            if($this->getSalaryPeriod('salary_period') == 'Monthly'){
+            if($this->getSalaryPeriod('salary_period') == 'Monthly')
+            {
                 $salary_from = $this->salary_from * 12;
                 $salary_to = $this->salary_to * 12;
             }
-            if($this->getSalaryPeriod('salary_period') == 'Weekly'){
-                
+            if($this->getSalaryPeriod('salary_period') == 'Weekly')
+            {                
                 $salary_from = $this->salary_from * 52;
                 $salary_to = $this->salary_to * 52;
             }

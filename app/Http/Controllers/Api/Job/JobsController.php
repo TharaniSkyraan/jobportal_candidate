@@ -196,6 +196,9 @@ class JobsController extends BaseController
         $user_id = Auth::user()->id??710;
         $user = User::find($user_id);
         $job = Job::whereSlug($slug)->with(['screeningquiz'])->first(); 
+        $jobapplied = JobApply::whereJobId($job->id)
+                              ->whereUserId($user_id)
+                              ->first();
         if($job==NULL){
             return $this->sendError('No Job Available.'); 
         }
@@ -203,7 +206,7 @@ class JobsController extends BaseController
         $job_skill_id = explode(',',$job->getSkillsStr());
         $skills = explode(',',$user->getUserSkillsStr('skill'));
         $skill = array_intersect($job_skill_id,$skills);
-        
+        $shortlist = (isset($jobapplied->application_status)?(!empty($jobapplied->application_status)?$jobapplied->application_status:''):'');
         $jobd = array(
             'id'=>$job->id,
             'slug'=>$job->slug,
@@ -233,6 +236,12 @@ class JobsController extends BaseController
             'skillmatches' => $user->profileMatch($job->id),
             'is_applied'=>$user->isAppliedOnJob($job->id),
             'is_favourite'=>$user->isFavouriteJob($job->slug),
+            'shortlist'=>$shortlist,
+            'website_url'=>$job->company->website_url??'',
+            'linkedin_url'=>$job->company->linkedin_url??'',
+            'twitter_url'=>$job->company->twitter_url??'',
+            'fb_url'=>$job->company->fb_url??'',
+            'insta_url'=>$job->company->insta_url??'',
         );
 
         $jobs = $this->fetchJobs($job->title, '', [], 10);
@@ -266,12 +275,37 @@ class JobsController extends BaseController
     public function companyDetail($slug)
     {
         $companies= Company::where('slug', $slug)->pluck('id')->first();
+        $companies->country_name = $companies->getCountry('country')??'';
         $company = Company::find($companies);
         $company_jobs=$company->getOpenJobs();
-
+        $gallery=$company->gallery;
+        
+        $companyjobs = array_map(function ($companyjob) use($user) {
+            $job = Job::find($companyjob['job_id']);
+            $val = array(
+                'id'=>$companyjob['id'],
+                'slug'=>$job->slug,
+                'title'=>$job->title,
+                'description'=>$job->description,
+                'location'=>$job->work_locations,
+                'company_image'=>$job->company->company_image??'',
+                'company_name'=>$job->company->name??'',
+                'experience'=>$job->experience_string,
+                'salary'=>$job->salary_string,
+                'immediate_join' => $job->NoticePeriod !=null?$job->NoticePeriod->notice_period:'',
+                'is_favourite'=>$user->isFavouriteJob($job->slug),
+                'job_type'=>$job->getTypesStr(),
+                'skills'=>$job->getSkillsStr(),
+                'posted_at'=>strtotime($job->posted_date),
+                'is_applied'=>$user->isAppliedOnJob($job->id),
+            );
+            return $val;
+        }, $company_jobs); 
+        
         $response = array(
             'company' => $company, 
-            'company_jobs' => $company_jobs,
+            'company_jobs' => $companyjobs,
+            'gallery' => $gallery
         );
         return $this->sendResponse($response);
     }

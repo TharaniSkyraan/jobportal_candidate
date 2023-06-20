@@ -269,7 +269,6 @@ class User extends Authenticatable
 
 
     public function appliedJobs()
-
     {
 
         return $this->hasMany(JobApply::class, 'user_id', 'id');

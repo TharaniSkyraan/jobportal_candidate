@@ -67,14 +67,12 @@
         border-color: #c8e8ef;
         padding: 0.36rem 0.65rem!important;
     }
-
 </style>
     
 <div class="wrapper">
         
 	@include('layouts.dashboard_header')
 	@include('layouts.side_navbar')
-        
 	<div class="main-panel main-panel-custom">
 		<div class="content">
         <div class="row">
