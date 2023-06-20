@@ -274,6 +274,8 @@ class JobsController extends BaseController
      */
     public function companyDetail($slug)
     {
+        $user_id = Auth::user()->id??710;
+        $user = User::find($user_id);
         $companies= Company::where('slug', $slug)->pluck('id')->first();
         $company = Company::find($companies);
         $company->country_name = $company->getCountry('country')??'';
