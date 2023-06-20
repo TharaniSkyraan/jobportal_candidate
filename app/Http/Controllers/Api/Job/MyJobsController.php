@@ -113,6 +113,7 @@ class MyJobsController extends BaseController
                 'job_type'=>$job->getTypesStr(),
                 'skills'=>$job->getSkillsStr(),
                 'posted_at'=>strtotime($job->posted_date),
+                'created_at'=>strtotime($appliedjob['created_at']),                               
             );
             return $val;
         }, $jobs->toArray()['data']); 
@@ -190,8 +191,9 @@ class MyJobsController extends BaseController
                                             $q->where('is_active','!=',3);
                                         }
                                     }
-                                })->orderBy('created_at',$orderBy);
-                            })->paginate(10);
+                                });
+                            })->orderBy('created_at',$orderBy)
+                             ->paginate(10);
                             
         $savedjobs = array_map(function ($savedjob) use($user) 
                         {
@@ -210,6 +212,7 @@ class MyJobsController extends BaseController
                                 'job_type'=>$job->getTypesStr(),
                                 'skills'=>$job->getSkillsStr(),
                                 'posted_at'=>strtotime($job->posted_date),
+                                'created_at'=>strtotime($savedjob['created_at']),
                                 'is_applied'=>$user->isAppliedOnJob($job->id),
                                 'is_favourite' => $user->isFavouriteJob($job->slug)
                             );
