@@ -280,10 +280,10 @@ class JobsController extends BaseController
         $companies= Company::where('slug', $slug)->pluck('id')->first();
         $company = Company::find($companies);
         $company->country_name = $company->getCountry('country')??'';
-        $company_jobs = Job::where('company_id', '=', $companies)
+        $company_jobs = Job::where('company_id', $companies)
                          ->whereIsActive(1)
                         //  ->whereDate('expiry_date', '>', Carbon::now())
-                         ->get();
+                         ->toArray();
         $gallery=Companygalary::whereCompanyId($companies)->get();
         
         $companyjobs = array_map(function ($companyjob) use($user) {
@@ -306,7 +306,7 @@ class JobsController extends BaseController
                 'is_applied'=>$user->isAppliedOnJob($job->id),
             );
             return $val;
-        }, ($company_jobs->toArray()['data']??[])); 
+        }, $company_jobs); 
         
         $response = array(
             'company' => $company, 
