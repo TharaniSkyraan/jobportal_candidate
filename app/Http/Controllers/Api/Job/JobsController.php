@@ -232,8 +232,7 @@ class JobsController extends BaseController
             'contact_alternative'=>$job->contact_person_details->phone_2??'',
             'skillmatches' => $user->profileMatch($job->id),
             'is_applied'=>$user->isAppliedOnJob($job->id),
-            'is_favourite'=>$user->isFavouriteJob($job->slug)
-       
+            'is_favourite'=>$user->isFavouriteJob($job->slug),
         );
 
         $jobs = $this->fetchJobs($job->title, '', [], 10);
