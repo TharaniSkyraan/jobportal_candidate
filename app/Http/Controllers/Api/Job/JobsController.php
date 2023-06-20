@@ -282,7 +282,7 @@ class JobsController extends BaseController
         $company->country_name = $company->getCountry('country')??'';
         $company_jobs = Job::where('company_id', '=', $companies)
                          ->whereIsActive(1)
-                         ->whereDate('expiry_date', '>', Carbon::now())
+                        //  ->whereDate('expiry_date', '>', Carbon::now())
                          ->get();
         $gallery=Companygalary::whereCompanyId($companies)->get();
         
