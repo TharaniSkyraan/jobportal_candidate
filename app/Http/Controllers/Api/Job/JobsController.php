@@ -287,7 +287,7 @@ class JobsController extends BaseController
         $gallery=Companygalary::whereCompanyId($companies)->get();
         
         $companyjobs = array_map(function ($companyjob) use($user) {
-            $job = Job::find($companyjob['job_id']);
+            $job = Job::find($companyjob['id']);
             $val = array(
                 'id'=>$companyjob['id'],
                 'slug'=>$job->slug,
