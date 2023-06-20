@@ -283,7 +283,7 @@ class JobsController extends BaseController
         $company_jobs = Job::where('company_id', $companies)
                          ->whereIsActive(1)
                         //  ->whereDate('expiry_date', '>', Carbon::now())
-                         ->toArray();
+                         ->get()->toArray();
         $gallery=Companygalary::whereCompanyId($companies)->get();
         
         $companyjobs = array_map(function ($companyjob) use($user) {
