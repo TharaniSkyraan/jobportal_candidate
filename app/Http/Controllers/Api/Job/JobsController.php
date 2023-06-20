@@ -275,7 +275,7 @@ class JobsController extends BaseController
     public function companyDetail($slug)
     {
         $companies= Company::where('slug', $slug)->pluck('id')->first();
-        $companies->country_name = $companies->getCountry('country')??'';
+        $companies->country_name = $companies->country->country??'';
         $company = Company::find($companies);
         $company_jobs=$company->getOpenJobs();
         $gallery=$company->gallery;
