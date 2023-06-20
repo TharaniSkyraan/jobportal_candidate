@@ -86,7 +86,7 @@
 
 @if($jobs->total())
     <div class="d-flex justify-content-center mt-5">
-        {{ $jobs->appends(request()->query())->links(); }}
+        {{ $jobs->appends(request()->query())->links('pagination::bootstrap-5'); }}
     </div>
 @endif   
 
