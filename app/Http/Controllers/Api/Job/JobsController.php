@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\BaseController as BaseController;
 use App\Model\JobApply;
 use App\Model\Job;
 use App\Model\JobSearch;
+use App\Model\Companygalary;
 use App\Model\Company;
 use App\Model\User;
 use App\Helpers\DataArrayHelper;
