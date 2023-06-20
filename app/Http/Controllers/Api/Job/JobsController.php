@@ -302,7 +302,7 @@ class JobsController extends BaseController
                 'is_applied'=>$user->isAppliedOnJob($job->id),
             );
             return $val;
-        }, $company_jobs); 
+        }, ($company_jobs->toArray()['data']??[])); 
         
         $response = array(
             'company' => $company, 
