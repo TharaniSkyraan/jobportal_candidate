@@ -77,7 +77,7 @@ class JobsController extends Controller
     public function savedJobsList(Request $request){      
         $user_id = Auth::user()->id;
         $sortBy = $request->sortBy;
-        $jobs = $this->savedjobs->where('user_id',$user_id)->orderBy('created_at','asc')->paginate(10);
+        $jobs = $this->savedjobs->where('user_id',$user_id)->orderBy('created_at','asc')->paginate(1);
                             //    ->where(function($q) use($sortBy){
                             //         if($sortBy =='view'){                
                             //             $q->whereIn('application_status',['view','consider']);
