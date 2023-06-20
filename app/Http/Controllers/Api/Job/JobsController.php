@@ -279,8 +279,11 @@ class JobsController extends BaseController
         $companies= Company::where('slug', $slug)->pluck('id')->first();
         $company = Company::find($companies);
         $company->country_name = $company->getCountry('country')??'';
-        $company_jobs=$company->getOpenJobs();
-        $gallery=$company->gallery;
+        $company_jobs = Job::where('company_id', '=', $companies)
+                         ->whereIsActive(1)
+                         ->whereDate('expiry_date', '>', Carbon::now())
+                         ->get();
+        $gallery=Companygalary::whereCompanyId($companies)->get();
         
         $companyjobs = array_map(function ($companyjob) use($user) {
             $job = Job::find($companyjob['job_id']);
