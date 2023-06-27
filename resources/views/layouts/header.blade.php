@@ -1,13 +1,11 @@
-@if(Auth::check())
-  <style>
-  @media(min-width: 280px) and (max-width: 767px){
-    .mobile-nav-toggle{
-        display: block !important; 
-        
-    } 
-  }
-  </style>
-@endif
+<style>
+@media(min-width: 280px) and (max-width: 767px){
+	.mobile-nav-toggle{
+		display: block !important; 
+		
+	} 
+}
+</style>
 <div class="main-header">
 	<header id="header" class="header fixed-top bg-color-blue d-flex justify-content-center align-items-center">
 		

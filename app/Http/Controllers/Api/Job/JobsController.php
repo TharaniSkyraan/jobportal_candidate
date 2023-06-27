@@ -51,8 +51,8 @@ class JobsController extends BaseController
                     'company_name' => $job->job->company_name??'Skyraan',
                     'company_image' => $job->job->company->company_image??'',
                     'status' => $job->application_status,
-                    'applied_at' => strtotime($job->created_at),
-                    'status_updated_at' => strtotime($job->updated_at),
+                    'applied_at' => Carbon::parse($job->created_at)->getTimestampMs(),
+                    'status_updated_at' => Carbon::parse($job->updated_at)->getTimestampMs(),
                 );
             }
         }
@@ -66,7 +66,7 @@ class JobsController extends BaseController
             $job['company_image'] = $jobc->company->company_image??'';
             $job['job_type'] = $jobc->getTypesStr();
             $job['skills'] = $jobc->getSkillsStr();
-            $job['posted_at'] = strtotime($jobc->posted_date);
+            $job['posted_at'] = Carbon::parse($jobc->posted_date)->getTimestampMs();
             $job['is_applied'] = $user->isAppliedOnJob($job->job_id);
             $job['is_favourite'] = $user->isFavouriteJob($jobc->slug);
         });   
@@ -77,7 +77,7 @@ class JobsController extends BaseController
                 'final_percentage' => $user->getProfilePercentage(),
                 'image' => $user->image,
                 'career_title' => $user->career_title,
-                'updated_at' => strtotime($user->updated_at),  
+                'updated_at' => Carbon::parse($user->updated_at)->getTimestampMs(),  
                 'resume' => $user->getDefaultCv()->cv_file,            
                 'location' => $user->location,            
             );
@@ -107,6 +107,7 @@ class JobsController extends BaseController
         $experienceFid = $request->experinceFv??'';
         $posteddateFid = $request->posteddateFid??'';
         $designation = $request->designation??'';
+        
         $location = $request->location??'';
         $words = DataArrayHelper::blockedKeywords();
 
@@ -163,7 +164,7 @@ class JobsController extends BaseController
                 $job['company_image'] = $jobc->company->company_image??'';
                 $job['job_type'] = $jobc->getTypesStr();
                 $job['skills'] = $jobc->getSkillsStr();
-                $job['posted_at'] = strtotime($jobc->posted_date);
+                $job['posted_at'] = Carbon::parse($jobc->posted_date)->getTimestampMs();
                 $job['is_applied'] = $user->isAppliedOnJob($job->job_id);
                 $job['is_favourite'] = $user->isFavouriteJob($jobc->slug);
             });   
@@ -225,7 +226,7 @@ class JobsController extends BaseController
             'benefits'=>$job->benefits,
             'education_level'=>$job->getEducationLevel('education_level'),
             'education_type'=>$job->getEducationTypesStr(),
-            'posted_at'=>strtotime($job->posted_date),
+            'posted_at'=>Carbon::parse($job->posted_date)->getTimestampMs(),
             'immediate_join' => $job->NoticePeriod !=null?$job->NoticePeriod->notice_period:'',
             'walkin' => isset($job->walkin)?'yes':'no',
             'walkin_date' => (isset($job->walkin)?(Carbon::parse($job->walkin->walk_in_from_date)->format('d F, Y').' to '.Carbon::parse($job->walkin->walk_in_to_date)->format('d F, Y')).$exclude_days:''),
@@ -252,7 +253,7 @@ class JobsController extends BaseController
             $rjob['location'] = $rjob->work_locations;
             $rjob['job_type'] = $jobc->getTypesStr();
             $rjob['skills'] = $jobc->getSkillsStr();
-            $rjob['posted_at'] = strtotime($jobc->posted_date);
+            $rjob['posted_at'] = Carbon::parse($jobc->posted_date)->getTimestampMs();
             $rjob['is_applied'] = $user->isAppliedOnJob($jobc->id);
             $rjob['is_favourite'] = $user->isFavouriteJob($jobc->slug);
         });   
@@ -302,7 +303,7 @@ class JobsController extends BaseController
                 'is_favourite'=>$user->isFavouriteJob($job->slug),
                 'job_type'=>$job->getTypesStr(),
                 'skills'=>$job->getSkillsStr(),
-                'posted_at'=>strtotime($job->posted_date),
+                'posted_at'=>Carbon::parse($job->posted_date)->getTimestampMs(),
                 'is_applied'=>$user->isAppliedOnJob($job->id),
             );
             return $val;

@@ -18,6 +18,7 @@ use App\Model\JobAlert;
 use App\Model\User;
 use App\Http\Requests\Api\Job\SaveJobAlert;
 use App\Traits\FetchJobsList;
+use Carbon\Carbon;
 
 class MyJobsController extends BaseController
 {
@@ -112,8 +113,8 @@ class MyJobsController extends BaseController
                 'is_favourite'=>$user->isFavouriteJob($job->slug),
                 'job_type'=>$job->getTypesStr(),
                 'skills'=>$job->getSkillsStr(),
-                'posted_at'=>strtotime($job->posted_date),
-                'created_at'=>strtotime($appliedjob['created_at']),                               
+                'posted_at'=>Carbon::parse($job->posted_date)->getTimestampMs(),
+                'created_at'=>Carbon::parse($appliedjob['created_at'])->getTimestampMs(),                               
             );
             return $val;
         }, $jobs->toArray()['data']); 
@@ -140,23 +141,18 @@ class MyJobsController extends BaseController
 
         if($save_as_fav == 'yes')
         {
-                
             if(Auth::user()->isFavouriteJob($job_slug)==false)
             {
-                    
                 $jobFavourite = new FavouriteJob();
                 $jobFavourite->user_id = $user_id;
                 $jobFavourite->job_id = $job->id;
                 $jobFavourite->job_slug = $job->slug;
                 $jobFavourite->save();
-
             }
             $message = "You have successfully saved this job";
-
         }
         if($save_as_fav == 'no')
         {
-                
             if(Auth::user()->isFavouriteJob($job_slug)==true){
                 FavouriteJob::whereJobId($job->id)->whereUserId($user_id)->delete();
             }
@@ -211,8 +207,8 @@ class MyJobsController extends BaseController
                                 'immediate_join' => $job->NoticePeriod !=null?$job->NoticePeriod->notice_period:'',
                                 'job_type'=>$job->getTypesStr(),
                                 'skills'=>$job->getSkillsStr(),
-                                'posted_at'=>strtotime($job->posted_date),
-                                'created_at'=>strtotime($savedjob['created_at']),
+                                'posted_at'=>Carbon::parse($job->posted_date)->getTimestampMs(),
+                                'created_at'=>Carbon::parse($savedjob['created_at'])->getTimestampMs(),
                                 'is_applied'=>$user->isAppliedOnJob($job->id),
                                 'is_favourite' => $user->isFavouriteJob($job->slug)
                             );
@@ -280,7 +276,7 @@ class MyJobsController extends BaseController
         
         $list->each(function ($job, $key) use($user) {
             $alert = JobAlert::find($job->id);
-            $job['saved_at'] = strtotime($job->created_at);
+            $job['saved_at'] = Carbon::parse($job->created_at)->getTimestampMs();
         });
         $response['jobs'] = $list->items();
         $response['next_page'] = (!empty($list->nextPageUrl())?($list->currentPage()+1):"");

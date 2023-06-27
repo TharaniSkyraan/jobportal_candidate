@@ -19,6 +19,8 @@
         Route::get('job-alert-list', [MyJobsController::class, 'JobalertList']);
         Route::get('delete-job-alert/{id}', [MyJobsController::class, 'DeleteJobalert']);
 
+
     });
+
 
 ?>

@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Api\Auth;
+namespace App\Http\Controllers\Api\User;
 
-use Illuminate\Support\Facades\Password;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
 use App\Model\User;
@@ -11,167 +10,17 @@ use App\Model\JobSkill;
 use App\Model\Skill;
 use App\Model\UserEducation;
 use App\Model\UserCv;
+use App\Helpers\DataArrayHelper;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\Api\LoginRequest;
-use App\Http\Requests\Api\ResentRequest;
-use App\Http\Requests\Api\RegisterRequest;
-use App\Http\Requests\Api\VerifyOtpRequest;
-use App\Http\Requests\Api\ForgetPasswordRequest;
-use App\Http\Requests\Api\EducationRequest;
-use App\Http\Requests\Api\ExperienceRequest;
-use App\Http\Requests\Api\SkillRequest;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Api\CareerInfoRequest;
 use App\Http\Requests\Api\ResumeUploadRequest;
-use App\Helpers\DataArrayHelper;
-use App\Mail\UserResetPasswordMailable;
-use Jrean\UserVerification\Traits\VerifiesUsers;
-use Jrean\UserVerification\Facades\UserVerification;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use App\Events\UserRegistered;
 use Carbon\Carbon;
 use Validator;
 use DB;
-use Hash;
-use Mail;
    
-class RegisterController extends BaseController
-{
-   
-    /**
-     * Login api
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function login(LoginRequest $request)
-    {
-        if(empty($request->provider))
-        {
-            // normal Login
-            if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
-                $user = Auth::user(); 
-            } 
-        }else{
-            // social login
-            $user = User::whereEmail($request->email)->first();
-            if(isset($user)){
-                Auth::login($user, true);
-                $user = Auth::user();
-            }
-        }        
-
-        if(isset($user))
-        {
-            $response['token'] = $user->createToken($request->email)->accessToken; 
-            $response['next_process_level'] = $user->next_process_level;
-            
-            $update = User::find($user->id);
-            $update->device_token = $request->device_token;
-            $update->device_type = $request->device_type;
-            if($user->next_process_level == 'verify_otp'){
-                $update->verify_otp = $this->generateRandomCode(6);
-                $update->session_otp = Carbon::now();
-                UserVerification::generate($user);
-                UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
-                // Auth::logout();
-            }
-            $update->save();
-            return $this->sendResponse($response, 'User login successfully.');
-        }        
-        
-        return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
-    }
-    
-    /**
-     * Register api
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function register(RegisterRequest $request)
-    {
-        if(User::where('email',$request->email)->doesntExist())
-        {
-            
-            $request->verify_otp = $this->generateRandomCode(6);
-            $request->session_otp = Carbon::now();
-            $request->password = Hash::make($request->password);
-            $request->next_process_level = 'verify_otp';
-            $user = User::create($request->all());
-            
-            Auth::login($user, true); 
-            UserVerification::generate($user);
-            UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
-            Auth::logout();
-
-            return $this->sendResponse(['id'=>$user->id], 'Verification OTP Send Successful.');
-        }
-
-        return $this->sendError('Unauthorised.', ['user_type' => 'existing']); 
-    
-    }
-    /**
- 
-      * Signup / Signin Password
-       
-      * @param $request password, phone number (optional)
-      
-      * @return redirect to next page according signup level by using *\SwitchRedirect
-      
-      */ 
-    public function verifyOTP(VerifyOtpRequest $request)
-    {
-  
-        $user = User::find($request->id);
-        $startdate = Carbon::parse($user->session_otp);
-        $enddate = Carbon::now();
-
-        if(($startdate->diffInMinutes($enddate)) > 5)  // 5 refers to 5 minutes
-        {
-            return $this->sendError('OTP expired. Please try again.', array(), 422); 
-        }else
-        if(($request->otp != $user->verify_otp))  // 5 refers to 5 minutes
-        {
-            return $this->sendError('Invalid OTP.', array(), 422); 
-        }
-        $user->verify_otp = null;
-        $user->verified = 1;
-        $user->next_process_level = 'education';
-        $user->save();
-        
-        Auth::login($user, true);
-        $response['token'] =  $user->createToken($user->email)->accessToken; 
-        $response['next_process_level'] = $user->next_process_level;
-
-        return $this->sendResponse($response, 'OTP Verified Successful.');
-
-    }
-
-    /**
-      * @param $email data
-      
-      * check and resend verification mail 
-      
-      * @return success
-      */
-    public function resentOtp(ResentRequest $request)
-    {
-        
-        $user = User::find($request->id);
-        $user->verify_otp = $this->generateRandomCode(6);
-        $user->session_otp = Carbon::now();
-        $user->save();
-
-        $user =  User::find($request->id);
-
-        Auth::login($user, true); 
-        UserVerification::generate($user);
-        UserVerification::send($user, 'Account Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
-        Auth::logout();
-        
-        return $this->sendResponse(['id'=>$user->id], 'Verification OTP Send Successful.');
-
-    }
-    
+class ProfileController extends BaseController
+{   
     /**
      *  View Blade file of Candidate Basic Information Form
 
@@ -180,7 +29,7 @@ class RegisterController extends BaseController
      *  @return Education Information Form
 
      */
-    public function education()
+    public function educations()
     {
         $user = User::findOrFail(Auth::user()->id);
         $educationLevels = DataArrayHelper::langEducationlevelsArray();
@@ -210,7 +59,7 @@ class RegisterController extends BaseController
      *  @return Education Information Form
      */
 
-    public function educationSave(EducationRequest $request)
+    public function educationsUpdate(EducationRequest $request)
     {
         $user = User::findOrFail(Auth::user()->id);
 
@@ -226,11 +75,6 @@ class RegisterController extends BaseController
         $userEducation->pursuing = Null;
         $userEducation->save();
 
-        if($user->next_process_level == 'education'){                
-            $user->next_process_level = 'experience';
-            $user->save();
-        }
-
         return $this->sendResponse();
 
     }
@@ -240,7 +84,7 @@ class RegisterController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function experience()
+    public function experiences()
     {
         $user =  User::find(Auth::user()->id);
         return $this->sendResponse($user->employment_status);
@@ -255,14 +99,36 @@ class RegisterController extends BaseController
       
      */
 
-    public function experienceSave(ExperienceRequest $request)
+    public function experiencesUpdate(ExperienceRequest $request)
     {
        $user = User::findOrFail(Auth::user()->id);
-       $user->employment_status = $request->employment_status;
-       if($user->next_process_level == 'experience'){                
-           $user->next_process_level = 'career_info';
-       }
-       $user->save();
+        
+       return $this->sendResponse();
+    }
+
+    /**
+     * Project api
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function projects()
+    {
+        $user =  User::find(Auth::user()->id);
+        return $this->sendResponse($user->employment_status);
+    }
+
+    /**
+     *  View Blade file of Candidate Basic Information Form
+        
+     *  @param Get user id from session 
+      
+     *  @return Project Information Form
+      
+     */
+
+    public function projectsUpdate(ExperienceRequest $request)
+    {
+       $user = User::findOrFail(Auth::user()->id);
         
        return $this->sendResponse();
     }
@@ -275,7 +141,7 @@ class RegisterController extends BaseController
     *  @return Experience Information Form
     */
  
-    public function careerInfo()
+    public function career_info()
     {
         $user = User::findOrFail(Auth::user()->id);
 
@@ -293,20 +159,13 @@ class RegisterController extends BaseController
     }
     /**
      *  View Blade file of Candidate Basic Information Form
-     
-     * 
-     
+
      *  @param Get user id from session 
-     
-     * 
-     
-     *  @return Experience Information Form
-     
-     * 
-     
+
+     *  @return CareerInfo Information Form updae
      */
 
-    public function careerInfoSave(CareerInfoRequest $request)
+    public function career_infoUpdate(CareerInfoRequest $request)
     {  
        $user = User::findOrFail(Auth::user()->id);
        $user->phone = $request->phone;
@@ -316,9 +175,6 @@ class RegisterController extends BaseController
        $user->salary_currency = $request->salary_currency;
        $user->country_id = $request->country_id;
        $user->location = $request->location;
-       if($user->next_process_level == 'career_info'){                
-           $user->next_process_level = 'skills';
-       }
        $user->save();
        
        return $this->sendResponse();
@@ -332,8 +188,7 @@ class RegisterController extends BaseController
 
      *  @return Skills Information Form
      */
-
-    public function Skills()
+    public function skills()
     {
        
        $user = User::findOrFail(Auth::user()->id);  
@@ -362,27 +217,15 @@ class RegisterController extends BaseController
   
     /**
      *  View Blade file of Candidate Basic Information Form
-     
-     * 
-     
+      
      *  @param Get user id from session 
      
-     * 
-     
-     *  @return Skills Information Form
-     
-     * 
-     
+     *  @return Skills Information Form     
      */
-
-     public function SkillSave(SkillRequest $request)
+     public function skillsUpdate(SkillRequest $request)
      {
 
        $user = User::findOrFail(Auth::user()->id);
-       if($user->next_process_level == 'skills'){                
-           $user->next_process_level = 'resume_upload';
-       }
-
        $skills = [];
        $words = DataArrayHelper::blockedKeywords();
 
@@ -428,6 +271,98 @@ class RegisterController extends BaseController
        return $this->sendResponse();
 
      }
+ 
+    /**
+    *  View Blade file of Candidate Basic Information Form
+
+    *  @param Get user id from session 
+
+    *  @return Languages Information Form
+    */
+     public function languages()
+     {
+        
+        $user = User::findOrFail(Auth::user()->id);  
+        $title =  $user->career_title??'';
+        $user_skill_id = UserSkill::whereUserId($user->id)->pluck('skill_id')->toArray();
+ 
+        $suggestedskill = JobSkill::whereHas('job', function($q) use($title){
+                            $q->where('title', 'like', '%' . $title . '%');
+                        })
+                        ->whereNotIn('skill_id',$user_skill_id)
+                        ->select('job_skills.skill_id', \DB::raw('COUNT(job_skills.skill_id) as count'))
+                        ->groupBy('skill_id')
+                        ->orderBy('count','desc')
+                        ->limit(10)
+                        ->pluck('skill_id');
+ 
+        $reponse['skills'] = $user->skill;
+ 
+        if(count($suggestedskill)!=0){   
+            $skills = Skill::whereIn('id',$suggestedskill)->pluck('skill','id')->toArray(); 
+        }
+        $reponse['suggested_skill'] = $skills??[];
+        
+        return $this->sendResponse($reponse);
+     }
+   
+    /**
+    *  View Blade file of Candidate Basic Information Form
+    
+    *  @param Get user id from session 
+    
+    *  @return Languages Information Form     
+    */
+    public function languagesUpdate(SkillRequest $request)
+    {
+
+    $user = User::findOrFail(Auth::user()->id);
+    $skills = [];
+    $words = DataArrayHelper::blockedKeywords();
+
+    foreach(json_decode($request->skills) as $skill)
+    {
+        if(!isset($skill->id) && !in_array($skill->value, $words))
+        {                
+            if(Skill::where('skill',$skill->value)->doesntExist())
+            {
+                $newskill = new Skill();                
+                $newskill->skill = $skill->value;
+                $newskill->is_active = 0;
+                $newskill->lang = 'en';
+                $newskill->is_default = 1;
+                $newskill->save();
+                $newskill->skill_id = $newskill->id;
+                $newskill->update();
+            }else{
+                $newskill = Skill::where('skill',$skill->value)->first();
+            }
+        }
+
+        if(isset($skill->id) || isset($newskill->id))
+        {    
+            $skill_id = $skill->id??$newskill->id;       
+            if(UserSkill::where('skill_id',$skill_id)->doesntExist())
+            {                
+                $updateSkill = new UserSkill();
+                $updateSkill->user_id = $user->id;
+                $updateSkill->skills  = $skill->value;
+                $updateSkill->skill_id  = $skill_id;
+                $updateSkill->save();
+            }
+            $skills[] = array(
+                'id'=>$skill_id,
+                'value'=>$skill->value,
+            );
+        }
+    }
+    $user->skill = json_encode($skills);
+    $user->save();
+
+    return $this->sendResponse();
+
+    }
+
     /**
     *  Upload file of Candidate Resume
 
@@ -467,36 +402,10 @@ class RegisterController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function profileData()
+    public function profile()
     {
         $data =  User::find(Auth::user()->id);            
-        return $this->sendResponse($data, 'User register successfully.');
+        return $this->sendResponse($data);
     }
     
-    /**
-     * Register api
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function forgetPassword(ForgetPasswordRequest $request)
-    {
-        $credentials = ['email' => $request->email];
-        Password::sendResetLink($credentials);
-        $user = User::whereEmail($request->email)->first();
-        $user->reset_via = 'app';
-        $user->save();                            
-
-        return $this->sendResponse('', 'Password Reset Mail Sent Successfully!');
-    } 
-    /**
-     * Logout api
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function logout (Request $request) {
-        $token = $request->user()->token();
-        $token->revoke();
-        return $this->sendResponse('', 'You have been successfully logged out!');
-    }
-
 }
