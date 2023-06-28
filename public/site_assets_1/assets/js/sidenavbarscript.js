@@ -22,10 +22,11 @@ var screensize= $( window ).width();
 if(screensize<=800)
 {
   header.classList.replace("header-open", "header-close");
-  mainPanel.classList.add("main-panel-customize");
+  if(mainPanel!=null){
+    mainPanel.classList.add("main-panel-customize");
+  }
   
   if(screensize<=600){
-    // $('#sidenavbar-close').hide();
     header.classList.replace("header-close", "header-unset");
   }
 
@@ -95,18 +96,30 @@ const toggleSidenavbar = () => {
 };
 
 // If the window width is less than 800px, close the sidenavbar and remove hoverability and lock
-if (window.innerWidth < 800) {
-  sidenavbar.classList.add("close");
-  sidenavbar.classList.remove("locked");
-  sidenavbar.classList.remove("hoverable");
+
+if(sidenavbar!=null){
+  if (window.innerWidth < 800) {
+    sidenavbar.classList.add("close");
+    sidenavbar.classList.remove("locked");
+    sidenavbar.classList.remove("hoverable");
+  }
+// Adding event listeners to buttons and sidenavbar for the corresponding actions
+  sidenavbar.addEventListener("mouseleave", hideSidenavbar);
+  sidenavbar.addEventListener("mouseenter", showSidenavbar);
 }
 
 // Adding event listeners to buttons and sidenavbar for the corresponding actions
-sidenavbarLockBtn.addEventListener("click", toggleLock);
-navbartoggleBtn.addEventListener("click", toggleMobNavLock);
-sidenavbartoggleBtn.addEventListener("click", toggleLock);
-arrowtoggleBtn.addEventListener("click", arrowToggle);
-sidenavbar.addEventListener("mouseleave", hideSidenavbar);
-sidenavbar.addEventListener("mouseenter", showSidenavbar);
+if(sidenavbarLockBtn!=null){
+  sidenavbarLockBtn.addEventListener("click", toggleLock);
+}
+if(navbartoggleBtn!=null){
+  navbartoggleBtn.addEventListener("click", toggleMobNavLock);
+}
+if(sidenavbartoggleBtn!=null){
+  sidenavbartoggleBtn.addEventListener("click", toggleLock);
+}
+if(arrowtoggleBtn!=null){
+  arrowtoggleBtn.addEventListener("click", arrowToggle);
+}
 // sidenavbarOpenBtn.addEventListener("click", toggleSidenavbar);
 // sidenavbarCloseBtn.addEventListener("click", toggleSidenavbar);
