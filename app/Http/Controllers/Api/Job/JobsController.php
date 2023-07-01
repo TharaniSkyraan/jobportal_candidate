@@ -209,7 +209,7 @@ class JobsController extends BaseController
         $skills = explode(',',$user->getUserSkillsStr('skill'));
         $skill = array_intersect($job_skill_id,$skills);
         $shortlist = (isset($jobapplied->application_status)?(!empty($jobapplied->application_status)?$jobapplied->application_status:''):'');
-        $applied_at = (isset($jobapplied->created_at)?(!empty($jobapplied->created_at)?$jobapplied->application_status:''):'');
+        $applied_at = (isset($jobapplied->created_at)?(!empty($jobapplied->created_at)?$jobapplied->created_at:''):'');
         $jobd = array(
             'id'=>$job->id,
             'slug'=>$job->slug,
