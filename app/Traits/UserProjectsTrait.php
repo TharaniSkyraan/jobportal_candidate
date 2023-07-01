@@ -1,46 +1,24 @@
 <?php
 
-
-
 namespace App\Traits;
 
-
-
 use File;
-
 use ImgUploader;
-
 use Auth;
-
 use DB;
-
 use Input;
-
 use Carbon\Carbon;
-
 use Redirect;
-
 use App\Model\User;
-
 use App\Model\UserProject;
-
 use App\Http\Requests;
-
 use Illuminate\Http\Request;
-
 use Illuminate\Http\UploadedFile;
-
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-
 use App\Http\Requests\User\UserProjectFormRequest;
-
 use App\Http\Requests\User\UserProjectImageFormRequest;
-
 use Illuminate\Support\Str;
-
 use App\Helpers\DataArrayHelper;
-
-
 
 trait UserProjectsTrait
 

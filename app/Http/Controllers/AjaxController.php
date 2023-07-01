@@ -85,10 +85,6 @@ class AjaxController extends Controller
         return response()->json(array('success' => true, 'data' => $data));
     }
     
-
-
-
-
     public function optionValue(Request $request)
     {
         $type = $request->option_value;
@@ -162,6 +158,11 @@ class AjaxController extends Controller
 
     /*     * ***************************************** */
 
+    public function suggestionEducationLevels(Request $request)
+    {
+        $data = DataArrayHelper::autocompleteEducationLevel();
+        return response()->json($data);
+    }
     public function suggestionEducationTypes(Request $request)
     {
 
@@ -307,11 +308,19 @@ class AjaxController extends Controller
 
     public function getCountries(Request $request)
     {
-        $array = Country::lang()->active()->sorted()->get();
-        $results = $array->mapWithKeys(function ($item) {
-            return [$item->country_id => ['name' => $item->country, 'data-code' => $item->country_detail->sort_name]];
-        })->toArray();
-        return response()->json($results);
+        $array = Country::lang()->active()->sorted()->get()->toArray();
+        // $results = $array->mapWithKeys(function ($item) {
+        //     return [$item->country_id => ['name' => $item->country, 'data-code' => $item->country_detail->sort_name]];
+        // })->toArray();
+        $result = array_map(function ($country) {
+            $val = array(
+                'id'=>$country['id'],
+                'data-code'=>$country['country_detail']['sort_name']??'',
+                'name'=>$country['country'],
+            );
+            return $val;
+        }, $array); 
+        return response()->json($result);
 
     }
 

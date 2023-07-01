@@ -209,6 +209,7 @@ class JobsController extends BaseController
         $skills = explode(',',$user->getUserSkillsStr('skill'));
         $skill = array_intersect($job_skill_id,$skills);
         $shortlist = (isset($jobapplied->application_status)?(!empty($jobapplied->application_status)?$jobapplied->application_status:''):'');
+        $applied_at = (isset($jobapplied->created_at)?(!empty($jobapplied->created_at)?$jobapplied->application_status:''):'');
         $jobd = array(
             'id'=>$job->id,
             'slug'=>$job->slug,
@@ -239,6 +240,7 @@ class JobsController extends BaseController
             'is_applied'=>$user->isAppliedOnJob($job->id),
             'is_favourite'=>$user->isFavouriteJob($job->slug),
             'shortlist'=>$shortlist,
+            'applied_at'=>(!empty($applied_at)?Carbon::parse($applied_at)->getTimestampMs():''),
             'website_url'=>$job->company->website_url??'',
             'linkedin_url'=>$job->company->linkedin_url??'',
             'twitter_url'=>$job->company->twitter_url??'',
