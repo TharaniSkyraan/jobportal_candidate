@@ -112,7 +112,7 @@ class UserController extends Controller
                         ->with('form_title', 'Contact ' . $user->getName());
     }
 
-    public function myProfile($api=null)
+    public function myProfile()
     {
         $user = Auth::user();
         
@@ -121,17 +121,6 @@ class UserController extends Controller
         $noticePeriod = DataArrayHelper::langNoticePeriodsArray();
         $countries = DataArrayHelper::CountriesArray();
 
-        if($api){        
-            $response = array(
-                'designation' => $designation, 
-                'location' => $location,
-                'joblist' => $joblist,    
-                'next_page' => (!empty($jobs['joblist']->nextPageUrl())?($jobs['joblist']->currentPage()+1):""),
-                'filters' => $filters,
-                'sortBy' => $sortBy
-            );
-            return $this->sendResponse($response);
-        }
        return view('user.dashboard.about-me', compact('noticePeriod', 'user', 'genders', 'maritalStatuses', 'countries'));
     }    
 
