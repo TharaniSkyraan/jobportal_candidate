@@ -60,7 +60,7 @@ class AjaxController extends Controller
         {
             $data['success']=0;
         }
-    return response()->json(array('data' => $data));
+        return response()->json(array('data' => $data));
     }
     public function getAllGalariesCompanyParticular(Request $request)
     {
