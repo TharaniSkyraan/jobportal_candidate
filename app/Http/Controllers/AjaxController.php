@@ -27,6 +27,7 @@ use App\Model\SuggestedCandidate;
 
 
 use App\Model\Country;
+use App\Model\CountryDetail;
 use App\Model\City;
 use App\Model\Title;
 use App\Model\JobSearch;
@@ -233,6 +234,14 @@ class AjaxController extends Controller
         return response()->json($skills);
     }
 
+
+    public function GetResultType(Request $request)
+    {
+        $res = DataArrayHelper::suggestionResultType();      
+        
+        return response()->json($res);
+    }
+
     public function filterSubIndustries(Request $request)
     {
         $industry_id = $request->input('industry_id');
@@ -313,9 +322,10 @@ class AjaxController extends Controller
         //     return [$item->country_id => ['name' => $item->country, 'data-code' => $item->country_detail->sort_name]];
         // })->toArray();
         $result = array_map(function ($country) {
+            $country_detail = CountryDetail::find($country['country_id']);
             $val = array(
                 'id'=>$country['id'],
-                'data-code'=>$country['country_detail']['sort_name']??'',
+                'data-code'=>$country_detail->sort_name??'',
                 'name'=>$country['country'],
             );
             return $val;

@@ -24,19 +24,22 @@ Route::middleware('auth:api')->group( function () {
     Route::prefix('user')->group(function () {
         
         Route::get('profile', [UserController::class, 'profile']);
+        Route::get('about', [UserController::class, 'about']);
         Route::get('educations', [UserController::class, 'educations']);
         Route::get('experiences', [UserController::class, 'experiences']);
         Route::get('projects', [UserController::class, 'projects']);
         Route::get('skills', [UserController::class, 'skills']);
         Route::get('languages', [UserController::class, 'languages']);
+        Route::get('cvs', [UserController::class, 'cvs']);
         Route::get('career_info', [UserController::class, 'career_info']);
 
-        Route::get('profile_update', [UserController::class, 'profileUpdate']);
-        Route::get('educations_update', [UserController::class, 'educationsUpdate']);
+        Route::post('profile_update', [UserController::class, 'profileUpdate']);
+        Route::post('educations_update', [UserController::class, 'educationsUpdate']);
         Route::get('experiences_update', [UserController::class, 'experiencesUpdate']);
         Route::get('projects_update', [UserController::class, 'projectsUpdate']);
         Route::get('skills_update', [UserController::class, 'skillsUpdate']);
         Route::get('languages_update', [UserController::class, 'languagesUpdate']);
+        Route::get('cvs_update', [UserController::class, 'cvsUpdate']);
         Route::get('career_info_update', [UserController::class, 'career_infoUpdate']);
     
     });

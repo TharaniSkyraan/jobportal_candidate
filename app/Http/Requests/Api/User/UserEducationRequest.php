@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Api\Job;
+namespace App\Http\Requests\Api\User;
 
 use Auth;
 use App\Http\Requests\Request;
@@ -8,7 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 
-class UserEducationFormRequest extends Request
+class UserEducationRequest extends Request
 {
 
     /**
@@ -33,10 +33,8 @@ class UserEducationFormRequest extends Request
             case 'POST': {
                     $id = (int) $this->input('id', 0);
                     $rule = ["education_level_id" => "required"];
-                    $rule["country_id_dd"] = "required";
-                    if($this->institution!=""){
-                        $rule["institution"] = "required|max:180";
-                    }
+                    $rule["country_id"] = "required";
+                    $rule["institution"] = "required|max:180";
                     $rule["location"] = "required|max:180";
                     $rule["from_year"] = "required|date";
                     if(!isset($this->pursuing)){
