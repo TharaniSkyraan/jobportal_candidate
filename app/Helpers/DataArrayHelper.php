@@ -126,6 +126,13 @@ class DataArrayHelper
         return $array;
     }
 
+
+    public static function langGendersApiArray()
+    {
+        $array = Gender::select('gender', 'gender_id as id')->lang()->active()->sorted()->get();
+        return $array;
+    }
+
     /*     * **************************** */
 
     public static function defaultMaritalStatusesArray()
@@ -140,6 +147,12 @@ class DataArrayHelper
         if ((int) count($array) === 0) {
             $array = self::defaultMaritalStatusesArray();
         }
+        return $array;
+    }
+
+    public static function langMaritalStatusesApiArray()
+    {
+        $array = MaritalStatus::select('marital_status', 'marital_status_id as id')->lang()->active()->sorted()->get();
         return $array;
     }
 
