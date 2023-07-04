@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Requests\Api\User\UserEducationFormRequest;
 use App\Helpers\DataArrayHelper;
+use App\Http\Requests\Api\User\UserEducationRequest;
 
 trait UserEducationTrait
 {
@@ -37,67 +38,75 @@ trait UserEducationTrait
             $val = array(
                 'id'=>$education['id'],
                 'education_level'=>$education_level->education_level??"",
-                'education' => $education['education_type']??($education_type->education_type??''),
-                'institution'=>$education['institution'],
-                'country'=>(!empty($education['country_id']))?$country->country:($ip_data['geoplugin_countryName']??''),
-                'location'=>$education['location'],
-                'percentage'=>(!empty($education['percentage'])?($result_type->result_type??'').'-'.$education['percentage']:'-'),
+                'education_level_id' => $education['education_level_id']??"",
+                'education' => $education['education_type']??($education_type->education_type??""),
+                'institution'=>$education['institution']??"",
+                'country'=>(!empty($education['country_id']))?$country->country:($ip_data['geoplugin_countryName']??""),
+                'country_id'=>$education['country_id']??"",
+                'location'=>$education['location']??"",
+                'percentage_val'=> (!empty($education['percentage'])?($result_type->result_type??"").'-'.$education['percentage']:'-'),
+                'percentage' => $education['percentage']??"",
+                'result_type_id' => $education['result_type_id']??"",
                 'year_of_education' =>  $from .'-'. $to,
+                'from' => $education['from_year']??"",
+                'to' => $education['to_year']??""
             );
             return $val;
         }, $educations); 
-
         
         return $this->sendResponse($data);
         
     }
 
-    public function storeFrontUserEducation(UserEducationFormRequest $request, $user_id=null)
+    public function educationsUpdate(UserEducationRequest $request)
     {
-        
-        $user_id = empty($user_id)?Auth::user()->id:$user_id;
-
-        $userEducation = new UserEducation();
-        $userEducation = $this->assignEducationValues($userEducation, $request, $user_id);
+        $id = $request->education_id??NULL;
+        if($id){
+            $userEducation = UserEducation::find($id);
+        }else{
+            $userEducation = new UserEducation();
+        }
+        $userEducation = $this->assignEducationValues($userEducation, $request);
         $userEducation->save();
         
         /*         * ************************************ */
         $this->storeuserEducationMajorSubjects($request, $userEducation->id);
         /*         * ************************************ */
      
-        return response()->json(array('success' => true, 'status' => 200, 'html' => $returnHTML??''), 200);
+     
+        $message = "Updated successfully.";
+
+        return $this->sendResponse(['education_id'=>$userEducation->id], $message); 
     }
 
-    private function assignEducationValues($userEducation, $request, $user_id=null)
+    private function storeuserEducationMajorSubjects($request, $user_education_id)
     {
-        
-        $user_id = empty($user_id)?Auth::user()->id:$user_id;
-        if($request->input('result_type_id') ==3){
-            $percentage = $request->input('percentage');
+        if ($request->has('major_subjects')) {
+            UserEducationMajorSubject::where('user_education_id', '=', $user_education_id)->delete();
+            $major_subjects = $request->input('major_subjects');
+            foreach ($major_subjects as $major_subject_id) {
+                $userEducationMajorSubject = new UserEducationMajorSubject();
+                $userEducationMajorSubject->user_education_id = $user_education_id;
+                $userEducationMajorSubject->major_subject_id = $major_subject_id;
+                $userEducationMajorSubject->save();
+            }
         }
-        if($request->input('result_type_id') ==2){
-            $percentage = $request->input('grade');
-        }
-        if($request->input('result_type_id') ==1){
-            $percentage = $request->input('gpa');
-        }
-        $userEducation->user_id = $user_id;
+    }
+
+    private function assignEducationValues($userEducation, $request)
+    {
+        $userEducation->user_id = Auth::user()->id;
         $userEducation->education_level_id = $request->input('education_level_id');
-        $userEducation->education_type_id = $request->input('education_type_id');
-        $userEducation->education_type = $request->input('education_type');
-        $userEducation->country_id = $request->input('country_id_dd');
+        $userEducation->education_type_id = NULL;
+        $userEducation->education_type = $request->input('education');
+        $userEducation->country_id = $request->input('country_id');
         $userEducation->from_year = $request->input('from_year');
         $userEducation->to_year = $request->input('to_year');
         $userEducation->institution = $request->input('institution');
         $userEducation->location = $request->input('location');
-        $userEducation->percentage = $percentage??null;
+        $userEducation->percentage = $request->percentage??null;
         $userEducation->result_type_id = $request->input('result_type_id');
         $userEducation->pursuing = $request->input('pursuing')??Null;
-        // $userEducation->education_title = $request->input('education_title');
-        // $userEducation->state_id = $request->input('state_id_dd');
-        // $userEducation->city_id = $request->input('city_id_dd');
-        // $userEducation->course_type = $request->input('course_type');
-        // $userEducation->university_board = $request->input('university_board');
         return $userEducation;
     }
 

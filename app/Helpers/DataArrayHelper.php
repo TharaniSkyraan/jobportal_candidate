@@ -757,6 +757,14 @@ class DataArrayHelper
         
         return $skills;
     }
+
+    public static function suggestionResultType()
+    {
+        $array = ResultType::select('result_type', 'result_type_id as id')->isDefault()->active()->sorted()->get();
+
+        return $array;
+    }
+
     /************ autocomplete */
     
     public static function autocompleteDesignation($key='')

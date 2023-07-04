@@ -37,10 +37,10 @@ class User extends Authenticatable
     protected $fillable = [
 
         'first_name','middle_name','last_name','father_name','marital_status_id',
-        'date_of_birth','gender','country_id','state_id','city_id','name', 'email', 
+        'date_of_birth','gender','country_id','name','image','email', 
         'password','employment_status','notice_period','verified','verify_otp','session_otp',
-        'is_active', 'token', 'location', 'career_title', 'expected_salary', 
-        'current_salary', 'total_experience','provider_id','provider','next_process_level'
+        'is_active', 'token', 'location', 'career_title', 'expected_salary', 'alternative_phone',
+        'phone', 'current_salary', 'total_experience','provider_id','provider','next_process_level'
 
     ];
 
@@ -366,21 +366,24 @@ class User extends Authenticatable
 
         $html = '';
 
-        if (!empty($this->first_name))
-
+        if (!empty($this->first_name)){
             $html .= ucwords($this->first_name);
+        }
 
 
 
-        if (!empty($this->middle_name))
 
+        if (!empty($this->middle_name)){
             $html .= ' ' . $this->middle_name;
+        }
 
-
-
-        if (!empty($this->last_name))
-
+        if (!empty($this->last_name)){
             $html .= ' ' . $this->last_name;
+        }
+
+        if (empty($html)){
+            $html = $this->name;
+        }
 
         return $html;
 
