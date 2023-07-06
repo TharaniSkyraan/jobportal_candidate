@@ -35,12 +35,13 @@ Route::middleware('auth:api')->group( function () {
 
         Route::post('profile_update', [UserController::class, 'profileUpdate']);
         Route::post('educations_update', [UserController::class, 'educationsUpdate']);
-        Route::get('experiences_update', [UserController::class, 'experiencesUpdate']);
-        Route::get('projects_update', [UserController::class, 'projectsUpdate']);
-        Route::get('skills_update', [UserController::class, 'skillsUpdate']);
-        Route::get('languages_update', [UserController::class, 'languagesUpdate']);
-        Route::get('cvs_update', [UserController::class, 'cvsUpdate']);
-        Route::get('career_info_update', [UserController::class, 'career_infoUpdate']);
+        Route::post('experiences_update', [UserController::class, 'experiencesUpdate']);
+        Route::post('projects_update', [UserController::class, 'projectsUpdate']);
+        Route::post('skills_update', [UserController::class, 'skillsUpdate']);
+        Route::post('languages_update', [UserController::class, 'languagesUpdate']);
+        Route::post('cvs_update', [UserController::class, 'cvsUpdate']);
+        Route::post('career_info_update', [UserController::class, 'career_infoUpdate']);
+        Route::post('about_update', [UserController::class, 'aboutUpdate']);
     
     });
 

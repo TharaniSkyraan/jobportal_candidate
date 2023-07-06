@@ -765,6 +765,19 @@ class DataArrayHelper
         return $array;
     }
 
+    public static function suggestionLanguageLevel()
+    {
+        $array = LanguageLevel::select('language_level as level', 'language_level_id as id')->isDefault()->active()->sorted()->get();
+
+        return $array;
+    }
+
+    public static function suggestionLanguage()
+    {
+        $array = Language::select('lang as language', 'id')->get();
+        return $array;
+    }
+    
     /************ autocomplete */
     
     public static function autocompleteDesignation($key='')

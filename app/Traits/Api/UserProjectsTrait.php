@@ -8,7 +8,7 @@ use App\Model\User;
 use App\Model\UserProject;
 use App\Model\UserExperience;
 use Illuminate\Http\Request;
-use App\Http\Requests\User\UserProjectFormRequest;
+use App\Http\Requests\Api\User\UserProjectRequest;
 use Illuminate\Support\Str;
 use App\Helpers\DataArrayHelper;
 
@@ -42,8 +42,30 @@ trait UserProjectsTrait
         return $this->sendResponse($data);
         
     }
+    
+    public function projectsUpdate(UserProjectRequest $request)
+    {
 
-    private function assignProjectValues($userProject, $request, $user_id=null)
+
+        $user_id = Auth::user()->id;
+
+        $id = $request->project_id??NULL;
+        if($id){
+            $userProject = UserProject::find($id);
+        }else{
+            $userProject = new UserProject();
+        }
+        $userProject = $this->assignProjectValues($userProject, $request);
+        $userProject->user_id = $user_id;
+        $userProject->save();
+
+        $message = "Updated successfully.";
+
+        return $this->sendResponse(['project_id'=>$userProject->id], $message); 
+
+    }
+
+    private function assignProjectValues($userProject, $request)
     {
         $userProject->name = $request->input('name');
         $userProject->user_experience_id = $request->input('user_experience_id')??NULL;
@@ -59,17 +81,16 @@ trait UserProjectsTrait
         }else{
             $userProject->date_end = NULL;
         }
-        // dd($userProject);
+        
         $userProject->is_on_going = $request->input('is_on_going')??NULL;
         $userProject->noof_team_member = $request->input('noof_team_member');
         $userProject->work_as_team = $request->input('work_as_team');
         $userProject->project_location = $request->input('project_location');
-        $userProject->country_id = $request->input('country_id_dd');
+        $userProject->country_id = $request->input('country_id');
         $userProject->location = $request->input('location');
         $userProject->role_on_project = $request->input('role_on_project');
         $userProject->description = $request->input('description');        
         $userProject->used_tools = $request->input('used_tools');
-        // dd($userProject);
 
         return $userProject;
 

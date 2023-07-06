@@ -15,6 +15,7 @@ use App\Traits\Api\UserProjectsTrait;
 use App\Traits\Api\UserLanguageTrait;
 use App\Traits\Api\UserSkillTrait;
 use App\Traits\Api\UserCvsTrait;
+use App\Http\Requests\Api\User\UpdateCareerInfoRequest;
 use App\Http\Requests\Api\User\UpdateProfileRequest;
 
 class UserController extends BaseController
@@ -85,5 +86,32 @@ class UserController extends BaseController
         return $this->sendResponse($response); 
 
     }
+    
+    public function career_infoUpdate(UpdateCareerInfoRequest $request)
+    {
+        $user = User::findOrFail(Auth::user()->id);
+        $user->career_title = $request->career_title;
+        $user->total_experience = $request->exp_in_year.'.'.$request->exp_in_month;
+        $user->expected_salary = (int) str_replace(',',"",$request->input('expected_salary'));
+        $user->salary_currency = $request->salary_currency;
+        $user->country_id = $request->country_id;
+        $user->prefered_location = $request->prefered_location;
+        $user->save();
+        
+        $message = "Updated successfully.";
 
+        return $this->sendResponse('', $message); 
+    }
+    
+    public function aboutUpdate(Request $request)
+    {
+        $user = User::findOrFail(Auth::user()->id);
+        $user->summary = $request->summary;
+        $user->save();
+        
+        $message = "Updated successfully.";
+
+        return $this->sendResponse('', $message);  
+
+    }
 }

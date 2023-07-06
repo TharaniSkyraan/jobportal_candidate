@@ -10,7 +10,7 @@ use App\Model\Language;
 use App\Model\LanguageLevel;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use App\Http\Requests\User\UserLanguageFormRequest;
+use App\Http\Requests\Api\User\UserLanguageRequest;
 use App\Helpers\DataArrayHelper;
 
 trait UserLanguageTrait
@@ -29,9 +29,9 @@ trait UserLanguageTrait
                 'id'=>$language['id'],
                 'language'=>$lang->language??'',
                 'language_level' => $lang_level->language_level??'',
-                'read'=>$language->read,
-                'write'=>$language->write,
-                'speak'=>$language->speak,
+                'read'=>$language['read'],
+                'write'=>$language['write'],
+                'speak'=>$language['speak'],
             );
             return $val;
         }, $languages); 
@@ -41,10 +41,28 @@ trait UserLanguageTrait
         
     }
 
-    public function assignLanguageValues($userLanguage, $request, $user_id=null)
+    public function languagesUpdate(UserLanguageRequest $request)
     {
         
-        $user_id = empty($user_id)?Auth::user()->id:$user_id;
+        $id = $request->id??NULL;
+        if($id){
+            $userLanguage = UserLanguage::find($id);
+        }else{
+            $userLanguage = new UserLanguage();
+        }
+        $userLanguage = $this->assignLanguageValues($userLanguage, $request);
+        $userLanguage->save();
+       
+        $message = "Updated successfully.";
+
+        return $this->sendResponse(['id'=>$userLanguage->id], $message); 
+    }
+
+
+    public function assignLanguageValues($userLanguage, $request)
+    {
+        
+        $user_id = Auth::user()->id;
         $userLanguage->user_id = $user_id;
         $userLanguage->language_id = $request->input('language_id');
         $userLanguage->language_level_id = $request->input('language_level_id');

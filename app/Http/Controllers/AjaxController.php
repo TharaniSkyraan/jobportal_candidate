@@ -242,6 +242,20 @@ class AjaxController extends Controller
         return response()->json($res);
     }
 
+    public function GetLanguageLevel(Request $request)
+    {
+        $res = DataArrayHelper::suggestionLanguageLevel();      
+        
+        return response()->json($res);
+    }
+
+    public function GetLanguage(Request $request)
+    {
+        $res = DataArrayHelper::suggestionLanguage();      
+        
+        return response()->json($res);
+    }
+
     public function filterSubIndustries(Request $request)
     {
         $industry_id = $request->input('industry_id');

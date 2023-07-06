@@ -8,7 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 
-class UserEducationRequest extends Request
+class UserExperienceRequest extends Request
 {
 
     /**
@@ -29,15 +29,20 @@ class UserEducationRequest extends Request
     public function rules()
     {
         
-        $rule = ["education_level_id" => "required"];
-        $rule["country_id"] = "required";
-        $rule["institution"] = "required|max:180";
-        $rule["location"] = "required|max:180";
-        $rule["from_year"] = "required|date";
-        if(!isset($this->pursuing)){
-            $rule["to_year"] = "required|date";
+        $rules = [
+            "title" => "required",
+            "company" => "required|max:180",
+            "country_id" => "required",
+            "location" => "required|max:180",
+            "date_start" => "required",
+        ];
+
+        if(empty($this->input('is_currently_working'))){
+            $rules["date_end"] = "required";
         }
-        return $rule;
+
+        return $rules;
+
     }
     public function failedValidation(Validator $validator)
     {
@@ -56,21 +61,16 @@ class UserEducationRequest extends Request
     public function messages()
     {
         return [
-            'education_level_id.required' => 'Please select education level.',
-            'education_type_id.required' => 'Please select education type.',
-            'education_title.required' => 'Please enter education title.',
-            'major_subjects.required' => 'Please select major subjects.',
+            'title.required' => 'Please enter Designation.',
+            'company.required' => 'Please enter company.',
+            'description.required' => 'Please enter description.',
             'country_id_dd.required' => 'Please select country.',
             'state_id_dd.required' => 'Please select state.',
-            'city_id_dd.required' => 'Please select city.',
-            'institution.required' => 'Please enter institution.',
             'location.required' => 'Please enter city.',
-            'to_year.required' => 'Please set to date.',
-            'from_year.required' => 'Please set from date.',
-            'year_completion.required' => 'Please set completion date.',
-            'percentage.required' => 'Please enter result.',
-            'result_type_id.required' => 'Please select result type.',
-            'university_board.required' => 'Please Enter University / Board.',
+            'date_start.required' => 'Please set start date.',
+            'date_end.required_if' => 'Please set end date.',
+            'is_currently_working.required' => 'Are you currently working here?',
+            'description.required' => 'Please enter experience description.',
         ];
     }
 

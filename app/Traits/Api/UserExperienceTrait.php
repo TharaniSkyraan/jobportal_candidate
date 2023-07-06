@@ -9,7 +9,7 @@ use App\Model\UserExperience;
 use App\Model\Country;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use App\Http\Requests\User\UserExperienceFormRequest;
+use App\Http\Requests\Api\User\UserExperienceRequest;
 use App\Helpers\DataArrayHelper;
 
 trait UserExperienceTrait
@@ -23,7 +23,7 @@ trait UserExperienceTrait
        
         $data = array_map(function ($experience) use($ip_data) {
             $from = $experience['date_start']?Carbon::parse($experience['date_start'])->Format('M Y'):'';
-            $to = ($experience['is_currently_working']!=1? ($experience['date_end']?Carbon::parse($experience['date_end'])->Format('M Y'):'') : 'Still Pursuing');
+            $to = ($experience['is_currently_working']!=1? ($experience['date_end']?Carbon::parse($experience['date_end'])->Format('M Y'):'') : 'Still Working');
             $val = array(
                 'id'=>$experience['id'],
                 'title'=>$experience['title'],
@@ -41,15 +41,47 @@ trait UserExperienceTrait
         
     }
 
-    public function storeFrontUserExperience(UserExperienceFormRequest $request, $user_id=null)
+    public function experiencesUpdate(UserExperienceRequest $request)
     {
 
-        $user_id = empty($user_id)?Auth::user()->id:$user_id;
-        $userExperience = new UserExperience();
-        $userExperience = $this->assignExperienceValues($userExperience, $request, $user_id);
+        $id = $request->experience_id??NULL;
+        if($id){
+            $userExperience = UserExperience::find($id);
+        }else{
+            $userExperience = new UserExperience();
+        }
+        $userExperience = $this->assignExperienceValues($userExperience, $request);
         $userExperience->save();
+          
+        $message = "Updated successfully.";
 
-        return response()->json(array('success' => true, 'status' => 200, 'html' => $returnHTML??''), 200);
+        return $this->sendResponse(['experience_id'=>$userExperience->id], $message); 
+  
+    }
+
+    private function assignExperienceValues($userExperience, $request)
+    {
+        
+        $user_id = Auth::user()->id;
+        $userExperience->user_id = $user_id;
+        $userExperience->title = $request->input('title');
+        $userExperience->company = $request->input('company');
+        $userExperience->country_id = $request->input('country_id');
+        $userExperience->location = $request->input('location');
+        if(!empty($request->date_start)){
+            $userExperience->date_start =Carbon::parse($request->date_start)->format('Y-m-d');
+        }else{
+            $userExperience->date_start = NULL;
+        }
+        if(!empty($request->date_end)){
+            $userExperience->date_end = Carbon::parse($request->date_end)->format('Y-m-d');
+        }else{
+            $userExperience->date_end = NULL;
+        }
+        $userExperience->is_currently_working = $request->input('is_currently_working')??NULL;
+        $userExperience->description = $request->input('description');
+        $userExperience->used_tools = $request->input('used_tools');
+        return $userExperience;
     }
 
     public function deleteUserExperience(Request $request)

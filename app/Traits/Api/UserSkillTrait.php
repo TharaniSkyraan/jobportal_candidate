@@ -11,7 +11,7 @@ use App\Model\Skill;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use App\Http\Requests\User\UserSkillFormRequest;
+use App\Http\Requests\Api\User\UserSkillRequest;
 use App\Helpers\DataArrayHelper;
 
 trait UserSkillTrait
@@ -39,6 +39,40 @@ trait UserSkillTrait
         
         return $this->sendResponse($data);
         
+    }
+
+    public function skillsUpdate(UserSkillRequest $request)
+    {
+
+        $user_id = Auth::user()->id;
+        $skill = Skill::find($request->input('skill_id'));
+        $id = $request->id??NULL;
+        if($id){
+            $userSkill = UserSkill::find($id);
+        }else{
+            $userSkill = new UserSkill();
+        }
+        $userSkill->user_id = $user_id;
+        $userSkill->skills = $skill->skill;
+        $userSkill->skill_id = $request->input('skill_id');
+        $userSkill->level_id = $request->input('level_id');
+        if(!empty($request->start_date)){
+            $userSkill->start_date = Carbon::parse($request->input('start_date'))->format('Y-m-d');
+        }else{            
+            $userSkill->start_date = NULL;
+        }   
+        if(!empty($request->end_date)){
+            $userSkill->end_date = Carbon::parse($request->input('end_date'))->format('Y-m-d');
+        }else{
+            $userSkill->end_date = NULL;
+        }
+        $userSkill->is_currently_working = $request->input('is_currently_working')??NULL;
+        $userSkill->save();
+    
+        $message = "Updated successfully.";
+
+        return $this->sendResponse(['id'=>$userSkill->id], $message); 
+   
     }
 
     public function deleteUserSkill(Request $request)
