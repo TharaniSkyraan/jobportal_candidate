@@ -8,8 +8,7 @@ use App\Model\User;
 use App\Model\UserCv;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use App\Http\Requests\UserCvFormRequest;
-use App\Http\Requests\UserCvFileFormRequest;
+use App\Http\Requests\Api\User\UserCvRequest;
 use Illuminate\Support\Facades\Storage;
 
 trait UserCvsTrait
@@ -23,36 +22,24 @@ trait UserCvsTrait
         return $this->sendResponse($response);
     }
 
-    public function storeUserCv(Request $request,$cv_id=null)
+    public function cvsUpdate(UserCvRequest $request)
     {
+        $id = $request->cv_id??NULL;
+        if($id){
+            $userCv = UserCv::find($id);
+        }else{
+            $user = Auth::user();    
+            $userCv = new UserCv();
+            $userCv->user_id = $user->id;
+        }    
+        $userCv->path = $request->path??"";
+        $userCv->cv_file = $request->url??"";
+        $userCv->save();  
 
-        $user = Auth::user();        
-        if ($request->hasFile('file')) {
-            
-            $request->validate([
-                'file' => 'required|file|mimes:pdf,docx,doc,txt,rtf|max:2048',
-            ]);                 
-            $path = Storage::disk('s3')->put('candidate/'.$user->token.'/file', $request->file);
-            $url = Storage::disk('s3')->url($path);
-            if($cv_id){
-                $UserCv = UserCv::find($cv_id);
-                $previous_file_path = $UserCv->path;
-                $message = "Added successfully.";
-            }else{
-                $UserCv = new UserCv();
-                $message = "Updated successfully.";
-            }
-            $UserCv->path = $path??"";
-            $UserCv->cv_file = $url??"";
-            $UserCv->user_id = $user->id;
-            $UserCv->save();
-            
-            if($cv_id){
-                Storage::disk('s3')->delete($previous_file_path); 
-            }
-        }
-                
-        return $this->sendResponse('', $message??''); 
+        $message = "Updated successfully.";
+
+        return $this->sendResponse(['cv_id'=>$userCv->id], $message); 
+   
     }
 
     public function makeDefaultCv(Request $request)

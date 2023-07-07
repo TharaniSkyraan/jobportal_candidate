@@ -102,7 +102,7 @@ class UserController extends BaseController
 
         return $this->sendResponse('', $message); 
     }
-    
+
     public function aboutUpdate(Request $request)
     {
         $user = User::findOrFail(Auth::user()->id);
@@ -112,6 +112,7 @@ class UserController extends BaseController
         $message = "Updated successfully.";
 
         return $this->sendResponse('', $message);  
-
     }
+
+    
 }
