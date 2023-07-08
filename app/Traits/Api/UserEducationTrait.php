@@ -44,6 +44,7 @@ trait UserEducationTrait
                 'country'=>(!empty($education['country_id']))?$country->country:($ip_data['geoplugin_countryName']??""),
                 'country_id'=>$education['country_id']??0,
                 'location'=>$education['location']??"",
+                'pursuing'=>$education['pursuing']??"",
                 'percentage_val'=> (!empty($education['percentage'])?($result_type->result_type??"").'-'.$education['percentage']:'-'),
                 'percentage' => $education['percentage']??"",
                 'result_type_id' => $education['result_type_id']??0,

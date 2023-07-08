@@ -31,11 +31,12 @@ trait UserSkillTrait
             $val = array(
                 'id'=>$user_skill['id'],
                 'skill'=>$skill->skill??'',
+                'skill_id'=>$user_skill['skill_id']??0,
                 'skill_level' => $lang_level->language_level??'',
+                'level_id' => $user_skill['level_id']??0,
                 'date' => $from .'-'. $to,
                 'from' => (!empty($user_skill['start_date']))?Carbon::parse($user_skill['start_date'])->getTimestampMs():"",
                 'to' => (!empty($user_skill['end_date']))?Carbon::parse($user_skill['end_date'])->getTimestampMs():"",
-           
             );
             return $val;
         }, $skills); 

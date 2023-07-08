@@ -26,12 +26,14 @@ trait UserLanguageTrait
            $lang = Language::find($language['language_id']);
            $lang_level = LanguageLevel::where('language_level_id',$language['language_level_id'])->first();
             $val = array(
-                'id'=>$language['id'],
-                'language'=>$lang->language??'',
+                'id' => $language['id'],
+                'language_id' => $language['language_id']??'',
+                'language' => $lang->language??'',
+                'level_id' => $language['language_level_id']??'',
                 'language_level' => $lang_level->language_level??'',
-                'read'=>$language['read'],
-                'write'=>$language['write'],
-                'speak'=>$language['speak'],
+                'read' => $language['read'],
+                'write' => $language['write'],
+                'speak' => $language['speak'],
             );
             return $val;
         }, $languages); 
