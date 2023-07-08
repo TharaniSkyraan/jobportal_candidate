@@ -32,6 +32,9 @@ trait UserExperienceTrait
                 'description'=>$experience['description'],
                 'used_tools'=>$experience['used_tools'],
                 'year_of_experience' => $from .'-'. $to,
+                'from' => (!empty($experience['date_start']))?Carbon::parse($experience['date_start'])->getTimestampMs():"",
+                'to' => (!empty($experience['date_end']))?Carbon::parse($experience['date_end'])->getTimestampMs():"",
+           
             );
             return $val;
         }, $experiences); 

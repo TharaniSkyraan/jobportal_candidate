@@ -38,18 +38,18 @@ trait UserEducationTrait
             $val = array(
                 'id'=>$education['id'],
                 'education_level'=>$education_level->education_level??"",
-                'education_level_id' => $education['education_level_id']??"",
+                'education_level_id' => $education['education_level_id']??0,
                 'education' => $education['education_type']??($education_type->education_type??""),
                 'institution'=>$education['institution']??"",
                 'country'=>(!empty($education['country_id']))?$country->country:($ip_data['geoplugin_countryName']??""),
-                'country_id'=>$education['country_id']??"",
+                'country_id'=>$education['country_id']??0,
                 'location'=>$education['location']??"",
                 'percentage_val'=> (!empty($education['percentage'])?($result_type->result_type??"").'-'.$education['percentage']:'-'),
                 'percentage' => $education['percentage']??"",
-                'result_type_id' => $education['result_type_id']??"",
+                'result_type_id' => $education['result_type_id']??0,
                 'year_of_education' =>  $from .'-'. $to,
-                'from' => $education['from_year']??"",
-                'to' => $education['to_year']??""
+                'from' => (!empty($education['from_year']))?Carbon::parse($education['from_year'])->getTimestampMs():"",
+                'to' => (!empty($education['to_year']))?Carbon::parse($education['to_year'])->getTimestampMs():"",
             );
             return $val;
         }, $educations); 

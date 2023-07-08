@@ -17,8 +17,30 @@ trait UserCvsTrait
     public function cvs()
     {
         $user = Auth::user();  
-        $response['resume1'] = $user->UserCvs[0]??[];
-        $response['resume2'] = $user->UserCvs[1]??[];
+        if($user->UserCvs[0]){
+            $userCv1 = array(
+                'id'         => $user->UserCvs[0]['id'],
+                'cv_file'    => $user->UserCvs[0]['cv_file'],
+                'path'       => $user->UserCvs[0]['path'],
+                'is_default' => $user->UserCvs[0]['is_default'],
+                'created_at' => (!empty($user->UserCvs[0]['created_at']))?Carbon::parse($user->UserCvs[0]['created_at'])->getTimestampMs():"",
+                'updated_at' => (!empty($user->UserCvs[0]['updated_at']))?Carbon::parse($user->UserCvs[0]['updated_at'])->getTimestampMs():"",
+           
+            );
+        }
+        if($user->UserCvs[1]){
+            $userCv2 = array(
+                'id'         => $user->UserCvs[1]['id'],
+                'cv_file'    => $user->UserCvs[1]['cv_file'],
+                'path'       => $user->UserCvs[1]['path'],
+                'is_default' => $user->UserCvs[1]['is_default'],
+                'created_at' => (!empty($user->UserCvs[1]['created_at']))?Carbon::parse($user->UserCvs[1]['created_at'])->getTimestampMs():"",
+                'updated_at' => (!empty($user->UserCvs[1]['updated_at']))?Carbon::parse($user->UserCvs[1]['updated_at'])->getTimestampMs():"",
+           
+            );
+        }
+        $response['resume1'] = $userCv1??[];
+        $response['resume2'] = $userCv2??[];
         return $this->sendResponse($response);
     }
 

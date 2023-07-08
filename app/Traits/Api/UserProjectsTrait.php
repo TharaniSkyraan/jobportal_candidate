@@ -31,14 +31,16 @@ trait UserProjectsTrait
                 'project_name'=>$project['name'],
                 'company' => $expe->company??$project['company_name'],
                 'location'=>$project['location'],
+                'project_location'=>$project['project_location'],
                 'description'=>$project['description'],
                 'used_tools'=>$project['used_tools'],
                 'year_of_project' => $from .'-'. $to,
+                'from' => (!empty($project['date_start']))?Carbon::parse($project['date_start'])->getTimestampMs():"",
+                'to' => (!empty($project['date_end']))?Carbon::parse($project['date_end'])->getTimestampMs():"",
             );
             return $val;
         }, $projects); 
 
-        
         return $this->sendResponse($data);
         
     }
