@@ -295,4 +295,6 @@ class MyJobsController extends BaseController
         $message = "You have remove from job alert"; 
         return $this->sendResponse('', $message);
     }
+    
+    
 }

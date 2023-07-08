@@ -324,12 +324,16 @@ class JobsController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function advancedFilter()
+    public function advancedFilter($jobalert='')
     {
-        $queries = JobSearch::whereIsActive(1);
+        if(empty($jobalert)){
 
-        $filters = $this->getFilters($queries);
+            $queries = JobSearch::whereIsActive(1);
+
+            $filters = $this->getFilters($queries);
+        }else{
+            $filters = $this->getFilters();
+        }
         return $this->sendResponse($filters);
     }
-
 }

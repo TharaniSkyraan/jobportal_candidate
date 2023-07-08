@@ -114,17 +114,21 @@ trait FetchJobsList
 
     public function getFilters($data = '')
     {
-        $datas =  $data;
-        $city = array_filter(array_unique(explode(',',$datas->select(DB::raw('group_concat(city) as city'))->pluck('city')->first())));
-        $jobtype = array_filter(array_unique(explode(',',$datas->select(DB::raw('group_concat(job_type) as job_type'))->pluck('job_type')->first())));
-        $jobshift = array_filter(array_unique(explode(',',$datas->select(DB::raw('group_concat(job_shift) as job_shift'))->pluck('job_shift')->first())));
-        $educationlevel = array_unique($datas->select('education_level')->pluck('education_level')->toArray());
-        $industry = array_unique($datas->select('industry')->pluck('industry')->toArray());
-        $functional_area = array_unique($datas->select('functional_area')->pluck('functional_area')->toArray());
-        $jobids = array_unique($datas->select('job_id')->pluck('job_id')->toArray());
-        
+        $datas = $city = $jobtype = $jobshift = $educationlevel = $industry = $functional_area = "";
+        $jobids = [];
+        if(!empty($data))
+        {        
+            $datas =  $data;
+            $city = array_filter(array_unique(explode(',',$datas->select(DB::raw('group_concat(city) as city'))->pluck('city')->first())));
+            $jobtype = array_filter(array_unique(explode(',',$datas->select(DB::raw('group_concat(job_type) as job_type'))->pluck('job_type')->first())));
+            $jobshift = array_filter(array_unique(explode(',',$datas->select(DB::raw('group_concat(job_shift) as job_shift'))->pluck('job_shift')->first())));
+            $educationlevel = array_unique($datas->select('education_level')->pluck('education_level')->toArray());
+            $industry = array_unique($datas->select('industry')->pluck('industry')->toArray());
+            $functional_area = array_unique($datas->select('functional_area')->pluck('functional_area')->toArray());
+            $jobids = array_unique($datas->select('job_id')->pluck('job_id')->toArray());
+        }
         $filter = array();
-        $filter['citylFGid'] = DataArrayHelper::jobWorkLocations($city, $jobids);
+        // $filter['citylFGid'] = DataArrayHelper::jobWorkLocations($city, $jobids);
         $filter['industrytypeGid'] = DataArrayHelper::jobIndustries($industry, $jobids);
         $filter['functionalareaGid'] = DataArrayHelper::jobFunctionalarea($functional_area, $jobids);
         $filter['edulevelFGid'] = DataArrayHelper::jobEducationLevel($educationlevel, $jobids);
