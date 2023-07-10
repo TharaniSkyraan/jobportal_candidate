@@ -27,9 +27,9 @@ trait UserLanguageTrait
            $lang_level = LanguageLevel::where('language_level_id',$language['language_level_id'])->first();
             $val = array(
                 'id' => $language['id'],
-                'language_id' => $language['language_id']??'',
+                'language_id' => $language['language_id']??0,
                 'language' => $lang->language??'',
-                'level_id' => $language['language_level_id']??'',
+                'level_id' => $language['language_level_id']??0,
                 'language_level' => $lang_level->language_level??'',
                 'read' => $language['read'],
                 'write' => $language['write'],

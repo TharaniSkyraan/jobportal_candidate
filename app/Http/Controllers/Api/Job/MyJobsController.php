@@ -228,9 +228,15 @@ class MyJobsController extends BaseController
      */
     public function Savejobalert(SaveJobAlert $request)
     {
+        $id = $request->job_alert_id;
 
-        $jobFav                     = new JobAlert();
-        $jobFav->user_id            = Auth::user()->id??710;
+        if($id){            
+            $jobFav                     = JobAlert::find($id);
+        }else{
+            $jobFav                     = new JobAlert();
+            $jobFav->user_id            = Auth::user()->id;
+        }
+
         $jobFav->title              = $request->title;
         $jobFav->location           = $request->location;
         $jobFav->citylFGid          = $request->citylFGid;
