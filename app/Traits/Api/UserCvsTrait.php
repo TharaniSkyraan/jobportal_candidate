@@ -64,17 +64,16 @@ trait UserCvsTrait
    
     }
 
-    public function makeDefaultCv(Request $request)
+    public function makeDefaultCv($id)
     {
-        $id = $request->input('id');
         try {
             $UserCv = UserCv::findOrFail($id);
             $UserCv->is_default = 1;
             $UserCv->update();
             $this->updateDefaultCv($id);
-            echo 'ok';
+            return $this->sendResponse('', 'Success');       
         } catch (ModelNotFoundException $e) {
-            echo 'notok';
+            return $this->sendResponse('', 'Something Went Wrong.'); 
         }
     }
 
@@ -97,10 +96,10 @@ trait UserCvsTrait
         return \Response::make(Storage::disk('s3')->get($usercv->path), 200, $headers);   
     }
 
-    public function deleteUserCv(Request $request)
+    public function deleteUserCv($id)
     {
 
-        $id = $request->input('id');
+        // $id = $request->input('id');
         try {
             $UserCv = UserCv::findOrFail($id);            
             $resume_path = $UserCv->path;

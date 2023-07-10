@@ -55,6 +55,8 @@ Route::middleware('auth:api')->group( function () {
         Route::post('projects_undo', [UserController::class, 'undoUserProject']);
         Route::post('skills_undo', [UserController::class, 'undoUserSkill']);
         Route::post('languages_undo', [UserController::class, 'undoUserLanguage']);
+        Route::get('cvs_download/{id}', [UserController::class, 'downloadCv']);
+        Route::get('cvs_primary/{id}', [UserController::class, 'makeDefaultCv']);
     
     });
 
