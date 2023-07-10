@@ -43,6 +43,19 @@ Route::middleware('auth:api')->group( function () {
         Route::post('career_info_update', [UserController::class, 'career_infoUpdate']);
         Route::post('about_update', [UserController::class, 'aboutUpdate']);
     
+        Route::post('educations_delete', [UserController::class, 'deleteUserEducation']);
+        Route::post('experiences_delete', [UserController::class, 'deleteUserExperience']);
+        Route::post('projects_delete', [UserController::class, 'deleteUserProject']);
+        Route::post('skills_delete', [UserController::class, 'deleteUserSkill']);
+        Route::post('languages_delete', [UserController::class, 'deleteUserLanguage']);
+        Route::post('cvs_delete', [UserController::class, 'deleteUserCv']);
+
+        Route::post('educations_undo', [UserController::class, 'undoUserEducation']);
+        Route::post('experiences_undo', [UserController::class, 'undoUserExperience']);
+        Route::post('projects_undo', [UserController::class, 'undoUserProject']);
+        Route::post('skills_undo', [UserController::class, 'undoUserSkill']);
+        Route::post('languages_undo', [UserController::class, 'undoUserLanguage']);
+    
     });
 
 });

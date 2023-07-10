@@ -80,9 +80,9 @@ trait UserLanguageTrait
         try {
             $userLanguage = UserLanguage::findOrFail($id);
             $userLanguage->delete();
-            echo 'ok';
+            return $this->sendResponse('', 'Success');       
         } catch (ModelNotFoundException $e) {
-            echo 'notok';
+            return $this->sendResponse('', 'Something Went Wrong.'); 
         }
     }
 
@@ -91,9 +91,9 @@ trait UserLanguageTrait
         $id = $request->input('id');
         try {
             UserLanguage::withTrashed()->find($id)->restore();
-            echo 'ok';
+            return $this->sendResponse('', 'Success');       
         } catch (ModelNotFoundException $e) {
-            echo 'notok';
+            return $this->sendResponse('', 'Something Went Wrong.'); 
         }
     }
 

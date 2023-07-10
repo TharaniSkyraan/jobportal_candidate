@@ -106,9 +106,9 @@ trait UserCvsTrait
             $resume_path = $UserCv->path;
             $UserCv->forceDelete();
             Storage::disk('s3')->delete($resume_path); 
-            return 'ok';
+            return $this->sendResponse('', 'Success');       
         } catch (ModelNotFoundException $e) {
-            return 'notok';
+            return $this->sendResponse('', 'Something Went Wrong.'); 
         }
 
     }

@@ -93,10 +93,9 @@ trait UserExperienceTrait
         try {
             $userExperience = UserExperience::findOrFail($id);
             $userExperience->delete();
-           
-            echo 'ok';
+            return $this->sendResponse('', 'Success');       
         } catch (ModelNotFoundException $e) {
-            echo 'notok';
+            return $this->sendResponse('', 'Something Went Wrong.'); 
         }
     }
 
@@ -106,9 +105,9 @@ trait UserExperienceTrait
         $id = $request->input('id');
         try {
             UserExperience::withTrashed()->find($id)->restore();
-            echo 'ok';
+            return $this->sendResponse('', 'Success');       
         } catch (ModelNotFoundException $e) {
-            echo 'notok';
+            return $this->sendResponse('', 'Something Went Wrong.'); 
         }
     }
 

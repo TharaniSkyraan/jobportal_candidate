@@ -108,10 +108,10 @@ trait UserProjectsTrait
         $id = $request->input('id');
         try {
                 UserProject::find($id)->delete();
-            return 'ok';
-        } catch (ModelNotFoundException $e) {
-            return 'notok';
-        }
+                return $this->sendResponse('', 'Success');       
+            } catch (ModelNotFoundException $e) {
+                return $this->sendResponse('', 'Something Went Wrong.'); 
+            }
     }
 
     public function undoUserProject(Request $request)
@@ -119,11 +119,10 @@ trait UserProjectsTrait
         $id = $request->input('id');
         try {
                 UserProject::withTrashed()->find($id)->restore();
-            return 'ok';
-
-        } catch (ModelNotFoundException $e) {
-            return 'notok';
-        }
+                return $this->sendResponse('', 'Success');       
+            } catch (ModelNotFoundException $e) {
+                return $this->sendResponse('', 'Something Went Wrong.'); 
+            }
 
     }
 

@@ -85,9 +85,9 @@ trait UserSkillTrait
         try {
             $userSkill = UserSkill::findOrFail($id);
             $userSkill->delete();
-            echo 'ok';
+            return $this->sendResponse('', 'Success');       
         } catch (ModelNotFoundException $e) {
-            echo 'notok';
+            return $this->sendResponse('', 'Something Went Wrong.'); 
         }
     }
 
@@ -96,9 +96,9 @@ trait UserSkillTrait
         $id = $request->input('id');
         try {
             UserSkill::withTrashed()->find($id)->restore();
-            echo 'ok';
+            return $this->sendResponse('', 'Success');       
         } catch (ModelNotFoundException $e) {
-            echo 'notok';
+            return $this->sendResponse('', 'Something Went Wrong.'); 
         }
     }
 

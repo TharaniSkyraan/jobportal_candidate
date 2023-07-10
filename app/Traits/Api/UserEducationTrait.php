@@ -124,9 +124,9 @@ trait UserEducationTrait
             $userEducation = UserEducation::findOrFail($id);
             UserEducationMajorSubject::where('user_education_id', '=', $id)->delete();
             $userEducation->delete();            
-            return 'ok';
+             return $this->sendResponse('', 'Success');       
         } catch (ModelNotFoundException $e) {
-            return 'notok';
+            return $this->sendResponse('', 'Something Went Wrong.'); 
         }
     }
 
@@ -137,9 +137,9 @@ trait UserEducationTrait
         try {
             UserEducation::withTrashed()->find($id)->restore();
             UserEducationMajorSubject::withTrashed()->where('user_education_id', '=', $id)->restore();
-            return 'ok';
+            return $this->sendResponse('', 'Success');       
         } catch (ModelNotFoundException $e) {
-            return 'notok';
+            return $this->sendResponse('', 'Something Went Wrong.'); 
         }
     }
 
