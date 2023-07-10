@@ -256,16 +256,6 @@ class MyJobsController extends BaseController
         return $this->sendResponse($jobFav, $message);
 
     }
-
-    /**
-     * return error response.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function AdvanceFilter()
-    {
-
-    }
     /**
      * return error response.
      *
@@ -283,6 +273,25 @@ class MyJobsController extends BaseController
         $list->each(function ($job, $key) use($user) {
             $alert = JobAlert::find($job->id);
             $job['saved_at'] = Carbon::parse($job->created_at)->getTimestampMs();
+            $job['industrytype'] = implode(",",$alert->getIndustryType());
+            $job['functionalarea'] = implode(",",$alert->getFunctionalArea());
+            $job['edulevel'] = implode(",",$alert->getEducationLevel());
+            $job['jobtype'] = implode(",",$alert->getJobType());
+            $job['jobshift'] = implode(",",$alert->getShift());
+            $job['wfhtype'] = $alert->getWFH();
+            $job['salary'] = $alert->getSalary();
+            $job['posteddate'] = $alert->getDatePosted();
+            $job['experience'] = $alert->experienceFid;
+
+            $job['industrytypeGid'] = $alert->industrytypeGid;
+            $job['functionalareaGid'] = $alert->functionalareaGid;
+            $job['edulevelFGid'] = $alert->edulevelFGid;
+            $job['jobtypeFGid'] = $alert->jobtypeFGid;
+            $job['jobshiftFGid'] = $alert->jobshiftFGid;
+            $job['wfhtypeFid'] = $alert->wfhtypeFid;
+            $job['salaryFGid'] = $alert->salaryFGid;
+            $job['posteddateFid'] = $alert->posteddateFid;
+            $job['experienceFid'] = $alert->experienceFid;
         });
         $response['jobs'] = $list->items();
         $response['next_page'] = (!empty($list->nextPageUrl())?($list->currentPage()+1):"");
