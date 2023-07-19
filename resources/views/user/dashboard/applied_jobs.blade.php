@@ -11,7 +11,7 @@
 	@include('layouts.dashboard_header')
 	@include('layouts.side_navbar')
         
-	<div class="main-panel main-panel-custom">
+	<div class="main-panel main-panel-custom main-panel-customize">
 		<div class="content">
         <div class="row">
           <div class="col-md-12 col-lg-10 col-sm-12 col-xs-12">         

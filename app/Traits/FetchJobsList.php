@@ -111,7 +111,6 @@ trait FetchJobsList
     }
 
     // Filters
-
     public function getFilters($data = '')
     {
         $datas = $city = $jobtype = $jobshift = $educationlevel = $industry = $functional_area = "";

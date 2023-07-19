@@ -40,7 +40,7 @@
 
 @include('layouts.header')
 
-<section class="page-title-section">
+<!-- <section class="page-title-section">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10 text-center">
@@ -58,102 +58,112 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
-<div id="content-wrap">
-    <div class="main">
-        <div class="container panel panel-default mb-5">
-            <div class="card mt-5">
-                <div class="row m-3">
-                </div>
-                <form id="contact-form">
-                    <div class="row mx-3">
-                        <div class="col-md-5" style="padding-left:6%">
+<div class="container container-detail mb-5">
+    <div class="w-85 mx-auto header-space-search" >
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                <li class="breadcrumb-item jt-bc-ellip active" aria-current="page">Contact Us</li>
+            </ol>
+        </nav>
 
-                            <div class="d-flex mt-5 mb-4">
-                                <span class="m-3">
-                                    <i class="fa fa-phone contact-icons"></i>
-                                </span>
-                                <span class="fw-bold my-3">Phone <br>
-                                    <a href="tel://+91-9900559924">+91-9900559924</a>
-                                </span>                               
-                            </div>
-                            <div class="d-flex mb-4">
-                                <span class="m-3">
-                                    <i class="fa fa-paper-plane contact-icons"></i>
-                                </span>
-                                <span class="fw-bold my-3">Email <br>
-                                    <a href="mailto:contact@mugaam.com">contact@mugaam.com</a>
-                                </span> 
-                            </div>
-                            <div class="d-flex mb-4">                        
-                                <span class="m-3">
-                                    <i class="fa fa-globe contact-icons"></i>
-                                </span>
-                                <span class="fw-bold my-3">Website <br>
-                                    <a href="https://www.mugaam.com/">www.mugaam.com</a>
-                                </span>
-                            </div>
-                            <div class="d-flex">                        
-                                <span class="m-3">
-                                    <i class="fa fa-map-marker contact-icons"></i>
-                                </span>
-                                <span class="fw-bold my-3">Address <br>
-                                    <a href=""> Hari Complex, 207/A3, Sathy Rd, opp. Prozone Mall, Saravanampatti, Coimbatore, Tamil Nadu 641035</a>
-                                </span>
-                            </div>
+        <div id="content-wrap">
+            <div class="main">
+                <div class="container panel panel-default mb-5">
+                    <div class="card mt-5">
+                        <div class="row m-3">
                         </div>
-                        <div class="col-md-7" style="padding:1rem 4rem;">
-                            <div id="success"></div>
-                            <h3>Send us a message</h3>
-                            <div class="row">
-                                <!-- Name input -->
-                                <div class="col-md-6">
-                                    <div class="form-group mb-3">
-                                        <label class="form-label" for="name">Name</label>
-                                        <input class="form-control" id="name" type="text" placeholder="Name" name="name"
-                                            value="{{old('name')}}" autocomplete="off" />
-                                        <span class="text-danger" id="name-error"></span>
-
+                        <form id="contact-form">
+                            <div class="row mx-3">
+                                <div class="col-md-5" style="padding-left:6%">
+                                    <div class="d-flex mt-5 mb-4">
+                                        <span class="m-3">
+                                            <i class="fa fa-phone contact-icons"></i>
+                                        </span>
+                                        <span class="fw-bold my-3">Phone <br>
+                                            <a href="tel://+91-9900559924">+91-9900559924</a>
+                                        </span>                               
+                                    </div>
+                                    <div class="d-flex mb-4">
+                                        <span class="m-3">
+                                            <i class="fa fa-paper-plane contact-icons"></i>
+                                        </span>
+                                        <span class="fw-bold my-3">Email <br>
+                                            <a href="mailto:contact@mugaam.com">contact@mugaam.com</a>
+                                        </span> 
+                                    </div>
+                                    <!-- <div class="d-flex mb-4">                        
+                                        <span class="m-3">
+                                            <i class="fa fa-globe contact-icons"></i>
+                                        </span>
+                                        <span class="fw-bold my-3">Website <br>
+                                            <a href="https://www.mugaam.com/">www.mugaam.com</a>
+                                        </span>
+                                    </div> -->
+                                    <div class="d-flex">                        
+                                        <span class="m-3">
+                                            <i class="fa fa-map-marker contact-icons"></i>
+                                        </span>
+                                        <span class="fw-bold my-3">Address <br>
+                                            <a href=""> Hari Complex, 207/A3, Sathy Rd, opp. Prozone Mall, Saravanampatti, Coimbatore, Tamil Nadu 641035</a>
+                                        </span>
                                     </div>
                                 </div>
+                                <div class="col-md-7" style="padding:1rem 4rem;">
+                                    <div id="success"></div>
+                                    <!-- <h3>Send us a message</h3> -->
+                                    <div class="row">
+                                        <!-- Name input -->
+                                        <div class="col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label class="form-label" for="name">Name</label>
+                                                <input class="form-control" id="name" type="text" placeholder="Name" name="name"
+                                                    value="{{old('name')}}" autocomplete="off" />
+                                                <span class="text-danger" id="name-error"></span>
 
-                                <!-- Email address input -->
-                                <div class="col-md-6">
+                                            </div>
+                                        </div>
+
+                                        <!-- Email address input -->
+                                        <div class="col-md-6">
+                                            <div class="form-group mb-3">
+                                                <label class="form-label" for="emailAddress">Email Address</label>
+                                                <input class="form-control" id="email" type="text" name="email"
+                                                    placeholder="Email Address" value="{{old('email')}}" autocomplete="off" />
+                                                <span class="text-danger" id="email-error"></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Subject input -->
                                     <div class="form-group mb-3">
-                                        <label class="form-label" for="emailAddress">Email Address</label>
-                                        <input class="form-control" id="email" type="text" name="email"
-                                            placeholder="Email Address" value="{{old('email')}}" autocomplete="off" />
-                                        <span class="text-danger" id="email-error"></span>
+                                        <label class="form-label" for="subject">Subject</label>
+                                        <input class="form-control" id="subject" type="text" name="subject"
+                                            placeholder="Subject" value="{{old('subject')}}" autocomplete="off" />
+                                        <span class="text-danger" id="subject-error"></span>
 
+                                    </div>
+                                    <!-- Message input -->
+                                    <div class="form-group mb-5">
+                                        <label class="form-label" for="message">Message</label>
+                                        <textarea class="form-control" id="message" type="text" name="message"
+                                            placeholder="Message" style="height:8rem !important;" value="{{old('message')}}"
+                                            autocomplete="off"></textarea>
+                                        <span class="text-danger" id="message-error"></span>
+
+                                    </div>
+                                    <!-- Form submit button -->
+                                    <div class="d-grid" style="cursor:pointer">
+                                        <button class="btn search-button-bg" type="submit" id="msearch_btn">Send
+                                            Message</button>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Subject input -->
-                            <div class="form-group mb-3">
-                                <label class="form-label" for="subject">Subject</label>
-                                <input class="form-control" id="subject" type="text" name="subject"
-                                    placeholder="Subject" value="{{old('subject')}}" autocomplete="off" />
-                                <span class="text-danger" id="subject-error"></span>
-
-                            </div>
-                            <!-- Message input -->
-                            <div class="form-group mb-5">
-                                <label class="form-label" for="message">Message</label>
-                                <textarea class="form-control" id="message" type="text" name="message"
-                                    placeholder="Message" style="height:8rem !important;" value="{{old('message')}}"
-                                    autocomplete="off"></textarea>
-                                <span class="text-danger" id="message-error"></span>
-
-                            </div>
-                            <!-- Form submit button -->
-                            <div class="d-grid" style="cursor:pointer">
-                                <button class="btn search-button-bg" type="submit" id="msearch_btn">Send
-                                    Message</button>
-                            </div>
-                        </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

@@ -12,17 +12,37 @@
   display: flex;
   align-items: center;
 }
+
 .nav_image {
   display: flex;
   min-width: 55px;
+  margin-left: 3px;
   /* justify-content: center; */
 }
 .nav_image img {
   /* height: 35px; */
   /* width: 80%; */
-  border-radius: 50%;
+  /* border-radius: 50%; */
   object-fit: cover;
 }
+.nav_image #sidebar_logo_image {
+  transform: translateX(-35%);
+}
+#sidebar_logo{
+  margin-top: 25px;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+.close #sidebar_logo
+{
+  opacity: unset !important;
+}
+.close .nav_image img
+{
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
 
 /* Sidenavbar */
 .sidenavbar {
@@ -78,7 +98,15 @@
   /* opacity: 0; */
   /* pointer-events: none; */
 }
-#lock-icon,
+
+#lock-icon {
+  padding: 10px;
+  color: #4070f4;
+  font-size: 20px;    
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0px;
+}
 #sidenavbar-close {
   padding: 10px;
   color: #4070f4;
@@ -222,10 +250,6 @@
   font-size: 18px;
   color: #333;
 }
- #lock-icon
-{
-  margin: 30px 5px 20px 7px;
-}
 /* .navbar img {
   height: 40px;
   width: 40px;
@@ -320,10 +344,6 @@
 .sidenavbar .user .completion{
   font-size: 15px;
 }
-.sidenavv-toggler{
-  display: none;
-}
-
 .sidenavv-toggler {
   /* background: linear-gradient(172deg, rgba(39,98,194,1) 20%, rgba(48,86,149,1) 55%); */
   /* padding: 19px 15px 19px 15px; */
@@ -337,23 +357,15 @@
   } */
 }
 @media screen and (max-width: 800px) {
-  #lock-icon, #sidenavbar-close
-  {
-    margin-top: unset;
-    margin-left: 5px;
-  }
+ 
   .sidenavbar {
     left: 0;
     z-index: 1000;
   }
-  #sidenavbar-close {
-    display: block;
-  }
-  #lock-icon {
-    display: none;
-  }
-  #sidenavbar-open {
-    display: block;
+  .navbar {
+    left: 0;
+    max-width: 100%;
+    transform: translateX(0%);
   }
   /* .navbar {
     left: 0;
@@ -368,11 +380,11 @@
   .main-panel-customize {
     width: 100%;
   }
-  .sidenavbar{
-    display: none;
-  }
   #sidenavbar-close {
     opacity: 0;
+  }
+  .sidenavbar.close {
+    transform: translateX(-100px);
   }
   /* .main-header .header-close{
     left:0px;
@@ -394,7 +406,7 @@
   opacity: 0;
   visibility: hidden;
 }
-.overlay .active{
+.overlay.active{
   opacity: 1;
   visibility: visible;
   transform: translateX(0);

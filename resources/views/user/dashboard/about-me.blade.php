@@ -14,7 +14,7 @@
         <script>toastr.success("{{ Session('message') }}");</script>
     @endif
 
-	<div class="main-panel main-panel-custom">
+	<div class="main-panel main-panel-custom main-panel-customize">
 		<div class="content">
 			<div class="page-inner">
                 <div id="abt_meusr" class="mt-4">

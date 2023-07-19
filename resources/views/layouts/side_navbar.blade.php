@@ -15,15 +15,21 @@
   $eduLevelids = App\Model\UserEducation::whereUserId(Auth::user()->id)->pluck('education_level_id')->toArray();
 @endphp 
 
-<nav class="wrapper sidenavbar locked">
+<nav class="wrapper sidenavbar close">
   <div class="logo_items flex">
+      <text class="nav_image">
+        <a href="{{url('/')}}"><img src="{{ asset('/') }}site_assets_1/logo_24@2x.png" alt="logo_img" id="sidebar_logo" /></a>
+        <a href="{{url('/')}}"><img src="{{ asset('/') }}site_assets_1/logo1.png" alt="logo_img" id="sidebar_logo_image" /></a>
+      </text> 
+      <i class="fa fa-horizontal-rule"></i>
+    </div>
+  <!-- <div class="logo_items flex">
     <i class="fa fa-close text-white" id="lock-icon" title="Unlock Sidenavbar"></i>
     <i class="fa fa-bars text-white" id="sidenavbar-close"></i>
       <text class="nav_image">
         <a href="{{url('/')}}"><img src="{{ asset('/') }}site_assets_1/logo1.png" alt="logo_img" /></a>
       </text> 
-    </div>
-
+    </div> -->
   <div class="menu_container">        
     <!-- {{ (Request::is('home') || Request::is('education-details') || Request::is('experience-details') || Request::is('project-details') || Request::is('language-details') || Request::is('skill-details') || Request::is('career-info-details')|| Request::is('resume-details')) ? 'show' : '' }}  -->
     <div class="card card-body">            

@@ -29,7 +29,7 @@ ul.typeahead.dropdown-menu {
 	@include('layouts.dashboard_header')
 	@include('layouts.side_navbar')
 
-	<div class="main-panel main-panel-custom">
+	<div class="main-panel main-panel-custom main-panel-customize">
 		<div class="content">
 			<div class="page-inner">
                 <div id="my_eductin" class="mt-4">

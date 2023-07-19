@@ -12,9 +12,6 @@
 @if(Auth::check())
   <style>
     @media(min-width: 280px) and (max-width: 600px){    
-      .sidenavv-toggler{
-        display: block !important;
-      }
       .header{
         height: 60px !important;
       }
@@ -22,20 +19,23 @@
   </style>
 @endif
 <div class="main-header">
-	<header id="header" class="header header-open fixed-top bg-color-blue d-flex justify-content-center align-items-center">
+	<header id="header" class="header header-close fixed-top bg-color-blue d-flex justify-content-center align-items-center">
 		
-		<button class="navbar-toggler sidenavv-toggler ml-auto" type="button">
+		<!-- <button class="navbar-toggler sidenavv-toggler ml-auto" type="button">
 			<i class="fa fa-bars" id="lock-icon1"></i>
+		</button>  -->
+		<button class="navbar-toggler sidenavv-toggler ml-auto" type="button">
+			<i class="fa fa-bars" id="lock-icon" title="Unlock Sidenavbar"></i>
 		</button> 
-		<div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+		<div class="container-fluid container-xl d-flex align-items-center justify-content-end">
 
 		{{-- <span>Post a Job</span> --}}
 			
 		@if(Route::is('job.search')?'active':'')
 			<div class="mobile_r">
-				<a href="{{ route('index') }}" class="logo d-flex align-items-center">
+				<!-- <a href="{{ route('index') }}" class="logo d-flex align-items-center">
 					<img src="{{ asset('/') }}sitesetting_images/thumb/{{ $siteSetting->site_logo }}" alt="logo" class="img-fluid">
-				</a>
+				</a> -->
 			</div>
 			<div class="desktop_r mx-3">
 				<div class="input-group b-0">
@@ -75,9 +75,9 @@
 				</div>
 			</div>
 		@else
-		<a href="{{ route('index') }}" class="logo d-flex align-items-center">
+		<!-- <a href="{{ route('index') }}" class="logo d-flex align-items-center">
 			<img src="{{ asset('/') }}sitesetting_images/thumb/{{ $siteSetting->site_logo }}" alt="logo" class="img-fluid">
-		</a>
+		</a> -->
 		@endif				
 		<div class="align-self-center">
 			<nav id="navbar" class="navbar">

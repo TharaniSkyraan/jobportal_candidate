@@ -82,7 +82,7 @@
 }
 
 </style>
-<!-- <div class="main-panel main-panel-custom"> -->
+<!-- <div class="main-panel main-panel-custom main-panel-customize"> -->
     <div class="content">
         
         <div class="page-inner myprofile_sec">

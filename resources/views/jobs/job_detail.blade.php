@@ -204,7 +204,7 @@
                 <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
                 <li class="breadcrumb-item jt-bc-ellip active" aria-current="page">{{ ucwords($job->title) }}</li>
             </ol>
-            </nav>
+        </nav>
         <div class="row">
             <div class="col-md-12 col-lg-9">
                 <div class="card page-inner">
