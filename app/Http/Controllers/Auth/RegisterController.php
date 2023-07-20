@@ -302,76 +302,52 @@ class RegisterController extends Controller
             $user->next_process_level = 'resume_upload';
         }
 
-        if(is_array($request->skills)){
+        $skills = [];
+        // $skill_id = array_column($skills, 'id');
+        // $user_skill_id = UserSkill::whereUserId($user->id)->pluck('skill_id')->toArray();
+        
+        // $remove_id = UserSkill::whereUserId($user->id)->whereIn('skill_id',array_diff($user_skill_id,$skill_id))->delete(); 
+        // $skills  = array_diff($skill_id,$user_skill_id);
+        $words = DataArrayHelper::blockedKeywords();
 
-            $skills = [];
-            // $skill_id = array_column($skills, 'id');
-            // $user_skill_id = UserSkill::whereUserId($user->id)->pluck('skill_id')->toArray();
-            
-            // $remove_id = UserSkill::whereUserId($user->id)->whereIn('skill_id',array_diff($user_skill_id,$skill_id))->delete(); 
-            // $skills  = array_diff($skill_id,$user_skill_id);
-            $words = DataArrayHelper::blockedKeywords();
-    
-            foreach(json_decode($request->skills) as $skill)
-            {
-                if(!isset($skill->id) && !in_array($skill->value, $words))
+        foreach(json_decode($request->skills) as $skill)
+        {
+            if(!isset($skill->id) && !in_array($skill->value, $words))
+            {                
+                if(Skill::where('skill',$skill->value)->doesntExist())
+                {
+                    $newskill = new Skill();                
+                    $newskill->skill = $skill->value;
+                    $newskill->is_active = 0;
+                    $newskill->lang = 'en';
+                    $newskill->is_default = 1;
+                    $newskill->save();
+                    $newskill->skill_id = $newskill->id;
+                    $newskill->update();
+                }else{
+                    $newskill = Skill::where('skill',$skill->value)->first();
+                }
+            }
+
+            if(isset($skill->id) || isset($newskill->id))
+            {    
+                $skill_id = $skill->id??$newskill->id;       
+                if(UserSkill::where('skill_id',$skill_id)->doesntExist())
                 {                
-                    if(Skill::where('skill',$skill->value)->doesntExist())
-                    {
-                        $newskill = new Skill();                
-                        $newskill->skill = $skill->value;
-                        $newskill->is_active = 0;
-                        $newskill->lang = 'en';
-                        $newskill->is_default = 1;
-                        $newskill->save();
-                        $newskill->skill_id = $newskill->id;
-                        $newskill->update();
-                    }else{
-                        $newskill = Skill::where('skill',$skill->value)->first();
-                    }
+                    $updateSkill = new UserSkill();
+                    $updateSkill->user_id = $user->id;
+                    $updateSkill->skills  = $skill->value;
+                    $updateSkill->skill_id  = $skill_id;
+                    $updateSkill->save();
                 }
-    
-                if(isset($skill->id) || isset($newskill->id))
-                {    
-                    $skill_id = $skill->id??$newskill->id;       
-                    if(UserSkill::where('skill_id',$skill_id)->doesntExist())
-                    {                
-                        $updateSkill = new UserSkill();
-                        $updateSkill->user_id = $user->id;
-                        $updateSkill->skills  = $skill->value;
-                        $updateSkill->skill_id  = $skill_id;
-                        $updateSkill->save();
-                    }
-                    $skills[] = array(
-                        'id'=>$skill_id,
-                        'value'=>$skill->value,
-                    );
-                }
+                $skills[] = array(
+                    'id'=>$skill_id,
+                    'value'=>$skill->value,
+                );
             }
-            $user->skill = json_encode($skills);
-            $user->save();
-        }else{
-                         
-            if(Skill::where('skill',$request->skills)->doesntExist())
-            {
-                $newskill = new Skill();                
-                $newskill->skill = $request->skills;
-                $newskill->is_active = 0;
-                $newskill->lang = 'en';
-                $newskill->is_default = 1;
-                $newskill->save();
-                $newskill->skill_id = $newskill->id;
-                $newskill->update();
-            }else{
-                $newskill = Skill::where('skill',$request->skills)->first();
-            }
-            $skill_id = $newskill->id??0;  
-            $updateSkill = new UserSkill();
-            $updateSkill->user_id = $user->id;
-            $updateSkill->skills  = $request->skills;
-            $updateSkill->skill_id  = $skill_id;
-            $updateSkill->save();
         }
+        $user->skill = json_encode($skills);
+        $user->save();
 
         return redirect('/resume_upload');
 
