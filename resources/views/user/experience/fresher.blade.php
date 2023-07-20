@@ -16,7 +16,7 @@
                     @php
                         $user = Auth::user();
                     @endphp
-                    {!! Form::open(array('method' => 'post', 'route' => array('employementstatus-update'), 'class' => 'form')) !!}
+                    {!! Form::open(array('method' => 'post', 'route' => array('employementstatus-update'))) !!}
                         <div class="row text-center">
                             <div class="col-md-6 col-6">
                                 <input class="employment_status" type="radio" id="fresher" name="employment_status" style="display:none" value="fresher" checked>

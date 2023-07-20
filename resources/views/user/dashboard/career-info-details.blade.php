@@ -33,7 +33,7 @@
                         $country = \App\Model\Country::where('country_id',$country_id)->pluck('country')->first();
                     @endphp
                     <div class="card mt-5">                        
-                        {!! Form::open(array('method' => 'put', 'route' => array('career_info_save'), 'class' => 'form', 'onSubmit' => 'return validateCareerInfoForm()')) !!}
+                        {!! Form::open(array('method' => 'put', 'route' => array('career_info_save'),  'onSubmit' => 'return validateCareerInfoForm()')) !!}
                             <div class="mb-3 career_title">
                                 <label for="career_title" class="form-label">@if($user->employment_status=='fresher') Jobs looking for @else Your designation @endif</label>
                                 {!! Form::text('career_title', $user->career_title??null, array('class'=>'form-control required typeahead', 'id'=>'career_title', 'placeholder'=>__('ex:auditor, doctor'))) !!}

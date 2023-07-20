@@ -31,7 +31,7 @@
                         <p class="text-center">Upload your resume and start your Job search...</p>
                     </h1>
 
-                    {!! Form::open(array('method' => 'post', 'route' => array('resume.update'), 'class' => 'form', 'enctype'=>"multipart/form-data", 'onSubmit' => 'return validateFile()')) !!}
+                    {!! Form::open(array('method' => 'post', 'route' => array('resume.update'),  'enctype'=>"multipart/form-data", 'onSubmit' => 'return validateFile()')) !!}
                         <div class="container">
                             <div class="loadflebrd">
                                 <div class="box text-center">

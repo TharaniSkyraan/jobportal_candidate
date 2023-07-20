@@ -49,7 +49,7 @@
                             </div>
                         </div>
                         
-                        {!! Form::model($user, array('method' => 'put', 'route' => array('my_profile_save'), 'id' => 'submitbasicinfoform', 'class' => 'form', 'files'=>true)) !!}
+                        {!! Form::model($user, array('method' => 'put', 'route' => array('my_profile_save'), 'id' => 'submitbasicinfoform',  'files'=>true)) !!}
                             <div class="row mt-5">
                                 <div class="col-md-3 col-lg-3"></div>                            
                                 <div class="col-md-9">  

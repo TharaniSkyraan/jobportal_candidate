@@ -109,7 +109,7 @@
                         <h1 class="fw-bolder text-center lvledticn mt-3 mb-4">
                             <div><img src="{{asset('images/career_info.png')}}">&nbsp;Career Info</div>
                         </h1>
-                        {!! Form::open(array('method' => 'post', 'route' => array('career-info-save'), 'class' => 'form', 'onSubmit' => 'return validateCareerInfoForm()')) !!}
+                        {!! Form::open(array('method' => 'post', 'route' => array('career-info-save'),  'onSubmit' => 'return validateCareerInfoForm()')) !!}
                         <div class="container">
                             <div class="mb-3 career_title">
                                 <label for="career_title" class="form-label">@if($user->employment_status=='fresher') Jobs looking for @else Your designation @endif</label>

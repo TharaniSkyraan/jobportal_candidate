@@ -41,7 +41,7 @@ li {
                     <h1 class="fw-bolder text-center lvledticn mt-3 mb-4">
                         <div><img src="{{asset('images/candidate_educ.png')}}">&nbsp;Education</div>
                     </h1>
-                    {!! Form::open(array('method' => 'post', 'route' => array('education-save'), 'class' => 'form', 'onSubmit' => 'return validateAccountForm()')) !!}
+                    {!! Form::open(array('method' => 'post', 'route' => array('education-save'),  'onSubmit' => 'return validateAccountForm()')) !!}
                         {!! Form::hidden('id', $education->id??null) !!}
                         <div class="container">
                             <div class="mb-4">

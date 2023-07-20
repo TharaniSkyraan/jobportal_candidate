@@ -195,7 +195,7 @@
           
         <div class="modal-body">
           <div class="m-auto mx-3 mt-1">
-            {!! Form::model(Auth::user(), array('method' => 'post', 'route' => array('change-password'), 'id' => 'change-password', 'class' => 'form')) !!}
+            {!! Form::model(Auth::user(), array('method' => 'post', 'route' => array('change-password'), 'id' => 'change-password')) !!}
               <div class="mb-2">
                 <label for="" class="form-label fw-bolder">Enter Old password</label>
                 <input type="password" name="old_password" id="old_password" class="form-control password" placeholder="Enter your old password">
@@ -248,7 +248,7 @@
           </div>
           <div class="modal-body">
             <div class="m-auto" style="width:70%">
-              {!! Form::model(Auth::user(), array('method' => 'post', 'route' => array('verify-otp'), 'id' => 'verify-otp', 'class' => 'form')) !!}
+              {!! Form::model(Auth::user(), array('method' => 'post', 'route' => array('verify-otp'), 'id' => 'verify-otp')) !!}
                 <div class="text-center">
                   <h2 class="text-green-color">
                     You have changed your phone number 

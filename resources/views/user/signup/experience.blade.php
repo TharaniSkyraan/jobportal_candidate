@@ -34,7 +34,7 @@
                     <h1 class="fw-bolder text-center">
                         I am
                     </h1>
-                    {!! Form::open(array('method' => 'post', 'route' => array('experience-save'), 'class' => 'form')) !!}
+                    {!! Form::open(array('method' => 'post', 'route' => array('experience-save'))) !!}
                  
                     <div class="container">
 

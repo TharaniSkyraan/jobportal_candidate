@@ -35,7 +35,7 @@
                     @php 
                         $user_skills = old('skills')? explode(',', old('skills')) : $user->skill;
                     @endphp     
-                    {!! Form::open(array('method' => 'post', 'route' => array('skills-save'), 'class' => 'form', 'onSubmit' => 'return validateSkillForm()')) !!}
+                    {!! Form::open(array('method' => 'post', 'route' => array('skills-save'),  'onSubmit' => 'return validateSkillForm()')) !!}
                     <div class="container">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Your Skills</label>
