@@ -266,7 +266,7 @@ class JobsController extends BaseController
                 'job' => $jobd, 
                 'relevant_job' => $joblist, 
                 'company_slug' => $job->company->slug??'', 
-                'breakpoint' => $breakpoint??''
+                'breakpoint' => $breakpoint?'yes':''
             );
         return $this->sendResponse($response);
     }

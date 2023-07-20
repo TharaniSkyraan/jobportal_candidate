@@ -2431,7 +2431,7 @@ border-radius: 20px;
 }
 @media(min-width: 280px) and (max-width: 767px){
   #header .logo{
-    margin: 0 auto;
+    /* margin: 0 auto; */
   }.service-wrapper{
     margin: 0 auto !important;
   }#header .mobile_r{
