@@ -476,7 +476,7 @@ ul{
                     </div>
                     @endif
                  
-                    @if($job->contact_person_details)
+                    @if($job->contact_person_details && $job->company->is_admin==0)
                     <div class="card-body jdcarc">
                         <div class="mb-1">
                             <div class="mb-2">
@@ -542,9 +542,13 @@ ul{
                                 @endphp
                                 <div class="row cmpinfo-detail">
                                     <div class="col-md-6">
+                                        
+                                    @if($job->company->is_admin==0)
                                         <label><b>Address</b></label>
                                         <span>{{ !empty($job->company->address) ? $job->company->address.' '.$job->company->location.$pincode : "-" }}</span>
-                                    </div>    
+                                    
+                                    @endif
+                                </div>    
                                     <div class="col-md-6">
                                         <div class="col-md-6 align-self-center text-end">
                                             <a href="{{url('company-view/'.$job->company->slug)}}"><label class="chip clickable mt-0 cursor-pointer"><span>View More</span></label></a>                                 
