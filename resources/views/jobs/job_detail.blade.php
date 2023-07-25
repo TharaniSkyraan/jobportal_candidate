@@ -514,6 +514,7 @@
 
                                 <div class="row col-md-12 cmpinfo-detail">
                                     <div class="col-md-6">
+                                        @if($job->company->is_admin==0)
                                         <label class="fw-bold">Address :</label>
                                         <span>
                                             @php
@@ -522,6 +523,7 @@
                                             @endphp
                                             <text>{{ !empty($job->company->address) ? $job->company->address.' '.$job->company->location.$pincode : "-" }}</text>
                                         </span>
+                                        @endif
                                     </div>
                                     @isset($job->company)
                                         @if($job->company->is_admin==0)
