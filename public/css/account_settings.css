@@ -75,12 +75,12 @@
   padding: 0px;
   letter-spacing: 30px;
   border: 0;
-  background: url('{{ asset("images/artboard2.png")}}');
+  background: url('../images/artboard2.png');
   background-repeat: space;
   min-width: 230px;
   background-size: 34px auto;
   padding-left: 12px;
-  padding-top: 5px;
+  padding-top: 10px;
   padding-bottom: 5px;
 }
 
@@ -115,7 +115,7 @@
 .btns1{
   padding: 0.45rem 1rem;
   font-size: 13px;
-  border-color: #d1f3fb;
+  border-color: #0866ff;
 }
 @media(max-width:480px){
 
