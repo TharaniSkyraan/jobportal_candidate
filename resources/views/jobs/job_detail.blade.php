@@ -409,7 +409,7 @@
                     </div>
                     @endif
                     
-                    @if($job->contact_person_details)
+                    @if($job->contact_person_details && $job->company->is_admin==0)
                     <div class="card-body jdcarc">
                         <div class="mb-1">
                             <div class="mb-2">
