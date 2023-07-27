@@ -119,7 +119,7 @@ company my profile
 }
 
 .page-inner.myprofile_sec {
-    padding: 0rem 1.5rem 2rem 1.5rem;
+    /* padding: 0rem 1.5rem 2rem 1.5rem; */
 }
 .myprofile_sec #candiftabs{
     align-items: center;

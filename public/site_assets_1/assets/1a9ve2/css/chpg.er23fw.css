@@ -17,7 +17,8 @@
     padding:0px;
     
     border-radius:13px;
-    margin-top: 10px;
+    margin-top: 6%;
+    margin-left: 19%;
     box-shadow:1px 1px 14px 0 rgb(18 38 63 / 20%) !important;
 }
 
@@ -31,7 +32,6 @@
     justify-content: center;
     display: flex;
 }
-
 .alert_prnt{
     display: flex;
     align-items: center;
@@ -53,4 +53,92 @@ ul.typeahead.dropdown-menu {
 li {
     /* font-family: 'Nunito', sans-serif !important; */
 	font-family: "Poppins";
+}
+
+.hme_banner{
+    background: url('../../../../images/candidate_hpg.png');
+    background-size: cover;
+    padding-bottom: 75px;
+    background-repeat:no-repeat;
+   
+}
+.candidate_img{
+   background:url('../../../../images/candidate_hpg_bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 110px;
+    background-position: center;
+
+}
+
+
+@media(min-width: 280px) and (max-width: 767px)  {
+    .candidate_img{
+        background: url('../../../../images/responsive_hpg_bg_infinity.png');
+        background-repeat: no-repeat !important;
+        background-size: contain;
+        background-position: center;
+        width:100%;
+        padding-bottom: 0px;
+
+    }
+}
+.location .typeahead.dropdown-menu, .designation .typeahead.dropdown-menu{
+    max-height: 188px !important;
+    overflow: auto;
+    display: block;         
+    width: -webkit-fill-available;
+    top: unset !important;
+    left: unset !important;
+}
+    
+@media (min-width: 768px) {
+    .designation .typeahead.dropdown-menu{
+        margin-right: 59% !important;
+    }
+}
+
+    
+@media (min-width: 768px) and (max-width: 991px) {
+    .location .typeahead.dropdown-menu{
+        margin-right: 22% !important;
+    }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+    .location .typeahead.dropdown-menu{
+        margin-right: 20.5% !important;
+    }
+}
+@media (min-width: 1200px){
+    .location .typeahead.dropdown-menu{
+        margin-right: 19.8% !important;
+    }
+}
+@media only screen and (max-width: 767px) {
+    /* CSS rules for phones */
+    .location .typeahead.dropdown-menu, .designation .typeahead.dropdown-menu{
+        margin-right: 25px !important;
+    }
+    .location .typeahead.dropdown-menu{
+        top: 120px !important;
+    }
+    
+    .pfcmpletalert{
+        width: 75%;
+        margin-top: 14%;
+        margin-left: 0%;
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 481px) {
+
+    .pfcmpletalert{
+        width: 88%;
+        margin-top: 25%;
+        margin-left: 0%;
+    }
+    .pfcmpletalert img{
+        width: 100%;
+    }
 }

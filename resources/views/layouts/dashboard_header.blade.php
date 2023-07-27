@@ -83,6 +83,9 @@
 			<nav id="navbar" class="navbar">
 					@if(Auth::check())
 					<ul class="web-nav">
+						<!-- user Percentage -->
+						     
+						<!-- End User Percentage -->
 						<li><a class="nav-link scrollto {{ (Route::is('index'))?'active':''}}" href="{{ route('index') }}">Get a Job</a></li>
 					
 						<li class="dropdown hidden-caret">
@@ -103,6 +106,18 @@
 									<!-- <li>
 										<a class="dropdown-item" href="#"><i class="fa-solid fa-note-sticky px-1"></i> My Resume</a>
 									</li> -->
+									
+						<div class="user d-flex {{ (Auth::user()->getProfilePercentage() < 40)? 'pending' : 'completed' }}">           
+							<a>
+								<div class="progressbar text-black useraccountsetting cursor-pointer fw-bolder" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" style="--value: {{Auth::user()->getProfilePercentage()}}">    
+								{{Auth::user()->getProfilePercentage()}}%                     
+								</div>
+							</a>
+							<div class="align-self-center mt-2">
+								<span class="completion">Profile Completed</span>
+							</div>
+						</div>
+						<hr>
 									<li>
 										@if(Auth::user()->is_active==1)
 											<a class="dropdown-item" href="{{ route('home') }}"><i class="fa-solid fa-user px-1 mx-2"></i> My Profile</a>

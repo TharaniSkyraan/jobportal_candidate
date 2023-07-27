@@ -398,7 +398,8 @@
   place-items: center;
   font-size: 12px;
   margin-left: 12px;
-  transition: all 0.4s ease;
+  transition: all 0.4s ease;  
+  font-weight: 600;
 }
 
 [role="progressbar"]::before {
@@ -902,4 +903,33 @@ table{
 }
 #header .sidenav-toggler{
   display: none;
+}
+
+.pending [role="progressbar"]
+{  
+  --primary: #ffc800;
+}
+
+.completed [role="progressbar"]
+{  
+  --primary: #00D599;
+}
+
+.web-nav [role="progressbar"]
+{  
+  --size: 52px;
+  margin-left: 0px;
+}
+.navbar .dropdown ul .user a{
+  padding: 10px 12px 0px 22px;
+  cursor: default !important;
+}
+
+.navbar .dropdown ul .user .completion{
+  font-size: 14px;
+}
+
+.navbar .dropdown ul hr{
+  color: #cbc6c6;
+  margin: 10px 20px;
 }

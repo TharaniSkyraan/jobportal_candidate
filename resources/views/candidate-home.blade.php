@@ -9,93 +9,64 @@
 @section('content')
     
 @include('layouts.header')
-
-<style>
-.hme_banner{
-    background: url('{{asset('images/candidate_hpg.png')}}');
-    background-size: cover;
-    padding-bottom: 75px;
-    background-repeat:no-repeat;
-   
-}
-
-.candidate_img{
-   background:url('{{asset('images/candidate_hpg_bg.png')}}');
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding-bottom: 110px;
-    background-position: center;
-
-}
-
-@media(min-width: 280px) and (max-width: 767px)  {
-    .candidate_img{
-        background: url('{{asset('images/responsive_hpg_bg_infinity.png')}}');
-        background-repeat: no-repeat !important;
-        background-size: contain;
-        background-position: center;
-        width:100%;
-        padding-bottom: 0px;
-
-    }
-}
-
-.location .typeahead.dropdown-menu, .designation .typeahead.dropdown-menu{
-    max-height: 188px !important;
-    overflow: auto;
-    display: block;         
-    width: -webkit-fill-available;
-    top: unset !important;
-    left: unset !important;
-}
-    
-@media (min-width: 768px) {
-    .designation .typeahead.dropdown-menu{
-        margin-right: 59% !important;
-    }
-}
-
-    
-@media (min-width: 768px) and (max-width: 991px) {
-    .location .typeahead.dropdown-menu{
-        margin-right: 22% !important;
-    }
-}
-@media (min-width: 992px) and (max-width: 1199px) {
-    .location .typeahead.dropdown-menu{
-        margin-right: 20.5% !important;
-    }
-}
-@media (min-width: 1200px){
-    .location .typeahead.dropdown-menu{
-        margin-right: 19.8% !important;
-    }
-}
-@media only screen and (max-width: 767px) {
-    /* CSS rules for phones */
-    .location .typeahead.dropdown-menu, .designation .typeahead.dropdown-menu{
-        margin-right: 25px !important;
-    }
-    .location .typeahead.dropdown-menu{
-        top: 120px !important;
-    }
-}
-
-</style>
 <!-- <div class="main-panel main-panel-custom main-panel-customize"> -->
     <div class="content">
         
         <div class="page-inner myprofile_sec">
-            @if(session()->has('message'))
-                <div class="alert alert-success alert-dismissible fade show">
-                    {{ session()->get('message') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+        <!--alert profile-->
+            @if(Auth::check())
+                @if(Auth::user()->getProfilePercentage() < 80)
+                    <div class="alert_prnt">
+                        <div class="alert pfcmpletalert alert-dismissible fade show" role="alert">
+                            <div class="row">
+                                <div class="col-2 wrning text-center">
+                                    <img src="{{ asset('images/warning.png')}}">
+                                </div>
+                                <div class="col-9 align-self-center">
+                                    <span>Increase your profile visibility to recruiters by completing your profile</span>
+                                </div>
+                                <div class="col-1 align-self-center">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                @endif
             @endif
         </div>
 
             
-        <section id="homepage_stn">        
+        <section id="homepage_stn">  
+            <!-- Button trigger modal -->
+            <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Launch demo modal
+            </button>  -->
+
+            <!-- Modal -->
+            <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="text-center mb-3">
+                                <h1 class="fw-bolder">Hi Skyraan</h1>
+                                <h3 class="fw-bolder">Your Profile Completion is</h3>
+                            </div>
+
+                            <div class="mx-auto mb-3 progressbar useraccountsetting cursor-pointer fw-bolder" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" style="--value: 87">    
+                                87%                     
+                            </div>
+
+                            <div class="mb-4">
+                                <span class="text-center align-items-center justify-content-center d-flex">Complete your profile minimum 50% to apply for Jobs</span>
+                            </div>
+
+                            <h2 class="text-center text-primary fw-bolder">COMPLETE NOW</h2>
+
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        
 
             <div class="container">
                 <div class="hme_banner">
