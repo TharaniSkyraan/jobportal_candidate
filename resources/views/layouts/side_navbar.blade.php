@@ -93,7 +93,7 @@
         </div> -->
         
         <li class="item">
-          <a href="#" class="link flex">
+          <a href="{{ route('job-alert-details') }}" class="link flex {{ Request::is('job-alert-details') ? 'active' : '' }}">
             <img src="{{asset('images/sidebar/job_alerts.svg')}}" alt="">
             <span>Job Alerts</span>
           </a>

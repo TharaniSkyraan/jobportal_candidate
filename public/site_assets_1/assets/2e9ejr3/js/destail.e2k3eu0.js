@@ -232,12 +232,31 @@
                     
                     }
                     else{ 
-                        location.reload();
+                        if(resp.success == false){
+                            var html = `<div class="modal-content">
+                                <div class="modal-body warning">
+                                    <div class="text-center mb-3">
+                                        <h1 class="fw-bolder">Hi `+resp.candidate+`</h1>
+                                        <h3 class="fw-bolder">Your Profile Completion is</h3>
+                                    </div>
+                                    <div class="mx-auto mb-3 progressbar useraccountsetting cursor-pointer fw-bolder" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" style="--value: `+resp.percentage+`">    
+                                    `+resp.percentage+`                     
+                                    </div>
+                                    <div class="mb-4">
+                                        <span class="text-center align-items-center justify-content-center d-flex">Complete your profile minimum 40% to apply for Jobs</span>
+                                    </div>
+                                    <h3 class="text-center text-primary fw-bold"><a href="`+redir+`">COMPLETE NOW</a></h3>
+                                </div>
+                            </div>`;
+                            $('.cmpPrf').html(html);
+                            $('#cmptprf').modal('show');
+                        }
+                        elseif(reload_page)
+                        {
+                            location.reload();
+                        }
                     }
                     
-                    if(reload_page){
-                        location.reload();
-                    }
 
                 },
                 error: function (xhr, ajaxOptions, thrownError) {

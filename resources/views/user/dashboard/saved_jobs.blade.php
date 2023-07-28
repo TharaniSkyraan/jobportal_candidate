@@ -86,7 +86,8 @@
         </div>
     </div>
 </div>
-          
+        
+@include('user.complete-profile-modal')  
 <script>
   var baseurl = '{{ url("/") }}/';
 </script>

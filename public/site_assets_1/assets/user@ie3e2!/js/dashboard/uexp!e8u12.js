@@ -245,7 +245,6 @@
       $('.more-details'+id).find(".collapse-up-arrow").hide();
       $('.more-details'+id).find(".collapse-down-arrow").show();
     }
-
   }
   
   $(document).on('change', '#country_id_dd', function (e) {

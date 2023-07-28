@@ -45,6 +45,7 @@ use App\Traits\UserExperienceTrait;
 use App\Traits\UserEducationTrait;
 use App\Traits\UserSkillTrait;
 use App\Traits\UserLanguageTrait;
+use App\Traits\UserJobAlertTrait;
 // use App\Http\Requests\Front\UserFrontFormRequest;
 use App\Helpers\DataArrayHelper;
 use Illuminate\Support\Facades\Storage;
@@ -68,6 +69,7 @@ class UserController extends Controller
     use UserEducationTrait;
     use UserSkillTrait;
     use UserLanguageTrait;
+    use UserJobAlertTrait;
 
     /**
      * Create a new controller instance.

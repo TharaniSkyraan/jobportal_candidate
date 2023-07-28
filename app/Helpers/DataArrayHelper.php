@@ -911,7 +911,7 @@ class DataArrayHelper
             $result =  EducationLevel::select('education_levels.id as id', 'education_levels.education_level as label');
         }
 
-        $result = $result->groupBy('id')
+        $result = $result->lang()->groupBy('id')
                             ->groupBy('label')
                             ->get();
 
@@ -951,7 +951,7 @@ class DataArrayHelper
         {
             $result =  Type::select('types.id as id', 'types.type as label');
         }
-        $result = $result->groupBy('id')
+        $result = $result->lang()->groupBy('id')
         ->groupBy('label')
         ->get();
         return $result;
@@ -968,7 +968,7 @@ class DataArrayHelper
         }else{
             $result =  Shift::select('shifts.id as id', 'shifts.shift as label');
         }
-            $result = $result->groupBy('id')
+            $result = $result->lang()->groupBy('id')
             ->groupBy('label')
             ->get();
             return $result;

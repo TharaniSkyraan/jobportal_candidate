@@ -1,3 +1,3 @@
-{!! Form::open(array('method' => 'post', 'route' => array('store.experience', $user->id),  'id' => 'add_edit_user_experience')) !!}
-@include('user.experience.form') 
+{!! Form::open(array('method' => 'post', 'route' => array('store.job-alert', $user->id),  'id' => 'add_edit_user_job_alert')) !!}
+@include('user.job_alert.form') 
 {!! Form::close() !!}

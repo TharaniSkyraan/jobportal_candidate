@@ -427,7 +427,7 @@
   </div>
 </div>
 
-
+@include('user.complete-profile-modal')
 <script>
     $('.fileter.mobile').click(function(){
         $("#header").addClass('remove');

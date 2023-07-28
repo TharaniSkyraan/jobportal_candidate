@@ -267,6 +267,10 @@ class JobsController extends Controller
         
         if(Auth::check()){
 
+
+            if(Auth::user()->getProfilePercentage()<40){
+                $response = array("success" => false, "message" => "", "return_to" => Auth::user()->getContinueProfileUpdate(),"candidate"=>Auth::user()->getName(), "percentage" => Auth::user()->getProfilePercentage());
+            }else
             if(Auth::user()->is_active ==1){
                 
                 $is_login = $request->is_login ?? 0;

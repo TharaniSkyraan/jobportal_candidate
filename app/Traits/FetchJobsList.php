@@ -127,7 +127,7 @@ trait FetchJobsList
             $jobids = array_unique($datas->select('job_id')->pluck('job_id')->toArray());
         }
         $filter = array();
-        // $filter['citylFGid'] = DataArrayHelper::jobWorkLocations($city, $jobids);
+        $filter['citylFGid'] = DataArrayHelper::jobWorkLocations($city, $jobids);
         $filter['industrytypeGid'] = DataArrayHelper::jobIndustries($industry, $jobids);
         $filter['functionalareaGid'] = DataArrayHelper::jobFunctionalarea($functional_area, $jobids);
         $filter['edulevelFGid'] = DataArrayHelper::jobEducationLevel($educationlevel, $jobids);

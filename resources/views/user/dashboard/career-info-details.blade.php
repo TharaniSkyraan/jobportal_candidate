@@ -26,9 +26,9 @@
                         <h2 class="fw-bolder"><img src="{{asset('images/sidebar/career_info.svg')}}">&nbsp;Career Information</h2>
                     </div>
                     @php
-                        $noticePeriod = app\Helpers\DataArrayHelper::langNoticePeriodsArray();
+                        $noticePeriod = \App\Helpers\DataArrayHelper::langNoticePeriodsArray();
                         $user = Auth::user();
-                        $countries = app\Helpers\DataArrayHelper::CountriesArray();
+                        $countries = \App\Helpers\DataArrayHelper::CountriesArray();
                         $country_id = (!empty($user->country_id))?$user->country_id:$ip_data['country_id'];
                         $country = \App\Model\Country::where('country_id',$country_id)->pluck('country')->first();
                     @endphp

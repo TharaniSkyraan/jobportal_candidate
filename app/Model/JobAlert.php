@@ -4,9 +4,12 @@ namespace App\Model;
 
 use App;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class JobAlert extends Model
 {
+    
+    use SoftDeletes;
 
     protected $dates = ['created_at', 'updated_at'];
 

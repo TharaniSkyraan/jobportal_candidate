@@ -185,6 +185,11 @@ class User extends Authenticatable
         return $this->hasMany(UserLanguage::class, 'user_id', 'id');
     }
 
+    public function JobAlert()
+    {
+        return $this->hasMany(JobAlert::class, 'user_id', 'id');
+    }
+
     public function favouriteJobs()
     {
         return $this->hasMany(FavouriteJob::class, 'user_id', 'id');
@@ -241,10 +246,27 @@ class User extends Authenticatable
         $percentage += count($this->userLanguages) > 0 ? $percentage_profile['user_language'] : 0;
         $percentage += ($this->countUserCvs() > 0) ? $percentage_profile['user_resume'] : 0;
         $percentage += $this->image != null ? $percentage_profile['user_profile'] : 0;
-        // return 30;
+        return 30;
         return $percentage > 100 ? 100 : $percentage;
     }
 
+    public function getContinueProfileUpdate()
+    {
+        if(count($this->userEducation)==0){
+            return 'education-details';
+        }else if(count($this->userExperience)==0){
+            return 'experience-details';
+        }else if(count($this->userSkills)==0){
+            return 'skill-details';
+        }else if(count($this->userProjects)==0){
+            return 'project-details';
+        }else if(count($this->userLanguages)==0){
+            return 'language-details';
+        }else{
+            return 'career-info-details';
+
+        }
+    }
 
     public function isAppliedOnJob($job_id)
 

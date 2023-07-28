@@ -311,5 +311,4 @@ class MyJobsController extends BaseController
         return $this->sendResponse('', $message);
     }
     
-    
 }

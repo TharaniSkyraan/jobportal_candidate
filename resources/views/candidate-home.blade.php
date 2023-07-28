@@ -37,36 +37,6 @@
 
             
         <section id="homepage_stn">  
-            <!-- Button trigger modal -->
-            <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Launch demo modal
-            </button>  -->
-
-            <!-- Modal -->
-            <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <div class="text-center mb-3">
-                                <h1 class="fw-bolder">Hi Skyraan</h1>
-                                <h3 class="fw-bolder">Your Profile Completion is</h3>
-                            </div>
-
-                            <div class="mx-auto mb-3 progressbar useraccountsetting cursor-pointer fw-bolder" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" style="--value: 87">    
-                                87%                     
-                            </div>
-
-                            <div class="mb-4">
-                                <span class="text-center align-items-center justify-content-center d-flex">Complete your profile minimum 50% to apply for Jobs</span>
-                            </div>
-
-                            <h2 class="text-center text-primary fw-bolder">COMPLETE NOW</h2>
-
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-        
 
             <div class="container">
                 <div class="hme_banner">

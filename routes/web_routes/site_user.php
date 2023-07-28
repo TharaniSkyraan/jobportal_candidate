@@ -114,12 +114,27 @@
         Route::get('downloadcv/{cv_id}', 'UserController@downloadCv')->name('downloadcv');
         Route::post('make-default-cv', 'UserController@makeDefaultCv')->name('makedefaultcv');
         
+        /**Job Alert */
+        Route::get('/job-alert-details','UserController@JobAlertDetail')->name('job-alert-details');
+        Route::post('show-job-alert', 'UserController@showJobAlertList')->name('show.job-alert');
+        Route::post('get-job-alert-form/{id?}', 'UserController@getFrontJobAlertForm')->name('get.job-alert.form');
+        Route::post('store-job-alert/{id?}', 'UserController@storeFrontJobAlert')->name('store.job-alert');
+        Route::post('get-job-alert-edit-form/{id?}', 'UserController@getFrontJobAlertEditForm')->name('get.job-alert.edit.form');
+        Route::put('update-job-alert/{job_alert_id}/{user_id}', 'UserController@updateFrontJobAlert')->name('update.job-alert');
+        Route::delete('delete-job-alert', 'UserController@deleteJobAlert')->name('delete.job-alert');
+        Route::post('undo-job-alert', 'UserController@undoJobAlert')->name('undo.job-alert');
+
+
+
+        /** Account Setting */
         Route::get('accounts_settings', 'UserController@accountSettings')->name('accounts_settings');
 
+        /** Applied Jobs */
         Route::get('applied-jobs', 'JobsController@appliedjobs')->name('applied-jobs');
         Route::post('/applied-jobs', 'JobsController@appliedJobsList')->name('applied-jobs-list');
         Route::get('/job-detail/{slug}', 'JobsController@JobDetail')->name('job-detail');
     
+        /** Saved Jobs */
         Route::get('saved-jobs', 'JobsController@savedJobs')->name('saved-jobs');
         Route::post('/saved-jobs', 'JobsController@savedJobsList')->name('saved-jobs-list');
 

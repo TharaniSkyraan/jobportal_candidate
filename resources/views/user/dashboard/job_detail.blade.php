@@ -652,6 +652,7 @@ ul{
             </div>
         </div>
     </div>
+@include('user.complete-profile-modal')
 <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6315c4c30b5e930012a9c49e&product=inline-share-buttons' async='async'></script>
 @php
     $applied = Auth::user()?(Auth::user()->isAppliedOnJob($job->id)??false):false;
