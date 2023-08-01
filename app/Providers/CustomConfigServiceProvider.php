@@ -60,6 +60,14 @@ class CustomConfigServiceProvider extends ServiceProvider
 
                 ],
 
+                'support_recieve_to' => [
+
+                    'address' => $settings->support_mail_to_address,
+
+                    'name' => $settings->support_mail_to_name
+
+                ],
+
                 'encryption' => $settings->mail_encryption,
 
                 'username' => $settings->mail_username,

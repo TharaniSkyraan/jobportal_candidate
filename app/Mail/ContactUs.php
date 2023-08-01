@@ -1,17 +1,15 @@
 <?php
 
+
 namespace App\Mail;
 
-use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class ContactUs extends Mailable
 {
 
-    use Queueable,
-        SerializesModels;
+    use SerializesModels;
 
     public $data;
 
@@ -32,12 +30,13 @@ class ContactUs extends Mailable
      */
     public function build()
     {
-        return $this->from($this->data['email'], $this->data['full_name'])
-                        ->replyTo($this->data['email'], $this->data['full_name'])
-                        ->to(config('mail.recieve_to.address'), config('mail.recieve_to.name'))
-                        ->subject($this->data['subject'])
+        $data = $this->data;
+        return $this->from($data->email, $data->name)
+                        ->replyTo($data->email, $data->name)
+                        ->to(config('mail.support_recieve_to.address'), config('mail.support_recieve_to.name'))
+                        ->subject($data->subject)
                         ->markdown('emails.send_contact_message')
-                        ->with($this->data);
+                        ->with(['data'=>$data]);
     }
 
 }

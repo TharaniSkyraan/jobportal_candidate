@@ -1,170 +1,86 @@
-
 @extends('layouts.app')
-
 @section('custom_scripts')
-    <link href="{{ asset('site_assets_1/assets/css/static_css.css') }}" rel="stylesheet">
-    <style>
-        .search-button-bg{
-            background-color: #4285F4;
-            color: #fff;
-        }
-        .search-button-bg:hover{
-            background-color: #4285F4;
-            color: #fff;
-            opacity: 1;
-        }
-        .search-button-bg:focus{
-            box-shadow: 0 0 0 2px #fff, 0 0 0 3px #2557a7f2 !important; 
-        }
-        .contact-icons {
-            width: 50px;
-            height: 50px;
-            background: #ea4335;
-            color: #fff;
-            padding: 13.5px 16px;
-            align-items: center;
-            justify-content: center;
-            display: inline-flex;
-            border-radius: 30px;
-            font-size: 22px !important;
-        }
-        .fa-paper-plane{
-            padding: 13.5px 12px !important;
-        }
-        .fa-map-marker{
-           padding: 13.5px 18px !important;
-        }
-        </style>
+<link href="{{ asset('site_assets_1/assets/css/static_css.css') }}" rel="stylesheet">
+<link href="{{ asset('site_assets_1/assets/css/contactus.css') }}" rel="stylesheet">
 @endsection
 @section('content')
-
 @include('layouts.header')
-
-<!-- <section class="page-title-section">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10 text-center">
-                <h1 class="mb-4 fw-bold ">Contact Us</h1>
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <div class="page-title-list">
-                            <ol class="breadcrumb d-inline-block mb-0">
-                                <li class="breadcrumb-item d-inline-block"><a href="{{ route('index') }}" class="fw-bold" style="color: #1e2022;font-size: 16px;">Home</a></li>
-                                <li class="breadcrumb-item d-inline-block active"><a class="text-primary " style="font-weight:bold;">Contact Us</a></li>
-                            </ol>
+<div id="content-wrap">
+    <div class="main mt-5">
+        <div class="container panel panel-default mb-5">
+            <form id="contact-form">
+                {{-- <div class="row"> --}}
+                <div class="row flex-column-reverse flex-md-row">
+                    <div class="col-xl-5 col-lg-6 col-md-6 col-sm-12 col-12 contactinf">
+                        <h3>Contact Information</h3>
+                        <div class="d-flex mt-4 mb-3">
+                            <span class="m-3">
+                                <img src="{{asset('images/m_svg/call.svg')}}" class="phone-img border-radius-10 contact-icons" alt="...">
+                            </span>
+                            <span class="my-3">Phone <br>
+                                <a href="tel://+91-9900559924">+91-9900559924</a>
+                            </span>                               
+                        </div>
+                        <div class="d-flex email mb-3">
+                            <span class="m-3">
+                                <img src="{{asset('images/m_svg/mail.svg')}}" class="email-img border-radius-10 contact-icons" alt="...">
+                            </span>
+                            <span class="my-3">Email <br>
+                                <a href="mailto:contact@mugaam.com">contact@mugaam.com</a>
+                            </span> 
+                        </div>
+                        <div class="d-flex">                        
+                            <span class="m-3">
+                                <img src="{{asset('images/m_svg/location.svg')}}" class="address-img border-radius-10 contact-icons" alt="...">
+                            </span>
+                            <span class="my-3">Address <br>
+                                <a href=""> Hari Complex, 207/A3, Sathy Rd, opp. Prozone Mall, Saravanampatti, Coimbatore, Tamil Nadu 641035</a>
+                            </span>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> -->
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 contactdet">
+                        <div id="success"></div>
+                        <h3>Send us a message</h3>
+                        <div class="row">
+                            <!-- Name input -->
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-6 col-12">
+                                <div class="form-group mb-3">
+                                    <input class="form-control" id="name" type="text" placeholder="Name" name="name"
+                                        value="{{old('name')}}" autocomplete="off" />
+                                    <span class="text-danger" id="name-error"></span>
 
-<div class="container container-detail mb-5">
-    <div class="w-85 mx-auto header-space-search" >
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                <li class="breadcrumb-item jt-bc-ellip active" aria-current="page">Contact Us</li>
-            </ol>
-        </nav>
-
-        <div id="content-wrap">
-            <div class="main">
-                <div class="container panel panel-default mb-5">
-                    <div class="card mt-5">
-                        <div class="row m-3">
-                        </div>
-                        <form id="contact-form">
-                            <div class="row mx-3">
-                                <div class="col-md-5" style="padding-left:6%">
-                                    <div class="d-flex mt-5 mb-4">
-                                        <span class="m-3">
-                                            <i class="fa fa-phone contact-icons"></i>
-                                        </span>
-                                        <span class="fw-bold my-3">Phone <br>
-                                            <a href="tel://+91-9900559924">+91-9900559924</a>
-                                        </span>                               
-                                    </div>
-                                    <div class="d-flex mb-4">
-                                        <span class="m-3">
-                                            <i class="fa fa-paper-plane contact-icons"></i>
-                                        </span>
-                                        <span class="fw-bold my-3">Email <br>
-                                            <a href="mailto:contact@mugaam.com">contact@mugaam.com</a>
-                                        </span> 
-                                    </div>
-                                    <!-- <div class="d-flex mb-4">                        
-                                        <span class="m-3">
-                                            <i class="fa fa-globe contact-icons"></i>
-                                        </span>
-                                        <span class="fw-bold my-3">Website <br>
-                                            <a href="https://www.mugaam.com/">www.mugaam.com</a>
-                                        </span>
-                                    </div> -->
-                                    <div class="d-flex">                        
-                                        <span class="m-3">
-                                            <i class="fa fa-map-marker contact-icons"></i>
-                                        </span>
-                                        <span class="fw-bold my-3">Address <br>
-                                            <a href=""> Hari Complex, 207/A3, Sathy Rd, opp. Prozone Mall, Saravanampatti, Coimbatore, Tamil Nadu 641035</a>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-md-7" style="padding:1rem 4rem;">
-                                    <div id="success"></div>
-                                    <!-- <h3>Send us a message</h3> -->
-                                    <div class="row">
-                                        <!-- Name input -->
-                                        <div class="col-md-6">
-                                            <div class="form-group mb-3">
-                                                <label class="form-label" for="name">Name</label>
-                                                <input class="form-control" id="name" type="text" placeholder="Name" name="name"
-                                                    value="{{old('name')}}" autocomplete="off" />
-                                                <span class="text-danger" id="name-error"></span>
-
-                                            </div>
-                                        </div>
-
-                                        <!-- Email address input -->
-                                        <div class="col-md-6">
-                                            <div class="form-group mb-3">
-                                                <label class="form-label" for="emailAddress">Email Address</label>
-                                                <input class="form-control" id="email" type="text" name="email"
-                                                    placeholder="Email Address" value="{{old('email')}}" autocomplete="off" />
-                                                <span class="text-danger" id="email-error"></span>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Subject input -->
-                                    <div class="form-group mb-3">
-                                        <label class="form-label" for="subject">Subject</label>
-                                        <input class="form-control" id="subject" type="text" name="subject"
-                                            placeholder="Subject" value="{{old('subject')}}" autocomplete="off" />
-                                        <span class="text-danger" id="subject-error"></span>
-
-                                    </div>
-                                    <!-- Message input -->
-                                    <div class="form-group mb-5">
-                                        <label class="form-label" for="message">Message</label>
-                                        <textarea class="form-control" id="message" type="text" name="message"
-                                            placeholder="Message" style="height:8rem !important;" value="{{old('message')}}"
-                                            autocomplete="off"></textarea>
-                                        <span class="text-danger" id="message-error"></span>
-
-                                    </div>
-                                    <!-- Form submit button -->
-                                    <div class="d-grid" style="cursor:pointer">
-                                        <button class="btn search-button-bg" type="submit" id="msearch_btn">Send
-                                            Message</button>
-                                    </div>
                                 </div>
                             </div>
-                        </form>
+
+                            <!-- Email address input -->
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-6 col-12">
+                                <div class="form-group mb-3">
+                                    <input class="form-control" id="email" type="text" name="email"
+                                        placeholder="Email Address" value="{{old('email')}}" autocomplete="off" />
+                                    <span class="text-danger" id="email-error"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Subject input -->
+                        <div class="form-group mb-3">
+                            <input class="form-control" id="subject" type="text" name="subject"
+                                placeholder="Subject" value="{{old('subject')}}" autocomplete="off" />
+                            <span class="text-danger" id="subject-error"></span>
+                        </div>
+                        <!-- Message input -->
+                        <div class="form-group mb-5">
+                            <textarea class="form-control" id="message" type="text" name="message"
+                                placeholder="Message" style="height:8rem !important;" value="{{old('message')}}"
+                                autocomplete="off"></textarea>
+                            <span class="text-danger" id="message-error"></span>
+                        </div>
+                        <!-- Form submit button -->
+                        <div class="d-grid" style="cursor:pointer">
+                            <button class="btn search-button-bg" type="submit" id="msearch_btn">Send Message</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>

@@ -62,14 +62,15 @@
       <div class="row mt-4">
         <div class="col-md-5 home_menu align-self-center">
           <div class="row">
-            <div class="col">
+            <div class="col-6">
               <ul>
                 <li><i class="bi bi-chevron-right"></i> <a href="{{ route('index') }}">Home</a></li>
                 <li><i class="bi bi-chevron-right"></i> <a href="{{ route('about-us') }}">About us</a></li>
                 <li><i class="bi bi-chevron-right"></i> <a href="{{ route('contact-us') }}">Contact Us</a></li>
+                <li><i class="bi bi-chevron-right"></i> <a href="{{ route('faq') }}">FAQ</a></li>
               </ul>
             </div>
-            <div class="col">
+            <div class="col-6">
               <ul>
                 <li><i class="bi bi-chevron-right"></i> <a href="{{ route('privacy-policy') }}">Privacy Policy</a></li>
                 <li><i class="bi bi-chevron-right"></i> <a href="{{ route('cookie-policy') }}">Cookie Policy</a></li>

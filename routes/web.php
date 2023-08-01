@@ -38,6 +38,8 @@ include_once($real_path . 'site_user.php');
 Auth::routes();
 
 Route::view('/contact-us','contact_us')->name('contact-us');
+Route::get('/faq/{ckey?}', 'ContactController@faqindex')->name('faq');
+Route::post('/faqData', 'ContactController@getFaqData')->name('faq-data');
 Route::post('contact-us-insert', 'ContactController@ContactInsert')->name('contact.insert');
 Route::view('/about-us','about_us')->name('about-us');
 Route::view('/about-company','about_company')->name('about-company');
