@@ -62,9 +62,9 @@ class CustomConfigServiceProvider extends ServiceProvider
 
                 'support_recieve_to' => [
 
-                    'address' => $settings->support_mail_to_address,
+                    'address' => $settings->candidate_support_mail_to_address,
 
-                    'name' => $settings->support_mail_to_name
+                    'name' => $settings->candidate_support_mail_to_name
 
                 ],
 
