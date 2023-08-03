@@ -48,7 +48,7 @@
 										@else
 											<img src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="profile-img" class="h-100 rounded-circle mx-2">
 										@endif								
-										<text class="text-truncate-3 font-weight-bold">{{Auth::user()->getName()}}</text>
+										<text class="text-truncate-3 font-weight-bold">{{Auth::user()->getName()}}<br><span>{{Auth::user()->candidate_id}}</span></text>
 									</div>
 								</a>
 						
@@ -107,7 +107,7 @@
 										@else
 											<img src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="profile-img" class="h-100 rounded-circle mx-2">
 										@endif								
-										<text class="text-truncate-3 font-weight-bold">{{Auth::user()->getName()}}</text>
+										<text class="text-truncate-3 font-weight-bold">{{Auth::user()->getName()}}<br><span>{{Auth::user()->candidate_id}}</span></text>
 									</div>
 								</a>
 							</li>

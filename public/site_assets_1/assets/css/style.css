@@ -2232,9 +2232,13 @@ label {
 .text-truncate-3 {
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 150px;
   padding: 10px;
+  width: 150px;
+  white-space: nowrap;
 
+}
+.profile-pic .text-truncate-3 span {
+  padding: 0 0px;
 }
 /* ss ends */
 

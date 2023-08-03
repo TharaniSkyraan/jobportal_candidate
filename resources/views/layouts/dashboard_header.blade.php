@@ -97,7 +97,7 @@
 									@else
 										<img src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="profile-img" class="h-100 rounded-circle mx-2">
 									@endif								
-									<text class="text-truncate-3 font-weight-bold">{{Auth::user()->getName()}}</text>
+									<text class="text-truncate-3 font-weight-bold">{{Auth::user()->getName()}}<br><span>{{Auth::user()->candidate_id}}</span></text>
 								</div>
 							</a>
 					
@@ -107,17 +107,17 @@
 										<a class="dropdown-item" href="#"><i class="fa-solid fa-note-sticky px-1"></i> My Resume</a>
 									</li> -->
 									
-						<div class="user d-flex {{ (Auth::user()->getProfilePercentage() < 40)? 'pending' : 'completed' }}">           
-							<a>
-								<div class="progressbar text-black useraccountsetting cursor-pointer fw-bolder" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" style="--value: {{Auth::user()->getProfilePercentage()}}">    
-								{{Auth::user()->getProfilePercentage()}}%                     
-								</div>
-							</a>
-							<div class="align-self-center mt-2">
-								<span class="completion">Profile Completed</span>
-							</div>
-						</div>
-						<hr>
+									<div class="user d-flex {{ (Auth::user()->getProfilePercentage() < 40)? 'pending' : 'completed' }}">           
+										<a>
+											<div class="progressbar text-black useraccountsetting cursor-pointer fw-bolder" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" style="--value: {{Auth::user()->getProfilePercentage()}}">    
+											{{Auth::user()->getProfilePercentage()}}%                     
+											</div>
+										</a>
+										<div class="align-self-center mt-2">
+											<span class="completion">Profile Completed</span>
+										</div>
+									</div>
+									<hr>
 									<li>
 										@if(Auth::user()->is_active==1)
 											<a class="dropdown-item" href="{{ route('home') }}"><i class="fa-solid fa-user px-1 mx-2"></i> My Profile</a>
@@ -157,7 +157,7 @@
 									@else
 										<img src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="profile-img" class="h-100 rounded-circle mx-2">
 									@endif								
-									<text class="text-truncate-3 font-weight-bold">{{Auth::user()->getName()}}</text>
+									<text class="text-truncate-3 font-weight-bold">{{Auth::user()->getName()}}<br><span>{{Auth::user()->candidate_id}}</span></text>
 								</div>
 							</a>
 						</li>

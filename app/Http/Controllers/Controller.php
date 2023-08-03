@@ -17,6 +17,13 @@ class Controller extends BaseController
     use AuthorizesRequests,
         DispatchesJobs,
         ValidatesRequests;
+    /**
+     * 
+     * 
+     */
+    function generateCandidate($counter) {
+        return 'MUG-' . str_pad($counter, 3, '0', STR_PAD_LEFT);
+    }
 
     /**
      * 

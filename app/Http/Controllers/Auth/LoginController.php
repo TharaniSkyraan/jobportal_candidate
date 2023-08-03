@@ -175,6 +175,11 @@ class LoginController extends Controller
                     'token'=>$this->generateRandomString(8)
                 ]);
                 
+
+                $update = User::findorFail($user->id);
+                $update->candidate_id = $this->generateCandidate($user->id);
+                $update->save();
+               
                 $page = $this->SwitchRedirect('education');
             }else{
 
@@ -244,6 +249,10 @@ class LoginController extends Controller
                             'token'=>$this->generateRandomString(8),
                         ]);  
                 $user = User::findorFail($user->id);
+
+                $update = User::findorFail($user->id);
+                $update->candidate_id = $this->generateCandidate($user->id);
+                $update->save();
                
                 $page = $this->SwitchRedirect('verify_otp');
 
