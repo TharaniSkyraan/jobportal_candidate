@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('custom_scripts')
+@section('custom_styles')
 <link href="{{ asset('site_assets_1/assets/1a9ve2/css/faq!2&32.css')}}" rel="stylesheet">
 @endsection
 
@@ -37,16 +37,15 @@
 </div>
 @endsection
 
+@section('custom_bottom_scripts')
+  <!-- action srcip starts-->
+  <script>
+    var baseurl = '{{ url("/") }}/';
+    var cat_key_from_url = '{{ $cat->slug }}';
+    var is_empty_categorykey = '{{$ckey}}';
+  </script>
+   <script type="text/javascript" src="{{ asset('site_assets_1/assets/1a9ve2/js/faq!2&32.js') }}"></script>
+@endsection
 @section('footer')
-@include('layouts.footer')
-<!-- action srcip starts-->
-<script>
-  var baseurl = '{{ url("/") }}/';
-  var cat_key_from_url = '{{ $cat->slug }}';
-  var is_empty_categorykey = '{{$ckey}}';
-</script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<script src="http://devanswer.com/codes/files/prefixfree.min.js"></script>
-<script type="text/javascript" src="{{ asset('site_assets_1/assets/1a9ve2/js/faq!2&32.js') }}"></script>
-
+@include('faq.footer')
 @endsection

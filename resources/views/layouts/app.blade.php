@@ -14,15 +14,11 @@
 
 <body>
     <div id="page-container">
-    @yield('content')
-
-    @include('layouts.scripts')
-
-    @yield('modals')
-    
-    @yield('custom_bottom_scripts')
-    
-    @stack('scripts')
+        @yield('content')
+        @include('layouts.scripts')
+        @yield('modals')
+        @yield('custom_bottom_scripts')
+        @stack('scripts')
     </div>
     @yield('footer')
 </body>

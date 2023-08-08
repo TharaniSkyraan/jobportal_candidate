@@ -246,7 +246,7 @@ class User extends Authenticatable
         $percentage += count($this->userLanguages) > 0 ? $percentage_profile['user_language'] : 0;
         $percentage += ($this->countUserCvs() > 0) ? $percentage_profile['user_resume'] : 0;
         $percentage += $this->image != null ? $percentage_profile['user_profile'] : 0;
-        return 30;
+        // return 30;
         return $percentage > 100 ? 100 : $percentage;
     }
 
