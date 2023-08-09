@@ -7,3 +7,4 @@
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js') }}"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.0/css/toastr.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.0/js/toastr.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

@@ -138,6 +138,13 @@
         Route::get('saved-jobs', 'JobsController@savedJobs')->name('saved-jobs');
         Route::post('/saved-jobs', 'JobsController@savedJobsList')->name('saved-jobs-list');
 
+        
+        Route::get('/messages/{mid?}', 'MessagesController@index')->name('employer_messages');
+        Route::post('message_contact_list', 'MessagesController@messageContactList')->name('message-contact-list');
+        Route::post('messagelist', 'MessagesController@messageList')->name('message-list');
+        Route::post('message_send', 'MessagesController@messageSend')->name('message-send');
+        Route::post('messagelisten', 'MessagesController@messageListen')->name('message-listen');
+      
     });
 
     ?>

@@ -112,7 +112,7 @@
           </a>
         </li>
         <li class="item">
-          <a href="#" class="link flex">
+          <a href="{{route('employer_messages')}}" class="link flex {{ Route::is('employer_messages') ? 'active' : '' }}">
             <img src="{{asset('images/sidebar/message.svg')}}" alt="">
             <span>Messages</span>
           </a>

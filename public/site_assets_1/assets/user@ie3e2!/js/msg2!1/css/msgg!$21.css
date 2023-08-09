@@ -1,0 +1,325 @@
+
+  .jlsca{
+    margin: 0.5rem 0.9rem;
+    border: 1px solid #eee;
+    box-shadow: 0px 0px 4px 0 rgba(69,65,78,.1);
+  }.jlsca:active{
+    outline: 2px solid #4285f4;
+  }
+  .jlsca:hover{
+    outline: 1px solid #4285f4;
+    cursor: pointer;
+  }
+  .jpcactive{
+    outline: 1px solid #4285f4 !important;
+  }
+  .dropdown-toggle::after {
+    cursor: pointer;
+    float: right;
+    margin-top: 10px;
+  }
+
+  @media(min-width: 280px) and (max-width: 480px){
+    .jlsection{
+      min-height: auto;
+    }.jcardlist{
+      height: auto;
+    }
+  }
+  .text-justify{
+    text-align-last: justify !important;
+  }
+
+  .dropdown .btn {
+    border-color: #c3c3c391;
+    padding: 0.4rem 0.7rem;
+    font-size: 13px;
+    opacity: 1;
+    color: black;
+    border-radius: 7px;
+    background-color: white;
+    border-width: 1px!important;
+  }
+  
+  .chat-frame{
+    width: 100%;
+    min-width: 310px;
+    max-width: 1400px;
+    height: 85vh;
+    /* min-height: 300px;
+    max-height: 720px; */
+  }
+  
+  .jlsection{
+    /* background-color: #e3f4ff9e; */
+    margin-top:3px;  
+    height: 84vh;
+    min-height: 300px;
+    max-height: 720px; 
+    padding-top: 20px;
+    border-radius: 10px;
+  }
+  /* Set the color of the scroll thumb */
+  .jcardlist{
+    height: 65vh;
+    min-height: 300px;
+    max-height: 720px;
+    overflow: hidden;
+    overflow-y: scroll;
+    /* overflow-x: hidden; */
+  }
+  .jcardlist::-webkit-scrollbar {
+    width: 3px;
+  }
+  .jcardlist::-webkit-scrollbar-thumb {
+    /* background-color: #6ca4ff; */
+    background-color: transparent;
+     /* Change this to the desired color */
+  }
+  .jcardlist::-webkit-scrollbar-track {
+    /* background-color: #dedddd; */
+    background-color: transparent;
+  }
+    
+  .message-list{
+    height: 55vh;
+    min-height: 300px;
+    max-height: 720px; 
+    overflow: hidden;
+    overflow-y: scroll;
+    text-align-last: center;
+  }
+  
+  .message-list.compress{
+    min-height: 0px;
+    height: 20vh;
+  }
+  .message-list::-webkit-scrollbar {
+    width: 3px;
+  }
+  .message-list::-webkit-scrollbar-thumb {
+    background-color: #9f9f9f; /* Change this to the desired color */
+    border-radius: 50px;
+  }
+  .message-list::-webkit-scrollbar-track {
+    background-color: #f9fbfd;
+  }
+  .msglistpar{
+    padding: 0%;
+  }
+  .cand-pro
+  {
+    background: #FFFFFF;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  textarea{
+    resize: none;
+  }
+  .ctbtns
+  {    
+    font-size: 18px;
+  }
+  
+  .ctbtns .fa-expand-alt, .ctbtns .fa-compress-alt
+  {    
+    margin-bottom: 6px;
+    color: #1572e8;
+    border: 1px solid #ada4a4;
+    padding: 5px;
+    border-radius: 7px;
+    cursor: pointer;
+  }  
+  .ctbtns .textCompress{
+    display: none;
+  }
+  .ctbtns .fa-close
+  {    
+    margin-bottom: 5px;
+    border: 1px solid #ada4a4;
+    color: #1572e8;
+    padding: 5px 9px;
+    border-radius: 7px;
+    cursor: pointer;
+  }  
+  .ctbtns .fa-paper-plane
+  {    
+    border: 1px solid #1572e8;
+    padding: 5px;
+    border-radius: 7px;
+    background-color: #1572e8;
+    color: #FFFFFF;
+    cursor: pointer;
+  }
+  .ctbtns .disabled .fa-paper-plane
+  {  
+    background-color: #48abf7;
+    border: 1px solid #48abf7;
+    cursor: unset;
+  }
+  .ctbtns .textClose.textCloseremoved .fa-close{
+    display: none;
+  }
+  .ctbtns .textCloseremoved
+  {
+    margin-bottom: 35px;
+  }
+  
+  .chat-right,.chat-left{  
+
+    width: fit-content;
+    max-width: 75%; 
+    line-height: 1.9em;
+    font-size: 13px;
+    padding: 15px 15px 30px 15px;
+    border-radius: 10px;
+    margin-top: 1%;
+    margin-bottom: 1.5%;
+
+  }
+  .chat-right{  
+    background: #eee;
+    margin-right: 1%;
+    margin-left: auto;
+    text-align-last: left;
+  }
+
+  .chat-left{    
+    background: #fff;
+    margin-left: 1%;
+    margin-right: auto;
+    text-align-last: left;
+  }
+  .chat-right span, .chat-left span, .jcardlist h5{    
+    float: right;
+    color:#7f7f7fd9;
+  }
+  .jcardlist p, .jcardlist h4{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    font-weight: 400 !important;
+  }
+
+  .jcardlist .card{
+    padding: 0.5rem !important;
+  }
+  .jcardlist p{
+    margin-bottom: 0rem !important;
+    color: #867b7b;
+    font-size: 16px;
+  } 
+  
+  .jcardlist .unread p, .jcardlist .unread h4{
+    font-weight: 500 !important;
+  }
+
+  .profileImage{
+    font-family: "Poppins";
+    border-radius: 50%;
+    background: #4f9fa9;
+    font-size: 1.8rem;
+    color: #fff;
+    text-align: center;
+    line-height: 2.8rem;
+    transition: all 0.4s ease;
+  }
+  .main-panel-customize .profileImage {
+    /* font-family: inherit; */
+    line-height: 3.4rem;
+  }
+  .avatar{
+    width:3rem;
+    transition: all 0.4s ease;
+  }
+  .main-panel-customize .avatar{
+    width:3.5rem;
+  }
+  .page-inner{
+    padding-bottom: 0px !important;
+  }
+  .msg-send{
+    border-top: 1px solid #a6abb069;
+  } 
+  .jcardlist h5{
+    font-size: 12px;
+  }
+  .jlsection span{
+    font-size: 14px;
+  }  
+  .mob-res-arrow{
+    display: none;
+  }
+    @media screen and (max-width: 768px)
+  {
+  }
+  @media screen and (max-width: 991px){
+    .main-panel-customize{      
+      width: 100% !important;
+    }
+    .sidenavbar.close {
+      transform: translateX(-100px);
+    }
+    .main-header .header-close{
+      left :0px;
+    }
+    .msglistpar{
+      padding-left: 2%;  
+    }
+    .close .nav_image{
+      transition: all 10s ease;
+      margin-left: -13rem;
+    }
+    .cntpro{
+      display: none;
+    }
+    
+    .sidenavbar {
+      left: 0;
+      z-index: 1000;
+    }
+    .navbar {
+      left: 0;
+      max-width: 100%;
+      transform: translateX(0%);
+    }
+  }
+  @media screen and (max-width: 576px){
+    .job-filter{
+      display: block; 
+      transform: translateX(2.5%);
+    }
+    .job-filter.jfilter{
+      display: none;
+    }
+    .msglistpar{
+      display: none;
+    }
+    .msglistpar.msglist{
+      display: block;
+    }
+    .mob-res-arrow{
+      display: block;
+    }
+    .cntpro{
+      display: block;
+    }
+  }
+  
+.janoimg {
+  width: 20%;
+}
+.timebatch{
+  background: linear-gradient(180deg, 
+  rgba(0,0,0,0) calc(51% - 1px), 
+  rgba(192,192,192,1) calc(1%), 
+  rgba(0,0,0,0) calc(51% + 1px));    
+  margin: 0% 1%;
+}
+.timebatch span{
+  background-color: #f9fbfd;
+  font-size: 12px;
+  padding: 0px 10px;
+  color: #837c7c;
+}
