@@ -459,4 +459,4 @@ function format(inputDate) {
 }
 
 // Call fetchMessages function periodically to fetch new messages
-setInterval(message_listen_data, 3000); // Fetch messages every 3 seconds (adjust as needed)
+setInterval(message_listen_data, 30000); // Fetch messages every 3 seconds (adjust as needed)
