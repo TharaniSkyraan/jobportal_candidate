@@ -173,16 +173,16 @@ function conactlist_html(data, mid) {
         $html += `<div class="card card-body jlsca `+active_cls+`" data-mkey="`+val.message_id+`">
                     <div class="row">
                     <div class="col-xl-4 col-lg-4 col-3 cntpro">`;
-        if(val.user_image!=null){
-            $html +=`<div class="avatar avatar-md"><img src="`+val.user_image+`" alt="Img" class="img-fluid rounded-circle"></div>`;
+        if(val.company_image!=null){
+            $html +=`<div class="avatar avatar-md"><img src="`+val.company_image+`" alt="Img" class="img-fluid rounded-circle"></div>`;
         }else{
-            $html +=`<div class="avatar avatar-md profileImage rounded-circle">`+val.user_avatar+`</div>`;
+            $html +=`<div class="avatar avatar-md profileImage rounded-circle">`+val.company_avatar+`</div>`;
         }
                 
         $html +=` </div>
                     <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-9">
                         <p>`+val.title+`</p>
-                        <h4 class="m-0">`+val.user_name+`</h4>
+                        <h4 class="m-0">`+val.company_name+`</h4>
                         <h5 class="m-0">`+m_created_at+`</h5>
                     </div>
                     </div>
@@ -223,7 +223,7 @@ function load_message_list_data(mid) {
 }
 
 function message_listen_data(mid=act_mid) {
-
+    
     let req_url = baseurl + msg_listen;
 
     $.ajax({
@@ -231,10 +231,12 @@ function message_listen_data(mid=act_mid) {
         type: 'POST',
         data: { "_token": csrf_token, 'message_id': mid, 'last_chat_at': last_chat_at},
         datatype: 'JSON',
-        success: function (response) {
-            html_msg = messagesListHtml(response.datas);    
-            $('.message-list').append(html_msg);
-            $('.message-list').scrollTop($('.message-list')[0].scrollHeight);
+        success: function (response) {       
+            if(response.datas.length!=0){
+                html_msg = messagesListHtml(response.datas);    
+                $('.message-list').append(html_msg);
+                $('.message-list').scrollTop($('.message-list')[0].scrollHeight);
+            }
         },
         error: function (xhr, ajaxOptions, thrownError) {
             var errorMsg = 'Ajax request failed: ' + xhr.responseText;
@@ -260,7 +262,7 @@ function messagesPopulate(resp){
             </div>
             <div class="ms-2">
                 <h5>`+candi_data.title+`</h5>
-                <p class="m-0">`+candi_data.user_name+`</p>
+                <p class="m-0">`+candi_data.company_name+`</p>
             </div>
         </div>
         <div class="col-1 align-self-center">
@@ -379,7 +381,7 @@ function sendChatMessages()
         datatype: 'JSON',
         success: function (data) {
             resetMessage();
-            message_listen_data(act_mid);
+            // message_listen_data(act_mid);
         },
         error: function (xhr, ajaxOptions, thrownError) {
             var errorMsg = 'Ajax request failed: ' + xhr.responseText;

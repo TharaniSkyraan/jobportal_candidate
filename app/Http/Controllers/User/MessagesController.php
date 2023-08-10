@@ -70,12 +70,12 @@ class MessagesController extends Controller
 
         if(empty($search))
         {
-            $contact = $this->message_contact->select('sub_user_id','id','message_id','user_id','job_id','is_archive','created_at')
+            $contact = $this->message_contact->select('sub_user_id','id','message_id','job_id','is_archive','created_at')
                             ->where('message_id', $message_id)
                             ->get()->each(function ($items) {
-                                $items->append(['user_name','user_image','user_avatar','title','unread']);
+                                $items->append(['company_name','company_image','company_avatar','title','unread']);
                             });  
-            $contact->makeHidden(['user_id','job_id','job','user','message']);
+            $contact->makeHidden(['sub_user_id','job_id','job','company','message']);
             $result = array_merge($contact->toArray(), $contacts->toArray()); 
         }
 

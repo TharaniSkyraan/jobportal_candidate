@@ -72,6 +72,11 @@ class MessageContact extends Model
         return ($this->user)?$this->user->image:'';
     }
     
+    public function getCompanyImageAttribute()
+    {
+        return ($this->company->company)?$this->company->company->image:'';
+    }
+    
     public function getUnreadAttribute()
     {
         return ($this->message->count()==0)?'':'unread';
@@ -80,6 +85,11 @@ class MessageContact extends Model
     public function getUserAvatarAttribute()
     {
         return ($this->user->getName()[0]??ucwords($this->user->email[0]));
+    }
+
+    public function getCompanyAvatarAttribute()
+    {
+        return ($this->company->company->name[0]??ucwords($this->company->company->email[0]));
     }
     
 }
