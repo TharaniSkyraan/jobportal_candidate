@@ -392,9 +392,6 @@ class User extends Authenticatable
             $html .= ucwords($this->first_name);
         }
 
-
-
-
         if (!empty($this->middle_name)){
             $html .= ' ' . $this->middle_name;
         }

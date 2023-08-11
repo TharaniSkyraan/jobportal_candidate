@@ -6,11 +6,11 @@
           <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9 align-items-center d-flex">
             <span class="me-2">Show </span>
             <div class="dropdown">
-              <a class="btn dropdown-toggle w-100 text-start p-0 p-2" id="MessageStatus" data-bs-toggle="dropdown" aria-expanded="false">All</a>
+              <a class="btn dropdown-toggle w-100 text-start p-0 p-2" id="MessageStatus" data-bs-toggle="dropdown" aria-expanded="false">{{$status}}</a>
               <ul class="dropdown-menu MessageStatus" aria-labelledby="MessageStatus">
-                <li class="dropdown-item all" id="all">All<span class="all_rc"></span></li>
                 <li class="dropdown-item inbox" id="inbox">Inbox <span class="inbox_rc"></span></li>
                 <li class="dropdown-item archive" id="archive">Archive <span class="archive_rc"></span></li>
+                <li class="dropdown-item not_interest" id="not_interest">Not Interest <span class="not_interest_rc"></span></li>
               </ul>
             </div> 
           </div>

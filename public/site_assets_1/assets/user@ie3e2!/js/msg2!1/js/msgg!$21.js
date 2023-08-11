@@ -4,14 +4,16 @@ var msg_api_url = 'messagelist';
 var msg_contact_list = 'message_contact_list';
 var msg_send = 'message_send';
 var msg_listen = 'messagelisten';
+var contact_status = 'contact_status';
 act_mid = act_mid_from_url;
 act_ftab = m_status;
 last_date = last_chat_at = '';
-
-if (act_mid && act_ftab) {
-    change_url_state(is_empty_mkey);
-    ContactList('initiate');
+if(act_mid && act_ftab){
+    load_message_list_data(act_mid);
+}else{
+    change_url_state(act_mid,act_mid)
 }
+ContactList();
 
 /**  ****Start Status, Filters, Show contact, Select Contact * - Events**** */
 
@@ -38,7 +40,7 @@ $(document).on('click', '.asc-desc' , function(e){
         $(this).data('value','desc'); 
         $("#asc-desc").attr("src", `${baseurl}images/msgs/ascending.svg`);
     }
-    ContactList('orderby');
+    ContactList();
 });
 
 // Read Status
@@ -47,6 +49,8 @@ $(document).on('click', '.MessageStatus .dropdown-item', function (event) {
     act_ftab_rc = $(this).children().text().trim();
     act_ftab_rc = act_ftab_rc.replace('(','').replace(')','');
     $('#MessageStatus').html($('#'+act_ftab).html());
+    change_url_state(act_mid,'');
+    act_mid = '';
     ContactList('status_change');
 });
 
@@ -55,19 +59,37 @@ $(document).on('click', '.mob-res-arrow', function(e){
     $('.msglistpar').removeClass('msglist'); 
 });
 
+$(document).on('click', '.action .dropdown-item', function (event) {
+    update_status = $(this).attr('id');
+    $.post(baseurl+"contact_status",{message_id:act_mid, _method: 'POST', _token: csrf_token, status: update_status})
+        .done(function (response) {// Get select
+            change_url_state(act_mid,'');
+            $(`div [data-mkey='${act_mid}']`).remove();
+            act_mid = '';
+            $('.msglistpar').addClass('hide');
+            if(update_status=='archive'){
+                toastr.success('Moved Archive successfully');
+            }else
+            if(update_status=='archive'){
+                toastr.success('Moved Spam successfully');
+            }else{
+                toastr.success('Revert successfully');
+            }
+
+        });
+});
 //Selete contact
 $(document).on('click', '#tempskle2 .jlsca', function (event) 
-{
+{    
+    change_url_state(act_mid,$(this).data('mkey'));
     act_mid = $(this).data('mkey');
     if (!$(this).hasClass('jpcactive')) {
         $('#tempskle2 .jlsca').removeClass('jpcactive');
         $(this).addClass('jpcactive');
         $(this).removeClass('unread');
-        change_url_state(act_mid);
         
         if($('.mob-res-arrow').data('value')=='mobwidth'){
             $('.job-filter').addClass('jfilter');
-            $('.msglistpar').addClass('msglist');
         }
         load_message_list_data(act_mid);
     }
@@ -79,7 +101,7 @@ $("#jp_search_btn").click(function () {
     clear_cp_search_err();
     cp_search_inp = $('#jp_search_inp').val();
     if(cp_search_inp !=''){
-        ContactList('search');
+        ContactList();
     }else{
         $("#jp_search_inp, #jp_search_btn").addClass("is_invalid_c1");
     }
@@ -89,10 +111,9 @@ $("#jp_search_btn").click(function () {
 
 
 
+/** ***********Start Contact List & Message APi Template************** */
 
-/** ***********Start Contact List & Message APi ************** */
-
-function ContactList(invoke_by){
+function ContactList(invoke_by=''){
     if(invoke_by=='status_change'){
         $('.asc-desc').data('value','desc'); 
         $("#asc-desc").attr("src", `${baseurl}images/msgs/ascending.svg`);
@@ -107,10 +128,13 @@ function ContactList(invoke_by){
         datatype: 'JSON',
         beforeSend:function(){
             $("#tempskle2").addClass("is-loading");
+            $('.msglistpar').addClass("is-loading");
         },
         success: function (data) {
-            populate_contactlist_data({'data':data.data,'act_mid':act_mid, 'invoke_by':invoke_by});
+            populate_contactlist_data({'data':data.data,'act_mid':act_mid});
             $("#tempskle2").removeClass("is-loading");
+            $('.msglistpar').removeClass("is-loading");
+           
         },
         error: function (xhr, ajaxOptions, thrownError) {
             var errorMsg = 'Ajax request failed: ' + xhr.responseText;
@@ -123,44 +147,26 @@ function ContactList(invoke_by){
 // Contact List populate
 function populate_contactlist_data(params){
     data = params.data;
-    mid = params.act_mid;
-    invoke_by = params.invoke_by;
-    
     if (data && data.length != 0 ) {
-        if(invoke_by == 'status_change'){
-            //autoselect fst jobpost
-            miid = data[0].message_id ?? null;
-            if(miid){
-                mid = act_jid = miid;
-                change_url_state(mid);
-            }
-        }
         // Contact List html
-        html_jp = conactlist_html(data, mid);  
+        html_jp = conactlist_html(data);  
         if (html_jp) {
             $("#tempskle2").html(html_jp);
-
-            //Message List 
-            $("#nodatamsg").html('');
-            $(".msglistpar").show();
-            if(invoke_by == 'status_change' || invoke_by == 'initiate'){
-                load_message_list_data(mid);
-            }
         }  
     }else{
         $("#tempskle2").html('<p class="m-3">No posts available</p>');
-        $("#nodatamsg").html(`<div class="m-3 text-center"><img class="janoimg mt-5" src="${baseurl}site_assets_1/assets/img/no_results.svg" rel="nofollow"><h4>No data available</h4></div>`);
-        $(".msglistpar").hide();
+    }
+    if (!$('.msglistpar').hasClass('hide') && act_mid=='') {
+        $('.msglistpar').addClass('hide');
     }
 
 }
 
 // Contact List html replicate
-function conactlist_html(data, mid) {
+function conactlist_html(data) {
     $html = "";
     $.each(data, function (key, val) {
         mid = val.message_id || '1';
-        
         if (mid == act_mid) {
             active_cls = 'jpcactive';
         } else {
@@ -209,6 +215,7 @@ function load_message_list_data(mid) {
         success: function (response) {
 
             messagesPopulate(response.datas);
+            tempPlaceholder = response.datas.contact;
 
             $('.msglistpar').removeClass("is-loading");
             $('.message-list').scrollTop($('.message-list')[0].scrollHeight);
@@ -221,7 +228,6 @@ function load_message_list_data(mid) {
     });
 
 }
-
 function message_listen_data(mid=act_mid) {
     
     let req_url = baseurl + msg_listen;
@@ -266,15 +272,26 @@ function messagesPopulate(resp){
             </div>
         </div>
         <div class="col-1 align-self-center">
-        <i class="fa-solid fa-ellipsis-vertical"></i>
+            <div class="dropdown">
+                <a class="dropdown-toggle w-100 text-start" id="action" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-ellipsis-vertical cursor-pointer p-2"></i>
+                </a>
+                <ul class="dropdown-menu action" aria-labelledby="action">`;
+                if(candi_data.employer_active_status==null || candi_data.employer_active_status==''){
+                    $html_pro += `<li class="dropdown-item cursor-pointer" id="not_interest">Not Interested</li>
+                    <li class="dropdown-item cursor-pointer" id="archive">Archive</li>`;
+                }else{
+                    $html_pro += `<li class="dropdown-item cursor-pointer" id="">Revert</li>`;
+                }
+                $html_pro += `</ul>
+            </div> 
         </div>
     </div>`;
     html_msg = messagesListHtml(messages);
     
     $('.cand-pro').html($html_pro);
     $('.message-list').html(html_msg);
-    $('#nodatamsg').html('');
-    $('.msglistpar').show();
+    $('.msglistpar').removeClass('hide');
 
 }
 // Message List html replicate
@@ -422,15 +439,20 @@ function isYesterday(date) {
     return yesterday.getTime() === inputDate.getTime();
 }
 
-function change_url_state(mkey){
-    //change url state
+
+function change_url_state(mkey,mid){
+
+    //change url state           
     resURL = window.location.href;
     if(mkey!=''){
         resURL = url_remove_last_path(resURL);
-    }else{
-        mkey = act_mid;
     }
-    resURL= resURL + '/' + mkey;
+    if(mid!=''){
+        resURL= resURL + '/' + mid;
+    }
+    if(mid==''){
+        $("#nodatamsg").html(`<div class="m-3 text-center"><img class="mt-5" style="margin-top: 6rem !important;margin-left: -10rem;" src="${baseurl}site_assets_1/assets/img/letschat.png" rel="nofollow"></div>`);
+    }
     history.pushState({}, '',resURL );
 }
 

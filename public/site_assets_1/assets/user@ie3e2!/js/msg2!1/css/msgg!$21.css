@@ -19,6 +19,10 @@
     margin-top: 10px;
   }
 
+  .dropdown-toggle#action::after {
+    border: none;
+  }
+  
   @media(min-width: 280px) and (max-width: 480px){
     .jlsection{
       min-height: auto;
@@ -106,6 +110,9 @@
   }
   .msglistpar{
     padding: 0%;
+  }
+  .msglistpar.hide{
+    display: none;
   }
   .cand-pro
   {

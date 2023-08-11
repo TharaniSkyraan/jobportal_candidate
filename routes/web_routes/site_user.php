@@ -144,7 +144,8 @@
         Route::post('messagelist', 'MessagesController@messageList')->name('message-list');
         Route::post('message_send', 'MessagesController@messageSend')->name('message-send');
         Route::post('messagelisten', 'MessagesController@messageListen')->name('message-listen');
-      
+        Route::post('contact_status', 'MessagesController@ContactStatus')->name('contact-status');
+
     });
 
     ?>

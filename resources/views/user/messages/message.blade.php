@@ -4,8 +4,10 @@
 <link href="{{ asset('site_assets_1/assets/vendor/select2/select2.min.css') }}" rel="stylesheet">
 <link href="{{ asset('site_assets_1/assets/user@ie3e2!/js/msg2!1/css/msgg!$21.css') }}" rel="stylesheet">
 @endsection
-
 @section('content')
+@php
+ $status = ($message)?(($message->candidate_active_status!='')?$message->candidate_active_status:'inbox'):'inbox';
+@endphp
 <div class="wrapper">
   @include('layouts.dashboard_header')
   @include('layouts.side_navbar')
@@ -55,8 +57,7 @@
 <script>
   var baseurl = '{{ url("/") }}/';
   var act_mid_from_url = "{{$message->message_id??''}}";
-  var is_empty_mkey = '{{$message_id}}';
-  var m_status = "All";  //all- All 0-unread, 1-read, 2-archive
+  var m_status = "{{$status}}";  //all- All 0-unread, 1-read, 2-archive
 </script>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/vendor/select2/select2.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/user@ie3e2!/js/msg2!1/js/msgg!$21.js') }}"></script>

@@ -11,7 +11,7 @@ class MessageContact extends Model
     public $timestamps = true;
     protected $guarded = ['id'];
     protected $dates = ['created_at', 'updated_at'];
-    protected $fillable = ['is_read'];
+    protected $fillable = ['employer_active_status'];
 
     public function company()
     {
@@ -74,7 +74,7 @@ class MessageContact extends Model
     
     public function getCompanyImageAttribute()
     {
-        return ($this->company->company)?$this->company->company->image:'';
+        return ($this->company->company)?$this->company->company->company_image:'';
     }
     
     public function getUnreadAttribute()

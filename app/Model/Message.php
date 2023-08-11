@@ -11,6 +11,7 @@ class Message extends Model
     public $timestamps = true;
     protected $guarded = ['id'];
     protected $dates = ['created_at', 'updated_at'];
+    protected $fillable = ['is_read'];
 
     public function message_contact()
     {

@@ -24,6 +24,13 @@ class Controller extends BaseController
     function generateCandidate($counter) {
         return 'MUG-' . str_pad($counter, 3, '0', STR_PAD_LEFT);
     }
+    /**
+     * 
+     * 
+     */
+    function generateMessageContactId($counter) {
+        return 'MSG-' . str_pad($counter, 3, '0', STR_PAD_LEFT);
+    }
 
     /**
      * 
