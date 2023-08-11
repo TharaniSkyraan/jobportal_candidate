@@ -398,7 +398,7 @@ function sendChatMessages()
         datatype: 'JSON',
         success: function (data) {
             resetMessage();
-            // message_listen_data(act_mid);
+            message_listen_data(act_mid);
         },
         error: function (xhr, ajaxOptions, thrownError) {
             var errorMsg = 'Ajax request failed: ' + xhr.responseText;
