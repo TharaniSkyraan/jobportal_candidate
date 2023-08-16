@@ -12,6 +12,7 @@ class UserActivity extends Model
     protected $guarded = ['id'];
     //protected $dateFormat = 'U';
     protected $dates = ['created_at', 'updated_at'];
+    protected $fillable = ['user_id','last_active_at'];
     
     public function user()
     {

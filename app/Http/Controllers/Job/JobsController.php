@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use App\Model\City;
 use App\Model\Title;
 use App\Model\Company;
+use App\Model\UserActivity;
 use App\Model\JobApply;
 use App\Model\Job;
 use App\Model\JobSearch;
@@ -103,6 +104,10 @@ class JobsController extends Controller
     
     public function search(Request $request, $data)
     {
+        
+        if(Auth::check()){
+            UserActivity::updateOrCreate(['user_id' => Auth::user()->id],['last_active_at'=>Carbon::now()]);
+        }
         $meta=[];
         if(strpos($data, 'jobs') !== false){    
 

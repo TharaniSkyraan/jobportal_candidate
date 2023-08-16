@@ -33,7 +33,7 @@
             <div class="mb-4">
                 <h5>Job Shift</h5>
                 <p class="text-justify">
-                    - {{implode(",",$job_alert->getJobShift())}}   
+                    - {{implode(",",$job_alert->getShift())}}   
                 </p>
             </div>
             @endif

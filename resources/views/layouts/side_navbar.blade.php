@@ -15,7 +15,7 @@
     </div> -->
   <div class="menu_container">        
     <!-- {{ (Request::is('home') || Request::is('education-details') || Request::is('experience-details') || Request::is('project-details') || Request::is('language-details') || Request::is('skill-details') || Request::is('career-info-details')|| Request::is('resume-details')) ? 'show' : '' }}  -->
-    <div class="card card-body">            
+    <div class="card">            
         <div class="user d-flex {{ (Auth::user()->getProfilePercentage() < 40)? 'pending' : 'completed' }}">           
           <a>
             <div class="progressbar text-black useraccountsetting cursor-pointer" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" style="--value: {{Auth::user()->getProfilePercentage()}}">    

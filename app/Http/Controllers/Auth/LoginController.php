@@ -174,7 +174,8 @@ class LoginController extends Controller
                     'verified' => 1, 
                     'token'=>$this->generateRandomString(8)
                 ]);
-                
+
+                $user = User::findorFail($user->id);
 
                 $update = User::findorFail($user->id);
                 $update->candidate_id = $this->generateCandidate($user->id);

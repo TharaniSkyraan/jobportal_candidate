@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\BaseController as BaseController;
+use App\Model\UserActivity;
 use App\Model\JobApply;
 use App\Model\Job;
 use App\Model\JobSearch;
@@ -98,6 +99,9 @@ class JobsController extends BaseController
      */
     public function searchJob(JobSearchRequest $request)
     {
+        if(Auth::check()){
+            UserActivity::updateOrCreate(['user_id' => Auth::user()->id],['last_active_at'=>Carbon::now()]);
+        }
 
         $user_id = Auth::user()->id??710;
         $user = User::find($user_id);
