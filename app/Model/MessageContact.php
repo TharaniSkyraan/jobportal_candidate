@@ -15,7 +15,7 @@ class MessageContact extends Model
 
     public function company()
     {
-        return $this->belongsTo(CompanySubUser::class, 'sub_user_id', 'id');
+        return $this->belongsTo(CompanySubuser::class, 'sub_user_id', 'id');
     }
 
     public function user()
