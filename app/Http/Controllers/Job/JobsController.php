@@ -140,11 +140,10 @@ class JobsController extends Controller
     public function searchJob(Request $request)
     {
 
-        $filters = $jobs = $filter = $citylFGid  = $salaryFGid = $jobtypeFGid = $jobshiftFGid = $edulevelFGid = $wfhtypeFid = $industrytypeGid = $functionalareaGid = array();
+        $filters = $jobs = $filter = $citylFGid  = $salaryFGid = $jobtypeFGid = $jobshiftFGid = $edulevelFGid = $wfhtypeFid = $industrytypeGid = $functionalareaGid = $posteddateFid = array();
 
         $sortBy = $request->sortBy??'relevance';
         $experienceFid = $request->experinceFv??'';
-        $posteddateFid = $request->posteddateFid??'';
         $designation = $request->d??'';
         $location = $request->l??'';
         $slug = $request->sl??'';
@@ -184,6 +183,9 @@ class JobsController extends Controller
                 }
                 if('functionalareaGid' == $key){
                     $functionalareaGid[] = $value;
+                }
+                if('posteddateFid' == $key){
+                    $posteddateFid[] = $value;
                 }
                 $vars[] = array(urldecode($key), urldecode($value));
             }

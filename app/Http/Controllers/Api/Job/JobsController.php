@@ -105,11 +105,10 @@ class JobsController extends BaseController
 
         $user_id = Auth::user()->id??710;
         $user = User::find($user_id);
-        $filters = $jobs = $filter = $citylFGid  = $salaryFGid = $jobtypeFGid = $jobshiftFGid = $edulevelFGid = $wfhtypeFid = $industrytypeGid = $functionalareaGid = array();
+        $filters = $jobs = $filter = $citylFGid  = $salaryFGid = $jobtypeFGid = $jobshiftFGid = $edulevelFGid = $wfhtypeFid = $industrytypeGid = $functionalareaGid = $posteddateFid = array();
 
         $sortBy = $request->sortBy??'relevance';
         $experienceFid = $request->experinceFv??'';
-        $posteddateFid = $request->posteddateFid??'';
         $designation = $request->designation??'';
         
         $location = $request->location??'';
@@ -147,6 +146,9 @@ class JobsController extends BaseController
             if(isset($request->functionalareaGid)){
                 $functionalareaGid = explode(',',$request->functionalareaGid);
             }
+            if(isset($request->posteddateFid)){
+                $posteddateFid = explode(',',$request->posteddateFid);
+            }
 
             $filter['experienceFid']  = $experienceFid;        
             $filter['citylFGid']  = count($citylFGid)!=0?',('.implode('|',$citylFGid).'),':'';
@@ -157,7 +159,6 @@ class JobsController extends BaseController
             $filter['wfhtypeFid']  = $wfhtypeFid;
             $filter['industrytypeGid']  = $industrytypeGid;
             $filter['functionalareaGid']  = $functionalareaGid;
-
             $filter['posteddateFid']  = $posteddateFid;
             $filter['sortBy']  = $sortBy;
             

@@ -1,10 +1,6 @@
 <?php
 
-
-
 namespace App\Model;
-
-
 
 use Mail;
 use Auth;
@@ -106,15 +102,10 @@ class User extends Authenticatable
 
     public function getDefaultCv()
     {
-
         $cv = UserCv::where('user_id', '=', $this->id)->where('is_default', '=', 1)->first();
-
         if (null === $cv)
-
             $cv = UserCv::where('user_id', '=', $this->id)->first();
-
         return $cv;
-
     }
 
     public function UserCvs()
@@ -228,12 +219,8 @@ class User extends Authenticatable
     {
         return $this->favouriteCompanies->pluck('company_slug')->toArray();
     }
-
-
-
+    
     /*     * ****************************** */
-
-
     public function getProfilePercentage()
     {
 
@@ -271,31 +258,20 @@ class User extends Authenticatable
     public function isAppliedOnJob($job_id)
 
     {
-
         $return = false;
-
         if (Auth::check()) {
-
             $count = JobApply::where('user_id', Auth::user()->id)->where('job_id', '=', $job_id)->count();
-
             if ($count > 0)
-
                 $return = true;
-
         }
-
         return $return;
-
     }
-
-
-
+    
     public function appliedJobs()
     {
-
         return $this->hasMany(JobApply::class, 'user_id', 'id');
-
     }
+    
     public function getAppliedJobIdsArray()
     {
         return $this->appliedJobs->pluck('job_id')->toArray();
@@ -303,43 +279,26 @@ class User extends Authenticatable
     /*     * ***************************** */
     public function isFavouriteCompany($company_slug)
     {
-
         $return = false;
-
         if (Auth::check()) {
-
             $count = FavouriteCompany::where('user_id', Auth::user()->id)->where('company_slug', 'like', $company_slug)->count();
-
             if ($count > 0)
-
                 $return = true;
-
         }
-
         return $return;
-
     }
 
     /**************************** */
 
     public function isViewedJob($job_slug)
-
     {
-        
         $return = false;
-
         if (Auth::check()) {
-
             $count = JobViewedCandidate::where('user_id', Auth::user()->id)->where('job_slug', 'like', $job_slug)->count();
-
             if ($count > 0)
-
                 $return = true;
-
         }
-
         return $return;
-
     }
 
     /**************************** */
@@ -380,14 +339,9 @@ class User extends Authenticatable
         return \ImgUploader::print_image("user_images/$cover_image", $width, $height, '/admin_assets/no-cover.jpg', $this->getName());
     }
 
-	
-
     public function getName()
-
     {
-
         $html = '';
-
         if (!empty($this->first_name)){
             $html .= ucwords($this->first_name);
         }
@@ -407,23 +361,12 @@ class User extends Authenticatable
         return $html;
 
     }
-
-
-
+    
     public function getAge()
-
     {
-
-        if (
-
-            (!empty((string)$this->date_of_birth)) && (null !== $this->date_of_birth)
-
-        ) {
-
+        if ((!empty((string)$this->date_of_birth)) && (null !== $this->date_of_birth)) {
             return $this->date_of_birth->age;
-
         }
-
     }
 
     // public function experience()
@@ -461,222 +404,117 @@ class User extends Authenticatable
 
         return isset($experience)?$experience->title:'Fresher';
     }
-
-
     public function gender()
-
     {
-
         return $this->belongsTo(Gender::class, 'gender', 'gender_id');
-
     }
-
-
-
+    
     public function getGender($field = '')
     {
-
         $gender = $this->gender()->lang()->first();
-
         if (null === $gender) {
-
             $gender = $this->gender()->first();
-
         }
-
         if (null !== $gender) {
-
             if (!empty($field))
-
                 return $gender->$field;
-
             else
-
                 return $gender;
-
         }
-
     }
 
     public function maritalStatus()
-
     {
-
         return $this->belongsTo(MaritalStatus::class, 'marital_status_id', 'marital_status_id');
-
     }
-
-
-
+    
     public function getMaritalStatus($field = '')
-
     {
-
         $maritalStatus = $this->maritalStatus()->lang()->first();
-
         if (null === $maritalStatus) {
-
             $maritalStatus = $this->maritalStatus()->first();
-
         }
-
         if (null !== $maritalStatus) {
-
             if (!empty($field))
-
                 return $maritalStatus->$field;
-
             else
-
                 return $maritalStatus;
-
         }
-
     }
-
-
-
+    
     public function followingCompanies()
-
     {
-
         return $this->hasMany(FavouriteCompany::class, 'user_id', 'id');
-
     }
-
-
-
+    
     public function getFollowingCompaniesSlugArray()
-
     {
-
         return $this->followingCompanies()->pluck('company_slug')->toArray();
-
     }
-
-
-
+    
     public function countFollowings()
-
     {
-
         return FavouriteCompany::where('user_id', '=', $this->id)->count();
-
     }
-
-
-
+    
     public function countApplicantMessages()
-
     {
-
         return ApplicantMessage::where('user_id', '=', $this->id)->where('is_read', '=', 0)->count();
-
     }
-
-
-
+    
     public function package()
-
     {
-
         return $this->hasOne(Package::class, 'id', 'package_id');
-
     }
-
-
-
+    
     public function getPackage($field = '')
-
     {
-
         $package = $this->package()->first();
-
         if (null !== $package) {
-
             if (!empty($field)) {
-
                 return $package->$field;
-
             } else {
-
                 return $package;
-
             }
-
         }
-
     }
-
-
-
+    
     public function industry()
-
     {
-
         return $this->belongsTo(Industry::class, 'industry_id', 'industry_id');
-
     }
-
-
-
+    
     public function getIndustry($field = '')
-
     {
-
         $industry = $this->industry()->lang()->first();
-
         if (null === $industry) {
-
             $industry = $this->industry()->first();
-
         }
-
         if (null !== $industry) {
-
             if (!empty($field))
-
                 return $industry->$field;
-
             else
-
                 return $industry;
-
         }
-
     }
-
-
 
     public function functionalArea()
     {
         return $this->belongsTo(FunctionalArea::class, 'functional_area_id', 'functional_area_id');
-
     }
 
     public function getFunctionalArea($field = '')
     {
-
         $functionalArea = $this->functionalArea()->lang()->first();
-
         if (null === $functionalArea) {
-
             $functionalArea = $this->functionalArea()->first();
-
         }
-
         if (null !== $functionalArea) {
-
             if (!empty($field))
-
                 return $functionalArea->$field;
-
             else
-
                 return $functionalArea;
-
         }
-
     }
 
     public function countUserMessages()
@@ -692,6 +530,11 @@ class User extends Authenticatable
     public function NoticePeriod()
     {
         return $this->belongsTo(NoticePeriod::class, 'notice_period', 'id');
+    }
+    
+    public function UserActivity()
+    {
+        return $this->hasOne(UserActivity::class, 'user_id', 'id');
     }
 }
 

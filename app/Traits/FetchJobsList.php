@@ -4,6 +4,7 @@ namespace App\Traits;
 use DB;
 use App\Model\JobSearch;
 use App\Helpers\DataArrayHelper;
+use Carbon\Carbon;
 
 trait FetchJobsList
 {
@@ -40,19 +41,18 @@ trait FetchJobsList
                 }
             });
         }
-                        
         if (!empty($filter['citylFGid'])) { 
             $queries->where('city', 'REGEXP', $filter['citylFGid']);
         }  
-                        
         if (!empty($filter['jobshiftFGid'])) { 
             $queries->where('job_shift', 'REGEXP', $filter['jobshiftFGid']);
         }  
-                        
         if (!empty($filter['jobtypeFGid'])) { 
             $queries->where('job_type', 'REGEXP', $filter['jobtypeFGid']);
         }  
-                        
+        if (isset($filter['jobIds'])) { 
+            $queries->whereNotIn('job_id', $filter['jobIds']);
+        }          
         if (!empty($filter['salaryFGid'])) { 
             $salaries = $filter['salaryFGid'];
             $queries->where(function ($q) use ($salaries){
@@ -69,42 +69,53 @@ trait FetchJobsList
                     }
                 }
             });
-        }  
-                        
+        }             
         if (!empty($filter['edulevelFGid'])) { 
             $queries->whereIn('education_level', $filter['edulevelFGid']);
-        }  
-                        
+        }           
         if (!empty($filter['wfhtypeFid'])) { 
             $queries->whereIn('work_from_home', $filter['wfhtypeFid']);
-        }  
-                        
+        }           
         if (!empty($filter['industrytypeGid'])) { 
             $queries->whereIn('industry', $filter['industrytypeGid']);
-        }  
-                        
+        }           
         if (!empty($filter['functionalareaGid'])) { 
             $queries->whereIn('functional_area', $filter['functionalareaGid']);
         }  
-
         if (!empty($filter['experienceFid'])) { 
             $queries->where('min_experience', '<=', $filter['experienceFid'])
                     ->where('max_experience', '>=', $filter['experienceFid']);
         }
-        
-        if (!empty($filter['posteddateFid']) && $filter['posteddateFid'] != 'all') { 
-            $startDate = Carbon::now()->subDays($filter['posteddateFid']);
-            $queries->where('posted_date', '>=', $startDate);
+        if (!empty($filter['posteddateFid'])) 
+        {    
+            $posteddateFids = $filter['posteddateFid'];
+            $queries->where(function ($q) use ($posteddateFids){
+                        if(in_array(14, $posteddateFids)){
+                            $startDate = Carbon::now()->subDays(14)->startOfDay();
+                            $q->where('posted_date', '>=', $startDate);
+                        }elseif(in_array(7, $posteddateFids)){
+                            $startDate = Carbon::now()->subDays(7)->startOfDay();
+                            $q->where('posted_date', '>=', $startDate);
+                        }elseif(in_array(4, $posteddateFids)){
+                            $startDate = Carbon::now()->subDays(4)->startOfDay();
+                            $q->where('posted_date', '>=', $startDate);
+                        }elseif(in_array(1, $posteddateFids)){
+                            $startDate = Carbon::now()->subDays(1)->startOfDay();
+                            $q->where('posted_date', '>=', $startDate);
+                        }
+                    });
+          
         }
-        
-        $filters = $this->getFilters($queries);
+        if (!isset($filter['jobIds'])) { 
+            $filters = $this->getFilters($queries);
+        }
         $joblist = $queries->select('job_id','title','description','company_name','experience_string as experience','salary_string as salary','posted_date','quick_hiring_deadline as immediate_join','location','have_break_point','have_screening_quiz','slug');
         if (!empty($filter['sortBy']) && $filter['sortBy'] == 'date') { 
             $joblist->orderBy('posted_date', 'DESC');
         }else{  
             $joblist->orderBy('job_id', 'DESC');
         }
-        $result['filters'] = $filters;
+        $result['filters'] = $filters??array();
         $result['joblist'] = $joblist->paginate($limit);
         return $result;
 
