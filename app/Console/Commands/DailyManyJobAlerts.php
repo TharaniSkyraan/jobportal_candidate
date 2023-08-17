@@ -24,7 +24,7 @@ class DailyManyJobAlerts extends Command
      *
      * @var string
      */
-    protected $signature = 'twice:jobalert';
+    protected $signature = 'many:jobalert';
 
     /**
      * The console command description.
