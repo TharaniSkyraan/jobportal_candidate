@@ -18,25 +18,6 @@ section{
 
     @include('layouts.header')
 
-    <section class="page-title-section">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-10 text-center">
-                    <h1 class="mb-4 fw-bold ">About Us</h1>
-                    <div class="row justify-content-center">
-                        <div class="col-lg-6">
-                            <div class="page-title-list">
-                                <ol class="breadcrumb d-inline-block mb-0">
-                                    <li class="breadcrumb-item d-inline-block"><a href="{{ route('index') }}" class="fw-bold" style="color: #1e2022;font-size:16px;text-decoration:none;">Home</a></li>
-                                    <li class="breadcrumb-item d-inline-block active"><a class="text-primary " style="font-weight:bold;text-decoration:none;">About Us</a></li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <section class="about-style-01">
         <div class="container border-bottom border-color-extra-light-gray mb-1-9 mb-lg-6 pb-5 pb-1-9 pb-lg-6">

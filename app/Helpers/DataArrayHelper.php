@@ -864,114 +864,83 @@ class DataArrayHelper
     
     public static function jobIndustries($ids, $jobids)
     {
+        
+        $result = Industry::whereIn('job_searchs.job_id', $jobids)
+                            ->leftJoin('job_searchs', 'job_searchs.industry', '=', 'industries.id')
+                            ->select('industries.id as id', \DB::raw('COUNT(job_searchs.job_id) as count'),'industries.industry as label'); 
         if(!empty($ids))
         {
-            $result = Industry::whereIn('industries.id', $ids)
-                                ->whereIn('job_searchs.job_id', $jobids)
-                                ->leftJoin('job_searchs', 'job_searchs.industry', '=', 'industries.id')
-                                ->select('industries.id as id', \DB::raw('COUNT(job_searchs.job_id) as count'),'industries.industry as label');                                
-        }else{
-            $result =  Industry::select('industries.id as id', 'industries.industry as label');                                
+            $result = $result->whereIn('industries.id', $ids);
         }
-        $result = $result->groupBy('id')
-                        ->groupBy('label')
-                        ->get();
-
-        return $result;
+        return $result->lang()->groupBy('id')->groupBy('label')->get();
         
     }
     
     public static function jobFunctionalarea($ids, $jobids)
     {
-        if(!empty($ids))
-        {
-            $result = FunctionalArea::whereIn('functional_areas.id', $ids)
-                                    ->whereIn('job_searchs.job_id', $jobids)
+            $result = FunctionalArea::whereIn('job_searchs.job_id', $jobids)
                                     ->leftJoin('job_searchs', 'job_searchs.functional_area', '=', 'functional_areas.id')
                                     ->select('functional_areas.id as id', \DB::raw('COUNT(job_searchs.job_id) as count'),'functional_areas.functional_area as label');
-        }else{
-            $result = FunctionalArea::select('functional_areas.id as id', 'functional_areas.functional_area as label');
+        if(!empty($ids))
+        {
+            $result = $result->whereIn('functional_areas.id', $ids);
         }
-        $result = $result->groupBy('id')
-                        ->groupBy('label')
-                        ->get();
-
-        return $result;
+        return $result->lang()->groupBy('id')->groupBy('label')->get();
     }
     
     public static function jobEducationLevel($ids, $jobids)
     {
+        
+        $result =  EducationLevel::whereIn('job_searchs.job_id', $jobids)
+                                ->leftJoin('job_searchs', 'job_searchs.education_level', '=', 'education_levels.id')
+                                ->select('education_levels.id as id', \DB::raw('COUNT(job_searchs.job_id) as count'),'education_levels.education_level as label');
         if(!empty($ids))
         {
-            $result =  EducationLevel::whereIn('education_levels.id', $ids)
-                                    ->whereIn('job_searchs.job_id', $jobids)
-                                    ->leftJoin('job_searchs', 'job_searchs.education_level', '=', 'education_levels.id')
-                                    ->select('education_levels.id as id', \DB::raw('COUNT(job_searchs.job_id) as count'),'education_levels.education_level as label');
-        }else{
-            $result =  EducationLevel::select('education_levels.id as id', 'education_levels.education_level as label');
+            $result = $result->whereIn('education_levels.id', $ids);
         }
-
-        $result = $result->lang()->groupBy('id')
-                            ->groupBy('label')
-                            ->get();
-
-        return $result;
+        return $result->lang()->groupBy('id')->groupBy('label')->get();
+                            
     }
 
     public static function jobWorkLocations($ids, $jobids)
     {
+        
+        $result =  City::select('cities.id as id', \DB::raw('COUNT(job_work_locations.job_id) as count'), 'cities.city as label')
+                      ->whereIn('job_work_locations.job_id', $jobids)
+                      ->leftJoin('job_work_locations', 'job_work_locations.city_id', '=', 'cities.id');
         if(!empty($ids))
         {
-            $result = City::select('cities.id as id', \DB::raw('COUNT(job_work_locations.job_id) as count'),'cities.city as label')
-                          ->whereIn('cities.id', $ids)
-                          ->whereIn('job_work_locations.job_id', $jobids)
-                          ->leftJoin('job_work_locations', 'job_work_locations.city_id', '=', 'cities.id');
-        }else
-        {
-            $result =  City::select('cities.id as id', 'cities.city as label');
+            $result = $result->whereIn('cities.id', $ids);
         }
-
-        $result = $result->groupBy('id')
-                         ->groupBy('label')
-                         ->get();
-
-        return $result;
-
+        return $result->lang()->groupBy('id')->groupBy('label')->get();
     }
     
     public static function jobTypes($ids, $jobids)
     {
+        $result = Type::whereIn('job_types.job_id', $jobids)
+                    ->leftJoin('job_types', 'job_types.type_id', '=', 'types.id')
+                    ->select('types.id as id', \DB::raw('COUNT(job_types.job_id) as count'),'types.type as label');
+                    
         if(!empty($ids))
         {
-            $result = Type::whereIn('types.id', $ids)
-                        ->whereIn('job_types.job_id', $jobids)
-                        ->leftJoin('job_types', 'job_types.type_id', '=', 'types.id')
-                        ->select('types.id as id', \DB::raw('COUNT(job_types.job_id) as count'),'types.type as label');
-        }else
-        {
-            $result =  Type::select('types.id as id', 'types.type as label');
+            $result = $result->whereIn('types.id', $ids);
         }
-        $result = $result->lang()->groupBy('id')
-        ->groupBy('label')
-        ->get();
-        return $result;
+        return $result->lang()->groupBy('id')->groupBy('label')->get();
     }
     
     public static function jobShifts($ids, $jobids)
     {
+        
+        $result =  Shift::whereIn('job_shifts.job_id', $jobids)
+            ->leftJoin('job_shifts', 'job_shifts.shift_id', '=', 'shifts.id')
+            ->select('shifts.id as id', \DB::raw('COUNT(job_shifts.job_id) as count'),'shifts.shift as label');
+                     
         if(!empty($ids))
         {
-            $result =  Shift::whereIn('shifts.id', $ids)
-                ->whereIn('job_shifts.job_id', $jobids)
-                ->leftJoin('job_shifts', 'job_shifts.shift_id', '=', 'shifts.id')
-                ->select('shifts.id as id', \DB::raw('COUNT(job_shifts.job_id) as count'),'shifts.shift as label');
-        }else{
-            $result =  Shift::select('shifts.id as id', 'shifts.shift as label');
+            $result = $result->whereIn('shifts.id', $ids);
         }
-            $result = $result->lang()->groupBy('id')
-            ->groupBy('label')
-            ->get();
-            return $result;
+        return $result->lang()->groupBy('id')->groupBy('label')->get();
+        
     }
     
     public static function jobSalaries($jobids)
