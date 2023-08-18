@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('many:jobalert')->twiceDailyAt(8, 12);	
         $schedule->command('many:jobalert')->twiceDailyAt(16, 20);	
         $schedule->command('twice:jobalert')->twiceDailyAt(8, 16);	
-        $schedule->command('daily:jobalert')->dailyAt('8:00');
+        $schedule->command('daily:jobalert')->dailyAt('11:00');
     }
 
     /**

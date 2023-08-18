@@ -104,8 +104,8 @@
                 /* border-bottom: 1px #eee solid; */
                 border-radius: 0px;
                 padding: 0px 0px 0px 5px;
-                margin: 30px auto;
-                width: 100%;
+                margin: 15px auto !important;
+                width: 100%;              
             }
             .expiry_date{
                 
@@ -142,6 +142,20 @@
                 }
 
             }
+            .apply-button{
+                display: flex;
+                font-weight: 600;
+                font-size: 14px;
+                text-decoration: unset;
+                color: #0b872a !important;
+                width: 55%;
+                padding: 5px 0px;
+                place-content: center;
+            }
+            .apply-button img{
+                filter: invert(76%) sepia(30%) saturate(3461%) hue-rotate(111deg) brightness(127%) contrast(91%) !important;
+                margin-right :5px
+            }
         </style>
     @endslot    
     {{-- Body --}}
@@ -155,22 +169,26 @@
     <p class="title"><b>Job Alert !</b></p>
     <p class="text-center"><img src="{{ asset('/') }}images/mail/applyjob.jpg" style="width: 65%;"/></p>
     <p class="text-left"><b>These job ads match your saved job alert. </p>
-    @php $limit = $limit-1; @endphp
+    @php $jobcount = ($limit!=count($jobs))?count($jobs):count($jobs)-1;@endphp
     @foreach ($jobs as $key => $job)
-        @if($key<$limit)
+        @if($key<$jobcount)
             @component('mail::table')
             | <th colspan="3"><a><span style="text-decoration: underline;">{{ $job->title }} </span><br><span class="company_name">{{ $job['company_name'] }}</span></a> | | | |
             |:--| :-- | :-- | :-- |
             | | <img src="{{ asset('/site_assets_1/assets/img/side_nav_icon/experience.png') }}" style="margin-bottom: -2px;width: 15px;"/> {{ $job['experience']}} |<img src="{{ asset('/site_assets_1/assets/img/side_nav_icon/salary.png') }}" style=" margin-bottom: -2px;width: 15px;"/> {{ $job['salary']??'1-3 Lakh / Annum'}}</span> |
             | <td colspan="3" style="padding: 10px 0px 10px 0px !important;"><img src="{{ asset('/site_assets_1/assets/img/side_nav_icon/location.png') }}" style=" margin-bottom: -2px;width: 15px;"/>{{$job['location']}}<td> |
-            | <td colspan="3"><span style="color:#8a8a8a;padding-left:10px;"> Posted On : {{ MiscHelper::timeSince($job->posted_date) }} <span><td> |
+            | | <a href="{{ url('/detail')}}/{{$job->slug}}" class="apply-button"><img src="{{ asset('/') }}images/mail/apply.svg"/>Apply now</a> |
+            | <td colspan="3"><span style="color:#8a8a8a;padding-top:10px;"> Posted On : {{ MiscHelper::timeSince($job->posted_date) }} <span><td> |
             @endcomponent
+            @if($key<($jobcount-1))
+            <hr style="width:85%;border: 0;border-top: 1px solid #dee2e6;">
+            @endif
         @else
-            <p class="text-left">
-                <a class="" style="color: #2b2b9c;text-decoration: unset;" href="{{ url('/') }}/{{$slug}}">
-                    View More jobs for {{$jobalert->title}}
-                </a>
-            </p>
+        <p class="text-left">
+            <a class="" style="color: #2b2b9c;text-decoration: unset;" href="{{ url('/') }}/{{$slug}}">
+                View More jobs for {{$jobalert->title}}
+            </a>
+        </p>        
         @endif
     @endforeach
    <div class="footer-content">
