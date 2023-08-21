@@ -115,12 +115,12 @@ function jobApply(e, jobidv) {
                 }
                 
                 if(applied_b){
-                    $(`<label class="japplied-btn"><img class="imagesz-2" src="${baseurl}site_assets_1/assets/img/Shortlist.png" alt="applied"> <span class="fw-bold">Applied</span></label>`).insertAfter(btn);
+                    $(`<label class="japplied-btn"><img draggable="false" class="imagesz-2" src="${baseurl}site_assets_1/assets/img/Shortlist.png" alt="applied"> <span class="fw-bold">Applied</span></label>`).insertAfter(btn);
                     $(btn).hide();
                 }
                 else{
                     $(btn).html(
-                        `<img class="image-size" src="${baseurl}site_assets_1/assets/img/apply2.png" alt="apply"> Apply</button>`
+                        `<img draggable="false" class="image-size" src="${baseurl}site_assets_1/assets/img/apply2.png" alt="apply"> Apply</button>`
                     );
                     $(btn).show();
                 }
@@ -138,7 +138,7 @@ function jobApply(e, jobidv) {
                 else{
                     if(resp.success == false){
                         var html = `<div class="modal-content">
-                            <div class="modal-body warning">
+                            <div class="modal-body pending">
                                 <div class="text-center mb-3">
                                     <h1 class="fw-bolder">Hi `+resp.candidate+`</h1>
                                     <h3 class="fw-bolder">Your Profile Completion is</h3>

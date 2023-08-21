@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
-      <img src="assets/img/hero-img.png" class="img-fluid" alt="">
+      <img draggable="false" src="assets/img/hero-img.png" class="img-fluid" alt="">
     </div>
   </div>
 </div>

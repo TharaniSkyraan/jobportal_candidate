@@ -34,7 +34,7 @@
 		@if(Route::is('job.search')?'active':'')
 			<div class="mobile_r">
 				<!-- <a href="{{ route('index') }}" class="logo d-flex align-items-center">
-					<img src="{{ asset('/') }}sitesetting_images/thumb/{{ $siteSetting->site_logo }}" alt="logo" class="img-fluid">
+					<img draggable="false" src="{{ asset('/') }}sitesetting_images/thumb/{{ $siteSetting->site_logo }}" alt="logo" class="img-fluid">
 				</a> -->
 			</div>
 			<div class="desktop_r mx-3">
@@ -76,7 +76,7 @@
 			</div>
 		@else
 		<!-- <a href="{{ route('index') }}" class="logo d-flex align-items-center">
-			<img src="{{ asset('/') }}sitesetting_images/thumb/{{ $siteSetting->site_logo }}" alt="logo" class="img-fluid">
+			<img draggable="false" src="{{ asset('/') }}sitesetting_images/thumb/{{ $siteSetting->site_logo }}" alt="logo" class="img-fluid">
 		</a> -->
 		@endif				
 		<div class="align-self-center">
@@ -93,9 +93,9 @@
 								<div class="avatar-sm d-flex align-items-center">
 								
 									@if(Auth::user()->image)
-										<img src="{{Auth::user()->image}}" alt="profile-img" class="rounded-circle h-100">
+										<img draggable="false" src="{{Auth::user()->image}}" alt="profile-img" class="rounded-circle h-100">
 									@else
-										<img src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="profile-img" class="h-100 rounded-circle mx-2">
+										<img draggable="false" src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="profile-img" class="h-100 rounded-circle mx-2">
 									@endif								
 									<text class="text-truncate-3 font-weight-bold">{{Auth::user()->getName()}}<br><span>{{Auth::user()->candidate_id}}</span></text>
 								</div>
@@ -153,9 +153,9 @@
 								<div class="avatar-sm d-flex align-items-center">
 								
 									@if(Auth::user()->image)
-										<img src="{{Auth::user()->image}}" alt="profile-img" class="rounded-circle h-100">
+										<img draggable="false" src="{{Auth::user()->image}}" alt="profile-img" class="rounded-circle h-100">
 									@else
-										<img src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="profile-img" class="h-100 rounded-circle mx-2">
+										<img draggable="false" src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="profile-img" class="h-100 rounded-circle mx-2">
 									@endif								
 									<text class="text-truncate-3 font-weight-bold">{{Auth::user()->getName()}}<br><span>{{Auth::user()->candidate_id}}</span></text>
 								</div>

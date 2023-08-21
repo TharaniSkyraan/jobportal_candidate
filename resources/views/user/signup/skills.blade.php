@@ -15,7 +15,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 align-self-center text-center cndte_mbile">
-                <img src="{{asset('images/candidate_left.png')}}" alt="">
+                <img draggable="false" src="{{asset('images/candidate_left.png')}}" alt="">
             </div>
             <div class="col-md-6 card-size">
                 <div class="card">
@@ -24,12 +24,12 @@
                     </div> -->
                     <div class="site2_logo mb-4 mt-3 text-center">
                         <a href="{{url('/')}}" class="href">
-                            <img src="{{asset('images/footer_logo.png')}}" alt="logo">
+                            <img draggable="false" src="{{asset('images/footer_logo.png')}}" alt="logo">
                         </a>
                     </div>
 
                     <h1 class="fw-bolder text-center lvledticn mt-3 mb-4">
-                        <div><img src="{{asset('images/skills.png')}}">&nbsp;Skills</div>
+                        <div><img draggable="false" src="{{asset('images/skills.png')}}">&nbsp;Skills</div>
                     </h1>
 
                     @php 
@@ -56,10 +56,10 @@
                         @endif
                         <div class="row mb-4 mt-5">
                             <div class="col-md-6 col-5">
-                                <a href="{{ route('career-info') }}" class="btn p-0"><img src="{{asset('images/lefticon.png')}}"> Previous</a>
+                                <a href="{{ route('career-info') }}" class="btn p-0"><img draggable="false" src="{{asset('images/lefticon.png')}}"> Previous</a>
                             </div>
                             <div class="col-md-6 col-7 text-end">
-                                <button class="btn p-0" type="submit">Save & Continue  <img src="{{asset('images/righticon.png')}}"></button>
+                                <button class="btn p-0" type="submit">Save & Continue  <img draggable="false" src="{{asset('images/righticon.png')}}"></button>
                             </div>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
             </div>
 
             <div class="col-md-3 align-self-center text-center cndte_mbile">
-                <img src="{{asset('images/candidate_right.png')}}" alt="">
+                <img draggable="false" src="{{asset('images/candidate_right.png')}}" alt="">
             </div>
         </div>
     </div>

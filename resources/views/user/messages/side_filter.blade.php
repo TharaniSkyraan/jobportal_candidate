@@ -15,7 +15,7 @@
             </div> 
           </div>
           <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3 align-self-center text-end asc-desc" data-value="desc">
-             <span><img src="{{asset('images/msgs/ascending.svg')}}" alt="Img" id="asc-desc"class="img-fluid"> </span>
+             <span><img draggable="false" src="{{asset('images/msgs/ascending.svg')}}" alt="Img" id="asc-desc"class="img-fluid"> </span>
           </div>
         </div>
         

@@ -38,10 +38,10 @@
                     $('.favjob').attr("data-fav", fav);
 
                     if(fav=='yes'){
-                        $(btn).html(`<img class="image-size1 cursor-pointer" src="${baseurl}site_assets_1/assets/img/star_filled.png" alt="bookmark">`);
+                        $(btn).html(`<img draggable="false" class="image-size1 cursor-pointer" src="${baseurl}site_assets_1/assets/img/star_filled.png" alt="bookmark">`);
                     }
                     else{
-                       $(btn).html(`<img class="image-size1 cursor-pointer" src="${baseurl}site_assets_1/assets/img/star_unfilled.png" alt="bookmark">`);
+                       $(btn).html(`<img draggable="false" class="image-size1 cursor-pointer" src="${baseurl}site_assets_1/assets/img/star_unfilled.png" alt="bookmark">`);
                     }
                     
                     if(resp.success == true){
@@ -197,7 +197,7 @@
                     }
                     else{
                         $(btn).html(
-                            `<img class="image-size" src="${baseurl}site_assets_1/assets/img/apply2.png" alt="Apply"> <span class="fw-bold"> Apply</span></button>`
+                            `<img draggable="false" class="image-size" src="${baseurl}site_assets_1/assets/img/apply2.png" alt="Apply"> <span class="fw-bold"> Apply</span></button>`
                         );
                         $(".japplied-btn").hide();
                         $(btn).show();
@@ -234,7 +234,7 @@
                     else{ 
                         if(resp.success == false){
                             var html = `<div class="modal-content">
-                                <div class="modal-body warning">
+                                <div class="modal-body pending">
                                     <div class="text-center mb-3">
                                         <h1 class="fw-bolder">Hi `+resp.candidate+`</h1>
                                         <h3 class="fw-bolder">Your Profile Completion is</h3>

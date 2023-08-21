@@ -66,7 +66,7 @@
             success: function (json) {
                 // toastr.options.timeOut = 560000000;
                 toastr.success(json.message);
-                $(`tbody [data-jbid='${job_id}']`).find('.selected-job-status').html('<img class="image-size" src="'+statusImgsrc+'" alt="'+statustxt+'"> '+statustxt);
+                $(`tbody [data-jbid='${job_id}']`).find('.selected-job-status').html('<img draggable="false" class="image-size" src="'+statusImgsrc+'" alt="'+statustxt+'"> '+statustxt);
                 $('#applicationStatus').modal('hide');
             }
         });
@@ -149,20 +149,20 @@
                         <td class=" text-center">
                             <button class="btn selected-job-status dropdown-toggle" name="recordinput" data-bs-toggle="dropdown">`;
                             if(val.is_active == '1'){
-                            html += `<img class="image-size" src="${baseurl}site_assets_1/assets/img/status/open.png" alt="Open"> Active`;
+                            html += `<img draggable="false" class="image-size" src="${baseurl}site_assets_1/assets/img/status/open.png" alt="Open"> Active`;
                             }else if(val.is_active == '2'){
-                            html += `<img class="image-size" src="${baseurl}site_assets_1/assets/img/status/pause.png" alt="pause"> In active`;
+                            html += `<img draggable="false" class="image-size" src="${baseurl}site_assets_1/assets/img/status/pause.png" alt="pause"> In active`;
                             }else if(val.is_active == '3'){
-                            html += `<img class="image-size expired_btn" src="${baseurl}site_assets_1/assets/img/Rejected.png" alt="Expired"> Expired`;
+                            html += `<img draggable="false" class="image-size expired_btn" src="${baseurl}site_assets_1/assets/img/Rejected.png" alt="Expired"> Expired`;
                                 
                             }else{
-                            html += `<img class="image-size" src="${baseurl}site_assets_1/assets/img/status/open.png" alt="Open"> In active`;
+                            html += `<img draggable="false" class="image-size" src="${baseurl}site_assets_1/assets/img/status/open.png" alt="Open"> In active`;
                             }
                     html += `</button>
                             <ul class="dropdown-menu jobstatusmenu">
-                                <li class="ddjslist dropdown-item"><div data-value="1"><img class="image-size" src="${baseurl}site_assets_1/assets/img/status/open.png" alt="open"><span class="ms-2">Active</span></div></li>
-                                <li class="ddjslist dropdown-item"><div data-value="2"><img class="image-size" src="${baseurl}site_assets_1/assets/img/status/pause.png" alt="pause"><span class="ms-2">In active</span></div></li>
-                                <!--<li class="ddjslist dropdown-item"><div data-value="3"><img class="image-size" src="${baseurl}site_assets_1/assets/img/Rejected.png" alt="close"><span class="ms-2">Close</span></div></li>-->
+                                <li class="ddjslist dropdown-item"><div data-value="1"><img draggable="false" class="image-size" src="${baseurl}site_assets_1/assets/img/status/open.png" alt="open"><span class="ms-2">Active</span></div></li>
+                                <li class="ddjslist dropdown-item"><div data-value="2"><img draggable="false" class="image-size" src="${baseurl}site_assets_1/assets/img/status/pause.png" alt="pause"><span class="ms-2">In active</span></div></li>
+                                <!--<li class="ddjslist dropdown-item"><div data-value="3"><img draggable="false" class="image-size" src="${baseurl}site_assets_1/assets/img/Rejected.png" alt="close"><span class="ms-2">Close</span></div></li>-->
                             </ul>
                         </td>
                         <td class="text-center">

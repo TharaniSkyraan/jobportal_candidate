@@ -78,7 +78,7 @@
                {!! Form::hidden('resume_id', null, array('id'=>'resume_id')) !!}
               <div class="resume m-4 text-center">
                 <label class="file-drop-area p-3" for="file">      
-                  <img src="{{asset('images/upload_img.png')}}" class="file_upload"> 
+                  <img draggable="false" src="{{asset('images/upload_img.png')}}" class="file_upload"> 
                   <br>
                   <p class="file_upld text-center mt-2">Drop your Resume here or Browse</p>
                   <input class="file-input" type="file" name="file" id="file" accept=".doc,.docx,.pdf,.rtf">

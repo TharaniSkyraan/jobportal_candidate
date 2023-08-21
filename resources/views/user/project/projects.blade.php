@@ -17,7 +17,7 @@
             <div class="page-inner">        
                 <div id="my_expernce2" class="mt-4">
                     <div class="text-center ttleicn">
-                        <h2 class="fw-bolder"><img src="{{asset('images/sidebar/project.svg')}}">&nbsp;My Projects</h2>
+                        <h2 class="fw-bolder"><img draggable="false" src="{{asset('images/sidebar/project.svg')}}">&nbsp;My Projects</h2>
                     </div>
 
                     <div class="crdbxpl mt-5">
@@ -30,7 +30,7 @@
                     <div class="append-form-project">
                         @if(count(Auth::user()->userProjects) == 0)
                         <div class="text-center">
-                            <img src="{{ asset('site_assets_1/assets/img/fresher.png')}}" height="250" width="250">
+                            <img draggable="false" src="{{ asset('site_assets_1/assets/img/fresher.png')}}" height="250" width="250">
                         </div>
                         @endif 
                     </div>

@@ -56,19 +56,19 @@ function CandidateStatusUpdate(cdata){
                 $('.profile_card').attr('data-appstatus', status);
 
                 if(status=='shortlist'){
-                    $('#st_shortlist'+a_id).html(`<img src="${baseurl}site_assets_1/assets/img/candiimg/shortlist_c.png" class="img-fluid" />`);
-                    $('#st_consider'+a_id).html(`<img src="${baseurl}site_assets_1/assets/img/candiimg/consider.png" class="img-fluid" />`);
-                    $('#st_reject'+a_id).html(`<img src="${baseurl}site_assets_1/assets/img/candiimg/reject.png" class="img-fluid" />`);
+                    $('#st_shortlist'+a_id).html(`<img draggable="false" src="${baseurl}site_assets_1/assets/img/candiimg/shortlist_c.png" class="img-fluid" />`);
+                    $('#st_consider'+a_id).html(`<img draggable="false" src="${baseurl}site_assets_1/assets/img/candiimg/consider.png" class="img-fluid" />`);
+                    $('#st_reject'+a_id).html(`<img draggable="false" src="${baseurl}site_assets_1/assets/img/candiimg/reject.png" class="img-fluid" />`);
                 }
                 if(status=='consider'){
-                    $('#st_shortlist'+a_id).html(`<img src="${baseurl}site_assets_1/assets/img/candiimg/shortlist.png" class="img-fluid" />`);
-                    $('#st_consider'+a_id).html(`<img src="${baseurl}site_assets_1/assets/img/candiimg/consider_c.png" class="img-fluid" />`);
-                    $('#st_reject'+a_id).html(`<img src="${baseurl}site_assets_1/assets/img/candiimg/reject.png" class="img-fluid" />`);                    
+                    $('#st_shortlist'+a_id).html(`<img draggable="false" src="${baseurl}site_assets_1/assets/img/candiimg/shortlist.png" class="img-fluid" />`);
+                    $('#st_consider'+a_id).html(`<img draggable="false" src="${baseurl}site_assets_1/assets/img/candiimg/consider_c.png" class="img-fluid" />`);
+                    $('#st_reject'+a_id).html(`<img draggable="false" src="${baseurl}site_assets_1/assets/img/candiimg/reject.png" class="img-fluid" />`);                    
                 }
                 if(status=='reject'){
-                    $('#st_shortlist'+a_id).html(`<img src="${baseurl}site_assets_1/assets/img/candiimg/shortlist.png" class="img-fluid" />`);
-                    $('#st_consider'+a_id).html(`<img src="${baseurl}site_assets_1/assets/img/candiimg/consider.png" class="img-fluid" />`);
-                    $('#st_reject'+a_id).html(`<img src="${baseurl}site_assets_1/assets/img/candiimg/reject_c.png" class="img-fluid" />`);                    
+                    $('#st_shortlist'+a_id).html(`<img draggable="false" src="${baseurl}site_assets_1/assets/img/candiimg/shortlist.png" class="img-fluid" />`);
+                    $('#st_consider'+a_id).html(`<img draggable="false" src="${baseurl}site_assets_1/assets/img/candiimg/consider.png" class="img-fluid" />`);
+                    $('#st_reject'+a_id).html(`<img draggable="false" src="${baseurl}site_assets_1/assets/img/candiimg/reject_c.png" class="img-fluid" />`);                    
                 }
             }
         });

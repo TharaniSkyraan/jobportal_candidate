@@ -161,16 +161,16 @@
                             <div class="col-10">
                                 @if(count($job->screeningquiz)!=0 && $job->company->reference_url=='')
                                     <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn " id="japplybtn" data-bs-toggle="modal" href="#screeningQuiz72ers3" role="button">
-                                        <img class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
+                                        <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
                                     </button>
                                 @else
                                     <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn">
-                                        <img class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
+                                        <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
                                     </button>
                                 @endif
                                 
                                 <label class="japplied-btn">
-                                    <img class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class=" fs-6">Applied</span>
+                                    <img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class=" fs-6">Applied</span>
                                 </label>
                             </div>
                             <div class="col-2 align-self-center text-center">
@@ -183,9 +183,9 @@
                                 @endphp
                                 <div class="mx-3 favjob" data-fav='{{$is_fav}}'>                                        
                                     @if($is_fav=='yes')
-                                        <img class="image-size1 cursor-pointer" src="{{url('site_assets_1/assets/img/star_filled.png')}}" alt="bookmark">
+                                        <img draggable="false" class="image-size1 cursor-pointer" src="{{url('site_assets_1/assets/img/star_filled.png')}}" alt="bookmark">
                                     @else
-                                        <img class="image-size1 cursor-pointer" src="{{url('site_assets_1/assets/img/star_unfilled.png')}}" alt="bookmark">
+                                        <img draggable="false" class="image-size1 cursor-pointer" src="{{url('site_assets_1/assets/img/star_unfilled.png')}}" alt="bookmark">
                                     @endif
                                 </div>          
                             </div>
@@ -219,16 +219,16 @@
                                     <div class="d-flex align-items-center justify-content-end">
                                         @if(count($job->screeningquiz)!=0 && $job->company->reference_url=='')
                                             <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn " id="japplybtn" data-bs-toggle="modal" href="#screeningQuiz72ers3" role="button">
-                                                <img class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
+                                                <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
                                             </button>
                                         @else
                                             <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn">
-                                                <img class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
+                                                <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
                                             </button>
                                         @endif
                                         
                                         <label class="japplied-btn">
-                                            <img class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class=" fs-6">Applied</span>
+                                            <img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class=" fs-6">Applied</span>
                                         </label>
                                         @php
                                         $is_fav = 'no';
@@ -239,9 +239,9 @@
                                         @endphp
                                         <div class="mx-3 favjob" data-fav='{{$is_fav}}'>                                        
                                             @if($is_fav=='yes')
-                                                <img class="image-size1 cursor-pointer" src="{{url('site_assets_1/assets/img/star_filled.png')}}" alt="bookmark">
+                                                <img draggable="false" class="image-size1 cursor-pointer" src="{{url('site_assets_1/assets/img/star_filled.png')}}" alt="bookmark">
                                             @else
-                                                <img class="image-size1 cursor-pointer" src="{{url('site_assets_1/assets/img/star_unfilled.png')}}" alt="bookmark">
+                                                <img draggable="false" class="image-size1 cursor-pointer" src="{{url('site_assets_1/assets/img/star_unfilled.png')}}" alt="bookmark">
                                             @endif
                                         </div>                                        
                                     </div>
@@ -250,9 +250,9 @@
     
                             <div class="col-md-12 mt-3">
                                 <div class="row">
-                                    <div class="col-md-3 col-sm-4 col-xs-12 d-flex"><span class=""><img class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/experience.png') }}"></span> <text class="fw-bold">{{$job->experience_string}}</text></div>
-                                    <div class="col-md-5 col-sm-5 col-xs-12 d-flex"><span class=""><img class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/salary.png') }}"></span> <text class="fw-bold">{{ trim($job->hide_salary != 1)&&!empty($job->salary_string) ? $job->salary_string :'Not Disclosed'}}</text></div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12 d-flex"><span class=""><img class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/location.png') }}"></span>  <text class="fw-bold text-truncate">{{rtrim($job->work_locations, ", ")}}</text></div>
+                                    <div class="col-md-3 col-sm-4 col-xs-12 d-flex"><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/experience.png') }}"></span> <text class="fw-bold">{{$job->experience_string}}</text></div>
+                                    <div class="col-md-5 col-sm-5 col-xs-12 d-flex"><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/salary.png') }}"></span> <text class="fw-bold">{{ trim($job->hide_salary != 1)&&!empty($job->salary_string) ? $job->salary_string :'Not Disclosed'}}</text></div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12 d-flex"><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/location.png') }}"></span>  <text class="fw-bold text-truncate">{{rtrim($job->work_locations, ", ")}}</text></div>
                                 </div>
                                 <div class="row mt-3 ">
                                     <p class="poscls">Posted {{ MiscHelper::timeSince($job->posted_date) }}</p>
@@ -388,7 +388,7 @@
                                 @endif
                                 <div class="col-md-12 align-self-center d-flex">
                                     <div class="pe-1">
-                                        <img class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_location.png')}}" alt="contact location">
+                                        <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_location.png')}}" alt="contact location">
                                     </div>
                                     <div>
                                         <p class="">
@@ -430,7 +430,7 @@
                             <div class="mb-2 row col-md-12 justify-content-between">                                
                                 <div class="col-md-5 align-self-center d-flex">
                                     <div class="pe-1">
-                                        <img class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_message.png')}}" alt="contact location">
+                                        <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_message.png')}}" alt="contact location">
                                     </div>
                                     <div>
                                         <h5 class="">
@@ -441,7 +441,7 @@
                                 <div class="col-md-5 justify-content-center">
                                     <div class="d-flex">
                                         <div class="pe-1">
-                                            <img class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_num.png')}}" alt="contact num">
+                                            <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_num.png')}}" alt="contact num">
                                         </div>
                                         <div>
                                             <h5 class="">
@@ -457,7 +457,7 @@
                                 {{-- <div class="col-md-4 d-flex justify-content-center"> --}}
                                     {{-- <div class="pe-1">
                                         <div class="bg-color-blue border p-2 rounded-pill">
-                                            <img class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_message.png')}}" alt="contact message">
+                                            <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_message.png')}}" alt="contact message">
                                             <text class="">Send Message</text> 
                                         </div>   
                                     </div> --}}
@@ -560,7 +560,7 @@
                                             <div class="fw-bold">{{ ucwords($job->company_name??$job->company->name) }}.</div>
                                             <div class="py-2 ">
                                                 <span class="">
-                                                    <img class="" width="15px" src="{{ url('site_assets_1/assets/img/side_nav_icon/salary.png') }}"></span>
+                                                    <img draggable="false" class="" width="15px" src="{{ url('site_assets_1/assets/img/side_nav_icon/salary.png') }}"></span>
                                                 <span class="" style="font-size: 13px"> 2808 - 28116 / Annum</span>
                                             </div>
                                         </div>
@@ -571,7 +571,7 @@
                                             <div class="fw-bold">{{ ucwords($job->company_name??$job->company->name) }}.</div>
                                             <div class="py-2 ">
                                                 <span class="">
-                                                    <img class="" width="15px" src="{{ url('site_assets_1/assets/img/side_nav_icon/salary.png') }}"></span>
+                                                    <img draggable="false" class="" width="15px" src="{{ url('site_assets_1/assets/img/side_nav_icon/salary.png') }}"></span>
                                                 <span class="" style="font-size: 13px"> 2808 - 28116 / Annum</span>
                                             </div>
                                         </div>
@@ -582,7 +582,7 @@
                                             <div class="fw-bold">{{ ucwords($job->company_name??$job->company->name) }}.</div>
                                             <div class="py-2 ">
                                                 <span class="">
-                                                    <img class="" width="15px" src="{{ url('site_assets_1/assets/img/side_nav_icon/salary.png') }}"></span>
+                                                    <img draggable="false" class="" width="15px" src="{{ url('site_assets_1/assets/img/side_nav_icon/salary.png') }}"></span>
                                                 <span class="" style="font-size: 13px"> 2808 - 28116 / Annum</span>
                                             </div>
                                         </div>
@@ -621,7 +621,7 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-6 col-md-6 align-self-center mobile_m">
-                                <img src="{{asset('images/Screening.png')}}" alt="">
+                                <img draggable="false" src="{{asset('images/Screening.png')}}" alt="">
                             </div>
                             <div class="col-12 col-md-12 col-lg-6 align-self-center">
                                 <section id="cdate_assesment">

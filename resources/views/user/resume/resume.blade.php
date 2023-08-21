@@ -22,7 +22,7 @@
 			<div class="page-inner">
                 <div id="my_resme" class="mt-4">
                     <div class="text-center ttleicn">
-                        <h2><img src="{{asset('images/sidebar/resume.svg')}}">&nbsp;My Resume</h2>
+                        <h2><img draggable="false" src="{{asset('images/sidebar/resume.svg')}}">&nbsp;My Resume</h2>
                     </div>
 
                     <div class="card mt-5">

@@ -62,19 +62,10 @@ function enter(e) {
 $('.resentsearch').on('click', function(){
 search($(this).data('d'),$(this).data('l'));
 });
-
-
-
-$('#designation').on('keyup', function(){
-    $('#designation').css('border','1px solid lightgray');
-});
-
 $('#msearch_btn').on('click', function(){
     //myElement Has Focus
     search($('#designation').val(),$('#location').val());
 });
-
-
 $(function(){
     var cache1 = JSON.parse(localStorage.getItem('designation'))??{};
     var enter_limit = 1;

@@ -9,14 +9,14 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 align-self-center text-center cndte_mbile">
-                <img src="{{asset('images/candidate_left.png')}}" alt="">
+                <img draggable="false" src="{{asset('images/candidate_left.png')}}" alt="">
             </div>
            
             <div class="col-md-6 card-size">
                 <div class="card lgncard1">
                     <div class="site2_logo mb-3 mt-2 text-center">
                         <a href="{{url('/')}}" class="href">
-                            <img src="{{asset('images/footer_logo.png')}}" alt="logo">
+                            <img draggable="false" src="{{asset('images/footer_logo.png')}}" alt="logo">
                         </a>
                         <h2 class="fw-bolder mt-3">
                             OTP Verification
@@ -49,7 +49,7 @@
                 </div> 
             </div>              
             <div class="col-md-3 align-self-center text-center cndte_mbile">
-                <img src="{{asset('images/candidate_right.png')}}" alt="">
+                <img draggable="false" src="{{asset('images/candidate_right.png')}}" alt="">
             </div>
         </div>
     </div>

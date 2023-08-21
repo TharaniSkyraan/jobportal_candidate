@@ -34,7 +34,7 @@ ul.typeahead.dropdown-menu {
 			<div class="page-inner">
                 <div id="my_eductin" class="mt-4">
                     <div class="text-center ttleicn">
-                        <h2 class="fw-bolder"><img src="{{asset('images/sidebar/experience.svg')}}">&nbsp;My Eduaction</h2>
+                        <h2 class="fw-bolder"><img draggable="false" src="{{asset('images/sidebar/experience.svg')}}">&nbsp;My Eduaction</h2>
                     </div>
                     @php
                         $eduLevels = App\Helpers\DataArrayHelper::langEducationlevelsArray();

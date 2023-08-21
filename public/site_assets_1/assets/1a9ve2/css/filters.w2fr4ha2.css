@@ -41,14 +41,15 @@ body {
     border: .025rem solid rgba(0, 0, 0, 0.2);
     border-radius: .25rem;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    /* margin-top: 12px; */
+    margin-top: 1px;
     padding: 5px 0;
     width: 100%;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    line-height: 1.9rem;
+    /* border-top-left-radius: 0;
+    border-top-right-radius: 0; */
 }
 .tt-suggestion {
-    font-size: 1rem;  /* Set suggestion dropdown font size */
+    font-size: 14px;  /* Set suggestion dropdown font size */
     padding: 3px 15px;
 }
 .tt-suggestion:hover {
@@ -637,6 +638,23 @@ section.registrationContainer .registrationBody .registerText {
     box-shadow: 0 3px 8px 0 rgb(66 133 244 / 26%);
     cursor: pointer;
 }
+.form-control-2 {
+    display: block;
+    width: 100%;
+    padding: 0.6rem 0rem 0.6rem 1.5rem;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 2.2;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 30px;
+    border-color: #ffffff !important;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
 
 .form-control-2:focus {
     color: #212529;
@@ -644,37 +662,10 @@ section.registrationContainer .registrationBody .registerText {
     border-color: #3e93ff;
     outline: 0;
     box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
-    /* border-bottom-left-radius: 0; */
-    /* border-bottom-right-radius: 0; */
-}
-.form-control-2 {
-    /* font-size: 14px; */
-    border-color: #ccc;
-    height: inherit!important;
 }
 
-.form-control-2 {
-    display: block;
-    width: 100%;
-    padding: 0.6rem 1rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #212529;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid lightgrey;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border-radius: 0.25rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
-
-.search-button-bg:focus{
-    /* box-shadow: 0 0 0 2px #fff, 0 0 0 3px #2557a7f2 !important; */
-    box-shadow: 0 0 0 2px #4285f4, 0 0 0 4px #fff !important;
-
+.form-control-2::placeholder {
+    color: #acacac;
 }
 
 input[type=range] {
@@ -931,14 +922,20 @@ outline-offset: 2px;
 }
 }
 @media only screen and (min-width: 768px) {
-.cusconta{
-    width:90%;
-}
+    .cusconta{
+        width:90%;
+    }
 }
 @media only screen and (min-width: 1024px) {
 .cusconta{
     width:75%;
 }
+}
+
+@media only screen and (max-width: 575px) {
+    .japply-btn{
+        display: none !important;
+    }
 }
 .rcsdiv{
 min-height: 240px;
@@ -953,4 +950,48 @@ min-height: 240px;
 .ftco-section{
     padding: 7em 0;
     position: relative;
+}
+.btn_c_se {
+    width: 80%;
+    background: #ffffff !important;
+    border-color: #ffffff !important;
+    border-radius: 30px !important;
+    border-top-left-radius: unset !important;
+    border-bottom-left-radius: unset !important;    
+    font-size: 20px !important;
+}
+
+@media only screen and (max-width: 1024px) {
+   .btn_c_se{
+        width:100%;
+    }
+    }
+.btn_c_se i {
+    margin-left: -1px;
+    color: #2b5baa;
+}
+.form-control-2.typeahead#designation{
+    border-top-right-radius: unset;
+    border-bottom-right-radius: unset;
+}
+.form-control-2.typeahead#location{
+    border-radius: unset;
+}
+.pre-d{
+    width: 8px;
+    background: #fff;
+    margin: 39px 0px 39px 0px !important;
+}
+.pre{
+    font-size: 34px;
+    font-weight: 100;
+}
+.tooltip.fade.show.bs-tooltip-top{
+    margin: 0px 0px -91px 0px !important;
+}
+.tooltip-arrow{
+    display: none !important;
+}
+.tooltip-inner{
+    background-color: #414141 !important;
 }

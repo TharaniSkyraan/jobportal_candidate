@@ -133,7 +133,7 @@
     {{-- Body --}}
     <div class="top-banner">
         <a href="{{ url('/login') }}">
-            <img src="{{ asset('/') }}sitesetting_images/thumb/{{ $siteSetting->site_logo }}" />
+            <img draggable="false" src="{{ asset('/') }}sitesetting_images/thumb/{{ $siteSetting->site_logo }}" />
         </a>
     </div>
     <p class="title"><b>New Candidate Received</b></p>
@@ -142,8 +142,8 @@
     @component('mail::table')
     | <th colspan="3"><b>{{ $job->title??'Android Developer Fresher Android Developer Fresher'}} | | | |
     |:--| :-- | :-- | :-- |
-    | | <img src="{{ asset('/site_assets_1/assets/img/side_nav_icon/experience.png') }}" style="margin-bottom: -2px;width: 15px;"/> {{ $job->experience_string??'0 - 3 years'}} |<img src="{{ asset('/site_assets_1/assets/img/side_nav_icon/salary.png') }}" style=" margin-bottom: -2px;width: 15px;"/> {{ $job->salary_string??'1-3 Lakh / Annum'}}</span> |
-    | <td colspan="3" style="padding: 10px 0px 10px 0px !important;"><img src="{{ asset('/site_assets_1/assets/img/side_nav_icon/location.png') }}" style=" margin-bottom: -2px;width: 15px;"/> {{ $job->work_locations?rtrim($job->work_locations, ", "):'Coimbatore'}} <td> |
+    | | <img draggable="false" src="{{ asset('/site_assets_1/assets/img/side_nav_icon/experience.png') }}" style="margin-bottom: -2px;width: 15px;"/> {{ $job->experience_string??'0 - 3 years'}} |<img draggable="false" src="{{ asset('/site_assets_1/assets/img/side_nav_icon/salary.png') }}" style=" margin-bottom: -2px;width: 15px;"/> {{ $job->salary_string??'1-3 Lakh / Annum'}}</span> |
+    | <td colspan="3" style="padding: 10px 0px 10px 0px !important;"><img draggable="false" src="{{ asset('/site_assets_1/assets/img/side_nav_icon/location.png') }}" style=" margin-bottom: -2px;width: 15px;"/> {{ $job->work_locations?rtrim($job->work_locations, ", "):'Coimbatore'}} <td> |
     @endcomponent
     <p class="text-center">
         <a class="button button-blue" href="{{ $user_link }}">
@@ -153,9 +153,9 @@
    <div class="footer-content">
         <span> <b> Contact us <b> </span>
         <span style="margin: 5px;">:</span>
-       <span> <img src="{{ asset('/site_assets_1/assets/img/job_description/contact_message.png') }}" style="margin-bottom: -2px;width: 15px;"/> support@mugaam.com </span>
+       <span> <img draggable="false" src="{{ asset('/site_assets_1/assets/img/job_description/contact_message.png') }}" style="margin-bottom: -2px;width: 15px;"/> support@mugaam.com </span>
        <span style="margin: 5px;">|</span>
-       <span> <img src="{{ asset('/site_assets_1/assets/img/job_description/contact_num.png') }}" style="margin-bottom: -2px;width: 15px;"/> +91 9900559924 </span>
+       <span> <img draggable="false" src="{{ asset('/site_assets_1/assets/img/job_description/contact_num.png') }}" style="margin-bottom: -2px;width: 15px;"/> +91 9900559924 </span>
     </div>
     {{-- Footer --}}
     @slot('footer')

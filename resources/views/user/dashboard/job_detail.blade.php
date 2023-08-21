@@ -288,31 +288,31 @@ ul{
                                 <div class="col-md-4 col-sm-8 col-xs-12" style="text-align: -webkit-right;">
                                     <div class="d-flex align-items-center justify-content-end">
                                         @if($application_status==null)
-                                        <label class="japplied-btn" id="japplied-btn" ><img class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class="fw-bolder fs-6">Applied</span></label>
+                                        <label class="japplied-btn" id="japplied-btn" ><img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class="fw-bolder fs-6">Applied</span></label>
                                         @elseif($application_status=='view' || $application_status=='consider')
-                                        <label class="japplied-btn" id="japplied-btn" ><img class="imagesz-2" src="{{url('site_assets_1/assets/img/viewed.png')}}" alt="Viewed"> <span class="fw-bolder fs-6">Viewed</span></label>
+                                        <label class="japplied-btn" id="japplied-btn" ><img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/viewed.png')}}" alt="Viewed"> <span class="fw-bolder fs-6">Viewed</span></label>
                                         @elseif($application_status=='shortlist')
-                                        <label class="japplied-btn" id="japplied-btn" ><img class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Shortlist"> <span class="fw-bolder fs-6">Shortlisted</span></label>
+                                        <label class="japplied-btn" id="japplied-btn" ><img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Shortlist"> <span class="fw-bolder fs-6">Shortlisted</span></label>
                                         @elseif($application_status=='reject')
-                                        <label class="japplied-btn" id="japplied-btn" ><img class="imagesz-2" src="{{url('site_assets_1/assets/img/Rejected.png')}}" alt="Rejected"> <span class="fw-bolder fs-6">Rejected</span></label>
+                                        <label class="japplied-btn" id="japplied-btn" ><img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Rejected.png')}}" alt="Rejected"> <span class="fw-bolder fs-6">Rejected</span></label>
                                         @else
                                             @if(count($job->screeningquiz)!=0 && $job->company->is_admin!=1)
                                                 <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn " id="japplybtn" data-bs-toggle="modal" href="#screeningQuiz72ers3" role="button">
-                                                    <img class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
+                                                    <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
                                                 </button>
                                             @else
                                                 <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn">
-                                                    <img class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
+                                                    <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
                                                 </button>
                                             @endif
                                             
                                             <label class="japplied-btn">
-                                                <img class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class="fw-bolder fs-6">Applied</span>
+                                                <img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class="fw-bolder fs-6">Applied</span>
                                             </label>
                                         @endif
                                         {{-- <div class="mx-3">
-                                            <img class="image-size" src="{{url('site_assets_1/assets/img/star_unfilled.png')}}" alt="bookmark">
-                                            <img class="image-size" src="{{url('site_assets_1/assets/img/star_filled.png')}}" style="display:none" alt="bookmark">
+                                            <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/star_unfilled.png')}}" alt="bookmark">
+                                            <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/star_filled.png')}}" style="display:none" alt="bookmark">
                                         </div> --}}                                        
                                     </div>
                                 </div>
@@ -320,9 +320,9 @@ ul{
 
                             <div class="col-md-12 mt-3">
                                 <div class="row">
-                                    <div class="col-md-3 col-sm-4 col-xs-12"><span class=""><img class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/experience.png') }}"></span> <text class="fw-bold">{{$job->experience_string}}</text></div>
-                                    <div class="col-md-5 col-sm-4 col-xs-12"><span class=""><img class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/salary.png') }}"></span> <text class="fw-bold"> {{ trim($job->salary_string) ? $job->salary_string :'Not Disclosed'  }}</text></div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12"><span class=""><img class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/location.png') }}"></span>  <text class="fw-bold"> {{rtrim($job->work_locations, ", ")}}</text></div>
+                                    <div class="col-md-3 col-sm-4 col-xs-12"><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/experience.png') }}"></span> <text class="fw-bold">{{$job->experience_string}}</text></div>
+                                    <div class="col-md-5 col-sm-4 col-xs-12"><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/salary.png') }}"></span> <text class="fw-bold"> {{ trim($job->salary_string) ? $job->salary_string :'Not Disclosed'  }}</text></div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12"><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/location.png') }}"></span>  <text class="fw-bold"> {{rtrim($job->work_locations, ", ")}}</text></div>
                                 </div>
                                 <div class="row mt-3 ">
                                     <p class="poscls">Posted {{ MiscHelper::timeSince($job->posted_date) }}</p>
@@ -462,7 +462,7 @@ ul{
                                 @endif
                                 <div class="col-md-12 align-self-center d-flex">
                                     <div class="pe-1">
-                                        <img class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_location.png')}}" alt="contact location">
+                                        <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_location.png')}}" alt="contact location">
                                     </div>
                                     <div>
                                         <p class="">
@@ -485,7 +485,7 @@ ul{
                             <div class="row">                                
                                 <div class="col-md-5 align-self-center d-flex">
                                     <div class="pe-1">
-                                        <img class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_message.png')}}" alt="contact location">
+                                        <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_message.png')}}" alt="contact location">
                                     </div>
                                     <div>
                                         <h5 class="">
@@ -496,7 +496,7 @@ ul{
                                 <div class="col-md-5 justify-content-center">
                                     <div class="d-flex">
                                         <div class="pe-1">
-                                            <img class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_num.png')}}" alt="contact num">
+                                            <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_num.png')}}" alt="contact num">
                                         </div>
                                         <div>
                                         <h5 class="">
@@ -512,7 +512,7 @@ ul{
                                 {{-- <div class="col-md-4 d-flex justify-content-center"> --}}
                                     {{-- <div class="pe-1">
                                         <div class="bg-color-blue border p-2 rounded-pill">
-                                            <img class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_message.png')}}" alt="contact message">
+                                            <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_message.png')}}" alt="contact message">
                                             <text class="fw-bolder">Send Message</text> 
                                         </div>   
                                     </div> --}}
@@ -585,7 +585,7 @@ ul{
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-6 col-md-6 align-self-center mobile_m">
-                                <img src="{{asset('images/Screening.png')}}" alt="">
+                                <img draggable="false" src="{{asset('images/Screening.png')}}" alt="">
                             </div>
                             <div class="col-12 col-md-12 col-lg-6 align-self-center">
                                 <section id="cdate_assesment">

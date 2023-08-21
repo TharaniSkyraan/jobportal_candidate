@@ -14,7 +14,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 align-self-center text-center cndte_mbile">
-                <img src="{{asset('images/candidate_left.png')}}" alt="">
+                <img draggable="false" src="{{asset('images/candidate_left.png')}}" alt="">
             </div>
             <div class="col-md-6 card-size">
                 <div class="card">
@@ -23,7 +23,7 @@
                     </div> -->
                     <div class="site2_logo mb-4 mt-3 text-center">
                         <a href="{{url('/')}}" class="href">
-                            <img src="{{asset('images/footer_logo.png')}}" alt="logo">
+                            <img draggable="false" src="{{asset('images/footer_logo.png')}}" alt="logo">
                         </a>
                     </div>
                     <h1 class="fw-bolder text-center lvledticn mt-3 mb-4">
@@ -35,7 +35,7 @@
                         <div class="container">
                             <div class="loadflebrd">
                                 <div class="box text-center">
-                                    <img src="{{asset('images/upload_img.png')}}" width="35%" class="p-1 file_upld file_upload"> 
+                                    <img draggable="false" src="{{asset('images/upload_img.png')}}" width="35%" class="p-1 file_upld file_upload"> 
                                     <div  class="cursor-pointer file_upld">Drop your Resume here or Browse</div>     
                                     <input type="file" class="d-none" id="file" name="file" accept=".doc,.docx,.pdf,.rtf">
                                 </div>   
@@ -47,10 +47,10 @@
                         <div class="container">
                             <div class="row mb-4 mt-5">
                                 <div class="col-md-6 col-5">
-                                    <a href="{{ route('skills')}}" class="btn p-0"><img src="{{asset('images/lefticon.png')}}"> Previous</a>
+                                    <a href="{{ route('skills')}}" class="btn p-0"><img draggable="false" src="{{asset('images/lefticon.png')}}"> Previous</a>
                                 </div>
                                 <div class="col-md-6 col-7 text-end">
-                                    <button class="btn p-0" type="submit">Save & Continue  <img src="{{asset('images/righticon.png')}}"></button>
+                                    <button class="btn p-0" type="submit">Save & Continue  <img draggable="false" src="{{asset('images/righticon.png')}}"></button>
                                 </div>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
             </div>
 
             <div class="col-md-3 align-self-center text-center cndte_mbile">
-                <img src="{{asset('images/candidate_right.png')}}" alt="">
+                <img draggable="false" src="{{asset('images/candidate_right.png')}}" alt="">
             </div>
         </div>
     </div>

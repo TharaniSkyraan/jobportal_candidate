@@ -182,7 +182,7 @@
             <div class="modal-body p-4">
                 
                     <div class="mb-2 d-flex align-items-center justify-content-center">
-                        <img src="{{ url('site_assets_1/assets/img/mail.png')}}" alt="error">
+                        <img draggable="false" src="{{ url('site_assets_1/assets/img/mail.png')}}" alt="error">
                     </div>
                     <div class="text-center">
                         <h5 class="m-auto">A verification mail has been sent to your email account.</h5>

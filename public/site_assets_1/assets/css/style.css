@@ -157,13 +157,13 @@ section {
   transition: all 0.5s;
   z-index: 1046;
   /* padding: 20px 0; */
-  box-shadow: 0 0 5px rgb(18 23 39 / 16%);
-  height: 65px;
+  /* box-shadow: 0 0 5px rgb(18 23 39 / 16%); */
+  height: 75px;
 }
 .header.header-scrolled {
   /* background: #fff; */
   padding: 8px 0;
-  box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
+  box-shadow: 0px 2px 9px rgba(1, 41, 112, 0.1);
 }
 .header .logo {
   line-height: 0;

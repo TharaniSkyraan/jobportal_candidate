@@ -19,7 +19,7 @@
 			<div class="page-inner">
                 <div id="abt_meusr" class="mt-4">
                     <div class="text-center ttleicn">
-                        <h2 class="fw-bolder"><img src="{{asset('images/sidebar/my_info.svg')}}">&nbsp;About me</h2>
+                        <h2 class="fw-bolder"><img draggable="false" src="{{asset('images/sidebar/my_info.svg')}}">&nbsp;About me</h2>
                     </div>
                     <div class="card mt-5">
                         <div class="prof_bg">
@@ -27,9 +27,9 @@
                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-xs-4 col-6">
                                     <div class="profilepictureappend">
                                         @if(Auth::user()->image)
-                                            <img src="{{Auth::user()->image}}" alt="profile-img" class="savecompanyname updateprofilepicture">
+                                            <img draggable="false" src="{{Auth::user()->image}}" alt="profile-img" class="savecompanyname updateprofilepicture">
                                         @else
-                                            <img src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="profile-img" class="savecompanyname updateprofilepicture">
+                                            <img draggable="false" src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="profile-img" class="savecompanyname updateprofilepicture">
                                         @endif
                                     </div>
                                 </div>

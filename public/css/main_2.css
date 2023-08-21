@@ -600,7 +600,7 @@ filter search
     
 
     #homepage_stn h1{
-        font-size: 40px;
+        font-size: 35px;
         font-weight: 400;
     }
 
@@ -612,7 +612,7 @@ filter search
     }
 
     .search_hme .bg-primary{
-        background-color: #4285f4 !important;
+        background-color: #3b77db    !important;
     }
 
 
@@ -623,47 +623,8 @@ filter search
     }
 
 
-    .popularser_hme .card-body{
-        padding: 0px;
-    }
-
-    .popularser_hme .card{
-        width: 80%;
-        box-shadow: 2px 6px 5px 0 rgb(69 65 78 / 5%) !important;
-    }
-
-    .popularser_hme .card:hover{
-        box-shadow: 2px 6px 5px 0 rgb(69 65 78 / 15%) !important;
-
-    }
-
-    .popularser_hme .card-body p{
-        padding-bottom:5px;
-        padding-top: 5px;
-        background-color: #DDFFE6;
-        font-weight: bolder;
-        margin-bottom:0px;
-        font-size: 16px !important;
 
 
-    }
-
-
-    .popularser_hme button{
-    width: fit-content;
-    height: 64px;
-    /* display: flex; */
-    -webkit-box-align: center;
-    align-items: center;
-    box-sizing: border-box;
-    background: #FFFFFF;
-    border: 1px solid #EAF1F5;
-    box-shadow: 0px 3px 6px rgb(0 77 255 / 5%);
-    border-radius: 16px 6px;
-    padding: 0 12px;
-    margin-right: 14px;
-
-    }
 
 
 
@@ -1059,30 +1020,6 @@ filter search
     }
 
 
-    .popularser_hme .left-section{
-    background-color: #DDFFE6;
-    position: absolute;
-    width: 420px;
-    padding-left: 107px;
-    padding-top: 57px;
-
-    }
-
-    .popularser_hme .list_poplar img{
-        width: 50px;
-        margin: 0 auto;
-        justify-content: center;
-        align-items: center;
-        display: block;
-    }
-
-    .popularser_hme  p{
-        font-size: 16px !important;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
     #candsearchs .nav-link.active{
         background: #4285f4d9;
         color: #fff;
@@ -1119,50 +1056,35 @@ filter search
     }
 
 
-    .popularser_hme .list_poplar{
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
-        background: #FFFFFF;
-        border: 1px solid #EAF1F5;
-        -webkit-box-shadow: 0px 3px 6px rgb(0 77 255 / 5%);
-        box-shadow: 0px 3px 6px rgb(0 77 255 / 5%);
-        padding: 15px;
-        border-radius: 10px;
-        margin-bottom: 20px;
-    }
-
-    .popularser_hme .list_poplar p{
-        margin-bottom: 0px;
-    }
-
-    #homepage_stn .popularser_hme{
-        margin-bottom: 3rem;
-        height: 160px;
-
-    }
-
     #homepage_stn .hometabcndte{
         margin-top: 4rem;
     }
 
-    
+    .reserch label{
+        font-size: 12px !important;
+        color: #9b9999 !important;
+        font-weight: 400 !important;
+    }    
     #topjobsector p{
         margin-bottom: 0px !important;
     }
-
-
-
-
-    .popularser_hme .list_poplar:hover{
-
-        box-shadow: 0px 3px 6px rgb(0 77 255 / 15%);
+    .popularser_hme{
+        border: 1px solid #0336881c;
+        border-radius: 15px !important;
+    }
+    .popularser_hme label{
+        font-size: 14px !important;
+        color: #033688 !important;
+        border-color: #03368863 !important;
+        font-weight: 400 !important;
+        margin: 1rem 0.2rem;
+        padding: 0.5rem 1rem;
+    }
+    .reserch label i{
+        color: #ae9999 !important;
     }
 
-    /* .popularser_hme .list_poplar:hover .plerhvr{
-        margin-left: 20px;
-        transition: all .4s ease;   
-        -webkit-transition: all .4s ease;
-    } */
+
 
 
 
@@ -1926,23 +1848,13 @@ filter search
         .hometabcndte #candsearchs{
             width: max-content;
             margin: 0 auto;
-        }#homepage_stn .popularser_hme{
-            margin-top: 1.5rem!important;
         }
-
-        .popularser_hme .list_poplar{
-            padding: 12px;
-            margin-bottom: 10px;
-        }
+        
 
         #homepage_stn .hometabcndte{
             margin-top: 3rem;
         }
-        #homepage_stn .popularser_hme{
-            margin-bottom: 3rem;
-            height: auto;
-        }
-
+        
         #topjobsector .card{
             height: auto;
         }
@@ -2171,10 +2083,6 @@ filter search
         }
     
 
-        #homepage_stn h1{
-            font-size: 1.1rem;
-        }
-
         .rectsear_hme h3{
             font-size: 16px;
         }
@@ -2210,12 +2118,6 @@ filter search
 
         #header .sidenav-toggler{
             display: none !important;
-        }
-
-        .hme_banner{
-            
-            background:none !important;
-            padding-bottom: 0px !important;
         }
 
         .hme_banner h1{
@@ -2310,15 +2212,6 @@ filter search
         }.assessment_modal{
             width: 80%;
             margin: 0 auto;
-        }
-
-        #homepage_stn h1{
-            font-size: 1.6rem;
-        }
-
-        #homepage_stn .popularser_hme {
-            margin-bottom: 3rem;
-            height: auto;
         }
 
 
@@ -2579,10 +2472,6 @@ filter search
         margin-top: 3rem;
     }
 
-    #homepage_stn .popularser_hme {
-        margin-bottom: 3rem;
-    }
-
     .candimg_col h2.fw-bolder{
         font-size: 14px;
 
@@ -2694,16 +2583,6 @@ filter search
         width: 100%;
     }
 
-    #homepage_stn h1{
-        font-size: 1.725rem;
-
-    }
-
-    .hme_banner{
-        background-size: cover !important;
-        padding-bottom: 0px !important;
-
-    }   
     
     .search_hme button{
         width: fit-content;
@@ -2812,10 +2691,6 @@ filter search
 
     @media(min-width: 1025px) and (max-width: 1200px)  {
     /**candidate page**/
-    #homepage_stn h1{
-        font-size: 20px;
-        margin-top: 0px !important;
-    }
 
     .search_hme{
         margin-top: 1rem !important;
@@ -2871,10 +2746,13 @@ filter search
 }
 
 
-@media(min-width: 992px) and (max-width:1024px)  {
+@media(min-width: 992px) and (max-width:1200px)  {
     .hme_banner{
-        padding-bottom: 75px !important;
-
+        padding-bottom: 4rem;
+    }
+        
+    .pfcmpletalert{
+        margin-top: 9%;
     }
 }
 @media(min-width: 767px) and (max-width:1200px)  {

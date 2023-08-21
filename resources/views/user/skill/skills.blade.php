@@ -17,7 +17,7 @@
 			<div class="page-inner">
                 <div id="my_expernce2" class="mt-4">
                     <div class="text-center ttleicn">
-                        <h2 class="fw-bolder"><img src="{{asset('images/sidebar/skill.svg')}}">&nbsp;My skills</h2>
+                        <h2 class="fw-bolder"><img draggable="false" src="{{asset('images/sidebar/skill.svg')}}">&nbsp;My skills</h2>
                     </div>
 
 

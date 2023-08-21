@@ -213,7 +213,7 @@
                <!-- header --->
                 <tr>
                     <td class="header" align="center">
-                        <a href="{{ url('/login') }}"><img src="{{ asset('/') }}sitesetting_images/thumb/{{ $siteSetting->site_logo }}" /></a>
+                        <a href="{{ url('/login') }}"><img draggable="false" src="{{ asset('/') }}sitesetting_images/thumb/{{ $siteSetting->site_logo }}" /></a>
                     </td>
                 </tr>
                 <!-- /header -->

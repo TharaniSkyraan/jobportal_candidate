@@ -91,10 +91,10 @@ function loadHtml(data){
       $.each(data, function(key,val) 
       {
         active = '';
-        imagd = `<img class="dropdown" src="${baseurl}images/m_svg/down.png" rel="nofollow">`;
+        imagd = `<img draggable="false" class="dropdown" src="${baseurl}images/m_svg/down.png" rel="nofollow">`;
         if(key==0){
           active = 'active';
-          imagd = `<img class="dropdown" src="${baseurl}images/m_svg/up.png" rel="nofollow">`;
+          imagd = `<img draggable="false" class="dropdown" src="${baseurl}images/m_svg/up.png" rel="nofollow">`;
         }
         html +=`<li class="card event `+active+`">
                   <div class="member-infos">
@@ -115,7 +115,7 @@ function loadHtml(data){
       $('.catfaqs').html(html);
       $('.catfaqs').show();
   }else{
-      html = `<div class="m-3 text-center"><img class="w-25 mt-5" src="${baseurl}site_assets_1/assets/img/no_results.svg" rel="nofollow"><h4>No data available</h4></div>`;
+      html = `<div class="m-3 text-center"><img draggable="false" class="w-25 mt-5" src="${baseurl}site_assets_1/assets/img/no_results.svg" rel="nofollow"><h4>No data available</h4></div>`;
       $('#nodatamsg').html(html);
   }
   return true;

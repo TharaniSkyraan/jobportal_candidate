@@ -15,7 +15,7 @@
                         <h3>Contact Information</h3>
                         <div class="d-flex mt-4 mb-3">
                             <span class="m-3">
-                                <img src="{{asset('images/m_svg/call.svg')}}" class="phone-img border-radius-10 contact-icons" alt="...">
+                                <img draggable="false" src="{{asset('images/m_svg/call.svg')}}" class="phone-img border-radius-10 contact-icons" alt="...">
                             </span>
                             <span class="my-3">Phone <br>
                                 <a href="tel://+91-9900559924">+91-9900559924</a>
@@ -23,7 +23,7 @@
                         </div>
                         <div class="d-flex email mb-3">
                             <span class="m-3">
-                                <img src="{{asset('images/m_svg/mail.svg')}}" class="email-img border-radius-10 contact-icons" alt="...">
+                                <img draggable="false" src="{{asset('images/m_svg/mail.svg')}}" class="email-img border-radius-10 contact-icons" alt="...">
                             </span>
                             <span class="my-3">Email <br>
                                 <a href="mailto:contact@mugaam.com">contact@mugaam.com</a>
@@ -31,7 +31,7 @@
                         </div>
                         <div class="d-flex">                        
                             <span class="m-3">
-                                <img src="{{asset('images/m_svg/location.svg')}}" class="address-img border-radius-10 contact-icons" alt="...">
+                                <img draggable="false" src="{{asset('images/m_svg/location.svg')}}" class="address-img border-radius-10 contact-icons" alt="...">
                             </span>
                             <span class="my-3">Address <br>
                                 <a href=""> Hari Complex, 207/A3, Sathy Rd, opp. Prozone Mall, Saravanampatti, Coimbatore, Tamil Nadu 641035</a>

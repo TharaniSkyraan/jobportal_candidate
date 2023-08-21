@@ -180,7 +180,7 @@ function conactlist_html(data) {
                     <div class="row">
                     <div class="col-xl-4 col-lg-4 col-3 cntpro">`;
         if(val.company_image!=null){
-            $html +=`<div class="avatar avatar-md"><img src="`+val.company_image+`" alt="Img" class="img-fluid rounded-circle"></div>`;
+            $html +=`<div class="avatar avatar-md"><img draggable="false" src="`+val.company_image+`" alt="Img" class="img-fluid rounded-circle"></div>`;
         }else{
             $html +=`<div class="avatar avatar-md profileImage rounded-circle">`+val.company_avatar+`</div>`;
         }
@@ -264,7 +264,7 @@ function messagesPopulate(resp){
     $html_pro = `<div class="row">
         <div class="col-11 d-flex">
             <div class="mx-2 align-self-center mob-res-arrow" data-value="`+devwidth+`">
-                <img src="${baseurl}images/msgs/arrow.png" alt="Img" class="img-fluid">
+                <img draggable="false" src="${baseurl}images/msgs/arrow.png" alt="Img" class="img-fluid">
             </div>
             <div class="ms-2">
                 <h5>`+candi_data.title+`</h5>
@@ -451,7 +451,7 @@ function change_url_state(mkey,mid){
         resURL= resURL + '/' + mid;
     }
     if(mid==''){
-        $("#nodatamsg").html(`<div class="m-3 text-center"><img class="mt-5" style="margin-top: 6rem !important;margin-left: -10rem;" src="${baseurl}site_assets_1/assets/img/letschat.png" rel="nofollow"></div>`);
+        $("#nodatamsg").html(`<div class="m-3 text-center"><img draggable="false" class="mt-5" style="margin-top: 6rem !important;margin-left: -10rem;" src="${baseurl}site_assets_1/assets/img/letschat.png" rel="nofollow"></div>`);
     }
     history.pushState({}, '',resURL );
 }

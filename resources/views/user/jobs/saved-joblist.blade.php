@@ -11,23 +11,23 @@
                 @if($job->expiry_date > Carbon\Carbon::now())
                     @if(Auth::user()->isAppliedOnJob($job->id))                
                         <label class="japplied-btn">
-                            <img class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class="fw-bolder fs-6">Applied</span>
+                            <img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class="fw-bolder fs-6">Applied</span>
                         </label>
                     @else
                         @if(count($job->screeningquiz)!=0)
                             <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtnredir" id="japplybtn" data-bs-toggle="modal" href="#screeningQuiz72ers3" role="button">
-                                <img class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
+                                <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
                             </button>
                         @else
                             <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn">
-                                <img class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
+                                <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
                             </button>
                         @endif
                     @endif
                 @else
                     @if(Auth::user()->isAppliedOnJob($job->id))                
                         <label class="japplied-btn">
-                            <img class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class="fw-bolder fs-6">Applied</span>
+                            <img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class="fw-bolder fs-6">Applied</span>
                         </label>
                     @endif
                 @endif
@@ -35,9 +35,9 @@
         </div>
         <div class="mb-3 fw-bold">{{ $job->company_name??$job->company->name }}.</div>
         <div class="row mb-3">
-            <div class="col-md-3 col-sm-4 col-xs-12"><span class=""><img class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/experience.png') }}"></span><text class="">{{ $job->experience_string }}</text></div>
-            <div class="col-md-5 col-sm-4 col-xs-12"><div><span class=""><img class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/salary.png') }}"></span><text class="">{{ trim($job->salary_string) ? $job->salary_string :'Not Disclosed' }}</text></div></div>
-            <div class="col-md-4 col-sm-4 col-xs-12"><div><span class=""><img class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/location.png') }}"></span><text class=""> {{ rtrim($job->work_locations, ", ") }}</text></div></div>
+            <div class="col-md-3 col-sm-4 col-xs-12"><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/experience.png') }}"></span><text class="">{{ $job->experience_string }}</text></div>
+            <div class="col-md-5 col-sm-4 col-xs-12"><div><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/salary.png') }}"></span><text class="">{{ trim($job->salary_string) ? $job->salary_string :'Not Disclosed' }}</text></div></div>
+            <div class="col-md-4 col-sm-4 col-xs-12"><div><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/location.png') }}"></span><text class=""> {{ rtrim($job->work_locations, ", ") }}</text></div></div>
         </div>
         <div class="mb-2">
             <h5 class="text-green-color fw-bold">Job Description </h5>
@@ -62,7 +62,7 @@
             @endphp
             <div class="d-flex">
                 <div class="px-2 favjob" data-slug="{{ $job->slug }}">    
-                    <img class="image-size1 cursor-pointer" src="{{url('site_assets_1/assets/img/star_filled.png')}}" alt="bookmark">
+                    <img draggable="false" class="image-size1 cursor-pointer" src="{{url('site_assets_1/assets/img/star_filled.png')}}" alt="bookmark">
                 </div>
             </div>
         </div>
@@ -72,7 +72,7 @@
 <div class="d-flex justify-content-center mt-5">
     <div class="">
         <div class="text-center mb-4">
-            <img class="janoimg" src="{{ url('site_assets_1/assets/img/no_results.svg') }}" rel="nofollow">
+            <img draggable="false" class="janoimg" src="{{ url('site_assets_1/assets/img/no_results.svg') }}" rel="nofollow">
         </div>
         <div class="text-center">
             <h4>No Jobs found </h4>

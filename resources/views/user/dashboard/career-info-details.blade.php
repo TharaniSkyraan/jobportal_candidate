@@ -23,7 +23,7 @@
 			<div class="page-inner">
                 <div id="abt_meusr" class="mt-4">
                     <div class="text-center ttleicn">
-                        <h2 class="fw-bolder"><img src="{{asset('images/sidebar/career_info.svg')}}">&nbsp;Career Information</h2>
+                        <h2 class="fw-bolder"><img draggable="false" src="{{asset('images/sidebar/career_info.svg')}}">&nbsp;Career Information</h2>
                     </div>
                     @php
                         $noticePeriod = \App\Helpers\DataArrayHelper::langNoticePeriodsArray();

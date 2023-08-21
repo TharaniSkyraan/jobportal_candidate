@@ -103,7 +103,7 @@
     @endslot
     <div class="top-banner">
         <a href="{{ url('/login') }}">
-            <img src="{{ asset('/') }}sitesetting_images/thumb/{{ $siteSetting->site_logo }}" />
+            <img draggable="false" src="{{ asset('/') }}sitesetting_images/thumb/{{ $siteSetting->site_logo }}" />
         </a>
     </div>
     <p class="title" style=""><b>OTP For Secure Signup</b><br></p>    
@@ -115,9 +115,9 @@
     <div class="footer-content">
         <span> <b> Contact us <b> </span>
         <span style="margin: 5px;">:</span>
-       <span> <img src="{{ asset('/site_assets_1/assets/img/job_description/contact_message.png') }}" style="margin-bottom: -2px;width: 15px;"/> support@mugaam.com </span>
+       <span> <img draggable="false" src="{{ asset('/site_assets_1/assets/img/job_description/contact_message.png') }}" style="margin-bottom: -2px;width: 15px;"/> support@mugaam.com </span>
        <span style="margin: 5px;">|</span>
-       <span> <img src="{{ asset('/site_assets_1/assets/img/job_description/contact_num.png') }}" style="margin-bottom: -2px;width: 15px;"/> +91 9900559924 </span>
+       <span> <img draggable="false" src="{{ asset('/site_assets_1/assets/img/job_description/contact_num.png') }}" style="margin-bottom: -2px;width: 15px;"/> +91 9900559924 </span>
     </div>
     {{-- Footer --}}
     @slot('footer')

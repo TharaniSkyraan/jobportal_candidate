@@ -18,7 +18,7 @@
 			<div class="page-inner">
                 <div id="my_expernce2" class="mt-4">
                     <div class="text-center ttleicn">
-                        <h2 class="fw-bolder"><img src="{{asset('images/sidebar/experience.svg')}}">&nbsp;My Experience</h2>
+                        <h2 class="fw-bolder"><img draggable="false" src="{{asset('images/sidebar/experience.svg')}}">&nbsp;My Experience</h2>
                     </div>
                     @php
                         $total_exp = Auth::user()->total_experience;
@@ -39,7 +39,7 @@
                     <div class="append-form-experience">
                         @if(count(Auth::user()->userExperience) == 0)
                         <div class="text-center">
-                            <img src="{{ asset('site_assets_1/assets/img/fresher.png')}}" height="250" width="250">
+                            <img draggable="false" src="{{ asset('site_assets_1/assets/img/fresher.png')}}" height="250" width="250">
                         </div>
                         @endif 
                     </div>

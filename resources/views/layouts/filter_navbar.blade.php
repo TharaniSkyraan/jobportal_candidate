@@ -13,7 +13,7 @@
                 <ul class="nav nav-primary">                  
                     <li class="nav-item active" >
                         <a href="#" data-bs-toggle="collapse" >
-                            <img class="me-3" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/location.png')}}">
+                            <img draggable="false" class="me-3" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/location.png')}}">
                             <p>Location</p>
                             <span class="caret"></span>
                         </a>
@@ -43,7 +43,7 @@
                     
                     <li class="nav-item" >
                         <a href="#work_filter" data-bs-toggle="collapse" >
-                            <img class="me-3" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/salary.png')}}">
+                            <img draggable="false" class="me-3" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/salary.png')}}">
                             <p>Salary</p>
                             <span class="caret"></span>
                         </a>
@@ -80,7 +80,7 @@
 
                     <li class="nav-item" >
                         <a href="#experience_filter" data-bs-toggle="collapse" >
-                        <img class="me-3" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/experience.png')}}">
+                        <img draggable="false" class="me-3" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/experience.png')}}">
                             <p>Experience</p>
                             <span class="caret"></span>
                         </a>
@@ -100,7 +100,7 @@
 
                     <li class="nav-item" >
                         <a href="#shift_filter" data-bs-toggle="collapse" >
-                            <img class="me-3" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/job_by_shift.png')}}">
+                            <img draggable="false" class="me-3" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/job_by_shift.png')}}">
                             <p>Job by shifts</p>
                             <span class="caret"></span>
                         </a>
@@ -133,7 +133,7 @@
 
                     <li class="nav-item" >
                         <a href="#posted_filter" data-bs-toggle="collapse" >
-                            <img class="me-3" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/posted_by.png')}}">
+                            <img draggable="false" class="me-3" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/posted_by.png')}}">
                             <p>Posted by</p>
                             <span class="caret"></span>
                         </a>
@@ -158,7 +158,7 @@
 
                     <li class="nav-item" >
                         <a href="#study_filter" data-bs-toggle="collapse" >
-                            <img class="me-3" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/level_of_education.png')}}">
+                            <img draggable="false" class="me-3" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/level_of_education.png')}}">
                             <p>Level of Education</p>
                             <span class="caret"></span>
                         </a>
@@ -196,7 +196,7 @@
 
                     <li class="nav-item" >
                         <a href="#remote_filter" data-bs-toggle="collapse" >
-                            <img class="me-3" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/designation.png')}}">
+                            <img draggable="false" class="me-3" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/designation.png')}}">
                             <p>Remote</p>
                             <span class="caret"></span>
                         </a>
@@ -214,7 +214,7 @@
 
                     <li class="nav-item" >
                         <a href="#industry_filter" data-bs-toggle="collapse" >
-                            <img class="me-3" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/industry.png')}}">
+                            <img draggable="false" class="me-3" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/industry.png')}}">
                             <p>Industry</p>
                             <span class="caret"></span>
                         </a>

@@ -14,7 +14,7 @@
         </p>
         <a href="{{ route('index') }}" class="btn btn-primary">Back to home</a>
         <div class="mt-5">
-        <img src="{{ url('site_assets_1/assets/images/template/500.svg') }}" alt="img-500-bg" width="500" class="img-fluid" rel="nofollow,noindex">
+        <img draggable="false" src="{{ url('site_assets_1/assets/images/template/500.svg') }}" alt="img-500-bg" width="500" class="img-fluid" rel="nofollow,noindex">
         </div>
     </div>
     </div>

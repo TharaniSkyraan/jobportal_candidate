@@ -620,7 +620,7 @@ function applicantsListHtml(resp,ftab_key){
                         <div class="row">
                             <div class="col p-0 ">`;
                                 if(user.is_image=='yes'){
-                                    $html +=`<div class="avatar avatar-md"> <img src="`+user.image+`" alt="Img" class="img-fluid rounded-circle"></div>`;
+                                    $html +=`<div class="avatar avatar-md"> <img draggable="false" src="`+user.image+`" alt="Img" class="img-fluid rounded-circle"></div>`;
                                 }else{                                    
                                     $html +=`<div class="avatar avatar-md" id="profileImage">`+user.avatar+`</div>`;
                                 }         
@@ -636,10 +636,10 @@ function applicantsListHtml(resp,ftab_key){
                             <div class="p-0">
                             <div class="btn-rounded ">
                                 <a href="`+(user.phone ? ('tel:'+user.phone):'#')+`"><button type="button" class="btn btn-icon ">
-                                    <img src="${baseurl}site_assets_1/assets/img/candiimg/phone_24@2x.png" class="img-thumbnail border-0 imcs1" />
+                                    <img draggable="false" src="${baseurl}site_assets_1/assets/img/candiimg/phone_24@2x.png" class="img-thumbnail border-0 imcs1" />
                                 </button></a>`;
                                 // $html +=`<button type="button" class="btn btn-icon btnspl_2">
-                                //     <img src="${baseurl}site_assets_1/assets/img/candiimg/whatsapp_24@2x.png" class="img-thumbnail border-0 imcs1" />
+                                //     <img draggable="false" src="${baseurl}site_assets_1/assets/img/candiimg/whatsapp_24@2x.png" class="img-thumbnail border-0 imcs1" />
                                 // </button>`;
                             $html +=`</div>
                             </div>
@@ -655,9 +655,9 @@ function applicantsListHtml(resp,ftab_key){
                                 $html +=`<div class="p-0 ">
                                     <button type="button" class="btn btn-icon btn-round btnact_st" data-value="shortlist" id="st_shortlist`+val.id+`">`;
                                     if(val.application_status == 'shortlist'){
-                                        $html +=`<img src="${baseurl}site_assets_1/assets/img/candiimg/shortlist_c.png" class="img-fluid img-thumbnail imcsstat" />`;
+                                        $html +=`<img draggable="false" src="${baseurl}site_assets_1/assets/img/candiimg/shortlist_c.png" class="img-fluid img-thumbnail imcsstat" />`;
                                     }else{
-                                        $html +=`<img src="${baseurl}site_assets_1/assets/img/candiimg/shortlist.png" class="img-fluid img-thumbnail imcsstat" />`;
+                                        $html +=`<img draggable="false" src="${baseurl}site_assets_1/assets/img/candiimg/shortlist.png" class="img-fluid img-thumbnail imcsstat" />`;
                                     }
                                         $html +=`</button>
                                 </div>
@@ -672,9 +672,9 @@ function applicantsListHtml(resp,ftab_key){
                                 $html +=`<div class="p-0 ">
                                 <button type="button" class="btn btn-icon btn-round btnact_st" data-value="consider" id="st_consider`+val.id+`">`;
                                 if(val.application_status == 'consider'){
-                                    $html +=`<img src="${baseurl}site_assets_1/assets/img/candiimg/consider_c.png" class="img-fluid img-thumbnail imcsstat" />`;
+                                    $html +=`<img draggable="false" src="${baseurl}site_assets_1/assets/img/candiimg/consider_c.png" class="img-fluid img-thumbnail imcsstat" />`;
                                 }else{
-                                    $html +=`<img src="${baseurl}site_assets_1/assets/img/candiimg/consider.png" class="img-fluid img-thumbnail imcsstat" />`;
+                                    $html +=`<img draggable="false" src="${baseurl}site_assets_1/assets/img/candiimg/consider.png" class="img-fluid img-thumbnail imcsstat" />`;
                                 }
                                 $html +=`</button>
                             </div>
@@ -690,9 +690,9 @@ function applicantsListHtml(resp,ftab_key){
                             $html +=`<div class="p-0 ">
                                 <button type="button" class="btn btn-icon btn-round btnact_st" data-value="reject" id="st_reject`+val.id+`">`;
                                 if(val.application_status == 'reject'){
-                                    $html +=`<img src="${baseurl}site_assets_1/assets/img/candiimg/reject_c.png" class="img-fluid img-thumbnail imcsstat" />`;
+                                    $html +=`<img draggable="false" src="${baseurl}site_assets_1/assets/img/candiimg/reject_c.png" class="img-fluid img-thumbnail imcsstat" />`;
                                 }else{
-                                    $html +=`<img src="${baseurl}site_assets_1/assets/img/candiimg/reject.png" class="img-fluid img-thumbnail imcsstat" />`;
+                                    $html +=`<img draggable="false" src="${baseurl}site_assets_1/assets/img/candiimg/reject.png" class="img-fluid img-thumbnail imcsstat" />`;
                             } $html +=`</button>
                                 </div>
                                 <text>Reject</text>`;
@@ -777,19 +777,19 @@ function CandidateStatusUpdate(cdata){
                 }
 
                 if(status=='shortlist'){
-                    $('#st_shortlist'+a_id).html(`<img src="${baseurl}site_assets_1/assets/img/candiimg/shortlist_c.png" class="img-fluid img-thumbnail imcsstat" />`);
-                    $('#st_consider'+a_id).html(`<img src="${baseurl}site_assets_1/assets/img/candiimg/consider.png" class="img-fluid img-thumbnail imcsstat" />`);
-                    $('#st_reject'+a_id).html(`<img src="${baseurl}site_assets_1/assets/img/candiimg/reject.png" class="img-fluid img-thumbnail imcsstat" />`);
+                    $('#st_shortlist'+a_id).html(`<img draggable="false" src="${baseurl}site_assets_1/assets/img/candiimg/shortlist_c.png" class="img-fluid img-thumbnail imcsstat" />`);
+                    $('#st_consider'+a_id).html(`<img draggable="false" src="${baseurl}site_assets_1/assets/img/candiimg/consider.png" class="img-fluid img-thumbnail imcsstat" />`);
+                    $('#st_reject'+a_id).html(`<img draggable="false" src="${baseurl}site_assets_1/assets/img/candiimg/reject.png" class="img-fluid img-thumbnail imcsstat" />`);
                 }
                 if(status=='consider'){
-                    $('#st_shortlist'+a_id).html(`<img src="${baseurl}site_assets_1/assets/img/candiimg/shortlist.png" class="img-fluid img-thumbnail imcsstat" />`);
-                    $('#st_consider'+a_id).html(`<img src="${baseurl}site_assets_1/assets/img/candiimg/consider_c.png" class="img-fluid img-thumbnail imcsstat" />`);
-                    $('#st_reject'+a_id).html(`<img src="${baseurl}site_assets_1/assets/img/candiimg/reject.png" class="img-fluid img-thumbnail imcsstat" />`);                    
+                    $('#st_shortlist'+a_id).html(`<img draggable="false" src="${baseurl}site_assets_1/assets/img/candiimg/shortlist.png" class="img-fluid img-thumbnail imcsstat" />`);
+                    $('#st_consider'+a_id).html(`<img draggable="false" src="${baseurl}site_assets_1/assets/img/candiimg/consider_c.png" class="img-fluid img-thumbnail imcsstat" />`);
+                    $('#st_reject'+a_id).html(`<img draggable="false" src="${baseurl}site_assets_1/assets/img/candiimg/reject.png" class="img-fluid img-thumbnail imcsstat" />`);                    
                 }
                 if(status=='reject'){
-                    $('#st_shortlist'+a_id).html(`<img src="${baseurl}site_assets_1/assets/img/candiimg/shortlist.png" class="img-fluid img-thumbnail imcsstat" />`);
-                    $('#st_consider'+a_id).html(`<img src="${baseurl}site_assets_1/assets/img/candiimg/consider.png" class="img-fluid img-thumbnail imcsstat" />`);
-                    $('#st_reject'+a_id).html(`<img src="${baseurl}site_assets_1/assets/img/candiimg/reject_c.png" class="img-fluid img-thumbnail imcsstat" />`);                    
+                    $('#st_shortlist'+a_id).html(`<img draggable="false" src="${baseurl}site_assets_1/assets/img/candiimg/shortlist.png" class="img-fluid img-thumbnail imcsstat" />`);
+                    $('#st_consider'+a_id).html(`<img draggable="false" src="${baseurl}site_assets_1/assets/img/candiimg/consider.png" class="img-fluid img-thumbnail imcsstat" />`);
+                    $('#st_reject'+a_id).html(`<img draggable="false" src="${baseurl}site_assets_1/assets/img/candiimg/reject_c.png" class="img-fluid img-thumbnail imcsstat" />`);                    
                 }
             }
         });

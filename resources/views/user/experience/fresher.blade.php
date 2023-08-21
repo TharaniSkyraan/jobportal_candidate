@@ -9,7 +9,7 @@
 			<div class="page-inner">
                 <div id="my_expernce" class="mt-4">
                     <div class="text-center ttleicn">
-                        <h2 class="fw-bolder"><img src="{{asset('images/sidebar/experience.svg')}}">&nbsp;My Experience</h2>
+                        <h2 class="fw-bolder"><img draggable="false" src="{{asset('images/sidebar/experience.svg')}}">&nbsp;My Experience</h2>
                     </div>
 
                     <h2 class="mt-5 mb-3 text-center fw-bolder">I am</h2>

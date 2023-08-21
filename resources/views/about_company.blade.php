@@ -44,11 +44,11 @@ section{
                     <div class="pe-xl-2-5">
                         <div class="row g-3">
                             <div class="col-8">
-                                <img src="{{url('site_assets_1/assets/images/static_pages//about-01.jpg')}}" class="border-radius-10" alt="...">
+                                <img draggable="false" src="{{url('site_assets_1/assets/images/static_pages//about-01.jpg')}}" class="border-radius-10" alt="...">
                             </div>
                             <div class="col-4 mt-2-9 mt-sm-11 mt-md-16 mt-lg-9 mt-xl-2-5 mt-xxl-6" style="margin-top:60px;">
                                 <div class="about-image-wrapper">
-                                    <img src="{{url('site_assets_1/assets/images/static_pages//about-02.jpg')}}" class="border-radius-10" alt="...">
+                                    <img draggable="false" src="{{url('site_assets_1/assets/images/static_pages//about-02.jpg')}}" class="border-radius-10" alt="...">
                                     <div class="position-absolute start-50 top-50 translate-middle">
                                     </div>
                                 </div>
@@ -57,7 +57,7 @@ section{
                         <div class="row">
                             <div class="col-12">
                                 <div class="about-image">
-                                    <img src="{{url('site_assets_1/assets/images/static_pages//about-03.jpg')}}" class="border-radius-10" alt="...">
+                                    <img draggable="false" src="{{url('site_assets_1/assets/images/static_pages//about-03.jpg')}}" class="border-radius-10" alt="...">
                                 </div>
                             </div>
                         </div>
@@ -87,7 +87,7 @@ section{
                 <div class="col-6 col-lg-3 mt-1-9 text-center text-sm-start">
                     <div class="d-sm-flex align-items-center mb-4">
                         <div class="flex-shrink-0 mb-3 mb-sm-0">
-                            <img src="{{url('site_assets_1/assets/images/static_pages//icon-22.png')}}" alt="...">
+                            <img draggable="false" src="{{url('site_assets_1/assets/images/static_pages//icon-22.png')}}" alt="...">
                         </div>
                         <div class="flex-grow-1 border-sm-start border-color-extra-light-gray ps-sm-3 ps-xl-4 ms-sm-3 ms-xl-4">
                             <h3 class="countup h1 text-primary fw-bold mb-1">1327</h3>
@@ -98,7 +98,7 @@ section{
                 <div class="col-6 col-lg-3 mt-1-9 text-center text-sm-start">
                     <div class="d-sm-flex align-items-center">
                         <div class="flex-shrink-0 mb-3 mb-sm-0">
-                            <img src="{{url('site_assets_1/assets/images/static_pages//icon-23.png')}}" alt="...">
+                            <img draggable="false" src="{{url('site_assets_1/assets/images/static_pages//icon-23.png')}}" alt="...">
                         </div>
                         <div class="flex-grow-1 border-sm-start border-color-extra-light-gray ps-sm-3 ps-xl-4 ms-sm-3 ms-xl-4">
                             <h3 class="countup h1 text-primary fw-bold mb-1">150</h3>
@@ -109,7 +109,7 @@ section{
                 <div class="col-6 col-lg-3 mt-1-9 text-center text-sm-start">
                     <div class="d-sm-flex align-items-center">
                         <div class="flex-shrink-0 mb-3 mb-sm-0">
-                            <img src="{{url('site_assets_1/assets/images/static_pages//icon-24.png')}}" alt="...">
+                            <img draggable="false" src="{{url('site_assets_1/assets/images/static_pages//icon-24.png')}}" alt="...">
                         </div>
                         <div class="flex-grow-1 border-sm-start border-color-extra-light-gray ps-sm-3 ps-xl-4 ms-sm-3 ms-xl-4">
                             <h3 class="countup h1 text-primary fw-bold mb-1">220</h3>
@@ -120,7 +120,7 @@ section{
                 <div class="col-6 col-lg-3 mt-1-9 text-center text-sm-start">
                     <div class="d-sm-flex align-items-center">
                         <div class="flex-shrink-0 mb-3 mb-sm-0">
-                            <img src="{{url('site_assets_1/assets/images/static_pages//icon-25.png')}}" alt="...">
+                            <img draggable="false" src="{{url('site_assets_1/assets/images/static_pages//icon-25.png')}}" alt="...">
                         </div>
                         <div class="flex-grow-1 border-sm-start border-color-extra-light-gray ps-sm-3 ps-xl-4 ms-sm-3 ms-xl-4">
                             <h3 class="countup h1 text-primary fw-bold mb-1">2250</h3>
@@ -156,7 +156,7 @@ section{
                 <div class="col-md-6 col-lg-4 mt-1-9  mb-4">
                     <div class="service-wrapper">
                         <div class="service-icons">
-                            <img src="{{url('site_assets_1/assets/images/static_pages//icon-19.png')}}" alt="...">
+                            <img draggable="false" src="{{url('site_assets_1/assets/images/static_pages//icon-19.png')}}" alt="...">
                         </div>
                         <h4 class="h5 mb-3 fw-bold">Job Search</h4>
                          <p class="mb-0 w-90 mx-auto">Looking for a job while studying, fresher or experienced? in search of the right job.</p> 
@@ -165,7 +165,7 @@ section{
                 <div class="col-md-6 col-lg-4 mt-1-9  mb-4">
                     <div class="service-wrapper">
                         <div class="service-icons">
-                            <img src="{{url('site_assets_1/assets/images/static_pages//icon-20.png')}}" alt="...">
+                            <img draggable="false" src="{{url('site_assets_1/assets/images/static_pages//icon-20.png')}}" alt="...">
                         </div>
                         <h4 class="h5 mb-3 fw-bold">Display Jobs</h4>
                          <p class="mb-0 w-90 mx-auto">Pick a job from the live list for your skill set.<br><br></p>
@@ -174,7 +174,7 @@ section{
                 <div class="col-md-6 col-lg-4 mt-1-9  mb-4">
                     <div class="service-wrapper">
                         <div class="service-icons">
-                            <img src="{{url('site_assets_1/assets/images/static_pages//icon-18.png')}}" alt="...">
+                            <img draggable="false" src="{{url('site_assets_1/assets/images/static_pages//icon-18.png')}}" alt="...">
                         </div>
                         <h4 class="h5 mb-3 fw-bold">Achieve Your Dream Job</h4>
                          <p class="mb-0 w-90 mx-auto">Attend the scheduled job interview and you will be offered an interesting job position.</p> 

@@ -21,7 +21,7 @@
     }
     .search-inp-sec{
         padding: 95px 0 20px 0;
-        background-color:#4285f4;
+        background-color:#3b77db;
         /* background: linear-gradient(-45deg, #629bf6b1, #629AF6, #4285F4); */
         /* background: rgb(2,0,36); */
         /* background: linear-gradient(160deg, rgba(2,0,36,1) 0%, rgba(66,133,244,1) 0%, rgba(66,133,240,1) 100%); */
@@ -50,7 +50,6 @@
         }
 
     }    
-
 </style>
 @endsection
 
@@ -65,20 +64,21 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-2 col-lg-2 text-end mobile_m">
-                    <img src="{{asset('images/search_banner.png')}}" alt="">
+                    <img draggable="false"  src="{{asset('images/search_banner.png')}}" alt="">
                 </div>
-                <div class="col-md-4 col-md-4 col-lg-4 align-self-center designation">
-                    {!! Form::search('designation', $d, array('class'=>'form-control-2  typeahead', 'id'=>'designation',
+                <div class="col-md-4 col-md-4 col-lg-4 align-self-center designation p-0 m-0">
+                    {!! Form::search('designation', $d, array('class'=>'form-control-2  typeahead', 'id'=>'designation', 'data-mdb-toggle'=>"tooltip", 'data-mdb-placement'=>"left", 'title'=>"Designation required",
                     'placeholder'=>__('Job title, keywords or company'),  'autocomplete'=>'off', 'spellcheck'=>'false' ) ) !!}
-                    {{-- <span class="icl-TextInput-icon iconRight" aria-hidden="true"><span class="" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" fill="none" aria-hidden="true"><defs></defs><path fill="#767676" fill-rule="evenodd" d="M11.4038 12.3048C10.7084 12.7451 9.88397 13 9 13c-2.48528 0-4.5-2.0147-4.5-4.5C4.5 6.01472 6.51472 4 9 4c2.4853 0 4.5 2.01472 4.5 4.5 0 .87711-.2509 1.6956-.6849 2.3876l3.5089 3.5089c.1952.1953.1952.5119 0 .7071l-.7071.7072c-.1953.1952-.5119.1952-.7071 0l-3.506-3.506zM11.5 8.5c0 1.38071-1.1193 2.5-2.5 2.5-1.38071 0-2.5-1.11929-2.5-2.5S7.61929 6 9 6c1.3807 0 2.5 1.11929 2.5 2.5z" clip-rule="evenodd"></path></svg></span></span> --}}
-                    <span class="form-text text-danger err_msg designation-error"></span>
                 </div>
-                <div class="col-md-4 col-md-4 col-lg-4 align-self-center location">
-                    {!! Form::search('location', $l, array('class'=>'form-control-2 typeahead', 'id'=>'location', 'placeholder'=>__('On Location'),' aria-label'=>'On Location')) !!}
-                        <span class="form-text text-danger err_msg"></span>
+                <div class="col-1 p-0 m-0 pre-d"><span class="pre">|</span></div>
+                <div class="col-md-4 col-md-4 col-lg-4 align-self-center location p-0 m-0">
+                    {!! Form::search('location', $l, array('class'=>'form-control-2 typeahead', 'id'=>'location', 'autocomplete'=>'off', 'placeholder'=>__('On Location'),' aria-label'=>'On Location')) !!}
                 </div>
-                <div class="col-md-2 align-self-center">
-                    {!! Form::button('Search', array('class' => 'btn search-button-bg ','id'=>'msearch_btn', 'type' => 'submit')) !!}                       
+                <div class="col-md-1 align-self-center p-0 m-0">                    
+                    <button class='btn btn_c_se form-control' id='msearch_btn'>
+                        <i class="fa fa-search"></i>
+                    </button>
+                    {{-- {!! Form::button('Search', array('class' => 'btn search-button-bg ','id'=>'msearch_btn', 'type' => 'submit')) !!}                        --}}
                 </div>
             </div>
         </div>
@@ -104,7 +104,7 @@
                             <ul class="nav nav-primary">
                                 <li class="nav-item active mb-3" >
                                     <a href="#FilterCitylo" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true" >
-                                        <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/location.png')}}">
+                                        <img draggable="false"  class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/location.png')}}">
                                         <p class="fw-bold">Location</p>
                                         <span class="caret"></span>
                                     </a>
@@ -116,7 +116,7 @@
                                 
                                 <li class="nav-item mb-3" >
                                     <a href="#salaryFilters" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true" >
-                                        <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/salary.png')}}">
+                                        <img draggable="false"  class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/salary.png')}}">
                                         <p class="fw-bold">Salary</p>
                                         <span class="caret"></span>
                                     </a>
@@ -128,7 +128,7 @@
 
                                 <li class="nav-item mb-3" >
                                     <a href="#experinceFilters" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true">
-                                    <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/experience.png')}}">
+                                    <img draggable="false"  class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/experience.png')}}">
                                         <p class="fw-bold">Experience</p>
                                         <span class="caret"></span>
                                     </a>
@@ -146,7 +146,7 @@
 
                                 <li class="nav-item mb-3" >
                                     <a href="#jobtypeFilters" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true">
-                                        <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/job_by_shift.png')}}">
+                                        <img draggable="false"  class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/job_by_shift.png')}}">
                                         <p class="fw-bold">Job Type</p>
                                         <span class="caret"></span>
                                     </a>
@@ -158,7 +158,7 @@
                                 
                                 <li class="nav-item mb-3" >
                                     <a href="#edulevelFilters" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true">
-                                        <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/level_of_education.png')}}">
+                                        <img draggable="false"  class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/level_of_education.png')}}">
                                         <p class="fw-bold">Education Level</p>
                                         <span class="caret"></span>
                                     </a>
@@ -170,7 +170,7 @@
                                 
                                 <li class="nav-item mb-3" >
                                     <a href="#functionalareaFilters" class="filterHeading"  data-bs-toggle="collapse" aria-expanded="true">
-                                        <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/func_area.png')}}">
+                                        <img draggable="false"  class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/func_area.png')}}">
                                         <p class="fw-bold">Functional Area</p>
                                         <span class="caret"></span>
                                     </a>
@@ -182,7 +182,7 @@
                                 
                                 {{-- <li class="nav-item mb-3" >
                                     <a href="#wfhtypeFilter" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true">
-                                        <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/wfh.png')}}">
+                                        <img draggable="false"  class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/wfh.png')}}">
                                         <p class="fw-bold">Work From Home</p>
                                         <span class="caret"></span>
                                     </a>
@@ -194,7 +194,7 @@
                                 
                                 <li class="nav-item mb-3" >
                                     <a href="#industrytypeFilters" class="filterHeading"  data-bs-toggle="collapse" aria-expanded="true">
-                                        <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/industry.png')}}">
+                                        <img draggable="false"  class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/industry.png')}}">
                                         <p class="fw-bold">Industry</p>
                                         <span class="caret"></span>
                                     </a>
@@ -229,7 +229,7 @@
                     <section class="registrationContainer bgWhite mb-3" data-id="Register">
                         <div class="registrationHeader">
                             <p class="headline">Discover jobs across popular roles</p>
-                            <img class="headerBitmap" src="{{ asset('site_assets_1/assets/images/register.ak6djA.png') }}" alt="Register">
+                            <img draggable="false"  class="headerBitmap" src="{{ asset('site_assets_1/assets/images/register.ak6djA.png') }}" alt="Register">
                             <p class="message">Select a role and we'll show you relevant jobs for it!
                             </p>
                         </div>
@@ -242,7 +242,7 @@
                         <section class="registrationContainer bgWhite mb-3" data-id="Register">
                             <div class="registrationHeader">
                                 <p class="headline">Find quality applicants</p>
-                                {{-- <img class="headerBitmap" src="{{ asset('site_assets_1/assets/images/register.ak6djA.png') }}" alt="Register"> --}}
+                                {{-- <img draggable="false"  class="headerBitmap" src="{{ asset('site_assets_1/assets/images/register.ak6djA.png') }}" alt="Register"> --}}
                                 <p class="message">List your required skills for the job so relevant candidates apply.
                                 </p>
                             </div>
@@ -254,7 +254,7 @@
                         <section class="registrationContainer bgWhite mb-3" data-id="Register">
                             <div class="registrationHeader">
                                 <p class="headline">Get Personalised Job Recommendations</p>
-                                <img class="headerBitmap" src="{{ asset('site_assets_1/assets/images/register.ak6djA.png') }}" alt="Register">
+                                <img draggable="false"  class="headerBitmap" src="{{ asset('site_assets_1/assets/images/register.ak6djA.png') }}" alt="Register">
                                 <p class="message">Registering gives you the benefit to browse &amp; apply variety of jobs based on your preferences
                                 </p>
                             </div>
@@ -274,7 +274,7 @@
                 <div class="card w-100 mx-auto">
                     <div class="">
                         <div>
-                            <img class="no-result-img" src="{{ url('site_assets_1/assets/images/no-results-found.png') }}" alt="no-result-img" />
+                            <img draggable="false"  class="no-result-img" src="{{ url('site_assets_1/assets/images/no-results-found.png') }}" alt="no-result-img" />
                         </div>
                     </div>
                     <h4 class="fw-bolder">
@@ -309,7 +309,7 @@
                 <ul class="nav nav-primary">
                     <li class="nav-item active mb-3" >
                         <a href="#FilterCityl" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true" >
-                            <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/location.png')}}">
+                            <img draggable="false"  class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/location.png')}}">
                             <p class="fw-bold">Location</p>
                             <span class="caret"></span>
                         </a>
@@ -321,7 +321,7 @@
                     
                     <li class="nav-item mb-3" >
                         <a href="#salaryFilter" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true" >
-                            <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/salary.png')}}">
+                            <img draggable="false"  class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/salary.png')}}">
                             <p class="fw-bold">Salary</p>
                             <span class="caret"></span>
                         </a>
@@ -333,7 +333,7 @@
 
                     <li class="nav-item mb-3" >
                         <a href="#experinceFilter" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true">
-                        <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/experience.png')}}">
+                        <img draggable="false"  class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/experience.png')}}">
                             <p class="fw-bold">Experience</p>
                             <span class="caret"></span>
                         </a>
@@ -351,7 +351,7 @@
 
                     <li class="nav-item mb-3" >
                         <a href="#jobtypeFilter" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true">
-                            <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/job_by_shift.png')}}">
+                            <img draggable="false"  class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/job_by_shift.png')}}">
                             <p class="fw-bold">Job Type</p>
                             <span class="caret"></span>
                         </a>
@@ -363,7 +363,7 @@
                     
                     <li class="nav-item mb-3" >
                         <a href="#edulevelFilter" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true">
-                            <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/level_of_education.png')}}">
+                            <img draggable="false"  class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/level_of_education.png')}}">
                             <p class="fw-bold">Education Level</p>
                             <span class="caret"></span>
                         </a>
@@ -375,7 +375,7 @@
                     
                     <li class="nav-item mb-3" >
                         <a href="#functionalareaFilter" class="filterHeading"  data-bs-toggle="collapse" aria-expanded="true">
-                            <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/func_area.png')}}">
+                            <img draggable="false"  class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/func_area.png')}}">
                             <p class="fw-bold">Functional Area</p>
                             <span class="caret"></span>
                         </a>
@@ -387,7 +387,7 @@
                     
                     {{-- <li class="nav-item mb-3" >
                         <a href="#wfhtypeFilter" class="filterHeading" data-bs-toggle="collapse" aria-expanded="true">
-                            <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/wfh.png')}}">
+                            <img draggable="false"  class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/wfh.png')}}">
                             <p class="fw-bold">Work From Home</p>
                             <span class="caret"></span>
                         </a>
@@ -399,7 +399,7 @@
                     
                     <li class="nav-item mb-3" >
                         <a href="#industrytypeFilter" class="filterHeading"  data-bs-toggle="collapse" aria-expanded="true">
-                            <img class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/industry.png')}}">
+                            <img draggable="false"  class="me-2" width="20px" src="{{url('site_assets_1/assets/img/side_nav_icon/industry.png')}}">
                             <p class="fw-bold">Industry</p>
                             <span class="caret"></span>
                         </a>

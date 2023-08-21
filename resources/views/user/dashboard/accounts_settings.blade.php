@@ -30,7 +30,7 @@
 										<!-- <div class="text-center">
 											<div class="position-relative d-inline-block mb-4">
 												
-												<img src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="Img" class="border border-dark avatar-img rounded-circle" style="width: 40%;" id="profileImage">
+												<img draggable="false" src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="Img" class="border border-dark avatar-img rounded-circle" style="width: 40%;" id="profileImage">
 												<i class="fa-solid fa-pen-to-square edit-profile" onclick="openModal();"></i> -->
 												<!-- <label for="file-input">
 													<i class="fa-solid fa-camera profile-camera fa-xs position-absolute" style="top:74%; left:60%"></i>
@@ -42,11 +42,11 @@
 										<div class="profilepic m-auto cursor-pointer">
 											@if( Auth::check() && Auth::user()->image !=null )
                       
-											<img src="{{Auth::user()->image}}" alt="Img" class="profilepic__image w-100 h-100" id="profileImage">
+											<img draggable="false" src="{{Auth::user()->image}}" alt="Img" class="profilepic__image w-100 h-100" id="profileImage">
 											@else  
-											<img src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="Img" class="profilepic__image w-100 h-100" id="profileImage">
+											<img draggable="false" src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="Img" class="profilepic__image w-100 h-100" id="profileImage">
 											@endif
-										<!-- <img class="profilepic__image w-100" src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="Profibild" /> -->
+										<!-- <img draggable="false" class="profilepic__image w-100" src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="Profibild" /> -->
 											<div class="profilepic__content" onclick="openModal();">
 												<span class="profilepic__icon"><i class="fas fa-camera"></i></span>
 												<span class="profilepic__text">Edit Profile</span>
@@ -63,7 +63,7 @@
                           </label>
                         </div>
                           <div class="col-md-6 col-sm-4 col-xs-6 col-4 text-center">
-                            <img class="align-self-center align-top" src="{{ url('site_assets_1/assets/img/check-mark.png')}}" height="20px" width="20px">
+                            <img draggable="false" class="align-self-center align-top" src="{{ url('site_assets_1/assets/img/check-mark.png')}}" height="20px" width="20px">
                           </div>
                       </div>
                         
@@ -86,7 +86,7 @@
                         </div>
                         <div class="col-md-6 col-sm-4 col-xs-6 col-4 text-center">
                           @if(Auth::user()->is_mobile_verified=='yes')
-                          <img class="align-self-center align-top" src="{{ url('site_assets_1/assets/img/check-mark.png')}}" height="20px" width="20px"> 
+                          <img draggable="false" class="align-self-center align-top" src="{{ url('site_assets_1/assets/img/check-mark.png')}}" height="20px" width="20px"> 
                           @endif
                         </div>
                       </div>
@@ -163,9 +163,9 @@
 						</div>
 						<div class="profilepic-modal m-auto mb-4">
 							@if(Auth::user()->image !=null )
-							<img src="{{Auth::user()->image}}" alt="Img" class="profilepic__image w-100 h-100" id="profileImage">
+							<img draggable="false" src="{{Auth::user()->image}}" alt="Img" class="profilepic__image w-100 h-100" id="profileImage">
 							@else  
-							<img src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="Img" class="profilepic__image w-100 h-100" id="profileImage">
+							<img draggable="false" src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="Img" class="profilepic__image w-100 h-100" id="profileImage">
 							@endif
 						</div>
 						<div id="preview-crop-image"></div>

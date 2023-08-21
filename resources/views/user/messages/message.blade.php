@@ -36,7 +36,7 @@
                       <div class="textExpend"><i class="fa fa-expand-alt" aria-hidden="true"></i></div>    
                       <div class="textClose textCloseremoved"><i class="fa fa-close" aria-hidden="true"></i></div>    
                       <div class="textSend disabled">
-                        <img src="{{ asset('/images/mail/apply.svg') }}" class="fa-paper-plane">
+                        <img draggable="false" src="{{ asset('/images/mail/apply.svg') }}" class="fa-paper-plane">
                       </div>
                     </div>
                   </div>

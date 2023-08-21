@@ -17,7 +17,7 @@
             <div class="page-inner">        
                 <div id="language_knwn" class="mt-4">
                     <div class="text-center ttleicn">
-                        <h2 class="fw-bolder"><img src="{{asset('images/sidebar/language.svg')}}">&nbsp;Languages Known</h2>
+                        <h2 class="fw-bolder"><img draggable="false" src="{{asset('images/sidebar/language.svg')}}">&nbsp;Languages Known</h2>
                     </div>
 
                     <div class="crdbxpl mt-5">
@@ -30,7 +30,7 @@
                     <div class="append-card-language">
                         @if(count(Auth::user()->userLanguages) == 0)
                         <div class="text-center">
-                            <img src="{{ asset('site_assets_1/assets/img/fresher.png')}}" height="250" width="250">
+                            <img draggable="false" src="{{ asset('site_assets_1/assets/img/fresher.png')}}" height="250" width="250">
                         </div>
                         @endif 
                     </div>

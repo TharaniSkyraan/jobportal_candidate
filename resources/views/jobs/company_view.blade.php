@@ -81,9 +81,9 @@
                                         <div class="col-md-4 col-xl-2 align-self-center">
                                             <div class="card pf_imgsabt">
                                                 @if(!empty($company->company_image))
-                                                    <img src="{{$company->company_image}}" alt="{{$company->name}}" width="100%">
+                                                    <img draggable="false" src="{{$company->company_image}}" alt="{{$company->name}}" width="100%">
                                                 @else
-                                                    <img src="{{asset('noupload.png')}}" alt="{{$company->name}}" width="100%">
+                                                    <img draggable="false" src="{{asset('noupload.png')}}" alt="{{$company->name}}" width="100%">
                                                 @endif
                                             </div>
                                         </div>
@@ -260,7 +260,7 @@
                 .append(`<div class="col-md-4 col-xl-3 col-lg-3 col-sm-6 col-xs-6 col-12">
                             <div class="card zoom opacity savecompanyname" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                 <div class="text-center"><div class="box"> 
-                                    <img class="card-img-top imgclass" src=`+data['image_exact_url']+`>
+                                    <img draggable="false" class="card-img-top imgclass" src=`+data['image_exact_url']+`>
                                 </div>
                                 <div class="card-body"> 
                                     <h5 class="card-title text-start fw-bolder">`+data['title']+`</h5> 

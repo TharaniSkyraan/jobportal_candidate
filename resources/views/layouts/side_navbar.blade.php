@@ -1,8 +1,8 @@
 <nav class="wrapper sidenavbar close">
   <div class="logo_items flex">
       <text class="nav_image">
-        <a href="{{url('/')}}"><img src="{{ asset('/') }}site_assets_1/logo_24@2x.png" alt="logo_img" id="sidebar_logo" /></a>
-        <a href="{{url('/')}}"><img src="{{ asset('/') }}site_assets_1/logo1.png" alt="logo_img" id="sidebar_logo_image" /></a>
+        <a href="{{url('/')}}"><img draggable="false" src="{{ asset('/') }}site_assets_1/logo_24@2x.png" alt="logo_img" id="sidebar_logo" /></a>
+        <a href="{{url('/')}}"><img draggable="false" src="{{ asset('/') }}site_assets_1/logo1.png" alt="logo_img" id="sidebar_logo_image" /></a>
       </text> 
       <i class="fa fa-horizontal-rule"></i>
     </div>
@@ -10,7 +10,7 @@
     <i class="fa fa-close text-white" id="lock-icon" title="Unlock Sidenavbar"></i>
     <i class="fa fa-bars text-white" id="sidenavbar-close"></i>
       <text class="nav_image">
-        <a href="{{url('/')}}"><img src="{{ asset('/') }}site_assets_1/logo1.png" alt="logo_img" /></a>
+        <a href="{{url('/')}}"><img draggable="false" src="{{ asset('/') }}site_assets_1/logo1.png" alt="logo_img" /></a>
       </text> 
     </div> -->
   <div class="menu_container">        
@@ -35,49 +35,49 @@
           <ul class="menu_item">
             <li class="item">
               <a href="{{route('home')}}" class="link flex {{ (empty(Auth::user()->date_of_birth))? 'no_fillfield' : '' }} {{ Request::is('home') ? 'active' : '' }}">
-                <img src="{{asset('images/sidebar/my_info.svg')}}" alt="">
+                <img draggable="false" src="{{asset('images/sidebar/my_info.svg')}}" alt="">
                 <span>About Me</span>
               </a>
             </li>
             <li class="item">
               <a href="{{route('resume-details')}}" class="link flex {{ (count(Auth::user()->UserCvs)==0)? 'no_fillfield' : '' }} {{ Request::is('resume-details') ? 'active' : '' }}">
-                <img src="{{asset('images/sidebar/resume.svg')}}" alt="">
+                <img draggable="false" src="{{asset('images/sidebar/resume.svg')}}" alt="">
                 <span>Resume</span>
               </a>
             </li>
             <li class="item">
               <a href="{{route('education-details')}}" class="link flex {{ (count(Auth::user()->UserEducation)==0)? 'no_fillfield' : '' }} {{ Request::is('education-details') ? 'active' : '' }}">
-                <img src="{{asset('images/sidebar/education.svg')}}" alt="">
+                <img draggable="false" src="{{asset('images/sidebar/education.svg')}}" alt="">
                 <span>Education</span>
               </a>
             </li>
             <li class="item">
               <a href="{{route('experience-details')}}" class="link flex {{ Request::is('experience-details') ? 'active' : '' }}">
-                <img src="{{asset('images/sidebar/experience.svg')}}" alt="">
+                <img draggable="false" src="{{asset('images/sidebar/experience.svg')}}" alt="">
                 <span>Experience</span>
               </a>
             </li>
             <li class="item">
               <a href="{{route('project-details')}}" class="link flex {{ (count(Auth::user()->userProjects)==0)? 'no_fillfield' : '' }} {{ Request::is('project-details') ? 'active' : '' }}">
-                <img src="{{asset('images/sidebar/project.svg')}}" alt="">
+                <img draggable="false" src="{{asset('images/sidebar/project.svg')}}" alt="">
                 <span>Project</span>
               </a>
             </li>
             <li class="item">
               <a href="{{route('skill-details')}}" class="link flex {{ (count(Auth::user()->userSkills)==0)? 'no_fillfield' : '' }} {{ Request::is('skill-details') ? 'active' : '' }}">
-                <img src="{{asset('images/sidebar/skill.svg')}}" alt="">
+                <img draggable="false" src="{{asset('images/sidebar/skill.svg')}}" alt="">
                 <span>Skills</span>
               </a>
             </li>
             <li class="item">
               <a href="{{route('language-details')}}" class="link flex {{ (count(Auth::user()->userLanguages)==0)? 'no_fillfield' : '' }} {{ Request::is('language-details') ? 'active' : '' }}">
-                <img src="{{asset('images/sidebar/language.svg')}}" alt="">
+                <img draggable="false" src="{{asset('images/sidebar/language.svg')}}" alt="">
                 <span>Language known</span>
               </a>
             </li>
             <li class="item">
               <a href="{{route('career-info-details')}}" class="link flex {{ empty(Auth::user()->career_title)? 'no_fillfield' : '' }}  {{ Request::is('career-info-details') ? 'active' : '' }}">
-                <img src="{{asset('images/sidebar/career_info.svg')}}" alt="">
+                <img draggable="false" src="{{asset('images/sidebar/career_info.svg')}}" alt="">
                 <span>Career Information</span>
               </a>
             </li>
@@ -94,32 +94,32 @@
         
         <li class="item">
           <a href="{{ route('job-alert-details') }}" class="link flex {{ Request::is('job-alert-details') ? 'active' : '' }}">
-            <img src="{{asset('images/sidebar/job_alerts.svg')}}" alt="">
+            <img draggable="false" src="{{asset('images/sidebar/job_alerts.svg')}}" alt="">
             <span>Job Alerts</span>
           </a>
         </li>
         <li class="item">
           <a href="{{ route('applied-jobs') }}" class="link flex {{ Request::is('applied-jobs') ? 'active' : '' }}">
             
-          <img src="{{asset('images/sidebar/applied_jobs.svg')}}" alt="">
+          <img draggable="false" src="{{asset('images/sidebar/applied_jobs.svg')}}" alt="">
             <span>Applied Jobs</span>
           </a>
         </li>
         <li class="item">
           <a href="{{ route('saved-jobs') }}" class="link flex {{ Request::is('saved-jobs') ? 'active' : '' }}">
-            <img src="{{asset('images/sidebar/saved_jobs.svg')}}" alt="">
+            <img draggable="false" src="{{asset('images/sidebar/saved_jobs.svg')}}" alt="">
             <span>Saved jobs</span>
           </a>
         </li>
         <li class="item">
           <a href="{{route('employer_messages')}}" class="link flex {{ Route::is('employer_messages') ? 'active' : '' }}">
-            <img src="{{asset('images/sidebar/message.svg')}}" alt="">
+            <img draggable="false" src="{{asset('images/sidebar/message.svg')}}" alt="">
             <span>Messages</span>
           </a>
         </li>
         <li class="item">
           <a href="{{ route('accounts_settings') }}" class="link flex {{ Request::is('accounts_settings') ? 'active' : '' }}">
-            <img src="{{asset('images/sidebar/account_setting.svg')}}" alt="">
+            <img draggable="false" src="{{asset('images/sidebar/account_setting.svg')}}" alt="">
             <span>Accounts Settings</span>
           </a>
         </li>

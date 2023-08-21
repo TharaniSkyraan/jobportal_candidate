@@ -96,7 +96,7 @@ class JobsController extends Controller
                                 ->limit(3)
                                 ->get();
 
-        $titles = Title::where('hit_count','!=',0)->orderBy('hit_count','desc')->take(5)->get();
+        $titles = Title::where('hit_count','!=',0)->orderBy('hit_count','desc')->take(8)->get();
         $this->shareSeoToLayout('candidate_home');
         return view('candidate-home', compact('titles', 'near_job', 'recent_job', 'job_list', 'top_cities', 'top_sector'));
 

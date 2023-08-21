@@ -9,14 +9,14 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 align-self-center text-center cndte_mbile">
-                <img src="{{asset('images/candidate_left.png')}}" alt="">
+                <img draggable="false" src="{{asset('images/candidate_left.png')}}" alt="">
             </div>
            
             <div class="col-md-6 card-size">
                 <div class="card lgncard1">
                     <div class="site2_logo mb-4 mt-2 text-center">
                         <a href="{{url('/')}}" class="href">
-                            <img src="{{asset('images/footer_logo.png')}}" alt="logo">
+                            <img draggable="false" src="{{asset('images/footer_logo.png')}}" alt="logo">
                         </a>
                         <h2 class="fw-bolder mt-3"> Welcome </h2>
                     <p class="grytxtv">Take your first step towards your Career</p>
@@ -63,13 +63,13 @@
                         <div class="row text-center mx-5 mt-4 mb-5">
                             <span class="text-center mb-3">or</span>
                             <div class="col-md-4 col-sm-4 col-4 col-xs-4">
-                                <a href="{{ url('signinorsignup/google')}}" class=""><img src="{{ url('site_assets_1/assets/img/social_media/google.png')}}" width="40px"></a>
+                                <a href="{{ url('signinorsignup/google')}}" class=""><img draggable="false" src="{{ url('site_assets_1/assets/img/social_media/google.png')}}" width="40px"></a>
                             </div>
                             <div class="col-md-4 col-sm-4 col-4 col-xs-4">
-                                <a href="{{ url('signinorsignup/apple')}}" class=""><img src="{{ url('site_assets_1/assets/img/social_media/apple.png')}}" width="40px"></a>
+                                <a href="{{ url('signinorsignup/apple')}}" class=""><img draggable="false" src="{{ url('site_assets_1/assets/img/social_media/apple.png')}}" width="40px"></a>
                             </div> 
                             <div class="col-md-4 col-sm-4 col-4 col-xs-4">
-                                <a href="{{ url('signinorsignup/facebook')}}" class=""><img src="{{ url('site_assets_1/assets/img/social_media/fb.png')}}" width="40px"></a>
+                                <a href="{{ url('signinorsignup/facebook')}}" class=""><img draggable="false" src="{{ url('site_assets_1/assets/img/social_media/fb.png')}}" width="40px"></a>
                             </div>
                         </div>
 
@@ -77,7 +77,7 @@
                 </div> 
             </div>              
             <div class="col-md-3 align-self-center text-center cndte_mbile">
-                <img src="{{asset('images/candidate_right.png')}}" alt="">
+                <img draggable="false" src="{{asset('images/candidate_right.png')}}" alt="">
             </div>
         </div>
     </div>

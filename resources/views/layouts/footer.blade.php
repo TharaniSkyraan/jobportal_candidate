@@ -43,7 +43,7 @@
 
 <footer id="footer" class="footer">
     <div class="footer_logo mb-4 mt-4 text-center">
-      <a href="{{url('/')}}" class="href"><img src="{{ asset('images/footer_logo.png') }}" alt="logo"></a>
+      <a href="{{url('/')}}" class="href"><img draggable="false" src="{{ asset('images/footer_logo.png') }}" alt="logo"></a>
     </div>
     <div class="container">
       <div class="footer_p mb-5">
@@ -140,37 +140,48 @@
 
 </footer>
 <script>
+  
+if(document.getElementById('designation')!=null){
 
-$(".footer-search").click(function(){
-    search($(this).text(), '');
-});
-$(".footer-city").click(function(){
-    search('',$(this).text());
-});
-function search(d, l){
-    $('#designation').css('border','1px solid lightgray');
-    $('.err_msg').html('');
-    if($.trim(d) != '' || $.trim(l) !=''){      
-        $.post('{{ route("job.checkkeywords") }}', {designation: d, location: l, _method: 'POST', _token: '{{ csrf_token() }}'})
-            .done(function (response) {
-                var l = '';
-                var d = '';
-            if(response.d !=''){
-                d = 'd='+response.d;
-            }
-            if(response.l !=''){
-                if(response.d !=''){
-                    l += '&';
-                }
-                l += 'l='+response.l;
-            }
-            url = '{{ url("/") }}/';
-            window.location = url+response.sl+'?'+d+l;
-        });
-    }else{
-        $('.designation-error').html('Please enter title, keyword or company');
-        $('#designation').css('border','1px solid #f25961');
-    }
+  $(".footer-search").click(function(){
+      search($(this).text(), '');
+  });
+  $(".footer-city").click(function(){
+      search('',$(this).text());
+  });
+
+  $('#designation').on('keyup', function(){
+      $('#designation').tooltip({trigger: 'manual'}).tooltip('hide');
+
+  });
+  function search(d, l){
+      // $('#designation').css('border','1px solid lightgray');
+      $('.err_msg').html('');
+      if($.trim(d) != '' || $.trim(l) !=''){      
+          $.post('{{ route("job.checkkeywords") }}', {designation: d, location: l, _method: 'POST', _token: '{{ csrf_token() }}'})
+              .done(function (response) {
+                  var l = '';
+                  var d = '';
+              if(response.d !=''){
+                  d = 'd='+response.d;
+              }
+              if(response.l !=''){
+                  if(response.d !=''){
+                      l += '&';
+                  }
+                  l += 'l='+response.l;
+              }
+              url = '{{ url("/") }}/';
+              window.location = url+response.sl+'?'+d+l;
+          });
+      }else{
+          // $('.designation-error').html('Please enter title, keyword or company');
+          // $('#designation').css('border','1px solid #f25961');
+          $('#designation').tooltip({trigger: 'manual'}).tooltip('show');
+
+      }
+  }
+
 }
 </script>
 
