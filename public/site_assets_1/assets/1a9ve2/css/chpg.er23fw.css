@@ -258,6 +258,12 @@ li {
     #homepage_stn h1{
         font-size: 20px;
     }
+    .home_banner_desk{
+        display: none;
+    }
+    .home_banner_mob{
+        display: block !important;
+    }
 }
 
 
@@ -269,4 +275,17 @@ li {
     .hme_banner {
         background-size: 70% 100%;
     }
+}
+/* .btn_ch_s2, .btn_c_s1{
+    text-align-last: justify;
+} */
+.btn_ch_s2{
+    border-radius: 5px !important;
+    font-size: 14px !important;
+    color: #14418c;
+    background: #ffffff !important;
+    border-color: #2268dd !important;
+}
+.btn_ch_s2 img{
+    filter: invert(76%) sepia(30%) saturate(3461%) hue-rotate(179deg) brightness(70%) contrast(100%);
 }
