@@ -8,9 +8,8 @@ const mainPanel = document.querySelector(".main-panel");
 const overlay = document.querySelector(".overlay");
 
 var screensize= $( window ).width();
-
 if(sidenavbarfaq==null){
-
+  
     // Collage Card profile
     const arrowtoggleBtn = document.querySelector('.toggle');
     const angletoggleBtn = document.querySelector('.angle-toggle');
@@ -26,6 +25,9 @@ if(sidenavbarfaq==null){
       // If the sidenavbar is not locked
       if(!sidenavbar.classList.contains("locked")) 
       {
+        if(screensize<=575){
+          $('.navbar').removeClass('d-none');
+        }
         if(screensize<=600){
           header.classList.replace("header-open", "header-unset");
         }else{
@@ -41,6 +43,9 @@ if(sidenavbarfaq==null){
           $('.overlay').removeClass('active');
         }
     } else {
+      if(screensize<=575){
+        $('.navbar').addClass('d-none');
+      }
         sidenavbar.classList.remove("hoverable");
         sidenavbar.classList.remove("close");
         sidenavbarLockBtn.classList.replace("fa-bars", "fa-close");
@@ -111,10 +116,17 @@ if(sidenavbarfaq==null){
         arrowtoggleBtn.addEventListener("click", arrowToggle);
     }
 }else{
-  
+    
     // Collage Card 
-    if(screensize<=768){
-      header.classList.replace("header-open", "header-unset");
+    if(screensize<768){
+      header.classList.replace("header-unsets", "header-unset");
+      sidenavbar.classList.remove("unsets");
+      sidenavbar.classList.add("hoverable");
+      sidenavbar.classList.add("close");
+    }else{
+      header.classList.replace("header-unsets", "header-open");
+      sidenavbar.classList.remove("unsets");
+      sidenavbar.classList.add("locked");
     }
   
     // Function to toggle the lock state of the sidenavbar
@@ -123,6 +135,9 @@ if(sidenavbarfaq==null){
       // If the sidenavbar is not locked
       if(!sidenavbar.classList.contains("locked")) 
       {
+        if(screensize<=575){
+          $('.navbar').removeClass('d-none');
+        }
         header.classList.replace("header-open", "header-unset");
         sidenavbar.classList.add("hoverable");
         sidenavbar.classList.add("close");
@@ -131,7 +146,10 @@ if(sidenavbarfaq==null){
         {
           $('.overlay').removeClass('active');
         }
-    } else {
+      } else {
+        if(screensize<=575){
+          $('.navbar').addClass('d-none');
+        }
         header.classList.replace("header-unset", "header-open");
         sidenavbar.classList.remove("hoverable");
         sidenavbar.classList.remove("close");

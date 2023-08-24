@@ -68,34 +68,32 @@
                       </div>
                         
                       <div class="row">
-                        <div class="col-md-6 col-sm-8 col-xs-6 col-8">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                           <div class="d-flex">
                             <text class="align-self-center width overflow-auto">{{ Auth::user()->email }} </text>
                           </div>
                         </div>
-                        <div class="col-md-6 col-sm-4 col-xs-6 col-4 text-center">
-                          </div>
                       </div>
 										</div>
 
 										<div class="mb-4">
                       <div class="row">
-                        <div class="col-md-6 col-sm-8 col-xs-6 col-8">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-8 col-xs-6 col-8">
                           <label for="" class="form-label fw-bolder">Phone Number
                           </label>
                         </div>
-                        <div class="col-md-6 col-sm-4 col-xs-6 col-4 text-center">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-4 col-xs-6 col-4 text-center">
                           @if(Auth::user()->is_mobile_verified=='yes')
                           <img draggable="false" class="align-self-center align-top" src="{{ url('site_assets_1/assets/img/check-mark.png')}}" height="20px" width="20px"> 
                           @endif
                         </div>
                       </div>
                       <div class="row align-items-center current_phone_number">
-                        <div class="col-md-6 col-sm-8 col-xs-6 col-8">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-8 col-xs-6 col-7">
                           <text class=" align-self-center">{{Auth::user()->phone ?? 'None'}}
                           </text>
                         </div>
-                        <div class="col-md-6 col-sm-4 col-xs-6 col-4">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-4 col-xs-6 col-4">
                           <div class="text-center">
                             @if(!empty(Auth::user()->phone))
                             <button class="btn rounded-pill align-self-center btns1 bg-color-blue" type="button" onclick="ChangePhoneNumber();">Change</button>
@@ -109,13 +107,13 @@
                       <div class="row" >
                         <div class="col-md-12 change_phone_number" style="display:none !important;">
                           <div class="row align-items-center">
-                            <div class="col-md-6 col-sm-12 col-xs-6 col-12">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 col-10 mb-4">
                               {!! Form::tel('phone', Auth::user()->phone??null, array('class'=>'form-control mob_cp validMob width me-5','style'=>'line-height:0px', 'id'=>'phone', 'onkeypress'=> 'return isNumber(event)', 'minlength'=>'9', 'maxlength'=>'14', 'placeholder'=>__('Phone'))) !!}
                             </div>
-                            <div class="col-md-2 col-sm-2 col-xs-2 col-2">
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 col-3">
                               <button class="btn btn-verify rounded-pill align-self-center btns1 btn-sm" type="button" onclick="ChangePhoneNumberRequest();">Verify</button>
                             </div>
-                            <div class="col-md-2 col-sm-2 col-xs-2 mx-3 col-2">
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 mx-3 col-3">
                                   <button class="btn rounded-pill align-self-center btn-sm btns1 bg-color-blue" type="button" onclick="CurrentPhoneNumber();">Cancel</button>
                             </div>
                           </div>
@@ -127,10 +125,10 @@
 										<div class="mb-4 align-items-center">
                       <label for="" class="form-label fw-bolder">Password</label>	
                       <div class="row align-items-center">	
-                        <div class="col-md-6 col-sm-8 col-xs-6 col-8">  
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-8 col-xs-6 col-7">  
                             <small class="width me-5">**********</small>
                         </div>
-                        <div class="col-md-6 col-sm-4 col-xs-6 text-center col-4">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-4 col-xs-6 text-center col-4">
                           <button class="btn rounded-pill align-self-center btn-sm bg-color-blue btns1" type="button" onclick="ChangePassword();">Change</button>                      
                         </div>
                       </div>
@@ -151,10 +149,12 @@
   <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		<div class="modal-dialog  modal-dialog-centered ">
 			<div class="modal-content">
-				<div class="modal-header" style="border-bottom:unset !important;background: #f3f7fe;">
+				<div class="modal-header">
 					<h4 class="modal-title fw-bolder">Profile picture</h4>
-					<button type="button" class="btn-close profilemodalclose" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
+          <button type="button" class="close border-0" data-bs-dismiss="modal" aria-label="Close">
+            <i class="fa fa-close"></i>
+          </button>
+        </div>
 
 				<div class="modal-body">
 					<div class="text-center reset-modal">
@@ -188,9 +188,13 @@
 	<div class="modal fade" id="ChangePassword" tabindex="-1" aria-labelledby="ChangePasswordLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-centered modal-md">
       <div class="modal-content">
-        <div class="modal-header" style="border-bottom:unset !important;background: #f3f7fe;">
+        <div class="modal-header">
 					<h4 class="modal-title fw-bolder">Change Password</h4>
-					<button type="button" class="btn-close profilemodalclose" data-bs-dismiss="modal" aria-label="Close"></button>
+				
+          <button type="button" class="close border-0" data-bs-dismiss="modal" aria-label="Close">
+            <i class="fa fa-close"></i>
+          </button>
+          {{-- <button type="button" class="btn-close profilemodalclose" data-bs-dismiss="modal" aria-label="Close"></button> --}}
 				</div>
           
         <div class="modal-body">
@@ -229,7 +233,7 @@
                       <button class="btn bg-grey-color" onclick ='window.location.href=document.referrer' type="button">Cancel</button>
                   </div> -->
                   <div class="text-center">
-                      <button class="btn btn-submitbtn_c_s" type="button" onClick="SubmitPasswordChange()">Submit</button>
+                      <button class="btn btn-submit btn_c_s" type="button" onClick="SubmitPasswordChange()">Submit</button>
                   </div>
               </div>
             {!! Form::close() !!}

@@ -142,3 +142,9 @@
 .border-bottom {
     border-bottom: none !important;
 }
+#profileModal .close, #ChangePassword .close{
+  background: none;
+  color: #2b5baa;
+  border-radius: 5px;
+  font-size: 16px;
+}

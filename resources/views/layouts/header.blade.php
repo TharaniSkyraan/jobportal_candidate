@@ -1,9 +1,15 @@
 <style>
-@media(min-width: 280px) and (max-width: 767px){
-	.mobile-nav-toggle{
-		display: block !important; 
-		
-	} 
+	
+@media(min-width: 280px) and (max-width: 600px){   
+	.header .logo img {
+		max-height: 60px;
+		margin-right: 6px;
+		margin-left: -10px;
+	}
+}
+.profile-pic span{
+	color: unset !important;
+	font-size: 16px !important;
 }
 </style>
 <div class="main-header">
@@ -15,7 +21,7 @@
 					<img draggable="false" src="{{ asset('/') }}sitesetting_images/thumb/{{ $siteSetting->site_logo }}" alt="logo" class="img-fluid">
 					{{-- <span>Post a Job</span> --}}
 				</a>
-				@if(Route::is('job.search')?'active':'')
+				@if(Route::is('job.search'))
 					<div class="desktop_r mx-3">
 						<div class="input-group b-0">
 							<div class="input-group-prepend">
@@ -57,20 +63,25 @@
 			<div>			
 			<div class="align-self-center">
 				<nav id="navbar" class="navbar">
-						@if(Auth::check())
+					@if(Auth::check())
 						<ul class="web-nav">       
-							<li><a class="nav-link scrollto {{ (Route::is('index'))?'active':''}}" href="{{ route('index') }}">Get a Job</a></li>
-						
+							{{-- <li><a class="nav-link scrollto {{ (Route::is('index'))?'active':''}}" href="{{ route('index') }}">Get a Job</a></li> --}}
+							<li>
+								<a class="nav-link" href="{{ route('employer_messages') }}"><img draggable="false" src="{{asset('images/sidebar/msg.png')}}" alt=""></a>
+							</li>
+							<li>
+								<a class="nav-link" href="#"><img draggable="false" src="{{asset('images/sidebar/notification.png')}}" alt=""></a>
+							</li>
 							<li class="dropdown hidden-caret">
 								<a class="dropdown-toggle nav-link profile-pic" data-bs-toggle="dropdown" href="#" id="dropdownMenuLink" aria-expanded="false">
 									<div class="avatar-sm d-flex align-items-center">
-									
 										@if(Auth::user()->image)
 											<img draggable="false" src="{{Auth::user()->image}}" alt="profile-img" class="rounded-circle h-100">
 										@else
 											<img draggable="false" src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="profile-img" class="h-100 rounded-circle mx-2">
-										@endif								
-										<text class="text-truncate-3 font-weight-bold">{{Auth::user()->getName()}}<br><span>{{Auth::user()->candidate_id}}</span></text>
+										@endif			
+										<span class="text-truncate-3 font-weight-bold">{{Auth::user()->getName()}}<br><text>{{Auth::user()->candidate_id}}</text></span>
+										<i class="fa fa-angle-down angle-toggle mob-arrow"></i> 
 									</div>
 								</a>
 						
@@ -82,7 +93,7 @@
 										<div class="user d-flex {{ (Auth::user()->getProfilePercentage() < 40)? 'pending' : 'completed' }}">           
 											<a>
 												<div class="progressbar text-black useraccountsetting cursor-pointer fw-bolder" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" style="--value: {{Auth::user()->getProfilePercentage()}}">    
-												{{Auth::user()->getProfilePercentage()}}%                     
+													{{Auth::user()->getProfilePercentage()}} %                     
 												</div>
 											</a>
 											<div class="align-self-center mt-2">
@@ -119,43 +130,15 @@
 								</ul>
 							</li>
 						</ul>
-						<ul class="mob-nav">
-							<li class="dropdown hidden-caret">
-								<a class="dropdown-toggle nav-link profile-pic" data-bs-toggle="dropdown" href="#" id="dropdownMenuLink" aria-expanded="false">
-									<div class="avatar-sm d-flex align-items-center">
-									
-										@if(Auth::user()->image)
-											<img draggable="false" src="{{Auth::user()->image}}" alt="profile-img" class="rounded-circle h-100">
-										@else
-											<img draggable="false" src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="profile-img" class="h-100 rounded-circle mx-2">
-										@endif								
-										<text class="text-truncate-3 font-weight-bold">{{Auth::user()->getName()}}<br><span>{{Auth::user()->candidate_id}}</span></text>
-									</div>
-								</a>
-							</li>
-							<li>
-								@if(Auth::user()->is_active==1)
-									<a class="dropdown-item" href="{{ route('home') }}"><i class="fa-solid fa-user px-1 mx-2"></i> My Profile</a>
-								@else
-									<a class="dropdown-item" href="{{ route('redirect-user') }}"><i class="fa-solid fa-user px-1 mx-2"></i> My Profile</a>
-								@endif
-							</li>
-							<li>
-								<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form-header').submit();"><i class="fas fa-sign-out-alt px-1 mx-2" ></i> Logout</a>
-							</li>
-									</ul>
-						@elseif(!Auth::check())
-
+					@elseif(!Auth::check())
 						<ul class="">
-							<li><a class="nav-link scrollto" href="{{ route('index') }}">Get a Job </a></li>
-							<li><a class="nav-link scrollto {{ (Route::is('login') )?'active':''}}" href="{{ route('login') }}">Sign in </a></li>
-							<li class="mobile_m"><a>|</a></li>
-							<li><a class="nav-link scrollto" href="https://employer.mugaam.com/" >Employer / Post a Job</a></li>
+							<li><a class="nav-link {{ (Route::is('login') )?'active':''}}" href="{{ route('login') }}">Sign in </a></li>
+							@if(Route::is('job.search')=='')
+							<li><a class="nav-link px-0 profile-pic" href="https://employer.mugaam.com/"><span>| &nbsp; Employer / </span>Post a Job</a></li>
+							@endif
 							{{-- <li><a class="nav-link scrollto {{ (Route::is('job.post_job') )?'active':''}}" href="{{ route('job.post_job') }}">Post Job</a></li> --}}
-						
 						</ul>
 					@endif
-					<i class="fa-solid fa-ellipsis-vertical mobile-nav-toggle"></i>
 				</nav>
 			</div>
 		</div>

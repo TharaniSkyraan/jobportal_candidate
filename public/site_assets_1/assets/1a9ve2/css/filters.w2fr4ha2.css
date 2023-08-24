@@ -651,7 +651,7 @@ section.registrationContainer .registrationBody .registerText {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    border-radius: 30px;
+    border-radius: 5px;
     border-color: #ffffff !important;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
@@ -955,7 +955,7 @@ min-height: 240px;
     width: 80%;
     background: #ffffff !important;
     border-color: #ffffff !important;
-    border-radius: 30px !important;
+    border-radius: 5px !important;
     border-top-left-radius: unset !important;
     border-bottom-left-radius: unset !important;    
     font-size: 20px !important;

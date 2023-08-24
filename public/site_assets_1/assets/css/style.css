@@ -251,72 +251,6 @@ section {
   }
 }
 
-.navbar-mobile {
-  position: fixed;
-  overflow: hidden;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  background: rgba(1, 22, 61, 0.9);
-  transition: 0.3s;
-}
-.navbar-mobile .mobile-nav-toggle {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-}
-.navbar-mobile ul {
-  display: block;
-  position: absolute;
-  top: 55px;
-  right: 15px;
-  bottom: 15px;
-  height: fit-content;
-  left: 15px;
-  padding: 10px 0;
-  border-radius: 10px;
-  background-color: #fff;
-  overflow-y: auto;
-  transition: 0.3s;
-}
-.navbar-mobile a, .navbar-mobile a:focus {
-  padding: 10px 20px;
-  font-size: 15px;
-  color: #012970;
-}
-.navbar-mobile a:hover, .navbar-mobile .active, .navbar-mobile li:hover > a {
-  color: #4285F4;
-}
-.navbar-mobile .getstarted, .navbar-mobile .getstarted:focus {
-  margin: 15px;
-}
-.navbar-mobile .dropdown ul {
-  position: static;
-  display: none;
-  margin: 10px 20px;
-  padding: 10px 0;
-  z-index: 99;
-  opacity: 1;
-  visibility: visible;
-  background: #fff;
-  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-}
-.navbar-mobile .dropdown ul li {
-  min-width: 199px;
-}
-.navbar-mobile .dropdown ul a {
-  padding: 10px 20px;
-}
-.navbar-mobile .dropdown ul a i {
-  font-size: 12px;
-}
-/* .navbar-mobile .dropdown ul a:hover, .navbar-mobile .dropdown ul .active:hover, .navbar-mobile .dropdown ul li:hover > a {
-  color: #4285F4;
-} */
-.navbar-mobile .dropdown > .dropdown-active {
-  display: block;
-}
 /* dropdown for header ends */
 .avatar-sm{
   height: 3rem !important;
@@ -355,7 +289,7 @@ section {
 .navbar a i, .navbar a:focus i {
   font-size: 12px;
   line-height: 0;
-  margin-left: 5px;
+  margin-left: 15px;
 }
 .navbar a:hover, .navbar .active, .navbar .active:focus, .navbar li:hover > a {
   color: #4285F4;
@@ -372,79 +306,24 @@ section {
   color: #000;
   /* background: #5969f3; */
 }
-
-
+.mob-arrow{
+  display: none !important;
+}
 /**
 * Mobile Navigation 
 */
-.mobile-nav-toggle {
-  color: #012970;
-  font-size: 28px;
-  cursor: pointer;
-  display: none;
-  line-height: 0;
-  transition: 0.5s;
-}
-.mobile-nav-toggle.bi-x {
-  color: #fff;
-}
 
-.mob-nav{
-  display: none !important;
-}
 @media (max-width: 767px) {
-  .mobile-nav-toggle {
-    display: block;
-  }
-
-  .navbar ul {
-    display: none;
-  }
-  .web-nav{
-    display: none !important;
-  }
-  .navbar-mobile .mob-nav{
+  .mob-arrow{
     display: block !important;
   }
-}
-.navbar-mobile {
-  position: fixed;
-  overflow: hidden;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  background: rgba(1, 22, 61, 0.9);
-  transition: 0.3s;
-}
-.navbar-mobile .mobile-nav-toggle {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-}
-.navbar-mobile ul {
-  display: block;
-  position: absolute;
-  top: 55px;
-  right: 15px;
-  bottom: 15px;
-  left: 15px;
-  padding: 10px 0;
-  border-radius: 10px;
-  background-color: #fff;
-  overflow-y: auto;
-  transition: 0.3s;
-}
-.navbar-mobile a, .navbar-mobile a:focus {
-  padding: 10px 20px;
-  font-size: 15px;
-  color: #012970;
-}
-.navbar-mobile a:hover, .navbar-mobile .active, .navbar-mobile li:hover > a {
-  color: #4285F4;
-}
-.navbar-mobile .getstarted, .navbar-mobile .getstarted:focus {
-  margin: 15px;
+  .navbar ul {
+    /* display: none; */
+  }
+  .navbar .dropdown ul{
+    position: fixed;
+    left: -100px;
+  }
 }
 
 
@@ -2471,9 +2350,12 @@ border-radius: 20px;
 
 /* Career Info */
 
-@media (min-width: 310px) and (max-width: 409px) {
+@media (min-width: 280px) and (max-width: 409px) {
   input#expected_salary {
     width: 30% !important;
+  }
+  li .nav-link{
+    padding-left: 0px !important;
   }
 }
 @media (min-width: 410px) {
@@ -2492,11 +2374,23 @@ border-radius: 20px;
   display: none;
 }
 
-/* Side Bar */
+.profile-pic span{    
+  font-size: 14px !important;
+  font-weight: 400 !important;
+}
+.profile-pic text{
+  font-size: 12px !important;
+  font-weight: 300 !important;
+}
 
-.mobile-nav-toggle{
-  display: none !important;
-  align-self: center;
-  padding-left: 10px;
-  font-size: 20px !important;
+@media(min-width: 280px) and (max-width: 600px){    
+  .header{
+    height: 60px !important;
+  }
+  .h-100{
+    height: 80%!important;
+  }
+  .profile-pic{
+    padding-left: 0px !important;
+  }
 }

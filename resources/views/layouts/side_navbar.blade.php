@@ -22,9 +22,10 @@
               {{Auth::user()->getProfilePercentage()}}%                     
             </div>
           </a>
-          <div>
+          <div class="row">
             <span class="completion">Profile Completion </span>
-            <span class="email"> {{Auth::user()->email}}</span>
+            <span class="email" @if(strlen(Auth::user()->candidate_id)>30) style="font-size:8px" @elseif(strlen(Auth::user()->candidate_id)>20) style="font-size:10px;" @endif > {{Auth::user()->candidate_id}}</span>
+            {{-- <span class="email" @if(strlen(Auth::user()->email)>30) style="font-size:8px" @elseif(strlen(Auth::user()->email)>20) style="font-size:10px;" @endif > {{Auth::user()->email}}</span> --}}
           </div>
       </div>
       <a class="text-black text-center toggle" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">

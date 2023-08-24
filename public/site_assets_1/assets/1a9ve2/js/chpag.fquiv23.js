@@ -1,5 +1,37 @@
 
 let csrf_token = $('meta[name=csrf-token]').attr('content');
+const ini_screensize = $( window ).width();
+const web_screen = 992;
+const mobile_screen = 991;
+
+function handleScreenSizeChange() {
+    var screenWidth = $(window).width();
+
+
+    if((ini_screensize<=mobile_screen) && (screenWidth<web_screen)){
+        console.log('Mob screen');
+    }
+
+    if((ini_screensize>mobile_screen) && (screenWidth>=web_screen)){
+        console.log('Web screen');
+    }
+
+    if((ini_screensize>=web_screen) && (screenWidth<=mobile_screen)){
+        console.log('show error');
+    }
+
+    if((ini_screensize<=mobile_screen) && (screenWidth>=web_screen)){
+        console.log('show error');
+    }
+}
+
+// Attach the event listener to window resize
+$(window).resize(function() {
+    handleScreenSizeChange();
+});
+
+// Call the function initially
+handleScreenSizeChange();
 
 $("#passbtn").click(function(){
     var data = current_city;

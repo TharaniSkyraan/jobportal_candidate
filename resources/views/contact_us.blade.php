@@ -34,7 +34,7 @@
                                 <img draggable="false" src="{{asset('images/m_svg/location.svg')}}" class="address-img border-radius-10 contact-icons" alt="...">
                             </span>
                             <span class="my-3">Address <br>
-                                <a href=""> Hari Complex, 207/A3, Sathy Rd, opp. Prozone Mall, Saravanampatti, Coimbatore, Tamil Nadu 641035</a>
+                                <a href="javascript:void(0)" class="cursor-default"> Hari Complex, 207/A3, Sathy Rd, opp. Prozone Mall, Saravanampatti, Coimbatore, Tamil Nadu 641035</a>
                             </span>
                         </div>
                     </div>

@@ -160,11 +160,12 @@ class LoginController extends Controller
             $str = $user->getName() . $user->getId() . $user->getEmail();
             $email = $user->getEmail();
             $providerId = $user->getId();
+            $names = !empty($email)?explode('@',$email):'';
 
             if(User::where('email',$email)->doesntExist()){
 
                 $user = User::create([
-                    'first_name' => $user->getName()??'', 
+                    'first_name' => $user->getName()??(!empty($names)?$names[0]:''), 
                     'email' => $user->getEmail(),
                     'next_process_level' =>  'education',
                     'provider' => $provider,

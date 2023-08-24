@@ -39,18 +39,20 @@
             <div class="container">
                 <div class="hme_banner">
                     <div class="row">
-                        <div class="col-5 mobile_bnr align-self-center">
-                            <img draggable="false" src="{{url('images/responsive_hpg_mobile.png')}}" alt="" width="100%">
+                        <div class="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-6  align-self-center">
                         </div>
-                        <div class="col-xl-5 col-5 pt-4 mt-2 align-self-center">
-                            <h1 class="pt-5">Begin your <br/><strong>Dream career.</strong></h1>
-
+                           @if(Auth::check() ) 
+                           <div class="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-6 pt-4 @if(Auth::user()->getProfilePercentage() < 80) mt-2 @else m-0 @endif align-self-center">
+                               <h1 class="@if(Auth::user()->getProfilePercentage() < 80) pt-5 @endif">Begin your <br/><strong>Dream career.</strong></h1>
+                           @else
+                           <div class="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-6 pt-4 m-0 align-self-center">
+                               <h1>Begin your <br/><strong>Dream career.</strong></h1>
+                           @endif
                             <p>
                                 1000+ Jobs posted all over the world
                                 <strong class="fw-bolder">Opportunities</strong>  waiting for your successfull start
                             </p>
                         </div>
-
                         <div class="col-md-2"></div>
                     </div>
                 </div>
@@ -58,35 +60,18 @@
 
                     <div class="search_hme mt-3">
                         <div class="card bg-primary sarchtopcrad">
-                        </div>
-                        <div class="card sarchcrad">                                
-                            {{-- <div class="row">
-                                <div class="col-md-5 designation">
-                                    {!! Form::search('designation', null, array('class'=>'form-control-2  typeahead', 'id'=>'designation',
-                                    'placeholder'=>__('Job title, keywords or company'),  'autocomplete'=>'off', 'spellcheck'=>'false' ) ) !!}
-                                </div>
-                                <div class="col-md-5 location">
-                                    {!! Form::search('location', null, array('class'=>'form-control-2 typeahead', 'autocomplete'=>'off', 'id'=>'location', 'placeholder'=>__('On Location'),' aria-label'=>'On Location')) !!}
-                                    <span class="form-text text-white err_msg"></span>                        
-                                </div>
-                                <div class="col-md-1">
-                                    <button class='btn btn_c_s1 form-control' id='msearch_btn'>
-                                    <i class="fa fa-search"></i>
-                                    </button>
-                                </div>
-                            </div> --}}
-
-                            
-                            <div class="row ps-5">
-                                <div class="col-md-5 col-md-5 col-lg-5 align-self-center designation p-0 m-0">
+                        {{-- </div>
+                        <div class="card sarchcrad">   --}}
+                            <div class="row">
+                                <div class="col-xl-5 col-md-5 col-lg-5 col-sm-5 col-5 align-self-center designation p-0 m-0">
                                     {!! Form::search('designation', null, array('class'=>'form-control-2  typeahead', 'autocomplete'=>'off', 'id'=>'designation', 'data-mdb-toggle'=>"tooltip", 'data-mdb-placement'=>"left", 'title'=>"Designation required",
                                     'placeholder'=>__('Job title, keywords or company'),  'autocomplete'=>'off', 'spellcheck'=>'false' ) ) !!}
                                 </div>
-                                <div class="col-1 p-0 m-0 pre-d"><span class="pre">|</span></div>
-                                <div class="col-md-5 col-md-5 col-lg-5 align-self-center location p-0 m-0">
+                                <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 p-0 m-0 pre-d align-self-center"><span class="pre">|</span></div>
+                                <div class="col-xl-5 col-md-5 col-lg-5 col-sm-5 col-5 align-self-center location p-0 m-0">
                                     {!! Form::search('location', null, array('class'=>'form-control-2 typeahead', 'id'=>'location', 'autocomplete'=>'off','placeholder'=>__('On Location'),' aria-label'=>'On Location')) !!}
                                 </div>
-                                <div class="col-md-1 align-self-center p-0 m-0">                    
+                                <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 align-self-center p-0 m-0">                    
                                     <button class='btn btn_c_se form-control' id='msearch_btn'>
                                         <i class="fa fa-search"></i>
                                     </button>
@@ -117,7 +102,7 @@
                             </div>
                         </div>
                     @endif   
-                    <div class="popularser_hme mt-5 p-5 text-center">
+                    <div class="popularser_hme mt-5 text-center">
                         <div class="container">
                             <h2 class="ps-2 mb-4">Popular Searches</h2>
                             @forelse($titles as $title)

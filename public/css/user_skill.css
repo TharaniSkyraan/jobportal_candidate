@@ -533,10 +533,23 @@
         margin-top: 1rem;
     }
 }
-
-@media(min-width: 768px) and (max-width: 1024px){
+@media(min-width: 768px) and (max-width: 918px){
+    #language_div .table{
+        overflow-x: auto;
+        display: block;
+    }
+}
+@media(min-width: 768px) and (max-width: 1024px)
+{    
     #abt_meusr, #my_resme, #my_eductin, #my_expernce2, #my_skills1{
         width: 100%;
+    }
+    .main-panel-custom.main-panel-customize #abt_meusr, 
+    .main-panel-custom.main-panel-customize #my_resme, 
+    .main-panel-custom.main-panel-customize #my_eductin, 
+    .main-panel-custom.main-panel-customize #my_expernce2, 
+    .main-panel-custom.main-panel-customize #my_skills1{
+        width: 80%;
     }#abt_meusr .profilepictureappend img{
         /* width: 100%; */
         height: auto;
@@ -546,16 +559,32 @@
         padding: 25px;
     }
 }
-
-@media(min-width: 768px) and (max-width: 918px){
-    #language_div .table{
-        overflow-x: auto;
-        display: block;
-    }
-}
-@media(min-width: 1025px) and (max-width: 1300px){
+@media(min-width: 1025px) and (max-width: 1299px){
     #abt_meusr, #my_resme, #my_eductin, #my_expernce2, #my_skills1{
-        width: 100%;
+        width: 95%;
+    }
+    .main-panel-custom.main-panel-customize #abt_meusr, 
+    .main-panel-custom.main-panel-customize #my_resme, 
+    .main-panel-custom.main-panel-customize #my_eductin, 
+    .main-panel-custom.main-panel-customize #my_expernce2, 
+    .main-panel-custom.main-panel-customize #my_skills1{
+        width: 75%;
+    }#abt_meusr .profilepictureappend img{
+        /* width: 100%; */
+        height: auto;
+    }
+
+}
+@media only screen and (min-width: 1300px){
+    #abt_meusr, #my_resme, #my_eductin, #my_expernce2, #my_skills1{
+        width: 90%;
+    }
+    .main-panel-custom.main-panel-customize #abt_meusr, 
+    .main-panel-custom.main-panel-customize #my_resme, 
+    .main-panel-custom.main-panel-customize #my_eductin, 
+    .main-panel-custom.main-panel-customize #my_expernce2, 
+    .main-panel-custom.main-panel-customize #my_skills1{
+        width: 65%;
     }#abt_meusr .profilepictureappend img{
         /* width: 100%; */
         height: auto;

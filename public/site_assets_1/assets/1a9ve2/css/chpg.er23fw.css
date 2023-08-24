@@ -18,7 +18,7 @@
     
     border-radius:13px;
     margin-top: 8%;
-    margin-left: 19%;
+    margin-left: 15%;
     box-shadow:1px 1px 14px 0 rgb(18 38 63 / 20%) !important;
 }
 
@@ -121,6 +121,9 @@ li {
     .location .typeahead.dropdown-menu{
         margin-right: 20.5% !important;
     }
+    .pfcmpletalert{
+        margin-left: 21%;
+    }
 }
 @media (min-width: 1200px){
     .location .typeahead.dropdown-menu{
@@ -144,18 +147,6 @@ li {
     }
 }
 
-@media only screen and (max-width: 481px) {
-
-    .pfcmpletalert{
-        width: 88%;
-        margin-top: 25%;
-        margin-left: 0%;
-    }
-    .pfcmpletalert img{
-        width: 100%;
-    }
-}
-
 .form-control-2 {
     display: block;
     width: 100%;
@@ -169,7 +160,7 @@ li {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    border-radius: 30px;
+    border-radius: 5px;
     border-color: #dadada !important;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
@@ -202,14 +193,14 @@ li {
     border-bottom: 1px solid #dadada;
 }
 .pre{
-    font-size: 32px;
+    font-size: 33.2px;
     font-weight: 100;
 }
 
 .btn_c_se {
     background: #ffffff !important;
     border-color: #dadada !important;
-    border-radius: 30px !important;
+    border-radius: 5px !important;
     border-left: unset !important;
     border-top-left-radius: unset !important;
     border-bottom-left-radius: unset !important;    
@@ -225,7 +216,11 @@ li {
     box-shadow: 2px 6px 15px 0 rgb(69 65 78 / 7%) !important;
 }
 .sarchtopcrad{
-    padding: 4.5rem 0rem 4.5rem 0rem!important;
+    padding: 3.5rem !important;
+}
+
+.sarchtopcrad .row{
+    place-content:center
 }
 .hmenear_job h1{
     font-size: 1.725rem !important;
@@ -241,4 +236,37 @@ li {
 }
 .tooltip-inner{
     background-color: #414141 !important;
+}
+
+
+@media only screen and (max-width: 767px) {
+
+    .pfcmpletalert{
+        width: 88%;
+        margin-top: 25%;
+        margin-left: 0%;
+    }
+    .pfcmpletalert img{
+        width: 100%;
+    }
+    .hme_banner {
+        background: url('../../../../images/responsive_hpg_mobile.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        padding-bottom: 0rem;
+    }
+    #homepage_stn h1{
+        font-size: 20px;
+    }
+}
+
+
+@media(min-width: 280px) and (max-width: 575px)  {
+
+    .sarchtopcrad{
+        padding: 0.5rem  2.5rem 0.5rem 1rem !important;
+    }
+    .hme_banner {
+        background-size: 70% 100%;
+    }
 }

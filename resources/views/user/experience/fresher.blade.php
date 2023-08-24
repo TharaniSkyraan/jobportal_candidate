@@ -35,7 +35,7 @@
                                 </label>
                             </div>
         
-                            <div class="gap-2 m-4 justify-content-md-around pt-5 submit-button" style="display:none">
+                            <div class="gap-2 justify-content-md-around pt-5 submit-button" style="display:none">
                                 <button class="btn btn-submit btn_c_s text-white w-75" type="submit">Continue</button>
                             </div>
                         </div>

@@ -1071,6 +1071,7 @@ filter search
     .popularser_hme{
         border: 1px solid #0336881c;
         border-radius: 15px !important;
+        padding: 25px 0px;
     }
     .popularser_hme label{
         font-size: 14px !important;
@@ -2230,13 +2231,6 @@ filter search
             display: flex;
         }
 
-
-        .hme_banner {
-            
-            background:none !important;
-            padding-bottom: 0px !important;
-        }
-
         .hme_banner h1{
             margin-top: 0px !important;
         }
@@ -2764,4 +2758,14 @@ filter search
         display: none;    
     }
 }
-    
+@media(min-width: 280px) and (max-width: 767px)  {
+  
+    .popularser_hme label{     
+        margin: 0.3rem 0.1rem;
+        padding: 0.5rem;
+        font-size: 12px !important;
+    }
+}
+.cursor-default{
+    cursor: default;
+}

@@ -1,54 +1,36 @@
-@if(Auth::check())
-  <style>
-  @media(min-width: 280px) and (max-width: 767px){
-    .mobile-nav-toggle{
-        display: block !important;         
-    } 
-  }
-  </style>
-@endif
-
-@if(Auth::check())
-  <style>
-    @media(min-width: 280px) and (max-width: 600px){    
-      .header{
-        height: 60px !important;
-      }
-    }
-  </style>
-@endif
 <div class="main-header">
-	<header id="header" class="header header-open fixed-top bg-color-blue d-flex justify-content-center align-items-center">
-		
+	<header id="header" class="header header-unsets fixed-top bg-color-blue d-flex justify-content-center align-items-center">
 		<!-- <button class="navbar-toggler sidenavv-toggler ml-auto" type="button">
 			<i class="fa fa-bars" id="lock-icon1"></i>
 		</button>  -->
-		<button class="navbar-toggler sidenavv-toggler ml-auto" type="button">
+		<div class="navbar-toggler sidenavv-toggler ml-auto" type="button">
 			<i class="fa fa-bars" id="lock-icon" title="Unlock Sidenavbar"></i>
-		</button> 
+		</div>
 		<div class="container-fluid container-xl d-flex align-items-center justify-content-end">
-			<div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-				<a href="{{ route('index') }}" class="logo d-flex align-items-center">
-					<img draggable="false" src="{{ asset('/') }}sitesetting_images/thumb/{{ $siteSetting->site_logo }}" alt="logo" class="img-fluid">
-					{{-- <span>Post a Job</span> --}}
-				</a>
-			<div>		
-			<div class="align-self-center">
+			{{-- <a href="{{ route('index') }}" class="logo d-flex align-items-center">
+				<img draggable="false" src="{{ asset('/') }}sitesetting_images/thumb/{{ $siteSetting->site_logo }}" alt="logo" class="img-fluid">
+			</a> --}}
+			<div class="align-self-center switch-nav">
 				<nav id="navbar" class="navbar">
 						@if(Auth::check())
-						<ul class="web-nav">       
-							<li><a class="nav-link scrollto {{ (Route::is('index'))?'active':''}}" href="{{ route('index') }}">Get a Job</a></li>
-						
+						<ul class="web-nav">
+							<li><a class="nav-link ps-0" href="{{ route('index') }}">Get a Job</a></li>
+							<li>
+								<a class="nav-link" href="{{ route('employer_messages') }}"><img draggable="false" src="{{asset('images/sidebar/msg.png')}}" alt=""></a>
+							</li>
+							<li>
+								<a class="nav-link" href="#"><img draggable="false" src="{{asset('images/sidebar/notification.png')}}" alt=""></a>
+							</li>
 							<li class="dropdown hidden-caret">
 								<a class="dropdown-toggle nav-link profile-pic" data-bs-toggle="dropdown" href="#" id="dropdownMenuLink" aria-expanded="false">
 									<div class="avatar-sm d-flex align-items-center">
-									
 										@if(Auth::user()->image)
 											<img draggable="false" src="{{Auth::user()->image}}" alt="profile-img" class="rounded-circle h-100">
 										@else
 											<img draggable="false" src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="profile-img" class="h-100 rounded-circle mx-2">
 										@endif								
-										<text class="text-truncate-3 font-weight-bold">{{Auth::user()->getName()}}<br><span>{{Auth::user()->candidate_id}}</span></text>
+										<span class="text-truncate-3 font-weight-bold">{{Auth::user()->getName()}}<br><text>{{Auth::user()->candidate_id}}</text></span>
+										<i class="fa fa-angle-down angle-toggle mob-arrow"></i> 
 									</div>
 								</a>
 						
@@ -97,31 +79,6 @@
 								</ul>
 							</li>
 						</ul>
-						<ul class="mob-nav">
-							<li class="dropdown hidden-caret">
-								<a class="dropdown-toggle nav-link profile-pic" data-bs-toggle="dropdown" href="#" id="dropdownMenuLink" aria-expanded="false">
-									<div class="avatar-sm d-flex align-items-center">
-									
-										@if(Auth::user()->image)
-											<img draggable="false" src="{{Auth::user()->image}}" alt="profile-img" class="rounded-circle h-100">
-										@else
-											<img draggable="false" src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="profile-img" class="h-100 rounded-circle mx-2">
-										@endif								
-										<text class="text-truncate-3 font-weight-bold">{{Auth::user()->getName()}}<br><span>{{Auth::user()->candidate_id}}</span></text>
-									</div>
-								</a>
-							</li>
-							<li>
-								@if(Auth::user()->is_active==1)
-									<a class="dropdown-item" href="{{ route('home') }}"><i class="fa-solid fa-user px-1 mx-2"></i> My Profile</a>
-								@else
-									<a class="dropdown-item" href="{{ route('redirect-user') }}"><i class="fa-solid fa-user px-1 mx-2"></i> My Profile</a>
-								@endif
-							</li>
-							<li>
-								<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form-header').submit();"><i class="fas fa-sign-out-alt px-1 mx-2" ></i> Logout</a>
-							</li>
-									</ul>
 						@elseif(!Auth::check())
 
 						<ul class="">
@@ -133,10 +90,17 @@
 						
 						</ul>
 					@endif
-					<i class="fa-solid fa-ellipsis-vertical mobile-nav-toggle"></i>
+					{{-- <div class="avatar-sm d-flex align-items-center mobile-nav-toggle-div">
+						@if(Auth::user()->image)
+							<img draggable="false" src="{{Auth::user()->image}}" alt="profile-img" class="rounded-circle h-100">
+						@else
+							<img draggable="false" src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="profile-img" class="h-100 rounded-circle mx-2">
+						@endif	
+						<i class="fa-solid fa-ellipsis-vertical mobile-nav-toggle"></i>
+					</div> --}}
 				</nav>
 			</div>
-		<div>	
+		</div>	
 	</header>
 </div>
 

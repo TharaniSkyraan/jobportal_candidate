@@ -12,7 +12,7 @@
 <!-- <div class="main-panel main-panel-custom main-panel-customize"> -->
     <div class="content">
         
-        <div class="page-inner myprofile_sec">
+        <div class="myprofile_sec">
         <!--alert profile-->
             @if(Auth::check())
                 @if(Auth::user()->getProfilePercentage() < 80)
@@ -34,48 +34,47 @@
                 @endif
             @endif
         </div>
-            
-        <section id="homepage_stn">  
 
+        <section id="homepage_stn">  
             <div class="container">
                 <div class="hme_banner">
                     <div class="row">
-                        <div class="col-5 mobile_bnr align-self-center">
-
+                        <div class="col-xl-5 col-lg-6 col-md-6 col-sm-6 col-6 mobile_bnr align-self-center">
                             <img draggable="false" src="{{url('images/responsive_hpg_mobile.png')}}" alt="" width="100%">
-
                         </div>
-                        <div class="col-5 align-self-center">
-                            <h1 class="mt-5">Begin your <br/><strong>Dream career.</strong></h1>
-
+                        <div class="col-xl-5 col-lg-6 col-md-6 col-sm-6 col-6 pt-4 @if(Auth::user()->getProfilePercentage() < 80) mt-2 @else m-0 @endif align-self-center">
+                            <h1 class="@if(Auth::user()->getProfilePercentage() < 80) pt-5 @endif">Begin your <br/><strong>Dream career.</strong></h1>
                             <p>
                                 1000+ Jobs posted all over the world
                                 <strong class="fw-bolder">Opportunities</strong>  waiting for your successfull start
                             </p>
                         </div>
-
                         <div class="col-md-2"></div>
                     </div>
                 </div>
                 
 
-                <div class="search_hme mt-5">
-                    <div class="card p-5 bg-primary">
-                        <div class="row">
-                        
-                            <div class="col-md-5 designation">
-                                {!! Form::search('designation', null, array('class'=>'form-control-2  typeahead', 'id'=>'designation',
-                                'placeholder'=>__('Job title, keywords or company'),  'autocomplete'=>'off', 'spellcheck'=>'false' ) ) !!}
-                                <span class="form-text text-white err_msg designation-error"></span>
-                            </div>
-                            <div class="col-md-5 location">
-                                {!! Form::search('location', null, array('class'=>'form-control-2 typeahead', 'autocomplete'=>'off', 'id'=>'location', 'placeholder'=>__('On Location'),' aria-label'=>'On Location')) !!}
-                                <span class="form-text text-white err_msg"></span>                        
-                            </div>
-                            <div class="col-md-2">
-                                {!! Form::button('Search', array('class' => 'btn btn-success form-control ','id'=>'msearch_btn', 'type' => 'submit')) !!}                   
+                    <div class="search_hme mt-3">
+                        <div class="card bg-primary sarchtopcrad">
+                        {{-- </div>
+                        <div class="card sarchcrad">   --}}
+                            <div class="row ps-5">
+                                <div class="col-xl-5 col-md-5 col-lg-5 col-sm-5 col-5 align-self-center designation p-0 m-0">
+                                    {!! Form::search('designation', null, array('class'=>'form-control-2  typeahead', 'autocomplete'=>'off', 'id'=>'designation', 'data-mdb-toggle'=>"tooltip", 'data-mdb-placement'=>"left", 'title'=>"Designation required",
+                                    'placeholder'=>__('Job title, keywords or company'),  'autocomplete'=>'off', 'spellcheck'=>'false' ) ) !!}
+                                </div>
+                                <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 p-0 m-0 pre-d"><span class="pre">|</span></div>
+                                <div class="col-xl-5 col-md-5 col-lg-5 col-sm-5 col-5 align-self-center location p-0 m-0">
+                                    {!! Form::search('location', null, array('class'=>'form-control-2 typeahead', 'id'=>'location', 'autocomplete'=>'off','placeholder'=>__('On Location'),' aria-label'=>'On Location')) !!}
+                                </div>
+                                <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 align-self-center p-0 m-0">                    
+                                    <button class='btn btn_c_se form-control' id='msearch_btn'>
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
+
                     </div>
                 
                     @php
@@ -84,29 +83,33 @@
                     @endphp
                     
                     @if(count($cachedatas)!=0)
-                        <div class="reserch text-center">
-                            @forelse($cachedatas as $key => $search)
-                                @if($key < 5 && ($search->designation !='' || $search->location !='')  )
-                                    <label class="cursor-pointer resentsearch plerhvr titsearch px-2 mx-1 py-1 border border-1 rounded-pill shadow-sm" data-d="{{$search->designation}}" data-l="{{$search->location}}">
-                                        <span class="">
-                                            <i class="fa fa-history pe-1" aria-hidden="true"></i>
-                                        </span>
-                                        <span class="">{{$search->designation}} {{$search->location}}</span>
-                                    </label>
-                                @endif
-                            @endforeach
+                        <div class="reserch text-center mt-5">
+                            <div class="container">
+                                @forelse($cachedatas as $key => $search)
+                                    @if($key < 5 && ($search->designation !='' || $search->location !='')  )
+                                        <label class="cursor-pointer resentsearch plerhvr titsearch px-2 mx-1 py-1 border border-1 rounded-pill shadow-sm" data-d="{{$search->designation}}" data-l="{{$search->location}}">
+                                            <span class="">
+                                                <i class="fa fa-history pe-1" aria-hidden="true"></i>
+                                            </span>
+                                            <span class="">{{$search->designation}} {{$search->location}}</span>
+                                        </label>
+                                    @endif
+                                @endforeach
+                            </div>
                         </div>
                     @endif   
-                    <div class="popularser_hme mt-5 px-5 py-4 text-center">
-                        <h3 class="ps-2 mb-4">Popular Searches</h3>
-                        @forelse($titles as $title)
-                        <label class="cursor-pointer resentsearch plerhvr titsearch border border-1 rounded-pill shadow-sm" data-d="{{$search->designation}}" data-l="{{$search->location}}">
-                            <span class="">{{$title->title}}</span>
-                            <span class="">
-                                <i class="fa fa-hand-pointer-o ps-3" aria-hidden="true"></i>
-                            </span>
-                        </label>
-                        @endforeach
+                    <div class="popularser_hme mt-5 text-center">
+                        <div class="container">
+                            <h2 class="ps-2 mb-4">Popular Searches</h2>
+                            @forelse($titles as $title)
+                            <label class="cursor-pointer resentsearch plerhvr titsearch border border-1 rounded-pill shadow-sm" data-d="{{$title->title}}" data-l="">
+                                <span class="">{{$title->title}}</span>
+                                <span class="">
+                                    <i class="fa fa-hand-pointer-o ps-3" aria-hidden="true"></i>
+                                </span>
+                            </label>
+                            @endforeach
+                        </div>
                     </div>
                     <div class="candidate_img text-center mt-5">
                         <div class="container">
@@ -180,11 +183,10 @@
                             </div>
                         </div>
                     </div>
-                        
                     <div class="hmenear_job mt-5">
                         <div class="row">
                             <div class="col-md-6 col-6">
-                                <h2>Jobs near you</h2>
+                                <h1>Jobs near you</h1>
                                 <h2>{{$ip_data['city']??''}}</h2>
                             </div>
                             <div class="col-md-6 col-6 text-end align-self-end">
