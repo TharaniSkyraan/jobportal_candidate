@@ -2287,10 +2287,15 @@ border-radius: 20px;
   padding: 4px 20px;
 }.offcanvas-body#search-canvas{
   overflow-y: hidden !important;
+  text-align: -webkit-center;
 }.offcanvas#offcanvasTop{
-  height: fit-content;
+  height: 100%;
+  /* height: fit-content; */
 }#search-canvas input{
   padding: 0.4rem 1rem;
+  border: none;
+  border-radius: 0px;
+  border-bottom: 1px solid #dadada !important;
 }#search-canvas .search-button-bg{
   padding: 6px 20px;
 }.desktop_r input{
@@ -2384,9 +2389,9 @@ border-radius: 20px;
 }
 
 @media(min-width: 280px) and (max-width: 600px){    
-  .header{
+  /* .header{
     height: 60px !important;
-  }
+  } */
   .h-100{
     height: 80%!important;
   }

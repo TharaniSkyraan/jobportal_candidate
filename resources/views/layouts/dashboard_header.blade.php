@@ -101,3 +101,9 @@
 	</header>
 </div>
 
+
+<div class="overlay"></div>
+
+@section('custom_bottom_scripts')
+<script type="text/javascript" src="{{ asset('site_assets_1/assets/js/sidenavbarscript.js') }}"></script>
+@endsection

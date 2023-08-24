@@ -62,6 +62,7 @@
 .main-header .header-open{
   transition: all 0.4s ease;
   left: 270px;
+  background-color: #fff0 !important;
 }
 .main-header .header-close{
   transition: all 0.4s ease;
@@ -99,10 +100,17 @@
   /* pointer-events: none; */
 }
 
-#lock-icon {
+#lock-icon{
   padding: 10px;
   color: #4070f4;
   font-size: 20px;    
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0px;
+}#locked-icon {
+  padding-right: 15px;
+  color: #4070f4;
+  font-size: 22px;    
   cursor: pointer;
   transition: all 0.3s ease;
   margin: 0px;
@@ -372,6 +380,17 @@
     left: 0;
     max-width: 100%;
     transform: translateX(0%);
+  }
+    
+  .main-header .header-open{
+    transition: unset;
+    left: 0px;
+    background-color: #fff0 !important;
+    box-shadow:none !important
+  }
+  .header-open #lock-icon,.header-open #locked-icon{
+    padding-left: 270px !important;
+    color: #FFFFFF;
   }
   /* .navbar {
     left: 0;

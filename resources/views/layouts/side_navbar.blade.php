@@ -141,5 +141,3 @@
     </div>
   </div>
 </nav>
-
-<div class="overlay"></div>

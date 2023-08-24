@@ -8,7 +8,9 @@
 @endsection
 @section('content')
     
-@include('layouts.header')
+
+@include('layouts.search_page_header')
+@include('layouts.search_side_navbar')
 <!-- <div class="main-panel main-panel-custom main-panel-customize"> -->
     <div class="content">
         
@@ -384,17 +386,13 @@
             </div>
         </section>
     </div>
-
-            
-
-<script type="text/javascript">   
-    var baseurl = '{{ url("/") }}/';
-    var current_city = "{{$ip_data['city']??''}}";
-    
-    var path1 = '{{ url("api/autocomplete/search_designation") }}';
-    var path = '{{ url("api/autocomplete/search_location") }}';
-</script>
-{{-- @include('layouts.footer') --}}
+    <script type="text/javascript">   
+        var baseurl = '{{ url("/") }}/';
+        var current_city = "{{$ip_data['city']??''}}";
+        
+        var path1 = '{{ url("api/autocomplete/search_designation") }}';
+        var path = '{{ url("api/autocomplete/search_location") }}';
+    </script>
 @endsection
 
 @section('footer')
@@ -404,4 +402,5 @@
 @section('custom_bottom_scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" integrity="sha512-HWlJyU4ut5HkEj0QsK/IxBCY55n5ZpskyjVlAoV9Z7XQwwkqXoYdCIC93/htL3Gu5H3R4an/S0h2NXfbZk3g7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/1a9ve2/js/chpag.fquiv23.js') }}"></script>
+<script type="text/javascript" src="{{ asset('site_assets_1/assets/js/searchsidenavbarscript.js') }}"></script>
 @endsection

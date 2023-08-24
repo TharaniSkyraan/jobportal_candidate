@@ -150,11 +150,12 @@ if(document.getElementById('designation')!=null){
       search('',$(this).text());
   });
 
-  $('#designation').on('keyup', function(){
+  $('#designation, #mdesignation ').on('keyup', function(){
       $('#designation').tooltip({trigger: 'manual'}).tooltip('hide');
+      $('#mdesignation').tooltip({trigger: 'manual'}).tooltip('hide');
 
   });
-  function search(d, l){
+  function search(d, l, from){
       // $('#designation').css('border','1px solid lightgray');
       $('.err_msg').html('');
       if($.trim(d) != '' || $.trim(l) !=''){      
@@ -177,8 +178,11 @@ if(document.getElementById('designation')!=null){
       }else{
           // $('.designation-error').html('Please enter title, keyword or company');
           // $('#designation').css('border','1px solid #f25961');
-          $('#designation').tooltip({trigger: 'manual'}).tooltip('show');
-
+          if(from=='mob'){
+            $('#mdesignation').tooltip({trigger: 'manual'}).tooltip('show');
+          }else{
+            $('#designation').tooltip({trigger: 'manual'}).tooltip('show');
+          }
       }
   }
 

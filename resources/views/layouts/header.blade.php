@@ -1,71 +1,50 @@
 <style>
-	
+
 @media(min-width: 280px) and (max-width: 600px){   
 	.header .logo img {
 		max-height: 60px;
 		margin-right: 6px;
-		margin-left: -10px;
 	}
 }
+
 .profile-pic span{
 	color: unset !important;
 	font-size: 16px !important;
 }
+
+@media(min-width: 601px) and (max-width: 767px){
+	.navbar .dropdown ul{
+		left: 0px;
+	} 
+}
+
+@media(min-width: 411px) and (max-width: 600px){ 
+	.navbar .dropdown ul{
+		left: -30px;
+	}
+}
+
+@media(min-width: 280px) and (max-width: 410px){ 
+	.navbar .dropdown ul{
+		left: -50px;
+	}
+	.profile-pic{
+		padding-right: 0px !important;
+	}
+}
+
 </style>
 <div class="main-header">
 	<header id="header" class="header fixed-top bg-color-blue d-flex justify-content-center align-items-center">
-		<div class="container-fluid container-xl d-flex align-items-center">
-		
-			<div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-				<a href="{{ route('index') }}" class="logo d-flex align-items-center">
-					<img draggable="false" src="{{ asset('/') }}sitesetting_images/thumb/{{ $siteSetting->site_logo }}" alt="logo" class="img-fluid">
-					{{-- <span>Post a Job</span> --}}
-				</a>
-				@if(Route::is('job.search'))
-					<div class="desktop_r mx-3">
-						<div class="input-group b-0">
-							<div class="input-group-prepend">
-								<span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
-							</div>
-							
-							<input type="text" id="search" class="form-control" placeholder="Search jobs in india" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" readonly aria-controls="offcanvasTop" value="{{ucwords(str_replace('-',' ',$slug))}}">
-						</div>
-						<div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
-							<div class="offcanvas-body" id="search-canvas">
-								<div class="container">
-									<div class="mb-3 mt-3">
-										{!! Form::search('mdesignation', $d, array('class'=>'form-control-2  typeahead', 'id'=>'mdesignation',
-										'placeholder'=>__('Job title, keywords or company'),  'autocomplete'=>'off', 'spellcheck'=>'false' ) ) !!}
-										<span class="form-text text-danger err_msg designation-error"></span>
-									</div>
-									<div class="mb-3">
-										{!! Form::search('mlocation', $l, array('class'=>'form-control-2 typeahead', 'id'=>'mlocation', 'placeholder'=>__('On Location'),' aria-label'=>'On Location')) !!}
-										<span class="form-text text-danger err_msg"></span>
-									</div>
-									<div class="row">
-										<div class="col-4"></div>
-										<div class="col-8 mb-4">
-											<div class="row">
-												<div class="col-6 text-center align-self-center">
-													<a class="close_m" href="#" data-bs-dismiss="offcanvas" aria-label="Close">Cancel</a>
-												</div>
-												<div class="col-6 align-self-center">
-													{!! Form::button('Search', array('class' => 'btn search-button-bg ','id'=>'mobsearch_btn', 'type' => 'submit')) !!}                       
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				@endif	
-			<div>			
+		<div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+			<a href="{{ route('index') }}" class="logo d-flex align-items-center">
+				<img draggable="false" src="{{ asset('/') }}sitesetting_images/thumb/{{ $siteSetting->site_logo }}" alt="logo" class="img-fluid">
+				{{-- <span>Post a Job</span> --}}
+			</a>	
 			<div class="align-self-center">
 				<nav id="navbar" class="navbar">
 					@if(Auth::check())
 						<ul class="web-nav">       
-							{{-- <li><a class="nav-link scrollto {{ (Route::is('index'))?'active':''}}" href="{{ route('index') }}">Get a Job</a></li> --}}
 							<li>
 								<a class="nav-link" href="{{ route('employer_messages') }}"><img draggable="false" src="{{asset('images/sidebar/msg.png')}}" alt=""></a>
 							</li>
@@ -144,4 +123,3 @@
 		</div>
 	</header>
 </div>
-

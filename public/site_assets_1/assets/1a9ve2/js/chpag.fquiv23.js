@@ -96,8 +96,16 @@ search($(this).data('d'),$(this).data('l'));
 });
 $('#msearch_btn').on('click', function(){
     //myElement Has Focus
-    search($('#designation').val(),$('#location').val());
+    search($('#designation').val(),$('#location').val(), 'desk');
 });
+
+$('#mobsearch_btn').on('click', function(){
+    //myElement Has Focus
+    var designation = $('#mdesignation').val();
+    var location = $('#mlocation').val();
+    search(designation,location, 'mob');
+});
+
 $(function(){
     var cache1 = JSON.parse(localStorage.getItem('designation'))??{};
     var enter_limit = 1;
@@ -145,6 +153,32 @@ $(function(){
                 enter_limit=1;
             }
         } 
+    });
+    
+    $('#mdesignation').typeahead({ // focus on first result in dropdown
+        source: function(query, result) {
+            var local_cache = JSON.parse(localStorage.getItem('designation'));
+            if ((local_cache!=null) && (query in local_cache)) {
+                // If result is already in local_cache, return it
+                result(cache1[query]);
+                return;
+            }
+            $.ajax({
+                url: path1,
+                method: 'GET',
+                data: {q: query},
+                dataType: 'json',
+                success: function(data) {
+                    cache1[query] = data;
+                    localStorage.setItem('designation',JSON.stringify(cache1));
+                    result(data);
+                }
+            });
+        },
+        autoSelect: false,
+        showHintOnFocus: true
+    }).focus(function () {
+        $(this).typeahead("search", "");
     });
 
     var cache = JSON.parse(localStorage.getItem('search_city'))??{};
@@ -194,4 +228,33 @@ $(function(){
             }
         } 
     });
+    
+    $('#mlocation').typeahead({ // focus on first result in dropdown
+        source: function(query, result) {
+            var local_cache = JSON.parse(localStorage.getItem('search_city'));
+            if ((local_cache!=null) && (query in local_cache)) {
+                // If result is already in local_cache, return it
+                result(cache[query]);
+                return;
+            }
+            $.ajax({
+                url: path,
+                method: 'GET',
+                data: {q: query},
+                dataType: 'json',
+                success: function(data) {
+                    cache[query] = data;
+                    localStorage.setItem('search_city',JSON.stringify(cache));
+                    result(data);
+                }
+            });
+        },
+        autoSelect: false,
+        showHintOnFocus: true
+    }).focus(function () {
+        $(this).typeahead("search", "");
+    });
+
+
+
 });
