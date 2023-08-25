@@ -112,9 +112,7 @@
 					@elseif(!Auth::check())
 						<ul class="">
 							<li><a class="nav-link {{ (Route::is('login') )?'active':''}}" href="{{ route('login') }}">Sign in </a></li>
-							@if(Route::is('job.search')=='')
 							<li><a class="nav-link px-0 profile-pic" href="https://employer.mugaam.com/"><span>| &nbsp; Employer / </span>Post a Job</a></li>
-							@endif
 							{{-- <li><a class="nav-link scrollto {{ (Route::is('job.post_job') )?'active':''}}" href="{{ route('job.post_job') }}">Post Job</a></li> --}}
 						</ul>
 					@endif

@@ -118,6 +118,7 @@
     
     .sticky {
     position: fixed;
+    display: block !important;
     top: 0;
     width: 100%;
     }
@@ -127,12 +128,13 @@
     }#myHeader .card{
         margin-top: 12px;
     }.header#myHeader{
-    height: 90px;
+        height: auto;
     }
-    @media(max-width:767px){
-        .header#myHeader{
+    @media(max-width:576px){
+        .header#myHeader,#appltbutton{
             display:none !important;
         }
+
     }
     @media (min-width: 576px) and (max-width:767px)
     {    
@@ -143,23 +145,47 @@
     .fw-bold{
         font-weight:500 !important;
     }
+    
+    @media(min-width: 768px) and (max-width: 992px){
+
+        .assessment_modal{
+            max-width: 75% !important;
+        }
+    }
+
+    @media(min-width: 280px) and (max-width: 767px){
+        .assessment_modal{
+            width: 100vw;
+            max-width: none;
+            height: 100%;
+            margin: 0;         
+        }
+        .assessment_modal .modal-content, .modal{
+            height: -webkit-fill-available !important;
+            border-radius: 0px !important;
+        }
+    }
+    .previous-btn{
+        background: unset;
+        border: unset;
+    }
 </style>
 
-<div class="header" id="myHeader">
+<div class="header d-none" id="myHeader">
     <div class="row">
-        <div class="col-md-10 m-auto">
-            <div class="card p-2">
+        <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 m-auto">
+            <div class="card p-2 mx-2">
                 <div class="row">
-                    <div class="col-6">
-                        <div class="col-md-8 col-sm-8 col-xs-12 mx-2">
+                    <div class="col-8">
+                        <div class="col-12 mx-2">
                             <h4 class=" text-green-color jt-ellip">{{ ucwords($job->title) }}</h4>
                             <h6 class=" text-dark m-0">{{ ucwords($job->company_name??$job->company->name) }}.</h6>
                         </div>
                     </div>
-                    <div class="col-6 text-end align-self-center">
+                    <div class="col-4 text-end align-self-center">
                         <div class="row">
-                            <div class="col-10">
-                                @if(count($job->screeningquiz)!=0 && $job->company->reference_url=='')
+                            <div class="col-8">
+                                @if(count($job->screeningquiz)!=0 && $job->reference_url=='')
                                     <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn " id="japplybtn" data-bs-toggle="modal" href="#screeningQuiz72ers3" role="button">
                                         <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
                                     </button>
@@ -173,7 +199,7 @@
                                     <img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class=" fs-6">Applied</span>
                                 </label>
                             </div>
-                            <div class="col-2 align-self-center text-center">
+                            <div class="col-4 align-self-center text-center">
                                 @php
                                 $is_fav = 'no';
                                 if((Auth::check() && Auth::user()->isFavouriteJob($job->slug)==true))
@@ -191,7 +217,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-6"></div>
                 </div>
             </div>
         </div>
@@ -206,30 +231,33 @@
             </ol>
         </nav>
         <div class="row">
-            <div class="col-md-12 col-lg-9">
+            <div class="col-xl-9 col-lg-9 col-md-12 col-12">
                 <div class="card page-inner">
-                    <div class="card-body jdcarc">
+                    <div class="card-body jdcarc" >
                         <div class="mb-1">
                             <div class="row">
-                                <div class="col-md-8 col-sm-8 col-xs-12">
-                                    <h2 class=" text-green-color jt-ellip">{{ ucwords($job->title) }}</h2>
-                                    <h4 class=" pb-2">{{ ucwords($job->company_name??$job->company->name) }}.</h4>
+                                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-10">
+                                    <h3 class=" text-green-color jt-ellip">{{ ucwords($job->title) }}</h3>
+                                    <h5 class=" pb-2">{{ ucwords($job->company_name??$job->company->name) }}.</h5>
                                 </div>
-                                <div class="col-md-4 col-sm-8 col-xs-12" style="text-align: -webkit-right;">
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-2" style="text-align: -webkit-right;">
                                     <div class="d-flex align-items-center justify-content-end">
-                                        @if(count($job->screeningquiz)!=0 && $job->company->reference_url=='')
-                                            <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn " id="japplybtn" data-bs-toggle="modal" href="#screeningQuiz72ers3" role="button">
-                                                <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
-                                            </button>
-                                        @else
-                                            <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn">
-                                                <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
-                                            </button>
-                                        @endif
                                         
-                                        <label class="japplied-btn">
-                                            <img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class=" fs-6">Applied</span>
-                                        </label>
+                                        <span id="appltbutton" >
+                                            @if(count($job->screeningquiz)!=0 && !isset($job->reference_url))
+                                                <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn " id="japplybtn" data-bs-toggle="modal" href="#screeningQuiz72ers3" role="button">
+                                                    <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
+                                                </button>
+                                            @else
+                                                <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn">
+                                                    <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
+                                                </button>
+                                            @endif
+                                            
+                                            <label class="japplied-btn">
+                                                <img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class=" fs-6">Applied</span>
+                                            </label>
+                                        </span>
                                         @php
                                         $is_fav = 'no';
                                         if((Auth::check() && Auth::user()->isFavouriteJob($job->slug)==true))
@@ -611,8 +639,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title" id="exampleModalLongTitle">Screening Questions</h3>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                    <button type="button" class="close btn-close" data-bs-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
                 <form class="form" id="screeningQuiz" action="{{route('job.apply', $job->slug)}}" method="post">
@@ -620,10 +647,10 @@
                     {!! Form::hidden('is_login',null, array('id'=>'is_login')) !!}
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-6 col-md-6 align-self-center mobile_m">
+                            <div class="col-xl-6 col-6 align-self-center mobile_m">
                                 <img draggable="false" src="{{asset('images/Screening.png')}}" alt="">
                             </div>
-                            <div class="col-12 col-md-12 col-lg-6 align-self-center">
+                            <div class="col-xl-6 col-lg-12 col-md-12 col-12 align-self-center">
                                 <section id="cdate_assesment">
                                     <div class="card ass_details p-2">
                                         <div class="row">
@@ -675,13 +702,17 @@
                         </div>
                     </div>
                   
-                    <div class="container">
-                        <div class="d-grid gap-2 mx-3 mb-4 d-md-flex justify-content-md-between">
-                            @if($breakpoint==null)
-                                <a class="btn previous-btn skip-submit"> Skip and apply</a>
-                            @endif
+                    <div class="d-flex justify-content-between  mx-4 mb-4">
+                        @if($breakpoint==null)
+                            <div>
+                                <a class="btn previous-btn skip-submit"> Skip & apply</a>
+                            </div> 
+                        @endif
+                        <div>
                             <a class="btn previous-btn" data-bs-dismiss="modal"> Skip</a>
-                            <button type="button" class="btn next-btn submit">Submit and Apply</button>
+                        </div>
+                        <div>
+                            <button type="button" class="btn next-btn submit">Submit & Apply</button>
                         </div>
                     </div>
                 </form>
@@ -704,22 +735,25 @@
     var apply_req_url = "{{ route('job.apply', $job->slug) }}" ;
 
     //company header
-    $('#myHeader').hide();
 
-    window.onscroll = function() {myFunction()};
-
-    var header = document.getElementById("myHeader");
-    var sticky = header.offsetTop;
-
-    function myFunction() {
-        $('#myHeader').show();
-        if (window.pageYOffset > sticky) {
-            header.classList.add("sticky");
+    function boxtothetop() {
+        var windowTop = $(window)
+          .scrollTop();
+        var top = $('#appltbutton')
+          .offset()
+          .top;
+        if(windowTop > top) {
+          $('#myHeader').addClass('sticky');
         } else {
-        $('#myHeader').hide();
-            header.classList.remove("sticky");
+          $('#myHeader').removeClass('sticky');
         }
-    } 
+      }
+      $(function() {
+        $(window)
+          .scroll(boxtothetop);
+          boxtothetop();
+      });
+
 </script>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/2e9ejr3/js/destail.e2k3eu0.js') }}"></script>
 @endsection

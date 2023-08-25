@@ -1284,35 +1284,25 @@ filter search
         background: #FF5B5B;
     }
 
-    .assessment_modal{
-        max-width: 50%;
-    }.assessment_modal .modal-content{
+    .assessment_modal .modal-content{
         padding: 10px;
         width: fit-content;
         background: #fff;
         height: auto;
-    }.assessment_modal img{
-        width: 100%;
     }.assessment_modal p{
         color: #808080;
         font-weight: bolder;
         font-size: 16px;
-    }#screeningQuiz72ers3 .modal-header{
-        background-color: #d5e4fd;
-    }#screeningQuiz72ers3 .modal-header h3{
-        font-weight: bolder;
     }#screeningQuiz72ers3 .modal-content{
         padding: 0px;
     }#screeningQuiz72ers3 .close{
         border: 0px;
-        background: #fff;
         border-radius: 50%;
         width: 28px;
+        font-size: 12px;
     }.assessment_modal .card{
         box-shadow: none;
     }
-
-
     .assessment_modal .next-btn{
         padding: 9px 20px;
     }
@@ -1472,8 +1462,6 @@ filter search
         display: none;
     }#topjobsector .card{
         padding: 20px !important;
-    }.assessment_modal{
-        max-width: 100%;
     }.assessment_modal .mobile_m{
         display: none;    
     }.hmenear_job .col-md-6, .home_pgecities .card-body{
@@ -2208,14 +2196,7 @@ filter search
 
         .hme_banner .mobile_bnr img{
             display: block;
-        }.assessment_modal #cdate_assesment{
-            height: 250px;
-        }.assessment_modal{
-            width: 80%;
-            margin: 0 auto;
         }
-
-
         #footer .system_vw {
             display: none;
         }
@@ -2765,6 +2746,10 @@ filter search
         padding: 0.5rem;
         font-size: 12px !important;
     }
+}
+.assessment_modal #cdate_assesment{
+    max-height: 100vh;
+    height: 70vh;
 }
 .cursor-default{
     cursor: default;

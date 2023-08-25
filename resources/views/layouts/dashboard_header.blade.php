@@ -84,16 +84,6 @@
 						</ul>
 					</li>
 				</ul>
-				@elseif(!Auth::check())
-
-				<ul class="">
-					<li><a class="nav-link scrollto" href="{{ route('index') }}">Get a Job </a></li>
-					<li><a class="nav-link scrollto {{ (Route::is('login') )?'active':''}}" href="{{ route('login') }}">Sign in </a></li>
-					<li class="mobile_m"><a>|</a></li>
-					<li><a class="nav-link scrollto" href="https://employer.mugaam.com/" >Employer / Post a Job</a></li>
-					{{-- <li><a class="nav-link scrollto {{ (Route::is('job.post_job') )?'active':''}}" href="{{ route('job.post_job') }}">Post Job</a></li> --}}
-				
-				</ul>
 				@endif
 				
 			</nav>

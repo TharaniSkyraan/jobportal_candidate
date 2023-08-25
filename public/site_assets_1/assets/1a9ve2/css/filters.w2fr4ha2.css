@@ -995,3 +995,15 @@ min-height: 240px;
 .tooltip-inner{
     background-color: #414141 !important;
 }
+
+@media(min-width: 768px) and (max-width: 992px){
+    .container{
+        max-width: 850px;
+    }
+}
+
+@media(min-width: 576px) and (max-width: 767px){
+    .container{
+        max-width: 62   0px;
+    }
+}
