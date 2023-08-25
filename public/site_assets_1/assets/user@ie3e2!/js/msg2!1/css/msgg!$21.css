@@ -111,7 +111,7 @@
   .msglistpar{
     padding: 0%;
   }
-  .msglistpar.hide{
+  .msglistpar.hide,.hide#nodatamsg{
     display: none;
   }
   .cand-pro
@@ -300,9 +300,6 @@
       transform: translateX(2.5%);
     }
     .job-filter.jfilter{
-      display: none;
-    }
-    .msglistpar{
       display: none;
     }
     .msglistpar.msglist{

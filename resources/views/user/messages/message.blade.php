@@ -18,7 +18,7 @@
         <div class="container-fuild">
           <div class="row chat-frame">
             @include('user.messages.side_filter')
-            <div class="col-xl-9 col-lg-8 col-md-8 col-sm-7 col-12 msglistpar">   
+            <div class="col-xl-9 col-lg-8 col-md-8 col-sm-7 col-12 msglistpar hide">   
               <div class="cand-pro">
                 <!-- Candidate Profile -->
               </div>
@@ -43,7 +43,8 @@
                 </div>
               </div>
             </div>
-            <div class="col-xl-9 col-lg-8 col-md-8 col-sm-7 col-12" id="nodatamsg">   
+            <div class="col-xl-9 col-lg-8 col-md-8 col-sm-7 col-12 hide" id="nodatamsg">   
+              <div class="m-3 text-center"><img draggable="false" class="mt-5" style="margin-top: 6rem !important;margin-left: -10rem;" src="{{ asset('site_assets_1/assets/img/letschat.png')}}" rel="nofollow"></div>
             </div>
           </div>
         </div>

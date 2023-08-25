@@ -7,13 +7,23 @@ var msg_listen = 'messagelisten';
 var contact_status = 'contact_status';
 act_mid = act_mid_from_url;
 act_ftab = m_status;
-last_date = last_chat_at = '';
-if(act_mid && act_ftab){
-    load_message_list_data(act_mid);
-}else{
-    change_url_state(act_mid,act_mid)
+last_date = last_chat_at = devwidth = '';
+if(act_mid && act_ftab){    
+    if(screensize>575){
+    }
 }
 ContactList();
+
+if(screensize<=575){
+    devwidth = 'mobwidth';
+}else{
+    if(act_mid && act_ftab){ 
+        $('.msglistpar').removeClass('hide');
+        load_message_list_data(act_mid);
+    }else{        
+        $('#nodatamsg').removeClass('hide');
+    }
+}
 
 /**  ****Start Status, Filters, Show contact, Select Contact * - Events**** */
 
@@ -56,7 +66,7 @@ $(document).on('click', '.MessageStatus .dropdown-item', function (event) {
 
 $(document).on('click', '.mob-res-arrow', function(e){
     $('.job-filter').removeClass('jfilter');
-    $('.msglistpar').removeClass('msglist'); 
+    $('.msglistpar').addClass('hide'); 
 });
 
 $(document).on('click', '.action .dropdown-item', function (event) {
@@ -83,15 +93,19 @@ $(document).on('click', '#tempskle2 .jlsca', function (event)
 {    
     change_url_state(act_mid,$(this).data('mkey'));
     act_mid = $(this).data('mkey');
-    if (!$(this).hasClass('jpcactive')) {
+    if (!$(this).hasClass('jpcactive') || devwidth=='devwidth') {
         $('#tempskle2 .jlsca').removeClass('jpcactive');
         $(this).addClass('jpcactive');
         $(this).removeClass('unread');
         
-        if($('.mob-res-arrow').data('value')=='mobwidth'){
+        if(devwidth=='mobwidth'){
             $('.job-filter').addClass('jfilter');
         }
         load_message_list_data(act_mid);
+    }
+    if(!$('#nodatamsg').hasClass('hide'))
+    {
+        $('#nodatamsg').addClass('hide');
     }
 });
 
@@ -253,14 +267,10 @@ function message_listen_data(mid=act_mid) {
 
 }
 function messagesPopulate(resp){
-    $html_pro = devwidth = "";
+    $html_pro = "";
     candi_data = resp.contact;
     messages = resp.messages;
 
-    if(screensize<=575){
-        devwidth = 'mobwidth';
-    }
-    
     $html_pro = `<div class="row">
         <div class="col-11 d-flex">
             <div class="mx-2 align-self-center mob-res-arrow" data-value="`+devwidth+`">
