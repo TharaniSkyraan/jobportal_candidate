@@ -73,11 +73,11 @@
 /* otp starts*/ 
 #otp_code {
   padding: 0px;
-  letter-spacing: 30px;
+  letter-spacing: 28px;
   border: 0;
   background: url('../images/artboard2.png');
   background-repeat: space;
-  min-width: 230px;
+  min-width: 210px;
   background-size: 34px auto;
   padding-left: 12px;
   padding-top: 10px;

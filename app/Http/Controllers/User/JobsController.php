@@ -47,7 +47,7 @@ class JobsController extends Controller
                                     }
                                })->whereHas('job', function($q1){
                                     $q1->whereNotNull('slug');
-                               })->orderBy('created_at','asc')
+                               })->orderBy('created_at','desc')
                                  ->paginate(10);
 
         $returnHTML = view('user.jobs.applied-joblist', compact('jobs'))->render();    
@@ -77,7 +77,7 @@ class JobsController extends Controller
     public function savedJobsList(Request $request){      
         $user_id = Auth::user()->id;
         $sortBy = $request->sortBy;
-        $jobs = $this->savedjobs->where('user_id',$user_id)->orderBy('created_at','asc')->paginate(10);
+        $jobs = $this->savedjobs->where('user_id',$user_id)->orderBy('created_at','desc')->paginate(10);
                             //    ->where(function($q) use($sortBy){
                             //         if($sortBy =='view'){                
                             //             $q->whereIn('application_status',['view','consider']);

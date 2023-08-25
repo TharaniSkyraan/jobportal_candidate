@@ -4,10 +4,10 @@
 <div class="card mb-4 p-1 job-list" data-jobid="{{$job->slug}}">
     <div class="card-body m-1">
         <div class="row mb-1">
-            <div class="col-md-8 text-start">
+            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-12 text-start">
                 <h4 class="fw-bold text-green-color">{{ $job->title }}</h4>
             </div>
-            <div class="col-md-4 text-center">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
                 @if($job->expiry_date > Carbon\Carbon::now())
                     @if(Auth::user()->isAppliedOnJob($job->id))                
                         <label class="japplied-btn">

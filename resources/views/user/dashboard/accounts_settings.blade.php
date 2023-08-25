@@ -54,8 +54,6 @@
 										</div>
 									</div>
 									<div class="col-lg-8 col-md-9">
-										
-
 										<div class="mb-4">
                       <div class="row">
                         <div class="col-md-6 col-sm-8 col-xs-6 col-8">

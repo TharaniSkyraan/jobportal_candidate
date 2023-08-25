@@ -268,7 +268,7 @@ ul{
         padding: 9px 20px;
     }
 </style>
-@include('layouts.header')
+@include('layouts.dashboard_header')
 @include('layouts.side_navbar')
 
 <div class="main-panel main-panel-custom main-panel-customize">
@@ -281,11 +281,11 @@ ul{
                     <div class="card-body jdcarc">
                         <div class="mb-1">
                             <div class="row">
-                                <div class="col-md-8 col-sm-8 col-xs-12">
-                                    <h2 class="fw-bolder text-green-color jt-ellip">{{ ucwords($job->title) }}</h2>
-                                    <h4 class="fw-bolder pb-2">{{ ucwords($job->company_name??$job->company->name) }}.</h4>
+                                <div class="col-md-8 col-sm-8 col-12">
+                                    <h3 class="fw-bolder text-green-color jt-ellip">{{ ucwords($job->title) }}</h3>
+                                    <h5 class="fw-bolder pb-2">{{ ucwords($job->company_name??$job->company->name) }}.</h5>
                                 </div>
-                                <div class="col-md-4 col-sm-8 col-xs-12" style="text-align: -webkit-right;">
+                                <div class="col-md-4 col-sm-4 col-12" style="text-align: -webkit-right;">
                                     <div class="d-flex align-items-center justify-content-end">
                                         @if($application_status==null)
                                         <label class="japplied-btn" id="japplied-btn" ><img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class="fw-bolder fs-6">Applied</span></label>
@@ -296,6 +296,9 @@ ul{
                                         @elseif($application_status=='reject')
                                         <label class="japplied-btn" id="japplied-btn" ><img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Rejected.png')}}" alt="Rejected"> <span class="fw-bolder fs-6">Rejected</span></label>
                                         @else
+                                        
+                                        @if($job->expiry_date > Carbon\Carbon::now())
+
                                             @if(count($job->screeningquiz)!=0 && $job->company->is_admin!=1)
                                                 <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn " id="japplybtn" data-bs-toggle="modal" href="#screeningQuiz72ers3" role="button">
                                                     <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
@@ -309,6 +312,15 @@ ul{
                                             <label class="japplied-btn">
                                                 <img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class="fw-bolder fs-6">Applied</span>
                                             </label>
+
+                                        @else
+                                            @if(Auth::user()->isAppliedOnJob($job->id))                
+                                                <label class="japplied-btn">
+                                                    <img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class="fw-bolder fs-6">Applied</span>
+                                                </label>
+                                            @endif
+                                        @endif
+
                                         @endif
                                         {{-- <div class="mx-3">
                                             <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/star_unfilled.png')}}" alt="bookmark">
@@ -325,7 +337,13 @@ ul{
                                     <div class="col-md-4 col-sm-4 col-xs-12"><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/location.png') }}"></span>  <text class="fw-bold"> {{rtrim($job->work_locations, ", ")}}</text></div>
                                 </div>
                                 <div class="row mt-3 ">
-                                    <p class="poscls">Posted {{ MiscHelper::timeSince($job->posted_date) }}</p>
+                                    
+                                    @if($job->expiry_date < Carbon\Carbon::now())
+                                        <div><text class="text-danger"><i class="jpaicon bi-clock-history"></i> Expired<text> </div>
+                                    @else
+                                        <p class="poscls">Posted {{ MiscHelper::timeSince($job->posted_date) }}</p>
+                                    @endif
+                                    
                                 </div>
 
                             </div>
@@ -353,9 +371,6 @@ ul{
                                 @php
                                     $skillarr = $job->skill?array_column(json_decode($job->skill), 'value'):null;
                                 @endphp
-                                @foreach($skillarr as $t)
-                                    <label class="chip clickable"><span>{{$t}}</span></label>
-                                @endforeach
                                 @foreach($skillarr as $t)
                                     <label class="chip clickable"><span>{{$t}}</span></label>
                                 @endforeach
@@ -482,7 +497,7 @@ ul{
                             <div class="mb-2">
                                 <label class="fw-bolder text-green-color">Contact Details</label>
                             </div>
-                            <div class="row">                                
+                            <div class="row col-md-12 justify-content-between"">                                
                                 <div class="col-md-5 align-self-center d-flex">
                                     <div class="pe-1">
                                         <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_message.png')}}" alt="contact location">

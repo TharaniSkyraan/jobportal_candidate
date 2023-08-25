@@ -67,6 +67,16 @@
         border-color: #c8e8ef;
         padding: 0.36rem 0.65rem!important;
     }
+    .allJobList{
+      padding-left:2rem !important;
+    }
+
+    @media(min-width: 280px) and (max-width: 599px){
+        .allJobList{
+          padding-left:1rem !important;
+          padding-right:1rem !important;
+        }
+    }
 </style>
     
 <div class="wrapper">
@@ -77,7 +87,7 @@
 		<div class="content">
         <div class="row">
           <div class="col-md-12 col-lg-10 col-sm-12 col-xs-12">         
-            <div class="px-5 pt-4 pb-0 mt-3 mb-3">
+            <div class="pt-4 pb-0 mt-3 mb-3">
                 <div class="jobList allJobList">
                 </div>
               </div>

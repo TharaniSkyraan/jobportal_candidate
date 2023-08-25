@@ -4,7 +4,7 @@
 <div class="card mb-4 p-1 job-list" data-jobid="{{$job->slug}}">
     <div class="card-body">
         <div class="row mb-1">
-            <div class="col-md-6 col-sm-8 col-xs-12"><h4 class="fw-bold text-green-color">{{ $job->title }}</h4></div>
+            <div class="col-md-12 col-sm-12 col-12"><h4 class="fw-bold text-green-color">{{ $job->title }}</h4></div>
         </div>
         <div class="mb-3 fw-bold">{{ $job->company_name??$job->company->name }}.</div>
         <div class="row mb-3">
@@ -19,7 +19,13 @@
             </ul>
         </div>
         <div class="d-flex mt-3 justify-content-between">
-            <div><text><i class="jpaicon bi-clock-history"></i> {{ \Carbon\Carbon::parse($applyjob->created_at)->diffForHumans() }}</text> </div>
+            <div>
+                @if($job->expiry_date < Carbon\Carbon::now())
+                <text class="text-danger"><i class="jpaicon bi-clock-history"></i> Expired<text> 
+                @else
+                <text><i class="jpaicon bi-clock-history"></i> {{ \Carbon\Carbon::parse($applyjob->created_at)->diffForHumans() }}</text> 
+                @endif
+            </div>
             <div class="text-black-75">            
                 @if($applyjob->application_status==null) <text>Resume to be viewed</text>
                 @elseif($applyjob->application_status=='view' || $applyjob->application_status=='consider') <span><img draggable="false" class="imagesz-2" src="{{ url('site_assets_1/assets/img/viewed.png')}}" alt="viewed"> Resume viewed </span>
