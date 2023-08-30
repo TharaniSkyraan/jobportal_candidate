@@ -25,9 +25,6 @@ if(sidenavbarfaq==null){
       // If the sidenavbar is not locked
       if(!sidenavbar.classList.contains("locked")) 
       {
-        if(screensize<=575){
-          $('.navbar').removeClass('d-none');
-        }
         if(screensize<=600){
           header.classList.replace("header-open", "header-unset");
         }else{
@@ -40,12 +37,10 @@ if(sidenavbarfaq==null){
         {
           mainPanel.classList.add("main-panel-customize");
         }else{
+          $('.navbar').removeClass('d-none');
           $('.overlay').removeClass('active');
         }
     } else {
-      if(screensize<=575){
-        $('.navbar').addClass('d-none');
-      }
         sidenavbar.classList.remove("hoverable");
         sidenavbar.classList.remove("close");
         sidenavbarLockBtn.classList.replace("fa-bars", "fa-close");
@@ -53,6 +48,7 @@ if(sidenavbarfaq==null){
         {
           mainPanel.classList.remove("main-panel-customize");
         }else{
+          $('.navbar').addClass('d-none');
           $('.overlay').addClass('active');
         }
         if(screensize<=600){
@@ -135,27 +131,23 @@ if(sidenavbarfaq==null){
       // If the sidenavbar is not locked
       if(!sidenavbar.classList.contains("locked")) 
       {
-        if(screensize<=575){
-          $('.navbar').removeClass('d-none');
-        }
         header.classList.replace("header-open", "header-unset");
         sidenavbar.classList.add("hoverable");
         sidenavbar.classList.add("close");
         sidenavbarLockBtn.classList.replace("fa-close", "fa-bars");
         if(screensize<768)
         {
+          $('.navbar').removeClass('d-none');
           $('.overlay').removeClass('active');
         }
       } else {
-        if(screensize<=575){
-          $('.navbar').addClass('d-none');
-        }
         header.classList.replace("header-unset", "header-open");
         sidenavbar.classList.remove("hoverable");
         sidenavbar.classList.remove("close");
         sidenavbarLockBtn.classList.replace("fa-bars", "fa-close");
         if(screensize<768)
         {
+          $('.navbar').addClass('d-none');
           $('.overlay').addClass('active');
         }
       }

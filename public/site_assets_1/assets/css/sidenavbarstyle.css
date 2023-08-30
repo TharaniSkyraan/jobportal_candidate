@@ -62,7 +62,7 @@
 .main-header .header-open{
   transition: all 0.4s ease;
   left: 270px;
-  background-color: #fff0 !important;
+  background-color: #FFFFFF !important;
 }
 .main-header .header-close{
   transition: all 0.4s ease;
