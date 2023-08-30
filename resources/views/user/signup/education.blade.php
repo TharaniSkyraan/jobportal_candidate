@@ -6,10 +6,14 @@ ul.typeahead.dropdown-menu {
     display: block;
     margin-right: 25px;
     width: -webkit-fill-available;
+    z-index: 9999 !important;
 }
 li {
     /* font-family: 'Nunito', sans-serif !important; */
 	font-family: "Poppins";
+}
+#cndidate_wzrd .card{
+    overflow-y:unset !important;
 }
 </style>
 @section('custom_scripts')

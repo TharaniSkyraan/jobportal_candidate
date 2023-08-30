@@ -94,7 +94,7 @@
         if(is_admin==1 && reference_url!=''){
             openInNewTabWithNoopener(reference_url);
         }else{
-            var data = {"_token": csrf_token,'is_login':v_is_login };
+            var data = {"_token": csrf_token,'is_login':v_is_login,'is_enabled':$(this).data('value'),'is_screening':isscreening };
             jobApply(apply_req_url, data);
         }
     });
@@ -213,7 +213,11 @@
                     }else if(redir =='company/postedjobslist'){
                         location.reload();
                     }
-                    else if(redir == 'already_applied'){
+                    else if(redir == 'screening'){
+                        $(btn).attr('data-value','enabled');
+                        $('#screeningQuiz72ers3').modal('show');
+
+                    }else if(redir == 'already_applied'){
                         $('#jasuccess').html('<div class="alert alert-success alert-dismissible">'
                             +resp.message
                             +'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
@@ -245,7 +249,7 @@
                                     <div class="mb-4">
                                         <span class="text-center align-items-center justify-content-center d-flex">Complete your profile minimum 40% to apply for Jobs</span>
                                     </div>
-                                    <h3 class="text-center text-primary fw-bold"><a href="`+redir+`">COMPLETE NOW</a></h3>
+                                    <h3 class="text-center text-primary fw-bold"><a href="`+baseurl+redir+`">COMPLETE NOW</a></h3>
                                 </div>
                             </div>`;
                             $('.cmpPrf').html(html);

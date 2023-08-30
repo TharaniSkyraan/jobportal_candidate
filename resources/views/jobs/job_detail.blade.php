@@ -213,7 +213,7 @@
                         <div class="col-4 text-end align-self-center">
                             <div class="row">
                                 <div class="col-8">
-                                    @if(count($job->screeningquiz)!=0 && $job->reference_url=='')
+                                    {{-- @if(count($job->screeningquiz)!=0 && $job->reference_url=='')
                                         <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn " id="japplybtn" data-bs-toggle="modal" href="#screeningQuiz72ers3" role="button">
                                             <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
                                         </button>
@@ -221,6 +221,12 @@
                                         <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn">
                                             <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
                                         </button>
+                                    @endif --}}
+                                    
+                                    @if(!isset($job->reference_url))
+                                        <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn" data-value="disabled">
+                                            <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
+                                        </button>    
                                     @endif
                                     
                                     <label class="japplied-btn">
@@ -252,14 +258,15 @@
     </div>
     <div class="row applybtnsticky">
         <div class="col-12">
-            @if(count($job->screeningquiz)!=0 && !isset($job->reference_url))
-            <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn " id="japplybtn" data-bs-toggle="modal" href="#screeningQuiz72ers3" role="button">
-                <span class="fw-bold">Apply Job</span>
-            </button>
-            @else
-                <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn">
+            {{-- @if(count($job->screeningquiz)!=0 && !isset($job->reference_url))
+                <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn" id="japplybtn" data-bs-toggle="modal" href="#screeningQuiz72ers3" role="button">
                     <span class="fw-bold">Apply Job</span>
                 </button>
+            @endif --}}
+            @if(!isset($job->reference_url))
+                <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn" data-value="disabled">
+                    <span class="fw-bold">Apply Job</span>
+                </button>     
             @endif
             <label class="japplied-btn"><span class=" fs-6">Already Applied</span></label>
         </div>
@@ -286,7 +293,7 @@
                                         <div class="d-flex align-items-center justify-content-end">
                                             
                                             <span id="appltbutton" >
-                                                @if(count($job->screeningquiz)!=0 && !isset($job->reference_url))
+                                                {{-- @if(count($job->screeningquiz)!=0 && !isset($job->reference_url))
                                                     <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn " id="japplybtn" data-bs-toggle="modal" href="#screeningQuiz72ers3" role="button">
                                                         <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
                                                     </button>
@@ -294,6 +301,13 @@
                                                     <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn">
                                                         <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
                                                     </button>
+                                                @endif
+                                                 --}}
+                                    
+                                                @if(!isset($job->reference_url))
+                                                    <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn" data-value="disabled">
+                                                        <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
+                                                    </button> 
                                                 @endif
                                                 
                                                 <label class="japplied-btn">
@@ -773,6 +787,7 @@
     var is_login = '{{ Cookie::get("is_login") }}';
     var save_req_url = "{{ route('job.save', $job->slug) }}";
     var apply_req_url = "{{ route('job.apply', $job->slug) }}" ;
+    var isscreening = "{{(count($job->screeningquiz)!=0)?'yes':'no'}}";
 
     //company header
     function boxtothetop() {

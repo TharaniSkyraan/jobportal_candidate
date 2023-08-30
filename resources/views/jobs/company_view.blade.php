@@ -137,7 +137,7 @@
                                     @if($company->website_url != null)
                                     <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 col-12">
                                         <p>Website</p>
-                                        <span class="fw-bolder">{{$company->website_url}} </span>
+                                        <span class="fw-bolder"><a href="$company->website_url">{{$company->website_url}} </a></span>
                                     </div>
                                     @endif
                                     <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 col-12">

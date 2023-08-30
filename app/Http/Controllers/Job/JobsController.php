@@ -105,9 +105,6 @@ class JobsController extends Controller
     public function search(Request $request, $data)
     {
         
-        if(Auth::check()){
-            UserActivity::updateOrCreate(['user_id' => Auth::user()->id],['last_active_at'=>Carbon::now()]);
-        }
         $meta=[];
         if(strpos($data, 'jobs') !== false){    
 
@@ -140,6 +137,9 @@ class JobsController extends Controller
     public function searchJob(Request $request)
     {
 
+        if(Auth::check()){
+            UserActivity::updateOrCreate(['user_id' => Auth::user()->id],['last_active_at'=>Carbon::now()]);
+        }
         $filters = $jobs = $filter = $citylFGid  = $salaryFGid = $jobtypeFGid = $jobshiftFGid = $edulevelFGid = $wfhtypeFid = $industrytypeGid = $functionalareaGid = $posteddateFid = array();
 
         $sortBy = $request->sortBy??'relevance';
@@ -271,7 +271,7 @@ class JobsController extends Controller
     {
      
         // print  $server_output;exit;
-        $reload_page = false;
+        $reload_page = $screening_enable = false;
         
         if(Auth::check()){
 
@@ -282,15 +282,21 @@ class JobsController extends Controller
             if(Auth::user()->is_active ==1){
                 
                 $is_login = $request->is_login ?? 0;
+                $is_screening = isset($request->is_screening)?'yes':'no';
+                $is_enabled = ($request->is_enabled=='enabled')?1:0;
                 if(! $is_login){
                     $reload_page = true;
                 }
-
+                if(! $is_enabled && $is_screening=='yes'){
+                    $screening_enable = true;
+                    $response = array("success" => false, "message" => "", "return_to" => "screening");
+                }else{
+                    $response = array("success" => true, "message" => "You have already applied for this job", "return_to" => "already_applied");
+                }
                 $user = Auth::user();
                 $user_id = $user->id;
                 $job = Job::where('slug', 'like', $job_slug)->first();
-                $response = array("success" => true, "message" => "You have already applied for this job", "return_to" => "already_applied");
-                if(Auth::user()->isAppliedOnJob($job->id)==false)
+                if(Auth::user()->isAppliedOnJob($job->id)==false && $screening_enable==false)
                 {
                     $jobApply = new JobApply();
                     $jobApply->user_id = $user_id;
@@ -363,6 +369,7 @@ class JobsController extends Controller
         }
 
         $response['reload_page']=$reload_page;
+        $response['screening_enable']=$screening_enable;
         
         return response()->json($response, SUCCESS);
     }
