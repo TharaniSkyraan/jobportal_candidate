@@ -1,597 +1,657 @@
 @extends('layouts.app')
 
 @section('content')
-
-<div class="wrapper" >
-    <style>
-        .image-size{
-            width: 17px;
-            /* vertical-align: text-top; */
-            margin-top: -2px;
-        }
-        .imagesz-2{
-            width: 19px;
-            vertical-align: text-bottom;
-        }
-        .japply-btn{
-            border-color: #c8e8ef;
-            background-color: #d5f4fb !important;
-            padding: 0.46rem 0.85rem!important;
-            font-size: 1rem;
-        }
-        .japply-btn:hover{
-            opacity: 1;
-            transition: none;
-            border-color: #8ad6e7;
-        }
-        .japplied-btn {
-            border-color: #c8e8ef;
-            padding: 0.36rem 0.65rem!important;
-        }
-        .jdcarc{
-            box-shadow: 0 2px 6px -2px rgb(0 106 194 / 20%);
-            padding: 1.25rem 1.25rem .65rem  1.25rem !important
-        }
-        .abt-cmp{
-            box-shadow: 0px 1px 6px -2px rgb(0 106 194 / 20%), 1px -1px 6px -2px rgb(0 106 194 / 20%);
-        }
-        .rjarti{
-            border-bottom: 1px solid #eee;
-        padding: 10px 0;
-        }
-        .jdcarc p{
-            font-size: 14px;
-            margin-bottom: 0.5rem;
-        }
-
-        .jdcarc .chip.clickable {
-    /* cursor: pointer; */
-}
-.jdcarc .chip {
-    margin-top: 10px;
-    display: inline-block;
-    margin-right: 10px;
-    font-size: 14px!important;
-    font-weight: 400;
-    color: #333;
-    border: 1px solid #4285f47a;
-    border-radius: 14px;
-    padding: 5px 12px;
-    background-color: #48abf726;
-}
-ul{
-    margin-bottom: 0.6rem;
-}
-.jobdesbcontar{
-    font-size: 14px;
-}
-.jdcarc .cmpinfo-detail>label {
-    font-size: 14px;
-    font-weight: 400;
-    color: #999;
-    width: 110px;
-    display: inline-block;
-    vertical-align: top;
-}
-.poscls{
-    margin: 8px 0 0 0 !important;
-    color: #666666;
-    font-size: 13px !important;
-}
-
-    #received_cnt{
-        margin: 0 auto;
-        /* box-shadow: 0 3px 10px rgb(0 0 0 / 10%); */
-    }
-    #received_cnt .main_assementcrd{
-        margin-bottom: 0px;
-    }
-    #cdate_assesment li{
-        margin-bottom: 15px;
-    }   
-    #cdate_assesment .cont_act{
-        box-shadow: 0 3px 10px rgb(0 0 0 / 10%);
-        padding: 15px 0px 0px 15px !important;
-        margin-top: 20px;
-        border-radius: 10px;
-
-    }
-    #cdate_assesment .profile_card{
-        background-color: #F3F7FE !important;
-
-    }
-
-    #cdate_assesment .profile_card .ple_img{
-        width: 45%;
-        border-radius: 50%;
-        padding: 20px;
-        line-height: 1.3rem;
-        height: 150px;
-    }
-    #cdate_assesment .profile_card{
-        margin: 0 auto;
-        border: 1px solid rgb(0 0 0 / 6%);
-        border-radius: 10px;
-        box-shadow: none;
-        background-color: #eafbf1 !important;
-    }
-
-    #cdate_assesment::-webkit-scrollbar {
-        display: none;
-    }
-
-    #cdate_assesment{
-        overflow-y: overlay;
-        height: 500px;
-    }
-
-    #cdate_assesment .profile_card .btnact_st{
-        box-shadow: 0px 0px 3px 2px #d7d5d5;
-        background-color: #fcfeff;
-        padding: 0.5rem;
-        background-color: #fff;
-        border-radius: 0.25rem;
-        max-width: 100%;
-    }
-
-    #cdate_assesment hr{
-        height: 2px;
-        background-color: #C4C4C4;
-    }
-    #cdate_assesment .fa-book{
-        font-size: 30px;
-    }
-    #cdate_assesment .message_btn{
-        width: fit-content;
-        margin: 0 auto;
-        background-color: #4285F4;
-        color: #fff;
-        border-radius: 20px;
-        border: 1px solid #4285F4;
-        padding: 5px 20px 5px 20px;
-    }
-    #cdate_assesment thead{
-        background-color: #eafbf1 !important;
-    }
-    #cdate_assesment tbody{
-        background-color: #fff;
-    }
-    #cdate_assesment .fa-phone, #cdate_assesment .fa-envelope, #cdate_assesment .fa-linkedin{
-        align-items: center;
-        width: 30px;
-        background-color: #1572e8b5;
-        height: 30px;
-        justify-content: center;
-        display: inline-grid;
-        border-radius: 50%;
-        border: 2px solid;
-        font-size: 12px;
-        color:#fff !important;
-
-    }
-   
-    #cdate_assesment {
-        height:300px;
-        top: 0;
-        bottom: 0;
-        position: inherit;        
-    }
-
-    #cdate_assesment .table td{
-        border-color: transparent !important;
-    }
-    #assessment .nav-tabs {
-        border-bottom: 1px solid #efeffe;
-        background-color: #EFF4FE;
-        padding: 10px;
-        border-bottom: none;
-    }
-    #assessment #applied-tab{
-        margin-right: 120px;
-    }
-    #assessment .nav-link.active{
-        border-bottom: 2px solid #ec584c !important;
-        background-color: transparent;
-        border-color:transparent;
-        font-weight: bolder;
-    }
-
-    #assessment .nav-link{
-        color: #000;
-        border:transparent;
-    }
-    #cdate_assesment .assessment_card{
-        border: 2px solid #4285F4;
-        padding: 20px;
-        border-radius: 5px;
-        background-color: #fff !important;
-    }
-    #cdate_assesment .fa-info{
-        background-color: #4285f4;
-        width: 18px;
-        align-items: center;
-        justify-content: center;
-        display: inline-flex;
-        color: #fff;
-        border-radius: 50%;
-        height: 18px;
-        font-size: 12px;
-    }
-
-    #cdate_assesment .fa-check, #cdate_assesment .fa-close{
-        width: 25px;
-        align-items: center;
-        justify-content: center;
-        display: inline-flex;
-        color: #fff;
-        border-radius: 50%;
-        height: 25px;
-        font-size: 12px;
-    }
-
-    #cdate_assesment .fa-check{
-        background: #6CD038;
-    }
-
-    #cdate_assesment .fa-close{
-        background: #FF5B5B;
-    }
-
-    .assessment_modal{
-        max-width: 50%;
-    }.assessment_modal .modal-content{
-        padding: 10px;
-        width: fit-content;
-        background: #fff;
-        height: auto;
-    }.assessment_modal img{
-        width: 100%;
-    }.assessment_modal p{
-        color: #808080;
-        font-weight: bolder;
-        font-size: 16px;
-    }#screeningQuiz72ers3 .modal-header{
-        background-color: #d5e4fd;
-    }#screeningQuiz72ers3 .modal-header h3{
-        font-weight: bolder;
-    }#screeningQuiz72ers3 .modal-content{
-        padding: 0px;
-    }#screeningQuiz72ers3 .close{
-        border: 0px;
-        background: #fff;
-        border-radius: 50%;
-        width: 28px;
-    }.assessment_modal .card{
-        box-shadow: none;
-    }
-    .assessment_modal .next-btn{
-        padding: 9px 20px;
-    }
-</style>
 @include('layouts.dashboard_header')
 @include('layouts.side_navbar')
 
-<div class="main-panel main-panel-custom main-panel-customize">
-    <div class="content">
-        <div class="row">
-            <div class="col-md-10">
-            <div class="px-4 pt-4 pb-0 mt-3 mb-3">
-                <div id="jasuccess"></div>
-                <div class="card page-inner">
-                    <div class="card-body jdcarc">
-                        <div class="mb-1">
-                            <div class="row">
-                                <div class="col-md-8 col-sm-8 col-12">
-                                    <h3 class="fw-bolder text-green-color jt-ellip">{{ ucwords($job->title) }}</h3>
-                                    <h5 class="fw-bolder pb-2">{{ ucwords($job->company_name??$job->company->name) }}.</h5>
-                                </div>
-                                <div class="col-md-4 col-sm-4 col-12" style="text-align: -webkit-right;">
-                                    <div class="d-flex align-items-center justify-content-end">
-                                        @if($application_status==null)
-                                        <label class="japplied-btn" id="japplied-btn" ><img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class="fw-bolder fs-6">Applied</span></label>
-                                        @elseif($application_status=='view' || $application_status=='consider')
-                                        <label class="japplied-btn" id="japplied-btn" ><img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/viewed.png')}}" alt="Viewed"> <span class="fw-bolder fs-6">Viewed</span></label>
-                                        @elseif($application_status=='shortlist')
-                                        <label class="japplied-btn" id="japplied-btn" ><img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Shortlist"> <span class="fw-bolder fs-6">Shortlisted</span></label>
-                                        @elseif($application_status=='reject')
-                                        <label class="japplied-btn" id="japplied-btn" ><img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Rejected.png')}}" alt="Rejected"> <span class="fw-bolder fs-6">Rejected</span></label>
-                                        @else
-                                        
-                                        @if($job->expiry_date > Carbon\Carbon::now())
+<style>
+    .image-size{
+        width: 17px;
+        /* vertical-align: text-top; */
+        margin-top: -2px;
+    }
+    .imagesz-2{
+        width: 19px;
+        vertical-align: text-bottom;
+    }
+    .japply-btn{
+        border-color: #4285f470;
+        background-color: #48abf717 !important;
+        padding: 0.46rem 0.85rem!important;
+        font-size: 0.9rem;
+    }
+    .japply-btn:hover{
+        opacity: 1;
+        transition: none;
+        border-color: #4285F4;
+        background-color: #48abf72b !important;
+    }
+    .japplied-btn {
+        border-color: #c8e8ef;
+        padding: 0.36rem 0.65rem!important;
+    }
+    .jdcarc{
+        box-shadow: 0 2px 6px -2px rgb(0 106 194 / 20%);
+        padding: 1.25rem 1.25rem .65rem  1.25rem !important
+    }
+    .abt-cmp{
+        box-shadow: 0px 1px 6px -2px rgb(0 106 194 / 20%), 1px -1px 6px -2px rgb(0 106 194 / 20%);
+    }
+    .rjarti{
+        border-bottom: 1px solid #eee;
+    padding: 10px 0;
+    }
+    .jdcarc p{
+        font-size: 14px;
+        margin-bottom: 0.3rem;
+    }
+    .jdcarc .chip {
+        margin-top: 10px;
+        display: inline-block;
+        margin-right: 10px;
+        font-size: 14px!important;
+        font-weight: 400;
+        color: #333;
+        border: 1px solid #4285f47a;
+        border-radius: 14px;
+        padding: 5px 12px;
+        /* background-color: #effcff; */
+        /* border-color: #4285F4; */
+        background-color: #48abf726 !important;
+    }
+    ul{
+        margin-bottom: 0.5rem;
+    }
+    ul li{
+        line-height: 1.62;
+        margin-bottom: 0.3rem;
+        font-size: 14px;
+    }
+    .jobdesbcontar{
+        font-size: 14px;
+    }
+    .jdcarc .cmpinfo-detail>label {
+        font-size: 14px;
+        font-weight: 400;
+        color: #999;
+        width: 90px;
+        display: inline-block;
+        vertical-align: top;
+    }
+    .poscls{
+        margin: 8px 0 0 0 !important;
+        color: #666666;
+        font-size: 13px !important;
+    }
+    .main-header {
+        background: #fff;
+        min-height: 45px;
+        width: 100%;
+        position: sticky !important;
+        z-index: 1046;
+    }
+    .header-space-search{
+        margin-top:70px !important;
+    }
+    .text-truncate{
+        -webkit-line-clamp: 3 !important;
+        -webkit-box-orient: vertical !important;
+        display: -webkit-box !important;
+        white-space: break-spaces !important;
+    }
+    text{
+        font-size: 15px;
+    }
+    
+    /*company header css*/
+    .top-container {
+    padding: 30px;
+    text-align: center;
+    }
+    
+    .header {
+    padding: 10px 16px;
+    background: #4285f4f2;
+    color: #f1f1f1;
+    }
+    
+    .content {
+    padding: 16px;
+    }
+    
+    .sticky {
+    position: fixed;
+    display: block !important;
+    top: 0;
+    width: 100%;
+    }
+    .applybtnsticky {
+        position: fixed;
+        display: none;
+        bottom: 0;
+        width: 100%;
+        z-index: 9999;
+        padding-bottom: 4%;
+    }
+    .applybtnsticky.nonsticky{  
+        display: none !important;
+    }
+    .applybtnsticky .japply-btn,.applybtnsticky .japplied-btn{
+        width: -webkit-fill-available;
+        margin-left: 20px;
+        background-color: #4b87ed !important;
+        color: #fff !important;
+        text-align: center;
+        border-radius: 25px;
+        margin: 0px 10px;
+    }
+    .sticky + .content {
+    padding-top: 102px;
+    }#myHeader .card{
+        margin-top: 12px;
+    }.header#myHeader{
+        height: auto;
+    }
+    @media(max-width:600px){
+        .header#myHeader,#appltbutton{
+            display:none !important;
+        }
+        .applybtnsticky {
+            display: block !important;
+        }
+    }
+    @media (min-width: 600px) and (max-width:767px)
+    {    
+      .container-detail {
+          max-width: 665px !important;
+      }
+        .japply-btn{
+            font-size: 0.63rem;
+        }
+    }
+    .fw-bold{
+        font-weight:500 !important;
+    }
+    @media only screen and (min-width: 992px){
 
-                                            @if(count($job->screeningquiz)!=0 && $job->company->is_admin!=1)
-                                                <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn " id="japplybtn" data-bs-toggle="modal" href="#screeningQuiz72ers3" role="button">
-                                                    <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
-                                                </button>
-                                            @else
-                                                <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn">
-                                                    <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
-                                                </button>
-                                            @endif
-                                            
-                                            <label class="japplied-btn">
-                                                <img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class="fw-bolder fs-6">Applied</span>
-                                            </label>
+        .assessment_modal{
+            max-width: 65% !important;
+        }
+    }
+    
+    @media(min-width: 768px) and (max-width: 992px){
 
-                                        @else
-                                            @if(Auth::user()->isAppliedOnJob($job->id))                
-                                                <label class="japplied-btn">
-                                                    <img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class="fw-bolder fs-6">Applied</span>
-                                                </label>
-                                            @endif
-                                        @endif
+        .assessment_modal{
+            max-width: 75% !important;
+        }
+    }
 
-                                        @endif
-                                        {{-- <div class="mx-3">
-                                            <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/star_unfilled.png')}}" alt="bookmark">
-                                            <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/star_filled.png')}}" style="display:none" alt="bookmark">
-                                        </div> --}}                                        
-                                    </div>
+    @media(min-width: 280px) and (max-width: 767px){
+        .assessment_modal{
+            width: 100vw;
+            max-width: none;
+            height: 100%;
+            margin: 0;         
+        }
+        .assessment_modal .modal-content, .modal{
+            height: -webkit-fill-available !important;
+            border-radius: 0px !important;
+        }
+    }
+    .previous-btn{
+        background: unset;
+        border: unset;
+    }
+    @media (min-width: 280px) and (max-width: 767px){
+    .assessment_modal .mobile_m {
+        display: none;
+    }
+}
+.assessment_modal #cdate_assesment {
+    max-height: 100vh;
+    height: 70vh;
+}
+#cdate_assesment {
+    overflow-y: overlay;
+    position: inherit;
+}
+</style>
+    <div class="main-panel main-panel-custom main-panel-customize">
+        <div class="header d-none" id="myHeader">
+            <div class="row">
+                <div class="col-xl-9 col-lg-9 col-md-10 col-sm-10 col-12 ms-2">
+                    <div class="card p-2 mx-2">
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="col-12 mx-2">
+                                    <h4 class=" text-green-color jt-ellip">{{ ucwords($job->title) }}</h4>
+                                    <h6 class=" text-dark m-0">{{ ucwords($job->company_name??$job->company->name) }}.</h6>
                                 </div>
                             </div>
-
-                            <div class="col-md-12 mt-3">
+                            <div class="col-4 text-end align-self-center">
                                 <div class="row">
-                                    <div class="col-md-3 col-sm-4 col-xs-12"><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/experience.png') }}"></span> <text class="fw-bold">{{$job->experience_string}}</text></div>
-                                    <div class="col-md-5 col-sm-4 col-xs-12"><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/salary.png') }}"></span> <text class="fw-bold"> {{ trim($job->salary_string) ? $job->salary_string :'Not Disclosed'  }}</text></div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12"><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/location.png') }}"></span>  <text class="fw-bold"> {{rtrim($job->work_locations, ", ")}}</text></div>
-                                </div>
-                                <div class="row mt-3 ">
-                                    
-                                    @if($job->expiry_date < Carbon\Carbon::now())
-                                        <div><text class="text-danger"><i class="jpaicon bi-clock-history"></i> Expired<text> </div>
-                                    @else
-                                        <p class="poscls">Posted {{ MiscHelper::timeSince($job->posted_date) }}</p>
-                                    @endif
-                                    
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body jdcarc">
-                        <div class="mb-1">
-                            <h4 class="mb-2 text-green-color fw-bolder">Job Description</h4>
-                            <div class="jobdesbcontar">{!! $job->description !!}</div>
-                        </div>
-                    </div>
-                    @if(!empty($job->additional_description))
-                    <div class="card-body jdcarc">
-                        <div class="mb-1">
-                            <label class="mb-2 text-green-color fw-bolder">Required Candidate Profile</label>
-                            <div>{!! $job->additional_description !!}</div>
-                        </div>
-                    </div>
-                    @endif
-                    
-                    <div class="card-body jdcarc">
-                        <div class="mb-1">
-                            <label class="mb-2 text-green-color fw-bolder">Skills</label>
-                            <div>
-                                @php
-                                    $skillarr = $job->skill?array_column(json_decode($job->skill), 'value'):null;
-                                @endphp
-                                @foreach($skillarr as $t)
-                                    <label class="chip clickable"><span>{{$t}}</span></label>
-                                @endforeach
-                                {{-- <label class="chip clickable"><span>MySQL</span></label>
-                                <label class="chip clickable"><span>MySQL</span></label>
-                                <label class="chip clickable"><span>MySQL</span></label>
-                                    --}}
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="card-body jdcarc">
-                        <div class="mb-1">
-                            <label class="mb-2 text-green-color fw-bolder">Education</label>
-                            <div><p class="jejed">{{$job->educationLevel->education_level??'Any Degree'}} @if($job->is_any_education_level !='yes' && $job->is_any_education=='yes') - (Any) @endif</p></div>
-                            <div class="jejedtype">@if($job->is_any_education!='yes') <li class="mb-2">Specialization : {{ $job->getEducationTypesStr() }} </li>@endif</div>
-                        </div>
-                    </div>
-
-                    <div class="card-body jdcarc">
-                        <div class="mb-1">
-                            <label class="mb-2 text-green-color fw-bolder">Job Type</label>
-                            {{-- <ul>
-                                @foreach($job->jobtypes as $types)
-                                <li>{{$types->type->type}}</li>
-                                @endforeach
-                            </ul> --}}
-                            <div class="mb-2 mx-3">
-                                @php
-                                $jtyv= '';
-                                @endphp
-                                @foreach($job->jobtypes as $types)
-                                    @php
-                                        $jt_v = $types->type->type;
-                                        if($types->type_id == 1 || $types->type_id == 2 || $types->type_id == 4) {
-                                            if($job->working_deadline && $job->working_deadline_period_id){
-                                                $exle = $job->working_deadline .' '.$job->working_deadline_period_id.'(s)';
-                                                $jt_v = $types->type->type ;
-                                            }
-                                        }else if($types->type_id == 5) {
-                                            if($job->working_hours){
-                                                $exl = $job->working_hours .' hour(s)';
-                                                $jt_v = $types->type->type ;
-                                            }
-                                        }else{
-                                            // $jt_v = $types->type->type ?? '';
+                                    <div class="col-8">
+                                        {{-- @if(count($job->screeningquiz)!=0 && $job->reference_url=='')
+                                            <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn " id="japplybtn" data-bs-toggle="modal" href="#screeningQuiz72ers3" role="button">
+                                                <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
+                                            </button>
+                                        @else
+                                            <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn">
+                                                <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
+                                            </button>
+                                        @endif --}}
+                                        
+                                        @if(!isset($job->reference_url))
+                                            <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn" data-value="disabled">
+                                                <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
+                                            </button>    
+                                        @endif
+                                        
+                                        <label class="japplied-btn">
+                                            <img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class=" fs-6">Applied</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-4 align-self-center text-center">
+                                        @php
+                                        $is_fav = 'no';
+                                        if((Auth::check() && Auth::user()->isFavouriteJob($job->slug)==true))
+                                        {
+                                            $is_fav = 'yes';
                                         }
-                                        $jtyv .=  $jt_v.', ';
-                                    @endphp
-                                    {{-- <p>{{$jt_v.', '}}</p> --}}
-                                @endforeach
-                            {{-- </ul> --}}
-                            <text>{{rtrim($jtyv, ", ")}}</text>
-                            @if(isset($exle)&&!empty($exle))<li>Contract length : {{$exle}}</li>@endif
-                            @if(isset($exl)&&!empty($exl))<li>Part-time hours : {{$exl}} per week</li>@endif
-                            </div>
-                        </div>
-
-                        @if(count($job->jobshifts)!=0)
-                        <div class="mb-1">
-                            <label class="mb-2 text-green-color fw-bolder">Job Shift</label>
-                            <ul>
-                                @foreach($job->jobshifts as $shifts)
-                                <li>{{$shifts->shift->shift}}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endif
-                    </div>
-                    
-                    @if(!empty($job->benefits) || !empty($job->supplementals) || !empty($job->other_benefits))
-                    <div class="card-body jdcarc">
-                        @if(!empty($job->benefits))
-                        <div class="mb-2">
-                            <label class="mb-1 text-green-color fw-bolder">Cash Benefits</label>
-                            <div><p>{{ rtrim($job->benefits,', ') }}</p></div>
-                        </div>
-                        @endif
-                        @if(!empty($job->supplementals))
-                        <div class="mb-2">
-                            <label class="mb-1 text-green-color fw-bolder">Supplemental Pay</label>
-                            <div><p>{{ $job->supplementals }}</p></div>
-                        </div>
-                        @endif
-                        @if(!empty($job->other_benefits))
-                        <div class="mb-2">
-                            <label class="mb-1 text-green-color fw-bolder">Other Benefits</label>
-                            <div><p>{{ $job->other_benefits }}</p></div>
-                        </div>
-                        @endif
-                    </div>
-                    @endif
-                    
-                    @if($job->walkin)
-                    <div class="card-body jdcarc">
-                        <div class="mb-2">
-                            <label class="mb-2 fw-bolder text-green-color">Walk-in Details</label>
-                            <div class="row">
-                                @if($job->walkin)
-                                <div>
-                                    <p><b>From</b> {{ \Carbon\Carbon::parse($job->walkin->walk_in_from_date)->format('d F, Y')}} to {{ \Carbon\Carbon::parse($job->walkin->walk_in_to_date)->format('d F, Y')}}.@if($job->walkin->exclude_days) (Excluding {{$job->walkin->exclude_days}})@endif</p>
-                                    <p><b>Time between : </b> {{ \Carbon\Carbon::parse($job->walkin->walk_in_from_time)->format('H:i A')}} to {{ \Carbon\Carbon::parse($job->walkin->walk_in_to_time)->format('H:i A')}}</p>
-                                </div>
-                                @endif
-                                <div class="col-md-12 align-self-center d-flex">
-                                    <div class="pe-1">
-                                        <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_location.png')}}" alt="contact location">
-                                    </div>
-                                    <div>
-                                        <p class="">
-                                            {{$job->walkin->walk_in_location??''}}
-                                        </p>
+                                        @endphp
+                                        <div class="mx-3 favjob" data-fav='{{$is_fav}}'>                                        
+                                            @if($is_fav=='yes')
+                                                <img draggable="false" class="image-size1 cursor-pointer" src="{{url('site_assets_1/assets/img/star_filled.png')}}" alt="bookmark">
+                                            @else
+                                                <img draggable="false" class="image-size1 cursor-pointer" src="{{url('site_assets_1/assets/img/star_unfilled.png')}}" alt="bookmark">
+                                            @endif
+                                        </div>          
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                    @endif
-                 
-                    @if($job->contact_person_details && $job->company->is_admin==0)
-                    <div class="card-body jdcarc">
-                        <div class="mb-1">
-                            <div class="mb-2">
-                                <label class="fw-bolder text-green-color">Contact Details</label>
-                            </div>
-                            <div class="row col-md-12 justify-content-between"">                                
-                                <div class="col-md-5 align-self-center d-flex">
-                                    <div class="pe-1">
-                                        <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_message.png')}}" alt="contact location">
-                                    </div>
-                                    <div>
-                                        <h5 class="">
-                                           <a href="mailto:{{ $job->contact_person_details->email??'' }}">{{ $job->contact_person_details->email??'' }}</a>
-                                        </h5>    
-                                    </div>
-                                </div>
-                                <div class="col-md-5 justify-content-center">
-                                    <div class="d-flex">
-                                        <div class="pe-1">
-                                            <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_num.png')}}" alt="contact num">
+                </div>
+            </div>
+        </div>
+        <div class="row applybtnsticky">
+            <div class="col-12">
+                {{-- @if(count($job->screeningquiz)!=0 && !isset($job->reference_url))
+                    <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn" id="japplybtn" data-bs-toggle="modal" href="#screeningQuiz72ers3" role="button">
+                        <span class="fw-bold">Apply Job</span>
+                    </button>
+                @endif --}}
+                @if(!isset($job->reference_url))
+                    <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn" data-value="disabled">
+                        <span class="fw-bold">Apply Job</span>
+                    </button>     
+                @endif
+                <label class="japplied-btn"><span class=" fs-6">Already Applied</span></label>
+            </div>
+        </div>
+        <div class="container container-detail mb-5">
+            <div class="w-85 mx-auto header-space-search" >
+                <div class="row">
+                    <div class="col-xl-9 col-lg-9 col-md-12 col-12">
+                        <div class="card page-inner">
+                            <div class="card-body jdcarc" >
+                                <div class="mb-1">
+                                    <div class="row">
+                                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-10">
+                                            <h3 class=" text-green-color jt-ellip">{{ ucwords($job->title) }}</h3>
+                                            <h5 class=" pb-2">{{ ucwords($job->company_name??$job->company->name) }}.</h5>
                                         </div>
-                                        <div>
-                                        <h5 class="">
-                                                <a href="tel:{{ $job->contact_person_details->phone_1 ??'' }}">{{ $job->contact_person_details->phone_1 ??'' }}</a>
-                                            </h5>
-                                            <h5 class="">
-                                                <a href="tel:{{ $job->contact_person_details->phone_1 ??'' }}">{{ $job->contact_person_details->phone_2 ??'' }}</a>
-                                            </h5>
-                                           
+                                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-2" style="text-align: -webkit-right;">
+                                            <div class="d-flex align-items-center justify-content-end">
+                                                
+                                                <span id="appltbutton" >
+                                                    {{-- @if(count($job->screeningquiz)!=0 && !isset($job->reference_url))
+                                                        <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn " id="japplybtn" data-bs-toggle="modal" href="#screeningQuiz72ers3" role="button">
+                                                            <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
+                                                        </button>
+                                                    @else
+                                                        <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn">
+                                                            <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
+                                                        </button>
+                                                    @endif
+                                                    --}}
+                                        
+                                                    @if(!isset($job->reference_url))
+                                                        <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn" data-value="disabled">
+                                                            <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
+                                                        </button> 
+                                                    @endif
+                                                    
+                                                    <label class="japplied-btn">
+                                                        <img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class=" fs-6">Applied</span>
+                                                    </label>
+                                                </span>
+                                                @php
+                                                $is_fav = 'no';
+                                                if((Auth::check() && Auth::user()->isFavouriteJob($job->slug)==true))
+                                                {
+                                                    $is_fav = 'yes';
+                                                }
+                                                @endphp
+                                                <div class="mx-3 favjob" data-fav='{{$is_fav}}'>                                        
+                                                    @if($is_fav=='yes')
+                                                        <img draggable="false" class="image-size1 cursor-pointer" src="{{url('site_assets_1/assets/img/star_filled.png')}}" alt="bookmark">
+                                                    @else
+                                                        <img draggable="false" class="image-size1 cursor-pointer" src="{{url('site_assets_1/assets/img/star_unfilled.png')}}" alt="bookmark">
+                                                    @endif
+                                                </div>                                        
+                                            </div>
                                         </div>
                                     </div>
+            
+                                    <div class="col-md-12 mt-3">
+                                        <div class="row">
+                                            <div class="col-md-3 col-sm-4 col-xs-12 d-flex"><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/experience.png') }}"></span> <text class="fw-bold">{{$job->experience_string}}</text></div>
+                                            <div class="col-md-5 col-sm-5 col-xs-12 d-flex"><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/salary.png') }}"></span> <text class="fw-bold">{{ trim($job->hide_salary != 1)&&!empty($job->salary_string) ? $job->salary_string :'Not Disclosed'}}</text></div>
+                                            <div class="col-md-4 col-sm-4 col-xs-12 d-flex"><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/location.png') }}"></span>  <text class="fw-bold text-truncate">{{rtrim($job->work_locations, ", ")}}</text></div>
+                                        </div>
+                                        <div class="row mt-3 ">
+                                            <p class="poscls">Posted {{ MiscHelper::timeSince($job->posted_date) }}</p>
+                                        </div>
+
+                                    </div>
                                 </div>
-                                {{-- <div class="col-md-4 d-flex justify-content-center"> --}}
-                                    {{-- <div class="pe-1">
-                                        <div class="bg-color-blue border p-2 rounded-pill">
-                                            <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_message.png')}}" alt="contact message">
-                                            <text class="fw-bolder">Send Message</text> 
-                                        </div>   
-                                    </div> --}}
-                                {{-- </div> --}}
                             </div>
-                        </div>
-                    </div>
-                    @endif
-                    
-                    <div class="abt-cmp card-body jdcarc">
-                        <div class="mb-2">
-                            @if(!empty($job->company->description))
-                            <div class="mb-4">
-                                <h5 class="mb-1 fw-bolder text-green-color">About Company<h5>
-                                <p>{{ $job->company->description }}</p>
+                            <div class="card-body jdcarc">
+                                <div class="mb-1">
+                                    <h4 class="mb-3 text-green-color ">Job Description</h4>
+                                    <div class="jobdesbcontar">{!! $job->description !!}</div>
+                                </div>
+                            </div>
+                            @if(!empty($job->additional_description))
+                            <div class="card-body jdcarc">
+                                <div class="mb-1">
+                                    <h4 class="mb-3 text-green-color ">Required Candidate Profile</h4>
+                                    <div>{!! $job->additional_description !!}</div>
+                                </div>
                             </div>
                             @endif
                             
-                            <div class="">
-                                <div class="mb-1 fw-bolder">Company Info</div>
-                                <div class="cmpinfo-detail"><label><b>Website</b></label>
-                                    <span><a href="{{ $job->company->website_url  ?? "#" }}" target="_blank" rel="nofollow">{{ $job->company->website_url ?? "-" }}</a></span>
+                            <div class="card-body jdcarc">
+                                <div class="mb-1">
+                                    <h4 class="mb-2 text-green-color ">Skills</h4>
+                                    <div>
+                                        @php
+                                            $skillarr = $job->skill?array_column(json_decode($job->skill), 'value'):null;
+                                        @endphp
+                                        @foreach($skillarr as $t)
+                                            <label class="chip clickable"><span>{{$t}}</span></label>
+                                        @endforeach
+                                        {{-- <label class="chip clickable"><span>MySQL</span></label>
+                                        <label class="chip clickable"><span>MySQL</span></label>
+                                        <label class="chip clickable"><span>MySQL</span></label> --}}
+                                    </div>
                                 </div>
-                                @php
-                                    $pincode= $job->company->pin_code ?? '';
-                                    $pincode= !empty($pincode)? ', '.$pincode.'.' : '';
-                                @endphp
-                                <div class="row cmpinfo-detail">
-                                    <div class="col-md-6">
-                                        
-                                    @if($job->company->is_admin==0)
-                                        <label><b>Address</b></label>
-                                        <span>{{ !empty($job->company->address) ? $job->company->address.' '.$job->company->location.$pincode : "-" }}</span>
-                                    
-                                    @endif
-                                </div>    
-                                    <div class="col-md-6">
-                                        <div class="col-md-6 align-self-center text-end">
-                                            <a href="{{url('company-view/'.$job->company->slug)}}"><label class="chip clickable mt-0 cursor-pointer"><span>View More</span></label></a>                                 
-                                        </div>
-                                    </div>    
-                                </div> 
                             </div>
                             
-                            <hr>
-                            <div class="sharethis-inline-share-buttons"></div>
+                            <div class="card-body jdcarc">
+                                <div class="mb-3">
+                                    <h4 class="mb-1 text-green-color ">Education</h4>
+                                    <div><p class="jejed">{{$job->educationLevel->education_level??'Any Degree'}} @if($job->is_any_education_level !='yes' && $job->is_any_education=='yes') - (Any) @endif</p></div>
+                                    <div class="jejedtype">@if($job->is_any_education!='yes') <li class="mb-2">Specialization : {{ $job->getEducationTypesStr() }} </li>@endif</div>
+                                </div>
+                            </div>
+
+                            <div class="card-body jdcarc">
+                                <div class="mb-3">
+                                    <h4 class="mb-1 text-green-color ">Job Type</h4>
+                                    {{-- <ul>
+                                        @foreach($job->jobtypes as $types)
+                                        <li>{{$types->type->type}}</li>
+                                        @endforeach
+                                    </ul> --}}
+                                    <div class="mb-2 mx-3">
+                                        @php
+                                        $jtyv= '';
+                                        @endphp
+                                        @foreach($job->jobtypes as $types)
+                                            @php
+                                                $jt_v = $types->type->type;
+                                                if($types->type_id == 1 || $types->type_id == 2 || $types->type_id == 4) {
+                                                    if($job->working_deadline && $job->working_deadline_period_id){
+                                                        $exle = $job->working_deadline .' '.$job->working_deadline_period_id.'(s)';
+                                                        $jt_v = $types->type->type ;
+                                                    }
+                                                }else if($types->type_id == 5) {
+                                                    if($job->working_hours){
+                                                        $exl = $job->working_hours .' hour(s)';
+                                                        $jt_v = $types->type->type ;
+                                                    }
+                                                }else{
+                                                    // $jt_v = $types->type->type ?? '';
+                                                }
+                                                $jtyv .=  $jt_v.', ';
+                                            @endphp
+                                            {{-- <p>{{$jt_v.', '}}</p> --}}
+                                        @endforeach
+                                    {{-- </ul> --}}
+                                    <text>{{rtrim($jtyv, ", ")}}</text>
+                                    @if(isset($exle)&&!empty($exle))<li>Contract length : {{$exle}}</li>@endif
+                                    @if(isset($exl)&&!empty($exl))<li>Part-time hours : {{$exl}} per week</li>@endif
+                                    </div>
+                                </div>
+
+                                @if(count($job->jobshifts)!=0)
+                                <div class="mb-3">
+                                    <h4 class="mb-1 text-green-color ">Job Shift</h4>
+                                    <ul>
+                                        @foreach($job->jobshifts as $shifts)
+                                        <li>{{$shifts->shift->shift}}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                @endif
+                            </div>
+                            
+                            @if(!empty($job->benefits) || !empty($job->supplementals) || !empty($job->other_benefits))
+                            <div class="card-body jdcarc">
+                                @if(!empty($job->benefits))
+                                <div class="mb-3">
+                                    <h4 class="mb-1 text-green-color ">Cash Benefits</h4>
+                                    <div><p>{{ rtrim($job->benefits,', ') }}</p></div>
+                                </div>
+                                @endif
+                                @if(!empty($job->supplementals))
+                                <div class="mb-3">
+                                    <h4 class="mb-1 text-green-color ">Supplemental Pay</h4>
+                                    <div><p>{{ rtrim($job->supplementals,', ') }}</p></div>
+                                </div>
+                                @endif
+                                @if(!empty($job->other_benefits))
+                                <div class="mb-3">
+                                    <h4 class="mb-1 text-green-color ">Other Benefits</h4>
+                                    <div><p>{{ rtrim($job->other_benefits,', ') }}</p></div>
+                                </div>
+                                @endif
+                            </div>
+                            @endif
+
+                            @if($job->walkin)
+                            <div class="card-body jdcarc">
+                                <div class="mb-3">
+                                    <h4 class="mb-1  text-green-color">@if($job->walkin) Walk-In @else Contact Details @endif</h4>
+                                    <div class="row">
+                                        @if($job->walkin)
+                                        <div>
+                                            <p><b>From </b>{{ \Carbon\Carbon::parse($job->walkin->walk_in_from_date)->format('d F, Y')}} to {{ \Carbon\Carbon::parse($job->walkin->walk_in_to_date)->format('d F, Y')}}.@if($job->walkin->exclude_days) (Excluding {{$job->walkin->exclude_days}})@endif</p>
+                                            <p><b>Time between : </b>{{ \Carbon\Carbon::parse($job->walkin->walk_in_from_time)->format('H:i A')}} to {{ \Carbon\Carbon::parse($job->walkin->walk_in_to_time)->format('H:i A')}}</p>
+                                        </div>
+                                        @endif
+                                        <div class="col-md-12 align-self-center d-flex">
+                                            <div class="pe-1">
+                                                <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_location.png')}}" alt="contact location">
+                                            </div>
+                                            <div>
+                                                <p class="">
+                                                    @if(isset($job->walkin->walk_in_location) && !empty($job->walkin->walk_in_location))
+                                                        {{$job->walkin->walk_in_location}}
+                                                    @endif
+                                                </p>
+                                                <p class="">
+                                                    @if(isset($job->walkin->walk_in_google_map_url) && !empty($job->walkin->walk_in_google_map_url))
+                                                        <b>Google Map URL :</b> {{$job->walkin->walk_in_google_map_url}}
+                                                    @endif
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                            </div>
+                            @endif
+                            
+                            @if($job->contact_person_details && $job->company->is_admin==0)
+                            <div class="card-body jdcarc">
+                                <div class="mb-1">
+                                    <div class="mb-2">
+                                        <h4 class=" text-green-color">Contact Details</h4>
+                                    </div>
+                                    <div class="mb-2 row col-md-12 justify-content-between">                                
+                                        <div class="col-md-12 align-self-center d-flex">
+                                            <div class="pe-1">
+                                                <i class="fa fa-user"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="">
+                                                <a>{{ $job->contact_person_details->name??'' }}</a>
+                                                </h5>    
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-2 row col-md-12 justify-content-between">                                
+                                        <div class="col-md-5 align-self-center d-flex">
+                                            <div class="pe-1">
+                                                <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_message.png')}}" alt="contact location">
+                                            </div>
+                                            <div>
+                                                <h5 class="">
+                                                <a href="mailto:{{ $job->contact_person_details->email??'' }}">{{ $job->contact_person_details->email??'' }}</a>
+                                                </h5>    
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 justify-content-center">
+                                            <div class="d-flex">
+                                                <div class="pe-1">
+                                                    <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_num.png')}}" alt="contact num">
+                                                </div>
+                                                <div>
+                                                    <h5 class="">
+                                                        <a href="tel:{{ $job->contact_person_details->phone_1 ??'' }}">{{ $job->contact_person_details->phone_1 ??'' }}</a>
+                                                    </h5>
+                                                    <h5 class="">
+                                                        <a href="tel:{{ $job->contact_person_details->phone_1 ??'' }}">{{ $job->contact_person_details->phone_2 ??'' }}</a>
+                                                    </h5>
+                                                
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- <div class="col-md-4 d-flex justify-content-center"> --}}
+                                            {{-- <div class="pe-1">
+                                                <div class="bg-color-blue border p-2 rounded-pill">
+                                                    <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_message.png')}}" alt="contact message">
+                                                    <text class="">Send Message</text> 
+                                                </div>   
+                                            </div> --}}
+                                        {{-- </div> --}}
+                                    </div>
+                                    
+                                    <div class="d-flex justify-content-between" style="display: @if( ($job->contact_person_details->morning_section_from && $job->contact_person_details->morning_section_to)||($job->contact_person_details->evening_section_from && $job->contact_person_details->evening_section_to)){{'block'}}@else{{'none !important;'}}@endif">
+                                        <h4 class=" text-green-color">Best time to contact</h4>
+                                        {{-- <button class="edit-btn" data-form="job-contact-person-edit"><i class="fa-solid fa-pen-to-square text-green-color edit-icon"></i></button> --}}
+                                    </div>
+                                    <div class="row">                                
+                                        <div class="col-md-10 align-self-center d-flex">
+                                            <div>
+                                                @if( ($job->contact_person_details->morning_section_from && $job->contact_person_details->morning_section_to))
+                                                <p class="jbbesttc_m">
+                                                    {{ \Carbon\Carbon::parse($job->contact_person_details->morning_section_from)->format('h:i A')}} to
+                                                    {{ \Carbon\Carbon::parse($job->contact_person_details->morning_section_to)->format('h:i A') }}
+                                                </p>
+                                                @endif
+                                                @if( ($job->contact_person_details->evening_section_from && $job->contact_person_details->evening_section_to))
+                                                <p class="jbbesttc_e">
+                                                    {{ \Carbon\Carbon::parse($job->contact_person_details->evening_section_from)->format('h:i A') }} to 
+                                                    {{ \Carbon\Carbon::parse($job->contact_person_details->evening_section_to)->format('h:i A') }}
+                                                </p>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+
+                            <div class="abt-cmp card-body jdcarc">
+                                <div class="mb-2">
+                                    @if(!empty($job->company->description))
+                                    <div class="mb-4">
+                                        <h4 class="mb-1  text-green-color">About Company<h4>
+                                        <p>{{ $job->company->description }}</p>
+                                    </div>
+                                    @endif
+                                    
+                                    <div class="">
+                                        <h5 class="mb-1  text-green-color">Company Info</h5>
+                                        @isset($job->company->website_url)
+                                        <div class="row col-md-12 cmpinfo-detail mb-2">
+                                            <div class="col-md-12">
+                                                <label><b>Website : </b></label>
+                                                <span>
+                                                    <a href="{{ $job->company->website_url}}" target="_blank" rel="nofollow noreferer">{{ $job->company->website_url}}</a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        @endisset
+
+                                        <div class="row col-md-12 cmpinfo-detail">
+                                            <div class="col-md-6">
+                                                @if($job->company->is_admin==0)
+                                                <label class="fw-bold">Address :</label>
+                                                <span>
+                                                    @php
+                                                        $pincode= $job->company->pin_code ?? '';
+                                                        $pincode= !empty($pincode)? ', '.$pincode.'.' : '';
+                                                    @endphp
+                                                    <text>{{ !empty($job->company->address) ? $job->company->address.' '.$job->company->location.$pincode : "-" }}</text>
+                                                </span>
+                                                @endif
+                                            </div>
+                                            @isset($job->company)
+                                                @if($job->company->is_admin==0)
+                                                <div class="col-md-6 align-self-center text-end">
+                                                    <a href="{{url('company-view/'.$job->company->slug)}}"><label class="chip clickable mt-0 cursor-pointer"><span>View More</span></label></a>                                 
+                                                </div>
+                                                @elseif(isset($job->reference_url))
+                                                <div class="col-md-6 align-self-center text-end">
+                                                    <a href="{{url('company-view/'.$job->company->slug)}}"><label class="chip clickable mt-0 cursor-pointer"><span>View More</span></label></a>                                 
+                                                </div>
+                                                @endif
+                                            @endisset
+
+                                        </div> 
+                                        
+                                        <hr>
+                                        <div class="sharethis-inline-share-buttons"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-
-    </div>
-</div>
-
     <div class="modal fade" id="screeningQuiz72ers3" tabindex="-1" role="dialog" aria-labelledby="screeningQuiz72ers3Label2" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered assessment_modal">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title" id="exampleModalLongTitle">Screening Questions</h3>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                    <button type="button" class="close btn-close" data-bs-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
                 <form class="form" id="screeningQuiz" action="{{route('job.apply', $job->slug)}}" method="post">
@@ -599,10 +659,10 @@ ul{
                     {!! Form::hidden('is_login',null, array('id'=>'is_login')) !!}
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-6 col-md-6 align-self-center mobile_m">
-                                <img draggable="false" src="{{asset('images/Screening.png')}}" alt="">
+                            <div class="col-xl-5 col-5 align-self-center mobile_m">
+                                <img draggable="false" src="{{asset('images/Screening.png')}}" alt="" class="w-100">
                             </div>
-                            <div class="col-12 col-md-12 col-lg-6 align-self-center">
+                            <div class="col-xl-7 col-lg-12 col-md-12 col-12 align-self-center">
                                 <section id="cdate_assesment">
                                     <div class="card ass_details p-2">
                                         <div class="row">
@@ -612,7 +672,7 @@ ul{
                                                 <p class="h3 mt-4 mb-2">{{$quiz->candidate_question}}</p>
                                                 
                                                 @if($quiz->answer_type=='text')
-                                                    {{ Form::text('answer_'.$quiz->quiz_code, null, array('class'=>'form-control e1ex0nj0', 'id'=>'answer_'.$quiz->quiz_code, 'placeholder'=>__(' '))) }}
+                                                    {{ Form::text('answer_'.$quiz->quiz_code, null, array('class'=>'form-control e1ex0nj0 w-auto', 'id'=>'answer_'.$quiz->quiz_code, 'placeholder'=>__(' '))) }}
                                                 @elseif($quiz->answer_type=='single')
                                                     @foreach (json_decode($quiz->candidate_options) as $key1 => $option)                           
                                                         <div class="form-check">
@@ -638,7 +698,7 @@ ul{
                                                     $options = json_decode($quiz->candidate_options);
                                                     $options = array_combine($options, $options);
                                                 @endphp
-                                                    {{ Form::select('answer_'.$quiz->quiz_code, ['' => __('Select')]+$options??'', null, array('class'=>'form-select', 'id'=>'answer_'.$quiz->quiz_code)) }}
+                                                    {{ Form::select('answer_'.$quiz->quiz_code, ['' => __('Select')]+$options??'', null, array('class'=>'form-select w-auto', 'id'=>'answer_'.$quiz->quiz_code)) }}
                                                 @endif
                                                 <span class="es2wa7s text-danger"> </span>
 
@@ -654,50 +714,64 @@ ul{
                         </div>
                     </div>
                   
-                    <div class="container">
-                        <div class="d-grid gap-2 mx-3 mb-4 d-md-flex justify-content-md-between">
-                            @if($breakpoint==null)
-                                <a class="btn previous-btn skip-submit"> Skip and apply</a>
-                            @endif
+                    <div class="d-flex justify-content-between  mx-4 mb-4">
+                        @if($breakpoint==null)
+                            <div>
+                                <a class="btn previous-btn skip-submit"> Skip & apply</a>
+                            </div> 
+                        @endif
+                        <div>
                             <a class="btn previous-btn" data-bs-dismiss="modal"> Skip</a>
-                            <button type="button" class="btn next-btn submit">Submit and Apply</button>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn_c_s1 submit">Submit & Apply</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-@include('user.complete-profile-modal')
+
+    @include('user.complete-profile-modal')
 <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6315c4c30b5e930012a9c49e&product=inline-share-buttons' async='async'></script>
 @php
     $applied = Auth::user()?(Auth::user()->isAppliedOnJob($job->id)??false):false;
 @endphp
 <script>
+    var reference_url = '{{ $job->reference_url }}';
+    var is_admin = '{{ $job->company->is_admin }}';
     var applied = '{{ $applied }}';
     var baseurl = '{{ url("/") }}/';
-    var is_login = 1;
+    var is_login = '{{ Cookie::get("is_login") }}';
     var save_req_url = "{{ route('job.save', $job->slug) }}";
     var apply_req_url = "{{ route('job.apply', $job->slug) }}" ;
+    var isscreening = "{{(count($job->screeningquiz)!=0)?'yes':'no'}}";
 
     //company header
-    $('#myHeader').hide();
+    function boxtothetop() {
+        var windowTop = $(window)
+          .scrollTop();
+        var top = ($('#appltbutton')
+          .offset()
+          .top)-40;
+        if(windowTop > top) {
+          $('#myHeader').addClass('sticky');
+        } else {
+          $('#myHeader').removeClass('sticky');
+        }
+        var bottom = $('.container').height() - $(window).height();
+        if(windowTop > (parseInt(bottom)+180)) {
+          $('.applybtnsticky').addClass('nonsticky');
+        } else {
+          $('.applybtnsticky').removeClass('nonsticky');
+        }
+      }
+      $(function() {
+        $(window)
+          .scroll(boxtothetop);
+          boxtothetop();
+      });
 
-    window.onscroll = function() {myFunction()};
-
-    var header = document.getElementById("myHeader");
-    var sticky = header.offsetTop;
-
-    function myFunction() {
-    $('#myHeader').show();
-    if (window.pageYOffset > sticky) {
-        header.classList.add("sticky");
-    } else {
-    $('#myHeader').hide();
-        header.classList.remove("sticky");
-    }
-    } 
-   
 </script>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/2e9ejr3/js/destail.e2k3eu0.js') }}"></script>
-
 @endsection
