@@ -43,7 +43,7 @@
 </div>
 
 @endsection
-@section('custom_bottom_scripts')
+@push('scripts')
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/vendor/select2/select2.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/vendor/selectize/selectize.js')}}"></script>
 <script  type="text/javascript" src="{{ asset('site_assets_1/assets/vendor/typehead/typeahead.bundle.js') }}"></script>
@@ -51,4 +51,4 @@
 var baseurl = '{{ url("/") }}/';
 </script>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/user@ie3e2!/js/dashboard/uski!e8u)y6.js') }}"></script>
-@endsection
+@endpush
