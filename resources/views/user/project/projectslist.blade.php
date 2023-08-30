@@ -19,6 +19,7 @@ if ($project->is_on_going == 1)
                 <h3 class="fw-bolder mb-1">{{$project->name}}</h3>
                 <p class="mb-0">{{ $project->getCompany('company') }}</p>
                 <p class="mb-2">{{ $date }}.</p>
+                <p class="mb-2">{{ $project->url }}.</p>
             </div>
         </div>
         <div class="col-md-4 col-lg-4 col-sm-4 col-4">

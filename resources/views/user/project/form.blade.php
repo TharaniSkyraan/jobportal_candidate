@@ -137,6 +137,12 @@
             <input  type="text" name="used_tools" class="form-control" value="{{$userProject->used_tools??''}}" id="tagsinputproj">
         </div>
 
+        <div class="mb-4">    
+            <label for="" class="form-label">Project Link (Optional)</label>
+            {!! Form::text('url', null, array('class'=>'form-control', 'id'=>'url', 'rows'=>3, 'placeholder'=>'Project Link')) !!}
+            <small class="help-block form-text text-muted text-danger err_msg url-error" id="err_url"></small> 
+        </div>
+
         <div class="row">
             <div class="col-6 text-center">
                 <button class="btn bg-grey-color user-project-cancel"  onClick="cancelUserProjectForm({{$userProject->id??0}})" type="button">Cancel</button>

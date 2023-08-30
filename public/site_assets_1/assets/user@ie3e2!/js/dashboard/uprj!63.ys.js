@@ -5,6 +5,7 @@ $(document).on('click', '.openForm', function (event) {
     form = $(this).attr('data-form');
     id = $(this).attr('data-id');
     loadUserProjectForm(form, id);
+    
 });
 
 $(document).on("click","#is_on_going",function(){
@@ -78,6 +79,9 @@ function validateprojectForm(){
       }
     }
   }
+  if($('#url').val() != ""){
+    if(validateFormFields('url','Please enter valide link.','validateURL')) errStaus=true;
+  }
   if($('#user_experience_id').val() == ""){
     setMsg('user_experience_id','Please enter Your project done by'); errStaus=true;
   }
@@ -93,6 +97,7 @@ function submitUserProjectForm() {
   var result = validateprojectForm(); 
   if(result != false){
     var form = $('#add_edit_user_project');
+    $('.btn_c_s1').prop("disabled", true);
     $.ajax({
       url     : form.attr('action'),
       type    : form.attr('method'),
@@ -102,6 +107,7 @@ function submitUserProjectForm() {
         $('.append-form-project').html('');
         $(".tabs").animate({scrollTop: $(window).scrollTop(0)},"slow");
         showProjects();
+        $('.btn_c_s1').prop("disabled", false);
 
         // $('#project_success').html('<div class="alert alert-success alert-dismissible fade show" role="alert" id="success-alert-update">'
         //         +'<strong>Success!</strong> Project Updated'
