@@ -41,6 +41,19 @@ $(document).on('click', '#ctlist .ctkey', function (event) {
 
 });
 
+$(document).on('keydown','#search_input', function(event){   
+  document.onkeyup = enter;
+});
+
+function enter(e) {
+  if (e.which == 13) {
+      var myElement = document.getElementById('search_input');
+      if(myElement === document.activeElement){         
+          search_val = $('#search_input').val();
+          load_faq_data(act_ckey,search_val);
+      }
+  }
+} 
 
 $(document).on('click', '#search', function (event) {
   search_val = $('#search_input').val();

@@ -57,8 +57,11 @@
   <script>
     var baseurl = '{{ url("/") }}/';
     var cat_key_from_url = '{{ $cat->slug }}';
-    var is_empty_categorykey = '{{$ckey}}';
+    var is_empty_categorykey = '{{$ckey}}'; 
+
+    
   </script>
+  <script type="text/javascript" src="{{ asset('site_assets_1/assets/js/sidenavbarscript.js') }}"></script>
    <script type="text/javascript" src="{{ asset('site_assets_1/assets/1a9ve2/js/faq!2&32.js') }}"></script>
 @endsection
 @section('footer')
