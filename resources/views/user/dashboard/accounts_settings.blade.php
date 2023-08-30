@@ -105,14 +105,14 @@
                       <div class="row" >
                         <div class="col-md-12 change_phone_number" style="display:none !important;">
                           <div class="row align-items-center">
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 col-10 mb-4">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 col-10">
                               {!! Form::tel('phone', Auth::user()->phone??null, array('class'=>'form-control mob_cp validMob width me-5','style'=>'line-height:0px', 'id'=>'phone', 'onkeypress'=> 'return isNumber(event)', 'minlength'=>'9', 'maxlength'=>'14', 'placeholder'=>__('Phone'))) !!}
                             </div>
-                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 col-3">
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 col-3 mt-2">
                               <button class="btn btn-verify rounded-pill align-self-center btns1 btn-sm" type="button" onclick="ChangePhoneNumberRequest();">Verify</button>
                             </div>
-                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 mx-3 col-3">
-                                  <button class="btn rounded-pill align-self-center btn-sm btns1 bg-color-blue" type="button" onclick="CurrentPhoneNumber();">Cancel</button>
+                            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2 mx-3 col-3 mt-2">
+                              <button class="btn rounded-pill align-self-center btn-sm btns1 bg-color-blue" type="button" onclick="CurrentPhoneNumber();">Cancel</button>
                             </div>
                           </div>
                         </div>

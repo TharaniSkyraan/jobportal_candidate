@@ -165,6 +165,9 @@
   .ske .input-group{
     width: 90%;
   }
+  .page-title {
+      font-size: 16px;
+  }
 }
 #search_input::-webkit-search-cancel-button {
   /* ... */

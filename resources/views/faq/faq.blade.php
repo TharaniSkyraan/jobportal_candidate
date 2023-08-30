@@ -25,7 +25,7 @@
   @include('faq.categorylist')
     <div class="main-panel main-panel-custom">
       <div class="content">
-          <div class="page-header align-items-center justify-content-center mt-5 mb-1">
+          <div class="page-header justify-content-center  align-items-center mt-5 mb-1">
             <h2 class="page-title d-flex"> <img draggable="false" src="{{asset('images/m_svg/FAQ.svg')}}" class="dropdown" alt="..."> Frequently Asked Questions</h2>
           </div>
 			    <div class="page-inner">
