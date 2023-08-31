@@ -317,9 +317,6 @@ section {
   .mob-arrow{
     display: block !important;
   }
-  .navbar ul {
-    /* display: none; */
-  }
   .navbar .dropdown ul{
     position: fixed;
     left: -100px;
@@ -2324,9 +2321,7 @@ border-radius: 20px;
   }
 }
 @media(min-width: 280px) and (max-width: 767px){
-  #header .logo{
-    /* margin: 0 auto; */
-  }.service-wrapper{
+ .service-wrapper{
     margin: 0 auto !important;
   }#header .mobile_r{
     display: none;

@@ -109,7 +109,7 @@ trait FetchJobsList
         if (!isset($filter['jobIds'])) { 
             $filters = $this->getFilters($queries);
         }
-        $joblist = $queries->select('job_id','title','description','company_name','experience_string as experience','salary_string as salary','posted_date','quick_hiring_deadline as immediate_join','location','have_break_point','have_screening_quiz','slug');
+        $joblist = $queries->select('job_id','title','is_admin','description','company_name','experience_string as experience','salary_string as salary','posted_date','quick_hiring_deadline as immediate_join','location','have_break_point','have_screening_quiz','slug');
         if (!empty($filter['sortBy']) && $filter['sortBy'] == 'date') { 
             $joblist->orderBy('posted_date', 'DESC');
         }else{  
