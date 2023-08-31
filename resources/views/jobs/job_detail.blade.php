@@ -223,7 +223,7 @@
                                         </button>
                                     @endif --}}
                                     
-                                    @if(!isset($job->reference_url))
+                                    @if(empty($job->reference_url))
                                         <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn" data-value="disabled">
                                             <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
                                         </button>    
@@ -263,7 +263,7 @@
                     <span class="fw-bold">Apply Job</span>
                 </button>
             @endif --}}
-            @if(!isset($job->reference_url))
+            @if(empty($job->reference_url))
                 <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn" data-value="disabled">
                     <span class="fw-bold">Apply Job</span>
                 </button>     
@@ -304,7 +304,7 @@
                                                 @endif
                                                  --}}
                                     
-                                                @if(!isset($job->reference_url))
+                                                @if(empty($job->reference_url))
                                                     <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn" data-value="disabled">
                                                         <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
                                                     </button> 
@@ -614,7 +614,7 @@
                                             <div class="col-md-6 align-self-center text-end">
                                                 <a href="{{url('company-view/'.$job->company->slug)}}"><label class="chip clickable mt-0 cursor-pointer"><span>View More</span></label></a>                                 
                                             </div>
-                                            @elseif(isset($job->reference_url))
+                                            @elseif(!empty($job->reference_url))
                                             <div class="col-md-6 align-self-center text-end">
                                                 <a href="{{url('company-view/'.$job->company->slug)}}"><label class="chip clickable mt-0 cursor-pointer"><span>View More</span></label></a>                                 
                                             </div>
