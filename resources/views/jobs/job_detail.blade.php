@@ -226,7 +226,11 @@
                                     @if(empty($job->reference_url))
                                         <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn" data-value="disabled">
                                             <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
-                                        </button>    
+                                        </button>     
+                                    @else
+                                        <a class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japplybtn" id="japplybtn" data-value="disabled" href="{{$job->reference_url}}">
+                                            <span class="fw-bold">Apply Job</span>
+                                        </a>             
                                     @endif
                                     
                                     <label class="japplied-btn">
@@ -267,6 +271,10 @@
                 <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn" data-value="disabled">
                     <span class="fw-bold">Apply Job</span>
                 </button>     
+            @else
+                <a class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japplybtn" id="japplybtn" data-value="disabled" href="{{$job->reference_url}}">
+                    <span class="fw-bold">Apply Job</span>
+                </a>             
             @endif
             <label class="japplied-btn"><span class=" fs-6">Already Applied</span></label>
         </div>
@@ -307,7 +315,11 @@
                                                 @if(empty($job->reference_url))
                                                     <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn" data-value="disabled">
                                                         <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
-                                                    </button> 
+                                                    </button>     
+                                                @else
+                                                    <a class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japplybtn" id="japplybtn" data-value="disabled" href="{{$job->reference_url}}">
+                                                        <span class="fw-bold">Apply Job</span>
+                                                    </a>             
                                                 @endif
                                                 
                                                 <label class="japplied-btn">
@@ -574,60 +586,54 @@
                         </div>
                         @endif
 
-                        <div class="abt-cmp card-body jdcarc">
-                            <div class="mb-2">
-                                @if(!empty($job->company->description))
-                                <div class="mb-4">
-                                    <h4 class="mb-1  text-green-color">About Company<h4>
-                                    <p>{{ $job->company->description }}</p>
-                                </div>
-                                @endif
-                                
-                                <div class="">
-                                    <h5 class="mb-1  text-green-color">Company Info</h5>
-                                    @isset($job->company->website_url)
-                                    <div class="row col-md-12 cmpinfo-detail mb-2">
-                                        <div class="col-md-12">
-                                            <label><b>Website : </b></label>
-                                            <span>
-                                                <a href="{{ $job->company->website_url}}" target="_blank" rel="nofollow noreferer">{{ $job->company->website_url}}</a>
-                                            </span>
-                                        </div>
+                        @if($job->company->is_admin==0)
+                            <div class="abt-cmp card-body jdcarc">
+                                <div class="mb-2">
+                                    @if(!empty($job->company->description))
+                                    <div class="mb-4">
+                                        <h4 class="mb-1  text-green-color">About Company<h4>
+                                        <p>{{ $job->company->description }}</p>
                                     </div>
-                                    @endisset
-
-                                    <div class="row col-md-12 cmpinfo-detail">
-                                        <div class="col-md-6">
-                                            @if($job->company->is_admin==0)
-                                            <label class="fw-bold">Address :</label>
-                                            <span>
-                                                @php
-                                                    $pincode= $job->company->pin_code ?? '';
-                                                    $pincode= !empty($pincode)? ', '.$pincode.'.' : '';
-                                                @endphp
-                                                <text>{{ !empty($job->company->address) ? $job->company->address.' '.$job->company->location.$pincode : "-" }}</text>
-                                            </span>
-                                            @endif
+                                    @endif
+                                    
+                                    <div class="">
+                                        <h5 class="mb-1  text-green-color">Company Info</h5>
+                                        @isset($job->company->website_url)
+                                        <div class="row col-md-12 cmpinfo-detail mb-2">
+                                            <div class="col-md-12">
+                                                <label><b>Website : </b></label>
+                                                <span>
+                                                    <a href="{{ $job->company->website_url}}" target="_blank" rel="nofollow noreferer">{{ $job->company->website_url}}</a>
+                                                </span>
+                                            </div>
                                         </div>
-                                        @isset($job->company)
-                                            @if($job->company->is_admin==0)
-                                            <div class="col-md-6 align-self-center text-end">
-                                                <a href="{{url('company-view/'.$job->company->slug)}}"><label class="chip clickable mt-0 cursor-pointer"><span>View More</span></label></a>                                 
-                                            </div>
-                                            @elseif(!empty($job->reference_url))
-                                            <div class="col-md-6 align-self-center text-end">
-                                                <a href="{{url('company-view/'.$job->company->slug)}}"><label class="chip clickable mt-0 cursor-pointer"><span>View More</span></label></a>                                 
-                                            </div>
-                                            @endif
                                         @endisset
 
-                                    </div> 
-                                    
-                                    <hr>
-                                    <div class="sharethis-inline-share-buttons"></div>
+                                        <div class="row col-md-12 cmpinfo-detail">
+                                            <div class="col-md-6">
+                                                <label class="fw-bold">Address :</label>
+                                                <span>
+                                                    @php
+                                                        $pincode= $job->company->pin_code ?? '';
+                                                        $pincode= !empty($pincode)? ', '.$pincode.'.' : '';
+                                                    @endphp
+                                                    <text>{{ !empty($job->company->address) ? $job->company->address.' '.$job->company->location.$pincode : "-" }}</text>
+                                                </span>
+                                            </div>
+                                            @isset($job->company)
+                                                <div class="col-md-6 align-self-center text-end">
+                                                    <a href="{{url('company-view/'.$job->company->slug)}}"><label class="chip clickable mt-0 cursor-pointer"><span>View More</span></label></a>                                 
+                                                </div>
+                                            @endisset
+
+                                        </div> 
+                                        
+                                        <hr>
+                                        <div class="sharethis-inline-share-buttons"></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
                 @if(0)
