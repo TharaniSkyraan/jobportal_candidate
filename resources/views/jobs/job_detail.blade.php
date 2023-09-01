@@ -228,9 +228,9 @@
                                             <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
                                         </button>     
                                     @else
-                                        <a class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japplybtn" id="japplybtn" data-value="disabled" href="{{$job->reference_url}}">
+                                        <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn" data-value="disabled">
                                             <span class="fw-bold">Apply Job</span>
-                                        </a>             
+                                        </button>             
                                     @endif
                                     
                                     <label class="japplied-btn">
@@ -272,9 +272,9 @@
                     <span class="fw-bold">Apply Job</span>
                 </button>     
             @else
-                <a class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japplybtn" id="japplybtn" data-value="disabled" href="{{$job->reference_url}}">
+                <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn" data-value="disabled" >
                     <span class="fw-bold">Apply Job</span>
-                </a>             
+                </button>             
             @endif
             <label class="japplied-btn"><span class=" fs-6">Already Applied</span></label>
         </div>
@@ -317,9 +317,9 @@
                                                         <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
                                                     </button>     
                                                 @else
-                                                    <a class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japplybtn" id="japplybtn" data-value="disabled" href="{{$job->reference_url}}">
+                                                    <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn" data-value="disabled">
                                                         <span class="fw-bold">Apply Job</span>
-                                                    </a>             
+                                                    </button>             
                                                 @endif
                                                 
                                                 <label class="japplied-btn">

@@ -89,7 +89,7 @@
             });
         }
     });
-    $('.japplybtn').click(function(){
+    $('.japplybtn').click(function(e){
         
         if(is_admin==1 && reference_url!=''){
             openInNewTabWithNoopener(reference_url);
