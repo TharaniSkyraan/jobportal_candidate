@@ -2397,6 +2397,6 @@ border-radius: 20px;
   }
 }
 
-body{
-  padding-right: unset;
+#header{
+  padding-right: unset !important;
 }
