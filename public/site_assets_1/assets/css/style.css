@@ -2244,7 +2244,7 @@ background-position: center;
 }.offcanvas-body {
 border-radius: 20px;
 }.offcanvas-body{
-  padding: 0px;
+  /* padding: 0px; */
 }.offcanvas .card{
   box-shadow: none;
 }#header #search{
@@ -2283,8 +2283,8 @@ border-radius: 20px;
   font-size: 15px;
   padding: 4px 20px;
 }.offcanvas-body#search-canvas{
-  overflow: hidden !important;
-  text-align: -webkit-center;
+  /* overflow: hidden !important;
+  text-align: -webkit-center; */
 }.offcanvas#offcanvasTop{
   height: 100%;
   /* height: fit-content; */
