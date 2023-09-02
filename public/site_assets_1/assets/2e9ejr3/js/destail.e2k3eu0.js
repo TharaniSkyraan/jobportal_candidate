@@ -91,7 +91,7 @@
     });
     $('.japplybtn').click(function(e){
         
-        if(is_admin==1 && reference_url!=''){
+        if(reference_url!=''){
             openInNewTabWithNoopener(reference_url);
         }else{
             var data = {"_token": csrf_token,'is_login':v_is_login,'is_enabled':$(this).data('value'),'is_screening':isscreening };

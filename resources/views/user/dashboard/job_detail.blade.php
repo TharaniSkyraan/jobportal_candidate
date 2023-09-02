@@ -143,7 +143,6 @@
         color: #fff !important;
         text-align: center;
         border-radius: 25px;
-        margin: 0px 10px;
     }
     .sticky + .content {
     padding-top: 102px;
@@ -241,12 +240,9 @@
                                             </button>
                                         @endif --}}
                                         
-                                        @if(empty($job->reference_url))
-                                            <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn" data-value="disabled">
-                                                <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
-                                            </button>    
-                                        @endif
-                                        
+                                        <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn" data-value="disabled">
+                                            <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
+                                        </button>                                           
                                         <label class="japplied-btn">
                                             <img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class=" fs-6">Applied</span>
                                         </label>
@@ -280,12 +276,10 @@
                     <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn" id="japplybtn" data-bs-toggle="modal" href="#screeningQuiz72ers3" role="button">
                         <span class="fw-bold">Apply Job</span>
                     </button>
-                @endif --}}
-                @if(empty($job->reference_url))
-                    <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn" data-value="disabled">
-                        <span class="fw-bold">Apply Job</span>
-                    </button>     
-                @endif
+                @endif --}}                
+                <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn" data-value="disabled">
+                    <span class="fw-bold">Apply Job</span>
+                </button>   
                 <label class="japplied-btn"><span class=" fs-6">Already Applied</span></label>
             </div>
         </div>
@@ -316,12 +310,9 @@
                                                     @endif
                                                     --}}
                                         
-                                                    @if(empty($job->reference_url))
-                                                        <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn" data-value="disabled">
-                                                            <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
-                                                        </button> 
-                                                    @endif
-                                                    
+                                                    <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn" data-value="disabled">
+                                                        <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
+                                                    </button> 
                                                     <label class="japplied-btn">
                                                         <img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class=" fs-6">Applied</span>
                                                     </label>

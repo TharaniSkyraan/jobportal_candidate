@@ -14,7 +14,7 @@
                             <img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class="fw-bolder fs-6">Applied</span>
                         </label>
                     @else
-                        @if(count($job->screeningquiz)!=0)
+                        @if(count($job->screeningquiz)!=0 || !empty($job->reference_url))
                             <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtnredir" id="japplybtn" data-bs-toggle="modal" href="#screeningQuiz72ers3" role="button">
                                 <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
                             </button>
