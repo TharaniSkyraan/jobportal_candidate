@@ -1,3 +1,25 @@
+var maxBirthdayDate = new Date();
+maxBirthdayDate.setFullYear( maxBirthdayDate.getFullYear() - 16 );
+
+$("#date_of_birth").flatpickr({
+  maxDate: maxBirthdayDate,
+  enableTime: false,
+  altInput: true,
+  dateFormat: "d-m-Y",
+  altFormat:"d-m-Y",
+  disableMobile: "true",
+  plugins: [
+      ShortcutButtonsPlugin({
+          button: {
+              label: 'Clear',
+          },
+          onClick: (index, fp) => {
+              fp.clear();
+              fp.close();
+          }
+      })
+  ]
+});
 $("#basic-info-submit-button").click(function(){  
     var result = validateBasicinfoForm(); 
     

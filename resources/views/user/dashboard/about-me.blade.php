@@ -2,6 +2,11 @@
 
 
 @section('custom_scripts')
+<link rel="stylesheet" href="{{ asset('site_assets_1/assets/date_flatpicker/flatpickr.min.css')}}">
+<script src="{{ asset('site_assets_1/assets/date_flatpicker/flatpickr.js')}}"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shortcut-buttons-flatpickr@0.1.0/dist/themes/light.min.css">
+<script src="https://cdn.jsdelivr.net/npm/shortcut-buttons-flatpickr@0.1.0/dist/shortcut-buttons-flatpickr.min.js"></script>
+
 <link href="{{ asset('css/about_me.css') }}" rel="stylesheet">
 @endsection
 
@@ -13,7 +18,6 @@
     @if(Session::has('message'))
         <script>toastr.success("{{ Session('message') }}");</script>
     @endif
-
 	<div class="main-panel main-panel-custom main-panel-customize">
 		<div class="content">
 			<div class="page-inner">

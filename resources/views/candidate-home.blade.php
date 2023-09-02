@@ -44,7 +44,7 @@
                         <div class="row">
                             <div class="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-6  align-self-center">
                             </div>
-                            @if(Auth::check() ) 
+                            @if(Auth::check()) 
                             <div class="col-xl-5 col-lg-5 col-md-6 col-sm-6 col-6 pt-4 @if(Auth::user()->getProfilePercentage() < 80) mt-2 @else m-0 @endif align-self-center">
                                 <h1 class="@if(Auth::user()->getProfilePercentage() < 80) pt-5 @endif">Begin your <br/><strong>Dream career.</strong></h1>
                             @else
@@ -107,6 +107,7 @@
                             <img draggable="false" class="w-100" src="{{asset('images/home/home_banner_m.svg')}}">
                         </div>
                     </div>
+                    @if(Auth::guest())
                     <div class="row mt-5">
                         <div class="col-md-6 col-sm-6 col-12 mb-3">
                             <a href="{{ route('login') }}" class="d-flex justify-content-between btn btn_c_s1 w-100"><div>Login / Signup</div> <img draggable="false" src="{{asset('images/home/arrow.svg')}}"></a>
@@ -115,6 +116,7 @@
                             <a href="https://employer.mugaam.com/" class="d-flex justify-content-between btn btn_ch_s2 w-100"><div>Employer / Post a job</div> <img draggable="false" src="{{asset('images/home/employer-arrow.svg')}}"></a>
                         </div>
                     </div>
+                    @endif
                 </div>
 
                 <div class="popularser_hme mt-5 text-center">

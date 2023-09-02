@@ -2283,7 +2283,7 @@ border-radius: 20px;
   font-size: 15px;
   padding: 4px 20px;
 }.offcanvas-body#search-canvas{
-  overflow-y: hidden !important;
+  overflow: hidden !important;
   text-align: -webkit-center;
 }.offcanvas#offcanvasTop{
   height: 100%;

@@ -140,7 +140,7 @@
         color: #fff !important;
         text-align: center;
         border-radius: 25px;
-        margin: 0px 10px;
+        /* margin: 0px 10px; */
     }
     .sticky + .content {
     padding-top: 102px;
