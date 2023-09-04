@@ -19,7 +19,10 @@
             margin-right: 36.2%;
         }
     }
-    
+    .flatpickr-rContainer{
+        padding: 5px;
+    }
+        
 </style>
 
     <div class="card mt-4">
@@ -60,22 +63,22 @@
         </div>
 
             @php
-                $date_start = isset($userExperience->date_start)?Carbon\Carbon::parse($userExperience->date_start):null;
-                $date_end = isset($userExperience->date_end)?Carbon\Carbon::parse($userExperience->date_end):null;
+                $date_start = $userExperience->date_start??'';
+                $date_end = $userExperience->date_end??'';
             @endphp
         <div class="row align-items-baseline mb-3">
             <label for="" class="form-label fw-bolder">Year of Experience</label>
             <div class="col-md-6 col-lg-4 col-sm-6 col-xs-12 col-12 mb-2">
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">From</span>
-                    {!! Form::month('date_start', $date_start??null, array('class'=>'form-control date_start required', 'id'=>'date_start', 'max'=>date("Y-m"), 'min'=>'1980-01', 'placeholder'=>__('From'), 'autocomplete'=>'off')) !!}
+                    {!! Form::month('date_start', null, array('class'=>'form-control date_start required', 'id'=>'date_start', 'max'=>date("Y-m"), 'min'=>'1980-01', 'placeholder'=>__('From'), 'autocomplete'=>'off')) !!}
                 </div>
                 <small class="help-block form-text text-muted text-danger err_msg date_start-error" id="err_date_start"></small>
             </div>
             <div class="col-md-6 col-lg-4 col-sm-6 col-xs-12 col-12 mb-2 hide_currently_working_checked">
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">To</span>
-                    {!! Form::month('date_end', $date_end??null, array('class'=>'form-control date_end required', 'id'=>'date_end', 'max'=>date("Y-m"), 'min'=>'1980-01', 'placeholder'=>__('Completed Year'), 'autocomplete'=>'off')) !!}
+                    {!! Form::month('date_end', null, array('class'=>'form-control date_end required', 'id'=>'date_end', 'max'=>date("Y-m"), 'min'=>'1980-01', 'placeholder'=>__('Completed Year'), 'autocomplete'=>'off')) !!}
                 </div>
                 <small class="help-block form-text text-muted text-danger err_msg date_end-error" id="err_date_end"></small>
             </div>
@@ -110,6 +113,33 @@
   
 <script>
 
+    $("#date_start").flatpickr({
+        defaultDate: new Date('{{$date_start?$date_start."-01":''}}'),
+        disableMobile: "true",
+        maxDate: 'today',
+        plugins: [
+            new monthSelectPlugin({
+            shorthand: true, //defaults to false
+            dateFormat: "M Y", //defaults to "F Y"
+            altFormat: "Y-m", //defaults to "F Y"
+            theme: "light" // defaults to "light"
+            })
+        ]
+    });
+    $("#date_end").flatpickr({
+        defaultDate: new Date('{{$date_end?$date_end."-01":''}}'),
+        disableMobile: "true",
+        maxDate: 'today',
+        plugins: [
+            new monthSelectPlugin({
+            shorthand: true, //defaults to false
+            dateFormat: "M Y", //defaults to "F Y"
+            altFormat: "Y-m", //defaults to "F Y"
+            theme: "light" // defaults to "light"
+            })
+        ]
+    });
+    
     $(document).on("keyup","#job_description",function(e){
         var len = $(this).val().length;
         set = 4000;

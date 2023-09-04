@@ -143,12 +143,12 @@ trait UserExperienceTrait
         // $userExperience->state_id = $request->input('state_id_dd');
         // $userExperience->city_id = $request->input('city_id_dd');
         if(!empty($request->date_start)){
-            $userExperience->date_start =Carbon::parse($request->date_start)->format('Y-m-d');
+            $userExperience->date_start =Carbon::parse($request->date_start)->format('Y-m');
         }else{
             $userExperience->date_start = NULL;
         }
         if(!empty($request->date_end)){
-            $userExperience->date_end = Carbon::parse($request->date_end)->format('Y-m-d');
+            $userExperience->date_end = Carbon::parse($request->date_end)->format('Y-m');
         }else{
             $userExperience->date_end = NULL;
         }

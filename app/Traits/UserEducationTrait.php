@@ -107,8 +107,9 @@ trait UserEducationTrait
         $userEducation->education_type_id = $request->input('education_type_id');
         $userEducation->education_type = $request->input('education_type');
         $userEducation->country_id = $request->input('country_id_dd');
-        $userEducation->from_year = $request->input('from_year');
-        $userEducation->to_year = $request->input('to_year');
+        $userEducation->from_year = Carbon::parse($request->input('from_year'))->format('Y-m');
+        $userEducation->to_year = Carbon::parse($request->input('to_year'))->format('Y-m');
+        // dd($userEducation->from_year);
         $userEducation->institution = $request->input('institution');
         $userEducation->location = $request->input('location');
         $userEducation->percentage = $percentage??null;

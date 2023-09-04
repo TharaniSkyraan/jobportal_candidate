@@ -17,6 +17,10 @@
             margin-right: 36.2%;
         }
     }
+    .flatpickr-rContainer{
+        padding: 5px;
+    }
+       
   </style> 
     <div class="card mt-4">
         <div class="mb-4">    
@@ -95,22 +99,22 @@
             </div>
         </div>
         @php
-            $fromdate = isset($userProject->date_start)?Carbon\Carbon::parse($userProject->date_start):null;
-            $todate = isset($userProject->date_end)?Carbon\Carbon::parse($userProject->date_end):null;
+            $date_start = $userProject->date_start??'';
+            $date_end = $userProject->date_end??'';
         @endphp
         <div class="row align-items-baseline">
             <label for="" class="form-label">Period of project</label>
             <div class="col-md-6 col-lg-4 col-sm-6 col-xs-12 col-12 mb-3">
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">From</span>
-                    {!! Form::month('date_start', $fromdate??null, array('class'=>'form-control required', 'max' =>date("Y-m"), 'min'=>'1980-01','id'=>'date_start', 'placeholder'=>__('Start date'))) !!}
+                    {!! Form::month('date_start', null, array('class'=>'form-control required date_start', 'max' =>date("Y-m"), 'min'=>'1980-01','id'=>'date_start', 'placeholder'=>__('Start date'))) !!}
                 </div>
                 <small class="help-block form-text text-muted text-danger err_msg date_start-error" id="err_date_start"></small> 
             </div>
             <div class="col-md-6 col-lg-4 col-sm-6 col-xs-12 col-12 hide_currently_working_checked">
                 <div class="input-group mb-2">
                     <span class="input-group-text" id="basic-addon1">To</span>
-                    {!! Form::month('date_end', $todate??null, array('class'=>'form-control required','max' =>date("Y-m"), 'min'=>'1980-01', 'id'=>'date_end', 'placeholder'=>__('End date'))) !!}
+                    {!! Form::month('date_end', null, array('class'=>'form-control required date_end','max' =>date("Y-m"), 'min'=>'1980-01', 'id'=>'date_end', 'placeholder'=>__('End date'))) !!}
                 </div>
                 <small class="help-block form-text text-muted text-danger err_msg date_end-error" id="err_date_end"></small> 
             </div>
@@ -154,6 +158,33 @@
     </div>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/js/input_tag/jquery.tagsinput-revisited.js') }}"></script>
 <script>
+    
+    $("#date_start").flatpickr({
+        defaultDate: new Date('{{$date_start?$date_start."-01":''}}'),
+        disableMobile: "true",
+        maxDate: 'today',
+        plugins: [
+            new monthSelectPlugin({
+                shorthand: true, //defaults to false
+                dateFormat: "M Y", //defaults to "F Y"
+                altFormat: "Y-m", //defaults to "F Y"
+                theme: "light" // defaults to "light"
+            })
+        ]
+    });
+    $("#date_end").flatpickr({
+        defaultDate: new Date('{{$date_end?$date_end."-01":''}}'),
+        disableMobile: "true",
+        maxDate: 'today',
+        plugins: [
+            new monthSelectPlugin({
+                shorthand: true, //defaults to false
+                dateFormat: "M Y", //defaults to "F Y"
+                altFormat: "Y-m", //defaults to "F Y"
+                theme: "light" // defaults to "light"
+            })
+        ]
+    });
     $(document).on("keyup","#description",function(e){
         var len = $(this).val().length;
         set = 4000;

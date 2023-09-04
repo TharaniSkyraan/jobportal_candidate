@@ -37,14 +37,14 @@
         <div class="col-md-6 col-lg-4 col-sm-6 col-xs-12 col-12 mb-3">
             <div class="input-group">
                 <span class="input-group-text" id="basic-addon1">From</span>
-                {!! Form::month('start_date', $start_date??null, array('class'=>'form-control required', 'max' =>date("Y-m"), 'min'=>'1980-01','id'=>'start_date', 'placeholder'=>__('Start date'))) !!}
+                {!! Form::month('start_date', null, array('class'=>'form-control required start_date', 'max' =>date("Y-m"), 'min'=>'1980-01','id'=>'start_date', 'placeholder'=>__('Start date'))) !!}
             </div>
             <small class="help-block form-text text-muted text-danger err_msg start_date-error" id="err_start_date"></small> 
         </div>
         <div class="col-md-6 col-lg-4 col-sm-6 col-xs-12 col-12 hide_currently_working_checked">
             <div class="input-group mb-2">
                 <span class="input-group-text" id="basic-addon1">To</span>
-                {!! Form::month('end_date', $end_date??null, array('class'=>'form-control required','max' =>date("Y-m"), 'min'=>'1980-01', 'id'=>'end_date', 'placeholder'=>__('End date'))) !!}
+                {!! Form::month('end_date', null, array('class'=>'form-control required end_date','max' =>date("Y-m"), 'min'=>'1980-01', 'id'=>'end_date', 'placeholder'=>__('End date'))) !!}
             </div>
             <small class="help-block form-text text-muted text-danger err_msg end_date-error" id="err_end_date"></small> 
         </div>
@@ -64,3 +64,33 @@
         </div>
     </div>
 </div>
+<script>
+
+$("#start_date").flatpickr({
+        defaultDate: new Date('{{$start_date?$start_date."-01":''}}'),
+        disableMobile: "true",
+        maxDate: 'today',
+        plugins: [
+            new monthSelectPlugin({
+            shorthand: true, //defaults to false
+            dateFormat: "M Y", //defaults to "F Y"
+            altFormat: "Y-m", //defaults to "F Y"
+            theme: "light" // defaults to "light"
+            })
+        ]
+    });
+    $("#end_date").flatpickr({
+        defaultDate: new Date('{{$end_date?$end_date."-01":''}}'),
+        disableMobile: "true",
+        maxDate: 'today',
+        plugins: [
+            new monthSelectPlugin({
+            shorthand: true, //defaults to false
+            dateFormat: "M Y", //defaults to "F Y"
+            altFormat: "Y-m", //defaults to "F Y"
+            theme: "light" // defaults to "light"
+            })
+        ]
+    });
+    
+</script>

@@ -52,27 +52,28 @@ function loadUserSkillForm(form, id=null){
     if($("input[name='level_id']").is(':checked') == false){
       if(validateFormFields('level_id','Please slect Skill level.','')) errStaus=true;
     }
+    
+  if($('.start_date').val() !='')
+  {
+    var start_date = new Date($('.start_date').val());
+    start_date = (start_date.getFullYear())+'-'+(start_date.getMonth()+1);
+  }
+  if($('.end_date').val() !='')
+  {
+    var end_date = new Date($('.end_date').val());
+    end_date = (end_date.getFullYear())+'-'+(end_date.getMonth()+1);
+  }
 
-    var today = new Date();
-    var mm = today.getMonth()+1; //January is 0 so need to add 1 to make it 1!
-    var yyyy = today.getFullYear();
-
-    var yyyy1 = today.getFullYear()-100;
-
-    todaymonthyear = yyyy+'-'+mm;
-    yearincrtoday = yyyy1+'-'+mm;
-
-    if($('#start_date').val() >= todaymonthyear){
-      setMsg('start_date','Please select less than current year'); errStaus=true;
-    }
-
-    if($('#end_date').val() != ""){
-      if($('#end_date').val() <= $('#start_date').val()){
-
+  if($("input[name='is_on_going']").is(':checked') == false){
+    if($("#add_edit_user_project").find('#end_date').val() != ''){
+      if(validateFormFields('start_date','Please select Date start','')) errStaus=true;
+      if(end_date <= start_date && $('.start_date').val() !=''){
         setMsg('end_date','Please select greater than from year'); errStaus=true;
-
       }
     }
+  }else{
+    if(validateFormFields('start_date','Please select date start','')) errStaus=true;
+  }
     
     if(errStaus) {
       return false;

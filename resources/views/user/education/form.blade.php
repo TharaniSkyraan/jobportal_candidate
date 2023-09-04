@@ -13,6 +13,14 @@
 .institution ul.typeahead.dropdown-menu {
     top: 164px !important
 }
+/* @media(max-width:400px){
+    .flatpickr-calendar{
+        width: 240.875px;
+    }
+} */
+.flatpickr-rContainer{
+    padding: 5px;
+}
 </style>
 @endif
     <div class="modal-header">
@@ -77,23 +85,20 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="row">
                     @php
-                        $d = $userEducation->from_year??date('Y-m-d');
-                        $fromdate = old('from_year')?date('Y-m-d',strtotime(old('from_year'))):'';
-
-                        $d = $userEducation->to_year??date('Y-m-d');
-                        $todate = old('to_year')?date('Y-m-d',strtotime(old('to_year'))):'';
+                        $fromdate = $userEducation->from_year??'';
+                        $todate = $userEducation->to_year??'';
                     @endphp
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-2">
                         <div class="input-group">
                             <span class="input-group-text" id="">From</span>
-                            {!! Form::month('from_year', $userEducation->from_year??$fromdate, array('class'=>'form-control from_year required', 'id'=>'from_year', 'max'=>date("Y-m"), 'min'=>'1980-01', 'placeholder'=>__('From'), 'autocomplete'=>'off')) !!}
+                            {!! Form::text('from_year', null, array('class'=>'form-control from_year required border-left-0', 'id'=>'from_year', 'max'=>date("Y-m"), 'min'=>'1980-01', 'placeholder'=>__('From'), 'autocomplete'=>'off')) !!}
                         </div>    
                         <small class="help-block form-text text-muted text-danger err_msg from_year-error" id="err_from_year"></small> 
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-2">
                         <div class="input-group">
                             <span class="input-group-text" id="">To</span>
-                            {!! Form::month('to_year', $userEducation->to_year??$todate, array('class'=>'form-control to_year required', 'id'=>'to_year', 'max'=>date("Y-m"), 'min'=>'1980-01', 'placeholder'=>__('Completed Year'), 'autocomplete'=>'off')) !!}
+                            {!! Form::text('to_year', null, array('class'=>'form-control to_year required border-left-0', 'id'=>'to_year', 'max'=>date("Y-m"), 'min'=>'1980-01', 'placeholder'=>__('Completed Year'), 'autocomplete'=>'off')) !!}
                         </div>      
                         <small class="help-block form-text text-muted text-danger err_msg to_year-error" id="err_to_year"></small> 
                     </div>
@@ -156,6 +161,35 @@
     
     var education_level_text = $('#education_level_id option:selected').text(); 
     $('.education_level_id').html(' - '+education_level_text);
+
+    
+    $("#from_year").flatpickr({
+        defaultDate: new Date('{{$fromdate?$fromdate."-01":''}}'),
+        maxDate:'today',
+        disableMobile: "true",
+        plugins: [
+            new monthSelectPlugin({
+            shorthand: true, //defaults to false
+            dateFormat: "M Y", //defaults to "F Y"
+            altFormat: "Y-m", //defaults to "F Y"
+            theme: "light" // defaults to "light"
+            })
+        ]
+    });
+    
+    $("#to_year").flatpickr({
+        defaultDate: new Date('{{$todate?$todate."-01":''}}'),
+        maxDate:'today',
+        disableMobile: "true",
+        plugins: [
+            new monthSelectPlugin({
+            shorthand: true, //defaults to false
+            dateFormat: "M Y", //defaults to "F Y"
+            altFormat: "Y-m", //defaults to "F Y"
+            theme: "light" // defaults to "light"
+            })
+        ]
+    });
     
     $(function(){
         // if (education_level_id != ''){                      

@@ -84,25 +84,22 @@
         }
       }
 
-      var today = new Date();
-      var mm = today.getMonth()+1; //January is 0 so need to add 1 to make it 1!
-      var yyyy = today.getFullYear();
-
-      var yyyy1 = today.getFullYear()-100;
-
-      todaymonthyear = yyyy+'-'+mm;
-      yearincrtoday = yyyy1+'-'+mm;
-      
-      if($('.date_start').val() >= todaymonthyear){
-        setMsg('date_start','Please select less than current year'); errStaus=true;
+      if($('.date_start').val() !='')
+      {
+        var date_start = new Date($('.date_start').val());
+        date_start = (date_start.getFullYear())+'-'+(date_start.getMonth()+1);
+      }
+      if($('.date_end').val() !='')
+      {
+        var date_end = new Date($('.date_end').val());
+        date_end = (date_end.getFullYear())+'-'+(date_end.getMonth()+1);
       }
 
       if($("input[name='is_currently_working']").is(':checked') == false){
-        if($('.date_end').val() <= $('.date_start').val()){
-          setMsg('date_end','Please select greater than from year'); errStaus=true;
+        if(date_start >= date_end){
+            setMsg('date_start','Please select less than from end year of month'); errStaus=true;
         }
       }
-
       if(errStaus) {
         return false;
       } else {
@@ -140,7 +137,7 @@
           });
           
           $('.addExperience').show();
-          profilePercentage();
+          // profilePercentage();
         },
         error: function(json){
             if (json.status === 422) {

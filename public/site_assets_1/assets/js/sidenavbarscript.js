@@ -135,21 +135,15 @@ if(sidenavbarfaq==null){
         sidenavbar.classList.add("hoverable");
         sidenavbar.classList.add("close");
         sidenavbarLockBtn.classList.replace("fa-close", "fa-bars");
-        if(screensize<768)
-        {
-          $('.navbar').removeClass('d-none');
-          $('.overlay').removeClass('active');
-        }
+        $('.navbar').removeClass('d-none');
+        $('.overlay').removeClass('active');
       } else {
         header.classList.replace("header-unset", "header-open");
         sidenavbar.classList.remove("hoverable");
         sidenavbar.classList.remove("close");
         sidenavbarLockBtn.classList.replace("fa-bars", "fa-close");
-        if(screensize<768)
-        {
-          $('.navbar').addClass('d-none');
-          $('.overlay').addClass('active');
-        }
+        $('.navbar').addClass('d-none');
+        $('.overlay').addClass('active');
       }
     };
 
