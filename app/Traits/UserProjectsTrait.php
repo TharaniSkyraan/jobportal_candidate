@@ -79,12 +79,12 @@ trait UserProjectsTrait
         $userProject->company_name = $request->input('company_name')??'';
         $userProject->url = $request->input('url');
         if(!empty($request->date_start)){
-            $userProject->date_start =Carbon::parse($request->date_start)->format('Y-m-d');
+            $userProject->date_start =Carbon::parse($request->date_start)->format('Y-m');
         }else{
             $userProject->date_start = NULL;
         }
         if(!empty($request->date_end)){
-            $userProject->date_end = Carbon::parse($request->date_end)->format('Y-m-d');
+            $userProject->date_end = Carbon::parse($request->date_end)->format('Y-m');
         }else{
             $userProject->date_end = NULL;
         }

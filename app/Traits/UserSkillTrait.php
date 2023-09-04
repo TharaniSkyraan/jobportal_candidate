@@ -110,12 +110,12 @@ trait UserSkillTrait
         $userSkill->skill_id = $request->input('skill_id');
         $userSkill->level_id = $request->input('level_id');    
         if(!empty($request->start_date)){
-            $userSkill->start_date = Carbon::parse($request->input('start_date'))->format('Y-m-d');
+            $userSkill->start_date = Carbon::parse($request->input('start_date'))->format('Y-m');
         }else{            
             $userSkill->start_date = NULL;
         }   
         if(!empty($request->end_date)){
-            $userSkill->end_date = Carbon::parse($request->input('end_date'))->format('Y-m-d');
+            $userSkill->end_date = Carbon::parse($request->input('end_date'))->format('Y-m');
         }else{
             $userSkill->end_date = NULL;
         }
