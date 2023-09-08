@@ -121,6 +121,12 @@ $("#jp_search_btn").click(function () {
     }
 });
 
+$("#jp_search_inp").keyup(function () {
+    jp_search_inp = $('#jp_search_inp').val();
+    if(jp_search_inp =='' || event.keyCode=='13'){
+        ContactList();
+    }
+});
 /**  ****End Status, Filters, Show contact, Select Contact * - Events**** */
 
 

@@ -20,7 +20,7 @@
         </div>
         
           <div class="input-group p-3">
-            <input class="form-control border-end-0 border" type="text" placeholder="Search Candidate" name="jp_search_inp" id="jp_search_inp" required>
+            <input class="form-control border-end-0 border" type="search" placeholder="Search Candidate" name="jp_search_inp" id="jp_search_inp" required>
             <span class="input-group-append">
                 <button class=" btn bg-white border-start-0 border jsrchbtni" type="button" id="jp_search_btn">
                   <i class="fa fa-search"></i>
