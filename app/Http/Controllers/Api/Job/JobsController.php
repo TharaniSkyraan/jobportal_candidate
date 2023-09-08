@@ -37,11 +37,12 @@ class JobsController extends BaseController
         $user = User::find($user_id);
         $appliedjobs = JobApply::where('user_id',$user_id)
                         ->whereIn('application_status',['view','shortlist','consider'])
-                        ->take(3)
+                        ->take(4)
                         ->orderBy('created_at','desc')
                         ->get();
 
         $appliedlist = [];
+        
         foreach($appliedjobs as $job)
         {
             if(isset($job->job))
@@ -57,10 +58,8 @@ class JobsController extends BaseController
                 );
             }
         }
-        
 
         $jobs = $this->fetchJobs($user->career_title, '', [], 5);
-        // $jobs = $this->fetchJobs('', '', [], 15);
         
         $jobs['joblist']->each(function ($job, $key) use($user) {
             $jobc = Job::find($job->job_id);

@@ -28,7 +28,7 @@
     $arra=array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
 ?>  
 <section id="companydetail">
-    <div class="container container-detail">
+    <div class="container container-detail mt-5">
         <div class="row justify-content-center mb-5">
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 col-12">
                 <div class="row justify-content-center">
@@ -256,8 +256,7 @@
             
             $.each(response.data, function (i, data) 
             { 
-                $('.galaryappendcontent')
-                .append(`<div class="col-md-4 col-xl-3 col-lg-3 col-sm-6 col-xs-6 col-12">
+                $('.galaryappendcontent').append(`<div class="col-md-4 col-xl-3 col-lg-3 col-sm-6 col-xs-6 col-12">
                             <div class="card zoom opacity savecompanyname" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                 <div class="text-center"><div class="box"> 
                                     <img draggable="false" class="card-img-top imgclass" src=`+data['image_exact_url']+`>
