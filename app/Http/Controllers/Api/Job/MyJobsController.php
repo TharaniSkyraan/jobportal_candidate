@@ -228,7 +228,7 @@ class MyJobsController extends BaseController
      */
     public function Savejobalert(SaveJobAlert $request)
     {
-        $id = $request->job_alert_id;
+        $id = $request->id;
 
         if($id){            
             $jobFav                     = JobAlert::find($id);
