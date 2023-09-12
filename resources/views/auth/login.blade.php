@@ -21,7 +21,7 @@
                         <h2 class="fw-bolder mt-3"> Welcome </h2>
                         <p class="grytxtv">Take your first step towards your Career</p>
                         @if(Session::has('error'))
-                            <span class="text-danger clrerror"> <strong>Failed!</strong> {{ Session::get('error') }} <i class="fa fa-close clrerror cursor-pointer ms-2" onclick="event.preventDefault(); $('.clrerror').remove();"></i></span>
+                            <h4 class="text-danger clrerror"> <strong>Failed!</strong> {{ Session::get('error') }} <i class="fa fa-close clrerror cursor-pointer ms-2" onclick="event.preventDefault(); $('.clrerror').remove();"></i></h4>
                         @endif
 
                     </div>
