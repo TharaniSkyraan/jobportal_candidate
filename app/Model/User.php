@@ -36,8 +36,7 @@ class User extends Authenticatable
         'date_of_birth','gender','country_id','name','image','email', 
         'password','employment_status','notice_period','verified','verify_otp','session_otp',
         'is_active', 'token', 'location', 'career_title', 'expected_salary', 'alternative_phone',
-        'phone', 'current_salary', 'total_experience','provider_id','provider','next_process_level',
-        'apple_email','is_private_email'
+        'phone', 'current_salary', 'total_experience','provider_id','provider','next_process_level'
 
     ];
 
