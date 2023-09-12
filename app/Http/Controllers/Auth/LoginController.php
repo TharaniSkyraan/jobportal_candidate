@@ -162,7 +162,7 @@ class LoginController extends Controller
             $providerId = $user->getId();
             $names = !empty($email)?explode('@',$email):'';
 
-            if(User::where('email',$email)->doesntExist()){
+            if(User::where('email',$email)->doesntExist() && ($provider=='apple' && User::where('apple_email',$email)->doesntExist())){
 
                 $user = User::create([
                     'first_name' => $user->getName()??(!empty($names)?$names[0]:''), 
@@ -173,7 +173,9 @@ class LoginController extends Controller
                     'password' => bcrypt($str), 
                     'is_active' => 0, 
                     'verified' => 1, 
-                    'token'=>$this->generateRandomString(8)
+                    'token'=>$this->generateRandomString(8),
+                    'apple_email' => isset($user->user['is_private_email'])?$user->getEmail():'',
+                    'is_private_email' => isset($user->user['is_private_email'])?'yes':'no',
                 ]);
 
                 $user = User::findorFail($user->id);
@@ -185,11 +187,15 @@ class LoginController extends Controller
                 $page = $this->SwitchRedirect('education');
             }else{
 
-                $user = User::where('email',$email)->first();
+                if($provider=='apple'){
+                    $user = User::where('email',$email)->orwhere('apple_email',$email)->first();
+                }else{
+                    $user = User::where('email',$email)->first();
+                }
                 $user_id = $user->id;
                 
                 if($user->next_process_level=='verify_otp'){
-                    User::where('email',$email)->update([
+                    User::where('id',$user_id)->update([
                         'next_process_level' => 'education',
                         'provider' => $provider,
                         'provider_id' => $providerId, 
@@ -197,7 +203,8 @@ class LoginController extends Controller
                         'verified' => 1
                     ]);
                 }else{
-                    User::where('email',$email)->update([
+
+                    User::where('id',$user_id)->update([
                         'provider' => $provider,
                         'provider_id' => $providerId 
                     ]);

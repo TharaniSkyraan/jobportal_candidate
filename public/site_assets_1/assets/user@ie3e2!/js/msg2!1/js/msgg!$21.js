@@ -239,6 +239,7 @@ function load_message_list_data(mid) {
 
             $('.msglistpar').removeClass("is-loading");
             $('.message-list').scrollTop($('.message-list')[0].scrollHeight);
+            resetMessage();
         },
         error: function (xhr, ajaxOptions, thrownError) {
             var errorMsg = 'Ajax request failed: ' + xhr.responseText;

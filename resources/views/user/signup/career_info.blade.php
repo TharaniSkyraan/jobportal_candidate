@@ -97,9 +97,10 @@
             <div class="col-md-6 card-size">
             <div class="scroll-page">
                 <div class="card">
-                    <!-- <div class="progress">
-                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width:50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div> -->
+                    
+                    <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 80%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
                         <div class="site2_logo mb-4 mt-3 text-center">
                             <a href="{{url('/')}}" class="href">
                                 <img draggable="false" src="{{asset('images/footer_logo.png')}}" alt="logo">
@@ -176,9 +177,6 @@
                                     <button class="btn p-0" type="submit">Save & Continue  <img draggable="false" src="{{asset('images/righticon.png')}}"></button>
                                 </div>
                             </div>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 80%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         {!! Form::close() !!}
                     </div>
