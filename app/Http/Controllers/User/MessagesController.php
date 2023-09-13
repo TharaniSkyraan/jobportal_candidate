@@ -4,7 +4,9 @@ namespace App\Http\Controllers\User;
 
 use DB;
 // use Storage;
+use Mail;
 use Auth;
+use App\Mail\MessageSendMail;
 use App\Model\User;
 use App\Model\Message;
 use App\Model\MessageContact;
@@ -21,6 +23,8 @@ class MessagesController extends Controller
      */
     public function __construct(MessageContact $message_contact,Message $message)
     {
+        
+        $this->middleware('auth');
         $this->message_contact = $message_contact;
         $this->message = $message;
     }
@@ -134,6 +138,86 @@ class MessagesController extends Controller
         $message->send_at = $request->chat_at;
         $message->is_read = '0';
         $message->save();
+
+        
+        $messagecontact = MessageContact::whereMessageId($request->message_id)->first();
+        $company = $messagecontact->company->company;
+        $user = Auth::user();
+        $job = $messagecontact->job;
+        
+        $maildata = [];
+        $maildata['message'] = $request->message;
+        $maildata['company_name'] = $company->name;
+        $maildata['company_email'] = $company->email;
+        $maildata['job_title'] = $job->title;
+        $maildata['user_name'] = $user->getName();
+        $maildata['user_email'] = $user->email;
+      
+        Mail::send(new MessageSendMail($maildata));
+
+        if(!empty($company->phone) && $company->is_mobile_verified=='yes')
+        {
+            $phone =  str_replace("+","",$company->phone);
+            $data = [
+                "to"=>$phone,
+                "messaging_product"=>"whatsapp",
+                "type"=>"template",
+                "template"=>[
+                    "name"=>"message_notification",
+                    "language"=>[
+                        "code"=>"en_US"
+                    ],
+                    "components"=>[
+                        [
+                            "type"=>"header",
+                            "parameters"=>[
+                                [
+                                    "type"=>"text",
+                                    "text"=>$user->getName().'-'.$job->title
+                                ]
+                            ]
+                        ],
+                        [
+                            "type"=>"body",
+                            "parameters"=>[
+                                [
+                                    "type"=>"text",
+                                    "text"=>$request->message
+                                ]
+                            ]
+                        ],
+                        [
+                            "type"=> "button",
+                            "sub_type"=> "url",
+                            "index"=> 0,
+                            "parameters"=> [
+                                [
+                                    "type"=> "text",
+                                    "text"=> $request->message_id // dynamic url
+                                ]
+                            ]
+                        ]
+                    ]            
+                ]
+            ];
+            
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL,"https://graph.facebook.com/v15.0/108875332057674/messages");
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS,json_encode($data));  //Post Fields
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            $headers = [
+                'Authorization: Bearer '.config('services.whatsapp.access_token'),
+                'Content-Type: application/json' 
+            ];
+
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+            $server_output = curl_exec ($ch);
+            curl_close ($ch); 
+        }
+
 
         return 'success';
     }
