@@ -329,3 +329,7 @@
   padding: 0px 10px;
   color: #837c7c;
 }
+.jlsection .badge{
+  padding: 3px 6px !important;
+  font-size: 11px !important;
+}

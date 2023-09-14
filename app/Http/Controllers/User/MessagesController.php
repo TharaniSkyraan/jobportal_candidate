@@ -64,7 +64,7 @@ class MessagesController extends Controller
                             ->orderBy('created_at',$orderby)
                             ->whereUserId($user_id)
                             ->get()->each(function ($items) {
-                                $items->append(['company_name','company_image','company_avatar','title','unread']);
+                                $items->append(['company_name','company_image','company_avatar','title','unread','unread_count']);
                             });  
         $contacts->makeHidden(['job_id','job','company','message']);
 
@@ -79,7 +79,7 @@ class MessagesController extends Controller
                                     $q->whereNull('employer_active_status');
                                 }
                             })->get()->each(function ($items) {
-                                $items->append(['company_name','company_image','company_avatar','title','unread']);
+                                $items->append(['company_name','company_image','company_avatar','title','unread','unread_count']);
                             });  
             $contact->makeHidden(['sub_user_id','job_id','job','company','message']);
             $result = array_merge($contact->toArray(), $contacts->toArray()); 

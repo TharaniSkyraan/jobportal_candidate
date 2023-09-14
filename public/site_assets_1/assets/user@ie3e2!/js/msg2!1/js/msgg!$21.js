@@ -97,6 +97,7 @@ $(document).on('click', '#tempskle2 .jlsca', function (event)
         $('#tempskle2 .jlsca').removeClass('jpcactive');
         $(this).addClass('jpcactive');
         $(this).removeClass('unread');
+        $(this).find('span').remove();
         
         if(devwidth=='mobwidth'){
             $('.job-filter').addClass('jfilter');
@@ -192,7 +193,6 @@ function conactlist_html(data) {
         } else {
             active_cls = val.unread;
         }
-
         m_created_at = val.created_at || '21-Aug-2022';
         m_created_at = format(new Date(m_created_at));
 
@@ -209,7 +209,11 @@ function conactlist_html(data) {
                     <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-9">
                         <p>`+val.title+`</p>
                         <h4 class="m-0">`+val.company_name+`</h4>
-                        <h5 class="m-0">`+m_created_at+`</h5>
+                        <h5 class="m-0">`+m_created_at;
+                         if(active_cls=='unread'){
+                                $html +=` <span class="badge badge-default">`+val.unread_count+`</span>`;
+                         }
+                         $html +=` </h5>
                     </div>
                     </div>
                 </div>`;

@@ -30,7 +30,7 @@ class MessageContact extends Model
 
     public function message()
     {
-        return $this->hasMany(Message::class, 'message_id', 'message_id')->where('send_by','candidate')->where('is_read','0');
+        return $this->hasMany(Message::class, 'message_id', 'message_id')->where('send_by','employer')->where('is_read','0');
     }
     
     public function getTitleAttribute()
@@ -80,6 +80,11 @@ class MessageContact extends Model
     public function getUnreadAttribute()
     {
         return ($this->message->count()==0)?'':'unread';
+    }
+    
+    public function getUnreadCountAttribute()
+    {
+        return ($this->message->count()==0)?'':$this->message->count();
     }
 
     public function getUserAvatarAttribute()
