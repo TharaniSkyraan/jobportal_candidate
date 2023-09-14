@@ -148,13 +148,17 @@ function ContactList(invoke_by=''){
         data: { "_token": csrf_token, 'message_id': act_mid, 'mstatus': act_ftab, 'search':search_inp, 'orderby': orderby },
         datatype: 'JSON',
         beforeSend:function(){
-            $("#tempskle2").addClass("is-loading");
-            $('.msglistpar').addClass("is-loading");
+            if(invoke_by!='background'){                    
+                $("#tempskle2").addClass("is-loading");
+                $('.msglistpar').addClass("is-loading");
+            }
         },
         success: function (data) {
             populate_contactlist_data({'data':data.data,'act_mid':act_mid});
-            $("#tempskle2").removeClass("is-loading");
-            $('.msglistpar').removeClass("is-loading");
+            if(invoke_by!='background'){
+                $("#tempskle2").removeClass("is-loading");
+                $('.msglistpar').removeClass("is-loading");
+            }
            
         },
         error: function (xhr, ajaxOptions, thrownError) {
@@ -193,7 +197,7 @@ function conactlist_html(data) {
         } else {
             active_cls = val.unread;
         }
-        m_created_at = val.created_at || '21-Aug-2022';
+        m_created_at = val.updated_at || '21-Aug-2022';
         m_created_at = format(new Date(m_created_at));
 
         $html += `<div class="card card-body jlsca `+active_cls+`" data-mkey="`+val.message_id+`">
@@ -224,7 +228,7 @@ function conactlist_html(data) {
 }
 
 // Message List Api
-function load_message_list_data(mid) {
+function load_message_list_data(mid=act_mid) {
  
     let req_url = baseurl + msg_api_url;
 
@@ -500,6 +504,9 @@ function format(inputDate) {
         .padStart(2, '0');
     return `${date}-${month_shna}-${year}`;
 }
-
+function ContactListen(){
+    ContactList('background');
+}
 // Call fetchMessages function periodically to fetch new messages
-setInterval(message_listen_data, 30000); // Fetch messages every 3 seconds (adjust as needed)
+setInterval(message_listen_data, 3000); // Fetch messages every 3 seconds (adjust as needed)
+setInterval(ContactListen, 3000); // Fetch messages every 3 seconds (adjust as needed)

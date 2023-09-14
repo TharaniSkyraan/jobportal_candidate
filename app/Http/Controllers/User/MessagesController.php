@@ -12,6 +12,7 @@ use App\Model\Message;
 use App\Model\MessageContact;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class MessagesController extends Controller
 {
@@ -47,7 +48,7 @@ class MessagesController extends Controller
         $orderby = $request->orderby;
         $message_id = $request->message_id;
         $user_id =  Auth::user()->id;
-        $contacts = $this->message_contact->select('sub_user_id','id','message_id','job_id','created_at')
+        $contacts = $this->message_contact->select('sub_user_id','id','message_id','job_id','updated_at')
                             ->whereHas('company', function($q) use($search){   
                                 if(!empty($search)){                                        
                                     $q->whereHas('company', function($q1) use($search){ 
@@ -61,7 +62,7 @@ class MessagesController extends Controller
                                     $q->whereNull('employer_active_status');
                                 }
                             })->where('message_id','!=', $message_id)
-                            ->orderBy('created_at',$orderby)
+                            ->orderBy('updated_at',$orderby)
                             ->whereUserId($user_id)
                             ->get()->each(function ($items) {
                                 $items->append(['company_name','company_image','company_avatar','title','unread','unread_count']);
@@ -70,7 +71,7 @@ class MessagesController extends Controller
 
         if(empty($search))
         {
-            $contact = $this->message_contact->select('sub_user_id','id','message_id','job_id','created_at')
+            $contact = $this->message_contact->select('sub_user_id','id','message_id','job_id','updated_at')
                             ->where('message_id', $message_id)                        
                             ->where(function ($q) use($status){
                                 if($status!='inbox'){
@@ -138,13 +139,14 @@ class MessagesController extends Controller
         $message->send_at = $request->chat_at;
         $message->is_read = '0';
         $message->save();
-
         
         $messagecontact = MessageContact::whereMessageId($request->message_id)->first();
+
         $company = $messagecontact->company->company;
         $user = Auth::user();
         $job = $messagecontact->job;
-        
+        $messagecontact->updated_at = Carbon::now();
+        $messagecontact->save();
         $maildata = [];
         $maildata['message'] = $request->message;
         $maildata['company_name'] = $company->name;
