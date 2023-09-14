@@ -16,6 +16,7 @@ use App\Model\Job;
 use App\Model\JobSearch;
 use App\Model\JobScreeningQuiz;
 // use App\Model\MessageContact;
+use App\Model\JobAnalytics;
 use App\Model\Industry;
 use App\Model\JobWorkLocation;
 use App\Model\JobQuizCandidateAnswer;
@@ -303,6 +304,12 @@ class JobsController extends Controller
                     $jobApply->job_id = $job->id;
                     $jobApply->percentage = $user->profileMatch($job->id);
                     $jobApply->save();
+                    
+                    $jobanalytics =  new JobAnalytics();
+                    $jobanalytics->job_apply_id = $jobApply->id;
+                    $jobanalytics->job_id = $job->id;
+                    $jobanalytics->save();
+            
                     if(count($job->screeningquiz)!=0 && !isset($request->skip_screening)){
                         foreach($job->screeningquiz as $quiz){
                             $answerkey = 'answer_'.$quiz->quiz_code;

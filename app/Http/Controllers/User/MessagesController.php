@@ -163,7 +163,7 @@ class MessagesController extends Controller
                 "messaging_product"=>"whatsapp",
                 "type"=>"template",
                 "template"=>[
-                    "name"=>"message_notification",
+                    "name"=>"employer_message_notifications",
                     "language"=>[
                         "code"=>"en_US"
                     ],

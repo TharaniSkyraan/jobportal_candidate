@@ -11,6 +11,7 @@ use App\Model\Job;
 use App\Helpers\DataArrayHelper;
 use App\Traits\JobTrait;
 use App\Events\JobApplied;
+use App\Model\JobAnalytics;
 use App\Model\JobQuizCandidateAnswer;
 use App\Model\JobScreeningQuiz;
 use App\Model\FavouriteJob;
@@ -44,6 +45,12 @@ class MyJobsController extends BaseController
             $jobApply->job_id = $job->id;
             $jobApply->percentage = $user->profileMatch($job->id);
             $jobApply->save();
+            
+            $jobanalytics =  new JobAnalytics();
+            $jobanalytics->job_apply_id = $jobApply->id;
+            $jobanalytics->job_id = $job->id;
+            $jobanalytics->save();
+
             if(count($job->screeningquiz)!=0 && !empty($request->skip_screening)){
                 foreach($job->screeningquiz as $quiz){
                     $answerkey = 'answer_'.$quiz->quiz_code;
