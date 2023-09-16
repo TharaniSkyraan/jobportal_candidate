@@ -290,15 +290,15 @@ class MyJobsController extends BaseController
             $job['posteddate'] = $alert->getDatePosted();
             $job['experience'] = $alert->experienceFid;
 
-            $job['industrytypeGid'] = $alert->industrytypeGid;
-            $job['functionalareaGid'] = $alert->functionalareaGid;
-            $job['edulevelFGid'] = $alert->edulevelFGid;
-            $job['jobtypeFGid'] = $alert->jobtypeFGid;
-            $job['jobshiftFGid'] = $alert->jobshiftFGid;
-            $job['wfhtypeFid'] = $alert->wfhtypeFid;
-            $job['salaryFGid'] = $alert->salaryFGid;
-            $job['posteddateFid'] = $alert->posteddateFid;
-            $job['experienceFid'] = $alert->experienceFid;
+            $job['industrytypeGid'] = $alert->industrytypeGid??'';
+            $job['functionalareaGid'] = $alert->functionalareaGid??'';
+            $job['edulevelFGid'] = $alert->edulevelFGid??'';
+            $job['jobtypeFGid'] = $alert->jobtypeFGid??'';
+            $job['jobshiftFGid'] = $alert->jobshiftFGid??'';
+            $job['wfhtypeFid'] = $alert->wfhtypeFid??'';
+            $job['salaryFGid'] = $alert->salaryFGid??'';
+            $job['posteddateFid'] = $alert->posteddateFid??'';
+            $job['experienceFid'] = $alert->experienceFid??'';
         });
         $response['jobs'] = $list->items();
         $response['next_page'] = (!empty($list->nextPageUrl())?($list->currentPage()+1):"");
