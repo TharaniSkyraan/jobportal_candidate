@@ -99,7 +99,7 @@ trait UserCvsTrait
     public function deleteUserCv($id)
     {
 
-        // $id = $request->input('id');
+        $id = $request->input('id');
         try {
             $UserCv = UserCv::findOrFail($id);            
             $resume_path = $UserCv->path;

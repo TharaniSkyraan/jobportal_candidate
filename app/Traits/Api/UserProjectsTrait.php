@@ -34,11 +34,14 @@ trait UserProjectsTrait
                 'project_location'=>$project['project_location'],
                 'description'=>$project['description'],
                 'used_tools'=>$project['used_tools'],
-                'is_on_going'=>$project['is_on_going'],
+                'is_on_going'=>$project['is_on_going']??'',
                 'work_as_team'=>$project['work_as_team'],
                 'noof_team_member'=>$project['noof_team_member'],
                 'role_on_project'=>$project['role_on_project'],
                 'url'=>$project['url'],
+                'country_id'=>$project['country_id'],
+                'country_name'=>$project['country']->country,
+                'is_freelance'=>$project['is_freelance'],
                 'year_of_project' => $from .'-'. $to,
                 'from' => (!empty($project['date_start']))?Carbon::parse($project['date_start'])->getTimestampMs():"",
                 'to' => (!empty($project['date_end']))?Carbon::parse($project['date_end'])->getTimestampMs():"",
@@ -98,6 +101,7 @@ trait UserProjectsTrait
         $userProject->role_on_project = $request->input('role_on_project');
         $userProject->description = $request->input('description');        
         $userProject->used_tools = $request->input('used_tools');
+        $userProject->is_freelance = $request->input('is_freelance')??Null;
 
         return $userProject;
 

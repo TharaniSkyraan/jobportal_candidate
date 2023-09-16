@@ -47,6 +47,7 @@ class UserController extends BaseController
                 'employment_status' => $user->employment_status??"",
                 'resume_url' => $user->getDefaultCv()->cv_file??"",
                 'resume_id' => $user->getDefaultCv()->id??"",
+                'user_token' => $user->token,
             ),
             'genders' => DataArrayHelper::langGendersApiArray(),    
             'maritalStatuses' => DataArrayHelper::langMaritalStatusesApiArray()
@@ -80,6 +81,7 @@ class UserController extends BaseController
             'expected_salary' => $user->expected_salary??'',
             'total_experience' => $user->total_experience??0,
             'career_title' => $user->career_title??'',
+            'country' => $user->country->country??'',
             'exp_in_year' => $exp_in_year??0,
             'exp_in_month' => $exp_in_month??0,
         );
