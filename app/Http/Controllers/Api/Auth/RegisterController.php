@@ -91,8 +91,8 @@ class RegisterController extends BaseController
     {
         if(User::where('email',$request->email)->doesntExist())
         {
-            
-            $request->verify_otp = $this->generateRandomCode(6);
+            $otp = $this->generateRandomCode(6);
+            $request->verify_otp = $otp;
             $request->session_otp = Carbon::now();
             $request->password = Hash::make($request->password);
             $request->next_process_level = 'verify_otp';
@@ -103,7 +103,7 @@ class RegisterController extends BaseController
             UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
             Auth::logout();
 
-            return $this->sendResponse(['id'=>$user->id], 'Verification OTP Send Successful.');
+            return $this->sendResponse(['id'=>$user->id,'otp'=>$otp], 'Verification OTP Send Successful.');
         }
 
         return $this->sendError('Unauthorised.', ['user_type' => 'existing']); 
