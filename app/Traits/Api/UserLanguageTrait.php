@@ -23,7 +23,7 @@ trait UserLanguageTrait
         $ip_data = $ip_data??array();
        
         $data = array_map(function ($language) use($ip_data) {
-           $lang = Language::find($language['language_id']);
+           $lang = Language::where('id',$language['language_id'])->first();
            $lang_level = LanguageLevel::where('language_level_id',$language['language_level_id'])->first();
             $val = array(
                 'id' => $language['id'],
@@ -67,7 +67,7 @@ trait UserLanguageTrait
         $user_id = Auth::user()->id;
         $userLanguage->user_id = $user_id;
         $userLanguage->language_id = $request->input('language_id');
-        $userLanguage->language_level_id = $request->input('language_level_id');
+        $userLanguage->language_level_id = $request->input('level_id');
         $userLanguage->read = $request->input('read')??'no';
         $userLanguage->write = $request->input('write')??'no';
         $userLanguage->speak = $request->input('speak')??'no';
