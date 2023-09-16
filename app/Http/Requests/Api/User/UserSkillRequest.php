@@ -32,6 +32,7 @@ class UserSkillRequest extends Request
         return [            
             'skill_id' => 'required|unique:user_skills,skill_id,'.($this->id??0).',id,deleted_at,NULL,user_id,'.\Auth::user()->id,
             "level_id" => "required",
+            "skill" => "required",
         ];
 
     }
