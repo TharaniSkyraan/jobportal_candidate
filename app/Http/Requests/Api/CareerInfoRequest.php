@@ -53,7 +53,7 @@ class CareerInfoRequest extends Request
         throw new HttpResponseException(response()->json([
             'success'   => false,
             'message'   => 'Validation errors',
-            'error_data'=> $errors
+            'data'=> $errors
         ]));
     }
 
