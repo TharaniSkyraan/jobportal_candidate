@@ -272,7 +272,7 @@ class JobsController extends BaseController
                 'company_slug' => $job->company->slug??'', 
                 'breakpoint' => $breakpoint?'yes':'',
                 'have_screening' => JobScreeningQuiz::whereJobId($job->id)->count(),
-                'screening_quiz' => JobScreeningQuiz::whereJobId($job->id)
+                'screening_quiz' => JobScreeningQuiz::whereJobId($job->id)->get()
             );
         return $this->sendResponse($response);
     }
