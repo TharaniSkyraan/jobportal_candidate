@@ -100,10 +100,11 @@ trait UserCvsTrait
     {
 
         $id = $request->input('id');
+        dd($id);
+
         try {
             $UserCv = UserCv::findOrFail($id);            
             $resume_path = $UserCv->path;
-            dd($UserCv);
             $UserCv->forceDelete();
             Storage::disk('s3')->delete($resume_path); 
             return $this->sendResponse('', 'Success');       
