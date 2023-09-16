@@ -5,6 +5,7 @@ namespace App\Traits\Api;
 use Auth;
 use Carbon\Carbon;
 use App\Model\User;
+use App\Model\Country;
 use App\Model\UserProject;
 use App\Model\UserExperience;
 use Illuminate\Http\Request;
@@ -23,9 +24,11 @@ trait UserProjectsTrait
         $ip_data = $ip_data??array();
        
         $data = array_map(function ($project) use($ip_data) {
+            
             $from = $project['date_start']?Carbon::parse($project['date_start'])->Format('M Y'):'';
             $to = ($project['is_on_going']!=1? ($project['date_end']?Carbon::parse($project['date_end'])->Format('M Y'):'') : 'Still Pursuing');
             $expe = UserExperience::find($project['user_experience_id']);
+            $country = Country::find($project['country_id']);
             $val = array(
                 'id'=>$project['id'],
                 'project_name'=>$project['name'],
@@ -40,7 +43,7 @@ trait UserProjectsTrait
                 'role_on_project'=>$project['role_on_project'],
                 'url'=>$project['url'],
                 'country_id'=>$project['country_id'],
-                'country_name'=>$project['country']->country,
+                'country'=>(!empty($project['country_id']))?$country->country:($ip_data['geoplugin_countryName']??""),
                 'is_freelance'=>$project['is_freelance'],
                 'year_of_project' => $from .'-'. $to,
                 'from' => (!empty($project['date_start']))?Carbon::parse($project['date_start'])->getTimestampMs():"",
@@ -48,7 +51,6 @@ trait UserProjectsTrait
             );
             return $val;
         }, $projects); 
-        dd(Auth::user()->id);
 
         return $this->sendResponse($data);
         

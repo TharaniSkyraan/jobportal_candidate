@@ -24,6 +24,7 @@ trait UserExperienceTrait
         $data = array_map(function ($experience) use($ip_data) {
             $from = $experience['date_start']?Carbon::parse($experience['date_start'])->Format('M Y'):'';
             $to = ($experience['is_currently_working']!=1? ($experience['date_end']?Carbon::parse($experience['date_end'])->Format('M Y'):'') : 'Still Working');
+            $country = Country::find($experience['country_id']);
             $val = array(
                     'id' => $experience['id'],
                     'title' => $experience['title'],
@@ -32,6 +33,7 @@ trait UserExperienceTrait
                     'description' => $experience['description'],
                     'used_tools' => $experience['used_tools'],
                     'country_id' => $experience['country_id'],
+                    'country'=>(!empty($experience['country_id']))?$country->country:($ip_data['geoplugin_countryName']??""),
                     'is_currently_working' => $experience['is_currently_working'],
                     'year_of_experience' => $from .'-'. $to,
                     'from' => (!empty($experience['date_start']))?Carbon::parse($experience['date_start'])->getTimestampMs():"",

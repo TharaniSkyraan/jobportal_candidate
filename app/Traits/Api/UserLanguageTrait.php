@@ -23,12 +23,12 @@ trait UserLanguageTrait
         $ip_data = $ip_data??array();
        
         $data = array_map(function ($language) use($ip_data) {
-           $lang = Language::where('id',$language['language_id'])->first();
+           $lang = Language::find($language['language_id']);
            $lang_level = LanguageLevel::where('language_level_id',$language['language_level_id'])->first();
             $val = array(
                 'id' => $language['id'],
                 'language_id' => $language['language_id']??0,
-                'language' => $lang->language??'',
+                'language' => $lang->lang??'',
                 'level_id' => $language['language_level_id']??0,
                 'language_level' => $lang_level->language_level??'',
                 'read' => $language['read'],
