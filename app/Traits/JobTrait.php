@@ -26,6 +26,7 @@ trait JobTrait
             $user =  $job->userdetail;
             $title = $job->job->title;
             $company_name = $job->job->company_name;
+            $recruiter_name = $job->job->companyuser->name;
             $data = [
                 "to"=>$phone,
                 "messaging_product"=>"whatsapp",
@@ -39,6 +40,10 @@ trait JobTrait
                         [
                             "type"=>"body",
                             "parameters"=>[
+                                [
+                                    "type"=>"text",
+                                    "text"=>$recruiter_name
+                                ],
                                 [
                                     "type"=>"text",
                                     "text"=>$user['name']

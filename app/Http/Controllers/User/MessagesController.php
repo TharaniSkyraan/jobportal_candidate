@@ -184,6 +184,10 @@ class MessagesController extends Controller
                             "parameters"=>[
                                 [
                                     "type"=>"text",
+                                    "text"=>$user->getName().' for '.$job->title
+                                ],
+                                [
+                                    "type"=>"text",
                                     "text"=>$request->message
                                 ]
                             ]

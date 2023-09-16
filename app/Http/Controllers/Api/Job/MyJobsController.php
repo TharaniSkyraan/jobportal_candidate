@@ -288,7 +288,7 @@ class MyJobsController extends BaseController
             $job['wfhtype'] = $alert->getWFH();
             $job['salary'] = $alert->getSalary();
             $job['posteddate'] = $alert->getDatePosted();
-            $job['experience'] = $alert->experienceFid;
+            $job['experience'] = $alert->experienceFid??'';
 
             $job['industrytypeGid'] = $alert->industrytypeGid??'';
             $job['functionalareaGid'] = $alert->functionalareaGid??'';
