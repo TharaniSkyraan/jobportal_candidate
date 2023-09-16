@@ -18,7 +18,6 @@ trait UserProjectsTrait
 
     public function projects(Request $request)
     { 
-        dd(Auth::user()->id);
 
         $projects = UserProject::whereUserId(Auth::user()->id)->get()->toArray();
         $ip_data = $ip_data??array();
@@ -49,6 +48,7 @@ trait UserProjectsTrait
             );
             return $val;
         }, $projects); 
+        dd(Auth::user()->id);
 
         return $this->sendResponse($data);
         
