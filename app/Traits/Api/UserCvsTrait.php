@@ -96,13 +96,14 @@ trait UserCvsTrait
         return \Response::make(Storage::disk('s3')->get($usercv->path), 200, $headers);   
     }
 
-    public function deleteUserCv($id='')
+    public function deleteUserCv()
     {
 
         $id = $request->input('id');
         try {
             $UserCv = UserCv::findOrFail($id);            
             $resume_path = $UserCv->path;
+            dd($UserCv);
             $UserCv->forceDelete();
             Storage::disk('s3')->delete($resume_path); 
             return $this->sendResponse('', 'Success');       
