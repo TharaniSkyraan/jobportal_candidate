@@ -99,8 +99,8 @@ trait UserCvsTrait
     public function deleteUserCv()
     {
 
+        dd('test');
         $id = $request->input('id');
-        dd($id);
 
         try {
             $UserCv = UserCv::findOrFail($id);            
