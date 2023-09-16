@@ -32,10 +32,10 @@ class RegisterRequest extends Request
 
         $rules =  [
             'email' => 'required',
-            'name' => 'required',
         ];
         if($this->provider==null)
         {            
+            $rules['phone'] = 'required';
             $rules['password'] = 'required|max:30';
         }
 

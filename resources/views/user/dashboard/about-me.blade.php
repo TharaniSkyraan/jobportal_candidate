@@ -74,7 +74,7 @@
                                     <div class="row">
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-4">
                                             <label for="date_of_birth" class=" col-form-label">Date of Birth</label>
-                                            {!! Form::date('date_of_birth', $user->date_of_birth??null, array('class'=>'form-control required', 'id'=>'date_of_birth', 'min'=>'1900-01-02', 'max'=>'2008-12-31', 'placeholder'=>__('Date of Birth'), 'autocomplete'=>'off')) !!}
+                                            {!! Form::date('date_of_birth', $user->date_of_birth??null, array('class'=>'form-control required', 'id'=>'date_of_birth', 'min'=>'1900-01-02', 'placeholder'=>__('Date of Birth'), 'autocomplete'=>'off')) !!}
                                             <small class="form-text text-muted text-danger err_msg" id="err_date_of_birth"></small>
                                         </div>
                             
