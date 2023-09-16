@@ -49,16 +49,30 @@ trait UserSkillTrait
     {
 
         $user_id = Auth::user()->id;
-        $skill = Skill::find($request->input('skill_id'));
         $id = $request->id??NULL;
         if($id){
             $userSkill = UserSkill::find($id);
         }else{
             $userSkill = new UserSkill();
         }
+        if(empty($request->skill_id)){            
+            $skill = new Skill();                
+            $skill->skill = $request->skill;
+            $skill->is_active = 0;
+            $skill->lang = 'en';
+            $skill->is_default = 1;
+            $skill->save();
+            $skill->skill_id = $skill->id;
+            $skill_id = $skill->id;
+            $skill_name = $request->skill;
+            $skill->update();
+        }else{
+            $skill = Skill::find($request->input('skill_id'));
+            $skill_name = $skill->skill;
+        }
         $userSkill->user_id = $user_id;
-        $userSkill->skills = $skill->skill;
-        $userSkill->skill_id = $request->input('skill_id');
+        $userSkill->skills = $skill_name;
+        $userSkill->skill_id = $skill_id;
         $userSkill->level_id = $request->input('level_id');
         if(!empty($request->start_date)){
             $userSkill->start_date = Carbon::parse($request->input('start_date'))->format('Y-m-d');

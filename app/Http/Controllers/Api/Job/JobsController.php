@@ -244,7 +244,7 @@ class JobsController extends BaseController
             'is_applied'=>$user->isAppliedOnJob($job->id),
             'is_favourite'=>$user->isFavouriteJob($job->slug),
             'shortlist'=>$shortlist,
-            'applied_at'=>(!empty($applied_at)?Carbon::parse($applied_at)->getTimestampMs():''),
+            'applied_at'=>(!empty($applied_at)?Carbon::parse($applied_at)->getTimestampMs():0),
             'website_url'=>$job->company->website_url??'',
             'linkedin_url'=>$job->company->linkedin_url??'',
             'twitter_url'=>$job->company->twitter_url??'',

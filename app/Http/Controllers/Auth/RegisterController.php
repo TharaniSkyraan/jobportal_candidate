@@ -269,8 +269,6 @@ class RegisterController extends Controller
                         ->limit(10)
                         ->pluck('skill_id');
 
-        
-
         if(count($suggestedskill)!=0){   
             $skills = Skill::whereIn('id',$suggestedskill)->pluck('skill','id')->toArray(); 
         }
