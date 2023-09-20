@@ -16,9 +16,10 @@ trait UserCvsTrait
 
     public function cvs()
     {
+        $response['resume'] = [];
         $user = Auth::user();  
         if(count($user->UserCvs)!=0){
-            $userCv1 = array(
+            $response['resume'][] = array(
                 'id'         => $user->UserCvs[0]['id'],
                 'cv_file'    => $user->UserCvs[0]['cv_file'],
                 'path'       => $user->UserCvs[0]['path'],
@@ -28,8 +29,8 @@ trait UserCvsTrait
            
             );
         }
-        if(count($user->UserCvs)==2){
-            $userCv2 = array(
+        if(count($user->UserCvs)>=2){
+            $response['resume'][] = array(
                 'id'         => $user->UserCvs[1]['id'],
                 'cv_file'    => $user->UserCvs[1]['cv_file'],
                 'path'       => $user->UserCvs[1]['path'],
@@ -39,8 +40,6 @@ trait UserCvsTrait
            
             );
         }
-        $response['resume1'] = $userCv1??[];
-        $response['resume2'] = $userCv2??[];
         return $this->sendResponse($response);
     }
 
