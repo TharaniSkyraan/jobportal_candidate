@@ -17,7 +17,7 @@ trait UserCvsTrait
     public function cvs()
     {
         $user = Auth::user();  
-        if($user->UserCvs[0]){
+        if(count($user->UserCvs)!=0){
             $userCv1 = array(
                 'id'         => $user->UserCvs[0]['id'],
                 'cv_file'    => $user->UserCvs[0]['cv_file'],
@@ -28,7 +28,7 @@ trait UserCvsTrait
            
             );
         }
-        if($user->UserCvs[1]){
+        if(count($user->UserCvs)==2){
             $userCv2 = array(
                 'id'         => $user->UserCvs[1]['id'],
                 'cv_file'    => $user->UserCvs[1]['cv_file'],
