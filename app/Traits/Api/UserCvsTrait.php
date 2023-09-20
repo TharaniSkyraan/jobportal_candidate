@@ -39,8 +39,8 @@ trait UserCvsTrait
            
             );
         }
-        $response['resume1'] = $userCv1??object();
-        $response['resume2'] = $userCv2??object();
+        $response['resume1'] = $userCv1??[];
+        $response['resume2'] = $userCv2??[];
         return $this->sendResponse($response);
     }
 
