@@ -106,7 +106,7 @@ class RegisterController extends BaseController
             return $this->sendResponse(['id'=>$user->id,'otp'=>$otp], 'Verification OTP Send Successful.');
         }
 
-        return $this->sendError('Unauthorised.', ['user_type' => 'existing']); 
+        return $this->sendResponse('', 'Existing'); 
     
     }
     /**
