@@ -69,6 +69,7 @@ trait UserSkillTrait
         }else{
             $skill = Skill::find($request->input('skill_id'));
             $skill_name = $skill->skill;
+            $skill_id = $request->skill_id;
         }
         $userSkill->user_id = $user_id;
         $userSkill->skills = $skill_name;
