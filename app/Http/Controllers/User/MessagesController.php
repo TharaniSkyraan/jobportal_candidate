@@ -165,26 +165,21 @@ class MessagesController extends Controller
                 "messaging_product"=>"whatsapp",
                 "type"=>"template",
                 "template"=>[
-                    "name"=>"employer_message_notifications",
+                    "name"=>"message_notification_with_subject",
                     "language"=>[
                         "code"=>"en_US"
                     ],
                     "components"=>[
-                        [
-                            "type"=>"header",
-                            "parameters"=>[
-                                [
-                                    "type"=>"text",
-                                    "text"=>$user->getName().'-'.$job->title
-                                ]
-                            ]
-                        ],
                         [
                             "type"=>"body",
                             "parameters"=>[
                                 [
                                     "type"=>"text",
                                     "text"=>$user->getName().' for '.$job->title
+                                ],
+                                [
+                                    "type"=>"text",
+                                    "text"=>'Sample Subject'
                                 ],
                                 [
                                     "type"=>"text",
