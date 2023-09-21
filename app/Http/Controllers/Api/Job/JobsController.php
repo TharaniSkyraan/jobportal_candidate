@@ -90,6 +90,70 @@ class JobsController extends BaseController
 
         return $this->sendResponse($response);
     }
+    /**
+     * return Success json response.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function fresherIndex()
+    {
+        $user_id = Auth::user()->id??710;        
+        $user = User::find($user_id);
+        $appliedjobs = JobApply::where('user_id',$user_id)
+                        ->whereIn('application_status',['view','shortlist','consider'])
+                        ->take(4)
+                        ->orderBy('created_at','desc')
+                        ->get();
+
+        $appliedlist = [];
+        
+        foreach($appliedjobs as $job)
+        {
+            if(isset($job->job))
+            {                    
+                $appliedlist[] = array(
+                    'slug' => $job->job->slug,
+                    'title' => $job->job->title??'Php Developer',
+                    'company_name' => $job->job->company_name??'Skyraan',
+                    'company_image' => $job->job->company->company_image??'',
+                    'status' => $job->application_status,
+                    'applied_at' => Carbon::parse($job->created_at)->getTimestampMs(),
+                    'status_updated_at' => Carbon::parse($job->updated_at)->getTimestampMs(),
+                );
+            }
+        }
+
+        $jobs = $this->fetchJobs($user->career_title, '', [], 5);
+        
+        $jobs['joblist']->each(function ($job, $key) use($user) {
+            $jobc = Job::find($job->job_id);
+            $job['company_image'] = $jobc->company->company_image??'';
+            $job['job_type'] = $jobc->getTypesStr();
+            $job['skills'] = $jobc->getSkillsStr();
+            $job['posted_at'] = Carbon::parse($jobc->posted_date)->getTimestampMs();
+            $job['is_applied'] = $user->isAppliedOnJob($job->job_id);
+            $job['is_favourite'] = $user->isFavouriteJob($jobc->slug);
+        });   
+        $joblist = $jobs['joblist']->items();     
+
+        $userData = array(
+                'name' => $user->getName(),
+                'final_percentage' => $user->getProfilePercentage(),
+                'image' => $user->image,
+                'career_title' => $user->career_title,
+                'updated_at' => Carbon::parse($user->updated_at)->getTimestampMs(),  
+                'resume' => $user->getDefaultCv()->cv_file,            
+                'location' => $user->location,            
+            );
+
+        $response = array(
+                        'jobs' => $joblist, 
+                        'user' => $userData, 
+                        'appliedlist' => $appliedlist
+                    );
+
+        return $this->sendResponse($response);
+    }
 
     /**
      * return Success json response.
@@ -266,13 +330,19 @@ class JobsController extends BaseController
         $joblist = $jobs['joblist']->items();     
 
         $breakpoint = JobScreeningQuiz::whereJobId($job->id)->whereBreakpoint('yes')->first();
+        $screening = JobScreeningQuiz::whereJobId($job->id)
+                                     ->select('quiz_code','answer_type','candidate_options','candidate_question as question','breakpoint')
+                                     ->get()
+                                     ->each(function ($screeningquiz, $key) {
+                                        $screeningquiz['options'] = json_decode($screeningquiz->candidate_options);
+                                     });
         $response = array(
                 'job' => $jobd, 
                 'relevant_job' => $joblist, 
                 'company_slug' => $job->company->slug??'', 
                 'breakpoint' => $breakpoint?'yes':'no',
                 'have_screening' => JobScreeningQuiz::whereJobId($job->id)->count(),
-                'screening_quiz' => JobScreeningQuiz::whereJobId($job->id)->select('quiz_code','answer_type','candidate_options as options','candidate_question as question','breakpoint')->get()
+                'screening_quiz' => $screening
             );
         return $this->sendResponse($response);
     }
