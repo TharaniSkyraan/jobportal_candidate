@@ -89,7 +89,7 @@ class RegisterController extends BaseController
      */
     public function register(RegisterRequest $request)
     {
-        if(User::where('email',$request->email)->doesntExist())
+        if(User::where('email',$request->email)->doesntExist() || User::where('email',$request->email)->whereVerified(0)->exists())
         {
             $otp = $this->generateRandomCode(6);
             $data = $request->all();
@@ -97,15 +97,20 @@ class RegisterController extends BaseController
             $data['session_otp'] = Carbon::now();
             $data['password'] = Hash::make($request->password);
             $data['next_process_level'] = 'verify_otp';
-            $user = User::create($data);
+            User::updateOrCreate(['email' => $request->email],$data);
+
+            $user = User::where('email',$request->email)->first();
             
-            Auth::login($user, true); 
-            UserVerification::generate($user);
-            UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
-            Auth::logout();
+            // Auth::login($user, true); 
+            // UserVerification::generate($user);
+            // UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
+            // Auth::logout();
 
             return $this->sendResponse(['id'=>$user->id,'otp'=>$otp], 'Verification OTP Send Successful.');
         }
+
+        UserActivity::updateOrCreate(['user_id' => Auth::user()->id],['last_active_at'=>Carbon::now()]);
+
 
         return $this->sendResponse('', 'Existing'); 
     
