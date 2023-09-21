@@ -98,7 +98,6 @@ class RegisterController extends BaseController
             $data['password'] = Hash::make($request->password);
             $data['next_process_level'] = 'verify_otp';
             $user = User::create($data);
-            dd($data);
             
             Auth::login($user, true); 
             UserVerification::generate($user);
