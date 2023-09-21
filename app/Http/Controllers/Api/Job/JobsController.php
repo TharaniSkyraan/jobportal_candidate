@@ -201,7 +201,7 @@ class JobsController extends BaseController
         
         $user_id = Auth::user()->id??710;
         $user = User::find($user_id);
-        $job = Job::whereSlug($slug)->with(['screeningquiz'])->first(); 
+        $job = Job::whereSlug($slug)->with(['screeningquizs'])->first(); 
         if($job==NULL){
             return $this->sendError('No Job Available.'); 
         }

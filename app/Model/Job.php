@@ -436,6 +436,11 @@ class Job extends Model
         return $this->hasMany(JobScreeningQuiz::class, 'job_id', 'id')->withTrashed();
     }
     
+    public function screeningquizs()
+    {
+        return $this->hasMany(JobScreeningQuiz::class, 'job_id', 'id')->withTrashed()->select('candidate_options as options','candidate_question as question','breakpoint','quiz_code','answer_type');
+    }
+    
     public function screeningquizcategory()
     {
         return JobScreeningQuiz::select('category_id', DB::raw('count(category_id) as count'))
