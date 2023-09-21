@@ -136,6 +136,7 @@ class RegisterController extends BaseController
         $user->verify_otp = null;
         $user->verified = 1;
         $user->next_process_level = 'education';
+        $user->candidate_id = $this->generateCandidate($user->id);
         $user->save();
         
         Auth::login($user, true);
