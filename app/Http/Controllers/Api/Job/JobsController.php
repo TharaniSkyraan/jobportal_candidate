@@ -202,13 +202,12 @@ class JobsController extends BaseController
         $user_id = Auth::user()->id??710;
         $user = User::find($user_id);
         $job = Job::whereSlug($slug)->with(['screeningquiz'])->first(); 
-        dd($job);
-        $jobapplied = JobApply::whereJobId($job->id)
-                              ->whereUserId($user_id)
-                              ->first();
         if($job==NULL){
             return $this->sendError('No Job Available.'); 
         }
+        $jobapplied = JobApply::whereJobId($job->id)
+                              ->whereUserId($user_id)
+                              ->first();
         $exclude_days = isset($job->walkin->exclude_days)?'(Excluding'. $job->walkin->exclude_days.')':'';
         $job_skill_id = explode(',',$job->getSkillsStr());
         $skills = explode(',',$user->getUserSkillsStr('skill'));

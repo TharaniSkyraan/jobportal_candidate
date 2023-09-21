@@ -50,12 +50,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        // if ($request->expectsJson() || $request->header('Authorization')) {
+        if ($request->expectsJson() || $request->header('Authorization')) {
     
-        //     $response = ['success' => false, 'message' => 'Authorization User', 'data'=>[]];
+            $response = ['success' => false, 'message' => 'Authorization User', 'data'=>[]];
 
-        //     return response()->json($response, 401);
-        // }
+            return response()->json($response, 401);
+        }
         return parent::render($request, $exception);
     }
 }
