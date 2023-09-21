@@ -201,7 +201,7 @@ class JobsController extends BaseController
         
         $user_id = Auth::user()->id??710;
         $user = User::find($user_id);
-        $job = Job::whereSlug($slug)->with(['screeningquizs'])->first(); 
+        $job = Job::whereSlug($slug)->with(['screeningquiz'])->first(); 
         if($job==NULL){
             return $this->sendError('No Job Available.'); 
         }
@@ -272,7 +272,7 @@ class JobsController extends BaseController
                 'company_slug' => $job->company->slug??'', 
                 'breakpoint' => $breakpoint?'yes':'no',
                 'have_screening' => JobScreeningQuiz::whereJobId($job->id)->count(),
-                'screening_quiz' => JobScreeningQuiz::whereJobId($job->id)->get()
+                'screening_quiz' => JobScreeningQuiz::whereJobId($job->id)->select('candidate_options as options','candidate_question as question','breakpoint','quiz_code','answer_type')->get()
             );
         return $this->sendResponse($response);
     }
