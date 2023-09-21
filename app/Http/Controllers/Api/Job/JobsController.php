@@ -202,6 +202,7 @@ class JobsController extends BaseController
         $user_id = Auth::user()->id??710;
         $user = User::find($user_id);
         $job = Job::whereSlug($slug)->with(['screeningquiz'])->first(); 
+        dd($job);
         $jobapplied = JobApply::whereJobId($job->id)
                               ->whereUserId($user_id)
                               ->first();
