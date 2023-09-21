@@ -334,7 +334,7 @@ class JobsController extends BaseController
                                      ->select('quiz_code','answer_type','candidate_options','candidate_question as question','breakpoint')
                                      ->get()
                                      ->each(function ($screeningquiz, $key) {
-                                        $screeningquiz['options'] = json_decode($screeningquiz->candidate_options);
+                                        $screeningquiz['options'] = $screeningquiz->candidate_options?json_decode($screeningquiz->candidate_options):'';
                                      });
         $response = array(
                 'job' => $jobd, 

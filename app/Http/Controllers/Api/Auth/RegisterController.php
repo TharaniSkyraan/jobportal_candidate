@@ -97,6 +97,9 @@ class RegisterController extends BaseController
             $data['session_otp'] = Carbon::now();
             $data['password'] = Hash::make($request->password);
             $data['next_process_level'] = 'verify_otp';
+            if(User::where('email',$request->email)->doesntExist()){
+                $data['token'] = $this->generateRandomString(8);
+            }
             User::updateOrCreate(['email' => $request->email],$data);
 
             $user = User::where('email',$request->email)->first();

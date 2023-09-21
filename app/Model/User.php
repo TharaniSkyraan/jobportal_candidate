@@ -355,7 +355,7 @@ class User extends Authenticatable
         }
 
         if (empty($html)){
-            $html = $this->name;
+            $html = $this->name??'';
         }
 
         return $html;
