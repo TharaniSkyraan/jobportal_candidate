@@ -95,7 +95,7 @@ class RegisterController extends BaseController
             $data = $request->all();
             $data['verify_otp'] = $otp;
             $data['session_otp'] = Carbon::now();
-            $data['password'] = Hash::make($data->password);
+            $data['password'] = Hash::make($request->password);
             $data['next_process_level'] = 'verify_otp';
             $user = User::create($data);
             dd($data);
