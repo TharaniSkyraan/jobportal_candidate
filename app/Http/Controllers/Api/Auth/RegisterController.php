@@ -92,11 +92,13 @@ class RegisterController extends BaseController
         if(User::where('email',$request->email)->doesntExist())
         {
             $otp = $this->generateRandomCode(6);
-            $request['verify_otp'] = $otp;
-            $request['session_otp'] = Carbon::now();
-            $request['password'] = Hash::make($request->password);
-            $request['next_process_level'] = 'verify_otp';
-            $user = User::create($request->all());
+            $data = $request->all();
+            $data['verify_otp'] = $otp;
+            $data['session_otp'] = Carbon::now();
+            $data['password'] = Hash::make($data->password);
+            $data['next_process_level'] = 'verify_otp';
+            $user = User::create($data);
+            dd($data);
             
             Auth::login($user, true); 
             UserVerification::generate($user);
