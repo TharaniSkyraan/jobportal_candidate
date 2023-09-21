@@ -101,10 +101,10 @@ class RegisterController extends BaseController
 
             $user = User::where('email',$request->email)->first();
             
-            // Auth::login($user, true); 
-            // UserVerification::generate($user);
-            // UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
-            // Auth::logout();
+            Auth::login($user, true); 
+            UserVerification::generate($user);
+            UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
+            Auth::logout();
 
             return $this->sendResponse(['id'=>$user->id,'otp'=>$otp], 'Verification OTP Send Successful.');
         }
