@@ -120,7 +120,7 @@ class RegisterController extends BaseController
       */ 
     public function verifyOTP(VerifyOtpRequest $request)
     {
-  
+  dd($request->all());
         $user = User::find($request->id);
         $startdate = Carbon::parse($user->session_otp);
         $enddate = Carbon::now();
