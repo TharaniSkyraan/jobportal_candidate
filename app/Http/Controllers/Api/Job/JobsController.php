@@ -317,19 +317,15 @@ class JobsController extends BaseController
         );
 
         $jobs = $this->fetchJobs($job->title, '', [], 10);
-        $jobs['joblist']->each(function ($rjob, $key) use($user, $job) {
-            if($job->id != $rjob->job_id){
-                $jobc = Job::find($rjob->job_id);
-                $rjob['company_image'] = $jobc->company->company_image??'';
-                $rjob['location'] = $rjob->work_locations;
-                $rjob['job_type'] = $jobc->getTypesStr();
-                $rjob['skills'] = $jobc->getSkillsStr();
-                $rjob['posted_at'] = Carbon::parse($jobc->posted_date)->getTimestampMs();
-                $rjob['is_applied'] = $user->isAppliedOnJob($jobc->id);
-                $rjob['is_favourite'] = $user->isFavouriteJob($jobc->slug);
-            }else{
-                unset($rjob[$key]);
-            }
+        $jobs['joblist']->each(function ($rjob, $key) use($user) {
+            $jobc = Job::find($rjob->job_id);
+            $rjob['company_image'] = $jobc->company->company_image??'';
+            $rjob['location'] = $rjob->work_locations;
+            $rjob['job_type'] = $jobc->getTypesStr();
+            $rjob['skills'] = $jobc->getSkillsStr();
+            $rjob['posted_at'] = Carbon::parse($jobc->posted_date)->getTimestampMs();
+            $rjob['is_applied'] = $user->isAppliedOnJob($jobc->id);
+            $rjob['is_favourite'] = $user->isFavouriteJob($jobc->slug);
         });   
         $joblist = $jobs['joblist']->items();     
 
