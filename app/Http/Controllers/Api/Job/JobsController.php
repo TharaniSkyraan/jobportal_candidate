@@ -318,14 +318,18 @@ class JobsController extends BaseController
 
         $jobs = $this->fetchJobs($job->title, '', [], 10);
         $jobs['joblist']->each(function ($rjob, $key) use($user) {
-            $jobc = Job::find($rjob->job_id);
-            $rjob['company_image'] = $jobc->company->company_image??'';
-            $rjob['location'] = $rjob->work_locations;
-            $rjob['job_type'] = $jobc->getTypesStr();
-            $rjob['skills'] = $jobc->getSkillsStr();
-            $rjob['posted_at'] = Carbon::parse($jobc->posted_date)->getTimestampMs();
-            $rjob['is_applied'] = $user->isAppliedOnJob($jobc->id);
-            $rjob['is_favourite'] = $user->isFavouriteJob($jobc->slug);
+            if($job->id != $rjob->job_id){
+                $jobc = Job::find($rjob->job_id);
+                $rjob['company_image'] = $jobc->company->company_image??'';
+                $rjob['location'] = $rjob->work_locations;
+                $rjob['job_type'] = $jobc->getTypesStr();
+                $rjob['skills'] = $jobc->getSkillsStr();
+                $rjob['posted_at'] = Carbon::parse($jobc->posted_date)->getTimestampMs();
+                $rjob['is_applied'] = $user->isAppliedOnJob($jobc->id);
+                $rjob['is_favourite'] = $user->isFavouriteJob($jobc->slug);
+            }else{
+                unset($rjob[$key]);
+            }
         });   
         $joblist = $jobs['joblist']->items();     
 
@@ -334,7 +338,7 @@ class JobsController extends BaseController
                                      ->select('quiz_code','answer_type','candidate_options','candidate_question as question','breakpoint')
                                      ->get()
                                      ->each(function ($screeningquiz, $key) {
-                                        $screeningquiz['options'] = $screeningquiz->candidate_options?json_decode($screeningquiz->candidate_options):'';
+                                        $screeningquiz['options'] = $screeningquiz->candidate_options?json_decode($screeningquiz->candidate_options):[];
                                      });
         $response = array(
                 'job' => $jobd, 
