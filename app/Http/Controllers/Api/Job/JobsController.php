@@ -317,7 +317,7 @@ class JobsController extends BaseController
         );
 
         $jobs = $this->fetchJobs($job->title, '', [], 10);
-        $jobs['joblist']->each(function ($rjob, $key) use($user) {
+        $jobs['joblist']->each(function ($rjob, $key) use($user, $job) {
             if($job->id != $rjob->job_id){
                 $jobc = Job::find($rjob->job_id);
                 $rjob['company_image'] = $jobc->company->company_image??'';
