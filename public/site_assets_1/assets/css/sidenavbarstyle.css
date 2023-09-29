@@ -78,7 +78,7 @@
   transition: all 0.3s ease;
 }
 .main-header .header-open .img-fluid{
-  opacity: 0;
+  /* opacity: 0; */
 }
 .sidenavbar.close {
   width: calc(55px + 20px);
@@ -102,14 +102,14 @@
 
 #lock-icon{
   padding: 10px;
-  color: #4070f4;
+  color: #808080;
   font-size: 20px;    
   cursor: pointer;
   transition: all 0.3s ease;
   margin: 0px;
 }#locked-icon {
   padding-right: 15px;
-  color: #4070f4;
+  color: #808080;
   font-size: 22px;    
   cursor: pointer;
   transition: all 0.3s ease;
@@ -415,6 +415,8 @@
     left:0px;
   } */
 }
+
+
 .overlay{
   position: fixed;
   top: 0;

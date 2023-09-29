@@ -1,5 +1,5 @@
 <style>
-
+/* 
 @media(min-width: 280px) and (max-width: 600px){   
 	.header .logo img {
 		max-height: 60px;
@@ -31,6 +31,16 @@
 	.profile-pic{
 		padding-right: 0px !important;
 	}
+} */
+
+.main-header .img-fluid {
+    transform: unset;
+}
+
+@media(min-width: 280px) and (max-width: 400px){
+	.main-header .logo img{
+		width:90%;
+	}
 }
 
 </style>
@@ -38,21 +48,19 @@
 	<header id="header" class="header fixed-top bg-color-blue d-flex justify-content-center align-items-center">
 		<div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 			<a href="{{ route('index') }}" class="logo d-flex align-items-center">
+				{{-- <img draggable="false" src="{{ asset('/') }}sitesetting_images/thumb/logo.png" alt="logo" class="img-fluid logo" style="opacity: 0;"> --}}
 				<img draggable="false" src="{{ asset('/') }}sitesetting_images/thumb/{{ $siteSetting->site_logo }}" alt="logo" class="img-fluid">
-				{{-- <span>Post a Job</span> --}}
 			</a>	
 			<div class="align-self-center">
 				<nav id="navbar" class="navbar">
 					@if(Auth::check())
-						<ul class="web-nav">       
-							<li>
-								<a class="nav-link" href="{{ route('employer_messages') }}"><img draggable="false" src="{{asset('images/sidebar/msg.png')}}" alt=""></a>
-							</li>
-							<li>
-								<a class="nav-link" href="#"><img draggable="false" src="{{asset('images/sidebar/notification.png')}}" alt=""></a>
-							</li>
+						<ul class="web-nav">    
+							<li><a class="nav-link ps-0 pe-3 search-job-a d-none" href="{{ route('index') }}"><img draggable="false" src="{{asset('images/sidebar/search.png')}}" alt=""></a></li>
+							<li><a class="nav-link ps-0 profile-pic" href="{{ route('index') }}"><span>Find Jobs</span></a></li>
+							<li><a class="nav-link" href="{{ route('employer_messages') }}"><img draggable="false" src="{{asset('images/sidebar/msg.png')}}" alt=""></a></li>
+							<li><a class="nav-link" href="#"><img draggable="false" src="{{asset('images/sidebar/notification.png')}}" alt=""></a></li>
 							<li class="dropdown hidden-caret">
-								<a class="dropdown-toggle nav-link profile-pic" data-bs-toggle="dropdown" href="#" id="dropdownMenuLink" aria-expanded="false">
+								<a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#" id="dropdownMenuLink" aria-expanded="false">
 									<div class="avatar-sm d-flex align-items-center">
 										@if(Auth::user()->image)
 											<img draggable="false" src="{{Auth::user()->image}}" alt="profile-img" class="rounded-circle h-100">
@@ -76,7 +84,7 @@
 												</div>
 											</a>
 											<div class="align-self-center mt-2">
-												<span class="completion">Profile Completed</span>
+												<span class="completion">Profile Complete</span>
 											</div>
 										</div>
 										<hr>
@@ -87,18 +95,6 @@
 												<a class="dropdown-item" href="{{ route('redirect-user') }}"><i class="fa-solid fa-user px-1 mx-2"></i> My Profile</a>
 											@endif
 										</li>
-										<!-- <li>
-											<a class="dropdown-item" href="#"><i class="fa-solid fa-circle-check px-1"></i> Applied jobs</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="#"><i class="fa-solid fa-envelope px-1"></i> Message</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="#"><i class="fa-solid fa-exclamation px-1"></i> Job Alerts</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="#"><i class="fa-solid fa-star px-1"></i> Saved jobs</a>
-										</li> -->
 										<li>
 											<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form-header').submit();"><i class="fas fa-sign-out-alt px-1 mx-2" ></i> Logout</a>
 										</li>
@@ -111,13 +107,44 @@
 						</ul>
 					@elseif(!Auth::check())
 						<ul class="">
-							<li><a class="nav-link {{ (Route::is('login') )?'active':''}}" href="{{ route('login') }}">Sign in </a></li>
-							<li><a class="nav-link px-0 profile-pic" href="https://employer.mugaam.com/"><span>| &nbsp; Employer / </span>Post a Job</a></li>
-							{{-- <li><a class="nav-link scrollto {{ (Route::is('job.post_job') )?'active':''}}" href="{{ route('job.post_job') }}">Post Job</a></li> --}}
+							<li><a class="me-5 search-job-a d-none" href="{{ route('index') }}"><img draggable="false" src="{{asset('images/sidebar/search.png')}}" alt=""></a></li>
+							<li><a class="pe-5 profile-pic" href="{{ route('index') }}"><span>Find Jobs</span></a></li>
+							<li><a class="btn btn_c_si px-2 py-1 text-white me-5 {{ (Route::is('login') )?'active':''}}" href="{{ route('login') }}">Login</a></li>
+							<li><a class="px-0 profile-pic" href="https://employer.mugaam.com/"> For Recruiter &nbsp; <img  draggable="false" src="{{asset('images/sidebar/forward.png')}}" alt=""></a></li>
 						</ul>
 					@endif
 				</nav>
 			</div>
+			
+			<div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+				<div class="offcanvas-body" id="search-canvas">
+					<div class="container mt-4">
+						<div class="row">
+							<h3 style="text-align:left">Search Jobs</h3>
+							<div class="col-12 mt-4">
+								{!! Form::search('mdesignation', $d??null, array('class'=>'form-control-2  typeahead designation', 'id'=>'mdesignation', 'data-mdb-toggle'=>"tooltip", 'data-mdb-placement'=>"left", 'title'=>"Designation required",
+								'placeholder'=>__('Job title, keywords or company'),  'autocomplete'=>'off', 'spellcheck'=>'false' ) ) !!}
+							</div>
+							<div class="col-12 mt-4">
+								{!! Form::search('mlocation', $l??null, array('class'=>'form-control-2 typeahead location', 'id'=>'mlocation', 'placeholder'=>__('On Location'),' aria-label'=>'On Location')) !!}
+							</div>
+						</div>
+						<div class="row mt-4">
+							<div class="col-md-4 col-sm-4 col-3"></div>
+							<div class="col-8 mb-4">
+								<div class="row">
+									<div class="col-6 text-center align-self-center">
+										<a class="close_m" href="#" data-bs-dismiss="offcanvas" aria-label="Close">Cancel</a>
+									</div>
+									<div class="col-6 align-self-center">
+										{!! Form::button('Search', array('class' => 'btn btn_c_s1','id'=>'mobsearch_btn', 'type' => 'submit')) !!}                       
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>	
 		</div>
 	</header>
 </div>

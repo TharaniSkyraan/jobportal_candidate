@@ -47,6 +47,7 @@ body {
     line-height: 1.9rem;
     /* border-top-left-radius: 0;
     border-top-right-radius: 0; */
+    text-align: left;
 }
 .tt-suggestion {
     font-size: 14px;  /* Set suggestion dropdown font size */
@@ -76,6 +77,13 @@ body {
 }
 /* override css thjs ends*/
 /* typehead css ends*/
+
+.jobcard .text-truncate{
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    display: -webkit-box !important;
+    white-space: break-spaces !important;
+}
 
 .text-truncate{
     -webkit-line-clamp: 3 !important;
@@ -133,8 +141,10 @@ body {
     background-color: #f9fbfd;
 }
 .form-select {
-    width: fit-content !important;
-    padding: 5px 30px 5px 10px;
+    width: fit-content !important;    
+    background-color: #fff0;
+    border: none;
+    padding: 5px 30px 5px 30px;
 }
 .small, small {
     font-size: .865em;
@@ -204,6 +214,40 @@ a.blue-text-2, a.blue-text:focus, a.blue-text:hover {
     background: unset !important;
 }
 
+
+/*****
+filter search
+***/
+.fileter.mobile{
+    color: #2a2b2a;    
+}.filter_show{
+    background: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+.search-sortby{
+    margin-right: -1.2rem!important;
+    position: sticky;
+}
+.mob-res-filter .card-footer{
+    border:none;
+    background-color: rgb(249 251 253);
+}
+.mob-res-filter .card{
+    margin-bottom: 0px;
+}
+.footerfilter{
+    text-align: center;
+}
+.footerfilter .filter-tool-ok{
+    padding: 4px 20px;
+    color: #fff;
+    background: #4285F4;
+    border: 1px solid;
+    letter-spacing: 1px;
+    border-radius: 25px;
+    margin-top: 15px;
+  }
 .filterContainer .chkLbl {
     cursor: pointer;
 }.filterContainer .jpaxicon-checkbox {
@@ -212,6 +256,16 @@ a.blue-text-2, a.blue-text:focus, a.blue-text:hover {
     width: calc(100% - 13px);
     max-width: calc(100% - 10px);
 }
+.jobcard .rounded-circle{
+    box-shadow: none;
+    padding: 1px;
+    border: 1px #eee solid;
+}
+.jobcard .jtitle{
+    margin: 0px;
+    width: 80%; 
+}
+
 input[type=checkbox]+label i {
     height: 20px;
     width: 20px;
@@ -769,18 +823,26 @@ input[type="range" i] {
 }
 
 .japply-btn{
-    border-color: #4285f470;
-    background-color: #48abf717 !important;
-    padding: 0.36rem 0.65rem!important;
+    /* border-color: #4285f470;
+    background-color: #48abf717 !important; */
+    /* padding: 0.36rem 0.65rem!important; */
+    width: 20%;
+    text-align: end;
+}
+.japply-btn button{
+    background-color: #4285f4 !important; 
+    color:#fff;
 }
 .japply-btn:hover{
     opacity: 1;
     transition: none;
     border-color: #4285F4;
 }
-.japplied-btn {
+.jobcard .japplied-btn {
     border-color: #4285F4;
-    padding: 0.36rem 0.65rem!important;
+    /* padding: 0.36rem 0.65rem!important; */
+    width: 23%;
+    text-align: end;
 }
 
 .search-button-bg {
@@ -921,11 +983,27 @@ outline-offset: 2px;
     width:100%;
 }
 }
+@media only screen and (max-width: 480px) {
+    .jobcard .jcnt{
+        padding-left: 1rem;
+        /* padding-right: 1rem; */
+    }
+}
 @media only screen and (min-width: 768px) {
     .cusconta{
         width:90%;
     }
+    .jobcard .avatar-sm{
+       height: 3.5rem !important;
+    }
 }
+
+
+/* @media(min-width: 575px) and (max-width: 500px){
+    .jobcard .jcnt{
+        margin-left: -25px;
+    }
+} */
 @media only screen and (min-width: 1024px) {
 .cusconta{
     width:75%;
@@ -933,8 +1011,39 @@ outline-offset: 2px;
 }
 
 @media only screen and (max-width: 575px) {
-    .japply-btn{
-        display: none !important;
+ 
+    .search-inp-sec .location{
+        display: none;
+    }
+    .search-inp-sec .pre-d{
+        display: none;
+    }
+    
+  .fileter.mobile,.fmftxt,#sortby{
+    font-size: 13px;
+  }
+  .fileter.mobile span{
+    display: none;
+  }
+  .jobcard .jtitle{
+    width: 90%;
+    font-size: 16px;
+  }
+  .jobcard .japplied-btn span,.jobcard .japply-btn span{
+    display: none;
+  }
+  .jobcard .japplied-btn,.jobcard .japply-btn {
+    width: 10%;
+  }
+  .jobcard .imagesz-2 {
+    width:20px;
+  }
+  
+    .japply-btn button{
+        padding: .0rem 0.2rem !important
+    }
+    .jobcard .image-size{
+        width: 14px;
     }
 }
 .rcsdiv{
@@ -953,8 +1062,8 @@ min-height: 240px;
 }
 .btn_c_se {
     width: 80%;
-    background: #ffffff !important;
-    border-color: #ffffff !important;
+    background: #34A853 !important;
+    border-color: #34A853 !important;
     border-radius: 5px !important;
     border-top-left-radius: unset !important;
     border-bottom-left-radius: unset !important;    
@@ -968,7 +1077,7 @@ min-height: 240px;
     }
 .btn_c_se i {
     margin-left: -1px;
-    color: #2b5baa;
+    color: #ffffff;
 }
 .form-control-2.typeahead#designation{
     border-top-right-radius: unset;
@@ -1004,6 +1113,60 @@ min-height: 240px;
 
 @media(min-width: 576px) and (max-width: 767px){
     .container{
-        max-width: 62   0px;
+        max-width: 725px;
     }
+}
+
+@media(min-width: 575px) and (max-width: 650px){
+    .jobcard .cmpprofile{
+        padding-left: 0.25rem;
+    }
+}
+@media(min-width: 450px) and (max-width: 575px){
+    .jobcard .jcnt{
+        margin-left: -1rem !important;
+    }
+}
+
+@media screen and (max-width: 992px){
+    .filterTooltip{
+        width: -webkit-fill-available;
+    }
+}
+@media (min-width: 992px){
+    .container#tempskle{
+        max-width: 1100px;
+    }
+}
+.search-inp-sec{
+    padding: 95px 0 20px 0;
+    background-color:#3b77db;
+    /* background: linear-gradient(-45deg, #629bf6b1, #629AF6, #4285F4); */
+    /* background: rgb(2,0,36); */
+    /* background: linear-gradient(160deg, rgba(2,0,36,1) 0%, rgba(66,133,244,1) 0%, rgba(66,133,240,1) 100%); */
+    /* background: url("{{ url('images/search_banner.png') }}") no-repeat left 50px,linear-gradient(160deg, rgba(2,0,36,1) 0%, rgba(66,133,244,1) 0%, rgba(66,133,240,1) 100%); */
+    /* background-size: contain; */
+}.search-inp-sec .mobile_m img{
+    width:130px;
+}
+@media(min-width: 280px) and (max-width: 767px){
+    .search-inp-sec .mobile_m{
+        display: none;
+    }.search-inp-sec{
+        margin-top: 78px;
+        padding: 30px 15px 10px 15px;
+        border-radius: 10px;
+    }.search-inp-sec input, .search-inp-sec button{
+        margin-bottom:20px;
+    }
+}
+@media(min-width: 768px) and (max-width: 1300px){
+    .search-inp-sec img{
+        width: 100%;;
+    }.search-inp-sec{
+        padding: 100px 0 30px 0;
+    }
+}   
+.search-job-a{
+    display: none !important;
 }

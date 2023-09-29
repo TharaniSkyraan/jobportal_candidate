@@ -1,12 +1,13 @@
 
 let csrf_token = $('meta[name=csrf-token]').attr('content');
 const ini_screensize = $( window ).width();
-const web_screen = 992;
-const mobile_screen = 991;
+const web_screen = 576;
+const mobile_screen = 575;
+let widtherror = 'no';
 
 function handleScreenSizeChange() {
     var screenWidth = $(window).width();
-
+    
 
     if((ini_screensize<=mobile_screen) && (screenWidth<web_screen)){
         console.log('Mob screen');
@@ -17,17 +18,22 @@ function handleScreenSizeChange() {
     }
 
     if((ini_screensize>=web_screen) && (screenWidth<=mobile_screen)){
-        console.log('show error');
+        alert('Page Reloaded');
+        widtherror ='yes';
+        location.reload();
+    }else if((ini_screensize<=mobile_screen) && (screenWidth>=web_screen)){
+        alert('Page Reloaded');
+        widtherror ='yes';
+        location.reload();
     }
-
-    if((ini_screensize<=mobile_screen) && (screenWidth>=web_screen)){
-        console.log('show error');
-    }
+    return false;
 }
 
 // Attach the event listener to window resize
 $(window).resize(function() {
-    handleScreenSizeChange();
+    if(widtherror=='no'){
+        handleScreenSizeChange();
+    }
 });
 
 // Call the function initially
@@ -110,151 +116,167 @@ $(function(){
     var cache1 = JSON.parse(localStorage.getItem('designation'))??{};
     var enter_limit = 1;
     
-    $('#designation').typeahead({ // focus on first result in dropdown
-        source: function(query, result) {
-            var local_cache = JSON.parse(localStorage.getItem('designation'));
-            if ((local_cache!=null) && (query in local_cache)) {
-                // If result is already in local_cache, return it
-                result(cache1[query]);
-                return;
-            }
-            $.ajax({
-                url: path1,
-                method: 'GET',
-                data: {q: query},
-                dataType: 'json',
-                success: function(data) {
-                    cache1[query] = data;
-                    localStorage.setItem('designation',JSON.stringify(cache1));
-                    result(data);
-                }
-            });
-        },
-        autoSelect: false,
-        showHintOnFocus: true
-    }).focus(function () {
-        $(this).typeahead("search", "");
-    }).on('keydown', function(event){        
-        if(event.keyCode=='40' || event.keyCode=='38'){
-            enter_limit=0;
-            if($('#designation').val()==''){
-                $(".designation").find('.active').removeClass('active');
-                $(".designation").find('li:first-child').addClass('active li-active');
-            }else{
-                $(".designation").find('li').removeClass('li-active');
-                $(".designation").find('.active').addClass('li-active');
-            }
-            var current_designation = $(".designation").find('.active').text();
-            $('#designation').val(current_designation);
-        }else if(event.keyCode=='13'){
-            if(enter_limit==1){
-                document.onkeyup = enter;
-            }else if(enter_limit==0){
-                enter_limit=1;
-            }
-        } 
-    });
-    
-    $('#mdesignation').typeahead({ // focus on first result in dropdown
-        source: function(query, result) {
-            var local_cache = JSON.parse(localStorage.getItem('designation'));
-            if ((local_cache!=null) && (query in local_cache)) {
-                // If result is already in local_cache, return it
-                result(cache1[query]);
-                return;
-            }
-            $.ajax({
-                url: path1,
-                method: 'GET',
-                data: {q: query},
-                dataType: 'json',
-                success: function(data) {
-                    cache1[query] = data;
-                    localStorage.setItem('designation',JSON.stringify(cache1));
-                    result(data);
-                }
-            });
-        },
-        autoSelect: false,
-        showHintOnFocus: true
-    }).focus(function () {
-        $(this).typeahead("search", "");
-    });
-
     var cache = JSON.parse(localStorage.getItem('search_city'))??{};
     var enter_limit1 = 1;
- 
-    $('#location').typeahead({ // focus on first result in dropdown
-        source: function(query, result) {
-            var local_cache = JSON.parse(localStorage.getItem('search_city'));
-            if ((local_cache!=null) && (query in local_cache)) {
-                // If result is already in local_cache, return it
-                result(cache[query]);
-                return;
-            }
-            $.ajax({
-                url: path,
-                method: 'GET',
-                data: {q: query},
-                dataType: 'json',
-                success: function(data) {
-                    cache[query] = data;
-                    localStorage.setItem('search_city',JSON.stringify(cache));
-                    result(data);
-                }
-            });
-        },
-        autoSelect: false,
-        showHintOnFocus: true
-    }).focus(function () {
-        $(this).typeahead("search", "");
-    }).on('keydown', function(event) {
-        if(event.keyCode=='40' || event.keyCode=='38'){
-            enter_limit1=0;
-            if($('#location').val()==''){
-                $(".location").find('.active').removeClass('active');
-                $(".location").find('li:first-child').addClass('active li-active');
-            }else{
-                $(".location").find('li').removeClass('li-active');
-                $(".location").find('.active').addClass('li-active');
-            }
-            var current_location = $(".location").find('.active').text();
-            $('#location').val(current_location);
-        }else if(event.keyCode=='13'){
-            if(enter_limit1==1){
-                document.onkeyup = enter;
-            }else if(enter_limit1==0){
-                enter_limit1=1;
-            }
-        } 
-    });
     
-    $('#mlocation').typeahead({ // focus on first result in dropdown
-        source: function(query, result) {
-            var local_cache = JSON.parse(localStorage.getItem('search_city'));
-            if ((local_cache!=null) && (query in local_cache)) {
-                // If result is already in local_cache, return it
-                result(cache[query]);
-                return;
-            }
-            $.ajax({
-                url: path,
-                method: 'GET',
-                data: {q: query},
-                dataType: 'json',
-                success: function(data) {
-                    cache[query] = data;
-                    localStorage.setItem('search_city',JSON.stringify(cache));
-                    result(data);
+    
+    if($( window ).width()<=575){
+        $('#mdesignation').typeahead({ // focus on first result in dropdown
+            source: function(query, result) {
+                var local_cache = JSON.parse(localStorage.getItem('designation'));
+                if ((local_cache!=null) && (query in local_cache)) {
+                    // If result is already in local_cache, return it
+                    result(cache1[query]);
+                    return;
                 }
-            });
-        },
-        autoSelect: false,
-        showHintOnFocus: true
-    }).focus(function () {
-        $(this).typeahead("search", "");
-    });
+                $.ajax({
+                    url: path1,
+                    method: 'GET',
+                    data: {q: query},
+                    dataType: 'json',
+                    success: function(data) {
+                        cache1[query] = data;
+                        localStorage.setItem('designation',JSON.stringify(cache1));
+                        result(data);
+                    }
+                });
+            },
+            autoSelect: false,
+            showHintOnFocus: true
+        }).focus(function () {
+            $(this).typeahead("search", "");
+        });
+    
+        $('#mlocation').typeahead({ // focus on first result in dropdown
+            source: function(query, result) {
+                var local_cache = JSON.parse(localStorage.getItem('search_city'));
+                if ((local_cache!=null) && (query in local_cache)) {
+                    // If result is already in local_cache, return it
+                    result(cache[query]);
+                    return;
+                }
+                $.ajax({
+                    url: path,
+                    method: 'GET',
+                    data: {q: query},
+                    dataType: 'json',
+                    success: function(data) {
+                        cache[query] = data;
+                        localStorage.setItem('search_city',JSON.stringify(cache));
+                        result(data);
+                    }
+                });
+            },
+            autoSelect: false,
+            showHintOnFocus: true
+        }).focus(function () {
+            $(this).typeahead("search", "");
+        });
+    
+        // This is for adding attribute
+        $("#designation").attr({"readonly":true,"data-bs-toggle":'offcanvas',"data-bs-target":'#offcanvasTop',"aria-controls":'offcanvasTop'});
+        
+        // And here example of removing both attribute
+        $("#designation").removeAttr("data-mdb-toggle data-mdb-placement title");
+    }else{
 
+        $('#designation').typeahead({ // focus on first result in dropdown
+            source: function(query, result) {
+                var local_cache = JSON.parse(localStorage.getItem('designation'));
+                if ((local_cache!=null) && (query in local_cache)) {
+                    // If result is already in local_cache, return it
+                    result(cache1[query]);
+                    return;
+                }
+                $.ajax({
+                    url: path1,
+                    method: 'GET',
+                    data: {q: query},
+                    dataType: 'json',
+                    success: function(data) {
+                        cache1[query] = data;
+                        localStorage.setItem('designation',JSON.stringify(cache1));
+                        result(data);
+                    }
+                });
+            },
+            autoSelect: false,
+            showHintOnFocus: true
+        }).focus(function () {
+            $(this).typeahead("search", "");
+        }).on('keydown', function(event){        
+            if(event.keyCode=='40' || event.keyCode=='38'){
+                enter_limit=0;
+                if($('#designation').val()==''){
+                    $(".designation").find('.active').removeClass('active');
+                    $(".designation").find('li:first-child').addClass('active li-active');
+                }else{
+                    $(".designation").find('li').removeClass('li-active');
+                    $(".designation").find('.active').addClass('li-active');
+                }
+                var current_designation = $(".designation").find('.active').text();
+                $('#designation').val(current_designation);
+            }else if(event.keyCode=='13'){
+                if(enter_limit==1){
+                    document.onkeyup = enter;
+                }else if(enter_limit==0){
+                    enter_limit=1;
+                }
+            } 
+        });
+        $('#location').typeahead({ // focus on first result in dropdown
+            source: function(query, result) {
+                var local_cache = JSON.parse(localStorage.getItem('search_city'));
+                if ((local_cache!=null) && (query in local_cache)) {
+                    // If result is already in local_cache, return it
+                    result(cache[query]);
+                    return;
+                }
+                $.ajax({
+                    url: path,
+                    method: 'GET',
+                    data: {q: query},
+                    dataType: 'json',
+                    success: function(data) {
+                        cache[query] = data;
+                        localStorage.setItem('search_city',JSON.stringify(cache));
+                        result(data);
+                    }
+                });
+            },
+            autoSelect: false,
+            showHintOnFocus: true
+        }).focus(function () {
+            $(this).typeahead("search", "");
+        }).on('keydown', function(event) {
+            if(event.keyCode=='40' || event.keyCode=='38'){
+                enter_limit1=0;
+                if($('#location').val()==''){
+                    $(".location").find('.active').removeClass('active');
+                    $(".location").find('li:first-child').addClass('active li-active');
+                }else{
+                    $(".location").find('li').removeClass('li-active');
+                    $(".location").find('.active').addClass('li-active');
+                }
+                var current_location = $(".location").find('.active').text();
+                $('#location').val(current_location);
+            }else if(event.keyCode=='13'){
+                if(enter_limit1==1){
+                    document.onkeyup = enter;
+                }else if(enter_limit1==0){
+                    enter_limit1=1;
+                }
+            } 
+        });
 
+        // This is for adding attribute
+        $("#designation").attr({"data-mdb-toggle":'tooltip',"data-mdb-placement":'left',"title":'Designation required'});
+        
+        // And here example of removing both attribute
+        $("#designation").removeAttr("readonly data-bs-toggle data-bs-target aria-controls");
+
+    }
+    
+ 
 
 });

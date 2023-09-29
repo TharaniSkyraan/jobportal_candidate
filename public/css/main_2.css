@@ -371,32 +371,6 @@ font-size: 14px;
 
 
 
-/*****
-filter search
-***/
-.fileter.mobile{
-    position: fixed; 
-    bottom: 2px;
-    left: 8%; 
-    /* left: 30px;  */
-    /* z-index: 99;  */
-    border: none; 
-    outline: none; 
-    background-color: #f94739;
-    color: white; 
-    cursor: pointer; 
-    padding: 10px; 
-    width: 40px;
-    align-items: center;
-    display: flex !important;
-    justify-content: center;
-    border-radius: 60%; 
-    font-size: 20px; 
-}.filter_show{
-    display:none;
-  }
-
-
 
   /****
   * screening css
@@ -480,7 +454,6 @@ filter search
     padding: 5px 5px 5px 15px;
     width: 80%;
 }
-
 .screening1_quiz_tybz .alert{
     padding: 0rem !important;
     background-color: #EFF4FE;
@@ -599,8 +572,8 @@ filter search
     }
     
 
-    #homepage_stn h1{
-        font-size: 35px;
+    .hme_banner h1{
+        font-size: 40px;
         font-weight: 400;
     }
 
@@ -612,19 +585,8 @@ filter search
     }
 
     .search_hme .bg-primary{
-        background-color: #3b77db    !important;
+        background-color: #C0DBFD    !important;
     }
-
-
-    .search_hme .card{
-        margin-bottom:15px;
-
-       
-    }
-
-
-
-
 
 
 
@@ -646,14 +608,14 @@ filter search
     }
 
     .candidate_img .candimg_col{
-        padding-top: 120px;
+        padding-top: 75px;
         width: 90%;
         margin: 0 auto;
     }
 
     .candimg_col h2.fw-bolder{
         font-weight: 500!important;
-        font-size: 18px;
+        font-size: 16px;
         text-transform: uppercase;
 
     }
@@ -662,8 +624,6 @@ filter search
         padding-top: 120px;
         padding-left: 145px;
     } */
-
-    
 
     #homepage_stn .hmenear_job h2{
         font-size: 28px;
@@ -675,6 +635,11 @@ filter search
 
     .hmenear_job p{
         margin-bottom: 5px;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
 
     .hmenear_job .card{
@@ -793,7 +758,7 @@ filter search
     }
 
     .home_pgecities .cities ul .nav-item .nav-link.active{
-        border-bottom: 3px solid #F69333 !important;
+        border-bottom: 3px solid #34a853 !important;
 
     }
 
@@ -868,11 +833,10 @@ filter search
 
     #homepage_stn .hm_gr h3{
         display: -webkit-box;
-        -webkit-line-clamp: 2;
+        -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
         text-overflow: ellipsis;
         overflow: hidden;
-        height: 50px;
     }
     #topjobsector .card{
         padding: 1rem 0rem 0.7rem 1rem !important;
@@ -892,7 +856,7 @@ filter search
         color:#fff !important;
     }
 
-    .hme_banner .mobile_bnr img, .candidate_img .mobile_bnr, #footer .mobile_bnr{
+    .candidate_img .mobile_bnr, #footer .mobile_bnr{
         display: none;
     }
 
@@ -1062,24 +1026,27 @@ filter search
 
     .reserch label{
         font-size: 12px !important;
-        color: #9b9999 !important;
+        /* color: #9b9999 !important; */
         font-weight: 400 !important;
+        border-color: #4285F4 !important;
     }    
     #topjobsector p{
         margin-bottom: 0px !important;
     }
-    .popularser_hme{
+    .popularser_card{
         border: 1px solid #0336881c;
         border-radius: 15px !important;
         padding: 25px 0px;
+        background-color: #fbfbfb;
     }
-    .popularser_hme label{
+    .popularser_card label{
         font-size: 14px !important;
-        color: #033688 !important;
-        border-color: #03368863 !important;
+        /* color: #033688 !important;
+        border-color: #03368863 !important; */
         font-weight: 400 !important;
-        margin: 1rem 0.2rem;
+        margin: 1rem 2rem;
         padding: 0.5rem 1rem;
+        background-color: #ffffff;
     }
     .reserch label i{
         color: #ae9999 !important;
@@ -1467,8 +1434,6 @@ filter search
         padding: 0px;
     }.hme_blogsectn .card{
         padding: 0px !important;
-    }.search_hme .card.p-5{
-        padding: 1.5rem!important;
     }
 }
 
@@ -1917,9 +1882,6 @@ filter search
             width: 100%;
         }
 
-        .hme_banner p{
-            text-align: left !important;
-        }
 
         .cadidate_bnstn .bn_cadidate img{
             display: none;
@@ -2060,7 +2022,7 @@ filter search
             width: 150px;
         }
 
-        .hme_banner .mobile_bnr img, .candidate_img .mobile_bnr, #footer .mobile_bnr{
+        .candidate_img .mobile_bnr, #footer .mobile_bnr{
             display: block;
         }
 
@@ -2108,17 +2070,10 @@ filter search
             display: none !important;
         }
 
-        .hme_banner h1{
-            margin-top: 0px !important;
-        }
-
         .page-inner {
             padding: 0.2rem 0;
         }
-        
-        .search_hme{
-            margin-top: 1rem !important;
-        }
+    
 
         .rectsear_hme .rectsear_col {
             margin-bottom: 35px;
@@ -2154,9 +2109,6 @@ filter search
         margin-left: 0px !important;
         }
 
-        #homepage_stn .hmenear_job h2 {
-            font-size: 20px ;
-        }
 
         #homepage_stn, #footer{
             padding: 15px !important;
@@ -2193,9 +2145,6 @@ filter search
     @media(min-width: 481px) and (max-width: 767px)  {
 
 
-        .hme_banner .mobile_bnr img{
-            display: block;
-        }
         #footer .system_vw {
             display: none;
         }
@@ -2211,16 +2160,8 @@ filter search
             display: flex;
         }
 
-        .hme_banner h1{
-            margin-top: 0px !important;
-        }
-
         .page-inner {
             padding: 0.2rem 0;
-        }
-
-        .search_hme .card {
-            padding: 1.5rem !important;
         }
 
         .candimg_parent .arrow img {
@@ -2251,9 +2192,6 @@ filter search
             margin-bottom: 10px;
         }
         
-        .search_hme{
-            margin-top: 1rem !important;
-        }
 
         .rectsear_hme .rectsear_col {
             margin-bottom: 35px;
@@ -2282,10 +2220,6 @@ filter search
 
        .candidate_img{
         margin-left: 0px !important;
-        }
-
-        #homepage_stn .hmenear_job h2 {
-            font-size: 1.35rem;
         }
 
         #homepage_stn{
@@ -2423,14 +2357,47 @@ filter search
         #aboutcompany .pf_imgsabt img{
             border-radius: 50%;
         }
-
-
+        .hme_banner h1 {
+            font-size: 30px;
+        }
+        .hme_banner h3{
+            font-size: 1rem;
+        }
+        .popular_recent_src_hme h3{
+            font-size: 1.2rem;
+        }
+        
+        .home_pgecities .cities .nav-link {
+            font-size: 16px;
+        }
+        .candimg_col h3{
+            font-size: 1.1rem;
+        }
     }
 
 
     @media(max-width: 767px){
         .navbar-mobile ul {
             height: fit-content;
+        }
+        #homepage_stn .hmenear_job h2 {
+            font-size: 1.1rem;
+        }
+        #homepage_stn .hmenear_job h3 {
+            font-size: 1.1rem;
+        }
+        #homepage_stn .carousel h3 {
+            font-size: 0.9rem;
+        }
+        .hmenear_job p{
+            font-size: 13px;
+        }
+        .hme_banner{
+            margin: 0px -15px;
+        }
+
+        .candimg_col h3{
+            font-size: 1rem;
         }
     }
 
@@ -2471,17 +2438,10 @@ filter search
         width: 100%;
     }
 
-    .hme_banner h1{
-        margin-top: 0px !important;
-    }
-
     .page-inner {
         padding: 1rem 0;
     }
     
-    .search_hme{
-        margin-top: 1rem !important;
-    }
 
     .rectsear_hme .rectsear_col {
         margin-bottom: 35px;
@@ -2557,10 +2517,6 @@ filter search
         width: 100%;
     }
 
-    
-    .search_hme button{
-        width: fit-content;
-    }
 
     .search_hme .form-control{
         margin-bottom: 0px !important;
@@ -2666,9 +2622,6 @@ filter search
     @media(min-width: 1025px) and (max-width: 1200px)  {
     /**candidate page**/
 
-    .search_hme{
-        margin-top: 1rem !important;
-    }
 
     .candidate_img img{
         width: 60px;
@@ -2721,9 +2674,7 @@ filter search
 
 
 @media(min-width: 992px) and (max-width:1200px)  {
-    .hme_banner{
-        padding-bottom: 4rem;
-    }
+
         
     .pfcmpletalert{
         margin-top: 9%;
@@ -2740,11 +2691,12 @@ filter search
 }
 @media(min-width: 280px) and (max-width: 767px)  {
   
-    .popularser_hme label{     
+    .popularser_card label{     
         margin: 0.3rem 0.1rem;
         padding: 0.5rem;
         font-size: 12px !important;
     }
+    
 }
 .assessment_modal #cdate_assesment{
     max-height: 100vh;

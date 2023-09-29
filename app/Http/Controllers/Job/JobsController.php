@@ -97,7 +97,7 @@ class JobsController extends Controller
                                 ->limit(3)
                                 ->get();
 
-        $titles = Title::where('hit_count','!=',0)->orderBy('hit_count','desc')->take(8)->get();
+        $titles = Title::where('hit_count','!=',0)->orderBy('hit_count','desc')->take(5)->get();
         $this->shareSeoToLayout('candidate_home');
         return view('candidate-home', compact('titles', 'near_job', 'recent_job', 'job_list', 'top_cities', 'top_sector'));
 
@@ -210,6 +210,7 @@ class JobsController extends Controller
             $jobs['joblist']->each(function ($rjob, $key) {
                 $jobc = Job::find($rjob->job_id);
                 $rjob['is_admin'] = $jobc->company->is_admin??'';
+                $rjob['logo'] = $jobc->company->company_image??'';
             });    
             $filters = $jobs['filters'];
 

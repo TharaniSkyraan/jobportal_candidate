@@ -1,4 +1,4 @@
-var FilterGroupSetCount=4;
+var FilterGroupSetCount=1;
 var FilterMenus = ['citylFGid','salaryFGid','jobtypeFGid','edulevelFGid','wfhtypeFid','industrytypeGid','functionalareaGid'];
 var FilterMenu_Experince ='experinceFv';
 
@@ -65,9 +65,7 @@ window.onpopstate = function(event) {
     processing_data();
 };
 
-
 processing_data();
-
 
 function processing_data(calby='onload'){
 
@@ -344,12 +342,12 @@ $(document).on('click', '.form-check-input' , function(e){
 });
 
 
-$(document).on('input', '#exp-range-slider' , function(e){
+$(document).on('input', '.exp-range-slider' , function(e){
     let vall = $(this).val();
     rangeSetup(vall);
 });
 
-$(document).on('change', '#exp-range-slider' , function(e){
+$(document).on('change', '.exp-range-slider' , function(e){
 
     let vall = $(this).val();
     let F_id = $(this).parent().parent().parent().data('filter-id');
@@ -481,6 +479,7 @@ function geneFilterOptions(filterName, data, filterTitle){
         p1html +='</div>';                                            
         p1html +='<div class="filter-comp-options">';
             p1html += html;
+            p1html +='<div class="footerfilter"><button class="filter-tool-ok"> ok </button></div>';
         p1html +='</div>';
     p1html +='</div>';
                                               
@@ -563,6 +562,7 @@ function createFilterOptions_Morebox( filterName, data, checked_data,filterTitle
         p1html +='</div>';                                            
         p1html +='<div class="filter-comp-options">';
             p1html += html;
+            p1html +='<div class="footerfilter"><button class="filter-tool-ok"> ok </button></div>';
         p1html +='</div>';
     p1html +='</div>';
                                               
@@ -691,7 +691,7 @@ function get_filter_selected_count(){
         }
 	});
     let expvv = new URL(location.href).searchParams.get(FilterMenu_Experince);
-    if($("#exp-range-slider").val() && expvv){
+    if($(".exp-range-slider").val() && expvv){
         applied_count += 1;
     }
     return applied_count;
@@ -701,11 +701,11 @@ function show_hide_applied_btn(count=0){
     if(count){
         txt = 'Applied ('+count+')';
         applied_html = '<a class="blue-text-2 fw-bold appliedTxt applied-link">'+txt+'</a>';
-        $("#FilterHeadtitle").next('a').remove();
-        $(applied_html).insertAfter("#FilterHeadtitle");
+        $(".FilterHeadtitle").next('a').remove();
+        $(applied_html).insertAfter(".FilterHeadtitle");
     }else{
-        $("#FilterHeadtitle").next('a').remove();
-        $("").insertAfter("#FilterHeadtitle");
+        $(".FilterHeadtitle").next('a').remove();
+        $("").insertAfter(".FilterHeadtitle");
     }
 }
 
@@ -764,7 +764,7 @@ function geneApplyFilter_Box_old(){
     });
     
     let expvv = new URL(location.href).searchParams.get(FilterMenu_Experince);
-    if($("#exp-range-slider").val() && expvv){
+    if($(".exp-range-slider").val() && expvv){
         val_txt =  expvv+' Years';
         tmp_id = 'fod'  + '-' + val_txt + 'Filter-expanded';
         html += '<div class="mt-8 chckBoxCont" data-filter-id="'+FilterMenu_Experince+'">';
@@ -833,7 +833,7 @@ function geneApplyFilter_Box(){
     });
 
     let expvv = new URL(location.href).searchParams.get(FilterMenu_Experince);
-    if($("#exp-range-slider").val() && expvv){
+    if($(".exp-range-slider").val() && expvv){
         val_txt =  expvv+' Years';
         tmp_id = 'fod'  + '-' + val_txt + 'f-chked';
         html += '<div class="mt-8 chckBoxCont" data-filter-id="'+FilterMenu_Experince+'">';
@@ -862,25 +862,28 @@ function geneApplyFilter_Box(){
 
 function rangeSetup(val='any'){
 
-    const range = document.getElementById('exp-range-slider');
-    const rangeV = document.getElementById('rangeV');
+    let range = $('.exp-range-slider');
+    let min = $('.exp-range-slider').attr('min');
+    let max = $('.exp-range-slider').attr('max');
+    let rangeV = $('.rangeV');
     let vall = 0,txt = 'Any';
     if(val === 'any'){
         txt = 'Any';
         vall = 30;
-        document.getElementById('exp-range-slider').value = vall;
+        $('.exp-range-slider').val(vall);
     }
     else{
         txt = val;
         vall = val ;
-        document.getElementById('exp-range-slider').value = vall;
+        $('.exp-range-slider').val(vall);
     }
     
-    newValue = Number( (vall - range.min) * 100 / (range.max - range.min) );
+    newValue = Number( (vall - min) * 100 / (max - min) );
     newPosition = 10 - (newValue * 0.2);
 
-    rangeV.innerHTML = `<span>${txt}</span>`;
-    rangeV.style.left = `calc(${newValue}% + (${newPosition}px))`;
+    rangeV.html(`<span>${txt}</span>`);
+    calLeft = `calc(${newValue}% + (${newPosition}px))`;
+    $('.rangeV').attr('style','left: '+calLeft);
 
 }
 
@@ -1073,6 +1076,7 @@ function createJoblistDiv(data,appliedJobids){
         jobslug = val.slug || '';
 
         title = val.title || 'PHP Dev';
+        logo = val.logo || baseurl+`site_assets_1/assets/img/industry.svg`;
         cmp_name = val.company_name || 'Axeraan Technologies';
         locationa = val.location || 'Coimbatore';
         if(locationa){
@@ -1101,34 +1105,37 @@ function createJoblistDiv(data,appliedJobids){
         html += '<div class="card jobcard" data-jobid="'+jobslug+'">';
             html += '<div class="card-body">';
                 html += '<div class="row mb-2">';
-                    html +='<div class="col-md-9 col-sm-9 col-xs-9 col-12"><h3 class="text-green-color ellipsis">'+title+'</h3></div>';
+                    html +='<div class="col-xl-1 col-md-1 col-sm-1 col-xs-1 col-2 cmpprofile"><div class="avatar-sm"><img alt="" draggable="false" class="rounded-circle h-100" src="'+logo+'"></div></div>';
                     // html +='<div class="col-md-2 col-sm-2 col-xs-12" style="text-align: -webkit-right;"><button class="p-1 shadow-sm bg-color-blue rounded-pill" style="width:max-content"><img draggable="false" class="image-size" src="'+baseurl+''+baseurl+'site_assets_1/assets/img/apply2.png" alt="apply"> Apply</button></div>';
-                    html +='<div class="col-md-3 col-sm-3 col-xs-3 col-6" style="text-align: -webkit-right;">';
+                    html +='<div class="col-xl-11 col-md-11 col-sm-11 col-xs-11 col-10 jcnt"> <div class="d-flex"><h3 class="text-green-color ellipsis align-self-center jtitle">'+title+'</h3> ';
                         if(appliedJobids.includes(job_id)){
                             html +='<label class="japplied-btn" ><img draggable="false" class="imagesz-2" src="'+baseurl+'site_assets_1/assets/img/Shortlist.png" alt="applied"> <span class="fw-bold">Applied</span></label>';
                         }else{
                             if(val.have_screening_quiz=='yes' || val.is_admin==1){
-                                html +='<button class="btn p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtnredir" id="japplybtn"><img draggable="false" class="image-size" src="'+baseurl+'site_assets_1/assets/img/apply2.png" alt="apply"> Apply</button>';
+                                html +='<label class="japply-btn"><button class="btn p-1 shadow-sm bg-color-blue rounded-pill japplybtnredir" id="japplybtn"><img draggable="false" class="image-size" src="'+baseurl+'site_assets_1/assets/img/apply2.png" alt="apply"> <span>Apply</span></button></label>';
                             }else{
-                                html +='<button class="btn p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn"><img draggable="false" class="image-size" src="'+baseurl+'site_assets_1/assets/img/apply2.png" alt="apply"> Apply</button>';
+                                html +='<label class="japply-btn"><button class="btn p-1 shadow-sm bg-color-blue rounded-pill japplybtn" id="japplybtn"><img draggable="false" class="image-size" src="'+baseurl+'site_assets_1/assets/img/apply2.png" alt="apply"><span> Apply</span></button></label>';
                             }
                         }
-                    html +='</div>';
+                        
+                        html +='</div>';
+                    html +='<div class="mb-2 fw-bold ellipsis cmp_name ">'+cmp_name+'</div>';
+
+                        html += '<div class="row mb-4">';
+                            // html +='<div class="col-md-4 col-sm-4 col-xs-12"><div><text class="fw-bold tt_txt">Experience:</text> <text class="text-green-color tt_txt"> '+experi+' </text></div></div>';
+                            html +='<div class="col-md-4 col-sm-4 col-xs-12 col-6 d-flex"><span><img draggable="false" class="me-2 image-size" src="'+baseurl+'site_assets_1/assets/img/side_nav_icon/experience.png"></span> <text class="text-green-color tt_txt fw-bold text-truncate">'+experi+'</text></div>';
+                            html +='<div class="col-md-4 col-sm-4 col-xs-12 col-6 d-flex"><span><img draggable="false" class="me-2 image-size" src="'+baseurl+'site_assets_1/assets/img/side_nav_icon/salary.png"></span> <text class="text-green-color tt_txt fw-bold text-truncate">'+salary+'</text></div>';
+                            html +='<div class="col-md-4 col-sm-4 col-xs-12 col-6 d-flex"><span><img draggable="false" class="me-2 image-size" src="'+baseurl+'site_assets_1/assets/img/side_nav_icon/location.png"></span> <text class="text-green-color tt_txt fw-bold text-truncate">'+locationa+'</text></div>';
+                        html +='</div>';
+                        html += '<div class="mb-4">';
+                            html +='<p class="text-truncate jd_txt">'+shortdesc+'</p>';
+                        html +='</div>';
+
+                        html +='</div>';
 
                 html +='</div>';
 
-                html +='<div class="mb-2 fw-bold ellipsis cmp_name ">'+cmp_name+'</div>';
 
-                html += '<div class="row mb-4">';
-                    // html +='<div class="col-md-4 col-sm-4 col-xs-12"><div><text class="fw-bold tt_txt">Experience:</text> <text class="text-green-color tt_txt"> '+experi+' </text></div></div>';
-                    html +='<div class="col-md-4 col-sm-4 col-xs-12 d-flex"><span><img draggable="false" class="me-2 image-size" src="'+baseurl+'site_assets_1/assets/img/side_nav_icon/experience.png"></span> <text class="text-green-color tt_txt fw-bold text-truncate">'+experi+'</text></div>';
-                    html +='<div class="col-md-4 col-sm-4 col-xs-12 d-flex"><span><img draggable="false" class="me-2 image-size" src="'+baseurl+'site_assets_1/assets/img/side_nav_icon/salary.png"></span> <text class="text-green-color tt_txt fw-bold text-truncate">'+salary+'</text></div>';
-                    html +='<div class="col-md-4 col-sm-4 col-xs-12 d-flex"><span><img draggable="false" class="me-2 image-size" src="'+baseurl+'site_assets_1/assets/img/side_nav_icon/location.png"></span> <text class="text-green-color tt_txt fw-bold text-truncate">'+locationa+'</text></div>';
-                html +='</div>';
-
-                html += '<div class="mb-4">';
-                    html +='<p class="text-truncate jd_txt">'+shortdesc+'</p>';
-                html +='</div>';
                 
                 html += '<div class="d-flex mb-1 justify-content-between">';
                     html +='<div class=""><i class="jpaicon bi-clock-history"></i><span>'+posted_ago_a+'</span></div>';
@@ -1218,6 +1225,24 @@ function getstaticeResponse(){
 
     return obj;
 }
+
+
+
+$(document).on('click', '.fileter.mobile' , function(e){
+    filterhtml = $('.desk-res-filter').html();
+    filterhtml +=`<div class="card-footer">
+    <div class="row">
+     <div class="col-6 text-center">
+         <button class="cancel filterReset">Reset</button>
+     </div>
+     <div class="col-6 text-center">
+         <button class="ok" data-bs-dismiss="offcanvas" aria-label="Close">Apply</button>
+     </div>
+    </div>
+ </div>`;
+    $('.mob-res-filter').html(filterhtml);
+    rangeSetup();
+});
 
 function timeSince(date){
     let $res ='30+ days ago';

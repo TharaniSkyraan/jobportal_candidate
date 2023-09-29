@@ -5,9 +5,6 @@
 			
 		} 
 	}
-	.navbar .dropdown ul {
-	  left: 60px;
-	}
 </style>
 <div class="main-header">
 	<header id="header" class="header header-close fixed-top bg-color-blue d-flex justify-content-center align-items-center">
@@ -23,7 +20,8 @@
 			<nav id="navbar" class="navbar">
 				@if(Auth::check())
 				<ul class="web-nav">
-					<li><a class="nav-link ps-0" href="{{ route('index') }}">Get a Job</a></li>
+					<li><a class="nav-link ps-0 pe-3 search-job-a d-none" href="{{ route('index') }}"><img draggable="false" src="{{asset('images/sidebar/search.png')}}" alt=""></a></li>
+					<li><a class="nav-link ps-0 profile-pic" href="{{ route('index') }}"><span>Find Jobs</span></a></li>
 					<li>
 						<a class="nav-link" href="{{ route('employer_messages') }}"><img draggable="false" src="{{asset('images/sidebar/msg.png')}}" alt=""></a>
 					</li>
@@ -31,7 +29,7 @@
 						<a class="nav-link" href="#"><img draggable="false" src="{{asset('images/sidebar/notification.png')}}" alt=""></a>
 					</li>
 					<li class="dropdown hidden-caret">
-						<a class="dropdown-toggle nav-link profile-pic" data-bs-toggle="dropdown" href="#" id="dropdownMenuLink" aria-expanded="false">
+						<a class="dropdown-toggle nav-link profile-pic" data-bs-toggle="dropdown" href="#" id="dropdownMenuLink" aria-expanded="false" data-bs-flip="false">
 							<div class="avatar-sm d-flex align-items-center">
 								@if(Auth::user()->image)
 									<img draggable="false" src="{{Auth::user()->image}}" alt="profile-img" class="rounded-circle h-100">
@@ -51,7 +49,7 @@
 										</div>
 									</a>
 									<div class="align-self-center mt-2">
-										<span class="completion">Profile Completed</span>
+										<span class="completion">Profile Complete</span>
 									</div>
 								</div>
 								<hr>
