@@ -225,7 +225,7 @@ class JobsController extends BaseController
             $filter['posteddateFid']  = $posteddateFid;
             $filter['sortBy']  = $sortBy;
             
-            $jobs = $this->fetchJobs($designation, $location, $filter, 15);
+            $jobs = $this->fetchJobs($designation, $location, $filter, 0);
             
             $jobs['joblist']->each(function ($job, $key) use($user) {
                 $jobc = Job::find($job->job_id);
@@ -249,7 +249,8 @@ class JobsController extends BaseController
                         'joblist' => $joblist,    
                         'next_page' => (!empty($jobs['joblist']->nextPageUrl())?($jobs['joblist']->currentPage()+1):""),
                         'filters' => $filters,
-                        'sortBy' => $sortBy
+                        'sortBy' => $sortBy,
+                        'no_of_pages' => $jobs['joblist']->lastPage()??0
                     );
 
         return $this->sendResponse($response);

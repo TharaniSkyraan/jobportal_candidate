@@ -128,6 +128,7 @@ class MyJobsController extends BaseController
         
         $response['jobs'] = $appliedjobs;
         $response['next_page'] = (!empty($jobs->nextPageUrl())?($jobs->currentPage()+1):"");
+        $response['no_of_pages'] = $jobs->lastPage()??0;
         
         return $this->sendResponse($response);              
 
@@ -224,7 +225,8 @@ class MyJobsController extends BaseController
         
         $response['jobs'] = $savedjobs;
         $response['next_page'] = (!empty($jobs->nextPageUrl())?($jobs->currentPage()+1):"");
-        
+        $response['no_of_pages'] = $jobs->lastPage()??0;
+       
         return $this->sendResponse($response); 
     }
 
@@ -302,7 +304,8 @@ class MyJobsController extends BaseController
         });
         $response['jobs'] = $list->items();
         $response['next_page'] = (!empty($list->nextPageUrl())?($list->currentPage()+1):"");
-        
+        $response['no_of_pages'] = $list->lastPage()??0;
+       
         return $this->sendResponse($response);  
     }
     
