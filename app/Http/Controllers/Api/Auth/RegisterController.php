@@ -10,6 +10,7 @@ use App\Model\UserSkill;
 use App\Model\JobSkill;
 use App\Model\Skill;
 use App\Model\UserEducation;
+use App\Model\UserActivity;
 use App\Model\UserCv;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Api\LoginRequest;
