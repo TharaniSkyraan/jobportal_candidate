@@ -11,6 +11,7 @@ use App\Model\City;
 use App\Model\Title;
 use App\Model\Company;
 use App\Model\UserActivity;
+use App\Model\FavouriteJob;
 use App\Model\JobApply;
 use App\Model\Job;
 use App\Model\JobSearch;
@@ -224,6 +225,7 @@ class JobsController extends Controller
             $datas = $joblist->toArray();
             $jobids = array_column($datas['data'], 'job_id');
             $appliedjodids = JobApply::where('user_id',Auth::user()->id)->whereIn('job_id',$jobids)->pluck('job_id')->toArray();
+            $savedjodids = FavouriteJob::where('user_id',Auth::user()->id)->whereIn('job_id',$jobids)->pluck('job_id')->toArray();
         }
 
         return response()->json(array('success' => true, 
@@ -232,6 +234,7 @@ class JobsController extends Controller
                                     'slug' => $slug,
                                     'joblist' => $joblist,    
                                     'appliedJobids' => $appliedjodids??array(),                           
+                                    'savedJobids' => $savedjodids??array(),                           
                                     'filters' => $filters,
                                     'sortBy' => $sortBy
                                 ));    

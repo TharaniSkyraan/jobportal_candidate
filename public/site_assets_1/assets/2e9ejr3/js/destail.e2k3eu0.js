@@ -13,7 +13,6 @@
     $('.favjob').on('click', function(){
         let btn = $(".favjob");
         if(1) {
-
             let is_fav =  $('.favjob').attr("data-fav");            
             $('.favjob').prop("disabled", true);
 

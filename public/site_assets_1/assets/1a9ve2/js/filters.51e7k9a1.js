@@ -178,7 +178,8 @@ function populateData(JsonRes){
             $(".t_pgres").text(resTotatxt);
 
             appliedJobids = JsonRes.appliedJobids || [];
-            jlhtml = createJoblistDiv(jobsListArr,appliedJobids);
+            savedJobids = JsonRes.savedJobids || [];
+            jlhtml = createJoblistDiv(jobsListArr,appliedJobids,savedJobids);
            
             paginateData = {};
             paginateData.links = jobsList.links || [];
@@ -397,10 +398,92 @@ $(document).on( 'click', '.japplybtnredir', function(e) {
 $(document).on( 'click', '.japplybtn', function(e) {
     e.stopPropagation();
     let jobidv = $(this).parent().parent().parent().parent().data('jobid');
-    // alert(jobidv)
+    alert(jobidv)
     btn = $(this);
     jobApply(btn, jobidv);
    
+});
+$(document).on( 'click', '.favjob', function(e) {
+    
+    e.stopPropagation();
+    v_is_login = is_login || 0;
+    
+    var csrf_token = $('meta[name=csrf-token]').attr('content');
+    var jobidv = $(this).parent().parent().parent().parent().data('jobid');
+    var is_fav = $(this).attr('data-fav');
+    var favj = $(this);
+          
+    // $(this).prop("disabled", true);
+    var btn = $(this).children().first();
+    $.ajax({
+        url: baseurl+'save/'+jobidv,
+        type: 'POST',
+        data : {"_token": csrf_token,'is_login':v_is_login, 'fav':is_fav },
+        datatype: 'JSON',
+        // beforeSend:function(){
+        //   $(btn).html(
+        //       `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>`
+        //   );
+        //}, 
+        success: function(resp) {
+            
+            var redir='';
+            var fav_unfav =false;
+            var reload_page = resp.reload_page || false;
+            var fav = resp.fav;
+            // $(this).prop("disabled", false);
+            $(favj).attr("data-fav", fav);
+
+            if(fav=='yes'){
+                $(btn).html(`<img draggable="false" class="image-size cursor-pointer" src="${baseurl}site_assets_1/assets/img/star_filled.png" alt="bookmark"> <span> Saved</span>`);
+            }
+            else{
+                $(btn).html(`<img draggable="false" class="image-size cursor-pointer" src="${baseurl}site_assets_1/assets/img/star_unfilled.png" alt="bookmark"> <span> Save</span>`);
+            }
+            
+            if(resp.success == true){
+                redir = resp.return_to;
+                fav_unfav=true;
+            }
+            else if(resp.success == false){
+                redir = resp.return_to;
+                fav_unfav=false;
+            }
+            else{
+                redir = resp.return_to;
+                fav_unfav=false;
+            }
+            
+
+            let url ='';
+
+            //redir action
+            if(redir =='login' || redir == 'redirect_user' ){
+                url = baseurl + redir;
+                openInNewTabWithNoopener(url);
+            }
+            else if(redir =='company/postedjobslist'){
+                location.reload();
+            }
+            else if(redir == ''){
+                $('#jasuccess').html('<div class="alert alert-success alert-dismissible">'
+                +resp.message
+                +'<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+                +'</div>');
+            }
+            else{ 
+                location.reload();
+            }
+            
+            if(reload_page){
+                location.reload();
+            }
+
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            // $('#content').html(errorMsg);
+        }
+    });
 });
 
 $(document).on('change', '#sortby' , function(){
@@ -1062,7 +1145,7 @@ function getParams (url = window.location) {
 	return params;
 }
 
-function createJoblistDiv(data,appliedJobids){
+function createJoblistDiv(data,appliedJobids,savedJobids){
     html='';
     // i=0;
     // dataArr = data.data 
@@ -1107,28 +1190,27 @@ function createJoblistDiv(data,appliedJobids){
                 html += '<div class="row mb-2">';
                     html +='<div class="col-xl-1 col-md-1 col-sm-1 col-xs-1 col-2 cmpprofile"><div class="avatar-sm"><img alt="" draggable="false" class="rounded-circle h-100" src="'+logo+'"></div></div>';
                     // html +='<div class="col-md-2 col-sm-2 col-xs-12" style="text-align: -webkit-right;"><button class="p-1 shadow-sm bg-color-blue rounded-pill" style="width:max-content"><img draggable="false" class="image-size" src="'+baseurl+''+baseurl+'site_assets_1/assets/img/apply2.png" alt="apply"> Apply</button></div>';
-                    html +='<div class="col-xl-11 col-md-11 col-sm-11 col-xs-11 col-10 jcnt"> <div class="d-flex"><h3 class="text-green-color ellipsis align-self-center jtitle">'+title+'</h3> ';
+                    html +='<div class="col-xl-11 col-md-11 col-sm-11 col-xs-11 col-12 jcnt"> <div class="d-flex"> <div class="jtle-jcmp"><h3 class="text-green-color text-truncate align-self-center jtitle">'+title+'</h3><div class="my-2 fw-bold ellipsis cmp_name ">'+cmp_name+'</div></div> ';
                         if(appliedJobids.includes(job_id)){
-                            html +='<label class="japplied-btn" ><img draggable="false" class="imagesz-2" src="'+baseurl+'site_assets_1/assets/img/Shortlist.png" alt="applied"> <span class="fw-bold">Applied</span></label>';
+                            html +='<label class="japplied-btn"><button class="btn p-1 px-2 shadow-sm rounded-pill"><img draggable="false" class="imagesz-2" src="'+baseurl+'site_assets_1/assets/img/Shortlist.png" alt="applied"> <span class="fw-bold">Applied</span></button></label>';
                         }else{
                             if(val.have_screening_quiz=='yes' || val.is_admin==1){
-                                html +='<label class="japply-btn"><button class="btn p-1 shadow-sm bg-color-blue rounded-pill japplybtnredir" id="japplybtn"><img draggable="false" class="image-size" src="'+baseurl+'site_assets_1/assets/img/apply2.png" alt="apply"> <span>Apply</span></button></label>';
+                                html +='<label class="japply-btn"><button class="btn p-1 px-2 shadow-sm bg-color-blue rounded-pill japplybtnredir" id="japplybtn"><img draggable="false" class="image-size" src="'+baseurl+'site_assets_1/assets/img/apply2.png" alt="apply"> <span>Apply</span></button></label>';
                             }else{
-                                html +='<label class="japply-btn"><button class="btn p-1 shadow-sm bg-color-blue rounded-pill japplybtn" id="japplybtn"><img draggable="false" class="image-size" src="'+baseurl+'site_assets_1/assets/img/apply2.png" alt="apply"><span> Apply</span></button></label>';
+                                html +='<label class="japply-btn"><button class="btn p-1 px-2 shadow-sm bg-color-blue rounded-pill japplybtn" id="japplybtn"><img draggable="false" class="image-size" src="'+baseurl+'site_assets_1/assets/img/apply2.png" alt="apply"><span> Apply</span></button></label>';
                             }
                         }
                         
                         html +='</div>';
-                    html +='<div class="mb-2 fw-bold ellipsis cmp_name ">'+cmp_name+'</div>';
 
-                        html += '<div class="row mb-4">';
+                        html += '<div class="row my-3">';
                             // html +='<div class="col-md-4 col-sm-4 col-xs-12"><div><text class="fw-bold tt_txt">Experience:</text> <text class="text-green-color tt_txt"> '+experi+' </text></div></div>';
-                            html +='<div class="col-md-4 col-sm-4 col-xs-12 col-6 d-flex"><span><img draggable="false" class="me-2 image-size" src="'+baseurl+'site_assets_1/assets/img/side_nav_icon/experience.png"></span> <text class="text-green-color tt_txt fw-bold text-truncate">'+experi+'</text></div>';
-                            html +='<div class="col-md-4 col-sm-4 col-xs-12 col-6 d-flex"><span><img draggable="false" class="me-2 image-size" src="'+baseurl+'site_assets_1/assets/img/side_nav_icon/salary.png"></span> <text class="text-green-color tt_txt fw-bold text-truncate">'+salary+'</text></div>';
-                            html +='<div class="col-md-4 col-sm-4 col-xs-12 col-6 d-flex"><span><img draggable="false" class="me-2 image-size" src="'+baseurl+'site_assets_1/assets/img/side_nav_icon/location.png"></span> <text class="text-green-color tt_txt fw-bold text-truncate">'+locationa+'</text></div>';
+                            html +='<div class="col-md-4 col-sm-4 col-xs-12 col-5 d-flex mb-1"><span><img draggable="false" class="me-2 image-size" src="'+baseurl+'site_assets_1/assets/img/side_nav_icon/experience.png"></span> <text class="text-green-color tt_txt fw-bold text-truncate">'+experi+'</text></div>';
+                            html +='<div class="col-md-4 col-sm-4 col-xs-12 col-7 d-flex mb-1"><span><img draggable="false" class="me-2 image-size" src="'+baseurl+'site_assets_1/assets/img/side_nav_icon/salary.png"></span> <text class="text-green-color tt_txt fw-bold text-truncate">'+salary+'</text></div>';
+                            html +='<div class="col-md-4 col-sm-4 col-xs-12 col-12 d-flex mb-1"><span><img draggable="false" class="me-2 image-size" src="'+baseurl+'site_assets_1/assets/img/side_nav_icon/location.png"></span> <text class="text-green-color tt_txt fw-bold text-truncate">'+locationa+'</text></div>';
                         html +='</div>';
-                        html += '<div class="mb-4">';
-                            html +='<p class="text-truncate jd_txt">'+shortdesc+'</p>';
+                        html += '<div>';
+                            html +='<p class="text-truncate jd_txt mb-4">'+shortdesc+'</p>';
                         html +='</div>';
 
                         html +='</div>';
@@ -1137,12 +1219,17 @@ function createJoblistDiv(data,appliedJobids){
 
 
                 
-                html += '<div class="d-flex mb-1 justify-content-between">';
+                html += '<div class="d-flex mb-1 justify-content-between jfter">';
                     html +='<div class=""><i class="jpaicon bi-clock-history"></i><span>'+posted_ago_a+'</span></div>';
                     if(imdjoin !=''){
                         html +='<div class=""><text><img draggable="false" class="image-size" src="'+baseurl+'site_assets_1/assets/img/Imm_join.png" alt="immediate join">'+imdjoin+'</text></div>';
                     }
                     html +='<div class="d-flex">';
+                    if(savedJobids.includes(job_id)){
+                        html +='<label class="favjob" data-fav="yes"><button class="btn p-1 px-2 shadow-sm rounded-pill"> <img draggable="false" class="image-size cursor-pointer" src="'+baseurl+'site_assets_1/assets/img/star_filled.png" alt="bookmark"> <span>Saved</span></button></label>';
+                    }else{
+                        html +='<label class="favjob" data-fav="no"><button class="btn p-1 px-2 shadow-sm rounded-pill"> <img draggable="false" class="image-size cursor-pointer" src="'+baseurl+'site_assets_1/assets/img/star_unfilled.png" alt="bookmark"> <span>Save</span></button></label>';
+                    }
                     html +='</div>';
                 html +='</div>';
 

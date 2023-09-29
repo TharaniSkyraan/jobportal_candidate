@@ -176,7 +176,7 @@ class RegisterController extends BaseController
         UserVerification::send($user, 'Account Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
         Auth::logout();
         
-        return $this->sendResponse(['id'=>$user->id], 'Verification OTP Send Successful.');
+        return $this->sendResponse(['id'=>$user->id,'otp'=>$otp], 'Verification OTP Send Successful.');
 
     }
     

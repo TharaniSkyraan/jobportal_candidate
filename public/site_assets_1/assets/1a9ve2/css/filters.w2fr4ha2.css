@@ -263,7 +263,10 @@ filter search
 }
 .jobcard .jtitle{
     margin: 0px;
-    width: 80%; 
+}
+
+.jobcard .jtle-jcmp{
+    width: 80%;
 }
 
 input[type=checkbox]+label i {
@@ -833,10 +836,11 @@ input[type="range" i] {
     background-color: #4285f4 !important; 
     color:#fff;
 }
-.japply-btn:hover{
+.japply-btn .btn:hover{
     opacity: 1;
     transition: none;
     border-color: #4285F4;
+    color:#fff;
 }
 .jobcard .japplied-btn {
     border-color: #4285F4;
@@ -973,20 +977,17 @@ outline-offset: 2px;
     background-color: #4285F4 !important;
     outline: 2px solid #4285f0b3 !important;
 }
-@media only screen and (min-width: 300px) {
-.cusconta{
-    width:100%
+.japplied-btn button, .favjob button{
+    background-color: #F3F7FE;
 }
+@media only screen and (min-width: 300px) {
+    .cusconta{
+        width:100%
+    }
 }
 @media only screen and (min-width: 480px) {
-.cusconta{
-    width:100%;
-}
-}
-@media only screen and (max-width: 480px) {
-    .jobcard .jcnt{
-        padding-left: 1rem;
-        /* padding-right: 1rem; */
+    .cusconta{
+        width:100%;
     }
 }
 @media only screen and (min-width: 768px) {
@@ -996,18 +997,15 @@ outline-offset: 2px;
     .jobcard .avatar-sm{
        height: 3.5rem !important;
     }
-}
-
-
-/* @media(min-width: 575px) and (max-width: 500px){
-    .jobcard .jcnt{
-        margin-left: -25px;
+    .filtershow{
+        display: none !important;
     }
-} */
-@media only screen and (min-width: 1024px) {
-.cusconta{
-    width:75%;
 }
+
+@media only screen and (min-width: 1024px) {
+    .cusconta{
+        width:75%;
+    }
 }
 
 @media only screen and (max-width: 575px) {
@@ -1025,8 +1023,10 @@ outline-offset: 2px;
   .fileter.mobile span{
     display: none;
   }
-  .jobcard .jtitle{
+  .jobcard .jtle-jcmp{
     width: 90%;
+  }
+  .jobcard .jtitle{
     font-size: 16px;
   }
   .jobcard .japplied-btn span,.jobcard .japply-btn span{
@@ -1040,10 +1040,30 @@ outline-offset: 2px;
   }
   
     .japply-btn button{
-        padding: .0rem 0.2rem !important
+        padding: .1rem 0.4rem !important
     }
-    .jobcard .image-size{
-        width: 14px;
+    .jobcard button .image-size{
+        width: 11px;
+    }
+    .jobcard .favjob .image-size{
+        width: 16px;
+    }
+    .jobcard .cmpprofile{
+        display: none;
+    }
+    .jobcard .tt_txt {
+        font-size: 12px;
+    }
+    .jobcard .jd_txt, .favjob span{
+        display: none !important;
+    }
+    .jobcard .jfter span, .jobcard .jfter text{
+        font-size: 12px;
+    }
+    .japplied-btn button, .favjob button{
+        background-color: #ffffff00;
+        box-shadow: none !important;
+        padding: 0px !important;
     }
 }
 .rcsdiv{
@@ -1120,11 +1140,6 @@ min-height: 240px;
 @media(min-width: 575px) and (max-width: 650px){
     .jobcard .cmpprofile{
         padding-left: 0.25rem;
-    }
-}
-@media(min-width: 450px) and (max-width: 575px){
-    .jobcard .jcnt{
-        margin-left: -1rem !important;
     }
 }
 

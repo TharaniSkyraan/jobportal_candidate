@@ -176,7 +176,7 @@
             </div>
             <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                 <div class="row mt-1 mb-3">
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 col-3 align-items-center d-flex">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 col-3 align-items-center d-flex filtershow">
                         <div class="filter_show">
                             <a class="fileter mobile" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
                                 <img draggable="false" alt="" src="{{ asset('site_assets_1/assets/img/side_nav_icon/filter.svg')}}" alt="" class="me-1">
@@ -184,11 +184,11 @@
                             </a>
                         </div>                        
                     </div>
-                    <div class="col-xl-4 col-lg-4  col-md-4 col-sm-4 col-xs-4 col-5 align-items-center d-flex">
+                    <div class="col-xl-6 col-lg-6  col-md-6 col-sm-4 col-xs-4 col-5 align-items-center d-flex">
                         <h5 class="fmftxt fw-bold t_pgres"></h5>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4 col-4 align-items-center justify-content-end d-flex">
-                        <img draggable="false" alt="" src="{{ asset('site_assets_1/assets/img/side_nav_icon/shortby.svg')}}" class="search-sortby">  @php $arrDays = ['relevance'=> 'Relevance' ,'date'=>'Date']; @endphp
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-4 col-xs-4 col-4 align-items-center justify-content-end d-flex">
+                        <img draggable="false" alt="" src="{{ asset('site_assets_1/assets/img/side_nav_icon/shortby.svg')}}" class="search-sortby">  @php $arrDays = ['date'=> 'Recent' ,'immediate_join'=>'Immediate Join']; @endphp
                         {!! Form::select('sortby', [] + $arrDays, null, array('class'=>'form-select', 'id'=>'sortby')) !!}
                     </div>
                 </div>

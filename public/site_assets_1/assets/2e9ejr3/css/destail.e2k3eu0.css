@@ -1,0 +1,196 @@
+
+.image-size{
+    width: 17px;
+    /* vertical-align: text-top; */
+    margin-top: -2px;
+}
+.imagesz-2{
+    width: 19px;
+    vertical-align: text-bottom;
+}
+.japply-btn{
+    border-color: #4285f470;
+    background-color: #48abf717 !important;
+    padding: 0.46rem 0.85rem!important;
+    font-size: 0.9rem;
+}
+.japply-btn:hover{
+    opacity: 1;
+    transition: none;
+    border-color: #4285F4;
+    background-color: #48abf72b !important;
+}
+.japplied-btn {
+    border-color: #c8e8ef;
+    padding: 0.36rem 0.65rem!important;
+}
+.jdcarc{
+    box-shadow: 0 2px 6px -2px rgb(0 106 194 / 20%);
+    padding: 1.25rem 1.25rem .65rem  1.25rem !important
+}
+.abt-cmp{
+    box-shadow: 0px 1px 6px -2px rgb(0 106 194 / 20%), 1px -1px 6px -2px rgb(0 106 194 / 20%);
+}
+.rjarti{
+    border-bottom: 1px solid #eee;
+padding: 10px 0;
+}
+.jdcarc p{
+    font-size: 14px;
+    margin-bottom: 0.3rem;
+}
+.jdcarc .chip {
+    margin-top: 10px;
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 14px!important;
+    font-weight: 400;
+    color: #333;
+    border: 1px solid #4285f47a;
+    border-radius: 14px;
+    padding: 5px 12px;
+    /* background-color: #effcff; */
+    /* border-color: #4285F4; */
+    background-color: #48abf726 !important;
+}
+ul{
+    margin-bottom: 0.5rem;
+}
+ul li{
+    line-height: 1.62;
+    margin-bottom: 0.3rem;
+    font-size: 14px;
+}
+.jobdesbcontar{
+    font-size: 14px;
+}
+.jdcarc .cmpinfo-detail>label {
+    font-size: 14px;
+    font-weight: 400;
+    color: #999;
+    width: 90px;
+    display: inline-block;
+    vertical-align: top;
+}
+.poscls{
+    margin: 8px 0 0 0 !important;
+    color: #666666;
+    font-size: 13px !important;
+}
+.main-header {
+    background: #fff;
+    min-height: 45px;
+    width: 100%;
+    position: sticky !important;
+    z-index: 1046;
+}
+.header-space-search{
+    margin-top:70px !important;
+}
+.text-truncate{
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    display: -webkit-box !important;
+    white-space: break-spaces !important;
+}
+text{
+    font-size: 15px;
+}
+
+/*company header css*/
+.top-container {
+padding: 30px;
+text-align: center;
+}
+
+.header {
+padding: 10px 16px;
+background: #4285f4f2;
+color: #f1f1f1;
+}
+
+.content {
+padding: 16px;
+}
+
+.sticky {
+position: fixed;
+display: block !important;
+top: 0;
+width: 100%;
+}
+.applybtnsticky {
+    position: fixed;
+    display: none;
+    bottom: 0;
+    width: 100%;
+    z-index: 9999;
+    padding-bottom: 4%;
+}
+.applybtnsticky.nonsticky{  
+    display: none !important;
+}
+.applybtnsticky .japply-btn,.applybtnsticky .japplied-btn{
+    width: -webkit-fill-available;
+    margin-left: 20px;
+    background-color: #4b87ed !important;
+    color: #fff !important;
+    text-align: center;
+    border-radius: 25px;
+    /* margin: 0px 10px; */
+}
+.sticky + .content {
+padding-top: 102px;
+}#myHeader .card{
+    margin-top: 12px;
+}.header#myHeader{
+    height: auto;
+}
+@media(max-width:575px){
+    .header#myHeader,#appltbutton{
+        display:none !important;
+    }
+    .applybtnsticky {
+        display: block !important;
+    }
+
+}
+@media (min-width: 576px) and (max-width:767px)
+{    
+  .container-detail {
+      max-width: 665px !important;
+  }
+}
+.fw-bold{
+    font-weight:500 !important;
+}
+@media only screen and (min-width: 992px){
+
+    .assessment_modal{
+        max-width: 65% !important;
+    }
+}
+
+@media(min-width: 768px) and (max-width: 992px){
+
+    .assessment_modal{
+        max-width: 75% !important;
+    }
+}
+
+@media(min-width: 280px) and (max-width: 767px){
+    .assessment_modal{
+        width: 100vw;
+        max-width: none;
+        height: 100%;
+        margin: 0;         
+    }
+    .assessment_modal .modal-content, .modal{
+        height: -webkit-fill-available !important;
+        border-radius: 0px !important;
+    }
+}
+.previous-btn{
+    background: unset;
+    border: unset;
+}
