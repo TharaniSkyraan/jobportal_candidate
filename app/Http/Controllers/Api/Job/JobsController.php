@@ -104,7 +104,8 @@ class JobsController extends BaseController
                                         $q->where('work_from_home','!=','permanent')
                                           ->whereIsActive(1);
                                     })
-                                    ->select('city', DB::raw('count(`job_id`) as total_count'))
+                                    ->select('city','city_id', DB::raw('count(`job_id`) as total_count'))
+                                    ->groupBy('city_id')
                                     ->groupBy('city')
                                     ->havingRaw("total_count != 0")
                                     ->orderBy('total_count','DESC')
@@ -113,7 +114,7 @@ class JobsController extends BaseController
         
         $top_cities->each(function ($tcity, $key) {
             $sector = Industry::whereHas('jobsearch', function($q) use($tcity){
-                            $q->where('city', 'REGEXP', $tcity);
+                            $q->where('city', 'REGEXP', $tcity->city_id);
                         })->withCount('jobsearch')
                         ->orderBy('jobsearch_count','DESC')
                         ->havingRaw("jobsearch_count != 0")
