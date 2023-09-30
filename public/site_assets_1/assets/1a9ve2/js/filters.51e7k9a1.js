@@ -336,7 +336,7 @@ $(document).on('click', '.form-check-input' , function(e){
     }else{
         show_hide_applied_btn(fcnt);
     }
-    //applied btn input change  show.hide--s
+    // applied btn input change  show.hide--s
 
     processing_data();
 

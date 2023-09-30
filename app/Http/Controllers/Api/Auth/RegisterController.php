@@ -107,11 +107,11 @@ class RegisterController extends BaseController
             UserVerification::generate($user);
             UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
             Auth::logout();
+            UserActivity::updateOrCreate(['user_id' => Auth::user()->id],['last_active_at'=>Carbon::now()]);
 
             return $this->sendResponse(['id'=>$user->id,'otp'=>$otp], 'Verification OTP Send Successful.');
         }
 
-        UserActivity::updateOrCreate(['user_id' => Auth::user()->id],['last_active_at'=>Carbon::now()]);
 
 
         return $this->sendResponse('', 'Existing'); 
@@ -163,9 +163,9 @@ class RegisterController extends BaseController
       */
     public function resentOtp(ResentRequest $request)
     {
-        
+        $otp = $this->generateRandomCode(6);
         $user = User::find($request->id);
-        $user->verify_otp = $this->generateRandomCode(6);
+        $user->verify_otp = $otp;
         $user->session_otp = Carbon::now();
         $user->save();
 
@@ -176,7 +176,7 @@ class RegisterController extends BaseController
         UserVerification::send($user, 'Account Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
         Auth::logout();
         
-        return $this->sendResponse(['id'=>$user->id,'otp'=>$otp], 'Verification OTP Send Successful.');
+        return $this->sendResponse(['id'=>$request->id,'otp'=>$otp], 'Verification OTP Send Successful.');
 
     }
     

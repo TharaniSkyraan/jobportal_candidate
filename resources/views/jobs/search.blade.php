@@ -184,10 +184,10 @@
                             </a>
                         </div>                        
                     </div>
-                    <div class="col-xl-6 col-lg-6  col-md-6 col-sm-4 col-xs-4 col-5 align-items-center d-flex">
+                    <div class="col-xl-6 col-lg-6  col-md-4 col-sm-4 col-xs-4 col-5 align-items-center d-flex">
                         <h5 class="fmftxt fw-bold t_pgres"></h5>
                     </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-4 col-xs-4 col-4 align-items-center justify-content-end d-flex">
+                    <div class="col-xl-6 col-lg-6 col-md-4 col-sm-4 col-xs-4 col-4 align-items-center justify-content-end d-flex">
                         <img draggable="false" alt="" src="{{ asset('site_assets_1/assets/img/side_nav_icon/shortby.svg')}}" class="search-sortby">  @php $arrDays = ['date'=> 'Recent' ,'immediate_join'=>'Immediate Join']; @endphp
                         {!! Form::select('sortby', [] + $arrDays, null, array('class'=>'form-select', 'id'=>'sortby')) !!}
                     </div>
