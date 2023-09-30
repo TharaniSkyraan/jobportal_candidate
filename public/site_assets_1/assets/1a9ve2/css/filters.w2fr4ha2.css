@@ -138,7 +138,7 @@ body {
     padding: 0 5px;
 }
 .sidebar_content_2{
-    background-color: #f9fbfd;
+    background-color: #F5F5F5;
 }
 .form-select {
     width: fit-content !important;    
@@ -1085,6 +1085,11 @@ min-height: 240px;
     border-top-left-radius: unset !important;
     border-bottom-left-radius: unset !important;    
     font-size: 20px !important;
+}
+.sidebar .nav>.nav-item>a:hover,.sidebar.sidebar-style-2 .nav .nav-item a:hover,
+.sidebar .nav>.nav-item.active>a, .sidebar[data-background-color=white] .nav>.nav-item.active>a
+{
+    background: rgb(255 255 255 / 3%) !important;
 }
 
 @media only screen and (max-width: 1024px) {

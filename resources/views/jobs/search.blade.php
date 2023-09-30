@@ -64,7 +64,7 @@
                             </div> --}}
                             <div class="filterHeading bgWhite br4">
                                 {{-- <i class="jpicon jpicon-filter"></i> --}}
-                                <h4 class="fw-bold pl-8 FilterHeadtitle">All Filters</h4>
+                                <h4 class="fw-bold pl-8 FilterHeadtitle"><img draggable="false" alt="" src="{{ asset('site_assets_1/assets/img/side_nav_icon/filter.svg')}}" alt="" class="me-1">  Filters</h4>
                             </div>
 
                             <ul class="nav nav-primary">

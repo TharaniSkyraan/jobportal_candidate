@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Job;
 
+use DB;
 use Auth;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
@@ -19,7 +20,9 @@ use App\Traits\FetchJobsList;
 use App\Traits\BlockedKeywords;
 use App\Model\ProfilePercentage;
 use App\Model\JobScreeningQuiz;
+use App\Model\JobWorkLocation;
 use App\Http\Requests\Api\Job\JobSearchRequest;
+use App\Model\Industry;
 
 class JobsController extends BaseController
 {
@@ -97,61 +100,35 @@ class JobsController extends BaseController
      */
     public function fresherIndex()
     {
-        $user_id = Auth::user()->id??710;        
-        $user = User::find($user_id);
-        $appliedjobs = JobApply::where('user_id',$user_id)
-                        ->whereIn('application_status',['view','shortlist','consider'])
-                        ->take(4)
-                        ->orderBy('created_at','desc')
+        $top_cities = JobWorkLocation::whereHas('job',function($q){
+                                        $q->where('work_from_home','!=','permanent')
+                                          ->whereIsActive(1);
+                                    })
+                                    ->select('city', DB::raw('count(`job_id`) as total_count'))
+                                    ->groupBy('city')
+                                    ->havingRaw("total_count != 0")
+                                    ->orderBy('total_count','DESC')
+                                    ->limit(10)
+                                    ->get();
+        
+        $top_cities->each(function ($tcity, $key) {
+            $sector = Industry::whereHas('jobsearch', function($q) use($tcity){
+                            $q->where('city', 'REGEXP', $tcity);
+                        })->withCount('jobsearch')
+                        ->orderBy('jobsearch_count','DESC')
+                        ->limit(3)
                         ->get();
+            $tcity['sectors'] = $sector;
+        });                                
 
-        $appliedlist = [];
-        
-        foreach($appliedjobs as $job)
-        {
-            if(isset($job->job))
-            {                    
-                $appliedlist[] = array(
-                    'slug' => $job->job->slug,
-                    'title' => $job->job->title??'Php Developer',
-                    'company_name' => $job->job->company_name??'Skyraan',
-                    'company_image' => $job->job->company->company_image??'',
-                    'status' => $job->application_status,
-                    'applied_at' => Carbon::parse($job->created_at)->getTimestampMs(),
-                    'status_updated_at' => Carbon::parse($job->updated_at)->getTimestampMs(),
-                );
-            }
-        }
-
-        $jobs = $this->fetchJobs($user->career_title, '', [], 5);
-        
-        $jobs['joblist']->each(function ($job, $key) use($user) {
-            $jobc = Job::find($job->job_id);
-            $job['company_image'] = $jobc->company->company_image??'';
-            $job['job_type'] = $jobc->getTypesStr();
-            $job['skills'] = $jobc->getSkillsStr();
-            $job['posted_at'] = Carbon::parse($jobc->posted_date)->getTimestampMs();
-            $job['is_applied'] = $user->isAppliedOnJob($job->job_id);
-            $job['is_favourite'] = $user->isFavouriteJob($jobc->slug);
-        });   
-        $joblist = $jobs['joblist']->items();     
-
-        $userData = array(
-                'name' => $user->getName(),
-                'final_percentage' => $user->getProfilePercentage(),
-                'image' => $user->image,
-                'career_title' => $user->career_title,
-                'updated_at' => Carbon::parse($user->updated_at)->getTimestampMs(),  
-                'resume' => $user->getDefaultCv()->cv_file,            
-                'location' => $user->location,            
-            );
-
+        $sectors = Industry::withCount('jobsearch')
+                            ->orderBy('jobsearch_count','DESC')
+                            ->limit(15)
+                            ->get();
         $response = array(
-                        'jobs' => $joblist, 
-                        'user' => $userData, 
-                        'appliedlist' => $appliedlist
-                    );
-
+            'top_cities' => $top_cities,
+            'sectors' => $sectors
+        );
         return $this->sendResponse($response);
     }
 
