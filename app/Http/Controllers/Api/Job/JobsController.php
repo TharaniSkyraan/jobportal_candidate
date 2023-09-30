@@ -234,11 +234,13 @@ class JobsController extends BaseController
                         'location' => $location,
                         'joblist' => $joblist,    
                         'next_page' => (!empty($jobs['joblist']->nextPageUrl())?($jobs['joblist']->currentPage()+1):""),
-                        'filters' => $filters,
                         'sortBy' => $sortBy,
                         'no_of_pages' => $jobs['joblist']->lastPage()??0
                     );
-
+        if(!isset($request->is_fresher_api)){
+            $response['filters'] = $filters;
+        }
+        
         return $this->sendResponse($response);
     }
 
