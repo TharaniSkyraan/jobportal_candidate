@@ -112,8 +112,8 @@ trait FetchJobsList
         $joblist = $queries->select('job_id','title','is_admin','description','company_name','experience_string as experience','salary_string as salary','posted_date','quick_hiring_deadline as immediate_join','location','have_break_point','have_screening_quiz','slug');
         if (!empty($filter['sortBy']) && $filter['sortBy'] == 'date') { 
             $joblist->orderBy('posted_date', 'DESC');
-        }else{  
-            $joblist->orderBy('job_id', 'DESC');
+        }else if (!empty($filter['sortBy']) && $filter['sortBy'] == 'immediate_join') {   
+            $joblist->where('quick_hiring_deadline', 'Immediate Join')->orderBy('job_id', 'DESC');
         }
         $result['filters'] = $filters??array();
         $result['joblist'] = $joblist->paginate($limit);

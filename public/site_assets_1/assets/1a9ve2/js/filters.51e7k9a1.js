@@ -562,8 +562,8 @@ function geneFilterOptions(filterName, data, filterTitle){
         p1html +='</div>';                                            
         p1html +='<div class="filter-comp-options">';
             p1html += html;
-            p1html +='<div class="footerfilter"><button class="filter-tool-ok"> ok </button></div>';
         p1html +='</div>';
+        p1html +='<div class="footerfilter"><button class="filter-tool-ok"> ok </button></div>';
     p1html +='</div>';
                                               
     return p1html;
@@ -645,8 +645,8 @@ function createFilterOptions_Morebox( filterName, data, checked_data,filterTitle
         p1html +='</div>';                                            
         p1html +='<div class="filter-comp-options">';
             p1html += html;
-            p1html +='<div class="footerfilter"><button class="filter-tool-ok"> ok </button></div>';
         p1html +='</div>';
+        p1html +='<div class="footerfilter"><button class="filter-tool-ok"> ok </button></div>';
     p1html +='</div>';
                                               
     return p1html;
@@ -1323,7 +1323,7 @@ $(document).on('click', '.fileter.mobile' , function(e){
          <button class="cancel filterReset">Reset</button>
      </div>
      <div class="col-6 text-center">
-         <button class="ok" data-bs-dismiss="offcanvas" aria-label="Close">Apply</button>
+         <button class="ok" data-bs-dismiss="offcanvas" aria-label="Close">Ok</button>
      </div>
     </div>
  </div>`;
