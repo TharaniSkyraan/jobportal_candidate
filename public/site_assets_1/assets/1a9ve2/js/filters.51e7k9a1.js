@@ -314,7 +314,9 @@ $(document).on('click', '.form-check-input' , function(e){
     let chkb_cked = this.checked;
     if(FG_id == undefined){
         FG_id = $(this).parent().parent().parent().parent().data('filter-id');
+        
     }
+    
     if(FG_id == undefined){
         FG_id = $(this).parent().data('filter-id');
     }
@@ -338,8 +340,13 @@ $(document).on('click', '.form-check-input' , function(e){
     }
     // applied btn input change  show.hide--s
 
-    processing_data();
+    if($(this).closest('.filterTooltip').attr('id')==undefined){
+        processing_data();
+    }
 
+});
+$(document).on('click', '.filter-tool-ok' , function(e){
+    processing_data();
 });
 
 

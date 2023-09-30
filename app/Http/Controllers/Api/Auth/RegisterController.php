@@ -107,7 +107,7 @@ class RegisterController extends BaseController
             UserVerification::generate($user);
             UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
             Auth::logout();
-            UserActivity::updateOrCreate(['user_id' => Auth::user()->id],['last_active_at'=>Carbon::now()]);
+            UserActivity::updateOrCreate(['user_id' => $user->id],['last_active_at'=>Carbon::now()]);
 
             return $this->sendResponse(['id'=>$user->id,'otp'=>$otp], 'Verification OTP Send Successful.');
         }
