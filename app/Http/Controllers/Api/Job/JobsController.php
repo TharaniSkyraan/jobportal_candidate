@@ -116,6 +116,7 @@ class JobsController extends BaseController
                             $q->where('city', 'REGEXP', $tcity);
                         })->withCount('jobsearch')
                         ->orderBy('jobsearch_count','DESC')
+                        ->havingRaw("jobsearch_count != 0")
                         ->limit(3)
                         ->get();
             $tcity['sectors'] = $sector;
@@ -123,6 +124,7 @@ class JobsController extends BaseController
 
         $sectors = Industry::withCount('jobsearch')
                             ->orderBy('jobsearch_count','DESC')
+                            ->havingRaw("jobsearch_count != 0")
                             ->limit(15)
                             ->get();
         $response = array(

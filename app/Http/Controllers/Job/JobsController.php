@@ -95,6 +95,7 @@ class JobsController extends Controller
 
         $top_sector = Industry::withCount('jobsearch')
                                 ->orderBy('jobsearch_count','DESC')
+                                ->havingRaw("jobsearch_count != 0")
                                 ->limit(3)
                                 ->get();
 
