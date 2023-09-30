@@ -120,14 +120,20 @@ class JobsController extends BaseController
                         ->havingRaw("jobsearch_count != 0")
                         ->limit(3)
                         ->get();
+            $sector->makeHidden(['lang','industry_id','is_active','sort_order','is_default','created_at','updated_at']);
+            
             $tcity['sectors'] = $sector;
         });                                
+        
+        $top_cities->makeHidden(['city_id','total_count']);
 
         $sectors = Industry::withCount('jobsearch')
                             ->orderBy('jobsearch_count','DESC')
                             ->havingRaw("jobsearch_count != 0")
                             ->limit(15)
                             ->get();
+        $sectors->makeHidden(['lang','industry_id','is_active','sort_order','is_default','created_at','updated_at']);
+
         $response = array(
             'top_cities' => $top_cities,
             'sectors' => $sectors
