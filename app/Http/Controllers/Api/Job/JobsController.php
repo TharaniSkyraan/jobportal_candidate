@@ -104,8 +104,8 @@ class JobsController extends BaseController
                                         $q->where('work_from_home','!=','permanent')
                                           ->whereIsActive(1);
                                     })
-                                    ->select('city','city_id as id', DB::raw('count(`job_id`) as total_count'))
-                                    ->groupBy('city_id as id')
+                                    ->select('city','city_id', DB::raw('count(`job_id`) as total_count'))
+                                    ->groupBy('city_id')
                                     ->groupBy('city')
                                     ->havingRaw("total_count != 0")
                                     ->orderBy('total_count','DESC')
