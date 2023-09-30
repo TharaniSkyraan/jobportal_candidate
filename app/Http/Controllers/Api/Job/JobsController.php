@@ -230,17 +230,17 @@ class JobsController extends BaseController
         }
         
         $response = array(
-                        'designation' => $designation, 
-                        'location' => $location,
                         'joblist' => $joblist,    
                         'next_page' => (!empty($jobs['joblist']->nextPageUrl())?($jobs['joblist']->currentPage()+1):""),
-                        'sortBy' => $sortBy,
                         'no_of_pages' => $jobs['joblist']->lastPage()??0
                     );
         if(!isset($request->is_fresher_api)){
+            $response['designation'] = $designation;
+            $response['location'] = $location;
+            $response['sortBy'] = $sortBy;
             $response['filters'] = $filters;
         }
-        
+
         return $this->sendResponse($response);
     }
 
