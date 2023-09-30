@@ -29,7 +29,7 @@ class JobSearchRequest extends Request
     public function rules()
     {
         $rules =  [];
-        if(empty($this->location) && empty($this->designation))
+        if(empty($this->location) && empty($this->designation) && !isset($this->is_fresher_api))
         {            
             $rules =  [
                 'designation' => 'required',
