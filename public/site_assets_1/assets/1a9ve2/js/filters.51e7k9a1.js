@@ -404,8 +404,7 @@ $(document).on( 'click', '.japplybtnredir', function(e) {
 });
 $(document).on( 'click', '.japplybtn', function(e) {
     e.stopPropagation();
-    let jobidv = $(this).parent().parent().parent().parent().data('jobid');
-    alert(jobidv)
+    let jobidv = $(this).closest('.jobcard').data('jobid');
     btn = $(this);
     jobApply(btn, jobidv);
    
@@ -659,10 +658,9 @@ function createFilterOptions_Morebox( filterName, data, checked_data,filterTitle
     return p1html;
 }
 
-function jobApply(e, jobidv) {
+function jobApply(btn, jobidv) {
 
     v_is_login = is_login || 0;
-
     if(jobidv != '') {
 
         let csrf_token = $('meta[name=csrf-token]').attr('content');
@@ -677,7 +675,7 @@ function jobApply(e, jobidv) {
             datatype: 'JSON',
             beforeSend:function(){
                 $(btn).html(
-                    `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading..`
+                    `<i class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></i> <span>Loading..</span>`
                 );
             },
             success: function(resp) {
@@ -700,14 +698,14 @@ function jobApply(e, jobidv) {
                 }
                 
                 if(applied_b){
-                    $(`<label class="japplied-btn"><img draggable="false" class="imagesz-2" src="${baseurl}site_assets_1/assets/img/Shortlist.png" alt="applied"> <span class="fw-bold">Applied</span></label>`).insertAfter(btn);
-                    $(btn).hide();
+                    $(btn).closest('.japply-btn').addClass('japplied-btn').removeClass('japply-btn');
+                    $(btn).closest('.japplied-btn').html(`<button class="btn p-1 px-2 shadow-sm rounded-pill">
+                                                            <img draggable="false" class="imagesz-2" src="${baseurl}site_assets_1/assets/img/Shortlist.png" alt="applied"> 
+                                                            <span class="fw-bold">Applied</span>
+                                                        </button>`);
                 }
                 else{
-                    $(btn).html(
-                        `<img draggable="false" class="image-size" src="${baseurl}site_assets_1/assets/img/apply2.png" alt="apply"> Apply</button>`
-                    );
-                    $(btn).show();
+                    $(btn).html(`<img draggable="false" class="image-size" src="${baseurl}site_assets_1/assets/img/apply2.png" alt="apply"> <span>Apply</span>`);
                 }
                 $(btn).prop("disabled", false);
 
