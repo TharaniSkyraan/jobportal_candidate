@@ -81,7 +81,7 @@ class JobsController extends BaseController
                 'image' => $user->image,
                 'career_title' => $user->career_title,
                 'updated_at' => Carbon::parse($user->updated_at)->getTimestampMs(),  
-                'resume' => $user->getDefaultCv()->cv_file,            
+                'resume' => $user->getDefaultCv()->cv_file??'',            
                 'location' => $user->location,            
             );
 
