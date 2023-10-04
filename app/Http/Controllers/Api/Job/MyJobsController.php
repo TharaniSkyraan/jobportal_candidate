@@ -108,6 +108,7 @@ class MyJobsController extends BaseController
             $job = Job::find($appliedjob['job_id']);
             $val = array(
                 'id'=>$appliedjob['id'],
+                'job_id'=>$job->id,
                 'slug'=>$job->slug,
                 'title'=>$job->title,
                 'description'=>$job->description,
@@ -204,6 +205,7 @@ class MyJobsController extends BaseController
                             $job = Job::find($savedjob['job_id']);
                             $val = array(
                                 'id'=>$savedjob['id'],
+                                'job_id'=>$job->id,
                                 'slug'=>$job->slug,
                                 'title'=>$job->title,
                                 'description'=>$job->description,
