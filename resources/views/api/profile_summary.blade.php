@@ -146,7 +146,7 @@
                                                 }
                                             @endphp
                                             <div class="col-6">
-                                                <h6 class="fw-bold">{{ $skill->getSkill('skill') }}</h6>
+                                                <h5 class="fw-bold">{{ $skill->getSkill('skill') }}</h5>
                                                 <p>- @if($skill->getLevel('language_level')!='') {{ $skill->getLevel('language_level') }}, @endif  @if(!empty($skill->start_date) || !empty($skill->end_date)){{ $date }}.@endif</p>
                                             </div>
                                         @endif
