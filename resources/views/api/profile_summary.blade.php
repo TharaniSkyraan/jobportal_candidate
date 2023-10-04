@@ -184,7 +184,7 @@
                         </div>
                     @endif
 
-                    <div class="hgvwnema">
+                    <div class="hgvwnema mt-3">
                         <p>I hereby declare that all the information; furnished above is true my knowledg. </p>
                         <p class="text-end">Yours Faithfully<br>{{$user->getName()}} </p>
                     </div>
