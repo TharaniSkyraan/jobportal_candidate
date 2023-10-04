@@ -359,7 +359,7 @@ class JobsController extends BaseController
         $company->linkedin_url = $company->linkedin_url??'';
         $company->twitter_url = $company->twitter_url??'';
         $company->CEO_name = $company->CEO_name??'';
-        $company->website = $company->website??'';
+        $company->website_url = $company->website_url??'';
         $company->company_image = $company->company_image??"";
         $companyjobs = array_map(function ($companyjob) use($user) {
             $job = Job::find($companyjob['id']);
