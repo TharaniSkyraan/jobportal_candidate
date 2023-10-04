@@ -35,7 +35,7 @@
                     </div>
                     <!-- Myself -->
                     <div class="hgvwnema myself">
-                        <p>ABOUT MYSELF</p>
+                        <h6>About Myself</h6>
                         <div class="mb-4">
                             <div class="text-desc">
                                 {{$user->summary}}.
@@ -46,14 +46,14 @@
                     @if(count($user->userExperience)!=0)
                         <!-- Experience -->
                         <div class="hgvwnema experience">
-                            <p>EXPERIENCES</p>
+                            <h6>Experiences</h6>
                             <div class="mb-5">
                                 @foreach($user->userExperience as $experience)
                                     @php
                                         $date = \Carbon\Carbon::parse($experience->date_start)->Format('M Y') . ' - '. ($experience->is_currently_working!=1? \Carbon\Carbon::parse($experience->date_end)->Format('M Y') : 'Currently working');
                                         $exp_used_tools = array_filter(explode(',',$experience->used_tools));
                                     @endphp 
-                                    <address>
+                                    <address class="mt-3">
                                         <h5 class="fw-bold">{{$experience->title}}</h5>
                                         <p>{{$experience->company}}, {{ $experience->location }}.</p>
                                         @if(!empty($date)) <p>{!! $date !!}</p> @endif
@@ -71,7 +71,7 @@
                     @if(count($user->userEducation)!=0) 
                         <!-- Education -->
                         <div class="hgvwnema education">
-                            <p>EDUCATION</p>
+                            <h6>Education</h6>
                             <div class="mb-3">
                                 @forelse($user->userEducation as $education)
                                     @php
@@ -97,7 +97,7 @@
                     @if(count($user->userProjects)!=0)
                         <!-- Project -->
                         <div class="hgvwnema project">
-                            <p>PROJECTS</p>
+                            <h6>Projects</h6>
                             <div class="mb-3">
                                 @foreach ($user->userProjects as $project)      
                                     @php
@@ -132,7 +132,7 @@
                         <!-- Skills -->
                         <div class="hgvwnema skill">
                             <div class="mb-3">
-                                <p>SKILLS</p>
+                                <h6>Skills</h6>
                                 <div class="row">
                                     @foreach($user->userSkills as $skill)
                                         @if(isset($skill->skill->is_active) && $skill->skill->is_active==1)
@@ -146,7 +146,7 @@
                                                 }
                                             @endphp
                                             <div class="col-6">
-                                                <h5 class="fw-bold">{{ $skill->getSkill('skill') }}</h5>
+                                                <h6 class="fw-bold">{{ $skill->getSkill('skill') }}</h6>
                                                 <p>- @if($skill->getLevel('language_level')!='') {{ $skill->getLevel('language_level') }}, @endif  @if(!empty($skill->start_date) || !empty($skill->end_date)){{ $date }}.@endif</p>
                                             </div>
                                         @endif
@@ -160,7 +160,7 @@
                     @if(count($user->userLanguages)!=0)
                         <!-- Language -->
                         <div class="mb-3 language">
-                            <p>Languages Known</p>
+                            <h6>Languages Known</h6>
                             <table class="text-center">
                                 <thead>
                                     <td>Language</td>
@@ -183,6 +183,11 @@
                             </table>
                         </div>
                     @endif
+
+                    <div class="hgvwnema">
+                        <p>I hereby declare that all the information; furnished above is true my knowledg. </p>
+                        <p class="text-end">Yours Faithfully<br>{{$user->getName()}} </p>
+                    </div>
                 </div>
             </div>            
         </div>

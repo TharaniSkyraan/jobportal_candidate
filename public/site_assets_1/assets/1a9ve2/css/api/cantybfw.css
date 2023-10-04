@@ -89,7 +89,15 @@
         padding: 2rem 1.5rem;
     }
     .prf p{
-       font-size: 12px;
        margin-top: 8px;
     }
+    p, .text-desc{
+       font-size: 12px;
+    }
+}
+h6{
+    color: #0000009e;
+}
+h5{
+    font-size: 15px;
 }
