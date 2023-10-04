@@ -66,15 +66,14 @@
 .profile-d{
     background: #ffffff;
 }
-
-
+.prf p{
+    overflow-wrap: anywhere;
+    margin-bottom:0px;
+}
 @media (min-width: 768px) and (max-width: 992px) {
     .space-width{
         padding: 3rem 4rem;
     }
-}
-.prf p{
-    margin-bottom:0px;
 }
 @media(max-width:768px){
     .space-width{
