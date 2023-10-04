@@ -8,6 +8,7 @@ Route::post('forget_password', [RegisterController::class, 'forgetPassword']);
 Route::post('register', [RegisterController::class, 'register']);
 Route::post('resent_otp', [RegisterController::class, 'resentOtp']);
 Route::post('verify_otp', [RegisterController::class, 'verifyOTP']);
+Route::get('profile_summary/{id}', [UserController::class, 'profileSummary']);
 
 Route::middleware('auth:api')->group( function () {
     
@@ -57,6 +58,7 @@ Route::middleware('auth:api')->group( function () {
         Route::post('languages_undo', [UserController::class, 'undoUserLanguage']);
         Route::get('cvs_download/{id}', [UserController::class, 'downloadCv']);
         Route::get('cvs_primary/{id}', [UserController::class, 'makeDefaultCv']);
+
     
     });
 

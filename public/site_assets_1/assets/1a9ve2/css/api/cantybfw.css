@@ -1,0 +1,95 @@
+.cantybfw{
+    background: transparent;
+}.cantybfw td{
+    padding-right: 25px;
+    padding-bottom: 15px;
+}.cantybfw td.td1 img{
+    width: 12px;
+    height: 14px;
+    margin-right: 6px;
+}td.td1{
+    color:#808080;
+}.cantybfw .profilest .card{
+    background: #EAFBF1;
+    border: none;
+    border-radius: 12px;
+}.cantybfw .profile img{
+    width: 90px;
+    height: 90px;
+    border: 1px solid #eeeeeeb5;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: flex;
+}.cantybfw .profile{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}.round_r{
+    text-align: center;
+    border-radius: 50%;
+    height: 38px;
+    width: 38px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    display: flex;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}.round_r.active{
+    background: #25D366;
+}.cantybfw .contacts-info img{
+    margin-right: 6px;
+}.cantybfw .contacts-info{
+    cursor: pointer;
+}.cantybfw hr{
+    margin-top: 25px;
+    margin-bottom: 25px;
+    color: #C4C4C4;
+}.text-desc, strong{
+    font-size: 14px;
+}.cantybfw .fa-check{
+    color:#25D366;
+}.cantybfw .language thead td{
+    color: #4285F4;
+}.form-check-input:checked {
+    border-color: #25D366;
+    background: #25D366;
+}.detailsn1 input.form-control:focus{
+    box-shadow: none;
+}.cantybfw td.td1{
+    display: flex;
+    align-items: center;
+}
+.space-width{
+    padding: 4rem 10rem;
+}
+.profile-d{
+    background: #ffffff;
+}
+
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .space-width{
+        padding: 3rem 4rem;
+    }
+}
+.prf p{
+    margin-bottom:0px;
+}
+@media(max-width:768px){
+    .space-width{
+        padding: 2rem 2rem;
+    }
+    td ,td strong{
+        font-size: 12px;
+    }
+}
+@media (min-width: 280px) and (max-width: 575px) {
+    .space-width{
+        padding: 2rem 1.5rem;
+    }
+    .prf p{
+       font-size: 12px;
+       margin-top: 8px;
+    }
+}

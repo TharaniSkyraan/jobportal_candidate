@@ -124,6 +124,12 @@ class UserController extends BaseController
 
         return $this->sendResponse('', $message);  
     }
+    
+    public function profileSummary($id)
+    {
+        $user = User::find($id);
+        return view('api.profile_summary', compact('user'));
+    }
 
     
 }
