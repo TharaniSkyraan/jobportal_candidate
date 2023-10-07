@@ -242,11 +242,9 @@ class MyJobsController extends BaseController
 
         $slugs = Auth::user()->getFavouriteJobSlugsArray();
         
-        $jobsids = Job::whereIn('slug',$slugs)->pluck('id')->whereIsActive(1)->toArray();
+        $jobsids = Job::whereIn('slug',$slugs)->whereIsActive(1)->pluck('id')->toArray();
 
         $response['jobs'] = $jobsids;
-        $response['next_page'] = (!empty($jobs->nextPageUrl())?($jobs->currentPage()+1):"");
-        $response['no_of_pages'] = $jobs->lastPage()??0;
        
         return $this->sendResponse($response); 
 
