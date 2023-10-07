@@ -237,6 +237,26 @@ class MyJobsController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
+    public function savedJobsids()
+    {     
+
+        $slugs = Auth::user()->getFavouriteJobSlugsArray();
+        
+        $jobsids = Job::whereIn('slug',$slugs)->pluck('id')->toArray();
+
+        $response['jobs'] = $jobsids;
+        $response['next_page'] = (!empty($jobs->nextPageUrl())?($jobs->currentPage()+1):"");
+        $response['no_of_pages'] = $jobs->lastPage()??0;
+       
+        return $this->sendResponse($response); 
+
+    }
+
+    /**
+     * return error response.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function Savejobalert(SaveJobAlert $request)
     {
         $id = $request->id;

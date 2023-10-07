@@ -26,9 +26,34 @@
     font-size: 14px;
 }td{
     font-size: 14px;
+}.tab-pane {
+    transition: none !important;
 }.cursor-pointer{
     cursor: pointer;
+}.no-animation .modal-dialog {
+    transform: none !important;
+}.no-animation .modal.fade .modal-dialog {
+    transition: none !important;
+}.no-animation .modal.fade .modal-content {
+    opacity: 1 !important;
+}.modal.fade {
+    transition: none;
+}.modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+}.modal {
+    display: none;
+    overflow: hidden;
+    outline: 0;
+    transition: all 0.5s;
+}.modal.fade .modal-dialog {
+    transition: none;
+}.modal.fade .modal-dialog {
+    transform: none !important;
+}.modal.fade .modal-content {
+    opacity: 1 !important;
 }
+
 
 @media(min-width:1198px){
     .space-width{

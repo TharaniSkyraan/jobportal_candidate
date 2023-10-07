@@ -74,6 +74,7 @@
     .space-width{
         padding: 3rem 4rem;
     }
+    
 }
 @media(max-width:768px){
     .space-width{
@@ -82,13 +83,13 @@
     td ,td strong{
         font-size: 12px;
     }
+    .prf p{
+       margin-top: 8px;
+    }
 }
 @media (min-width: 280px) and (max-width: 575px) {
     .space-width{
         padding: 2rem 1.5rem;
-    }
-    .prf p{
-       margin-top: 8px;
     }
     p, .text-desc{
        font-size: 12px;

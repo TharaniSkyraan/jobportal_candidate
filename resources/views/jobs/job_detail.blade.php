@@ -3,7 +3,28 @@
 <link href="{{ asset('site_assets_1/assets/2e9ejr3/css/destail.e2k3eu0.css')}}" rel="stylesheet">
 @endsection
 @section('content')
-
+@php
+$jtyv= '';
+@endphp
+@foreach($job->jobtypes as $types)
+    @php
+        $jt_v = $types->type->type;
+        if($types->type_id == 1 || $types->type_id == 2 || $types->type_id == 4) {
+            if($job->working_deadline && $job->working_deadline_period_id){
+                $exle = $job->working_deadline .' '.$job->working_deadline_period_id.'(s)';
+                $jt_v = $types->type->type ;
+            }
+        }else if($types->type_id == 5) {
+            if($job->working_hours){
+                $exl = $job->working_hours .' hour(s)';
+                $jt_v = $types->type->type ;
+            }
+        }else{
+            // $jt_v = $types->type->type ?? '';
+        }
+        $jtyv .=  $jt_v.', ';
+    @endphp
+@endforeach
 @include('layouts.header')
     <div class="header d-none" id="myHeader">
         <div class="row">
@@ -193,29 +214,6 @@
                                     @endforeach
                                 </ul> --}}
                                 <div class="mb-2 mx-3">
-                                    @php
-                                    $jtyv= '';
-                                    @endphp
-                                    @foreach($job->jobtypes as $types)
-                                        @php
-                                            $jt_v = $types->type->type;
-                                            if($types->type_id == 1 || $types->type_id == 2 || $types->type_id == 4) {
-                                                if($job->working_deadline && $job->working_deadline_period_id){
-                                                    $exle = $job->working_deadline .' '.$job->working_deadline_period_id.'(s)';
-                                                    $jt_v = $types->type->type ;
-                                                }
-                                            }else if($types->type_id == 5) {
-                                                if($job->working_hours){
-                                                    $exl = $job->working_hours .' hour(s)';
-                                                    $jt_v = $types->type->type ;
-                                                }
-                                            }else{
-                                                // $jt_v = $types->type->type ?? '';
-                                            }
-                                            $jtyv .=  $jt_v.', ';
-                                        @endphp
-                                        {{-- <p>{{$jt_v.', '}}</p> --}}
-                                    @endforeach
                                 {{-- </ul> --}}
                                 <text>{{rtrim($jtyv, ", ")}}</text>
                                 @if(isset($exle)&&!empty($exle))<li>Contract length : {{$exle}}</li>@endif

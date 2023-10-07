@@ -113,7 +113,7 @@
                                         $description = strip_tags($project->description);
                                 
                                     @endphp 
-                                    <address>
+                                    <address class="mt-3">
                                         <h5 class="fw-bold">{{ $project->name }}</h5>
                                         <p>@if(!empty($project->getCompany('company'))){{ $project->getCompany('company') }} ,@endif @if(!empty($project->location)){{ $project->location }}.@endif</p>
                                         @if(!empty($project->date_start) || !empty($project->date_end)) <p>{{ $date }}.</p> @endif
