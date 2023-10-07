@@ -274,7 +274,7 @@ class JobsController extends BaseController
             'description'=>$job->description,
             'location'=>$job->work_locations,
             'company_image'=>$job->company->company_image??'',
-            'company_name'=>$job->company->name??'',
+            'company_name'=>$job->company_name??$job->company->name,
             'experience'=>$job->experience_string,
             'salary'=>$job->salary_string,
             'job_type'=>$job->getTypesStr(),
@@ -308,6 +308,7 @@ class JobsController extends BaseController
         $jobs = $this->fetchJobs($job->title, '', [], 10);
         $jobs['joblist']->each(function ($rjob, $key) use($user) {
             $jobc = Job::find($rjob->job_id);
+            $rjob['company_name'] = $jobc->company_name??$jobc->company->name;
             $rjob['company_image'] = $jobc->company->company_image??'';
             $rjob['location'] = $rjob->work_locations;
             $rjob['job_type'] = $jobc->getTypesStr();
