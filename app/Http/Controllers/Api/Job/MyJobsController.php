@@ -242,7 +242,7 @@ class MyJobsController extends BaseController
 
         $slugs = Auth::user()->getFavouriteJobSlugsArray();
         
-        $jobsids = Job::whereIn('slug',$slugs)->whereIsActive(1)->pluck('id')->toArray();
+        $jobsids = Job::whereIn('slug',$slugs)->pluck('id')->toArray();
 
         $response['jobs'] = $jobsids;
        
