@@ -311,7 +311,7 @@ class JobsController extends BaseController
             $jobc = Job::find($rjob->job_id);
             $rjob['company_name'] = $jobc->company_name??$jobc->company->name;
             $rjob['company_image'] = $jobc->company->company_image??'';
-            $rjob['location'] = $rjob->work_locations;
+            $rjob['location'] = $rjob->work_locations??'';
             $rjob['job_type'] = $jobc->getTypesStr();
             $rjob['skills'] = $jobc->getSkillsStr();
             $rjob['posted_at'] = Carbon::parse($jobc->posted_date)->getTimestampMs();
