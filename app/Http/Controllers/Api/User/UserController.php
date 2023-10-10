@@ -78,8 +78,8 @@ class UserController extends BaseController
         $response = array(
             'country_id' => $user->country_id??'',
             'prefered_location' => $user->prefered_location??'',
-            'salary_currency' => $user->salary_currency??'',
-            'expected_salary' => $user->expected_salary??'',
+            'salary_currency' => $user->salary_currency??0,
+            'expected_salary' => $user->expected_salary??0,
             'total_experience' => $user->total_experience??0,
             'career_title' => $user->career_title??'',
             'country' => $user->country->country??'',
