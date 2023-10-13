@@ -36,7 +36,7 @@ trait UserProjectsTrait
                 'location'=>$project['location']??'',
                 'project_location'=>$project['project_location']??'',
                 'description'=>$project['description']??'',
-                'used_tools'=>$project['used_tools'],
+                'used_tools'=>$project['used_tools']??'',
                 'is_on_going'=>$project['is_on_going']??0,
                 'work_as_team'=>$project['work_as_team']??'',
                 'noof_team_member'=>$project['noof_team_member']??0,
@@ -46,8 +46,8 @@ trait UserProjectsTrait
                 'country'=>(!empty($project['country_id']))?$country->country:($ip_data['geoplugin_countryName']??""),
                 'is_freelance'=>$project['is_freelance']??'',
                 'year_of_project' => $from .'-'. $to,
-                'from' => (!empty($project['date_start']))?Carbon::parse($project['date_start'])->getTimestampMs():"",
-                'to' => (!empty($project['date_end']))?Carbon::parse($project['date_end'])->getTimestampMs():"",
+                'from' => (!empty($project['date_start']))?Carbon::parse($project['date_start'])->getTimestampMs():0,
+                'to' => (!empty($project['date_end']))?Carbon::parse($project['date_end'])->getTimestampMs():0,
             );
             return $val;
         }, $projects); 
