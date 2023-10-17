@@ -1,4 +1,4 @@
-@extends('jobs.app')
+@extends('jobs.app') 
 @section('custom_styles')
 <link href="{{ asset('css/hgtvwtiya.css')}}" rel="stylesheet">
 @endsection
