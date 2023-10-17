@@ -37,10 +37,13 @@
                     $('.favjob').attr("data-fav", fav);
 
                     if(fav=='yes'){
-                        $(btn).html(`<img draggable="false" class="image-size1 cursor-pointer" src="${baseurl}site_assets_1/assets/img/star_filled.png" alt="bookmark">`);
-                    }
-                    else{
-                       $(btn).html(`<img draggable="false" class="image-size1 cursor-pointer" src="${baseurl}site_assets_1/assets/img/star_unfilled.png" alt="bookmark">`);
+                        $('.svdmh_jbs').addClass('unsavgf_jbs');
+                        $('.svdmh_jbs').removeClass('svdmh_jbs');
+                        $(btn).html(`<img draggable="false" src="${baseurl}site_assets_1/assets/img/star_filled.png" alt="savedjobs" class="icon_rs chsizew"><span class="mblef">Job saved</span>`);
+                    }else{
+                        $('.unsavgf_jbs').addClass('svdmh_jbs');
+                        $('.unsavgf_jbs').removeClass('unsavgf_jbs');
+                       $(btn).html(`<img draggable="false" src="${baseurl}site_assets_1/assets/img/star_unfilled.png" alt="unsavedjobs" class="icon_rs chsizew"><span class="mblef">Save Job</span>`);
                     }
                     
                     if(resp.success == true){
@@ -99,7 +102,7 @@
     });
 
     $('.submit').click(function(){
-
+        
         // form validation starts
         clrErr();
         var errStaus = false;
@@ -108,7 +111,6 @@
             code = $(this).attr('data-dsw3w14');
             type = $(this).attr('data-dsw3w15');
             bp = $(this).attr('data-bp');
-
             if(bp=='yes'){
                 var inputname = 'answer_'+code;   
                 if(type=='text' || type=='textarea' || type=='select'){
@@ -133,6 +135,7 @@
 
         });
 
+
         // form validation ends
 
         if(errStaus == true)
@@ -146,6 +149,7 @@
             jobApply(req_url, data);
 
         }
+        return false;
 
     });
 
@@ -171,8 +175,8 @@
                         `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading..`
                     );
                 },
-                success: function(resp) {
-                    
+                success: function(resp) 
+                {
                     let redir='';
                     let applied_b =false;
                     let reload_page = resp.reload_page || false;
@@ -214,7 +218,7 @@
                     }
                     else if(redir == 'screening'){
                         $(btn).attr('data-value','enabled');
-                        $('#screeningQuiz72ers3').modal('show');
+                        $('#screenings').modal('show');
 
                     }else if(redir == 'already_applied'){
                         $('#jasuccess').html('<div class="alert alert-success alert-dismissible">'
@@ -223,7 +227,7 @@
                             +'</div>');
                             $(".japplied-btn").show();
                             $(btn).hide();
-                            $('#screeningQuiz72ers3').modal('hide');
+                            $('#screenings').modal('hide');
                     }else if(redir == ''){
                         $('#jasuccess').html('<div class="alert alert-success alert-dismissible">'
                         +resp.message
@@ -231,7 +235,7 @@
                         +'</div>');
                         $(".japplied-btn").show();
                         $(btn).hide();
-                        $('#screeningQuiz72ers3').modal('hide');
+                        $('#screenings').modal('hide');
                     
                     }
                     else{ 
@@ -260,7 +264,7 @@
                         }
                     }
                     
-
+                    $('#fullquestions').modal('hide');
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     // $('#content').html(errorMsg);
@@ -288,3 +292,8 @@
             item.classList.remove('is-invalid');
         });
     }
+
+    $(document).on('click', '.space_hgtyu', function(){
+        $('#screenings').modal('hide');
+        $('#fullquestions').modal('show');
+    });

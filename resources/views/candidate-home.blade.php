@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.8/slick.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.8/slick-theme.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" rel="stylesheet" />
 @endsection
 @section('content')
 <style>
@@ -396,8 +398,50 @@
                     </div>
                 </div>
             </div> --}}
+
+            <div class="container-xl">
+                <div class="blog-sectionw">
+                    <div class="row fdfeyhsq">
+                        <div class="col-md-10 col-7 p-0">
+                            <h3 class="fw-bolder m-0">Blogs</h3>
+                        </div>
+                        <div class="col-md-2 col-5 text-end p-0 align-self-center">
+                            @if(count($blog) > 2)
+                                <a href="{{url('blogs')}}"><span class="grayc">View all <img src="{{asset('images/home/right_vtrm.svg')}}" alt=""></span></a>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="blog-carousal p-0">
+                        <div class="owl-carousel owl-theme">
+                            @foreach($blog as $row)
+                                @php
+                                    $formats = \Carbon\Carbon::parse($row->created_at)->format('D jS, M Y');
+                                @endphp
+                                <article class="item">
+                                    <a href="{{route('view-blog', [$row->id, $row->slug])}}">
+                                        <div class="card">
+                                            <div class="row">
+                                                <div class="col-md-12 col-lg-12 col-xl-5">
+                                                    <img src="{{$row->thumbnail_url}}" alt="" draggable="false">
+                                                </div>
+                                                <div class="col-md-12 col-lg-12 col-xl-7">
+                                                    <h2 class="fw-bolder">{{$row->title}}</h2>
+                                                    <p class="cntc">{{$row->short_description}}</p>
+                                                    <p class="grayc m-0">{{$formats}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </article>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>               
     <script type="text/javascript">   
         var baseurl = '{{ url("/") }}/';
         var current_city = "{{$ip_data['city']??''}}";
@@ -469,6 +513,39 @@
                 $('.carousel-top').slick('setPosition');
             });
             
+        });
+
+        $(document).ready(function() {
+            $('.blog-carousal .owl-carousel').owlCarousel({
+                items: 2,
+                nav: false,
+                dots: true,
+                mouseDrag: true,
+                responsiveClass: true,
+                responsive: {
+                    0:{
+                    items: 1
+                    },
+                    350:{
+                    items: 2
+                    },
+                    576:{
+                    items: 3
+                    },
+                    768:{
+                    items: 3
+                    },
+                    992:{
+                    items: 4
+                    },
+                    1200:{
+                    items: 2
+                    },
+                    1600:{
+                    items: 2
+                    }
+                }
+            });
         });
    </script>
     

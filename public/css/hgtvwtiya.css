@@ -1,0 +1,506 @@
+body{
+    background:#f9fbfd;
+}.no-animation .modal-dialog {
+    transform: none !important;
+}.no-animation .modal.fade .modal-dialog {
+    transition: none !important;
+}.no-animation .modal.fade .modal-content {
+    opacity: 1 !important;
+}.modal.fade {
+    transition: none;
+}.modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+}.modal {
+    display: none;
+    overflow: hidden;
+    outline: 0;
+    transition: all 0.5s;
+}.modal.fade .modal-dialog {
+    transition: none;
+}.modal.fade .modal-dialog {
+    transform: none !important;
+}.modal.fade .modal-content {
+    opacity: 1 !important;
+}.jsky_hb.sticky {
+    position: fixed;
+    top: 0;
+    display: block;
+    width: 100%;
+    background-color: #fff;
+    z-index: 1000;
+    background: #4285F4;
+    padding: 8px;
+}.jsky_hb.sticky .card{
+    margin-bottom: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+}.jsky_hb{
+    display: none;
+}.jsky_hb .card{
+    width: 100%;
+    padding: 4px;
+}.jsky_hb .card .profilestcky{
+    width: 50px;
+    height: 50px;
+    object-fit: initial;
+    border: 2px solid #eeeeeeb5;
+    border-radius: 50%;
+    margin-right: 15px;
+}.jsky_hb.sticky button{
+    background: #4285F4;
+    color: #fff;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 27px;
+}.jsky_hb.sticky button img{
+    margin-right: 6px;
+}.jsky_hb.sticky{
+    color: #564d4d;
+}.cam_nme .mgmw{
+    font-weight: 500;
+}
+.grayc{
+    color: #808080;
+}.breadcrumbty img{
+    width: 7px;
+    margin-right: 10px;
+}.resulty-width2 .card{
+    margin-bottom: 3px;
+    box-shadow: 0 2px 6px -2px rgb(0 106 194 / 20%);
+    padding: 18px;
+    background: #fff;
+    border: none;
+    border-radius: 2px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}.resultjobwb .round_pf img{
+    width: 65px;
+    border-radius: 50%;
+    margin-right: 15px;
+    object-fit: none;
+    height: 65px;
+    box-shadow: 0px 0px 4px 0px #00000040;
+}.resultjobwb .icon_rs.chsizew{
+    width: 18px;
+}
+.resultjobwb .job_tlers .jb_tles{
+    font-size: 17px;
+}.resultjobwb .mgmw .grayc{
+    margin-right: 5px;
+}.resultjobwb h4{
+    color: #4285F4;
+    font-weight: 600;
+    font-size: 16px;
+}
+.resultjobwb .applyrs_btn{
+    background: #4285F4;
+    color: #fff;
+    border: none;
+    padding: 6px 19px;
+    border-radius: 27px;
+}.resultjobwb .icon_rs{
+    width: 15px;
+    margin-right: 8px;
+    margin-bottom: 3px;
+}.resultjobwb .mgmw{
+    margin-bottom: 1rem;
+    font-size: 15px;
+}.resultjobwb .profile_clum{
+    display: block;
+}.resultjobwb .skill_rnd{
+    background: #4285F4;
+    color: #fff;
+    font-size: 14px;
+    margin-right: 10px;
+    padding: 5px 20px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+}.resultjobwb .key_rnd{
+    background: #F5F5F5;
+    color: #808080;
+    font-size: 14px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 5px 20px;
+    border-radius: 20px;
+}.keyboard_mcts h3{
+    font-size: 17px;
+}.resultjobwb .about_cmp p{
+    text-indent: 25px;
+}.resultjobwb .about_cmp a{
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+}.resultjobwb .about_cmp h5{
+    color: #4285F4;
+    font-weight: 400;
+    font-size: 15px;
+}.about_cmp .socialsimg img{
+    margin-right: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}.resultjobwb .knowmr span{
+    color: #4285F4;
+    font-weight: 700;
+    font-size: 15px;
+}.walkin_cd a{
+    color: #000;
+    text-decoration: none;  
+}.resultjobwb .knowmr img{
+    margin-bottom: 3px;
+}.jsky_hb.sticky span{
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+}.resultjobwb .applied_bm{
+    border: none;
+    padding: 5px 16px;
+    border-radius: 27px;
+    border: none;
+}.resultjobwb .applied_bm img{
+    width: 16px;
+    margin-right: 5px;
+    margin-bottom: 2px;
+}.svdmh_jbs.mgmw{
+    padding: 6px 16px;
+    border-radius: 27px;
+    border: none;
+    margin: auto;
+}.svdmh_jbs.mgmw{
+    background: #F3F7FE;
+}.mobile_apply{
+    display: none;
+}.unsavgf_jbs.mgmw{
+    background: transparent;
+    padding: 6px 16px;
+}.resultjobwb .skils_prnt{
+    display: flex;
+    flex-wrap: wrap;
+}.mobile_apply{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border: none;
+    z-index: 999;
+    background: #4285F4;
+    color: #fff;
+    padding: 8px;
+    font-size: 14px;
+}.resultjobwb .know_cmpany{
+    text-align: end;
+}.resultjobwb .about_cmp p, .descriptions p{
+    line-height: 1.8rem;
+}.open-jbwe img{
+    width: 75%;
+    margin: 0 auto;
+}.questionsdt .open-jbwe{
+    text-align: center;
+}#screenings .modal-content{
+    border-radius: 5px;
+}#screenings .first_mwe button{
+    background: #4285F4;
+    color: #fff;
+    border: none;
+    padding: 6px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+}#screenings .questionsdt{
+    padding: 30px;
+}#screenings .first_mwe h1{
+    font-size: 26px;
+}#screenings strong{
+    font-size: 14px;
+}.questionsdt .form-check{
+    margin-bottom: 10px;
+    font-size: 15px;
+}.questionsdt label{
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 800;
+}.space_hgtyu, .space_hgtyu2{
+    margin-top: 25px;
+}#fullquestions .logo_mcv{
+    width: 130px;
+}#fullquestions .header_mcv{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}#fullquestions .header_mcv button{
+    background: #4285F4;
+    color: #fff;
+    padding: 7px 10px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    border-radius: 33.5px;
+}.header_mcv button img{
+    width: 8px;
+    margin-right: 6px;
+    margin-bottom: 2px;
+}#fullquestions .modal-dialog{
+    background: #F9FBFD;
+}#fullquestions .first_1mcv{
+    background: #F5F5F5;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}.first_1mcv strong{
+    font-size: 17px;
+}.first_1mcv img, .image1b_mcv img{
+    width: 50px;
+    cursor:pointer;
+}#fullquestions .card{
+    border: none;
+    border-radius: 0px;
+}#fullquestions .content_mcv{
+    width: 85%;
+    margin: 0 auto;
+    position: relative;
+}#fullquestions .quizs{
+    padding: 35px;
+}#fullquestions .modal-content{
+    background: #f9fbfd;
+}#fullquestions .content_mcv{
+    background: #fff;
+    height: 85vh;
+    margin-top: 35px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}.quizs strong{
+    font-size: 15px;
+}.quizs .form-check{
+    margin-bottom: 14px;
+    font-size: 14px;
+}.image1b_mcv img{
+    width: 45px;
+}.content_mcv.jbaw2 {
+    padding: 0px
+}.content_mcv::-webkit-scrollbar {
+    width: 0px
+}.jsky_hb{
+    transition: all ease 0.5s;
+}
+.content_mcv::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 0px grey;
+}
+.content_mcv::-webkit-scrollbar-thumb {
+    background: #4285f4;
+}.content_mcv hr{
+    color: #D9D9D9;
+    width: 95%;
+    height: 2px;
+    margin: 0 auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}.posin_hgmj button{
+    background: #4285F4;
+    border: none;
+    font-size: 15px;
+    color: #fff;
+    padding: 5px 25px;
+    border-radius: 4px;
+}.posin_hgmj{
+    padding-top: 20px;
+    text-align: center;
+    padding-bottom: 15px;
+    width: 100%;
+}.quizs .dng_jhgw{
+    margin-bottom: 3px;
+    margin-right: 4px;
+}.descriptions p{
+    margin: 0px;
+}.input_hgmtr input, .input_hgmtr textarea, .input_hgmtr select{
+    width: 60% !important;
+}
+  
+
+
+@media(max-width: 768px){
+    .breadcrumbty{
+        margin-left: 12px;
+        font-size: 14px;
+    }.breadcrumbty img{
+        width: 6px;
+        margin-bottom: 3px;
+        margin-right: 5px;
+    }.resultjobwb .requiredn{
+        display: none;
+    }.resultjobwb .call_nhvcez{
+        margin-top: 10px;
+    }
+}
+
+@media(min-width:480px) and (max-width:575px) {
+    .resultjobwb .round_pf img {
+        width: 40px;
+        height: 40px;
+        object-fit: fill;
+    }.jsky_hb.sticky button{
+        display: none;
+    }.navbar.jsky_hb img{
+        width: 20px;
+    }.resultjobwb .applied_bm{
+        display: none;
+    }
+}
+@media(min-width:576px) and (max-width:768px) {
+    .resultjobwb .round_pf img {
+        width: 40px;
+        height: 40px;
+        object-fit: fill;
+    }.resultjobwb .apply_div button{
+        display: initial;
+    }.resultjobwb .applied_bm {
+        padding: 6px 10px;
+        margin: 0 auto;
+        font-size: 14px;
+    }.resultjobwb .applied_bm img {
+        width: 14px;
+    }.resultjobwb .about_cmp a {
+        font-size: 13px;
+    }.jsky_hb.sticky button{
+        font-size: 14px;
+        padding: 3px 10px;
+    }.navbar.jsky_hb button img{
+        width: 13px;
+    }.navbar.jsky_hb .saved_jgb img{
+        width: 21px;
+    }
+}
+@media(min-width:320px) and (max-width:480px) {
+    .resultjobwb .round_pf img{
+        width: 25px;
+        margin-right: 10px;
+        height: 25px;
+        object-fit: fill;   
+    }.resultjobwb .apply_div button{
+        display: none;
+    }.jsky_hb.sticky button{
+        display: none;
+    }.navbar.jsky_hb img{
+        width: 20px;
+    }.resulty-width1{
+        margin-bottom: 0rem!important;
+    }
+}
+
+@media(min-width:375px) and (max-width:480px) {
+    .resultjobwb .round_pf img {
+        height: 40px;
+        width: 40px;
+    }
+}
+
+@media(max-width: 1300px){
+   .resulty-width2 .card{
+        width: 95%;
+        padding: 12px;
+        margin: 0 auto;
+    }.resultjobwb .job_tlers .jb_tles {
+        font-size: 12px;
+    }.resultjobwb .mgmw{
+        font-size: 12px;
+    }.resultjobwb .icon_rs {
+        width: 12px;
+        margin-right: 5px;
+    }.resultjobwb .mgmw .grayc{
+        display: none;
+    }.resultjobwb .mblef{
+        display: none;
+    }.resultjobwb .hibaqmj{
+        padding: 0px;
+    }.svdmh_jbs.mgmw{
+        background: transparent;
+        padding: 0px;
+    }.resultjobwb .cam_nme{
+        margin-top: 0.8rem !important;
+    }.resultjobwb .icon_rs.chsizew {
+        width: 18px;
+    }.jsky_hb.sticky span{
+        font-size: 12px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+    }.jsky_hb.sticky p{
+        font-size: 12px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+    }.jsky_hb .card .profilestcky {
+        width: 35px;
+        height: 35px;
+        margin-left: 0px;
+    }.jsky_hb .card {
+        padding: 3px;
+    }.resultjobwb h4 {
+        font-size: 14px;
+    }.resultjobwb .skill_rnd {
+        font-size: 12px;
+        margin-right: 5px;
+    }.keyboard_mcts h3 {
+        font-size: 14px;
+        margin-top: 25px;
+        text-align: justify;
+    }.resultjobwb p, .resultjobwb span{
+        font-size: 12px;
+    }.resultjobwb .about_cmp h5 {
+        font-size: 13px;
+    }.resultjobwb .know_cmpany{
+        text-align: end;
+        margin-top: 18px;
+    }.resultjobwb .knowmr span{
+        font-size: 13px;
+    }.resultjobwb .knowmr img {
+        width: 14px;
+    }.resultjobwb .svdmh_jbs{
+        text-align: end !important;
+    }.resultjobwb .applyrs_btn{
+        font-size: 14px;
+    }
+}
+
+@media(max-width:576px){
+    .mobile_apply{
+        display: block;
+    }.resultjobwb .applyrs_btn{
+        display: none;
+    }
+}
+
+@media(min-width: 768px) and (max-width: 1400px){
+    .resultjobwb .round_pf img{
+        height: 55px;
+        width: 55px;
+        object-fit: none;
+    }.resultjobwb .applied_bm {
+        padding: 5px 16px;
+        font-size: 14px;
+    }.jsky_hb .card {
+        padding: 5px;
+    }.keyboard_mcts h3{
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }.breadcrumbty{
+        margin-left: 20px;
+        font-size: 18px;
+    }.breadcrumbty span{
+        font-size: 13px;
+    }.breadcrumbty img{
+        margin-bottom: 3px;
+    }.jsky_hb.sticky button {
+        padding: 4px 10px;
+        font-size: 14px;
+    }
+}
+@media(min-width:1198px){
+    .resulty-width1{
+        width: 90%;
+        margin: 0 auto;
+    }.resulty-width2{
+        width: 70%;
+        margin: 0 auto;
+    }
+}

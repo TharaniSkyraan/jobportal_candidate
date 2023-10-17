@@ -1,487 +1,491 @@
 @extends('jobs.app')
 @section('custom_styles')
-<link href="{{ asset('site_assets_1/assets/2e9ejr3/css/destail.e2k3eu0.css')}}" rel="stylesheet">
+<link href="{{ asset('css/hgtvwtiya.css')}}" rel="stylesheet">
 @endsection
 @section('content')
+@php $jtyv = ""; @endphp
 
 @include('layouts.header')
-    <div class="header d-none" id="myHeader">
-        <div class="row">
-            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 m-auto">
-                <div class="card p-2 mx-2">
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="col-12 mx-2">
-                                <h4 class=" text-green-color jt-ellip">{{ ucwords($job->title) }}</h4>
-                                <h6 class=" text-dark m-0">{{ ucwords($job->company_name??$job->company->name) }}.</h6>
+    <button class="mobile_apply"><img src="{{asset('images/detailpage/apply_icon.svg')}}" alt="apply-icon"> Apply</button>
+    <!-- sticky header -->
+    <nav class="navbar jsky_hb navbar-expand-lg navbar-light">
+        <div class="container-xl">
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-8 col-10 col-sm-8 col-lg-9 col-xl-9">
+                        <table>
+                            <tr>
+                                <td>
+                                    <img src="@isset($job->company->company_image){{asset('images/detailpage/profile.svg')}}@else @endif" alt="profile-image" class="profilestcky">
+                                </td>
+                                <td>
+                                    <span>{{ ucwords($job->title) }}</span>
+                                    <p class="m-0 pt-2">{{ ucwords($job->company_name??$job->company->name) }}.</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-4 col-2 col-sm-4 col-lg-3 col-xl-3 align-self-center">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-5 col-lg-6 col-xl-6 saved_jgb text-center align-self-center">
+                                <img src="{{asset('images/detailpage/savedj.svg')}}" alt="saved-icon" class="cursor-pointer">
+                            </div>
+                            <div class="col-md-6 col-sm-7 col-lg-6 col-xl-6 text-end">
+                                <button><img src="{{asset('images/detailpage/apply_icon.svg')}}" alt="apply-icon">Apply</button>
                             </div>
                         </div>
-                        <div class="col-4 text-end align-self-center">
-                            <div class="row">
-                                <div class="col-8">
-                                    {{-- @if(count($job->screeningquiz)!=0 && $job->reference_url=='')
-                                        <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn " id="japplybtn" data-bs-toggle="modal" href="#screeningQuiz72ers3" role="button">
-                                            <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
-                                        </button>
-                                    @else
-                                        <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn">
-                                            <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
-                                        </button>
-                                    @endif --}}
-                                    
-                                    <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn" data-value="disabled">
-                                        <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
-                                    </button>  
-                                    
-                                    <label class="japplied-btn">
-                                        <img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class=" fs-6">Applied</span>
-                                    </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="resultjobwb">
+        <div class="resulty-width1 mt-4 mb-4">
+            <div class="mt-3 mb-3 breadcrumbty cursor-pointer">
+                <span><a href="{{url('/')}}" class="text-dark"><img src="{{asset('images/detailpage/breadcrumb.svg')}}" alt="breadcrumb-arrow"> Back to Home</a></span>
+            </div>            
+        </div>
+        <div class="resulty-width2">
+            <div class="card pb-3">
+                <div class="row">
+                    <div class="col-md-9 col-lg-9 col-xl-10 col-sm-9">
+                        <table>
+                            <tr>
+                                <td class="profile_clum">
+                                    <div class="round_pf">
+                                        <img src="@isset($job->company->company_image){{$job->company->company_image}}@else @endif" alt="company-profile" class="companyty-pf" draggable="false">
+                                    </div>
+                                </td>
+                                <td class="job_tlers">
+                                    <span class="fw-bolder jb_tles">{{ ucwords($job->title) }}</span>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="mt-3 mb-3 cam_nme">
+                                                <span class="mgmw">{{ ucwords($job->company_name??$job->company->name) }}.</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-4 col-5">
+                                                    <div class="experian mgmw">
+                                                        <img src="{{asset('images/detailpage/experience.svg')}}" alt="experience-icon" class="icon_rs" draggable="false"><span class="grayc">Experience :</span> {{$job->experience_string}}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5 col-7 hibaqmj">
+                                                    <div class="salarian mgmw">
+                                                        <img src="{{asset('images/detailpage/salary.svg')}}" alt="salary-icon" class="icon_rs" draggable="false"><span class="grayc">Salary :</span> {{ trim($job->hide_salary != 1)&&!empty($job->salary_string) ? $job->salary_string :'Not Disclosed'}}
+                                                    </div>
+                                                </div>
+                                                @isset($job->num_of_positions)
+                                                    <div class="col-md-3 col-5">
+                                                        <div class="requiredn mgmw">
+                                                            <img src="{{asset('images/detailpage/required.svg')}}" alt="required-icon" class="icon_rs" draggable="false"><span class="grayc">Required :</span> {{$job->num_of_positions}}
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                                <div class="col-md-4 col-12">
+                                                    <div class="locationrs mgmw">
+                                                        <img src="{{asset('images/detailpage/locate.svg')}}" alt="locate-icon" class="icon_rs" draggable="false"><span class="grayc">Location :</span> {{rtrim($job->work_locations, ", ")}} 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 apply_div col-sm-3 applybtnsticky">
+                        <div class="text-end mt-2">
+                            <button class="applyrs_btn japplybtn japply-btn" id="japplybtn" data-value="disabled"><img src="{{asset('images/detailpage/apply_icon.svg')}}" alt="apply-icon"> Apply</button>
+                        </div>
+                        <div class="text-end">
+                            <button class="applied_bm japplied-btn"><img src="{{asset('images/detailpage/applied.svg')}}" alt="applied-icon">Applied</button>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-12 col-12">
+                        <div class="row">
+                            <div class="col-md-4 col-5 align-self-center">
+                                <div class="postedrs_dt mgmw mb-0">
+                                    <img src="{{asset('images/detailpage/posted_icon.svg')}}" alt="posted-date" class="icon_rs" draggable="false"><span class="mblef">Posted</span> {{ MiscHelper::timeSince($job->posted_date) }}
                                 </div>
-                                <div class="col-4 align-self-center text-center">
-                                    @php
+                            </div>
+                            <div class="col-md-6 col-5 align-self-center">
+                                <div class="immediate_ic mgmw mb-0">
+                                    <img src="{{asset('images/detailpage/immediate.svg')}}" alt="immediate-join" class="icon_rs" draggable="false">Immediate <span class="mblef">Join</span>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-2">
+                                @php
                                     $is_fav = 'no';
                                     if((Auth::check() && Auth::user()->isFavouriteJob($job->slug)==true))
                                     {
                                         $is_fav = 'yes';
                                     }
-                                    @endphp
-                                    <div class="mx-3 favjob" data-fav='{{$is_fav}}'>                                        
-                                        @if($is_fav=='yes')
-                                            <img draggable="false" class="image-size1 cursor-pointer" src="{{url('site_assets_1/assets/img/star_filled.png')}}" alt="bookmark">
-                                        @else
-                                            <img draggable="false" class="image-size1 cursor-pointer" src="{{url('site_assets_1/assets/img/star_unfilled.png')}}" alt="bookmark">
-                                        @endif
-                                    </div>          
-                                </div>
+                                @endphp
+                                @if($is_fav=='yes')
+                                    <div class="unsavgf_jbs mgmw mb-0 text-center cursor-pointer favjob" data-fav='{{$is_fav}}'>
+                                        <img src="{{asset('images/detailpage/savedj.svg')}}" alt="savedjobs" class="icon_rs chsizew" draggable="false"><span class="mblef">Job saved</span>
+                                    </div>
+                                @else
+                                    <div class="svdmh_jbs mgmw text-center d mb-0 cursor-pointer favjob" data-fav='{{$is_fav}}'>
+                                        <img src="{{asset('images/detailpage/unsavedj.svg')}}" alt="unsavedjobs" class="icon_rs chsizew" draggable="false"><span class="mblef">Save Job</span>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="row applybtnsticky">
-        <div class="col-12">
-            {{-- @if(count($job->screeningquiz)!=0 && !isset($job->reference_url))
-                <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn" id="japplybtn" data-bs-toggle="modal" href="#screeningQuiz72ers3" role="button">
-                    <span class="fw-bold">Apply Job</span>
-                </button>
-            @endif --}}
-            <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn" data-value="disabled">
-                <span class="fw-bold">Apply Job</span>
-            </button>  
-            <label class="japplied-btn"><span class=" fs-6">Already Applied</span></label>
-        </div>
-    </div>
-    <div class="container container-detail mb-5">
-        <div class="w-85 mx-auto header-space-search" >
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                    <li class="breadcrumb-item jt-bc-ellip active" aria-current="page">{{ ucwords($job->title) }}</li>
-                </ol>
-            </nav>
-            <div class="row">
-                <div class="col-xl-9 col-lg-9 col-md-12 col-12">
-                    <div class="card page-inner">
-                        <div class="card-body jdcarc" >
-                            <div class="mb-1">
-                                <div class="row">
-                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-10">
-                                        <h3 class=" text-green-color jt-ellip">{{ ucwords($job->title) }}</h3>
-                                        <h5 class=" pb-2">{{ ucwords($job->company_name??$job->company->name) }}.</h5>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-2" style="text-align: -webkit-right;">
-                                        <div class="d-flex align-items-center justify-content-end">
-                                            
-                                            <span id="appltbutton" >
-                                                {{-- @if(count($job->screeningquiz)!=0 && !isset($job->reference_url))
-                                                    <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn " id="japplybtn" data-bs-toggle="modal" href="#screeningQuiz72ers3" role="button">
-                                                        <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
-                                                    </button>
-                                                @else
-                                                    <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn">
-                                                        <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
-                                                    </button>
-                                                @endif
-                                                 --}}
-                                    
-                                                <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtn" id="japplybtn" data-value="disabled">
-                                                    <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
-                                                </button>                                                  
-                                                <label class="japplied-btn">
-                                                    <img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class=" fs-6">Applied</span>
-                                                </label>
-                                            </span>
-                                            @php
-                                            $is_fav = 'no';
-                                            if((Auth::check() && Auth::user()->isFavouriteJob($job->slug)==true))
-                                            {
-                                                $is_fav = 'yes';
-                                            }
-                                            @endphp
-                                            <div class="mx-3 favjob" data-fav='{{$is_fav}}'>                                        
-                                                @if($is_fav=='yes')
-                                                    <img draggable="false" class="image-size1 cursor-pointer" src="{{url('site_assets_1/assets/img/star_filled.png')}}" alt="bookmark">
-                                                @else
-                                                    <img draggable="false" class="image-size1 cursor-pointer" src="{{url('site_assets_1/assets/img/star_unfilled.png')}}" alt="bookmark">
-                                                @endif
-                                            </div>                                        
-                                        </div>
-                                    </div>
-                                </div>
-        
-                                <div class="col-md-12 mt-3">
-                                    <div class="row">
-                                        <div class="col-md-3 col-sm-4 col-xs-12 d-flex"><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/experience.png') }}"></span> <text class="fw-bold">{{$job->experience_string}}</text></div>
-                                        <div class="col-md-5 col-sm-5 col-xs-12 d-flex"><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/salary.png') }}"></span> <text class="fw-bold">{{ trim($job->hide_salary != 1)&&!empty($job->salary_string) ? $job->salary_string :'Not Disclosed'}}</text></div>
-                                        <div class="col-md-4 col-sm-4 col-xs-12 d-flex"><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/location.png') }}"></span>  <text class="fw-bold text-truncate">{{rtrim($job->work_locations, ", ")}}</text></div>
-                                    </div>
-                                    <div class="row mt-3 ">
-                                        <p class="poscls">Posted {{ MiscHelper::timeSince($job->posted_date) }}</p>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body jdcarc">
-                            <div class="mb-1">
-                                <h4 class="mb-3 text-green-color ">Job Description</h4>
-                                <div class="jobdesbcontar">{!! $job->description !!}</div>
-                            </div>
-                        </div>
-                        @if(!empty($job->additional_description))
-                        <div class="card-body jdcarc">
-                            <div class="mb-1">
-                                <h4 class="mb-3 text-green-color ">Required Candidate Profile</h4>
-                                <div>{!! $job->additional_description !!}</div>
-                            </div>
-                        </div>
-                        @endif
-                        
-                        <div class="card-body jdcarc">
-                            <div class="mb-1">
-                                <h4 class="mb-2 text-green-color ">Skills</h4>
-                                <div>
-                                    @php
-                                        $skillarr = $job->skill?array_column(json_decode($job->skill), 'value'):null;
-                                    @endphp
-                                    @foreach($skillarr as $t)
-                                        <label class="chip clickable"><span>{{$t}}</span></label>
-                                    @endforeach
-                                    {{-- <label class="chip clickable"><span>MySQL</span></label>
-                                    <label class="chip clickable"><span>MySQL</span></label>
-                                    <label class="chip clickable"><span>MySQL</span></label> --}}
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="card-body jdcarc">
-                            <div class="mb-3">
-                                <h4 class="mb-1 text-green-color ">Education</h4>
-                                <div><p class="jejed">{{$job->educationLevel->education_level??'Any Degree'}} @if($job->is_any_education_level !='yes' && $job->is_any_education=='yes') - (Any) @endif</p></div>
-                                <div class="jejedtype">@if($job->is_any_education!='yes') <li class="mb-2">Specialization : {{ $job->getEducationTypesStr() }} </li>@endif</div>
-                            </div>
-                        </div>
-
-                        <div class="card-body jdcarc">
-                            <div class="mb-3">
-                                <h4 class="mb-1 text-green-color ">Job Type</h4>
-                                {{-- <ul>
-                                    @foreach($job->jobtypes as $types)
-                                    <li>{{$types->type->type}}</li>
-                                    @endforeach
-                                </ul> --}}
-                                <div class="mb-2 mx-3">
-                                    @php
-                                    $jtyv= '';
-                                    @endphp
-                                    @foreach($job->jobtypes as $types)
-                                        @php
-                                            $jt_v = $types->type->type;
-                                            if($types->type_id == 1 || $types->type_id == 2 || $types->type_id == 4) {
-                                                if($job->working_deadline && $job->working_deadline_period_id){
-                                                    $exle = $job->working_deadline .' '.$job->working_deadline_period_id.'(s)';
-                                                    $jt_v = $types->type->type ;
-                                                }
-                                            }else if($types->type_id == 5) {
-                                                if($job->working_hours){
-                                                    $exl = $job->working_hours .' hour(s)';
-                                                    $jt_v = $types->type->type ;
-                                                }
-                                            }else{
-                                                // $jt_v = $types->type->type ?? '';
-                                            }
-                                            $jtyv .=  $jt_v.', ';
-                                        @endphp
-                                        {{-- <p>{{$jt_v.', '}}</p> --}}
-                                    @endforeach
-                                {{-- </ul> --}}
-                                <text>{{rtrim($jtyv, ", ")}}</text>
-                                @if(isset($exle)&&!empty($exle))<li>Contract length : {{$exle}}</li>@endif
-                                @if(isset($exl)&&!empty($exl))<li>Part-time hours : {{$exl}} per week</li>@endif
-                                </div>
-                            </div>
-
-                            @if(count($job->jobshifts)!=0)
-                            <div class="mb-3">
-                                <h4 class="mb-1 text-green-color ">Job Shift</h4>
-                                <ul>
-                                    @foreach($job->jobshifts as $shifts)
-                                    <li>{{$shifts->shift->shift}}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            @endif
-                        </div>
-                        
-                        @if(!empty($job->benefits) || !empty($job->supplementals) || !empty($job->other_benefits))
-                        <div class="card-body jdcarc">
-                            @if(!empty($job->benefits))
-                            <div class="mb-3">
-                                <h4 class="mb-1 text-green-color ">Cash Benefits</h4>
-                                <div><p>{{ rtrim($job->benefits,', ') }}</p></div>
-                            </div>
-                            @endif
-                            @if(!empty($job->supplementals))
-                            <div class="mb-3">
-                                <h4 class="mb-1 text-green-color ">Supplemental Pay</h4>
-                                <div><p>{{ rtrim($job->supplementals,', ') }}</p></div>
-                            </div>
-                            @endif
-                            @if(!empty($job->other_benefits))
-                            <div class="mb-3">
-                                <h4 class="mb-1 text-green-color ">Other Benefits</h4>
-                                <div><p>{{ rtrim($job->other_benefits,', ') }}</p></div>
-                            </div>
-                            @endif
-                        </div>
-                        @endif
-
-                        @if($job->walkin)
-                        <div class="card-body jdcarc">
-                            <div class="mb-3">
-                                <h4 class="mb-1  text-green-color">@if($job->walkin) Walk-In @else Contact Details @endif</h4>
-                                <div class="row">
-                                    @if($job->walkin)
-                                    <div>
-                                        <p><b>From </b>{{ \Carbon\Carbon::parse($job->walkin->walk_in_from_date)->format('d F, Y')}} to {{ \Carbon\Carbon::parse($job->walkin->walk_in_to_date)->format('d F, Y')}}.@if($job->walkin->exclude_days) (Excluding {{$job->walkin->exclude_days}})@endif</p>
-                                        <p><b>Time between : </b>{{ \Carbon\Carbon::parse($job->walkin->walk_in_from_time)->format('H:i A')}} to {{ \Carbon\Carbon::parse($job->walkin->walk_in_to_time)->format('H:i A')}}</p>
-                                    </div>
-                                    @endif
-                                    <div class="col-md-12 align-self-center d-flex">
-                                        <div class="pe-1">
-                                            <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_location.png')}}" alt="contact location">
-                                        </div>
-                                        <div>
-                                            <p class="">
-                                                @if(isset($job->walkin->walk_in_location) && !empty($job->walkin->walk_in_location))
-                                                    {{$job->walkin->walk_in_location}}
-                                                @endif
-                                            </p>
-                                            <p class="">
-                                                @if(isset($job->walkin->walk_in_google_map_url) && !empty($job->walkin->walk_in_google_map_url))
-                                                    <b>Google Map URL :</b> {{$job->walkin->walk_in_google_map_url}}
-                                                @endif
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                
-                        </div>
-                        @endif
-                        
-                        @if($job->contact_person_details && $job->company->is_admin==0)
-                        <div class="card-body jdcarc">
-                            <div class="mb-1">
-                                <div class="mb-2">
-                                    <h4 class=" text-green-color">Contact Details</h4>
-                                </div>
-                                <div class="mb-2 row col-md-12 justify-content-between">                                
-                                    <div class="col-md-12 align-self-center d-flex">
-                                        <div class="pe-1">
-                                            <i class="fa fa-user"></i>
-                                        </div>
-                                        <div>
-                                            <h5 class="">
-                                            <a>{{ $job->contact_person_details->name??'' }}</a>
-                                            </h5>    
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mb-2 row col-md-12 justify-content-between">                                
-                                    <div class="col-md-5 align-self-center d-flex">
-                                        <div class="pe-1">
-                                            <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_message.png')}}" alt="contact location">
-                                        </div>
-                                        <div>
-                                            <h5 class="">
-                                            <a href="mailto:{{ $job->contact_person_details->email??'' }}">{{ $job->contact_person_details->email??'' }}</a>
-                                            </h5>    
-                                        </div>
-                                    </div>
-                                    <div class="col-md-5 justify-content-center">
-                                        <div class="d-flex">
-                                            <div class="pe-1">
-                                                <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_num.png')}}" alt="contact num">
-                                            </div>
-                                            <div>
-                                                <h5 class="">
-                                                    <a href="tel:{{ $job->contact_person_details->phone_1 ??'' }}">{{ $job->contact_person_details->phone_1 ??'' }}</a>
-                                                </h5>
-                                                <h5 class="">
-                                                    <a href="tel:{{ $job->contact_person_details->phone_1 ??'' }}">{{ $job->contact_person_details->phone_2 ??'' }}</a>
-                                                </h5>
-                                            
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {{-- <div class="col-md-4 d-flex justify-content-center"> --}}
-                                        {{-- <div class="pe-1">
-                                            <div class="bg-color-blue border p-2 rounded-pill">
-                                                <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/job_description/contact_message.png')}}" alt="contact message">
-                                                <text class="">Send Message</text> 
-                                            </div>   
-                                        </div> --}}
-                                    {{-- </div> --}}
-                                </div>
-                                
-                                <div class="d-flex justify-content-between" style="display: @if( ($job->contact_person_details->morning_section_from && $job->contact_person_details->morning_section_to)||($job->contact_person_details->evening_section_from && $job->contact_person_details->evening_section_to)){{'block'}}@else{{'none !important;'}}@endif">
-                                    <h4 class=" text-green-color">Best time to contact</h4>
-                                    {{-- <button class="edit-btn" data-form="job-contact-person-edit"><i class="fa-solid fa-pen-to-square text-green-color edit-icon"></i></button> --}}
-                                </div>
-                                <div class="row">                                
-                                    <div class="col-md-10 align-self-center d-flex">
-                                        <div>
-                                            @if( ($job->contact_person_details->morning_section_from && $job->contact_person_details->morning_section_to))
-                                            <p class="jbbesttc_m">
-                                                {{ \Carbon\Carbon::parse($job->contact_person_details->morning_section_from)->format('h:i A')}} to
-                                                {{ \Carbon\Carbon::parse($job->contact_person_details->morning_section_to)->format('h:i A') }}
-                                            </p>
-                                            @endif
-                                            @if( ($job->contact_person_details->evening_section_from && $job->contact_person_details->evening_section_to))
-                                            <p class="jbbesttc_e">
-                                                {{ \Carbon\Carbon::parse($job->contact_person_details->evening_section_from)->format('h:i A') }} to 
-                                                {{ \Carbon\Carbon::parse($job->contact_person_details->evening_section_to)->format('h:i A') }}
-                                            </p>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @endif
-
-                        @if($job->company->is_admin==0)
-                            <div class="abt-cmp card-body jdcarc">
-                                <div class="mb-2">
-                                    @if(!empty($job->company->description))
-                                    <div class="mb-4">
-                                        <h4 class="mb-1  text-green-color">About Company<h4>
-                                        <p>{{ $job->company->description }}</p>
-                                    </div>
-                                    @endif
-                                    
-                                    <div class="">
-                                        <h5 class="mb-1  text-green-color">Company Info</h5>
-                                        @isset($job->company->website_url)
-                                        <div class="row col-md-12 cmpinfo-detail mb-2">
-                                            <div class="col-md-12">
-                                                <label><b>Website : </b></label>
-                                                <span>
-                                                    <a href="{{ $job->company->website_url}}" target="_blank" rel="nofollow noreferer">{{ $job->company->website_url}}</a>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        @endisset
-
-                                        <div class="row col-md-12 cmpinfo-detail">
-                                            <div class="col-md-6">
-                                                <label class="fw-bold">Address :</label>
-                                                <span>
-                                                    @php
-                                                        $pincode= $job->company->pin_code ?? '';
-                                                        $pincode= !empty($pincode)? ', '.$pincode.'.' : '';
-                                                    @endphp
-                                                    <text>{{ !empty($job->company->address) ? $job->company->address.' '.$job->company->location.$pincode : "-" }}</text>
-                                                </span>
-                                            </div>
-                                            @isset($job->company)
-                                                <div class="col-md-6 align-self-center text-end">
-                                                    <a href="{{url('company-view/'.$job->company->slug)}}"><label class="chip clickable mt-0 cursor-pointer"><span>View More</span></label></a>                                 
-                                                </div>
-                                            @endisset
-
-                                        </div> 
-                                        
-                                        <hr>
-                                        <div class="sharethis-inline-share-buttons"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-                    </div>
-                </div>
-                @if(0)
-                <div class="col-md-3">
-                    <div class="card ">
-                        <div class="card-body">
-                            <div class="mb-3">
-                                <div class="row mb-3">
-                                    <h4 class=" text-green-color"> Related Jobs </h4>
-                                    <div class="">
-                                        <article class="rjarti mt-2">
-                                            <div class="col-md-8 col-sm-8 col-xs-12">
-                                                <h5 class="">{{ ucwords($job->title) }}</h5>
-                                                <div class="fw-bold">{{ ucwords($job->company_name??$job->company->name) }}.</div>
-                                                <div class="py-2 ">
-                                                    <span class="">
-                                                        <img draggable="false" class="" width="15px" src="{{ url('site_assets_1/assets/img/side_nav_icon/salary.png') }}"></span>
-                                                    <span class="" style="font-size: 13px"> 2808 - 28116 / Annum</span>
-                                                </div>
-                                            </div>
-                                        </article>
-                                        <article class="rjarti mt-2">
-                                            <div class="col-md-8 col-sm-8 col-xs-12">
-                                                <h5 class="">{{ ucwords($job->title) }}</h5>
-                                                <div class="fw-bold">{{ ucwords($job->company_name??$job->company->name) }}.</div>
-                                                <div class="py-2 ">
-                                                    <span class="">
-                                                        <img draggable="false" class="" width="15px" src="{{ url('site_assets_1/assets/img/side_nav_icon/salary.png') }}"></span>
-                                                    <span class="" style="font-size: 13px"> 2808 - 28116 / Annum</span>
-                                                </div>
-                                            </div>
-                                        </article>
-                                        <article class="rjarti mt-2">
-                                            <div class="col-md-8 col-sm-8 col-xs-12">
-                                                <h5 class="">{{ ucwords($job->title) }}</h5>
-                                                <div class="fw-bold">{{ ucwords($job->company_name??$job->company->name) }}.</div>
-                                                <div class="py-2 ">
-                                                    <span class="">
-                                                        <img draggable="false" class="" width="15px" src="{{ url('site_assets_1/assets/img/side_nav_icon/salary.png') }}"></span>
-                                                    <span class="" style="font-size: 13px"> 2808 - 28116 / Annum</span>
-                                                </div>
-                                            </div>
-                                        </article>
-                                    </div>
-                                    
-                                </div>
-                                <div class="float-end">
-                                    <a href="#" class=""> View All</a>
-                                </div>
-                                
-                            </div>
-                
-                        </div>
-                    </div>
-                </div>
+            <div class="card descriptions">
+                <h4>
+                    Job description
+                </h4>
+                <p class="m-0">
+                    {!! $job->description !!}
+                </p>
+                @if(!empty($job->additional_description))
+                    <h4>Required Candidate Profile</h4>
+                    <p class="m-0">
+                        {!! $job->additional_description !!}
+                    </p>
                 @endif
             </div>
+            <div class="card keyboard_mcts">
+                <h4>
+                    Keywords matching with your profile
+                </h4>
+                <p>Top 5 keywords of your profile</p>
+                <div class="row">
+                    <div class="col-md-9">
+                        @php
+                            $skillarr = $job->skill?array_column(json_decode($job->skill), 'value'):null;
+                        @endphp
+                        <div class="skils_prnt">
+                            @foreach($skillarr as $t)
+                                <div class="skill_rnd">{{$t}}</div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center align-self-center">
+                        <h3>Profile Match <span class="fw-bolder">80%</span></h3>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <p>Other keywords from your profile</p>
+                    <div class="skils_prnt">
+                        <div class="key_rnd">Android</div>
+                        <div class="key_rnd">Adobe Illustrator</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div>
+                    <h4>Education</h4>
+                    <div><p>{{$job->educationLevel->education_level??'Any Degree'}} @if($job->is_any_education_level !='yes' && $job->is_any_education=='yes') - (Any) @endif</p></div>
+                    <div>@if($job->is_any_education!='yes') <li>Specialization : {{ $job->getEducationTypesStr() }} </li>@endif</div>
+                </div>
+            </div>
+            <div class="card">
+                <h4>Job Type</h4>
+                <div>
+                    @php
+                    $jtyv= '';
+                    @endphp
+                    @foreach($job->jobtypes as $types)
+                        @php
+                            $jt_v = $types->type->type;
+                            if($types->type_id == 1 || $types->type_id == 2 || $types->type_id == 4) {
+                                if($job->working_deadline && $job->working_deadline_period_id){
+                                    $exle = $job->working_deadline .' '.$job->working_deadline_period_id.'(s)';
+                                    $jt_v = $types->type->type ;
+                                }
+                            }else if($types->type_id == 5) {
+                                if($job->working_hours){
+                                    $exl = $job->working_hours .' hour(s)';
+                                    $jt_v = $types->type->type ;
+                                }
+                            }else{
+                                // $jt_v = $types->type->type ?? '';
+                            }
+                            $jtyv .=  $jt_v.', ';
+                        @endphp
+                        {{-- <p>{{$jt_v.', '}}</p> --}}
+                    @endforeach
+                </div>
+                <text>{{rtrim($jtyv, ", ")}}</text>
+                @if(isset($exle)&&!empty($exle))<li>Contract length : {{$exle}}</li>@endif
+                @if(isset($exl)&&!empty($exl))<li>Part-time hours : {{$exl}} per week</li>@endif
+                @if(count($job->jobshifts)!=0)
+                    <h4>Job Shift</h4>
+                    <ul>
+                        @foreach($job->jobshifts as $shifts)
+                        <li>{{$shifts->shift->shift}}</li>
+                        @endforeach
+                    </ul>
+                @endif
+                @if(!empty($job->benefits) || !empty($job->supplementals) || !empty($job->other_benefits))
+                        @if(!empty($job->benefits))
+                        <div class="mt-3">
+                            <h5 class="fw-bolder">Cash Benefits</h5>
+                            <div><span>{{ rtrim($job->benefits,', ') }}</span></div>
+                        @endif
+                        @if(!empty($job->supplementals))
+                        <div class="mt-3">
+                            <h5 class="fw-bolder">Supplemental Pay</h5>
+                            <div><span>{{ rtrim($job->supplementals,', ') }}</span></div>
+                        </div>
+                        @endif
+                        @if(!empty($job->other_benefits))
+                        <div class="mt-3">
+                            <h5 class="fw-bolder">Other Benefits</h5>
+                            <div><span>{{ rtrim($job->other_benefits,', ') }}</span></div>
+                        </div>
+                        @endif
+                    </div>
+                @endif
+            </div>
+            @if($job->company->is_admin==0)
+                <div class="card about_cmp">
+                    @if(!empty($job->company->description))
+                        <h4>
+                            About Company / Organisation :
+                        </h4>
+                        <p>
+                            {{ $job->company->description }}
+                        </p>
+                    @endif
+
+                    @isset($job->company->website_url)
+                        <h5>Website</h5>
+                        <div class="mb-3">
+                            <a href="{{ $job->company->website_url}}">{{ $job->company->website_url}}</a>
+                        </div>
+                    @endisset               
+                    <div class="row">
+                        @if($job->company->fb_url || $job->company->linkedin_url || $job->company->insta_url )
+                            <div class="col-md-9 col-7 col-sm-9">
+                                <h5 class="mb-3"><span class="mblef">Other</span>Social media <span class="mblef">links</span></h5>
+                                <div class="d-flex socialsimg">
+                                    @isset($job->company->fb_url)<span><a href="{{$job->company->fb_url}}"><img src="{{asset('images/detailpage/facebook.svg')}}" alt="facebook-image"></a></span>@endif
+                                    @isset($job->company->linkedin_url)<span><a href="{{$job->company->linkedin_url}}"><img src="{{asset('images/detailpage/linkedin.svg')}}" alt="linkedin-image"></a></span>@endif
+                                    @isset($job->company->insta_url)<span><a href="{{$job->company->insta_url}}"><img src="{{asset('images/detailpage/instagram.svg')}}" alt="instagram-image"></a></span>@endif
+                                </div>
+                            </div>
+                        @endif
+                        @isset($job->company)
+                            <div class="col-md-3 col-5 col-sm-3 align-self-end">
+                                <div class="know_cmpany">
+                                    <a href="{{url('company-view/'.$job->company->slug)}}" class="knowmr"><span>Know more <img src="{{asset('images/detailpage/know_mre.svg')}}" alt="know-more"></span></a>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="card walkin_cd mb-5 align-self-center">
+                    <h4>
+                        Walk-in
+                    </h4>
+                    @if($job->walkin)
+                        <div>
+                            <p><b>From </b>{{ \Carbon\Carbon::parse($job->walkin->walk_in_from_date)->format('d F, Y')}} to {{ \Carbon\Carbon::parse($job->walkin->walk_in_to_date)->format('d F, Y')}}.@if($job->walkin->exclude_days) (Excluding {{$job->walkin->exclude_days}})@endif</p>
+                            <p><b>Time between : </b>{{ \Carbon\Carbon::parse($job->walkin->walk_in_from_time)->format('H:i A')}} to {{ \Carbon\Carbon::parse($job->walkin->walk_in_to_time)->format('H:i A')}}</p>
+                        </div>
+                    @endif
+                    <p><b>Time between :</b> 
+                        @if( ($job->contact_person_details->morning_section_from && $job->contact_person_details->morning_section_to))
+                            {{ \Carbon\Carbon::parse($job->contact_person_details->morning_section_from)->format('h:i A')}} to
+                            {{ \Carbon\Carbon::parse($job->contact_person_details->morning_section_to)->format('h:i A') }}
+                        @endif
+                        @if( ($job->contact_person_details->evening_section_from && $job->contact_person_details->evening_section_to))
+                            {{ \Carbon\Carbon::parse($job->contact_person_details->evening_section_from)->format('h:i A') }} to 
+                            {{ \Carbon\Carbon::parse($job->contact_person_details->evening_section_to)->format('h:i A') }}
+                        @endif
+                    </p>
+                    <p>
+                        <a href="mailto:{{ $job->contact_person_details->email??'' }}">
+                            <img src="{{asset('images/detailpage/email.svg')}}" alt="email-address" class="icon_rs">{{ $job->contact_person_details->email??'' }}
+                        </a>
+                    </p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <table>
+                                @php
+                                    $pincode= $job->company->pin_code ?? '';
+                                    $pincode= !empty($pincode)? ', '.$pincode.'.' : '';
+                                @endphp
+                                <tr>
+                                    <td class="d-block"><img src="{{asset('images/detailpage/locate.svg')}}" alt="location" class="icon_rs" draggable="false"></td>
+                                    <td>
+                                        <span>
+                                            {{ !empty($job->company->address) ? $job->company->address.' '.$job->company->location.$pincode : "-" }}
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <table class="call_nhvcez">
+                                <tr>
+                                    <td class="d-block"><img src="{{asset('images/detailpage/calls.svg')}}" alt="call-icon" class="icon_rs" draggable="false"></td>
+                                    <td>
+                                        <span>
+                                            <div><a href="tel:{{ $job->contact_person_details->phone_1 ??'' }}">{{ $job->contact_person_details->phone_1 ??'' }}</a></div>
+                                            <div><a href="tel:{{ $job->contact_person_details->phone_2 ??'' }}">{{ $job->contact_person_details->phone_2 ??'' }}</a></div>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            @endif
+        </div>
+    </main>
+    <!-- view document -->
+    <div class="modal fade" id="screenings" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="questionsdt">
+                    <div class="first_mwe">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="open-jbwe">
+                                    <img src="{{asset('images/detailpage/screens.svg')}}" alt="screening-image" draggable="false">
+                                </div>
+                            </div>
+                            <div class="col-md-6 align-self-center">
+                                <h1 class="fw-bolder mb-4">Screening Questions</h1>
+                                <p>These questions will help the recruiter
+                                    to filter your profile to next level of interview
+                                </p>
+                            </div>
+                            <div class="col-md-7 align-self-center">
+                                <div class="text-end space_hgtyu2">
+                                    <p class="m-0 cursor-pointer previous-btn skip-submit">Skip and apply</p>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="text-end space_hgtyu">
+                                    <button>Attend and apply</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- preview docs -->
+    <div class="modal fade" id="fullquestions" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <form class="form" id="screeningQuiz" action="{{route('job.apply', $job->slug)}}" method="post">
+                    @csrf
+                    {!! Form::hidden('is_login',null, array('id'=>'is_login')) !!}
+                    <div class="container">
+                        <div class="header_mcv">
+                            <div class="row">
+                                <div class="col-md-5 align-self-center">
+                                    <button type="button" data-bs-dismiss="modal" aria-label="Close"><img src="{{asset('images/detailpage/back_vrd.svg')}}" alt="back icon"> Back to job post</button>
+                                </div>
+                                <div class="col-md-7">
+                                    <a href=""><img src="{{asset('images/detailpage/logo.svg')}}" alt="logo-image" class="logo_mcv"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content_mcv">
+                            <div class="card">
+                                <div class="text-center first_1mcv">
+                                    <div class="mb-3">
+                                        <img src="{{asset('images/detailpage/breakpoints_mcv.svg')}}" alt="break-points">
+                                    </div>
+                                    <p><strong>Break Point Questions</strong></p>
+                                    <p><b>Note:</b> The Questions with the above sign are mandatory.</p>
+                                </div>
+                            </div>
+                            <!-- <div class="quizs">
+                                <div class="mb-3">
+                                    <strong>Are you ready to relocate for your job?</strong>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="1" name="yesim" id="yescheck">
+                                    <label class="form-check-label" for="yescheck">
+                                        Yes
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="yesim" value="2" id="nocheck">
+                                    <label class="form-check-label" for="nocheck">
+                                        No
+                                    </label>
+                                </div>
+                                <div class="text-center">
+                                    <small class="text-danger"><img src="{{asset('images/detailpage/danger_hbg.svg')}}" alt="danger-validate" class="dng_jhgw"> Breakpoint question Can’t be Skipped.</small>
+                                </div>
+                            </div> -->
+                            <div class="quizs">
+                                {{-- Question --}}
+                                    @foreach ($job->screeningquiz as $key => $quiz)
+                                        <div class="quiz" data-bp="{{$quiz->breakpoint}}" data-dsw3w14="{{$quiz->quiz_code}}" data-dsw3w15="{{$quiz->answer_type}}">
+                                            <div class="mb-3">
+                                                <strong>{{$quiz->candidate_question}}</strong>
+                                            </div>
+                                            @if($quiz->answer_type=='text')
+                                                <div class="input_hgmtr mb-3">    
+                                                    {{ Form::text('answer_'.$quiz->quiz_code, null, array('class'=>'form-control e1ex0nj0 w-auto', 'id'=>'answer_'.$quiz->quiz_code, 'placeholder'=>__(' '))) }}
+                                                </div>
+                                            @elseif($quiz->answer_type=='single')
+                                                @foreach (json_decode($quiz->candidate_options) as $key1 => $option)                           
+                                                    <div class="form-check">
+                                                        <input class="form-check-input e1ex0nj0" type="radio" name="answer_{{$quiz->quiz_code}}" value="{{ $option }}" id="answerradio{{$quiz->quiz_code}}_{{ $key1 }}" @if($key1==0) checked @endif>
+                                                        <label class="form-check-label" for="answerradio{{$quiz->quiz_code}}_{{ $key1 }}">
+                                                            {{ $option }}
+                                                        </label>
+                                                    </div>                                                
+                                                @endforeach
+                                            @elseif($quiz->answer_type=='multiple')
+                                                @foreach (json_decode($quiz->candidate_options) as $key1 => $option)                           
+                                                    <div class="form-check">
+                                                        <input class="form-check-input e1ex0nj0" type="checkbox" name="answer_{{$quiz->quiz_code}}[]" value="{{ $option }}" id="answercheckbox{{$quiz->quiz_code}}_{{ $key1 }}">
+                                                        <label class="form-check-label" for="answercheckbox{{$quiz->quiz_code}}_{{ $key1 }}">
+                                                            {{ $option }}
+                                                        </label>
+                                                    </div>
+                                                @endforeach
+                                            @elseif($quiz->answer_type=='textarea')
+                                                <div class="mb-3 input_hgmtr">
+                                                    {{ Form::textarea('answer_'.$quiz->quiz_code, null, array('class'=>'form-control e1ex0nj0', 'id'=>'answer_'.$quiz->quiz_code, 'placeholder'=>__(' '))) }}
+                                                </div>
+                                            @elseif($quiz->answer_type=='select')
+                                            @php
+                                                $options = json_decode($quiz->candidate_options);
+                                                $options = array_combine($options, $options);
+                                            @endphp
+                                                <div class="mb-3 input_hgmtr">
+                                                    {{ Form::select('answer_'.$quiz->quiz_code, ['' => __('Select')]+$options??'', null, array('class'=>'form-select w-auto', 'id'=>'answer_'.$quiz->quiz_code)) }}
+                                                </div>
+                                            @endif
+                                            <span class="es2wa7s text-danger"> </span>
+                                        </div>
+                                    <hr/>
+                                    @endforeach
+                                {{-- // Question --}}
+
+                                <div class="posin_hgmj">
+                                    <button class="submit">Submit & Apply</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
-    <div class="modal fade" id="screeningQuiz72ers3" tabindex="-1" role="dialog" aria-labelledby="screeningQuiz72ers3Label2" aria-hidden="true">
+    <div class="modal fade" id="fullquestions1" tabindex="-1" role="dialog" aria-labelledby="screeningQuiz72ers3Label2" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered assessment_modal">
             <div class="modal-content">
                 <div class="modal-header">
@@ -494,9 +498,6 @@
                     {!! Form::hidden('is_login',null, array('id'=>'is_login')) !!}
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-xl-5 col-5 align-self-center mobile_m">
-                                <img draggable="false" src="{{asset('images/Screening.png')}}" alt="" class="w-100">
-                            </div>
                             <div class="col-xl-7 col-lg-12 col-md-12 col-12 align-self-center">
                                 <section id="cdate_assesment">
                                     <div class="card ass_details p-2">
@@ -536,11 +537,8 @@
                                                     {{ Form::select('answer_'.$quiz->quiz_code, ['' => __('Select')]+$options??'', null, array('class'=>'form-select w-auto', 'id'=>'answer_'.$quiz->quiz_code)) }}
                                                 @endif
                                                 <span class="es2wa7s text-danger"> </span>
-
                                             </div>
                                             @endforeach
-                                            <span class="es2wa7sd text-danger"> </span>
-
                                             {{-- // Question --}}
                                         </div>
                                     </div>                  
@@ -567,46 +565,39 @@
         </div>
     </div>
 
+    
     @include('user.complete-profile-modal')
-<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6315c4c30b5e930012a9c49e&product=inline-share-buttons' async='async'></script>
-@php
-    $applied = Auth::user()?(Auth::user()->isAppliedOnJob($job->id)??false):false;
-@endphp
-<script>
-    var reference_url = '{{ $job->reference_url }}';
-    var is_admin = '{{ $job->company->is_admin }}';
-    var applied = '{{ $applied }}';
-    var baseurl = '{{ url("/") }}/';
-    var is_login = '{{ Cookie::get("is_login") }}';
-    var save_req_url = "{{ route('job.save', $job->slug) }}";
-    var apply_req_url = "{{ route('job.apply', $job->slug) }}" ;
-    var isscreening = "{{(count($job->screeningquiz)!=0)?'yes':'no'}}";
 
-    //company header
-    function boxtothetop() {
-        var windowTop = $(window)
-          .scrollTop();
-        var top = ($('#appltbutton')
-          .offset()
-          .top)-40;
-        if(windowTop > top) {
-          $('#myHeader').addClass('sticky');
-        } else {
-          $('#myHeader').removeClass('sticky');
-        }
-        var bottom = $('.container').height() - $(window).height();
-        if(windowTop > (parseInt(bottom)+180)) {
-          $('.applybtnsticky').addClass('nonsticky');
-        } else {
-          $('.applybtnsticky').removeClass('nonsticky');
-        }
-      }
-      $(function() {
-        $(window)
-          .scroll(boxtothetop);
-          boxtothetop();
-      });
 
-</script>
-<script type="text/javascript" src="{{ asset('site_assets_1/assets/2e9ejr3/js/destail.e2k3eu0.js') }}"></script>
+
+
+
+
+    @php
+        $applied = Auth::user()?(Auth::user()->isAppliedOnJob($job->id)??false):false;
+    @endphp
+    <script>
+        var reference_url = '{{ $job->reference_url }}';
+        var is_admin = '{{ $job->company->is_admin }}';
+        var applied = '{{ $applied }}';
+        var baseurl = '{{ url("/") }}/';
+        var is_login = '{{ Cookie::get("is_login") }}';
+        var save_req_url = "{{ route('job.save', $job->slug) }}";
+        var apply_req_url = "{{ route('job.apply', $job->slug) }}" ;
+        var isscreening = "{{(count($job->screeningquiz)!=0)?'yes':'no'}}"; 
+        //   window.addEventListener("scroll", function () {
+        //     const header = document.querySelector(".jsky_hb");
+
+        //     if (header) {
+        //         header.classList.toggle("sticky", window.scrollY > 0);
+        //     }
+
+        // });
+
+        // $(document).on('click', '.applyrs_btn', function(){
+        //     $('#screenings').modal('show');
+        // });
+    </script>
+    <script type="text/javascript" src="{{ asset('site_assets_1/assets/2e9ejr3/js/destail.e2k3eu0.js') }}"></script>
 @endsection
+

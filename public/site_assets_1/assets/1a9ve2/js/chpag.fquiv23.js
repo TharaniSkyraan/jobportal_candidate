@@ -30,11 +30,11 @@ function handleScreenSizeChange() {
 }
 
 // Attach the event listener to window resize
-$(window).resize(function() {
-    if(widtherror=='no'){
-        handleScreenSizeChange();
-    }
-});
+// $(window).resize(function() {
+//     if(widtherror=='no'){
+//         handleScreenSizeChange();
+//     }
+// });
 
 // Call the function initially
 handleScreenSizeChange();

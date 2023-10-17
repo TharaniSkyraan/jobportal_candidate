@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use App\Model\City;
 use App\Model\Title;
 use App\Model\Company;
+use App\Model\Blog;
 use App\Model\UserActivity;
 use App\Model\FavouriteJob;
 use App\Model\JobApply;
@@ -37,6 +38,7 @@ use App\Events\JobApplied;
 use Illuminate\Support\Facades\Crypt;
 use Cookie;
 
+
 class JobsController extends Controller
 {
 
@@ -57,7 +59,7 @@ class JobsController extends Controller
     
     public function searchIndex()
     {
-
+        
         $session= Session::get('ip_config');
 
         $near_job = JobSearch::select('title','location', 'company_name', DB::raw('count(`title`) as total_count'))
@@ -101,7 +103,8 @@ class JobsController extends Controller
 
         $titles = Title::where('hit_count','!=',0)->orderBy('hit_count','desc')->take(5)->get();
         $this->shareSeoToLayout('candidate_home');
-        return view('candidate-home', compact('titles', 'near_job', 'recent_job', 'job_list', 'top_cities', 'top_sector'));
+        $blog = Blog::latest()->take(5)->get();
+        return view('candidate-home', compact('titles', 'near_job', 'recent_job', 'job_list', 'top_cities', 'top_sector', 'blog'));
 
     }
     
@@ -343,7 +346,7 @@ class JobsController extends Controller
                     // }
                     /*         * ******************************* */
                     if($job->contact_person_details->send_apply_notify_email=='yes'){
-                        event(new JobApplied($job, $jobApply));
+                        // event(new JobApplied($job, $jobApply));
                     }
                     if($job->contact_person_details->send_apply_notify_mobile=='yes'){
                         

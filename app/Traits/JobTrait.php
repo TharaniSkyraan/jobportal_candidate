@@ -25,8 +25,8 @@ trait JobTrait
 
             $user =  $job->userdetail;
             $title = $job->job->title;
-            $company_name = $job->job->company_name;
-            $recruiter_name = $job->job->companyuser->name;
+            $company_name = $job->job->company_name??'';
+            $recruiter_name = $job->job->companyuser->name??'';
             $data = [
                 "to"=>$phone,
                 "messaging_product"=>"whatsapp",
