@@ -28,16 +28,16 @@ trait UserExperienceTrait
             $val = array(
                     'id' => $experience['id'],
                     'title' => $experience['title'],
-                    'company' => $experience['company'],
-                    'location' => $experience['location'],
-                    'description' => $experience['description'],
+                    'company' => $experience['company']??'',
+                    'location' => $experience['location']??'',
+                    'description' => $experience['description']??'',
                     'used_tools' => $experience['used_tools']??'',
-                    'country_id' => $experience['country_id'],
+                    'country_id' => $experience['country_id']??0,
                     'country'=>(!empty($experience['country_id']))?$country->country:($ip_data['geoplugin_countryName']??""),
                     'is_currently_working' => $experience['is_currently_working']??0,
                     'year_of_experience' => $from .'-'. $to,
-                    'from' => (!empty($experience['date_start']))?Carbon::parse($experience['date_start'])->getTimestampMs():"",
-                    'to' => (!empty($experience['date_end']))?Carbon::parse($experience['date_end'])->getTimestampMs():"",
+                    'from' => (!empty($experience['date_start']))?Carbon::parse($experience['date_start'])->getTimestampMs():0,
+                    'to' => (!empty($experience['date_end']))?Carbon::parse($experience['date_end'])->getTimestampMs():0,
                 );
             return $val;
         }, $experiences); 

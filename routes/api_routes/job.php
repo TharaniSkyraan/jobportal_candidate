@@ -15,6 +15,8 @@
         Route::post('save-unsave-job/{slug}', [MyJobsController::class, 'Savejob']);
         Route::post('applied-job-list', [MyJobsController::class, 'appliedJobsList']);
         Route::post('saved-job-list', [MyJobsController::class, 'savedJobsList']);
+        Route::get('savejobsids', [MyJobsController::class, 'savedJobsids']);
+   
         Route::post('saved-job-alert', [MyJobsController::class, 'Savejobalert']);
         Route::get('job-alert-list', [MyJobsController::class, 'JobalertList']);
         Route::get('delete-job-alert/{id}', [MyJobsController::class, 'DeleteJobalert']);

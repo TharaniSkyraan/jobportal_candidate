@@ -112,8 +112,6 @@ class RegisterController extends BaseController
             return $this->sendResponse(['id'=>$user->id,'otp'=>$otp], 'Verification OTP Send Successful.');
         }
 
-
-
         return $this->sendResponse('', 'Existing'); 
     
     }
@@ -145,6 +143,8 @@ class RegisterController extends BaseController
         $user->next_process_level = 'education';
         $user->candidate_id = $this->generateCandidate($user->id);
         $user->save();
+        
+        $user = User::find($request->id);
         
         Auth::login($user, true);
         $response['token'] =  $user->createToken($user->email)->accessToken; 

@@ -35,8 +35,8 @@ trait UserSkillTrait
                 'skill_level' => $lang_level->language_level??'',
                 'level_id' => $user_skill['level_id']??0,
                 'date' => $from .'-'. $to,
-                'from' => (!empty($user_skill['start_date']))?Carbon::parse($user_skill['start_date'])->getTimestampMs():"",
-                'to' => (!empty($user_skill['end_date']))?Carbon::parse($user_skill['end_date'])->getTimestampMs():"",
+                'from' => (!empty($user_skill['start_date']))?Carbon::parse($user_skill['start_date'])->getTimestampMs():0,
+                'to' => (!empty($user_skill['end_date']))?Carbon::parse($user_skill['end_date'])->getTimestampMs():0,
             );
             return $val;
         }, $skills); 

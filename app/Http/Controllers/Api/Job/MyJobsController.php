@@ -237,6 +237,24 @@ class MyJobsController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
+    public function savedJobsids()
+    {     
+
+        $slugs = Auth::user()->getFavouriteJobSlugsArray();
+        
+        $jobsids = Job::whereIn('slug',$slugs)->pluck('id')->toArray();
+
+        $response['jobs'] = $jobsids;
+       
+        return $this->sendResponse($response); 
+
+    }
+
+    /**
+     * return error response.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function Savejobalert(SaveJobAlert $request)
     {
         $id = $request->id;

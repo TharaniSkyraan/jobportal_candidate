@@ -177,7 +177,7 @@
                     <div class="skils_prnt">
                         <div class="key_rnd">Android</div>
                         <div class="key_rnd">Adobe Illustrator</div>
-                    </div>
+                    </div>`
                 </div>
             </div>
             <div class="card">

@@ -49,8 +49,8 @@ trait UserEducationTrait
                 'percentage' => $education['percentage']??"",
                 'result_type_id' => $education['result_type_id']??0,
                 'year_of_education' =>  $from .'-'. $to,
-                'from' => (!empty($education['from_year']))?Carbon::parse($education['from_year'])->getTimestampMs():"",
-                'to' => (!empty($education['to_year']))?Carbon::parse($education['to_year'])->getTimestampMs():"",
+                'from' => (!empty($education['from_year']))?Carbon::parse($education['from_year'])->getTimestampMs():0,
+                'to' => (!empty($education['to_year']))?Carbon::parse($education['to_year'])->getTimestampMs():0,
             );
             return $val;
         }, $educations); 

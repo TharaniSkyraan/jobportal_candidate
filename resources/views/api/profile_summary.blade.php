@@ -63,6 +63,10 @@
                                     <div class="text-desc">
                                         {!! $experience->description !!}
                                     </div>  
+                                    @if(!empty($experience->used_tools))
+                                        <h6 class="fw-bold text-dark">Tools / software used</h6>
+                                        <p>{{$experience->used_tools}}</p>
+                                    @endif
                                 @endforeach
                             </div>  
                         </div>
@@ -109,11 +113,9 @@
                                             $end_date = $project->date_end != null ? " - ".\Carbon\Carbon::parse($project->date_end)->Format('M Y')  : "";
                                             $date = $start_date . $end_date;
                                         }
-                                        $used_tools = array_filter(explode(',',$project->used_tools));
-                                        $description = strip_tags($project->description);
                                 
                                     @endphp 
-                                    <address>
+                                    <address class="mt-3">
                                         <h5 class="fw-bold">{{ $project->name }}</h5>
                                         <p>@if(!empty($project->getCompany('company'))){{ $project->getCompany('company') }} ,@endif @if(!empty($project->location)){{ $project->location }}.@endif</p>
                                         @if(!empty($project->date_start) || !empty($project->date_end)) <p>{{ $date }}.</p> @endif
@@ -122,7 +124,15 @@
                                     <h6 class="fw-bold">Job Description</h6>
                                     <div class="text-desc">
                                         {!! $project->description !!}
-                                    </div>  
+                                    </div>   
+                                    @if(!empty($project->url))
+                                    <h6 class="fw-bold text-dark">Project Link</h6>
+                                    <p> <a href="{{$project->url}}" target="_blank">{{$project->url}}</a> </p>
+                                    @endif
+                                    @if(!empty($project->used_tools))
+                                        <h6 class="fw-bold text-dark">Tools / software used</h6>
+                                        <p>{{$project->used_tools}}</p>
+                                    @endif
                                 @endforeach
                             </div> 
                         </div>
