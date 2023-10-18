@@ -43,6 +43,8 @@ function loadUserProjectForm(form, id=null){
       $('.addProjects').hide();
       $(".tabs").animate({scrollTop: $(window).scrollTop(0)},"slow");
 
+      toastr.options.timeOut = 1000;
+      toastr.success('Successfully Updated.');  
     }
 
   });

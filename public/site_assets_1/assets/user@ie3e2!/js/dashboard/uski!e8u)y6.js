@@ -33,6 +33,8 @@ function loadUserSkillForm(form, id=null){
         }
         $(".tabs").animate({scrollTop: $(window).scrollTop(0)},"slow");
         $('.addSkills button').hide();
+        toastr.options.timeOut = 1000;
+        toastr.success('Successfully Updated.');  
       }
 
     });
