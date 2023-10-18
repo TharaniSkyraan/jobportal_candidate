@@ -591,9 +591,9 @@
     }
 
 }
-/* .fw-bolder {
+.fw-bolder {
     font-weight: 400 !important;
-} */
+}
 .form-check label, .form-group label{
     font-weight: 400 !important;
 }

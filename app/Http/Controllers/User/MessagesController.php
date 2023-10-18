@@ -155,7 +155,7 @@ class MessagesController extends Controller
         $maildata['user_name'] = $user->getName();
         $maildata['user_email'] = $user->email;
       
-        Mail::send(new MessageSendMail($maildata));
+        // Mail::send(new MessageSendMail($maildata));
 
         if(!empty($company->phone) && $company->is_mobile_verified=='yes')
         {
