@@ -101,8 +101,10 @@ class MyJobsController extends BaseController
                                     }
                                })->whereHas('job', function($q1){
                                     $q1->whereNotNull('slug');
-                               })->orderBy('created_at','asc')
-                                 ->paginate(10);
+                               })->withCount('job')
+                                ->havingRaw("job_count != 0")
+                                ->orderBy('created_at','asc')
+                                ->paginate(10);
                              
         $appliedjobs = array_map(function ($appliedjob) use($user) {
             $job = Job::find($appliedjob['job_id']);
