@@ -108,8 +108,7 @@ class MyJobsController extends BaseController
                                 
                            
         $appliedjobs = array_map(function ($appliedjob) use($user) {
-            $job = Job::find($appliedjob['job_id'])->withTrashed();
-           
+            $job = Job::where('id',$appliedjob['job_id'])->withTrashed()->first();
             $val = array(
                 'id'=>$appliedjob['id'],
                 'job_id'=>$job->id,
@@ -206,7 +205,7 @@ class MyJobsController extends BaseController
                             
                     $savedjobs = array_map(function ($savedjob) use($user) 
                         {
-                            $job = Job::find($savedjob['job_id'])->withTrashed();
+                            $job = Job::where('id',$savedjob['job_id'])->withTrashed()->first();
                             $val = array(
                                 'id'=>$savedjob['id'],
                                 'job_id'=>$job->id,
