@@ -88,9 +88,10 @@ class MyJobsController extends BaseController
      */
     public function appliedJobsList(Request $request)
     {      
-        $user_id = Auth::user()->id??710;
+        $user_id = Auth::user()->id;
         $user = User::find($user_id);
         $sortBy = $request->sortBy??'all';
+        dd($user_id);
         // shortlist // view
         $jobs = JobApply::where('user_id',$user_id)
                                ->where(function($q) use($sortBy){
@@ -108,7 +109,7 @@ class MyJobsController extends BaseController
                              
         $appliedjobs = array_map(function ($appliedjob) use($user) {
             $job = Job::find($appliedjob['job_id']);
-            dd($job->id);
+           
             $val = array(
                 'id'=>$appliedjob['id'],
                 'job_id'=>$job->id,
