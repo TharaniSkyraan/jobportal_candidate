@@ -106,8 +106,8 @@ class MyJobsController extends BaseController
                                 ->orderBy('created_at','asc')
                                 ->paginate(10);
                              
-        $appliedjobs = array_map(function ($key, $appliedjob) use($user) {
-            dd($key);
+        $appliedjobs = array_map(function ($appliedjob) use($user) {
+            dd($appliedjob);
             $job = Job::find($appliedjob['job_id']);
            
             $val = array(
