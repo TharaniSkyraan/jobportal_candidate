@@ -105,9 +105,9 @@ class MyJobsController extends BaseController
                                 ->havingRaw("job_count != 0")
                                 ->orderBy('created_at','asc')
                                 ->paginate(10);
+                                dd($jobs);
                              
         $appliedjobs = array_map(function ($appliedjob) use($user) {
-            dd($appliedjob);
             $job = Job::find($appliedjob['job_id']);
            
             $val = array(
