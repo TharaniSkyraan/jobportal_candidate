@@ -108,7 +108,7 @@ class MyJobsController extends BaseController
                              
         $appliedjobs = array_map(function ($appliedjob) use($user) {
             $job = Job::find($appliedjob['job_id']);
-            dd($job);
+            dd($job->id);
             $val = array(
                 'id'=>$appliedjob['id'],
                 'job_id'=>$job->id,
