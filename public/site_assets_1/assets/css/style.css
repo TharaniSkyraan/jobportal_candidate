@@ -244,6 +244,9 @@ section {
 .avatar-sm{
   height: 3rem !important;
 }
+.avatar-sm img{
+  width: 50px !important;
+}
 .rounded-circle {
   box-shadow: 1px 1px 3px rgb(0 0 0 / 20%);
   padding: 1px;
