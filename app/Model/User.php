@@ -307,7 +307,7 @@ class User extends Authenticatable
     {
         $job = Job::where('id', $job_id)->first();
         $percentage = 0;
-        $jobSkill=explode(",",$job->getSkillsStr());
+        $jobSkill=array_column(json_decode($job->skill), 'value');
         $userSkill=explode(",",$this->getUserSkillsStr());
         
         if(!empty($job->getSkillsStr()) && !empty($this->getUserSkillsStr()))

@@ -85,6 +85,7 @@
 
 </style>
 @php
+    $noticePeriod = \App\Helpers\DataArrayHelper::langNoticePeriodsArray();
     $country_id = (!empty($user->country_id))?$user->country_id:$ip_data['country_id'];
     $country = \App\Model\Country::where('country_id',$country_id)->pluck('country')->first();
 @endphp
@@ -168,6 +169,15 @@
                                 {!! Form::checkbox('is_watsapp_number', 'yes', $user->is_watsapp_number??'', array('class'=>'form-check-input', 'id'=>'is_watsapp_number')) !!}
                                 <label class="form-check-label" for="is_watsapp_number">Is this watsapp number.</label>
                             </div> -->
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">Notice Period</label>
+                                        {!! Form::select('notice_period', [''=>'Select']+$noticePeriod, $user->notice_period, array('class'=>'form-select required', 'id'=>'notice_period')) !!}
+                                        <small class="form-text text-muted text-danger err_msg" id="err_notice_period"></small>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row mb-4 mt-5">
                                 <div class="col-md-6 col-5">
                                     <a href="{{ route('experience')}}" class="btn p-0"><img draggable="false" src="{{asset('images/lefticon.png')}}"> Previous</a>
