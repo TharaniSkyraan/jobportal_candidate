@@ -142,7 +142,7 @@
     }.prof_bg .profilepictureappend{
         text-align: center;
     }#abt_meusr .profilepictureappend img{
-        width: auto;
+        /* width: auto; */
     }#abt_meusr .profilepictureappend img{
         border: 0px;
     }#language_knwn .table{
@@ -552,7 +552,7 @@
         width: 80%;
     }#abt_meusr .profilepictureappend img{
         /* width: 100%; */
-        height: auto;
+        /* height: auto; */
     }#language_knwn, #language_knwn1{
         width: 100%;
     }#language_knwn1 .card{
@@ -571,7 +571,7 @@
         width: 75%;
     }#abt_meusr .profilepictureappend img{
         /* width: 100%; */
-        height: auto;
+        /* height: auto; */
     }
 
 }
@@ -587,7 +587,7 @@
         width: 65%;
     }#abt_meusr .profilepictureappend img{
         /* width: 100%; */
-        height: auto;
+        /* height: auto; */
     }
 
 }

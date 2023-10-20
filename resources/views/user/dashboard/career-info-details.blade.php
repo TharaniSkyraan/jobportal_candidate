@@ -82,19 +82,27 @@
                                 {!! Form::text('location', $user->location??null, array('class'=>'form-control-2 required typeahead', 'id'=>'location', 'placeholder'=>__('Enter your location'),' aria-label'=>'Enter your location')) !!}
                                 <small class="form-text text-muted text-danger err_msg" id="err_location"></small>
                             </div>
-                            <div class="mb-4">
+                            {{-- <div class="mb-4">
                                 <label class="form-label">Contact Number</label>
                                 {!! Form::hidden('full_number', null, array('id'=>'full_number')) !!}
                                 {!! Form::tel('phone', $user->phone??null, array('class'=>'form-control mob_cp validMob', 'id'=>'phone', 'onkeypress'=> 'return isNumber(event)', 'minlength'=>'9', 'maxlength'=>'14', 'placeholder'=>__('Phone'))) !!}
                                 <small class="form-text text-muted text-danger err_msg" id="err_phone"></small> 
                                 {!! APFrmErrHelp::showErrors($errors, 'phone') !!}
+                            </div> --}}
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="" class="form-label">Notice Period</label>
+                                    {!! Form::select('notice_period', [''=>'Select']+$noticePeriod, $user->notice_period, array('class'=>'form-select required', 'id'=>'notice_period')) !!}
+                                    <small class="form-text text-muted text-danger err_msg" id="err_notice_period"></small>
+                                </div>
                             </div>
+                            
                             <!-- <div class="form-check mb-2 is_watsapp_number">
                                 {!! Form::checkbox('is_watsapp_number', 'yes', $user->is_watsapp_number??'', array('class'=>'form-check-input', 'id'=>'is_watsapp_number')) !!}
                                 <label class="form-check-label" for="is_watsapp_number">Is this watsapp number.</label>
                             </div> -->
                             
-                            <div class="d-flex justify-content-around mb-3">
+                            <div class="d-flex justify-content-around my-3">
 
                                 <div class="text-center mt-2">
                                     <button class="btn btn-submit btn_c_s1" id="basic-info-submit-button" type="submit">Save</button>

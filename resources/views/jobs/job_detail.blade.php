@@ -16,7 +16,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    <img src="@isset($job->company->company_image){{$job->company->company_image}}@else {{asset('images/detailpage/profile.svg')}} @endif" alt="profile-image" class="profilestcky">
+                                    <img src="@isset($job->company->company_image){{$job->company->company_image}}@else {{asset('site_assets_1/assets/img/industry.svg')}} @endif" alt="profile-image" class="profilestcky">
                                 </td>
                                 <td>
                                     <span>{{ ucwords($job->title) }}</span>
@@ -53,7 +53,7 @@
                             <tr>
                                 <td class="profile_clum">
                                     <div class="round_pf">
-                                        <img src="@isset($job->company->company_image){{$job->company->company_image}}@else {{asset('images/detailpage/profile.svg')}} @endif" alt="company-profile" class="companyty-pf" draggable="false">
+                                        <img src="@isset($job->company->company_image){{$job->company->company_image}}@else {{asset('site_assets_1/assets/img/industry.svg')}} @endif" alt="company-profile" class="companyty-pf" draggable="false">
                                     </div>
                                 </td>
                                 <td class="job_tlers">
@@ -153,6 +153,7 @@
                 @endif
             </div>
             <div class="card keyboard_mcts">
+                @if(Auth::check())
                 <h4>
                     Keywords matching with your profile
                 </h4>
@@ -169,7 +170,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 text-center align-self-center">
-                        <h3>Profile Match <span class="fw-bolder">80%</span></h3>
+                        <h3>Profile Match <span class="fw-bolder">{{Auth::user()->profileMatch($job->id)}}%</span></h3>
                     </div>
                 </div>
                 <div class="mt-3">
@@ -179,6 +180,23 @@
                         <div class="key_rnd">Adobe Illustrator</div>
                     </div>`
                 </div>
+                @else
+                <h4>
+                    Skill 
+                </h4>
+                <div class="row">
+                    <div class="col-md-12">
+                        @php
+                            $skillarr = $job->skill?array_column(json_decode($job->skill), 'value'):null;
+                        @endphp
+                        <div class="skils_prnt">
+                            @foreach($skillarr as $t)
+                                <div class="skill_rnd">{{$t}}</div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                @endif
             </div>
             <div class="card">
                 <div>

@@ -147,6 +147,7 @@ class UserController extends Controller
         $request['expected_salary']      = (int) str_replace(',',"",$request->input('expected_salary'));
         $request['location'] = $request->location;       
         $request['career_title'] = $request->career_title;
+        $request['notice_period'] = $request->notice_period;
         $request['total_experience'] = $request->exp_in_year.'.'.$request->exp_in_month;
         $request['salary_currency'] = $request->salary_currency;
         $request['country_id'] = $request->country_id;

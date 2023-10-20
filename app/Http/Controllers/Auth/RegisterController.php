@@ -227,6 +227,7 @@ class RegisterController extends Controller
         $user->salary_currency = $request->salary_currency;
         $user->country_id = $request->country_id;
         $user->location = $request->location;
+        $user->notice_period = $request->notice_period;
         if($user->next_process_level == 'career_info'){                
             $user->next_process_level = 'skills';
         }
