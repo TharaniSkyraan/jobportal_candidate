@@ -86,6 +86,7 @@ body{
 }
 .resultjobwb .job_tlers .jb_tles{
     font-size: 17px;
+    font-weight: 700 !important;
 }.resultjobwb .mgmw .grayc{
     margin-right: 5px;
 }.resultjobwb h4{
@@ -312,8 +313,6 @@ body{
     width: 60% !important;
 }
   
-
-
 @media(max-width: 768px){
     .breadcrumbty{
         margin-left: 12px;
@@ -326,6 +325,29 @@ body{
         display: none;
     }.resultjobwb .call_nhvcez{
         margin-top: 10px;
+    }#screenings .questionsdt {
+        padding: 15px;
+    }#screenings .first_mwe h1{
+        margin-top: 25px;
+        font-size: 18px;
+        text-align: center;
+        font-weight: 700 !important;
+    }.previous-btn, #screenings .first_mwe button{
+        font-size: 13px;
+        padding: 6px 10px;
+    }.open-jbwe img {
+        width: 55%;
+    }.questionsdt p{
+        text-align: center;
+        margin-bottom: 0px;
+    }.previous-btn.skip-submit{
+        justify-content: start;
+        display: flex;
+    }#fullquestions .content_mcv{
+        width: 100%;
+    }#fullquestions .quizs {
+        padding: 15px;
+        padding-top: 0px;
     }
 }
 
@@ -340,6 +362,11 @@ body{
         width: 20px;
     }.resultjobwb .applied_bm{
         display: none;
+    }#screenings .modal-content {
+        width: 80%;
+        margin: 0 auto;
+    }.open-jbwe img {
+        width: 45%;
     }
 }
 @media(min-width:576px) and (max-width:768px) {
@@ -364,6 +391,11 @@ body{
         width: 13px;
     }.navbar.jsky_hb .saved_jgb img{
         width: 21px;
+    }#screenings .modal-content {
+        width: 80%;
+        margin: 0 auto;
+    }.open-jbwe img {
+        width: 50%;
     }
 }
 @media(min-width:320px) and (max-width:480px) {
@@ -372,16 +404,18 @@ body{
         margin-right: 10px;
         height: 25px;
         object-fit: fill;   
-    }.resultjobwb .apply_div button{
-        display: none;
     }.jsky_hb.sticky button{
         display: none;
     }.navbar.jsky_hb img{
         width: 20px;
     }.resulty-width1{
         margin-bottom: 0rem!important;
+    }#screenings .modal-content {
+        width: 95%;
+        margin: 0 auto;
     }
 }
+
 
 @media(min-width:375px) and (max-width:480px) {
     .resultjobwb .round_pf img {
@@ -467,6 +501,15 @@ body{
         display: block;
     }.resultjobwb .applyrs_btn{
         display: none;
+    }.jhnt5vfd{
+        display: none;
+    }#fullquestions .header_mcv button {
+        padding: 3px 9px;
+        border-radius: 50px;
+    }.header_mcv button img{
+        margin-right: 0px;
+    }.resultjobwb .apply_div button{
+        display: none !important;
     }
 }
 
@@ -493,6 +536,13 @@ body{
     }.jsky_hb.sticky button {
         padding: 4px 10px;
         font-size: 14px;
+    }.open-jbwe img{
+        width: 70%;
+    }#screenings .first_mwe h1 {
+        font-size: 18px;
+        font-weight: 700 !important;
+    }#screenings .questionsdt {
+        padding: 22px;
     }
 }
 @media(min-width:1198px){
@@ -501,6 +551,15 @@ body{
         margin: 0 auto;
     }.resulty-width2{
         width: 70%;
+        margin: 0 auto;
+    }
+}
+
+@media(min-width: 992px) and (max-width: 1198px){
+    .open-jbwe img{
+        width: 70%;
+    }#screenings .modal-content{
+        width: 90%;
         margin: 0 auto;
     }
 }

@@ -664,9 +664,6 @@ font-size: 14px;
         font-size: 12px !important;
     }
 
-    .home_pgecities .card{
-        box-shadow: 0px 3px 6px #00000029;
-    }
 
     .home_pgecities .cities .card{
         padding: 1rem 0rem 0rem 1rem !important;
@@ -1912,11 +1909,6 @@ font-size: 14px;
             padding: 0px;
         }
 
-        .home_pgecities .cities .nav-link {
-            font-size: 14px;
-        }
-
-
         #homepage_stn .tab-content{
             margin-top: 0px !important;
         }
@@ -2039,7 +2031,7 @@ font-size: 14px;
         }
 
 
-        #homepage_stn, #footer{
+        #footer{
             padding: 15px !important;
         }
 
@@ -2292,10 +2284,7 @@ font-size: 14px;
         .hme_banner h3{
             font-size: 1rem;
         }
-        .popular_recent_src_hme h3{
-            font-size: 1.2rem;
-        }
-        
+    
         .home_pgecities .cities .nav-link {
             font-size: 16px;
         }
@@ -2312,9 +2301,7 @@ font-size: 14px;
         #homepage_stn .hmenear_job h2 {
             font-size: 1.1rem;
         }
-        #homepage_stn .hmenear_job h3 {
-            font-size: 1.1rem;
-        }
+       
         #homepage_stn .carousel h3 {
             font-size: 0.9rem;
         }

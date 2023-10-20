@@ -40,32 +40,33 @@
         </div>
 
         <section id="homepage_stn">
-
-            <div class="hme_banner">
-                <div class="kjnhj_jkeq">
-                    <div class="text-center jhotyp_jh">
-                        <h1>Begin your <br/><strong class="fw-bolder">Dream career.</strong></h1>
-                        <h3>
-                        <span> 1000+ Jobs posted all over the world </span><br/>
-                            <strong class="fw-bolder">Opportunities waiting for your successfull start</strong> 
-                        </h3>
-                        <button>Join the Job Hunt Now</button>
-                    </div>
-                    <div class="search_hme">
-                        <div class="card bg-primary sarchtopcrad">
-                            <div class="row">
-                                <div class="col-xl-5 col-md-5 col-lg-5 col-sm-5 col-10 align-self-center designation p-0 m-0">
-                                    {!! Form::search('designation', null, array('class'=>'form-control-2  typeahead', 'autocomplete'=>'off', 'id'=>'designation', 'data-mdb-toggle'=>"tooltip", 'data-mdb-placement'=>"left", 'title'=>"Designation required",
-                                    'placeholder'=>__('Job title, keywords or company'), 'spellcheck'=>'false' ) ) !!}
-                                </div>
-                                <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 p-0 m-0 pre-d align-self-center"><span class="pre">|</span></div>
-                                <div class="col-xl-5 col-md-5 col-lg-5 col-sm-5 col-5 align-self-center location p-0 m-0">
-                                    {!! Form::search('location', null, array('class'=>'form-control-2 typeahead', 'id'=>'location', 'autocomplete'=>'off','placeholder'=>__('On Location'),' aria-label'=>'On Location')) !!}
-                                </div>
-                                <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-2 p-0 m-0 align-self-center">                    
-                                    <button class='btn btn_c_se form-control px-0' id='msearch_btn'>
-                                        <span>Search</span><div class="mob"><i class="fa fa-search"></i></div>
-                                    </button>
+            <div class="pmbg_yt pb-0 pt-0">
+                <div class="hme_banner">
+                    <div class="kjnhj_jkeq">
+                        <div class="text-center jhotyp_jh">
+                            <h1>Begin your <br/><strong class="fw-bolder">Dream career.</strong></h1>
+                            <h3>
+                            <span> 1000+ Jobs posted all over the world </span><br/>
+                                <strong class="fw-bolder">Opportunities waiting for your successfull start</strong> 
+                            </h3>
+                            @if(Auth::check()) @else <a href="{{url('login')}}"><button>Join the Job Hunt Now</button></a>@endif
+                        </div>
+                        <div class="search_hme">
+                            <div class="card bg-primary sarchtopcrad">
+                                <div class="row">
+                                    <div class="col-xl-5 col-md-5 col-lg-5 col-sm-5 col-10 align-self-center designation p-0 m-0">
+                                        {!! Form::search('designation', null, array('class'=>'form-control-2  typeahead', 'autocomplete'=>'off', 'id'=>'designation', 'data-mdb-toggle'=>"tooltip", 'data-mdb-placement'=>"left", 'title'=>"Designation required",
+                                        'placeholder'=>__('Job title, keywords or company'), 'spellcheck'=>'false' ) ) !!}
+                                    </div>
+                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 p-0 m-0 pre-d align-self-center"><span class="pre">|</span></div>
+                                    <div class="col-xl-5 col-md-5 col-lg-5 col-sm-5 col-5 align-self-center location p-0 m-0">
+                                        {!! Form::search('location', null, array('class'=>'form-control-2 typeahead', 'id'=>'location', 'autocomplete'=>'off','placeholder'=>__('On Location'),' aria-label'=>'On Location')) !!}
+                                    </div>
+                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-2 p-0 m-0 align-self-center">                    
+                                        <button class='btn btn_c_se form-control px-0' id='msearch_btn'>
+                                            <span>Search</span><div class="mob"><img src="{{asset('images/home/searchm.svg')}}" alt="searchm-icon"></div>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -79,7 +80,7 @@
             <div class="popular_recent_src_hme">
                 @if(count($cachedatas)!=0)
                     <div class="reserch text-center">
-                        <div class="container">
+                        <div class="container-xl">
                             <h3 class="ps-2 mb-4">RECENT SEARCHES</h3>
                             @forelse($cachedatas as $key => $search)
                                 @if($key < 3 && ($search->designation !='' || $search->location !='')  )
@@ -92,7 +93,7 @@
                     </div>
                 @endif   
 
-                <div class="container">
+                <div class="container-xl jnsadsw">
                     <div class="popularser_card mt-4 text-center">
                         <h3 class="ps-2 mb-4">POPULAR JOBS</h3>
                         @forelse($titles as $title)
@@ -108,7 +109,7 @@
 
 
                 <div class="candidate_img text-center mt-5">
-                    <div class="container">
+                    <div class="container-xl">
                         <div class="candimg_parent">
                             <div class="row candimg_col">
                                 <h3><span class="jhn_trsw">EASY TO FIND JOBS IN </span><strong>”3 SIMPLE STEPS”</strong></h3>
@@ -181,7 +182,7 @@
                 </div>
             </div>
             <div class="nearbyjob">
-                <div class="container">
+                <div class="container-xl">
                     <div class="hmenear_job mt-5">
                         <div class="row m-0">
                             <div class="col-md-6 col-6">
@@ -192,10 +193,10 @@
                         
                         @if(count($near_job)!=0)
                         <div class="row m-0">
-                            <div class="col-md-8">
+                            <div class="col-md-8 col-9">
                                 <h3 class="mb-3 mt-3 text-capitalize">Top job posts</h3>
                             </div>
-                            <div class="col-md-4 align-self-center">
+                            <div class="col-md-4 col-3 align-self-center">
                                 <div class="text-end">
                                     <img src="{{asset('images/home/arrow2.svg')}}" alt="arrow-icon" id="passbtn">
                                 </div>
@@ -235,7 +236,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="container">
+                <div class="container-xl">
                     <div class="home_pgecities mt-5">
                         <div class="row">
                             <div class="home_pgecities cities">

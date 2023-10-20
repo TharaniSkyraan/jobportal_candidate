@@ -31,6 +31,7 @@
     box-shadow: 1px 1px 14px 0 rgb(18 38 63 / 20%) !important;
     right: 30px;
     top: 70px;
+    z-index: 999;
 }.pfcmpletalert .wrning{
     background:#D0DEF5;
     height: 60px;
@@ -151,7 +152,7 @@
 }.candimg_parent .arrow img{
     width: 60px;   
 }.hmenear_job .card{
-    box-shadow: 0px 0px 4px 0px #00000040;
+    box-shadow: 0px 0px 4px 0px #00000040 !important;
     border-radius: 4px !important;
 }#homepage_stn .hm_gr h3{
     font-weight: 600;
@@ -197,6 +198,8 @@
 }#topjobsector .card{
     padding: 1rem 0rem 0.7rem 1rem !important;
     background: #FCFCFC;
+}.home_pgecities .card{
+    box-shadow: 0px 3px 6px #00000029 !important;
 }
 
 @media(min-width: 1200px){
@@ -208,9 +211,161 @@
     }
 }
 
+@media(min-width: 320px) and (max-width: 480px){
+    .popularser_card h3 {
+        width: 45%;
+    }.popularser_card{
+        padding: 15px 0px;
+        border-radius: 0px !important;
+    }.jnsadsw{
+        padding: 0px;
+    }.pmbg_yt{
+        padding: 15px;
+    }.blog-sectionw .card {
+        padding: 8px;
+    }.blog-sectionw .item{
+        padding-right: 10px;
+    }
+}
+
+@media(max-width: 350px){
+    .blog-sectionw .item{
+        padding-right: 0px;
+    }
+}
+
 @media(max-width: 1200px){
     .pfcmpletalert{
         right: 12px;
+    }.pfcmpletalert span {
+        font-size: 12px;
+    }.pfcmpletalert .wrning img{
+        margin-right: 0px;
+        width: 40px;    
+    }.hme_banner .kjnhj_jkeq {
+        padding-top: 2rem;
+    }.hme_banner .jhotyp_jh button{
+        padding: 10px 15px;
+        font-size: 13px;
+    }.hme_banner h3 strong {
+        font-size: 16px;
+    }#homepage_stn h3 span {
+        font-size: 16px;
+    }.search_hme{
+        height: 200px;
+        margin-bottom: 30px;
+        bottom: -10px;
+    }.search_hme .sarchtopcrad{
+        bottom: 35px;
+        width: 100%;
+        border-radius: 0px;
+    }.search_hme .btn_c_se span{
+        display: none;
+    }.search_hme .mob{
+        display: block;
+    }.search_hme .form-control-2, .search_hme .btn_c_se{
+        padding: 0.6rem 0.35rem 0.45rem 1.5rem;
+    }.popular_recent_src_hme h3{
+        font-size: 0.9rem;
+    }.blog-sectionw .card h2 {
+        font-size: 16px;
+        margin-top: 15px;
+    }.blog-sectionw .card p.cntc {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        color: #4a545a;
+        -webkit-box-orient: vertical;
+        text-transform: capitalize;
+        font-size: 14px;
+        height: 45px;
+    }.blog-sectionw .card .grayc{
+        position: relative;
+    }
+}
+
+@media(max-width: 767px){
+    #homepage_stn .hmenear_job h3 {
+        font-size: 1rem;
+    }.hmenear_job #passbtn {
+        width: 9px;
+    }#homepage_stn .slick-next{
+        right: 0px;
+        z-index: 99;
+    }#homepage_stn .slick-prev{
+        left: 0px;
+        z-index: 99;
+    }#topjoblistings .hm_grn .kjhmg_yb{
+        display: none !important;
+    }#homepage_stn .slick-prev:before, #homepage_stn .slick-next:before{
+        font-size: 30px;
+    }.home_pgecities .cities .nav-tabs{
+        border: none !important;
+    }.wizard-tab ul .nav-item .nav-link{
+        padding-bottom: 8px !important;
+        padding-right: 0px;
+    }.wizard-tab h2 {
+        font-size: 20px;
+    }#homepage_stn .cities .nav-link {
+        font-size: 15px;
+    }.candpcard .fw-bolder{
+        font-size: 14px;
+    }.reserch .titsearch{
+        margin-bottom: 10px;
+    }.owl-theme .owl-dots .owl-dot:hover span, .owl-theme .owl-dots .owl-dot span{
+        width: 25px !important;
+        height: 5px !important;
+    }.candidate_img img {
+        width: 50px;
+    }#homepage_stn .candidate_img .candimg_col{
+        width: 100%;
+    }
+}
+
+@media(min-width: 481px) and (max-width: 576px){
+    .blog-sectionw .item{
+        padding-right: 10px;
+    }
+}
+
+@media(min-width: 768px) and (max-width: 1300px){
+   .hme_banner .jhotyp_jh {
+        margin-bottom: -30px;
+    }.hme_banner h1{
+        font-size: 35px;
+    }#homepage_stn h3 span {
+        font-size: 20px;
+    }.hme_banner h3 strong {
+        font-size: 18px;
+    }.hme_banner .jhotyp_jh button {
+        padding: 13px 85px;
+        font-size: 15px;
+    }
+}
+@media(min-width: 768px) and (max-width: 992px){
+    .search_hme .sarchtopcrad{
+        width: 92%;
+        border-radius: 5px;
+    }
+}
+
+@media(min-width: 992px) and (max-width: 1198px){
+    .search_hme .sarchtopcrad{
+        width: 85%;
+        border-radius: 5px;
+    }.pfcmpletalert{
+        margin-top: 0px !important;
+    }
+}
+
+@media(min-width: 576px) and (max-width: 767px){
+    .search_hme .card{
+        width: 88%;
+    }.search_hme .sarchtopcrad {
+        border-radius: 5px;
+    }.hme_banner .jhotyp_jh {
+        margin-bottom: -55px;
     }
 }
 

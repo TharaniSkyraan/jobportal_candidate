@@ -6,7 +6,7 @@
 @php $jtyv = ""; @endphp
 
 @include('layouts.header')
-    <button class="mobile_apply"><img src="{{asset('images/detailpage/apply_icon.svg')}}" alt="apply-icon"> Apply</button>
+    <button class="mobile_apply japplybtn" id="japplybtn" data-value="disabled"><img src="{{asset('images/detailpage/apply_icon.svg')}}" alt="apply-icon"> Apply</button>
     <!-- sticky header -->
     <nav class="navbar jsky_hb navbar-expand-lg navbar-light">
         <div class="container-xl">
@@ -177,7 +177,7 @@
                     <div class="skils_prnt">
                         <div class="key_rnd">Android</div>
                         <div class="key_rnd">Adobe Illustrator</div>
-                    </div>`
+                    </div>
                 </div>
             </div>
             <div class="card">
@@ -362,14 +362,14 @@
                                     to filter your profile to next level of interview
                                 </p>
                             </div>
-                            <div class="col-md-7 align-self-center">
+                            <div class="col-md-7 col-6 align-self-center">
                                 <div class="text-end space_hgtyu2">
-                                    <p class="m-0 cursor-pointer previous-btn skip-submit">Skip and apply</p>
+                                    <p class="m-0 cursor-pointer previous-btn skip-submit">Skip & apply</p>
                                 </div>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-5 col-6">
                                 <div class="text-end space_hgtyu">
-                                    <button>Attend and apply</button>
+                                    <button>Attend & apply</button>
                                 </div>
                             </div>
                         </div>
@@ -385,13 +385,13 @@
                 <form class="form" id="screeningQuiz" action="{{route('job.apply', $job->slug)}}" method="post">
                     @csrf
                     {!! Form::hidden('is_login',null, array('id'=>'is_login')) !!}
-                    <div class="container">
+                    <div class="container-xl">
                         <div class="header_mcv">
                             <div class="row">
-                                <div class="col-md-5 align-self-center">
-                                    <button type="button" data-bs-dismiss="modal" aria-label="Close"><img src="{{asset('images/detailpage/back_vrd.svg')}}" alt="back icon"> Back to job post</button>
+                                <div class="col-md-5 col-2 col-sm-4 align-self-center">
+                                    <button type="button" data-bs-dismiss="modal" aria-label="Close"><img src="{{asset('images/detailpage/back_vrd.svg')}}" alt="back icon"> <span class="jhnt5vfd">Back to job post</span></button>
                                 </div>
-                                <div class="col-md-7">
+                                <div class="col-md-7 col-10 col-sm-8">
                                     <a href=""><img src="{{asset('images/detailpage/logo.svg')}}" alt="logo-image" class="logo_mcv"></a>
                                 </div>
                             </div>
@@ -406,26 +406,6 @@
                                     <p><b>Note:</b> The Questions with the above sign are mandatory.</p>
                                 </div>
                             </div>
-                            <!-- <div class="quizs">
-                                <div class="mb-3">
-                                    <strong>Are you ready to relocate for your job?</strong>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="1" name="yesim" id="yescheck">
-                                    <label class="form-check-label" for="yescheck">
-                                        Yes
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="yesim" value="2" id="nocheck">
-                                    <label class="form-check-label" for="nocheck">
-                                        No
-                                    </label>
-                                </div>
-                                <div class="text-center">
-                                    <small class="text-danger"><img src="{{asset('images/detailpage/danger_hbg.svg')}}" alt="danger-validate" class="dng_jhgw"> Breakpoint question Can’t be Skipped.</small>
-                                </div>
-                            </div> -->
                             <div class="quizs">
                                 {{-- Question --}}
                                     @foreach ($job->screeningquiz as $key => $quiz)
