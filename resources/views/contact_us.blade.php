@@ -7,76 +7,86 @@
 @include('layouts.header')
 <div id="content-wrap">
     <div class="main mt-5">
-        <div class="container panel panel-default mb-5">
+        <div class="panel panel-default mb-2">
             <form id="contact-form">
-                {{-- <div class="row"> --}}
-                <div class="row flex-column-reverse flex-md-row">
-                    <div class="col-xl-5 col-lg-6 col-md-6 col-sm-12 col-12 contactinf">
-                        <h3>Contact Information</h3>
-                        <div class="d-flex mt-4 mb-3">
-                            <span class="m-3">
-                                <img draggable="false" src="{{asset('images/m_svg/call.svg')}}" class="phone-img border-radius-10 contact-icons" alt="...">
-                            </span>
-                            <span class="my-3">Phone <br>
-                                <a href="tel://+91-9900559924">+91-9900559924</a>
-                            </span>                               
-                        </div>
-                        <div class="d-flex email mb-3">
-                            <span class="m-3">
-                                <img draggable="false" src="{{asset('images/m_svg/mail.svg')}}" class="email-img border-radius-10 contact-icons" alt="...">
-                            </span>
-                            <span class="my-3">Email <br>
-                                <a href="mailto:contact@mugaam.com">contact@mugaam.com</a>
-                            </span> 
-                        </div>
-                        <div class="d-flex">                        
-                            <span class="m-3">
-                                <img draggable="false" src="{{asset('images/m_svg/location.svg')}}" class="address-img border-radius-10 contact-icons" alt="...">
-                            </span>
-                            <span class="my-3">Address <br>
-                                <a href="javascript:void(0)" class="cursor-default"> Hari Complex, 207/A3, Sathy Rd, opp. Prozone Mall, Saravanampatti, Coimbatore, Tamil Nadu 641035</a>
-                            </span>
+                <div class="row jhn_uywq">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 contactinf">
+                        <div class="curvw_mhaw1">
+                            <div class="curvw_mhaw2">
+                                <div class="first_shjb">
+                                    <img src="{{asset('images/m_svg/2.svg')}}" alt="side-image" draggable="false">
+                                </div>
+                                <div class="cnts_nhj">
+                                    <h3>Contact Information</h3>
+                                    <div class="d-flex mt-4 hjobgw">
+                                        <span class="m-3">
+                                            <img draggable="false" src="{{asset('images/m_svg/call.svg')}}" class="phone-img border-radius-10 contact-icons" alt="...">
+                                        </span>
+                                        <span class="my-3">Phone <br/>
+                                            <a href="tel://+91-9900559924">+91-9900559924</a>
+                                        </span>                               
+                                    </div>
+                                    <div class="d-flex email hjobgw">
+                                        <span class="m-3">
+                                            <img draggable="false" src="{{asset('images/m_svg/mail.svg')}}" class="email-img border-radius-10 contact-icons" alt="...">
+                                        </span>
+                                        <span class="my-3">Email <br>
+                                            <a href="mailto:contact@mugaam.com">contact@mugaam.com</a>
+                                        </span> 
+                                    </div>
+                                    <div class="d-flex hjobgw">                        
+                                        <span class="m-3">
+                                            <img draggable="false" src="{{asset('images/m_svg/location.svg')}}" class="address-img border-radius-10 contact-icons" alt="...">
+                                        </span>
+                                        <span class="my-3">Address <br>
+                                            <a href="javascript:void(0)" class="cursor-default"> Hari Complex, 207/A3, Sathy Rd, opp. Prozone Mall, Saravanampatti, Coimbatore, Tamil Nadu 641035</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 contactdet">
-                        <div id="success"></div>
-                        <h3>Send us a message</h3>
-                        <div class="row">
-                            <!-- Name input -->
-                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-6 col-12">
-                                <div class="form-group mb-3">
-                                    <input class="form-control" id="name" type="text" placeholder="Name" name="name"
-                                        value="{{old('name')}}" autocomplete="off" />
-                                    <span class="text-danger" id="name-error"></span>
+                        <div class="submit_jnhb">
+                            <div id="success"></div>
+                            <h3>Send us a message</h3>
+                            <div class="row">
+                                <!-- Name input -->
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-6 col-12">
+                                    <div class="form-group mb-3">
+                                        <input class="form-control" id="name" type="text" placeholder="Name" name="name"
+                                            value="{{old('name')}}" autocomplete="off" />
+                                        <span class="text-danger" id="name-error"></span>
 
+                                    </div>
+                                </div>
+
+                                <!-- Email address input -->
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-6 col-12">
+                                    <div class="form-group mb-3">
+                                        <input class="form-control" id="email" type="text" name="email"
+                                            placeholder="Email Address" value="{{old('email')}}" autocomplete="off" />
+                                        <span class="text-danger" id="email-error"></span>
+                                    </div>
                                 </div>
                             </div>
-
-                            <!-- Email address input -->
-                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-6 col-12">
-                                <div class="form-group mb-3">
-                                    <input class="form-control" id="email" type="text" name="email"
-                                        placeholder="Email Address" value="{{old('email')}}" autocomplete="off" />
-                                    <span class="text-danger" id="email-error"></span>
-                                </div>
+                            <!-- Subject input -->
+                            <div class="form-group mb-3">
+                                <input class="form-control" id="subject" type="text" name="subject"
+                                    placeholder="Subject" value="{{old('subject')}}" autocomplete="off" />
+                                <span class="text-danger" id="subject-error"></span>
                             </div>
-                        </div>
-                        <!-- Subject input -->
-                        <div class="form-group mb-3">
-                            <input class="form-control" id="subject" type="text" name="subject"
-                                placeholder="Subject" value="{{old('subject')}}" autocomplete="off" />
-                            <span class="text-danger" id="subject-error"></span>
-                        </div>
-                        <!-- Message input -->
-                        <div class="form-group mb-5">
-                            <textarea class="form-control" id="message" type="text" name="message"
-                                placeholder="Message" style="height:8rem !important;" value="{{old('message')}}"
-                                autocomplete="off"></textarea>
-                            <span class="text-danger" id="message-error"></span>
-                        </div>
-                        <!-- Form submit button -->
-                        <div class="d-grid" style="cursor:pointer">
-                            <button class="btn search-button-bg" type="submit" id="msearch_btn">Send Message</button>
+                            <!-- Message input -->
+                            <div class="form-group mb-5">
+                                <textarea class="form-control" id="message" type="text" name="message"
+                                    placeholder="Message" style="height:8rem !important;" value="{{old('message')}}"
+                                    autocomplete="off"></textarea>
+                                <span class="text-danger" id="message-error"></span>
+                            </div>
+                            <!-- Form submit button -->
+                            <div class="d-grid" style="cursor:pointer">
+                                <button class="btn search-button-bg" type="submit" id="msearch_btn">Send Message</button>
+                            </div>
                         </div>
                     </div>
                 </div>

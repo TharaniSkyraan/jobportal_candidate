@@ -1,5 +1,5 @@
 body{
-    background:linear-gradient(to left top, #eee, #eeeeee8f, #eeeeeeba, #eeeeee26, #ffffff);
+    background: linear-gradient(126.07deg, #FFFFFF 6.7%, #E3E3E3 98.36%);
   }
   .search-button-bg{
     background-color: #4285F4;
@@ -14,58 +14,88 @@ body{
     box-shadow: 0 0 0 2px #fff, 0 0 0 3px #2557a7f2 !important; 
   }
   .contact-icons {
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
     padding: 13.5px 16px;
     align-items: center;
+    box-shadow: 4px 0px 35px 0px #00000029;
     justify-content: center;
     display: inline-flex;
     border-radius: 30px;
     font-size: 22px !important;
   }
   .address-img.contact-icons {
-    background: #ea43350d;
+    background: #F9F9F9;
   }
   .phone-img.contact-icons {
-    background: #25d36612;
+    background: #E1FFE9;
   }
   .email-img.contact-icons {
-    background: #4285f412;
+    background: #F9F9F9;
   }
   .fa-paper-plane{
     padding: 13.5px 12px !important;
   }
   .fa-map-marker{
    padding: 13.5px 18px !important;
+
   }
-  .main{
-    background-image:url('../../../images/m_svg/2.svg');
-    background-repeat: no-repeat;
-    background-size: 10% 94%;
-  }
-  /* .main .container-fluid{
-    background-image:url('../../../images/m_svg/2.svg');
-    background-repeat: no-repeat;
-    background-position: left;
-    background-size: 9% 69%;
-  } */
   .contactinf .email{
     padding-left: 3rem;
   }
-  .contactinf{
-    font-weight: 400 !important;
-    padding-left: 2rem;
-    padding-top: 1.5rem;
-  }
+ 
   .contactinf a{
     color:#000 !important;
   }
-  .contactdet{
-    /* background: linear-gradient(to right bottom, #eaf1ff00, #eaf1ff0a, #eaf1ff30, #eaf1ff00, #ffffff);         */
-  }
+ 
   .contactinf h3{
     display: none;
   }
+.first_shjb img{
+  position: absolute;
+  left: 0px;
+  top: 50px;
+  width: 140px;
+}.jhn_uywq{
+  width: 100%;
+  --bs-gutter-x: 0rem;
+}
+
+.curvw_mhaw1 {
+  position: relative;
+  overflow: hidden;
+  height: 95%;
+  background: linear-gradient(135.78deg, #E9F1FF -0.96%, #FFFFFF 102.06%);
+}.curvw_mhaw1::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  border: 15px solid transparent;
+}.curvw_mhaw1::after {
+  border-bottom: 615px solid transparent;
+  border-right: 185px solid #f3f3f3;
+  right: 0;
+  bottom: 0;
+}
+.curvw_mhaw2 {
+  position: relative;
+  z-index: 1;
+}.cnts_nhj{
+  margin-left: 130px;
+}.submit_jnhb{
+  width: 80%;
+  margin: 0 auto;
+}.cnts_nhj .hjobgw{
+  margin-bottom: 3.5rem;
+}
+
+
+
+
+
+
+
+
   @media (max-width: 1200px)
   {
     /* .main .container-fluid{

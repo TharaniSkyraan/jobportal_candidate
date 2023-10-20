@@ -4,44 +4,18 @@
 <link href="{{ asset('site_assets_1/assets/1a9ve2/css/userbasic.w2fr4ha2.css')}}" rel="stylesheet">
 <link href="{{ asset('site_assets_1/assets/1a9ve2/css/chpg.er23fw.css')}}" rel="stylesheet">
 <link href="{{asset('css/main_2.css')}}" rel="stylesheet">
+<link href="{{asset('css/hmewq1om.css')}}" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.8/slick.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.8/slick-theme.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" rel="stylesheet" />
 @endsection
 @section('content')
-<style>
-.carousel{
-  width:95%;
-  margin:0px auto;
-}
-.slick-slide{
-  margin:10px;
-}
-.slick-slide img{
-  /* width:100%;
-  border: 2px solid #eee; */
-  display: unset;
-}
-.slick-prev, .slick-next{
-  color:#000;
-}
-.slick-prev:before, .slick-next:before{
-  color:#000;
-}
-.slick-disabled {
-  display: none !important;
-}
-
-.slick-prev:before ,
-.slick-next:before {color: #d4d4d4 !important;font-size: 30px;}
-
-</style>
-@include('layouts.header')
-@include('layouts.search_side_navbar')
+    @include('layouts.header')
+    @include('layouts.search_side_navbar')
     <div class="content">
-        
         <div class="myprofile_sec">
             <!--alert profile-->
             @if(Auth::check())
@@ -68,28 +42,31 @@
         <section id="homepage_stn">
 
             <div class="hme_banner">
-                <div class="text-center pt-5">
-                    <h1>Begin your <br/><strong class="fw-bolder">Dream career.</strong></h1>
-                    <h3>
-                       <span class="fw-lighter"> 1000+ Jobs posted all over the world </span><br/>
-                        <strong class="fw-bolder">Opportunities waiting for your successfull start</strong> 
-                    </h3>
-                </div>
-                <div class="search_hme ">
-                    <div class="card bg-primary sarchtopcrad">
-                        <div class="row">
-                            <div class="col-xl-5 col-md-5 col-lg-5 col-sm-5 col-10 align-self-center designation p-0 m-0">
-                                {!! Form::search('designation', null, array('class'=>'form-control-2  typeahead', 'autocomplete'=>'off', 'id'=>'designation', 'data-mdb-toggle'=>"tooltip", 'data-mdb-placement'=>"left", 'title'=>"Designation required",
-                                'placeholder'=>__('Job title, keywords or company'), 'spellcheck'=>'false' ) ) !!}
-                            </div>
-                            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 p-0 m-0 pre-d align-self-center"><span class="pre">|</span></div>
-                            <div class="col-xl-5 col-md-5 col-lg-5 col-sm-5 col-5 align-self-center location p-0 m-0">
-                                {!! Form::search('location', null, array('class'=>'form-control-2 typeahead', 'id'=>'location', 'autocomplete'=>'off','placeholder'=>__('On Location'),' aria-label'=>'On Location')) !!}
-                            </div>
-                            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-2 align-self-center p-0 m-0">                    
-                                <button class='btn btn_c_se form-control px-0' id='msearch_btn'>
-                                    <i class="fa fa-search"></i>
-                                </button>
+                <div class="kjnhj_jkeq">
+                    <div class="text-center jhotyp_jh">
+                        <h1>Begin your <br/><strong class="fw-bolder">Dream career.</strong></h1>
+                        <h3>
+                        <span> 1000+ Jobs posted all over the world </span><br/>
+                            <strong class="fw-bolder">Opportunities waiting for your successfull start</strong> 
+                        </h3>
+                        <button>Join the Job Hunt Now</button>
+                    </div>
+                    <div class="search_hme">
+                        <div class="card bg-primary sarchtopcrad">
+                            <div class="row">
+                                <div class="col-xl-5 col-md-5 col-lg-5 col-sm-5 col-10 align-self-center designation p-0 m-0">
+                                    {!! Form::search('designation', null, array('class'=>'form-control-2  typeahead', 'autocomplete'=>'off', 'id'=>'designation', 'data-mdb-toggle'=>"tooltip", 'data-mdb-placement'=>"left", 'title'=>"Designation required",
+                                    'placeholder'=>__('Job title, keywords or company'), 'spellcheck'=>'false' ) ) !!}
+                                </div>
+                                <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 p-0 m-0 pre-d align-self-center"><span class="pre">|</span></div>
+                                <div class="col-xl-5 col-md-5 col-lg-5 col-sm-5 col-5 align-self-center location p-0 m-0">
+                                    {!! Form::search('location', null, array('class'=>'form-control-2 typeahead', 'id'=>'location', 'autocomplete'=>'off','placeholder'=>__('On Location'),' aria-label'=>'On Location')) !!}
+                                </div>
+                                <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-2 p-0 m-0 align-self-center">                    
+                                    <button class='btn btn_c_se form-control px-0' id='msearch_btn'>
+                                        <span>Search</span><div class="mob"><i class="fa fa-search"></i></div>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -101,16 +78,13 @@
             @endphp
             <div class="popular_recent_src_hme">
                 @if(count($cachedatas)!=0)
-                    <div class="reserch text-center mt-3">
+                    <div class="reserch text-center">
                         <div class="container">
                             <h3 class="ps-2 mb-4">RECENT SEARCHES</h3>
                             @forelse($cachedatas as $key => $search)
                                 @if($key < 3 && ($search->designation !='' || $search->location !='')  )
-                                    <label class="cursor-pointer resentsearch plerhvr titsearch px-2 mx-1 py-1 mt-1 border border-1 rounded-pill shadow-sm" data-d="{{$search->designation}}" data-l="{{$search->location}}">
-                                        <span class="">
-                                            <img src="{{ asset('images/home/search-icon.png') }}">
-                                        </span>
-                                        <span class="">{{$search->designation}} {{$search->location}}</span>
+                                    <label class="cursor-pointer resentsearch plerhvr titsearch" data-d="{{$search->designation}}" data-l="{{$search->location}}">                                            
+                                        <div class="text_ygb"><img src="{{ asset('images/home/search-icon.png') }}"><span>{{$search->designation}} {{$search->location}}</span></div>
                                     </label>
                                 @endif
                             @endforeach
@@ -120,23 +94,27 @@
 
                 <div class="container">
                     <div class="popularser_card mt-4 text-center">
-                        <h3 class="ps-2 mb-4">POPULAR JOB</h3>
+                        <h3 class="ps-2 mb-4">POPULAR JOBS</h3>
                         @forelse($titles as $title)
-                        <label class="cursor-pointer resentsearch plerhvr titsearch border border-1 rounded-pill shadow-sm" data-d="{{$title->title}}" data-l="">
-                            <span class="">
-                                <i class="fa fa-hand-pointer-o pe-1" aria-hidden="true"></i>
-                            </span>
+                        <label class="cursor-pointer resentsearch plerhvr titsearch border border-1 rounded-pill" data-d="{{$title->title}}" data-l="">
                             <span class="">{{$title->title}}</span>
+                            <span class="">
+                                <img src="{{asset('images/home/arrow1.svg')}}" alt="arrow-image">
+                            </span>
                         </label>
                         @endforeach
                     </div>
                 </div>
 
+
                 <div class="candidate_img text-center mt-5">
                     <div class="container">
                         <div class="candimg_parent">
                             <div class="row candimg_col">
-                                <h3 class="mb-5">EASY TO FIND JOBS IN <strong>”3 SIMPLE STEPS”</strong></h3>
+                                <h3><span class="jhn_trsw">EASY TO FIND JOBS IN </span><strong>”3 SIMPLE STEPS”</strong></h3>
+                                <div class="jh_ubvgqe1 mb-5">
+                                    <hr class='jh_ubvgqe2'/>
+                                </div>
                                 <div class="col-md col-lg align-self-center">
                                     <div class="mobile_bnr">
                                         <div class="row">
@@ -205,22 +183,27 @@
             <div class="nearbyjob">
                 <div class="container">
                     <div class="hmenear_job mt-5">
-                        <div class="row">
+                        <div class="row m-0">
                             <div class="col-md-6 col-6">
                                 <h1>Jobs near you</h1>
                                 <h2>{{$ip_data['city']??''}}</h2>
                             </div>
-                            <div class="col-md-6 col-6 text-end align-self-end">
-                                <i id="passbtn" class="far fa-arrow-alt-circle-right cursor-pointer"></i>
-                            </div>
                         </div>
-                        <hr class="mt-1 mb-3"/>
                         
                         @if(count($near_job)!=0)
-                        <h3 class="mb-3 fw-bold mt-3">Top job posts</h3>
+                        <div class="row m-0">
+                            <div class="col-md-8">
+                                <h3 class="mb-3 mt-3 text-capitalize">Top job posts</h3>
+                            </div>
+                            <div class="col-md-4 align-self-center">
+                                <div class="text-end">
+                                    <img src="{{asset('images/home/arrow2.svg')}}" alt="arrow-icon" id="passbtn">
+                                </div>
+                            </div>
+                        </div>
                         <div class="carousel">
                             @foreach($near_job as $near)
-                            <div class="card p-4 hm_gr cursor-pointer jobsearch">
+                            <div class="card p-3 hm_gr cursor-pointer jobsearch">
                                 <h3 class="jobsearchtitle"><img src="{{asset('site_assets_1/assets/img/side_nav_icon/title.png')}}"width="7px" class="me-2 ms-1" draggable="false" alt=""> {{$near->title}}</h3>
                                 <p><img src="{{asset('site_assets_1/assets/img/side_nav_icon/industry.png')}}" class="image-size" draggable="false" alt=""> {{$near->company_name}}</p>
                             </div>  
@@ -233,11 +216,11 @@
                         @endif
 
                         @if(count($recent_job)!=0)
-                            <div class="mt-3">
-                                <h3 class="mb-3 fw-bold">Recent posts</h3>
+                            <div class="mt-3 renty_pocdd">
+                                <h3 class="mb-3 fw-bold text-capitalize">Recent posts</h3>
                                 <div class="carousel">
                                     @foreach($recent_job as $recent)
-                                        <div class="card p-4 hm_gy cursor-pointer">
+                                        <div class="card p-3 hm_gy cursor-pointer">
                                             <a href="{{url('detail',$recent->slug)}}" class="text-dark">
                                                 <h3><img src="{{asset('site_assets_1/assets/img/side_nav_icon/title.png')}}" width="7px" class="me-2 ms-1" draggable="false" alt=""> {{$recent->title}}</h3>
                                                 <p><img src="{{asset('site_assets_1/assets/img/side_nav_icon/industry.png')}}" class="image-size" draggable="false" alt=""> {{$recent->company_name}}</p>
@@ -258,21 +241,21 @@
                             <div class="home_pgecities cities">
                                 <div class="card-body wizard-tab">
                                     <!-- Nav tabs -->
-                                    <h2 class="mb-3 mt-3 text-center fw-bolder">TOP</h2>
+                                    <h2 class="mb-4 mt-3 text-center fw-bolder">TOP</h2>
                                     <ul class="nav nav-tabs justify-content-around" id="candiftabs" role="tablist">
                                         @if(count($job_list)!=0)
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link active" id="received-tab" data-bs-toggle="tab" data-bs-target="#topjoblistings" type="button" role="tab" aria-controls="received" aria-selected="true"> JOB LISTINGS</button>
+                                            <button class="nav-link active" id="received-tab" data-bs-toggle="tab" data-bs-target="#topjoblistings" type="button" role="tab" aria-controls="received" aria-selected="true"> Job Listings</button>
                                         </li>  
                                         @endif
                                         @if(count($top_cities)!=0)
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link @if(count($job_list)==0) active @endif" id="suggested-tab" data-bs-toggle="tab" data-bs-target="#topcities" type="button" role="tab" aria-controls="suggested" aria-selected="false">CITIES</button>
+                                            <button class="nav-link @if(count($job_list)==0) active @endif" id="suggested-tab" data-bs-toggle="tab" data-bs-target="#topcities" type="button" role="tab" aria-controls="suggested" aria-selected="false">Cities</button>
                                         </li>
                                         @endif
                                         @if(count($top_sector)!=0)
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link @if(count($job_list)==0 && count($top_cities)==0) active @endif" id="shortlisted-tab" data-bs-toggle="tab" data-bs-target="#topjobsector" type="button" role="tab" aria-controls="shortlisted" aria-selected="false">JOB SECTORS</button>
+                                            <button class="nav-link @if(count($job_list)==0 && count($top_cities)==0) active @endif" id="shortlisted-tab" data-bs-toggle="tab" data-bs-target="#topjobsector" type="button" role="tab" aria-controls="shortlisted" aria-selected="false">Job Sectors</button>
                                         </li>
                                         @endif
                                     </ul>
@@ -291,7 +274,7 @@
                                                                             <h3 class="fw-bolder">{{$joblist->title}}</h3>
                                                                             <p>{{$joblist->total_count}} + jobs</p>
                                                                         </div>
-                                                                        <div class="col-4 d-flex justify-content-center">
+                                                                        <div class="col-4 d-flex justify-content-center kjhmg_yb">
                                                                             <p>&nbsp;&nbsp;&nbsp;<i class="fas fa-angle-right"></i></p>
                                                                         </div>
                                                                     </div>
@@ -307,8 +290,9 @@
                                                 <div class="caconsection-disabl" id="suggested-c">
                                                     <div class="card-body candpcard" data-id="10" data-appstatus="view">
                                                         <div class="carousel-top">
+                                                            @php $i =0; @endphp
                                                         @foreach($top_cities as $cities)
-                                                            <div class="card hm_grn cursor-pointer topcities">
+                                                            <div class="card @if($i == 0) hm_grn @else hm_grn1 @endif cursor-pointer topcities">
                                                                 <div class="row">
                                                                     <div class="col-6">
                                                                         <h3 class="fw-bolder city">{{$cities->city}}</h3>
@@ -316,10 +300,15 @@
                                                                     </div>
                                                                     <div class="col-6 d-flex align-items-center justify-content-center">
                                                                         <h5>View all</h5>
-                                                                        <p class="align-items-center justify-content-center d-flex">&nbsp;&nbsp;&nbsp;<i class="far fa-arrow-alt-circle-right"></i></p>
+                                                                        <p class="align-items-center justify-content-center d-flex upu5dc_ivdf">
+                                                                            &nbsp;&nbsp;&nbsp;<img src="{{asset('images/home/arrow3.svg')}}" alt="arrow-image"></p>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            @php $i++; @endphp
+                                                            @if($i == 2)
+                                                                @php $i = 0; @endphp
+                                                            @endif
                                                         @endforeach
                                                         </div>                                                  
                                                     </div>
@@ -334,10 +323,10 @@
                                                             @foreach($top_sector as $sector)
                                                                 <div class="card hm_grn cursor-pointer topsector">
                                                                     <div class="row">
-                                                                        <div class="col-4">
+                                                                        <div class="col-3 text-center">
                                                                             <img draggable="false" src="{{url('images/hme_designing.png')}}" width="100%">
                                                                         </div>
-                                                                        <div class="col-8 align-self-center">
+                                                                        <div class="col-9 align-self-center">
                                                                             <h3 class="fw-bolder sector">{{$sector->industry}}</h3>
                                                                             <p>{{$sector->jobsearch_count}} + jobs
                                                                             <div class="test22"><i class="fas fa-angle-right"></i></div>
@@ -358,46 +347,6 @@
                     </div>
                 </div>
             </div>
-
-            {{-- <div class="hme_blogsectn mb-5">
-                <div class="container">
-                    <h2 class="fw-bolder mb-4">Blog</h2>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card">
-                                <img draggable="false" src="{{asset('images/homepg_advance.webp')}}" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="fw-bolder">Plan your Work in advance</p>
-                                    <p class="card-text text-truncate">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                                    <p class="hm_post">posted 18/10/2022</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="card">
-                                <img draggable="false" src="{{asset('images/homepg_work.webp')}}" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="fw-bolder">Tired of Work</p>
-                                    <p class="card-text text-truncate">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                                    <p class="hm_post">posted 18/10/2022</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="card">
-                                <img draggable="false" src="{{asset('images/homepg_employee.webp')}}" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p class="fw-bolder">How To face your fellow employess</p>
-                                    <p class="card-text text-truncate">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
-                                    <p class="hm_post">posted 18/10/2022</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
 
             <div class="container-xl">
                 <div class="blog-sectionw">
@@ -422,7 +371,7 @@
                                         <div class="card">
                                             <div class="row">
                                                 <div class="col-md-12 col-lg-12 col-xl-5">
-                                                    <img src="{{$row->thumbnail_url}}" alt="" draggable="false">
+                                                    <img src="{{$row->thumbnail_url}}" alt="{{$row->slug}}" class="img-fluid" draggable="false">
                                                 </div>
                                                 <div class="col-md-12 col-lg-12 col-xl-7">
                                                     <h2 class="fw-bolder">{{$row->title}}</h2>
@@ -440,14 +389,17 @@
             </div>
         </section>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>               
-    <script type="text/javascript">   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>    
+    <script type="text/javascript"> 
         var baseurl = '{{ url("/") }}/';
         var current_city = "{{$ip_data['city']??''}}";
         
         var path1 = '{{ url("api/autocomplete/search_designation") }}';
         var path = '{{ url("api/autocomplete/search_location") }}';
+
+
         $(document).ready(function(){
             $('.carousel').slick({
                 slidesToShow: 3,
