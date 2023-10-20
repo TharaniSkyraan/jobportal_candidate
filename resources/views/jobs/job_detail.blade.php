@@ -16,7 +16,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    <img src="@isset($job->company->company_image){{asset('images/detailpage/profile.svg')}}@else @endif" alt="profile-image" class="profilestcky">
+                                    <img src="@isset($job->company->company_image){{$job->company->company_image}}@else {{asset('images/detailpage/profile.svg')}} @endif" alt="profile-image" class="profilestcky">
                                 </td>
                                 <td>
                                     <span>{{ ucwords($job->title) }}</span>
@@ -53,7 +53,7 @@
                             <tr>
                                 <td class="profile_clum">
                                     <div class="round_pf">
-                                        <img src="@isset($job->company->company_image){{$job->company->company_image}}@else @endif" alt="company-profile" class="companyty-pf" draggable="false">
+                                        <img src="@isset($job->company->company_image){{$job->company->company_image}}@else {{asset('images/detailpage/profile.svg')}} @endif" alt="company-profile" class="companyty-pf" draggable="false">
                                     </div>
                                 </td>
                                 <td class="job_tlers">
