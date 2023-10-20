@@ -45,7 +45,7 @@
                 <span><a href="{{url('/')}}" class="text-dark"><img src="{{asset('images/detailpage/breadcrumb.svg')}}" alt="breadcrumb-arrow"> Back to Home</a></span>
             </div>            
         </div>
-        <div class="resulty-width2">
+        <div class="resulty-width2 mb-5">
             <div class="card pb-3">
                 <div class="row">
                     <div class="col-md-9 col-lg-9 col-xl-10 col-sm-9">
@@ -157,14 +157,18 @@
                 <h4>
                     Keywords matching with your profile
                 </h4>
-                <p>Top 5 keywords of your profile</p>
+                <p>Matching Skills to the Job Post</p>
                 <div class="row">
                     <div class="col-md-9">
                         @php
                             $skillarr = $job->skill?array_column(json_decode($job->skill), 'value'):null;
+                            $jobSkill=array_column(json_decode($job->skill), 'value');
+                            $userSkill=explode(",",Auth::user()->getUserSkillsStr());
+                            $matched_skills = array_intersect($jobSkill,$userSkill);
+                            $unmatched_skills = array_diff($jobSkill,$userSkill);
                         @endphp
                         <div class="skils_prnt">
-                            @foreach($skillarr as $t)
+                            @foreach($matched_skills as $t)
                                 <div class="skill_rnd">{{$t}}</div>
                             @endforeach
                         </div>
@@ -174,10 +178,11 @@
                     </div>
                 </div>
                 <div class="mt-3">
-                    <p>Other keywords from your profile</p>
+                    <p>Other extra skill sets you have include</p>
                     <div class="skils_prnt">
-                        <div class="key_rnd">Android</div>
-                        <div class="key_rnd">Adobe Illustrator</div>
+                        @foreach($unmatched_skills as $t)
+                            <div class="key_rnd">{{$t}}</div>
+                        @endforeach
                     </div>`
                 </div>
                 @else
@@ -281,19 +286,19 @@
                             <a href="{{ $job->company->website_url}}">{{ $job->company->website_url}}</a>
                         </div>
                     @endisset               
-                    <div class="row">
-                        @if($job->company->fb_url || $job->company->linkedin_url || $job->company->insta_url )
-                            <div class="col-md-9 col-7 col-sm-9">
+                    <div class="d-flex justify-content-between">
+                        <div class="">
+                            @if($job->company->fb_url || $job->company->linkedin_url || $job->company->insta_url )
                                 <h5 class="mb-3"><span class="mblef">Other</span>Social media <span class="mblef">links</span></h5>
                                 <div class="d-flex socialsimg">
                                     @isset($job->company->fb_url)<span><a href="{{$job->company->fb_url}}"><img src="{{asset('images/detailpage/facebook.svg')}}" alt="facebook-image"></a></span>@endif
                                     @isset($job->company->linkedin_url)<span><a href="{{$job->company->linkedin_url}}"><img src="{{asset('images/detailpage/linkedin.svg')}}" alt="linkedin-image"></a></span>@endif
                                     @isset($job->company->insta_url)<span><a href="{{$job->company->insta_url}}"><img src="{{asset('images/detailpage/instagram.svg')}}" alt="instagram-image"></a></span>@endif
                                 </div>
-                            </div>
-                        @endif
+                            @endif
+                        </div>
                         @isset($job->company)
-                            <div class="col-md-3 col-5 col-sm-3 align-self-end">
+                            <div class="">
                                 <div class="know_cmpany">
                                     <a href="{{url('company-view/'.$job->company->slug)}}" class="knowmr"><span>Know more <img src="{{asset('images/detailpage/know_mre.svg')}}" alt="know-more"></span></a>
                                 </div>
@@ -302,7 +307,7 @@
                     </div>
                 </div>
 
-                <div class="card walkin_cd mb-5 align-self-center">
+                <div class="card walkin_cd align-self-center">
                     <h4>
                         Walk-in
                     </h4>
