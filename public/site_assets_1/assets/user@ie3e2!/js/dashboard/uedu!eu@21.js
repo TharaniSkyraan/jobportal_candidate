@@ -99,7 +99,6 @@
           setMsg('to_year','Please select Greater than from month'); errStaus=true;
         }
       }
-      alert(errStaus);
       if(errStaus) {
         return false;
       } else {
@@ -130,8 +129,7 @@
     {
 
       // Education form validation starts    
-      var result = validateeducationForm();   
-
+      var result = validateeducationForm(); 
       if(result != false)
       {    
 
@@ -165,6 +163,9 @@
                 $('.edu-'+education_level_id).removeClass('no_fillfield');
               }
               // profilePercentage();
+              
+              toastr.options.timeOut = 1000;
+              toastr.success('Successfully Updated.');  
              
             },
             error: function(json){

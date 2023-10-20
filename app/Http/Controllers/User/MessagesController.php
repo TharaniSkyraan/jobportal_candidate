@@ -155,7 +155,7 @@ class MessagesController extends Controller
         $maildata['user_name'] = $user->getName();
         $maildata['user_email'] = $user->email;
       
-        Mail::send(new MessageSendMail($maildata));
+        // Mail::send(new MessageSendMail($maildata));
 
         if(!empty($company->phone) && $company->is_mobile_verified=='yes')
         {
@@ -165,7 +165,7 @@ class MessagesController extends Controller
                 "messaging_product"=>"whatsapp",
                 "type"=>"template",
                 "template"=>[
-                    "name"=>"message_notification_with_subject",
+                    "name"=>"new_message_notification",
                     "language"=>[
                         "code"=>"en_US"
                     ],
@@ -176,10 +176,6 @@ class MessagesController extends Controller
                                 [
                                     "type"=>"text",
                                     "text"=>$user->getName().' for '.$job->title
-                                ],
-                                [
-                                    "type"=>"text",
-                                    "text"=>'Sample Subject'
                                 ],
                                 [
                                     "type"=>"text",

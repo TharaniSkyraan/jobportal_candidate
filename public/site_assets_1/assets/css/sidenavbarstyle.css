@@ -134,6 +134,7 @@
   /* justify-content: space-between; */
   /* margin-top: 40px; */
   overflow-y: auto;
+  overflow-x: hidden;
   height: calc(100% - 82px);
   margin-right: -10px;
 

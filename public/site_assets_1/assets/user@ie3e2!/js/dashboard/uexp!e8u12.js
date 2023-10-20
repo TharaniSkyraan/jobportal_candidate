@@ -137,6 +137,9 @@
           });
           
           $('.addExperience').show();
+          
+          toastr.options.timeOut = 1000;
+          toastr.success('Successfully Updated.');  
           // profilePercentage();
         },
         error: function(json){

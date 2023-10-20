@@ -88,7 +88,7 @@ class MyJobsController extends BaseController
      */
     public function appliedJobsList(Request $request)
     {      
-        $user_id = Auth::user()->id??710;
+        $user_id = Auth::user()->id;
         $user = User::find($user_id);
         $sortBy = $request->sortBy??'all';
         // shortlist // view
@@ -101,11 +101,14 @@ class MyJobsController extends BaseController
                                     }
                                })->whereHas('job', function($q1){
                                     $q1->whereNotNull('slug');
-                               })->orderBy('created_at','asc')
-                                 ->paginate(10);
-                             
+                               })->withCount('job')
+                                ->havingRaw("job_count != 0")
+                                ->orderBy('created_at','asc')
+                                ->paginate(10);
+                                
+                           
         $appliedjobs = array_map(function ($appliedjob) use($user) {
-            $job = Job::find($appliedjob['job_id']);
+            $job = Job::where('id',$appliedjob['job_id'])->withTrashed()->first();
             $val = array(
                 'id'=>$appliedjob['id'],
                 'job_id'=>$job->id,
@@ -200,9 +203,9 @@ class MyJobsController extends BaseController
                             })->orderBy('created_at',$orderBy)
                              ->paginate(10);
                             
-        $savedjobs = array_map(function ($savedjob) use($user) 
+                    $savedjobs = array_map(function ($savedjob) use($user) 
                         {
-                            $job = Job::find($savedjob['job_id']);
+                            $job = Job::where('id',$savedjob['job_id'])->withTrashed()->first();
                             $val = array(
                                 'id'=>$savedjob['id'],
                                 'job_id'=>$job->id,

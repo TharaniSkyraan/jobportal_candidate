@@ -407,6 +407,7 @@ $(document).on('click', '.textClose', function (event) {
 
 $(document).on('click', '.textSend', function (event) {
     if (!$(this).hasClass('disabled')) {
+        resetMessage();
         sendChatMessages();
     }
 });
@@ -422,7 +423,6 @@ function sendChatMessages()
         data: { "_token": csrf_token, 'message_id': act_mid, 'message': message, 'chat_at':new Date().getTime() },
         datatype: 'JSON',
         success: function (data) {
-            resetMessage();
             message_listen_data(act_mid);
         },
         error: function (xhr, ajaxOptions, thrownError) {
