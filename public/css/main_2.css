@@ -613,28 +613,17 @@ font-size: 14px;
         margin: 0 auto;
     }
 
-    .candimg_col h2.fw-bolder{
-        font-weight: 500!important;
-        font-size: 16px;
-        text-transform: uppercase;
-
-    }
-
     /* .candidate_img .candimg_col {
         padding-top: 120px;
         padding-left: 145px;
     } */
-
-    #homepage_stn .hmenear_job h2{
-        font-size: 28px;
-    }
 
     .hmenear_job i.far{
         font-size: 25px;
     }
 
     .hmenear_job p{
-        margin-bottom: 5px;
+        margin-bottom: 0px;
         display: -webkit-box;
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
@@ -645,11 +634,6 @@ font-size: 14px;
     .hmenear_job .card{
         border-radius: 10px;
     }   
-
-    .hmenear_job hr{
-        height: 3px;
-        color: #c4c4c4;
-    }
 
     #homepage_stn .candidate_img{
         margin-top: 50px;
@@ -699,7 +683,10 @@ font-size: 14px;
 
     #topcities .hm_grn{
         border-bottom: 8px solid #34A853;
-   
+    }
+
+    #topcities .hm_grn1{
+        border-bottom: 8px solid #4285F4;
     }
 
 
@@ -713,9 +700,6 @@ font-size: 14px;
         border-bottom: 1px solid #fff;
     }
 
-    .home_pgecities .cities .nav-link{
-        color: #000;
-    }
 
     #topjoblistings .hm_grn {
         border: 1px solid #34a853;
@@ -726,7 +710,7 @@ font-size: 14px;
     }
 
     #topjoblistings .hm_grn i.fas, #topjoblistings .hm_ylo i.fas{
-        color: #000;
+        color: #fff;
         width: 30px;
         height: 30px;
         border-radius: 50%;
@@ -754,12 +738,12 @@ font-size: 14px;
     }
 
     .home_pgecities .cities .nav-link{
-        font-size: 18px;
+        font-size: 19px;
     }
 
     .home_pgecities .cities ul .nav-item .nav-link.active{
-        border-bottom: 3px solid #34a853 !important;
-
+        border-bottom: 4px solid #34a853 !important;
+        font-weight: 600;
     }
 
     .hmenear_job .hm_gr:hover{
@@ -771,11 +755,7 @@ font-size: 14px;
         background-color: #F3F7FE;
     }
 
-    .hmenear_job .card{
-        box-shadow: 2px 6px 15px 0 rgb(69 65 78 / 15%) !important;
-
-    }
-
+   
     .hme_blogsectn .card-body{
         padding: 0rem;
         margin-top: 15px;
@@ -787,49 +767,29 @@ font-size: 14px;
 
 
     
-    #topcities .hm_grn:before {
+    #topcities .hm_grn:before, #topcities .hm_grn1:before {
         content: "";
         position: absolute;
         height: 0;
         width: 100%;
-        background : #DDFFE6;
         left: 0;
         bottom: 0;
         transition: all .3s;
         opacity: 0.3;
+    } #topcities .hm_grn:before{
+        background : #DDFFE6;
+    }#topcities .hm_grn1:before{
+        background : #4285f452;
+    }#topcities .hm_grn1:hover{
+        border-bottom:8px solid #4285f417;
     }
-
     #topcities .hm_grn:hover{
         border-bottom:8px solid #ddffe666;
     }
  
-    #topcities .hm_grn:hover:before {
+    #topcities .hm_grn:hover:before, #topcities .hm_grn1:hover:before {
         height: 100%;
     }
-
-
-  #topcities .hm_ble:before {
-    content: "";
-    position: absolute;
-    height: 0;
-    width: 100%;
-    background : #D2E2FC;
-    left: 0;
-    bottom: 0;
-    transition: all .3s;
-    opacity: 0.3;
-}
-
-    #topcities .hm_ble:hover{
-        border-bottom:8px solid #d2e2fc45;
-    }
-    #topcities .hm_ble:hover:before {
-        height: 100%;
-    }
-
-    /* .hme_blogsectn .card:hover{
-        cursor: pointer;
-    } */
 
     #homepage_stn .hm_gr h3{
         display: -webkit-box;
@@ -838,19 +798,8 @@ font-size: 14px;
         text-overflow: ellipsis;
         overflow: hidden;
     }
-    #topjobsector .card{
-        padding: 1rem 0rem 0.7rem 1rem !important;
 
-    }
-
-    .candpcard .fw-bolder{
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        font-weight: 500 !important;
-    } 
+   
 
     .candpcard .fa-angle-right:hover{
         color:#fff !important;
@@ -1024,30 +973,10 @@ font-size: 14px;
         margin-top: 4rem;
     }
 
-    .reserch label{
-        font-size: 12px !important;
-        /* color: #9b9999 !important; */
-        font-weight: 400 !important;
-        border-color: #4285F4 !important;
-    }    
     #topjobsector p{
         margin-bottom: 0px !important;
     }
-    .popularser_card{
-        border: 1px solid #0336881c;
-        border-radius: 15px !important;
-        padding: 25px 0px;
-        background-color: #fbfbfb;
-    }
-    .popularser_card label{
-        font-size: 14px !important;
-        /* color: #033688 !important;
-        border-color: #03368863 !important; */
-        font-weight: 400 !important;
-        margin: 1rem 2rem;
-        padding: 0.5rem 1rem;
-        background-color: #ffffff;
-    }
+
     .reserch label i{
         color: #ae9999 !important;
     }
@@ -1449,7 +1378,7 @@ font-size: 14px;
     }
 
     .footer_p p{
-        text-align: center;
+        text-align: justify;
     }
 
 

@@ -18,4 +18,8 @@ Route::post('search-blogs', 'BlogController@searchs');
 Route::get('view-blog/{id}/{slug}', 'BlogController@view')->name('view-blog');
 Route::post('like-blog/{id}', 'BlogController@likeblog');
 
+
+  //blog sitemaps..
+  Route::get('blog-sitemap', 'BlogXmlController@index');
+  Route::get('blog-sitemap/{id}', 'BlogXmlController@view');
 ?>

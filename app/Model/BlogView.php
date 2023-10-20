@@ -10,5 +10,6 @@ class BlogView extends Model
     use HasFactory;
     protected $fillable = [
         'user_id', 
+        'blog_id' 
     ];
 }

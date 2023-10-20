@@ -31,7 +31,14 @@
               background-size: contain;
               background-position: bottom;
           }
-      }
+      }#footer .align_ftr li img {
+        margin-right: 5px;
+    }.footer_logo img{
+        width: 155px;
+    }#footer .align_ftr h3{
+      font-size: 17px;
+      font-weight: 600;
+    }
 
 
       
@@ -45,7 +52,7 @@
     <div class="footer_logo mb-4 mt-4 text-center">
       <a href="{{url('/')}}" class="href"><img draggable="false" src="{{ asset('images/footer_logo.png') }}" alt="logo"></a>
     </div>
-    <div class="container">
+    <div class="container-lg">
       <div class="footer_p mb-5">
         <p>
             Mugaam.com ensures that the job seekers shouldn’t go on for a second chance in landing a job, as the
@@ -58,23 +65,24 @@
 
 
     <div class="align_ftr">
-      <div class="container">
+      <div class="container-lg">
       <div class="row mt-4">
         <div class="col-md-5 home_menu align-self-center">
           <div class="row">
             <div class="col-6">
               <ul>
-                <li><i class="bi bi-chevron-right"></i> <a href="{{ route('index') }}">Home</a></li>
-                <li><i class="bi bi-chevron-right"></i> <a href="{{ route('about-us') }}">About us</a></li>
-                <li><i class="bi bi-chevron-right"></i> <a href="{{ route('contact-us') }}">Contact Us</a></li>
-                <li><i class="bi bi-chevron-right"></i> <a href="{{ route('faq') }}">FAQ</a></li>
+                <li><img src="{{asset('images/footer/arrow_1.svg')}}" alt=""><a href="{{ route('index') }}">Home</a></li>
+                <li><img src="{{asset('images/footer/arrow_1.svg')}}" alt=""><a href="{{ route('about-us') }}">About us</a></li>
+                <li><img src="{{asset('images/footer/arrow_1.svg')}}" alt=""><a href="{{ route('contact-us') }}">Contact Us</a></li>
+                <li><img src="{{asset('images/footer/arrow_1.svg')}}" alt=""><a href="{{ route('faq') }}">FAQ</a></li>
               </ul>
             </div>
             <div class="col-6">
               <ul>
-                <li><i class="bi bi-chevron-right"></i> <a href="{{ route('privacy-policy') }}">Privacy Policy</a></li>
-                <li><i class="bi bi-chevron-right"></i> <a href="{{ route('cookie-policy') }}">Cookie Policy</a></li>
-                <li><i class="bi bi-chevron-right"></i>  <a href="{{ route('terms-of-use') }}">Terms of Use</a></li>
+                <li><img src="{{asset('images/footer/arrow_1.svg')}}" alt=""><a href="{{ route('privacy-policy') }}">Privacy Policy</a></li>
+                <li><img src="{{asset('images/footer/arrow_1.svg')}}" alt=""><a href="{{ route('cookie-policy') }}">Cookie Policy</a></li>
+                <li><img src="{{asset('images/footer/arrow_1.svg')}}" alt=""><a href="{{ route('terms-of-use') }}">Terms of Use</a></li>
+                <li><img src="{{asset('images/footer/arrow_1.svg')}}" alt=""><a href="{{ url('blogs') }}">Blog</a></li>
               </ul>
             </div>
           </div>

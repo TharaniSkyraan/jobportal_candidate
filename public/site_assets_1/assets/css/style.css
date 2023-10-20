@@ -2460,4 +2460,5 @@ background-position: center;
 }
 #header{
   padding-right: unset !important;
+  z-index: 99999;
 }

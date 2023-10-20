@@ -1,9 +1,9 @@
 @extends('layouts.app')
+
 @section('custom_scripts')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{asset('css/omsfeqx.css')}}">
-    <title>Blog Page</title>
 @endsection
 @section('content')
     @include('layouts.header')
@@ -50,7 +50,8 @@
                     <h2>More Blogs for You</h2>
                 </div>
                 <div class="blg-top search_hbcf">
-                    <input type="text" class="form-control" id="blog-search" placeholder="Search Blogs" autocomplete="off"> <button class="vgr_mnwen">Search</button>
+                    <input type="text" class="form-control" id="blog-search" placeholder="Search Blogs" autocomplete="off"> 
+                    <button class="vgr_mnwen"><img src="{{asset('images/blogs/search.svg')}}" alt="search-icon"><span class="mjmhwq">Search</span></button>
                 </div> 
                 <div class="row show_hwtn blg-top"></div>
             </div>
@@ -58,12 +59,12 @@
             <div class="subscribe_usr">
                 <div class="card">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-xl-3 col-lg-2 col-md-2">
                             <div class="look1_m">
                                 <img src="{{asset('images/blogs/subscribe1.svg')}}" draggable="false" alt="subscribe-image">
                             </div>
                         </div>
-                        <div class="col-md-6 align-self-center">
+                        <div class="col-xl-6 col-lg-8 col-md-8 align-self-center">
                             <div class="text-center qgwuvsd">
                                 <h3><strong>Subscribe to our blogs</strong></h3>
                                 <p>Subscribe to our newsletters to get to know latest trends in the world of recruitment.</p>
@@ -73,7 +74,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-xl-2 col-lg-2 col-md-2">
                             <div class="look2_m">
                                 <img src="{{asset('images/blogs/subscribe2.svg')}}" draggable="false" alt="subscribe-image">
                             </div>
@@ -86,6 +87,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>               
     <script type="text/javascript">  
+         var baseUrl = "{{ config('app.url') }}";
+        
         $(document).ready(function() {
             $('.slider_first .owl-carousel').owlCarousel({
                 items: 2,
@@ -141,6 +144,15 @@
                 search_blog('all', 'undefined');
             }
         });
+
+        $('#blog-search').on('keydown', function(event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                $('.vgr_mnwen').click();
+            }
+        });
+
+
         function search_blog(value, page)
         {
             if(value == 'all'){
@@ -153,44 +165,96 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                success: function(data) {
-                    if(page == 'undefined' && value.trim() == ''){
-                        $('.show_hwtn').html(data);
+                success: function(data) 
+                {
+                    var element = $(data).closest('.not_fnfi').length;
+                    var length = $('.show_hwtn .card').length;
+                    if(element == 1 && page != 'undefined'){
                     }else{
-                        $('.show_hwtn').append(data);
-                    }
-                    setTimeout(() => {
-                        $('.top-placeholder').removeClass('top-placeholder');
-                        $('.placeholder1').removeClass('placeholder1');
-                        $('.opacity-0').removeClass('opacity-0');
-                    }, 200);
-                    var docsLoaded = false;
-                    $(window).scroll(function() {
-                        var targetDivs = $('.show_hwtn .card:last');
-                        var windowHeight = $(window).height();
-                        var scrollTop = $(window).scrollTop();
-                        targetDivs.each(function() {
-                            var targetDiv = $(this);
-                            var targetOffset = targetDiv.offset().top;
-                            if (scrollTop + windowHeight >= targetOffset && !docsLoaded) {
-                                if (targetDivs.attr('id')) {
-                                    var idin = $('.lastids').attr('id');
-                                    var page = targetDiv.attr('id');
-                                    if(idin >= page){
-                                        var value = $('#blog-search').val();
-                                        search_blog(value, page);
-                                        docsLoaded = true;
-                                    }
-                                }
+                        if(page == 'undefined' && value.trim() != ''){
+                            $('.show_hwtn').html(data);
+                        }else if(value == '' && page == 'undefined'){
+                            $('.show_hwtn').html(data);
+                        }else{
+                            if(length == 0){
+                                $('.show_hwtn').html(data);
+                            }else{
+                                $('.show_hwtn').append(data);
                             }
-                        });
-                    });
+                        }
+                        setTimeout(() => {
+                            $('.top-placeholder').removeClass('top-placeholder');
+                            $('.placeholder1').removeClass('placeholder1');
+                            $('.opacity-0').removeClass('opacity-0');
+                        }, 200);
+                       
+                    }
+                        
                 },
                 error: function(data) {
-                    console.error('Error:', data);
                 }
             });
         }
+
+        var docsLoaded = false;
+        $(window).scroll(function() {
+            var targetDivs = $('.show_hwtn .card:last');
+            var windowHeight = $(window).height();
+            var scrollTop = $(window).scrollTop();
+            
+            targetDivs.each(function() {
+                var targetDiv = $(this);
+                var targetOffset = targetDiv.offset().top;
+                
+                if (scrollTop + windowHeight >= targetOffset && !docsLoaded) {
+                    if (targetDiv.attr('id')) {
+                        var idin = $('.lastids:last').attr('id');
+                        var page = targetDiv.attr('id');
+                        if (idin >= page) {
+                            var value = $('#blog-search').val();
+                            search_blog(value, page);
+                            docsLoaded = true;
+
+                        }
+                    }
+                }
+            });
+        });
+
+        $(document).on('click', '.likes_stns', function(){
+            var auth = "{{Auth::check()}}";
+           if(auth == true){
+                var id = $(this).closest('.card').attr('id');
+                var path = '.card#'+id+' .likes_stns';
+                like_blog(id, path);
+           }else{
+                window.location.href = "{{url('login')}}";
+           }
+        });
+
+
+        function like_blog(id, path){
+            $.ajax({
+                type:'post',
+                url:'{{url("like-blog")}}/'+id,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success:function(data){
+                    if(data[0] == 1){
+                        $(path+' img').attr('src', baseUrl+'/images/blogs/liked.svg')
+                    }else{
+                        $(path+' img').attr('src', baseUrl+'/images/blogs/likes.svg')
+                    }
+                    $(path+' .count_l').html(data[1]);
+                },
+                error:function(data){
+
+                }
+            });
+        }
+
+
     </script> 
 @endsection
 @section('footer')

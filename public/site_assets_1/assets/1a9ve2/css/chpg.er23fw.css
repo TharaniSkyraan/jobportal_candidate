@@ -9,29 +9,6 @@
     font-size: 40px;
 }
 
-.pfcmpletalert{
-    background:#F6F6F6;
-    /* width: auto%; */
-    margin: 0 auto;
-    position: absolute;
-    padding:0px;
-    
-    border-radius:13px;
-    margin-top: 8%;
-    margin-left: 15%;
-    box-shadow:1px 1px 14px 0 rgb(18 38 63 / 20%) !important;
-}
-
-.pfcmpletalert .wrning{
-    background:#D0DEF5;
-    height: 60px;
-    clip-path: polygon(0% 0%, 0% 280%, 100% 0%);
-    border-top-left-radius: 13px;
-    border-bottom-left-radius:13px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-}
 .alert_prnt{
     display: flex;
     align-items: center;
@@ -55,11 +32,7 @@ li {
 	font-family: "Poppins";
 }
 
-.hme_banner{
-    background: url('../../../../images/home/img.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-}
+
 .search_hme{
     background: url('../../../../images/home/wave.svg');
     background-repeat: no-repeat;
@@ -131,9 +104,7 @@ li {
 .location .typeahead.dropdown-menu{
     margin-right: 12.8% !important;
 }
-.designation .typeahead.dropdown-menu{
-    margin-right: 55% !important;
-}
+
 @media (min-width: 768px) and (max-width: 991px) {
     .search_hme{
         padding: unset !important;
@@ -245,9 +216,7 @@ li {
     margin: -7.5rem 3rem 1rem 3rem!important;
     box-shadow: 2px 6px 15px 0 rgb(69 65 78 / 7%) !important;
 }
-.hmenear_job h1{
-    font-size: 1.725rem;
-}
+
 .hmenear_job h2{
     font-size: 1.35rem;
 }
@@ -341,14 +310,6 @@ font-weight: bolder !important;
 {
     filter: invert(76%) sepia(30%) saturate(3461%) hue-rotate(179deg) brightness(70%) contrast(100%);
 }
-.popularser_card h3, .candimg_col h3
-{
-    text-decoration: underline;
-    -webkit-text-decoration-color: #4285F4;
-    text-decoration-color: #4285F4;
-    text-underline-position: under;
-    text-decoration-thickness: 9.4%;
-}
 .candimg_col h3{
     text-decoration-thickness: 1%;
     text-underline-offset: 7px;
@@ -361,13 +322,12 @@ font-weight: bolder !important;
 .blog-sectionw {
     margin-bottom: 20px;
 }.blog-sectionw .fdfeyhsq {
-    margin-bottom: 15px;
+    margin-bottom: 25px !important;
+    margin: 0px;
     border-bottom: 2px solid #e2e0e0c9;
     padding: 10px;
 }.blog-sectionw .item {
-    padding: 10px;
-    padding-left: 0px;
-    padding-right: 20px;
+    padding-right: 15px;
 }.blog-sectionw .card {
     box-shadow: none;
 }.blog-sectionw .card {
@@ -431,8 +391,6 @@ font-weight: bolder !important;
 }.blog-sectionw .card img{
     border: none;
     border-radius: 5px;
-    width: 170px !important;
-    height: 170px;
     margin: 0 auto;
     object-fit: contain;
 }
