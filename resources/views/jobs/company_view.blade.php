@@ -1,217 +1,136 @@
 @extends('layouts.app')
 @section('custom_styles')
-<link href="{{ asset('site_assets_1/assets/cmpy/japplicant/css/jAk3jne9.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/hjb2wrli.css')}}" rel="stylesheet">
+    <title>{{$breadcrumbs->title}} - {{$company->name}}</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" rel="stylesheet" />
 @endsection
 @section('content')
 @include('layouts.header')
-<style>
-    @media (min-width: 576px)
-    {    
-        .container-detail {
-            max-width: 670px !important;
-        }
-    }
-    @media (min-width: 768px)
-    {    
-        .container-detail {
-            max-width: 960px !important;
-        }
-    }
-    @media (min-width: 1200px)
-    {    
-        .container-detail {
-            max-width: 1140px !important;
-        }
-    }
-</style>
-<?php 
-    $arra=array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
-?>  
-<section id="companydetail">
-    <div class="container container-detail mt-5">
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 col-12">
-                <div class="row justify-content-center">
-                    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 col-12">
-                        <div class="page-title-list">
-                            <ol class="breadcrumb d-inline-block mb-0">
-                                <li class="breadcrumb-item d-inline-block"><a href="{{ route('index') }}" class="fw-bold" style="color: #1e2022;font-size:16px;text-decoration:none;">Home</a></li>
-                                <li class="breadcrumb-item d-inline-block"><a href="{{url('detail',$breadcrumbs->slug)}}" class="fw-bold" style="color: #1e2022;font-size:16px;text-decoration:none;">{{$breadcrumbs->title}}</a></li>
-                                <li class="breadcrumb-item d-inline-block active"><a class="text-primary " style="font-weight:bold;text-decoration:none;">{{$company->name}}</a></li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
+    @php 
+        $arra=array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+    @endphp
+
+    <div class="gallerypg">
+       <a href="{{url('detail',$breadcrumbs->slug)}}" class="text-dark">
+            <div class="breadcrumb">
+                <span><span class="rnhv_g">< </span>&nbsp; Back</span>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 col-12">
-                <div class="mx-auto pb-5 w-75">
-                    <div class="content">
-                        <ul class="nav nav-tabs justify-content-around" id="candiftabs" role="tablist">
-                            <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="received-tab" data-bs-toggle="tab" data-bs-target="#aboutcompany" type="button" role="tab" aria-controls="received" aria-selected="true">About Company</button>
-                            </li>
-                            @if(count($company->gallery)!=0)
-                            <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="suggested-tab" data-bs-toggle="tab" data-bs-target="#gallery" type="button" role="tab" aria-controls="suggested" aria-selected="false">Gallery</button>
-                            </li>
+       </a> 
+        <div class="space-width">
+            <ul class="nav nav-tabs">
+                <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#aboutcmp">About Company</a></li>
+                @if(count($company_jobs) != 0)<li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#activejobs">Active Jobs</a></li>@endif
+                @if(count($company->gallery)!=0)<li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#gallery">Gallery</a></li>@endif
+            </ul>
+            <div class="tab-content">
+                <div id="aboutcmp" class="tab-pane fade show active">
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="profile_cmp">
+                                    <img src="@if(!empty($company->company_image)) {{$company->company_image}} @else {{asset('noupload.png')}} @endif" alt="{{$company->name}}" draggable="false"></td>
+                                </div>
+                            <td>
+                                <div class="dtml">
+                                    <h2>{{$company->name}}</h2>
+                                    <div><img src="{{asset('images/about/location.svg')}}" alt="location-icon">{{ $company->location }}</div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="descrip">
+                        <div class="pt_hwsp">
+                            <h4 class="mb-3">About Company / Organisation :</h4>
+                            <p>{{$company->description}}</p>
+                        </div>
+
+                        <div class="row">
+                            @if($company->CEO_name != null)
+                                <div class="col-md-4 mkwra">
+                                    <div class="card">
+                                        <span>CEO</span>
+                                        <h3>{{$company->CEO_name}}</h3>
+                                    </div>
+                                </div>
                             @endif
-                            @if(count($company_jobs) != 0)
-                            <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="shortlisted-tab" data-bs-toggle="tab" data-bs-target="#activejobs" type="button" role="tab" aria-controls="shortlisted" aria-selected="false">Active jobs</button>
-                            </li>
+                            @if($company->founded_on != null) 
+                                <div class="col-md-4 mkwra">
+                                    <div class="card">
+                                        <span>Founded on</span>
+                                        <h3>{{ date('d',strtotime($company->founded_on)) }}th {{ $arra[intval(date('m',strtotime($company->founded_on)))-1]}} {{date('Y',strtotime($company->founded_on)) }}</h3>
+                                    </div>
+                                </div>
                             @endif
-                            <!-- <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="considered-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="considered" aria-selected="false">Reviews
-                            </li> -->
-                        
-                        </ul>
+                            <div class="col-md-4 mkwra">
+                                <div class="card">
+                                    <span>Current Number of employess</span>
+                                    <h3>{{ $company->no_of_employees }}</h3>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mkwra">
+                                <div class="card">
+                                    <span>Type of industry</span>
+                                    <h3>{{ DataArrayHelper::industryParticular($company->industry_id) }}</h3>
+                                </div>
+                            </div>
+                            @if($company->website_url != null)
+                                <div class="col-md-4 mkwra">
+                                    <div class="card">
+                                        <span>Website</span>
+                                        <a href="{{$company->website_url}}"><h3>{{$company->website_url}}</h3></a>
+                                    </div>
+                                </div>
+                            @endif
+                            @if(!empty($company->fb_url) || !empty($company->insta_url) || !empty($company->linkedin_url) || !empty($company->twitter_url))
+                                <div class="col-md-4 mkwra">
+                                    <div class="card">
+                                        <span>Social Media profiles</span>
+                                        <span class="sclicnm">                                    
+                                            @if(!empty($company->fb_url))<a href="{{$company->fb_url}}"><img src="{{asset('images/about/facebook.svg')}}" alt="facebook-icon" draggable="false"></a>@endif
+                                            @if(!empty($company->insta_url))<a href="{{$company->insta_url}}"><img src="{{asset('images/about/instagram.svg')}}" alt="instagram-icon" draggable="false"></a>@endif
+                                            @if(!empty($company->linkedin_url))<a href="{{$company->linkedin_url}}"><img src="{{asset('images/about/linkedin.svg')}}" alt="linkedin-icon" draggable="false"></a>@endif
+                                            @if(!empty($company->twitter_url))<a href="{{$company->twitter_url}}"><img src="{{asset('images/about/twitterx.png')}}" alt="twitter-icon" draggable="false"></a>@endif
+                                        </span>
+                                    </div>
+                                </div>
+                            @endif
+                            <div class="col-md-12 mkwra">
+                                <div class="card mdlstb">
+                                    <strong>Location Details</strong>
+                                    <h5>Address</h5>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h5>City</h5>
+                                            <h3>{{ $company->location }}</h3>
+                                        </div>
+                                        <div class="col-6">
+                                            <h5>State</h5>
+                                            <h3>Tamilnadu</h3>
+                                        </div>
+                                        <div class="col-6">
+                                            <h5>Country</h5>
+                                            <h3>{{ DataArrayHelper::countryParticular($company->country_id) }}</h3>
+                                        </div>
+                                        <div class="col-6">
+                                            <h5>Pincode</h5>
+                                            <h3>{{$company->pin_code}}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-
-
-                <div class="tab-content" id="pills-applied-jobs-list">
-                    <div class="tab-pane active" id="aboutcompany" role="tabpanel" aria-labelledby="aboutcompany-tab">
-                        <div class="card abtcmpycrd1 p-4">
-                            <div class="row">
-                                <div class="col-lg-10 col-md-12 col-xs-12 col-sm-12 col-12 col-xl-10">
-                                    <div class="row">
-                                        <div class="col-md-4 col-xl-2 align-self-center">
-                                            <div class="card pf_imgsabt">
-                                                @if(!empty($company->company_image))
-                                                    <img draggable="false" src="{{$company->company_image}}" alt="{{$company->name}}" width="100%">
-                                                @else
-                                                    <img draggable="false" src="{{asset('noupload.png')}}" alt="{{$company->name}}" width="100%">
-                                                @endif
-                                            </div>
-                                        </div>
-                                       <div class="col-md-8 col-xl-10 px-2 text-left align-self-center">
-                                            <h1 class="fw-bolder">{{$company->name}}</h1>
-                                            <!-- <div class="ratings">
-                                            <span class="review-count ">(12) &nbsp;</span>
-                                                <i class="fa fa-star rating-color"></i>
-                                                <i class="fa fa-star rating-color"></i>
-                                                <i class="fa fa-star rating-color"></i>
-                                                <i class="fa fa-star rating-color"></i>
-                                                <i class="fa fa-star"></i>
-                                                <a href="#" class=" text-center">&nbsp;&nbsp;&nbsp; 4.2 rating</a>
-                                            </div>             -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 col-xl-2 follow_btn3ws align-self-center text-center">
-                                    <!-- <button class="btn bg-primary text-white rounded-pill" type="button">Following</button> -->
-                                </div>                           
-                            </div>
-                        </div>
-
-                        <div class="card detail_applierss2 px-5">
-                            <div class="text-justify mb-4">
-                                <h2 class="fw-bolder mt-3">About Company / Organization:</h2>
-                                <p>{{$company->description}}</p>
-                            </div>
-                            <div class="comdetail2list">
-                                <div class="row">
-                                    @if($company->CEO_name != null)
-                                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 col-12">
-                                        <p>CEO</p>
-                                        <span class="fw-bolder">{{$company->CEO_name}} </span>
-                                    </div>
-                                    @endif
-                                    @if($company->founded_on != null) 
-                                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 col-12">
-                                        <p>Founded On</p>
-                                        <span class="fw-bolder">{{ date('d',strtotime($company->founded_on)) }}th {{ $arra[intval(date('m',strtotime($company->founded_on)))-1]}} {{date('Y',strtotime($company->founded_on)) }} </span>
-                                    </div>
-                                    @endif
-                                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 col-12">
-                                        <p>Current number of employees</p>
-                                        <span class="fw-bolder">{{ $company->no_of_employees }}</span>
-                                    </div>
-                                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 col-12">
-                                        <p>Types of industry</p>
-                                        <span class="fw-bolder">{{ DataArrayHelper::industryParticular($company->industry_id) }}</p>
-                                    </div>
-                                    @if($company->website_url != null)
-                                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 col-12">
-                                        <p>Website</p>
-                                        <span class="fw-bolder"><a href="$company->website_url">{{$company->website_url}} </a></span>
-                                    </div>
-                                    @endif
-                                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 col-12">
-                                        <p>Social Media profiles</p>
-                                        <h5 class="aboutcompany_heading1">
-                                            <div class="socialmediaappend">
-                                                @if(!empty($company->linkedin_url))
-                                                    <a href="{{$company->linkedin_url}}" target="_blank">
-                                                        <i class="fa fa-linkedin"></i>
-                                                    </a> 
-                                                @else
-                                                    <i class="fa fa-linkedin noclrfa"></i>
-                                                @endif   
-
-                                                @if(!empty($company->insta_url))
-                                                    <a href="{{$company->insta_url}}" target="_blank">
-                                                        <i class="fa fa-instagram "></i>
-                                                    </a>
-                                                @else
-                                                    <i class="fa fa-instagram noclrfa"></i> 
-                                                @endif
-
-                                                @if(!empty($company->fb_url))
-                                                    <a href="{{$company->fb_url}}" target="_blank">
-                                                        <i class="fa fa-facebook"></i>
-                                                    </a>
-                                                @else 
-                                                    <i class="fa fa-facebook noclrfa"></i>
-                                                @endif
-
-                                                @if(!empty($company->twitter_url))
-                                                    <a href="{{$company->twitter_url}}" target="_blank">
-                                                        <i class="fa fa-twitter"></i>
-                                                    </a> 
-                                                @else
-                                                    <i class="fa fa-twitter noclrfa"></i>
-                                                @endif
-                                            </div>
-                                        </h5>
-                                    </div>
-                                    @if($company->address != null)
-                                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 col-12">
-                                        <p>Address</p>
-                                        <span class="fw-bolder">{{$company->address}} </span>
-                                    </div>
-                                    @endif
-                                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 col-12">
-                                        <p>City</p>
-                                        <span class="fw-bolder">{{ $company->location }}</span>
-                                    </div>
-                                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 col-12">
-                                        <p>Country</p>
-                                        <span class="fw-bolder">{{ DataArrayHelper::countryParticular($company->country_id) }}</span>
-                                    </div>
-                                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 col-12">
-                                        <p>Pincode</p>
-                                        <span class="fw-bolder">{{$company->pin_code}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>  
-                    @if(count($company->gallery)!=0)
-                    <div class="tab-pane" id="gallery" role="tabpanel" aria-labelledby="gallery-tab">
-                        <div class="galaryappendcontent row"></div>
-                    </div>
-                    @endif
+                <div id="activejobs" class="tab-pane fade">
                     @if(count($company_jobs) != 0)
                         <div class="tab-pane" id="activejobs" role="tabpanel" aria-labelledby="review-tab">
                             <div class="row">
                                 @foreach($company_jobs as $job)
                                     <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 col-12">
                                         <a class="cursor-pointer text-dark" target="_blank" href="{{url('detail/'.$job->slug)}}">
-                                            <div class="card jobsearch p-4">
+                                            <div class="card jobsearch p-3">
                                                 <div>
                                                     <h2 class="fw-bolder">{{$job->title}}</h2>
                                                     <p>{{$company->name}}</p></td>
@@ -236,43 +155,66 @@
                                 @endforeach     
                             </div>
                         </div>  
-                    @endif               
-                </div>    
-            </div>              
-        </section>
-@endsection
+                    @endif 
+                </div>
+                <div id="gallery" class="tab-pane fade">
+                    <div class="row sp_gt5 amhbgally">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-@section('footer')
-@include('layouts.footer')
-<script src="{{ asset('rating-input/bootstrap4-rating-input.js') }}"></script>
-<script src="https://use.fontawesome.com/5ac93d4ca8.js"></script>
-<script>
+
+     <!-- preview gallery -->
+     <div class="modal fade" id="previewgallery" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="close_m" data-bs-dismiss="modal" aria-label="Close"><img src="{{asset('images/about/close_arw.svg')}}" alt="close-icon"></div>
+                <div class="open-images">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script>
     $.get("{{ route('getourcompanygallery',$company->id) }}")
     .done(function (response) 
-    {// Get select
+    {
     
         if(response.data.length > 0)
         {
             
             $.each(response.data, function (i, data) 
             { 
-                $('.galaryappendcontent').append(`<div class="col-md-4 col-xl-3 col-lg-3 col-sm-6 col-xs-6 col-12">
-                            <div class="card zoom opacity savecompanyname" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                <div class="text-center"><div class="box"> 
-                                    <img draggable="false" class="card-img-top imgclass" src=`+data['image_exact_url']+`>
-                                </div>
-                                <div class="card-body"> 
-                                    <h5 class="card-title text-start fw-bolder">`+data['title']+`</h5> 
-                                    <p class="card-text text-start">`+data['description']+`</p> 
-                                </div> 
-                            </div>
-                        </div>`);
-            });
-
-        }else{
-            $('.galaryappendcontent').append('<span class="text-center fw-bolder">No Active Gallery</span>');
-        }
-    
+                $('.amhbgally').append(`<div class="col-md-4 col-lg-3 col-xl-3 col-6 col-sm-4">
+                                            <div class="card gallery galleryl" data-val=`+data['id']+`>
+                                                <div class="card-body clicks">
+                                                    <div class="image_div">
+                                                        <img src=`+data['image_exact_url']+` class="img-fluid" draggable="false">
+                                                        <div class="hov_prinfo">Tab to Preview</div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <h3 class="fw-bold clicks">
+                                                        `+data['title']+`
+                                                    </h3>
+                                                    <div class="row">
+                                                        <div class="col-md-11 col-xl-11 col-lg-10 col-11 clicks">
+                                                            <p>
+                                                                `+data['description']+`
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>`);
+                                    });
+            }else{
+                $('.amhbgally').append('<span class="text-center fw-bolder">No Active Gallery</span>');
+            }
     });
 
     $('.new_post').addClass('bg-lit-green-col');
@@ -290,5 +232,62 @@
         }
     });
 
+
+    // View Gallery
+$(document).on('click', '.gallery .clicks', function () {
+    var glyid = $(this).closest('.gallery').attr('data-val');
+    var owlCarouselHtml = '<div class="owl-carousel">';
+    $('.gallery.galleryl').each(function (gid) {
+        if($(this).attr('data-val')==glyid){
+            id=gid;
+        }
+        var url =$(this).find('.img-fluid').attr('src');
+        var title = $(this).find('h3').text();
+        var description = $(this).find('p').text();        
+        owlCarouselHtml += '<div class="item" id="' + gid + '">';
+        owlCarouselHtml += '<img src="' + url + '">';
+        owlCarouselHtml += '<div class="layer-bottom"><h3>' + title + '</h3>';
+        owlCarouselHtml += '<p class="m-0">' + description + '</p></div>';
+        owlCarouselHtml += '</div>';           
+    });
+    owlCarouselHtml += '</div>';
+
+    $('#previewgallery .open-images').html(owlCarouselHtml);
+
+    $('#previewgallery .owl-carousel').owlCarousel({
+        items: 1,
+        nav: true,
+        dots: false,
+        mouseDrag: true,
+        startPosition: id,
+    });
+    var lessid = id;
+    $('#previewgallery .owl-carousel').trigger('to.owl.carousel', [lessid, 1, true]);
+    $('#previewgallery').css('opacity', 0);
+
+    setTimeout(() => {
+        $('#previewgallery').css('opacity', 1);
+    }, 500);
+    $('#previewgallery').modal('show');
+});
+
+$(document).keydown(function(e) {
+    if (e.keyCode === 39) { // Right arrow key
+        $('.owl-carousel').trigger('next.owl.carousel');
+    }
+});
+
+$(document).keydown(function(e) {
+    if (e.keyCode === 37) { // Left arrow key
+        $('.owl-carousel').trigger('prev.owl.carousel');
+    }
+});
+
+
 </script>
+
+@endsection
+
+@section('footer')
+    @include('layouts.footer')
 @endsection
