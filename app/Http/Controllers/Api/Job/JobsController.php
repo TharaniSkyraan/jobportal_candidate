@@ -72,6 +72,7 @@ class JobsController extends BaseController
             $job['posted_at'] = Carbon::parse($jobc->posted_date)->getTimestampMs();
             $job['is_applied'] = $user->isAppliedOnJob($job->job_id);
             $job['is_favourite'] = $user->isFavouriteJob($jobc->slug);
+            $job['is_deleted'] = (!empty($jobc->deleted_at))?0:1; 
         });   
         $joblist = $jobs['joblist']->items();     
 
@@ -221,6 +222,7 @@ class JobsController extends BaseController
                 $job['posted_at'] = Carbon::parse($jobc->posted_date)->getTimestampMs();
                 $job['is_applied'] = $user->isAppliedOnJob($job->job_id);
                 $job['is_favourite'] = $user->isFavouriteJob($jobc->slug);
+                $job['is_deleted'] = (!empty($jobc->deleted_at))?0:1; 
             });   
 
             $joblist = $jobs['joblist']->items();  
@@ -317,6 +319,7 @@ class JobsController extends BaseController
             $rjob['posted_at'] = Carbon::parse($jobc->posted_date)->getTimestampMs();
             $rjob['is_applied'] = $user->isAppliedOnJob($jobc->id);
             $rjob['is_favourite'] = $user->isFavouriteJob($jobc->slug);
+            $rjob['is_deleted'] = (!empty($jobc->deleted_at))?0:1; 
         });   
         $joblist = $jobs['joblist']->items();     
 
@@ -381,6 +384,7 @@ class JobsController extends BaseController
                 'skills'=>$job->getSkillsStr(),
                 'posted_at'=>Carbon::parse($job->posted_date)->getTimestampMs(),
                 'is_applied'=>$user->isAppliedOnJob($job->id),
+                'is_deleted' => (!empty($job->deleted_at))?0:1
             );
             return $val;
         }, $company_jobs); 

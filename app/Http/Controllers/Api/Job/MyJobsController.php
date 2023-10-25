@@ -224,7 +224,8 @@ class MyJobsController extends BaseController
                                 'posted_at'=>Carbon::parse($job->posted_date)->getTimestampMs(),
                                 'created_at'=>Carbon::parse($savedjob['created_at'])->getTimestampMs(),
                                 'is_applied'=>$user->isAppliedOnJob($job->id),
-                                'is_favourite' => $user->isFavouriteJob($job->slug)
+                                'is_favourite' => $user->isFavouriteJob($job->slug),
+                                'is_deleted'=> (!empty($job->deleted_at))?0:1   
                             );
                             return $val;
                         }, $jobs->toArray()['data']); 
