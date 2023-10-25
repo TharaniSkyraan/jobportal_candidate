@@ -125,7 +125,8 @@ class MyJobsController extends BaseController
                 'job_type'=>$job->getTypesStr(),
                 'skills'=>$job->getSkillsStr(),
                 'posted_at'=>Carbon::parse($job->posted_date)->getTimestampMs(),
-                'created_at'=>Carbon::parse($appliedjob['created_at'])->getTimestampMs(),                               
+                'created_at'=>Carbon::parse($appliedjob['created_at'])->getTimestampMs(), 
+                'is_deleted'=> (!empty($job->deleted_at))?0:1,                             
             );
             return $val;
         }, $jobs->toArray()['data']); 
