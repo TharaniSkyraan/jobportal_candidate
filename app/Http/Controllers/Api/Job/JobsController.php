@@ -305,7 +305,8 @@ class JobsController extends BaseController
             'twitter_url'=>$job->company->twitter_url??'',
             'fb_url'=>$job->company->fb_url??'',
             'insta_url'=>$job->company->insta_url??'',
-            'is_admin' => $job->company->is_admin??0
+            'is_admin' => $job->company->is_admin??0,
+            'redirect_url' => (!empty($job->reference_url))?$job->reference_url:'',
         );
 
         $jobs = $this->fetchJobs($job->title, '', [], 10);
