@@ -103,7 +103,7 @@ class MyJobsController extends BaseController
                                     $q1->whereNotNull('slug');
                                })->withCount('job')
                                 ->havingRaw("job_count != 0")
-                                ->orderBy('created_at','asc')
+                                ->orderBy('created_at','desc')
                                 ->paginate(10);
                                 
                            

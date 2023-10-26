@@ -401,6 +401,9 @@
   /* .sidenavbar.close {
     left: -100%;
   } */
+  .close .nav_image #sidebar_logo_image{
+    margin-left: -13rem;
+  }
 }
 @media screen and (max-width: 600px) {
   .main-panel-customize {
