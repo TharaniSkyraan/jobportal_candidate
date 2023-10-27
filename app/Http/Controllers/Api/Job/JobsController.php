@@ -289,7 +289,7 @@ class JobsController extends BaseController
             'posted_at'=>Carbon::parse($job->posted_date)->getTimestampMs(),
             'immediate_join' => $job->NoticePeriod !=null?$job->NoticePeriod->notice_period:'',
             'walkin' => isset($job->walkin)?'yes':'no',
-            'walkin_date' => (isset($job->walkin)?(Carbon::parse($job->walkin->walk_in_from_date)->format('d F, Y').' to '.Carbon::parse($job->walkin->walk_in_to_date)->format('d F, Y')).$exclude_days:''),
+            'walkin_date' => (isset($job->walkin)?'From :'.(Carbon::parse($job->walkin->walk_in_from_date)->format('d F, Y').' to '.Carbon::parse($job->walkin->walk_in_to_date)->format('d F, Y')).$exclude_days:''),
             'walkin_time' => (isset($job->walkin)?(Carbon::parse($job->walkin->walk_in_from_time)->format('H:i A').' to '.Carbon::parse($job->walkin->walk_in_to_time)->format('H:i A')):''),
             'contact_name'=>$job->contact_person_details->name??'',
             'contact_email'=>$job->contact_person_details->email??'',
