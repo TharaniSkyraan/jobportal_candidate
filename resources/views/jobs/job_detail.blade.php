@@ -153,20 +153,24 @@
                 @endif
             </div>
             <div class="card keyboard_mcts">
-                @if(Auth::check())
+                @php
+                    if(Auth::check()){
+                        $userSkill=explode(",",Auth::user()->getUserSkillsStr());
+                    }else{
+                        $userSkill=array();
+                    }
+                    $skillarr = $job->skill?array_column(json_decode($job->skill), 'value'):null;
+                    $jobSkill=array_column(json_decode($job->skill), 'value');
+                    $matched_skills = array_intersect($jobSkill,$userSkill);
+                    $unmatched_skills = array_diff($jobSkill,$userSkill);
+                @endphp
+                @if(Auth::check() && count($matched_skills))
                 <h4>
                     Keywords matching with your profile
                 </h4>
                 <p>Matching Skills to the Job Post</p>
                 <div class="row">
                     <div class="col-md-9">
-                        @php
-                            $skillarr = $job->skill?array_column(json_decode($job->skill), 'value'):null;
-                            $jobSkill=array_column(json_decode($job->skill), 'value');
-                            $userSkill=explode(",",Auth::user()->getUserSkillsStr());
-                            $matched_skills = array_intersect($jobSkill,$userSkill);
-                            $unmatched_skills = array_diff($jobSkill,$userSkill);
-                        @endphp
                         <div class="skils_prnt">
                             @foreach($matched_skills as $t)
                                 <div class="skill_rnd">{{$t}}</div>

@@ -306,6 +306,7 @@ class JobsController extends BaseController
             'fb_url'=>$job->company->fb_url??'',
             'insta_url'=>$job->company->insta_url??'',
             'is_admin' => $job->company->is_admin??0,
+            'about_company' => $job->company->description??'',
             'redirect_url' => (!empty($job->reference_url))?$job->reference_url:'',
         );
 
