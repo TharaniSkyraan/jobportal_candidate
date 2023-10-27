@@ -101,6 +101,9 @@ class JobsController extends BaseController
      */
     public function fresherIndex()
     {
+        $user_id = Auth::user()->id??710;        
+        $user = User::find($user_id);
+
         $top_cities = JobWorkLocation::whereHas('job',function($q){
                                         $q->where('work_from_home','!=','permanent')
                                           ->whereIsActive(1);
@@ -135,7 +138,24 @@ class JobsController extends BaseController
                             ->get();
         $sectors->makeHidden(['lang','industry_id','is_active','sort_order','is_default','created_at','updated_at']);
 
+        
+
+        $jobs = $this->fetchJobs($user->career_title, '', [], 5);
+        
+        $jobs['joblist']->each(function ($job, $key) use($user) {
+            $jobc = Job::find($job->job_id);
+            $job['company_image'] = $jobc->company->company_image??'';
+            $job['job_type'] = $jobc->getTypesStr();
+            $job['skills'] = $jobc->getSkillsStr();
+            $job['posted_at'] = Carbon::parse($jobc->posted_date)->getTimestampMs();
+            $job['is_applied'] = $user->isAppliedOnJob($job->job_id);
+            $job['is_favourite'] = $user->isFavouriteJob($jobc->slug);
+            $job['is_deleted'] = (!empty($jobc->deleted_at))?0:1; 
+        });   
+        $joblist = $jobs['joblist']->items(); 
+
         $response = array(
+            'jobs' => $joblist,
             'top_cities' => $top_cities,
             'sectors' => $sectors
         );
