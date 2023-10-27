@@ -127,18 +127,6 @@ class JobsController extends BaseController
                             ->groupBy('industry')
                             ->limit(3)
                             ->get();
-
-
-
-            // $sector = Industry::whereHas('jobsearch', function($q) use($tcity){
-            //                 $q->where('city', 'REGEXP', $tcity->city_id);
-            //             })->withCount('jobsearch')
-            //             ->orderBy('jobsearch_count','DESC')
-            //             ->havingRaw("jobsearch_count != 0")
-            //             ->limit(3)
-            //             ->get();
-            // $sector->makeHidden(['lang','industry_id','is_active','sort_order','is_default','created_at','updated_at']);
-            
             $tcity['sectors'] = $sector;
         });                                
         
