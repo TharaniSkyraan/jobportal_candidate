@@ -65,6 +65,7 @@ class RegisterController extends BaseController
         {
             $response['token'] = $user->createToken($request->email)->accessToken; 
             $response['next_process_level'] = $user->next_process_level;
+            $response['id'] = $user->id;
             
             $update = User::find($user->id);
             $update->device_token = $request->device_token;

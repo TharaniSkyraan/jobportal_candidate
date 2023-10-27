@@ -62,7 +62,10 @@ class JobsController extends BaseController
             }
         }
 
-        $jobs = $this->fetchJobs($user->career_title, '', [], 5);
+        $sortBy = 'date';
+        $filter = array();
+        $filter['sortBy']  = $sortBy;
+        $jobs = $this->fetchJobs($user->career_title, $filter, [], 5);
         
         $jobs['joblist']->each(function ($job, $key) use($user) {
             $jobc = Job::find($job->job_id);
@@ -141,7 +144,10 @@ class JobsController extends BaseController
 
         
 
-        $jobs = $this->fetchJobs($user->career_title, '', [], 5);
+        $sortBy = 'date';
+        $filter = array();
+        $filter['sortBy']  = $sortBy;
+        $jobs = $this->fetchJobs($user->career_title, $filter, [], 5);
         
         $jobs['joblist']->each(function ($job, $key) use($user) {
             $jobc = Job::find($job->job_id);
@@ -178,7 +184,7 @@ class JobsController extends BaseController
         $user = User::find($user_id);
         $filters = $jobs = $filter = $citylFGid  = $salaryFGid = $jobtypeFGid = $jobshiftFGid = $edulevelFGid = $wfhtypeFid = $industrytypeGid = $functionalareaGid = $posteddateFid = array();
 
-        $sortBy = $request->sortBy??'relevance';
+        $sortBy = 'date';
         $experienceFid = $request->experinceFv??'';
         $designation = $request->designation??'';
         
