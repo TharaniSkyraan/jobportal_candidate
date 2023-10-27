@@ -56,7 +56,7 @@
     width: 85%;
 }.search_hme{
     position: relative;
-    height: 260px;
+    height: 250px;
     z-index: 10;
 }.hme_banner .jhotyp_jh{
     margin-bottom: -70px;
@@ -97,12 +97,11 @@
     font-size: 17px;
 }.hme_banner .kjnhj_jkeq{
     padding-top: 3.5rem;
-    background: linear-gradient(180deg, rgba(66, 133, 244, 0.21) 0%, rgba(14, 66, 152, 0.671875) 56.77%, rgba(0, 48, 127, 0.75) 100%);
+    /* background: linear-gradient(180deg, rgba(66, 133, 244, 0.21) 0%, rgba(14, 66, 152, 0.671875) 56.77%, rgba(0, 48, 127, 0.75) 100%); */
 }.hme_banner{
-    background: url('../../images/home/img.svg');
+    background: url('../../images/home/img.png');
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
 }.reserch .titsearch{
     border: 1px solid #4285f4c7;
     border-radius: 50px;
@@ -208,6 +207,25 @@
         transition: all ease 0.5s;
     }.candpcard .card:hover .kjhmg_yb p{
         display: block;
+    }
+}
+@media(min-width: 1200px) and (max-width: 1300px){
+    .search_hme {
+        height: 210px;
+    }.hme_banner .jhotyp_jh {
+        margin-bottom: -40px;
+    }
+}
+@media(min-width: 1300px) and (max-width: 1400px){
+    .search_hme {
+        height: 230px;
+    }
+}
+
+
+@media(min-width: 1300px){
+    .hme_banner{
+        background-position: calc(100% - 0px) -150px;
     }
 }
 
