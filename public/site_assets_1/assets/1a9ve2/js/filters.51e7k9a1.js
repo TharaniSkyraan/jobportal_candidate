@@ -278,7 +278,7 @@ function paginate_html(data){
 
                         paglink = label=='...' ? 'javascript:void(0);':paglink;
                         if(label=='...'){
-                            sub_html +='<a href="'+paglink+'" class="disabled" '+disb_pgn1+'>'+label+'</a>';
+                            sub_html +='<a href="'+paglink+'" style="pointer-events: none;" '+disb_pgn1+'>'+label+'</a>';
                         }else{
                             sub_html +='<a href="'+paglink+'" class="'+selected+'" '+disb_pgn1+'>'+label+'</a>';
                         }
