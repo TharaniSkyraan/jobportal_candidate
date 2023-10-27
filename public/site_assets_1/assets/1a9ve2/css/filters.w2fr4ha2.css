@@ -39,14 +39,13 @@ body {
 .tt-menu {
     background-color: #FFFFFF;
     border: .025rem solid rgba(0, 0, 0, 0.2);
-    border-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+    border-bottom-right-radius: .25rem;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     margin-top: 1px;
     padding: 5px 0;
     width: 100%;
-    line-height: 1.9rem;
-    /* border-top-left-radius: 0;
-    border-top-right-radius: 0; */
+    line-height: 1.9rem;    
     text-align: left;
 }
 .tt-suggestion {
@@ -137,9 +136,7 @@ body {
 }.sidebar.sidebar-style-2 .nav .nav-item {
     padding: 0 5px;
 }
-.sidebar_content_2{
-    background-color: #F5F5F5;
-}
+
 .form-select {
     width: fit-content !important;    
     background-color: #fff0;
@@ -161,10 +158,13 @@ body {
 .jd_txt{
     font-size:.865rem;
     color: #313131;
+    text-indent: 25px;
 }
 .cmp_name{
-    font-size:14px;
-    color: #535353;
+    font-size: 14px;
+    color: #373737;
+    font-weight: 400 !important;
+    text-transform: capitalize;
 }
 .tt_txt{
     /* font-size:.95rem; */
@@ -255,6 +255,7 @@ filter search
 }.chckBoxCont .txtLbl {
     width: calc(100% - 13px);
     max-width: calc(100% - 10px);
+    font-weight: 400;
 }
 .jobcard .rounded-circle{
     box-shadow: none;
@@ -263,6 +264,15 @@ filter search
 }
 .jobcard .jtitle{
     margin: 0px;
+    text-transform: capitalize;
+    font-size: 16.5px;
+    font-weight: 600;
+}#tempskle .job-list .card{
+    box-shadow: 0px 4px 4px 0px #00000029;
+    margin-bottom: 10px;
+}.desk-res-filter .card{
+    box-shadow: none;
+    border: 1px solid #cccccc75;
 }
 
 .jobcard .jtle-jcmp{
@@ -297,12 +307,16 @@ input[type=checkbox]+label i {
     font-size: 16px;
 }
 .filterTooltip {
-    padding-bottom: 25px;
+    padding-bottom: 15px;
     position: absolute;
     left: 0px;
-    width: 460px;
+    right: 0px;
     z-index: 4;
     bottom: 0.65rem;
+}.filterTooltip .heading{
+    margin-bottom: 10px;
+}.filterTooltip .heading span{
+    font-size: 15px;
 }
 .z-depth-2 {
     -webkit-box-shadow: 0 3px 8px 0 rgb(0 106 194 / 20%);
@@ -326,7 +340,7 @@ input[type=checkbox]+label i {
     float: left;
 }
 .filterTooltip .heading {
-    padding: 25px 25px 0;
+    padding: 20px 20px 0;
 }.filterContainer .chckBoxCont, .filterContainer .filterTooltip .heading {
     width: 100%;
 }
@@ -335,11 +349,11 @@ input[type=checkbox]+label i {
 }.filterTooltip .filter-comp-options {
     max-height: 350px;
     overflow: auto;
-    padding: 0 25px;
+    padding: 0 20px;
     width: calc(100% - 2px);
 }.filterTooltip .chckBoxCont {
     float: left;
-    width: 50%;
+    width: 100%;
 }
 .filterContainer .jpaxicon-checkbox {
     color: #667a89;
@@ -360,7 +374,12 @@ input[type=checkbox]+label i {
 }.filterTooltip .jpaxicon-cross {
     cursor: pointer;
     position: absolute;
-    right: 25px;
+    right: 12px;
+    top: 12px;
+}.filterTooltip .chckBoxCont .txtLbl{
+    font-weight: 400;
+}.filterTooltip .chckBoxCont input, .filterOptns .chckBoxCont input{
+    margin-top: 2px !important;
 }
 .icon-24 {
     height: 24px;
@@ -390,7 +409,7 @@ input[type=checkbox]+label i {
     line-height: 1;
     vertical-align: -0.125em;
     -webkit-font-smoothing: antialiased;
-    font-size: large;
+    font-size: x-large;
 }
 .registrationContainer {
     padding: 0 0 24px!important;
@@ -503,8 +522,54 @@ section.registrationContainer .registrationBody .registerText {
     width: 100%;
     position: relative;
 }
+
 .sidebar_content_2>.filterHeading {
-    padding: 18px 21px 6px 21px;
+    padding: 20px;
+    padding-bottom: 5px;
+}#tempskle .sidebar .nav>.nav-item a .caret{
+    color: #000 !important;
+}#tempskle .sidebar.sidebar-style-2 .nav .nav-item a{
+    padding: 20px;
+    padding-top: 18px;
+    border-radius: 0px;
+    margin: 0px;
+    padding-bottom: 18px;
+}#tempskle .sidebar.sidebar-style-2 .nav .nav-item{
+    padding: 0px;
+}.filterContainer{
+    background: #fff;
+    padding: 3px;
+}.filterHeading:focus{
+    background: #F5F5F5 !important;
+}#tempskle .job-list{
+    padding: 10px;
+}#tempskle .sidebar .nav>.nav-item a p, #tempskle .nav>.nav-item a p{
+    font-size: 15px;
+    font-weight: 500 !important;
+    color: #000 !important;
+}#tempskle .sidebar .nav{
+    background: #F5F5F5;
+}.filterContainer.show{
+    background: #fff !important;
+}#experinceFilters .filterOptns{
+    background: #fff;
+    margin: 0px;
+}.typeahead.tt-input{
+    font-weight: 600;
+}.typeahead.tt-input::placeholder{
+    font-weight: 400;
+}.mob-res-filter .card-footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}.mob-res-filter .jhn3y7m ul{
+    margin-top: 10px !important;
+    margin-bottom: 100px;
+}.mob-res-filter .jhn3y7m{
+    max-height: 600px;
+    overflow-y: scroll;
+}.dropdown-menu::-webkit-scrollbar {
+    width: 3px
 }
 
 .sidebar_content_2 .filterHeading>* {
@@ -518,7 +583,12 @@ section.registrationContainer .registrationBody .registerText {
 }
 .filterTooltip.applied-filters {
     bottom: auto;
-    padding: 25px;
+    padding: 16px;
+    padding-bottom: 11px;
+}.filterTooltip.applied-filters .filterReset{
+    padding: 0px !important;
+}.filterTooltip.applied-filters .chckBoxCont{
+    margin-top: 18px;
 }
 
 .no-result-img{
@@ -698,7 +768,7 @@ section.registrationContainer .registrationBody .registerText {
 .form-control-2 {
     display: block;
     width: 100%;
-    padding: 0.6rem 0rem 0.6rem 1.5rem;
+    padding: 0.5rem 0rem 0.5rem 1rem;
     font-size: 14px;
     font-weight: 400;
     line-height: 2.2;
@@ -708,7 +778,7 @@ section.registrationContainer .registrationBody .registerText {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    border-radius: 5px;
+    border-radius: 3px;
     border-color: #ffffff !important;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
@@ -804,7 +874,14 @@ input[type="range" i] {
     color: #4285F4;
 }
 .jpaicon{
-    margin-right: 4px;
+    margin-right: 7px;
+    font-size: 17px;
+}.jfter text .image-size{
+    margin-top: -3px;
+    margin-right: 7px;
+    width: 17px;
+}.japply-btn .image-size{
+    width: 12.5px;
 }
 .jpaicon:before {
     font-family: bootstrap-icons !important;
@@ -1085,12 +1162,17 @@ min-height: 240px;
     border-top-left-radius: unset !important;
     border-bottom-left-radius: unset !important;    
     font-size: 20px !important;
+}.search-inp-sec #msearch_btn{
+    padding: 0.5rem 0rem 0.5rem 1rem;
 }
 .sidebar .nav>.nav-item>a:hover,.sidebar.sidebar-style-2 .nav .nav-item a:hover,
 .sidebar .nav>.nav-item.active>a, .sidebar[data-background-color=white] .nav>.nav-item.active>a
 {
     background: rgb(255 255 255 / 3%) !important;
-}
+}.jobcard .avatar-sm img{
+    width: 65px !important;
+    height:65px !important;
+  }
 
 @media only screen and (max-width: 1024px) {
    .btn_c_se{
@@ -1111,11 +1193,14 @@ min-height: 240px;
 .pre-d{
     width: 8px;
     background: #fff;
-    margin: 39px 0px 39px 0px !important;
+}.jhier_ngfey{
+    padding-top: 18px;
+    padding-bottom: 18px;
+    padding-left: 22px;
 }
 .pre{
-    font-size: 34px;
-    font-weight: 100;
+    font-size: 30px;
+    font-weight: 100 !important;
 }
 .tooltip.fade.show.bs-tooltip-top{
     margin: 0px 0px -91px 0px !important;
@@ -1125,8 +1210,9 @@ min-height: 240px;
 }
 .tooltip-inner{
     background-color: #414141 !important;
+}.mpiwth_gb{
+    padding: 0px 10px;
 }
-
 @media(min-width: 768px) and (max-width: 992px){
     .container{
         max-width: 850px;
@@ -1159,7 +1245,7 @@ min-height: 240px;
     }
 }
 .search-inp-sec{
-    padding: 95px 0 20px 0;
+    padding: 60px 0 0px 0;
     background-color:#3b77db;
     /* background: linear-gradient(-45deg, #629bf6b1, #629AF6, #4285F4); */
     /* background: rgb(2,0,36); */
@@ -1168,6 +1254,10 @@ min-height: 240px;
     /* background-size: contain; */
 }.search-inp-sec .mobile_m img{
     width:130px;
+}.FilterHeadtitle img{
+    width: 16px;
+    height: 16px;
+    margin-bottom: 3px;
 }
 @media(min-width: 280px) and (max-width: 767px){
     .search-inp-sec .mobile_m{

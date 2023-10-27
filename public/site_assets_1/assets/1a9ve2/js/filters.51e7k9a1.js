@@ -1215,19 +1215,19 @@ function createJoblistDiv(data,appliedJobids,savedJobids){
                             html +='<div class="col-md-4 col-sm-4 col-xs-12 col-12 d-flex mb-1"><span><img draggable="false" class="me-2 image-size" src="'+baseurl+'site_assets_1/assets/img/side_nav_icon/location.png"></span> <text class="text-green-color tt_txt fw-bold text-truncate">'+locationa+'</text></div>';
                         html +='</div>';
                         html += '<div>';
-                            html +='<p class="text-truncate jd_txt mb-4">'+shortdesc+'</p>';
                         html +='</div>';
+                        html +='</div>';
+                        html +='<div class="mb-2 mt-2"><strong> Job Description : </strong></div><p class="text-truncate jd_txt mb-3">'+shortdesc+'</p>';
 
-                        html +='</div>';
 
                 html +='</div>';
 
 
                 
                 html += '<div class="d-flex mb-1 justify-content-between jfter">';
-                    html +='<div class=""><i class="jpaicon bi-clock-history"></i><span>'+posted_ago_a+'</span></div>';
+                    html +='<div class="align-self-center"><i class="jpaicon bi-clock-history"></i><span>'+posted_ago_a+'</span></div>';
                     if(imdjoin !=''){
-                        html +='<div class=""><text><img draggable="false" class="image-size" src="'+baseurl+'site_assets_1/assets/img/Imm_join.png" alt="immediate join">'+imdjoin+'</text></div>';
+                        html +='<div class="align-self-center"><text><img draggable="false" class="image-size" src="'+baseurl+'site_assets_1/assets/img/Imm_join.png" alt="immediate join">'+imdjoin+'</text></div>';
                     }
                     html +='<div class="d-flex">';
                     if(savedJobids.includes(job_id)){

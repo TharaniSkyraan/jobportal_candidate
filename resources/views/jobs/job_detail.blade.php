@@ -3,7 +3,6 @@
 <link href="{{ asset('css/hgtvwtiya.css')}}" rel="stylesheet">
 @endsection
 @section('content')
-@php $jtyv = ""; @endphp
 
 @include('layouts.header')
     <button class="mobile_apply japplybtn" id="japplybtn" data-value="disabled"><img src="{{asset('images/detailpage/apply_icon.svg')}}" alt="apply-icon"> Apply</button>
@@ -183,7 +182,7 @@
                         @foreach($unmatched_skills as $t)
                             <div class="key_rnd">{{$t}}</div>
                         @endforeach
-                    </div>`
+                    </div>
                 </div>
                 @else
                 <h4>
