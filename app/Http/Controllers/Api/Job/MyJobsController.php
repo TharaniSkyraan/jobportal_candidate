@@ -103,7 +103,7 @@ class MyJobsController extends BaseController
                                     $q1->whereNotNull('slug');
                                })->withCount('job')
                                 ->havingRaw("job_count != 0")
-                                ->orderBy('created_at','asc')
+                                ->orderBy('created_at','desc')
                                 ->paginate(10);
                                 
                            
@@ -125,7 +125,8 @@ class MyJobsController extends BaseController
                 'job_type'=>$job->getTypesStr(),
                 'skills'=>$job->getSkillsStr(),
                 'posted_at'=>Carbon::parse($job->posted_date)->getTimestampMs(),
-                'created_at'=>Carbon::parse($appliedjob['created_at'])->getTimestampMs(),                               
+                'created_at'=>Carbon::parse($appliedjob['created_at'])->getTimestampMs(), 
+                'is_deleted'=> (!empty($job->deleted_at))?0:1,                             
             );
             return $val;
         }, $jobs->toArray()['data']); 
@@ -223,7 +224,8 @@ class MyJobsController extends BaseController
                                 'posted_at'=>Carbon::parse($job->posted_date)->getTimestampMs(),
                                 'created_at'=>Carbon::parse($savedjob['created_at'])->getTimestampMs(),
                                 'is_applied'=>$user->isAppliedOnJob($job->id),
-                                'is_favourite' => $user->isFavouriteJob($job->slug)
+                                'is_favourite' => $user->isFavouriteJob($job->slug),
+                                'is_deleted'=> (!empty($job->deleted_at))?0:1   
                             );
                             return $val;
                         }, $jobs->toArray()['data']); 
@@ -304,6 +306,8 @@ class MyJobsController extends BaseController
         
         $list->each(function ($job, $key) use($user) {
             $alert = JobAlert::find($job->id);
+            $job['title'] = !empty($job->title)?$job->title:'';
+            $job['location'] = !empty($job->location)?$job->location:'';
             $job['saved_at'] = Carbon::parse($job->created_at)->getTimestampMs();
             $job['industrytype'] = implode(",",$alert->getIndustryType());
             $job['functionalarea'] = implode(",",$alert->getFunctionalArea());

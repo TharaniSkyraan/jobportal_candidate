@@ -72,6 +72,7 @@ class JobsController extends BaseController
             $job['posted_at'] = Carbon::parse($jobc->posted_date)->getTimestampMs();
             $job['is_applied'] = $user->isAppliedOnJob($job->job_id);
             $job['is_favourite'] = $user->isFavouriteJob($jobc->slug);
+            $job['is_deleted'] = (!empty($jobc->deleted_at))?0:1; 
         });   
         $joblist = $jobs['joblist']->items();     
 
@@ -221,6 +222,7 @@ class JobsController extends BaseController
                 $job['posted_at'] = Carbon::parse($jobc->posted_date)->getTimestampMs();
                 $job['is_applied'] = $user->isAppliedOnJob($job->job_id);
                 $job['is_favourite'] = $user->isFavouriteJob($jobc->slug);
+                $job['is_deleted'] = (!empty($jobc->deleted_at))?0:1; 
             });   
 
             $joblist = $jobs['joblist']->items();  
@@ -303,7 +305,8 @@ class JobsController extends BaseController
             'twitter_url'=>$job->company->twitter_url??'',
             'fb_url'=>$job->company->fb_url??'',
             'insta_url'=>$job->company->insta_url??'',
-            'is_admin' => $job->company->is_admin??0
+            'is_admin' => $job->company->is_admin??0,
+            'redirect_url' => (!empty($job->reference_url))?$job->reference_url:'',
         );
 
         $jobs = $this->fetchJobs($job->title, '', [], 10);
@@ -317,6 +320,7 @@ class JobsController extends BaseController
             $rjob['posted_at'] = Carbon::parse($jobc->posted_date)->getTimestampMs();
             $rjob['is_applied'] = $user->isAppliedOnJob($jobc->id);
             $rjob['is_favourite'] = $user->isFavouriteJob($jobc->slug);
+            $rjob['is_deleted'] = (!empty($jobc->deleted_at))?0:1; 
         });   
         $joblist = $jobs['joblist']->items();     
 
@@ -381,6 +385,7 @@ class JobsController extends BaseController
                 'skills'=>$job->getSkillsStr(),
                 'posted_at'=>Carbon::parse($job->posted_date)->getTimestampMs(),
                 'is_applied'=>$user->isAppliedOnJob($job->id),
+                'is_deleted' => (!empty($job->deleted_at))?0:1
             );
             return $val;
         }, $company_jobs); 
