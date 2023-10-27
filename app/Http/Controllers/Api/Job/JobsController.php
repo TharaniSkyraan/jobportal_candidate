@@ -124,7 +124,7 @@ class JobsController extends BaseController
                             ->orderBy('jobsearch_count','DESC')
                             ->havingRaw("jobsearch_count != 0")
                             ->groupBy('id')
-                            ->groupBy('label')
+                            ->groupBy('industry')
                             ->limit(3)
                             ->get();
 
