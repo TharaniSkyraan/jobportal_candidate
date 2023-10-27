@@ -237,9 +237,8 @@ font-weight: bolder !important;
     display: none !important;
 }
 .tooltip-inner{
-    background-color: #414141 !important;
+    background: #ea4335fa !important;
 }
-
 
 @media only screen and (max-width: 767px) {
 
