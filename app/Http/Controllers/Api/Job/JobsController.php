@@ -62,7 +62,10 @@ class JobsController extends BaseController
             }
         }
 
-        $jobs = $this->fetchJobs($user->career_title, '', [], 5);
+        $sortBy = 'date';
+        $filter = array();
+        $filter['sortBy']  = $sortBy;
+        $jobs = $this->fetchJobs($user->career_title, $filter, [], 5);
         
         $jobs['joblist']->each(function ($job, $key) use($user) {
             $jobc = Job::find($job->job_id);
@@ -101,6 +104,9 @@ class JobsController extends BaseController
      */
     public function fresherIndex()
     {
+        $user_id = Auth::user()->id??710;        
+        $user = User::find($user_id);
+
         $top_cities = JobWorkLocation::whereHas('job',function($q){
                                         $q->where('work_from_home','!=','permanent')
                                           ->whereIsActive(1);
@@ -114,15 +120,16 @@ class JobsController extends BaseController
                                     ->get();
         
         $top_cities->each(function ($tcity, $key) {
-            $sector = Industry::whereHas('jobsearch', function($q) use($tcity){
-                            $q->where('city', 'REGEXP', $tcity->city_id);
-                        })->withCount('jobsearch')
-                        ->orderBy('jobsearch_count','DESC')
-                        ->havingRaw("jobsearch_count != 0")
-                        ->limit(3)
-                        ->get();
-            $sector->makeHidden(['lang','industry_id','is_active','sort_order','is_default','created_at','updated_at']);
-            
+
+            $sector = Industry::where('city', 'REGEXP', $tcity->city_id)
+                            ->leftJoin('job_searchs', 'job_searchs.industry', '=', 'industries.id')
+                            ->select('industries.id as id', \DB::raw('COUNT(job_searchs.job_id) as jobsearch_count'),'industries.industry as industry')
+                            ->orderBy('jobsearch_count','DESC')
+                            ->havingRaw("jobsearch_count != 0")
+                            ->groupBy('id')
+                            ->groupBy('industry')
+                            ->limit(3)
+                            ->get();
             $tcity['sectors'] = $sector;
         });                                
         
@@ -135,7 +142,27 @@ class JobsController extends BaseController
                             ->get();
         $sectors->makeHidden(['lang','industry_id','is_active','sort_order','is_default','created_at','updated_at']);
 
+        
+
+        $sortBy = 'date';
+        $filter = array();
+        $filter['sortBy']  = $sortBy;
+        $jobs = $this->fetchJobs($user->career_title, $filter, [], 5);
+        
+        $jobs['joblist']->each(function ($job, $key) use($user) {
+            $jobc = Job::find($job->job_id);
+            $job['company_image'] = $jobc->company->company_image??'';
+            $job['job_type'] = $jobc->getTypesStr();
+            $job['skills'] = $jobc->getSkillsStr();
+            $job['posted_at'] = Carbon::parse($jobc->posted_date)->getTimestampMs();
+            $job['is_applied'] = $user->isAppliedOnJob($job->job_id);
+            $job['is_favourite'] = $user->isFavouriteJob($jobc->slug);
+            $job['is_deleted'] = (!empty($jobc->deleted_at))?0:1; 
+        });   
+        $joblist = $jobs['joblist']->items(); 
+
         $response = array(
+            'jobs' => $joblist,
             'top_cities' => $top_cities,
             'sectors' => $sectors
         );
@@ -157,7 +184,7 @@ class JobsController extends BaseController
         $user = User::find($user_id);
         $filters = $jobs = $filter = $citylFGid  = $salaryFGid = $jobtypeFGid = $jobshiftFGid = $edulevelFGid = $wfhtypeFid = $industrytypeGid = $functionalareaGid = $posteddateFid = array();
 
-        $sortBy = $request->sortBy??'relevance';
+        $sortBy = 'date';
         $experienceFid = $request->experinceFv??'';
         $designation = $request->designation??'';
         
@@ -289,7 +316,7 @@ class JobsController extends BaseController
             'posted_at'=>Carbon::parse($job->posted_date)->getTimestampMs(),
             'immediate_join' => $job->NoticePeriod !=null?$job->NoticePeriod->notice_period:'',
             'walkin' => isset($job->walkin)?'yes':'no',
-            'walkin_date' => (isset($job->walkin)?(Carbon::parse($job->walkin->walk_in_from_date)->format('d F, Y').' to '.Carbon::parse($job->walkin->walk_in_to_date)->format('d F, Y')).$exclude_days:''),
+            'walkin_date' => (isset($job->walkin)?'From :'.(Carbon::parse($job->walkin->walk_in_from_date)->format('d F, Y').' to '.Carbon::parse($job->walkin->walk_in_to_date)->format('d F, Y')).$exclude_days:''),
             'walkin_time' => (isset($job->walkin)?(Carbon::parse($job->walkin->walk_in_from_time)->format('H:i A').' to '.Carbon::parse($job->walkin->walk_in_to_time)->format('H:i A')):''),
             'contact_name'=>$job->contact_person_details->name??'',
             'contact_email'=>$job->contact_person_details->email??'',
@@ -306,6 +333,7 @@ class JobsController extends BaseController
             'fb_url'=>$job->company->fb_url??'',
             'insta_url'=>$job->company->insta_url??'',
             'is_admin' => $job->company->is_admin??0,
+            'about_company' => $job->company->description??'',
             'redirect_url' => (!empty($job->reference_url))?$job->reference_url:'',
         );
 

@@ -149,52 +149,56 @@
 </footer>
 <script>
   
-if(document.getElementById('designation')!=null){
 
   $(".footer-search").click(function(){
       search($(this).text(), '');
   });
+
   $(".footer-city").click(function(){
       search('',$(this).text());
   });
 
-  $('#designation, #mdesignation ').on('keyup', function(){
-      $('#designation').tooltip({trigger: 'manual'}).tooltip('hide');
-      $('#mdesignation').tooltip({trigger: 'manual'}).tooltip('hide');
+  if(document.getElementById('designation')!=null || document.getElementById('mdesignation')!=null ){
+    $('#designation, #mdesignation ').on('keyup', function(){
+        $('#designation').tooltip({trigger: 'manual'}).tooltip('hide');
+        $('#mdesignation').tooltip({trigger: 'manual'}).tooltip('hide');
 
-  });
-  function search(d, l, from){
-      // $('#designation').css('border','1px solid lightgray');
-      $('.err_msg').html('');
-      if($.trim(d) != '' || $.trim(l) !=''){      
-          $.post('{{ route("job.checkkeywords") }}', {designation: d, location: l, _method: 'POST', _token: '{{ csrf_token() }}'})
-              .done(function (response) {
-                  var l = '';
-                  var d = '';
-              if(response.d !=''){
-                  d = 'd='+response.d;
-              }
-              if(response.l !=''){
-                  if(response.d !=''){
-                      l += '&';
-                  }
-                  l += 'l='+response.l;
-              }
-              url = '{{ url("/") }}/';
-              window.location = url+response.sl+'?'+d+l;
-          });
-      }else{
-          // $('.designation-error').html('Please enter title, keyword or company');
-          // $('#designation').css('border','1px solid #f25961');
-          if(from=='mob'){
-            $('#mdesignation').tooltip({trigger: 'manual'}).tooltip('show');
-          }else{
-            $('#designation').tooltip({trigger: 'manual'}).tooltip('show');
-          }
-      }
+    });
   }
 
-}
+  function search(d, l, from){
+    // $('#designation').css('border','1px solid lightgray');
+    $('.err_msg').html('');
+    if($.trim(d) != '' || $.trim(l) !=''){      
+        $.post('{{ route("job.checkkeywords") }}', {designation: d, location: l, _method: 'POST', _token: '{{ csrf_token() }}'})
+            .done(function (response) {
+                var l = '';
+                var d = '';
+            if(response.d !=''){
+                d = 'd='+response.d;
+            }
+            if(response.l !=''){
+                if(response.d !=''){
+                    l += '&';
+                }
+                l += 'l='+response.l;
+            }
+            url = '{{ url("/") }}/';
+            window.location = url+response.sl+'?'+d+l;
+        });
+    }else{
+      
+      if(document.getElementById('designation')!=null || document.getElementById('mdesignation')!=null ){
+        // $('.designation-error').html('Please enter title, keyword or company');
+        // $('#designation').css('border','1px solid #f25961');
+            if(from=='mob'){
+              $('#mdesignation').tooltip({trigger: 'manual'}).tooltip('show');
+            }else{
+              $('#designation').tooltip({trigger: 'manual'}).tooltip('show');
+            }
+        }
+    }
+  }
 </script>
 
 

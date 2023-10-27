@@ -1,4 +1,4 @@
-var FilterGroupSetCount=1;
+var FilterGroupSetCount=5;
 var FilterMenus = ['citylFGid','salaryFGid','jobtypeFGid','edulevelFGid','wfhtypeFid','industrytypeGid','functionalareaGid'];
 var FilterMenu_Experince ='experinceFv';
 
@@ -277,7 +277,11 @@ function paginate_html(data){
                         paglink = disb_pgn1=='disabled' ? 'javascript:void(0);':paglink;
 
                         paglink = label=='...' ? 'javascript:void(0);':paglink;
-                        sub_html +='<a href="'+paglink+'" class="'+selected+'" '+disb_pgn1+'>'+label+'</a>';
+                        if(label=='...'){
+                            sub_html +='<a href="'+paglink+'" style="pointer-events: none;" '+disb_pgn1+'>'+label+'</a>';
+                        }else{
+                            sub_html +='<a href="'+paglink+'" class="'+selected+'" '+disb_pgn1+'>'+label+'</a>';
+                        }
                     }
                 });
                 
@@ -340,7 +344,7 @@ $(document).on('click', '.form-check-input' , function(e){
     }
     // applied btn input change  show.hide--s
 
-    if($(this).closest('.filterTooltip').attr('id')==undefined){
+    if($(this).closest('.filterTooltipseparete').attr('id')==undefined){
         processing_data();
     }
 
@@ -380,6 +384,7 @@ $(document).on('change', '.exp-range-slider' , function(e){
 
 //applied popup trigger
 $(document).on( 'click', '.applied-link' , function(e) {
+    $('.filterTooltip, #tooltip').hide();
     html = geneApplyFilter_Box();
     $(this).next().remove();
     if(html != ''){
@@ -561,7 +566,7 @@ function geneFilterOptions(filterName, data, filterTitle){
     });
     
     p1html = '';
-    p1html += '<div class="filterTooltip bgWhite z-depth-2" id="tooltip">';
+    p1html += '<div class="filterTooltip bgWhite z-depth-2 filterTooltipseparete" id="tooltip">';
         p1html +='<div class="heading">';
             p1html +='<span class="fw-bold fs16">'+filterTitle+'</span>';
             p1html +='<i class="jpaxicon jpaxicon-cross icon-24"></i>';
@@ -856,7 +861,7 @@ function geneApplyFilter_Box_old(){
         val_txt =  expvv+' Years';
         tmp_id = 'fod'  + '-' + val_txt + 'Filter-expanded';
         html += '<div class="mt-8 chckBoxCont" data-filter-id="'+FilterMenu_Experince+'">';
-            html += '<input type="checkbox" class="form-check-input" value="'+ expvv +'" id="'+ tmp_id +'" checked>';
+            html += '<input type="checkbox" class="c" value="'+ expvv +'" id="'+ tmp_id +'" checked>';
             html +='<label class="chkLbl" for="'+ tmp_id +'">';
                 html +='<p class="grey-text lH20 ml-8 txtLbl">';
                     html +='<span class="ellipsis fleft" title="'+ val_txt +'">'+val_txt+'</span>';
