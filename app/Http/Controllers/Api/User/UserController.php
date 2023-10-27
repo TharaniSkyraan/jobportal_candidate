@@ -38,7 +38,7 @@ class UserController extends BaseController
                 'country_name' => $user->country->country??'',
                 'date_of_birth' => (!empty($user->date_of_birth))?Carbon::parse($user->date_of_birth)->getTimestampMs():0,
                 'gender_id' => $user->gender??0,
-                'gender' => $user->gender->gender??'',
+                'gender' =>$user->gender?$user->getGender('gender'):'',
                 'marital_status_id' => $user->marital_status_id??0,
                 'total_experience' => $user->total_experience??'0',
                 'percentage' => $user->getProfilePercentage(),
