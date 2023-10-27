@@ -117,15 +117,16 @@ class JobsController extends BaseController
                                     ->get();
         
         $top_cities->each(function ($tcity, $key) {
-            $sector = Industry::whereHas('jobsearch', function($q) use($tcity){
-                            $q->where('city', 'REGEXP', $tcity->city_id);
-                        })->withCount('jobsearch')
-                        ->orderBy('jobsearch_count','DESC')
-                        ->havingRaw("jobsearch_count != 0")
-                        ->limit(3)
-                        ->get();
-            $sector->makeHidden(['lang','industry_id','is_active','sort_order','is_default','created_at','updated_at']);
-            
+
+            $sector = Industry::whereIn('job_searchs.job_id', $jobids)
+                            ->leftJoin('job_searchs', 'job_searchs.industry', '=', 'industries.id')
+                            ->select('industries.id as id', \DB::raw('COUNT(job_searchs.job_id) as jobsearch_count'),'industries.industry as industry')
+                            ->orderBy('jobsearch_count','DESC')
+                            ->havingRaw("jobsearch_count != 0")
+                            ->groupBy('id')
+                            ->groupBy('label')
+                            ->limit(3)
+                            ->get(); 
             $tcity['sectors'] = $sector;
         });                                
         
