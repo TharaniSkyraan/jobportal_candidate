@@ -277,7 +277,11 @@ function paginate_html(data){
                         paglink = disb_pgn1=='disabled' ? 'javascript:void(0);':paglink;
 
                         paglink = label=='...' ? 'javascript:void(0);':paglink;
-                        sub_html +='<a href="'+paglink+'" class="'+selected+'" '+disb_pgn1+'>'+label+'</a>';
+                        if(label=='...'){
+                            sub_html +='<a href="'+paglink+'" class="disabled" '+disb_pgn1+'>'+label+'</a>';
+                        }else{
+                            sub_html +='<a href="'+paglink+'" class="'+selected+'" '+disb_pgn1+'>'+label+'</a>';
+                        }
                     }
                 });
                 
