@@ -83,6 +83,7 @@ li {
 
 @push('scripts')
 <script type="text/javascript">
+$('select#education_level_id option:first').attr('disabled', true);
 var baseurl = '{{ url("/") }}';
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" integrity="sha512-HWlJyU4ut5HkEj0QsK/IxBCY55n5ZpskyjVlAoV9Z7XQwwkqXoYdCIC93/htL3Gu5H3R4an/S0h2NXfbZk3g7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

@@ -122,6 +122,7 @@
                                 $exp_in_year = $exp[0]??'';
                                 $exp_in_month = $exp[1]??'';
                             @endphp
+                            @if($user->employment_status=='experienced')
                             <label for="exampleInputEmail1" class="form-label">Total years of experience</label>
                             <div class="row mb-4">
                                 <div class="col-md-6">
@@ -133,6 +134,7 @@
                                 </div>
                                 <small class="form-text text-muted text-danger err_msg" id="err_total_exp"></small>
                             </div>
+                            @endif
 
                             <label for="expected_salary" class="form-label">Expected salary</label>
                             <div class="input-group mb-3 slct_apnd">
@@ -169,6 +171,7 @@
                                 {!! Form::checkbox('is_watsapp_number', 'yes', $user->is_watsapp_number??'', array('class'=>'form-check-input', 'id'=>'is_watsapp_number')) !!}
                                 <label class="form-check-label" for="is_watsapp_number">Is this watsapp number.</label>
                             </div> -->
+                            @if($user->employment_status=='experienced')
                             <div class="row mb-4">
                                 <div class="col-md-6">
                                     <div class="mb-3">
@@ -178,6 +181,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @endif
                             <div class="row mb-4 mt-5">
                                 <div class="col-md-6 col-5">
                                     <a href="{{ route('experience')}}" class="btn p-0"><img draggable="false" src="{{asset('images/lefticon.png')}}"> Previous</a>
