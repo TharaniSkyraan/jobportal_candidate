@@ -165,6 +165,18 @@
 }.hmenear_job .carousel h3 {
     font-weight: 600;
     font-size: 16px;
+}.hmenear_job .renty_pocdd .carousel h3{
+    font-size: 16px;
+    font-weight: 700 !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #4a545a;
+    text-transform: capitalize;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    height: 45px !important;
+    align-items: center;
+    display: flex;
 }.hmenear_job p{
     text-transform: capitalize;
 }.renty_pocdd .carousel p {
