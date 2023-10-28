@@ -3,7 +3,7 @@
     background: transparent radial-gradient(closest-side at 50% 50%, #0060ff 10%, #1750ae 90%) 0% 0% no-repeat padding-box;
 }#cndidate_wzrd .card{
     background-color:#F3F7FE;
-    border-radius:15px;
+    border-radius:8px;
     margin:0 auto;
 }#cndidate_wzrd{
     display: grid;
@@ -16,7 +16,12 @@
     border-radius: 25px !important;
 }#cndidate_wzrd .card{
     width: 85%;
-  }
+}#cndidate_wzrd .progress{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left: 0px;
+}
 #cndidate_wzrd .cndte_mbile img{
     width:100%;
 }#cndidate_wzrd .site2_logo img{
