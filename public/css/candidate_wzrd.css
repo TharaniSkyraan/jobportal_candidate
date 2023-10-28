@@ -16,11 +16,6 @@
     border-radius: 25px !important;
 }#cndidate_wzrd .card{
     width: 85%;
-}#cndidate_wzrd .progress{
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    left: 0px;
 }
 #cndidate_wzrd .cndte_mbile img{
     width:100%;
@@ -127,7 +122,6 @@
 @media(min-width:  1025px) and (max-width: 1300px){
     #cndidate_wzrd .card{
         width: 100%;
-        padding: 10px;
     }
 }
 
