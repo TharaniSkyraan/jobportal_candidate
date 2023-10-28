@@ -125,7 +125,9 @@ body{
     padding: 5px 20px;
     border-radius: 20px;
 }.resultjobwb ul li{
-    margin-bottom: 10px;   
+    margin-bottom: 15px;   
+}.resultjobwb ul{
+    margin: 1rem;
 }.keyboard_mcts h3{
     font-size: 17px;
 }.resultjobwb .about_cmp p{
