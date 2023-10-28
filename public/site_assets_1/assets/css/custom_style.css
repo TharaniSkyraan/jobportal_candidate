@@ -397,7 +397,6 @@
   display: grid;
   place-items: center;
   font-size: 12px;
-  margin-left: 12px;
   transition: all 0.4s ease;  
   font-weight: 600;
 }

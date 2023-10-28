@@ -31,7 +31,7 @@
     box-shadow: 1px 1px 14px 0 rgb(18 38 63 / 20%) !important;
     right: 30px;
     top: 70px;
-    z-index: 999;
+    z-index: 9;
 }.pfcmpletalert .wrning{
     background:#D0DEF5;
     height: 60px;

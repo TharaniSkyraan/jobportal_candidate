@@ -227,7 +227,6 @@ filter search
 }
 .search-sortby{
     margin-right: -1.2rem!important;
-    position: sticky;
 }
 .mob-res-filter .card-footer{
     border:none;

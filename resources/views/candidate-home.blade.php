@@ -500,6 +500,16 @@
                 }
             });
         });
+
+        $(document).on('click', '.typeahead', function(){
+            $('.tooltip').removeClass('show');
+        });
+
+        document.addEventListener("keydown", function(event) {
+            if (event.ctrlKey && event.key === "u") {
+            }
+        });
+
    </script>
     
 @endsection
