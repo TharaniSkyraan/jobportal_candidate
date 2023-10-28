@@ -34,25 +34,25 @@ class JobAlert extends Model
             $salarydata .="0 to 3 Lakhs / annum";
         }
         if(in_array("3to6",$salaryFGid)){
-            $salarydata .=((!empty($salaryFGid))?", ":"")."3 to 6 Lakhs / annum";
+            $salarydata .=((!empty($salarydata))?", ":"")."3 to 6 Lakhs / annum";
         }
         if(in_array("6to10",$salaryFGid)){
-            $salarydata .=((!empty($salaryFGid))?", ":"")."6 to 10 Lakhs / annum";
+            $salarydata .=((!empty($salarydata))?", ":"")."6 to 10 Lakhs / annum";
         }
         if(in_array("10to15",$salaryFGid)){
-            $salarydata .=((!empty($salaryFGid))?", ":"")."10 to 15 Lakhs / annum";
+            $salarydata .=((!empty($salarydata))?", ":"")."10 to 15 Lakhs / annum";
         }
         if(in_array("15to25",$salaryFGid)){
-            $salarydata .=((!empty($salaryFGid))?", ":"")."15 to 25 Lakhs / annum";
+            $salarydata .=((!empty($salarydata))?", ":"")."15 to 25 Lakhs / annum";
         }
         if(in_array("25to50",$salaryFGid)){
-            $salarydata .=((!empty($salaryFGid))?", ":"")."25 to 50 Lakhs / annum";
+            $salarydata .=((!empty($salarydata))?", ":"")."25 to 50 Lakhs / annum";
         }
         if(in_array("50to75",$salaryFGid)){
-            $salarydata .=((!empty($salaryFGid))?", ":"")."50 to 75 Lakhs / annum";
+            $salarydata .=((!empty($salarydata))?", ":"")."50 to 75 Lakhs / annum";
         }
         if(in_array("75to100",$salaryFGid)){
-            $salarydata .=((!empty($salaryFGid))?", ":"")."75 to 100 Lakhs / annum";
+            $salarydata .=((!empty($salarydata))?", ":"")."75 to 100 Lakhs / annum";
         }
         return $salarydata.(!empty($salarydata))?".":"";
     }
