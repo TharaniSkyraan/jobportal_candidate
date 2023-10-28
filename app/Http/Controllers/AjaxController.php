@@ -160,19 +160,20 @@ class AjaxController extends Controller
 
     /*     * ***************************************** */
 
-   
     public function suggestionEducationLevels(Request $request)
     {
         $education_level_ids = '';
-        $user_id = $request->user_id??'';
+        $user_id = Auth::user()->id??'';
         if(!empty($user_id))
-        {         
+        {
+         
             $education_level_id = $request->education_level_id;
             $education_level_ids = UserEducation::where('user_id',$user_id)
-                                                ->select('education_level_id')
                                                 ->where('education_level_id','!=',$education_level_id)
-                                                ->pluck('education_level_id')->toArray();
+                                                ->pluck('education_level_id');
+                                                dd('tes');
         }
+        dd($education_level_ids);
         $data = DataArrayHelper::autocompleteEducationLevel($education_level_ids);
         return response()->json($data);
     }
