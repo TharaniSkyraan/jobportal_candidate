@@ -36,7 +36,10 @@
                             <div class="loadflebrd">
                                 <div class="box text-center">
                                     <img draggable="false" src="{{asset('images/upload_img.png')}}" width="35%" class="p-1 file_upld file_upload"> 
-                                    <div  class="cursor-pointer file_upld">Drop your Resume here or Browse</div>     
+                                    <div  class="cursor-pointer file_upld">Drop your Resume here or Browse
+                                    </div>  
+                                    <small class="grayc">Supported files - Doc, Docx, PDF, RTF <br>(2MB limited)</small>
+
                                     <input type="file" class="d-none" id="file" name="file" accept=".doc,.docx,.pdf,.rtf">
                                 </div>   
                             </div>

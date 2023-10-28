@@ -810,9 +810,11 @@ class DataArrayHelper
         return $locations;
     }
     
-    public static function autocompleteEducationLevel()
+    public static function autocompleteEducationLevel($education_level_id=[])
     {     
-        $array = EducationLevel::select('id','education_level as name')->isDefault()->active()->take(10)->get();
+        $array = EducationLevel::select('id','education_level as name')
+                               ->whereNotIn($education_level_id)
+                               ->isDefault()->active()->take(10)->get();
         return $array;
     }
 

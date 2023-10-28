@@ -159,3 +159,6 @@
     .form-control.is-invalid{
         background-image: unset !important;
     }
+    .grayc{
+        font-size: 11px;
+    }

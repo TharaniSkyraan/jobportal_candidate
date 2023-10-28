@@ -35,6 +35,7 @@ use App\Model\Industry;
 use App\Model\SiteSetting;
 use App\Model\Companygalary;
 use App\Model\JobWorkLocation;
+use App\Model\UserEducation;
 
 class AjaxController extends Controller
 {
@@ -161,12 +162,20 @@ class AjaxController extends Controller
 
     public function suggestionEducationLevels(Request $request)
     {
-        $data = DataArrayHelper::autocompleteEducationLevel();
+        $autocompleteEducationLevel = [];
+        if(Auth::check()){
+            $user_id = Auth::user()->id;
+            $education_level_id = $request->education_level_id;
+            $education_level_ids = UserEducation::where('user_id',$user_id)
+                                                ->where('education_level_id','!=',$education_level_id)
+                                                ->pluck('education_level_id');
+        }
+        $data = DataArrayHelper::autocompleteEducationLevel($education_level_ids);
         return response()->json($data);
     }
+
     public function suggestionEducationTypes(Request $request)
     {
-
         $term = $request->q??'';
         $education_level_id = $request->education_level_id??'';
         $results = DataArrayHelper::autocompleteEducationType($term,$education_level_id);
