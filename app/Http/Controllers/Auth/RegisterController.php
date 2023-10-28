@@ -222,12 +222,19 @@ class RegisterController extends Controller
         $user->phone = $request->full_number;
         $user->is_watsapp_number = $request->is_watsapp_number;
         $user->career_title = $request->career_title;
-        $user->total_experience = $request->exp_in_year.'.'.$request->exp_in_month;
+
+        if($user->employment_status=='experienced'){
+            $user->total_experience = $request->exp_in_year.'.'.$request->exp_in_month;
+            $user->notice_period = $request->notice_period;
+        }else{
+            $user->total_experience =0;
+            $user->notice_period = null;
+        }
+
         $user->expected_salary = (int) str_replace(',',"",$request->input('expected_salary'));
         $user->salary_currency = $request->salary_currency;
         $user->country_id = $request->country_id;
         $user->location = $request->location;
-        $user->notice_period = $request->notice_period;
         if($user->next_process_level == 'career_info'){                
             $user->next_process_level = 'skills';
         }
