@@ -82,7 +82,7 @@
                                                         </div>
                                                     </div>
                                                 @endif
-                                                <div class="col-md-4 col-12">
+                                                <div class="col-md-12 col-xl-12 col-12">
                                                     <div class="locationrs mgmw">
                                                         <img src="{{asset('images/detailpage/locate.svg')}}" alt="locate-icon" class="icon_rs" draggable="false"><span class="grayc">Location :</span> {{rtrim($job->work_locations, ", ")}} 
                                                     </div>

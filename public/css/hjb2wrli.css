@@ -477,6 +477,8 @@ body{
     font-size: 14px;
 }.sclicnm img{
     margin-right: 15px;
+    width: 28px;
+    height: 28px;
 }#aboutcmp .sclicnm{
     margin-bottom: 0px !important;
 }#aboutcmp .col-md-4.mkwra .card{
@@ -516,7 +518,8 @@ body{
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
-    height: 16px !important;
+    height: 18px !important;
+    margin: 0px;
 }#activejobs{
     margin-top: 25px;
 }#activejobs .card{
