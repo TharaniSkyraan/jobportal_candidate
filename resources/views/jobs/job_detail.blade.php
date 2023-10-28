@@ -247,7 +247,7 @@
                 @if(isset($exle)&&!empty($exle))<li>Contract length : {{$exle}}</li>@endif
                 @if(isset($exl)&&!empty($exl))<li>Part-time hours : {{$exl}} per week</li>@endif
                 @if(count($job->jobshifts)!=0)
-                    <h4>Job Shift</h4>
+                    <h4 class="mt-3">Job Shift</h4>
                     <ul>
                         @foreach($job->jobshifts as $shifts)
                         <li>{{$shifts->shift->shift}}</li>
