@@ -814,7 +814,7 @@ class DataArrayHelper
     {     
         $array = EducationLevel::select('id','education_level as name');
         if(!empty($education_level_id)){
-           $array = $array->whereNotIn($education_level_id);
+           $array = $array->whereNotIn('id',$education_level_id);
         }
         return $array->isDefault()->active()->take(10)->get();
     }
