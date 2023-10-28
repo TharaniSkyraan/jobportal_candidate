@@ -171,6 +171,7 @@ class AjaxController extends Controller
             $education_level_ids = UserEducation::where('user_id',$user_id)
                                                 ->where('education_level_id','!=',$education_level_id)
                                                 ->pluck('education_level_id');
+                                                dd('tes');
         }
         dd($education_level_ids);
         $data = DataArrayHelper::autocompleteEducationLevel($education_level_ids);
