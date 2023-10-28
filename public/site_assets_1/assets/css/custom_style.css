@@ -383,47 +383,8 @@
   initial-value: 0;
 } */
 
-[role="progressbar"] {
-  --percentage: var(--value);
-  --secondary: rgb(241, 243, 245);
-  --primary: #00D599;
-  --size: 60px;
-  animation: progress 2s 0.5s forwards;
-  width: var(--size);
-  aspect-ratio: 1;
-  position: relative;
-  overflow: hidden;
-  display: grid;
-  place-items: center;
-  font-size: 12px;
-  transition: all 0.4s ease;  
-  font-weight: 600;
-}
 
-[role="progressbar"]::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: conic-gradient(var(--primary) calc(var(--percentage) * 1%), var(--secondary) 0);
-  mask: radial-gradient(white 55%, transparent 0);
-  mask-mode: alpha;
-  -webkit-mask: radial-gradient(#0000 60%, #000 0);
-  -webkit-mask-mode: alpha;
-}
 
-[role="progressbar-after"]::after {
-  counter-reset: percentage var(--value);
-  content: counter(percentage) '% complete';
-  /* font-family: Helvetica, Arial, sans-serif; */
-	font-family: "Poppins";
-  font-size: calc(var(--size) / 5);
-  color: var(--primary);
-}
-
-/* profile progress bar ends */
 
 /* range slider starts */
 
