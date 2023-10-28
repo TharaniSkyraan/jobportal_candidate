@@ -402,7 +402,7 @@ transition: all 0.4s ease;
 font-weight: 600;
 }
 
-.dropdown .progressbar::before {
+.user .progressbar::before {
 content: "";
 position: absolute;
 top: 0;
