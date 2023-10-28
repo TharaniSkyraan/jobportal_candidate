@@ -416,6 +416,15 @@ mask-mode: alpha;
 -webkit-mask-mode: alpha;
 }
 
+.dropdown .progressbar::after, .user .progressbar::after {
+  counter-reset: percentage var(--value);
+  content: counter(percentage) '% complete';
+  /* font-family: Helvetica, Arial, sans-serif; */
+  font-family: "Poppins";
+  font-size: calc(var(--size) / 5);
+  color: var(--primary);
+}
+
 
 
 /* range slider starts */
