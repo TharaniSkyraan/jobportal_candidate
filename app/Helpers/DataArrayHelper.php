@@ -810,12 +810,13 @@ class DataArrayHelper
         return $locations;
     }
     
-    public static function autocompleteEducationLevel($education_level_id=[])
+    public static function autocompleteEducationLevel($education_level_id='')
     {     
-        $array = EducationLevel::select('id','education_level as name')
-                               ->whereNotIn($education_level_id)
-                               ->isDefault()->active()->take(10)->get();
-        return $array;
+        $array = EducationLevel::select('id','education_level as name');
+        if(!empty($education_level_id)){
+           $array = $array->whereNotIn($education_level_id);
+        }
+        return $array->isDefault()->active()->take(10)->get();
     }
 
     public static function autocompleteEducationType($key='',$education_level_id='')

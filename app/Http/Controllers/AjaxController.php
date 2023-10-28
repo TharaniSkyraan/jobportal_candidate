@@ -162,7 +162,7 @@ class AjaxController extends Controller
 
     public function suggestionEducationLevels(Request $request)
     {
-        $education_level_ids = [];
+        $education_level_ids = '';
         if(Auth::check()){
             $user_id = Auth::user()->id;
             $education_level_id = $request->education_level_id;
