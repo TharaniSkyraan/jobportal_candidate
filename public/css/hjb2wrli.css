@@ -477,6 +477,8 @@ body{
     font-size: 14px;
 }.sclicnm img{
     margin-right: 15px;
+    width: 28px;
+    height: 28px;
 }#aboutcmp .sclicnm{
     margin-bottom: 0px !important;
 }#aboutcmp .col-md-4.mkwra .card{
@@ -496,9 +498,28 @@ body{
 }#gallery .card h3{
     height: 45px;
 }#activejobs h2{
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 700 !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #4a545a;
     text-transform: capitalize;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    height: 45px !important;
+    align-items: center;
+    align-self: center;
+    display: flex;
+}.mjn_kjwe{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #4a545a;
+    text-transform: capitalize;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    height: 18px !important;
+    margin: 0px;
 }#activejobs{
     margin-top: 25px;
 }#activejobs .card{

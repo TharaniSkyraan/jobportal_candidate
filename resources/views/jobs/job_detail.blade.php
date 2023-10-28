@@ -82,7 +82,7 @@
                                                         </div>
                                                     </div>
                                                 @endif
-                                                <div class="col-md-4 col-12">
+                                                <div class="col-md-12 col-xl-12 col-12">
                                                     <div class="locationrs mgmw">
                                                         <img src="{{asset('images/detailpage/locate.svg')}}" alt="locate-icon" class="icon_rs" draggable="false"><span class="grayc">Location :</span> {{rtrim($job->work_locations, ", ")}} 
                                                     </div>
@@ -142,7 +142,10 @@
                     Job description
                 </h4>
                 <p class="m-0">
-                    {!! $job->description !!}
+                    @php
+                        $description = str_replace('<p>&nbsp;</p>', '', $job->description);
+                        echo $description;
+                    @endphp
                 </p>
                 @if(!empty($job->additional_description))
                     <h4>Required Candidate Profile</h4>
@@ -240,7 +243,7 @@
                         {{-- <p>{{$jt_v.', '}}</p> --}}
                     @endforeach
                 </div>
-                <text>{{rtrim($jtyv, ", ")}}</text>
+                <text class="mb-3">{{rtrim($jtyv, ", ")}}</text>
                 @if(isset($exle)&&!empty($exle))<li>Contract length : {{$exle}}</li>@endif
                 @if(isset($exl)&&!empty($exl))<li>Part-time hours : {{$exl}} per week</li>@endif
                 @if(count($job->jobshifts)!=0)
@@ -254,18 +257,18 @@
                 @if(!empty($job->benefits) || !empty($job->supplementals) || !empty($job->other_benefits))
                         @if(!empty($job->benefits))
                         <div class="mt-3">
-                            <h5 class="fw-bolder">Cash Benefits</h5>
+                            <h4>Cash Benefits</h5>
                             <div><span>{{ rtrim($job->benefits,', ') }}</span></div>
                         @endif
                         @if(!empty($job->supplementals))
                         <div class="mt-3">
-                            <h5 class="fw-bolder">Supplemental Pay</h5>
+                            <h4>Supplemental Pay</h5>
                             <div><span>{{ rtrim($job->supplementals,', ') }}</span></div>
                         </div>
                         @endif
                         @if(!empty($job->other_benefits))
                         <div class="mt-3">
-                            <h5 class="fw-bolder">Other Benefits</h5>
+                            <h4>Other Benefits</h5>
                             <div><span>{{ rtrim($job->other_benefits,', ') }}</span></div>
                         </div>
                         @endif

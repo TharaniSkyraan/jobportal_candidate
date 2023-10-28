@@ -145,7 +145,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td><strong>Location &nbsp;</strong></td>
-                                                            <td>:&nbsp; {{rtrim($job->work_locations, ", ")}}</td>
+                                                            <td><h6 class="mjn_kjwe"> :&nbsp; {{rtrim($job->work_locations, ", ")}}</h6></td>
                                                         </tr>
                                                     </table>
                                                 </div>
