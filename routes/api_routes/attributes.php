@@ -12,6 +12,6 @@ Route::post('designations', [AjaxController::class, 'getDesignation']);
 Route::post('skill_list', [AjaxController::class, 'GetSkills']);
 Route::get('result_type', [AjaxController::class, 'GetResultType']);
 Route::get('known_level', [AjaxController::class, 'GetLanguageLevel']);
-Route::get('language', [AjaxController::class, 'GetLanguage']);
+Route::post('language', [AjaxController::class, 'GetLanguage']);
 
 ?>

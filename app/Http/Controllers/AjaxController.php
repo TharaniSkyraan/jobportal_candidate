@@ -241,7 +241,19 @@ class AjaxController extends Controller
 
     public function GetSkills(Request $request)
     {
-        $skills = DataArrayHelper::suggestionSkills($request->q);      
+        
+        $skill_ids = '';
+        $user_id = $request->user_id??'';
+        if(!empty($user_id))
+        {         
+            $skill_id = $request->skill_id;
+            $skill_ids = App\Http\Model\UserSkill::where('user_id',$user_id)
+                                                ->select('skill_id')
+                                                ->where('skill_id','!=',$skill_id)
+                                                ->pluck('skill_id')->toArray();
+        }
+       
+        $skills = DataArrayHelper::suggestionSkills($request->q,$skill_ids);      
         
         return response()->json($skills);
     }
@@ -263,7 +275,19 @@ class AjaxController extends Controller
 
     public function GetLanguage(Request $request)
     {
-        $res = DataArrayHelper::suggestionLanguage();      
+        
+        $language_ids = '';
+        $user_id = $request->user_id??'';
+        if(!empty($user_id))
+        {         
+            $language_id = $request->language_id;
+            $language_ids = App\Http\Model\UserLanguage::where('user_id',$user_id)
+                                                ->select('language_id')
+                                                ->where('language_id','!=',$language_id)
+                                                ->pluck('language_id')->toArray();
+        }
+       
+        $res = DataArrayHelper::suggestionLanguage($language_ids);      
         
         return response()->json($res);
     }

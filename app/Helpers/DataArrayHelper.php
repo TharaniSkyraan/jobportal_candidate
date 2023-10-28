@@ -751,11 +751,14 @@ class DataArrayHelper
         return call_user_func_array('array_merge', $skill_id);
     }
     
-    public static function suggestionSkills($key)
+    public static function suggestionSkills($key,$skill_id='')
     {
-        $skills = Skill::select('id as id','skill as value')->where('skill', 'like', '%' . $key . '%')->isDefault()->lang()->active()->take(10)->get();
-        
-        return $skills;
+        $skills = Skill::select('id as id','skill as value')
+                        ->where('skill', 'like', '%' . $key . '%');
+        if(!empty($skill_id)){
+           $skills = $skills->whereNotIn('id',$skill_id);
+        }
+        return $skills->isDefault()->lang()->active()->take(10)->get();
     }
 
     public static function suggestionResultType()
@@ -772,10 +775,14 @@ class DataArrayHelper
         return $array;
     }
 
-    public static function suggestionLanguage()
+    public static function suggestionLanguage($language_id)
     {
-        $array = Language::select('lang as language', 'id')->get();
-        return $array;
+        $array = Language::select('lang as language', 'id');
+        if(!empty($language_id)){
+            $array = $array->whereNotIn('id',$language_id);
+         }
+         
+        return $array->get();
     }
     
     /************ autocomplete */
