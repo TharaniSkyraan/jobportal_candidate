@@ -508,6 +508,15 @@ body{
     align-items: center;
     align-self: center;
     display: flex;
+}.mjn_kjwe{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #4a545a;
+    text-transform: capitalize;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    height: 16px !important;
 }#activejobs{
     margin-top: 25px;
 }#activejobs .card{

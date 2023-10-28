@@ -141,7 +141,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td><strong>Salary &nbsp;</strong></td>
-                                                            <td>:&nbsp; {{ trim($job->hide_salary != 1)&&!empty($job->salary_string) ? $job->salary_string :'Not Disclosed'}}</td>
+                                                            <td class="mjn_kjwe">:&nbsp; {{ trim($job->hide_salary != 1)&&!empty($job->salary_string) ? $job->salary_string :'Not Disclosed'}}</td>
                                                         </tr>
                                                         <tr>
                                                             <td><strong>Location &nbsp;</strong></td>
