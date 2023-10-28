@@ -299,10 +299,9 @@
                                     @isset($job->company->insta_url)<span><a href="{{$job->company->insta_url}}"><img src="{{asset('images/detailpage/instagram.svg')}}" alt="instagram-image"></a></span>@endif
                                 </div>
                             @endif
-                            Take your first step towards your Career
                         </div>
                         @isset($job->company)
-                            <div class="">
+                            <div class="align-self-center">
                                 <div class="know_cmpany">
                                     <a href="{{url('company-view/'.$job->company->slug)}}" class="knowmr"><span>Know more <img src="{{asset('images/detailpage/know_mre.svg')}}" alt="know-more"></span></a>
                                 </div>
