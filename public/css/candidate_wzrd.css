@@ -104,13 +104,11 @@
         display: none;
     }#cndidate_wzrd .card{
         width: 100%;
-        padding: 10px;
     }
 }
 @media(min-width:  767px) and (max-width: 1024px){
     #cndidate_wzrd .card{
         width: 100%;
-        padding: 10px;
     }#cndidate_wzrd .cndte_mbile{
         display: none;
     }#cndidate_wzrd .card-size{
