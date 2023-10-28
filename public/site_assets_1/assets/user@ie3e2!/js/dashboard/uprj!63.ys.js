@@ -32,7 +32,7 @@ function loadUserProjectForm(form, id=null){
       $('.project_div').show();    
 
       if(form=='edit'){
-      $('.project_edited_div_'+id).hide();
+        $('.project_edited_div_'+id).hide();
       }
       $(".append-form-project").html(json.html);                
       $('#country_id_dd').select2();
@@ -43,8 +43,8 @@ function loadUserProjectForm(form, id=null){
       $('.addProjects').hide();
       $(".tabs").animate({scrollTop: $(window).scrollTop(0)},"slow");
 
-      toastr.options.timeOut = 1000;
-      toastr.success('Successfully Updated.');  
+      // toastr.options.timeOut = 1000;
+      // toastr.success('Successfully Updated.');  
     }
 
   });

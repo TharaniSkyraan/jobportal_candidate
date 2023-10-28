@@ -34,8 +34,8 @@ function loadUserLanguageForm(form, id=null){
       $('#language_id').select2();
       $(".tabs").animate({scrollTop: $(window).scrollTop(0)},"slow");
 
-      toastr.options.timeOut = 1000;
-      toastr.success('Successfully Updated.');  
+      // toastr.options.timeOut = 1000;
+      // toastr.success('Successfully Updated.');  
       
     }
 

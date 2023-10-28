@@ -6,7 +6,10 @@
                 <div class="dtls">
                     <h3 class="fw-bolder mb-1">{{$job_alert->title}}</h3>
                     <p class="mb-0">{{$job_alert->location}}</p>
-                    <p class="mb-0">@if(!empty($job_alert->experienceFid) && $job_alert->experienceFid!=0){{$job_alert->experienceFid}} Years @endif </p>
+                    @if(!empty($job_alert->experienceFid) && $job_alert->experienceFid!=0)
+                    <h5>Experience</h5>
+                    <p class="mb-0">{{$job_alert->experienceFid}} Years </p>
+                    @endif 
                 </div>
             </div>
             <div class="col-md-4 col-lg-4 col-sm-4 col-4">
@@ -24,7 +27,7 @@
             <div class="mb-4">
                 <h5>Job Type</h5>
                 <p class="text-justify">
-                    - {{implode(",",$job_alert->getJobType())}}   
+                    - {{implode(", ",$job_alert->getJobType())}}   
                 </p>
             </div>
             @endif
@@ -33,7 +36,7 @@
             <div class="mb-4">
                 <h5>Job Shift</h5>
                 <p class="text-justify">
-                    - {{implode(",",$job_alert->getShift())}}   
+                    - {{implode(", ",$job_alert->getShift())}}   
                 </p>
             </div>
             @endif

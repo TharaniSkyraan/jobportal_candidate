@@ -31,7 +31,7 @@
                         $total_month = $total_exp[1]??0;
 
                     @endphp
-                    <h4 class="mt-5 mb-3">Total years of experience :<span class="fw-bolder"> @if($total_year != 0 || $total_month !=0){{$total_year}} years {{$total_month}} month @else Fresher @endif</span></h4>
+                    {{-- <h4 class="mt-5 mb-3">Total years of experience :<span class="fw-bolder"> @if($total_year != 0 || $total_month !=0){{$total_year}} years {{$total_month}} month @else Fresher @endif</span></h4> --}}
 
                     <div class="crdbxpl mt-5">
                         <div class="row">

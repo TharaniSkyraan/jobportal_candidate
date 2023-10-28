@@ -296,18 +296,16 @@
         $("#header").removeClass('remove');
     });
 
-        // $(document).ready(function() {
-        //     var elementPosition = $('.sidebar-style-2').offset();
-        //     $(window).scroll(function() {
-        //         if ($(window).scrollTop() > elementPosition.top) {
-        //             $('.sidebar-style-2').addClass('added');
-        //         } else {
-        //             $('.sidebar-style-2').removeClass('added');
-        //         }
-                
-        //     });
-
-        // });
+    // $(document).ready(function() {
+    //     var elementPosition = $('.sidebar-style-2').offset();
+    //     $(window).scroll(function() {
+    //         if ($(window).scrollTop() > elementPosition.top) {
+    //             $('.sidebar-style-2').addClass('added');
+    //         } else {
+    //             $('.sidebar-style-2').removeClass('added');
+    //         }
+    //     });
+    // });
 </script>
 
 <script type="text/javascript">

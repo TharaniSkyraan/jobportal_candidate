@@ -92,7 +92,7 @@ class User extends Authenticatable
 
     public function userProjects()
     {
-        return $this->hasMany(UserProject::class, 'user_id', 'id');
+        return $this->hasMany(UserProject::class, 'user_id', 'id')->orderBy('created_at','desc');
     }
 
     public function getUserProjectsArray()
@@ -125,12 +125,12 @@ class User extends Authenticatable
 
     public function userExperience()
     {
-        return $this->hasMany(UserExperience::class, 'user_id', 'id');
+        return $this->hasMany(UserExperience::class, 'user_id', 'id')->orderBy('created_at','desc');
     }
 
     public function userEducation()
     {
-        return $this->hasMany(UserEducation::class, 'user_id', 'id')->orderBy('to_year','DESC');
+        return $this->hasMany(UserEducation::class, 'user_id', 'id')->orderBy('education_level_id','asc');
     }
 
     public function getuserEducationLast()
@@ -142,7 +142,7 @@ class User extends Authenticatable
 
     public function userSkills()
     {
-        return $this->hasMany(UserSkill::class, 'user_id', 'id');
+        return $this->hasMany(UserSkill::class, 'user_id', 'id')->orderBy('created_at','desc');
     }
 
     public function getUserSkills()
@@ -173,12 +173,12 @@ class User extends Authenticatable
 
     public function userLanguages()
     {
-        return $this->hasMany(UserLanguage::class, 'user_id', 'id');
+        return $this->hasMany(UserLanguage::class, 'user_id', 'id')->orderBy('created_at','desc');
     }
 
     public function JobAlert()
     {
-        return $this->hasMany(JobAlert::class, 'user_id', 'id');
+        return $this->hasMany(JobAlert::class, 'user_id', 'id')->orderBy('created_at','desc');
     }
 
     public function favouriteJobs()

@@ -309,11 +309,11 @@ class MyJobsController extends BaseController
             $job['title'] = !empty($job->title)?$job->title:'';
             $job['location'] = !empty($job->location)?$job->location:'';
             $job['saved_at'] = Carbon::parse($job->created_at)->getTimestampMs();
-            $job['industrytype'] = implode(",",$alert->getIndustryType());
-            $job['functionalarea'] = implode(",",$alert->getFunctionalArea());
-            $job['edulevel'] = implode(",",$alert->getEducationLevel());
-            $job['jobtype'] = implode(",",$alert->getJobType());
-            $job['jobshift'] = implode(",",$alert->getShift());
+            $job['industrytype'] = implode(", ",$alert->getIndustryType());
+            $job['functionalarea'] = implode(", ",$alert->getFunctionalArea());
+            $job['edulevel'] = implode(", ",$alert->getEducationLevel());
+            $job['jobtype'] = implode(", ",$alert->getJobType());
+            $job['jobshift'] = implode(", ",$alert->getShift());
             $job['wfhtype'] = $alert->getWFH();
             $job['salary'] = $alert->getSalary();
             $job['posteddate'] = $alert->getDatePosted();
