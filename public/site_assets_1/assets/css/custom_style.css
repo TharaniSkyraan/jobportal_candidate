@@ -402,7 +402,7 @@ transition: all 0.4s ease;
 font-weight: 600;
 }
 
-.user .progressbar::before {
+.dropdown .progressbar::before, .user .progressbar::before {
 content: "";
 position: absolute;
 top: 0;
@@ -414,15 +414,6 @@ mask: radial-gradient(white 55%, transparent 0);
 mask-mode: alpha;
 -webkit-mask: radial-gradient(#0000 60%, #000 0);
 -webkit-mask-mode: alpha;
-}
-
-.dropdown .progressbar::after, .user .progressbar::after {
-counter-reset: percentage var(--value);
-content: counter(percentage) '% complete';
-/* font-family: Helvetica, Arial, sans-serif; */
-font-family: "Poppins";
-font-size: calc(var(--size) / 5);
-color: var(--primary);
 }
 
 
