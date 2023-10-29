@@ -129,6 +129,8 @@
 @push('scripts')
 <script type="text/javascript">
 var baseurl = '{{ url("/") }}/';
+
+$('select#marital_status_id option:first').attr('disabled', true);
 </script>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/user@ie3e2!/js/dashboard/uprof!$6ew2.js') }}"></script>
 @endpush

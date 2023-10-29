@@ -40,6 +40,7 @@
             </label>
         </div>
     </div>
+    @if(count($filters['jobtypeFGid'])!=0) 
     <div class="mb-4">   
         <a href="#jobtypeFilters" class="filterHeading collapsed" data-bs-toggle="collapse" aria-expanded="false">
             <label class="form-label fw-bolder">Job Type</label> <span class="caret"></span>
@@ -61,7 +62,9 @@
             </div>
         </div>
     </div>
-    <div class="mb-4">    
+    @endif
+    @if(count($filters['jobshiftFGid'])!=0) 
+    <div class="mb-4">     
         <a href="#jobshiftFilters" class="filterHeading collapsed" data-bs-toggle="collapse" aria-expanded="false">
             <label class="form-label fw-bolder">Job Shift</label> <span class="caret"></span>
         </a>
@@ -82,6 +85,7 @@
             </div>
         </div>
     </div>
+    @endif
     <div class="mb-4">
         <div class="row">   
             <a href="#experinceFilters" class="filterHeading collapsed" data-bs-toggle="collapse" aria-expanded="false">
@@ -102,7 +106,8 @@
             </div>
         </div>
     </div>
-    <div class="mb-4">  
+    @if(count($filters['wfhtypeFid'])!=0)  
+    <div class="mb-4">
         <a href="#wfhtypeFilters" class="filterHeading collapsed" data-bs-toggle="collapse" aria-expanded="false">
             <label class="form-label fw-bolder">Remote </label> <span class="caret"></span>
         </a>
@@ -123,6 +128,9 @@
             </div>
         </div>
     </div>
+    @endif
+    
+    @if(count($filters['salaryFGid'])!=0) 
     <div class="mb-4">  
         <a href="#salaryFilters" class="filterHeading collapsed" data-bs-toggle="collapse" aria-expanded="false">
             <label class="form-label fw-bolder">Expected Salary </label> <span class="caret"></span>
@@ -144,6 +152,8 @@
             </div>
         </div>
     </div>
+    @endif
+    @if(count($filters['posteddateFid'])!=0) 
     <div class="mb-4">    
         <a href="#posteddateFilters" class="filterHeading collapsed" data-bs-toggle="collapse" aria-expanded="false">
             <label class="form-label fw-bolder">Jobs Posted within</label> <span class="caret"></span>
@@ -165,6 +175,7 @@
             </div>
         </div>
     </div>
+    @endif
     <div class="row">
         <div class="col-6 text-center">
             <button class="btn bg-grey-color user-job-alert-cancel" type="button"  onClick="cancelJobAlertForm({{$jobAlert->id??0}});">Cancel</button>

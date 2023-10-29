@@ -15,7 +15,11 @@
                         <table>
                             <tr>
                                 <td>
-                                    <img src="@isset($job->company->company_image){{$job->company->company_image}}@else {{asset('site_assets_1/assets/img/industry.svg')}} @endif" alt="profile-image" class="profilestcky">
+                                    @php
+                                        $logo = $job->company->company_image??asset('\site_assets_1\assets\img\industry.svg');
+                                    @endphp
+
+                                    <img src="{{$logo}}" alt="profile-image" class="profilestcky">
                                 </td>
                                 <td>
                                     <span>{{ ucwords($job->title) }}</span>
@@ -52,7 +56,7 @@
                             <tr>
                                 <td class="profile_clum">
                                     <div class="round_pf">
-                                        <img src="@isset($job->company->company_image){{$job->company->company_image}}@else {{asset('site_assets_1/assets/img/industry.svg')}} @endif" alt="company-profile" class="companyty-pf" draggable="false">
+                                        <img src="{{$logo}}" alt="company-profile" class="companyty-pf" draggable="false">
                                     </div>
                                 </td>
                                 <td class="job_tlers">
@@ -218,7 +222,6 @@
             </div>
             <div class="card">
                 <h4>Job Type</h4>
-                <div>
                     @php
                     $jtyv= '';
                     @endphp
@@ -242,12 +245,13 @@
                         @endphp
                         {{-- <p>{{$jt_v.', '}}</p> --}}
                     @endforeach
-                </div>
-                <text class="mb-3">{{rtrim($jtyv, ", ")}}</text>
+                <ul>
+                    {{rtrim($jtyv, ", ")}}
+                </ul>
                 @if(isset($exle)&&!empty($exle))<li>Contract length : {{$exle}}</li>@endif
                 @if(isset($exl)&&!empty($exl))<li>Part-time hours : {{$exl}} per week</li>@endif
                 @if(count($job->jobshifts)!=0)
-                    <h4 class="mt-3">Job Shift</h4>
+                    <h4 class="mt-1">Job Shift</h4>
                     <ul>
                         @foreach($job->jobshifts as $shifts)
                         <li>{{$shifts->shift->shift}}</li>
@@ -255,24 +259,22 @@
                     </ul>
                 @endif
                 @if(!empty($job->benefits) || !empty($job->supplementals) || !empty($job->other_benefits))
-                        @if(!empty($job->benefits))
-                        <div class="mt-3">
-                            <h4>Cash Benefits</h5>
-                            <div><span>{{ rtrim($job->benefits,', ') }}</span></div>
-                        @endif
-                        @if(!empty($job->supplementals))
+                    @if(!empty($job->benefits))
+                        <h4>Cash Benefits</h5>
+                        <div><span>{{ rtrim($job->benefits,', ') }}</span></div>
+                    @endif
+                    @if(!empty($job->supplementals))
                         <div class="mt-3">
                             <h4>Supplemental Pay</h5>
                             <div><span>{{ rtrim($job->supplementals,', ') }}</span></div>
                         </div>
-                        @endif
-                        @if(!empty($job->other_benefits))
+                    @endif
+                    @if(!empty($job->other_benefits))
                         <div class="mt-3">
                             <h4>Other Benefits</h5>
                             <div><span>{{ rtrim($job->other_benefits,', ') }}</span></div>
                         </div>
-                        @endif
-                    </div>
+                    @endif
                 @endif
             </div>
             @if($job->company->is_admin==0)
@@ -311,33 +313,60 @@
                             </div>
                         @endif
                     </div>
-                </div>
+                </div>                
+            @endif
 
-                <div class="card walkin_cd align-self-center">
-                    <h4>
-                        Walk-in
-                    </h4>
-                    @if($job->walkin)
-                        <div>
-                            <p><b>From </b>{{ \Carbon\Carbon::parse($job->walkin->walk_in_from_date)->format('d F, Y')}} to {{ \Carbon\Carbon::parse($job->walkin->walk_in_to_date)->format('d F, Y')}}.@if($job->walkin->exclude_days) (Excluding {{$job->walkin->exclude_days}})@endif</p>
-                            <p><b>Time between : </b>{{ \Carbon\Carbon::parse($job->walkin->walk_in_from_time)->format('H:i A')}} to {{ \Carbon\Carbon::parse($job->walkin->walk_in_to_time)->format('H:i A')}}</p>
-                        </div>
+            <div class="card walkin_cd align-self-center">
+                @if($job->walkin)
+                    <h4>Walk-in</h4>
+                    <div>
+                        <p><b>From </b>{{ \Carbon\Carbon::parse($job->walkin->walk_in_from_date)->format('d F, Y')}} to {{ \Carbon\Carbon::parse($job->walkin->walk_in_to_date)->format('d F, Y')}}.@if($job->walkin->exclude_days) (Excluding {{$job->walkin->exclude_days}})@endif</p>
+                        <p><b>Time between : </b>{{ \Carbon\Carbon::parse($job->walkin->walk_in_from_time)->format('H:i A')}} to {{ \Carbon\Carbon::parse($job->walkin->walk_in_to_time)->format('H:i A')}}</p>
+                        @if(!empty($job->walkin->walk_in_location))
+                            <p>
+                                <table>
+                                    <tr>
+                                        <td class="d-block"><img src="{{asset('images/detailpage/locate.svg')}}" alt="location" class="icon_rs" draggable="false"></td>
+                                        <td>
+                                            <span>
+                                                {{ $job->walkin->walk_in_location }}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </p>
+                        @endif
+                    </div>
+                @endif
+
+                @if(($job->contact_person_details->morning_section_from && $job->contact_person_details->morning_section_to) || 
+                ($job->contact_person_details->evening_section_from && $job->contact_person_details->evening_section_to) || 
+                (!empty($job->contact_person_details->email)) ||
+                (!empty($job->contact_person_details->phone_1)) ||
+                (!empty($job->contact_person_details->phone_2)))
+                
+                    <h4>Contact Detail</h4>
+
+                    @if(($job->contact_person_details->morning_section_from && $job->contact_person_details->morning_section_to) || ($job->contact_person_details->evening_section_from && $job->contact_person_details->evening_section_to))
+                        <p>
+                            <b>Time between :</b> 
+                            @if( ($job->contact_person_details->morning_section_from && $job->contact_person_details->morning_section_to))
+                                {{ \Carbon\Carbon::parse($job->contact_person_details->morning_section_from)->format('h:i A')}} to
+                                {{ \Carbon\Carbon::parse($job->contact_person_details->morning_section_to)->format('h:i A') }}
+                            @endif
+                            @if( ($job->contact_person_details->evening_section_from && $job->contact_person_details->evening_section_to))
+                                {{ \Carbon\Carbon::parse($job->contact_person_details->evening_section_from)->format('h:i A') }} to 
+                                {{ \Carbon\Carbon::parse($job->contact_person_details->evening_section_to)->format('h:i A') }}
+                            @endif
+                        </p>
                     @endif
-                    <p><b>Time between :</b> 
-                        @if( ($job->contact_person_details->morning_section_from && $job->contact_person_details->morning_section_to))
-                            {{ \Carbon\Carbon::parse($job->contact_person_details->morning_section_from)->format('h:i A')}} to
-                            {{ \Carbon\Carbon::parse($job->contact_person_details->morning_section_to)->format('h:i A') }}
-                        @endif
-                        @if( ($job->contact_person_details->evening_section_from && $job->contact_person_details->evening_section_to))
-                            {{ \Carbon\Carbon::parse($job->contact_person_details->evening_section_from)->format('h:i A') }} to 
-                            {{ \Carbon\Carbon::parse($job->contact_person_details->evening_section_to)->format('h:i A') }}
-                        @endif
-                    </p>
-                    <p>
-                        <a href="mailto:{{ $job->contact_person_details->email??'' }}">
-                            <img src="{{asset('images/detailpage/email.svg')}}" alt="email-address" class="icon_rs">{{ $job->contact_person_details->email??'' }}
-                        </a>
-                    </p>
+                    @if(!empty($job->contact_person_details->email))
+                        <p>
+                            <a href="mailto:{{ $job->contact_person_details->email??'' }}">
+                                <img src="{{asset('images/detailpage/email.svg')}}" alt="email-address" class="icon_rs">{{ $job->contact_person_details->email??'' }}
+                            </a>
+                        </p>
+                    @endif
                     <div class="row">
                         <div class="col-md-6">
                             <table>
@@ -355,22 +384,24 @@
                                 </tr>
                             </table>
                         </div>
-                        <div class="col-md-6">
-                            <table class="call_nhvcez">
-                                <tr>
-                                    <td class="d-block"><img src="{{asset('images/detailpage/calls.svg')}}" alt="call-icon" class="icon_rs" draggable="false"></td>
-                                    <td>
-                                        <span>
-                                            <div><a href="tel:{{ $job->contact_person_details->phone_1 ??'' }}">{{ $job->contact_person_details->phone_1 ??'' }}</a></div>
-                                            <div><a href="tel:{{ $job->contact_person_details->phone_2 ??'' }}">{{ $job->contact_person_details->phone_2 ??'' }}</a></div>
-                                        </span>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
+                        @if((!empty($job->contact_person_details->phone_1)) || (!empty($job->contact_person_details->phone_2)))
+                            <div class="col-md-6">
+                                <table class="call_nhvcez">
+                                    <tr>
+                                        <td class="d-block"><img src="{{asset('images/detailpage/calls.svg')}}" alt="call-icon" class="icon_rs" draggable="false"></td>
+                                        <td>
+                                            <span>
+                                                @if(!empty($job->contact_person_details->phone_1))<div><a href="tel:{{ $job->contact_person_details->phone_1 }}">{{ $job->contact_person_details->phone_1 }}</a></div>@endif
+                                                @if(!empty($job->contact_person_details->phone_2))<div><a href="tel:{{ $job->contact_person_details->phone_2 }}">{{ $job->contact_person_details->phone_2 }}</a></div>@endif
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        @endif
                     </div>
-                </div>
-            @endif
+                @endif
+            </div>
         </div>
     </main>
     <!-- view document -->
@@ -574,13 +605,7 @@
         </div>
     </div>
 
-    
     @include('user.complete-profile-modal')
-
-
-
-
-
 
     @php
         $applied = Auth::user()?(Auth::user()->isAppliedOnJob($job->id)??false):false;
