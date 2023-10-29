@@ -21,4 +21,8 @@ class FaqCategory extends Model
     //protected $dateFormat = 'U';
     protected $dates = ['created_at', 'updated_at'];
 
+    public function faqs()
+    {
+        return $this->hasMany(Faq::class, 'faq_category_id', 'faq_category_id');
+    }
 }

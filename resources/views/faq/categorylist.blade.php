@@ -14,6 +14,7 @@
                     <span class="line"></span>
                 </div> -->
                 @foreach ($faq_categories as $key => $faqcategory)
+                
                 <li class="item ctkey" data-ckey="{{$faqcategory->slug??''}}">
                     <a href="javascript:void(0);" class="link flex @if($ckey == $faqcategory->slug) active @endif">
                         <span>{{$faqcategory->faq_category}}</span>

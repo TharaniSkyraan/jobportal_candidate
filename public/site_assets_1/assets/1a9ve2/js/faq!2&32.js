@@ -11,6 +11,7 @@ function change_url_state(ckey){
   if(ckey!=''){
       resURL = url_remove_last_path(resURL);
   }else{
+      $('[data-ckey="'+act_ckey+'"]').find('.link').addClass('active');
       ckey = act_ckey;
   }
   resURL= resURL + '/' + ckey;

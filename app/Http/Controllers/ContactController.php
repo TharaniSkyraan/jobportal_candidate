@@ -38,7 +38,10 @@ class ContactController extends Controller
     
     public function faqindex($ckey="")
     {
-        $faq_categories = FaqCategory::where('user_type','candidate')->select('slug','faq_category')->active()->get();
+        $faq_categories = FaqCategory::where('user_type','candidate')
+        ->withCount('faqs')
+        ->havingRaw("faqs_count != 0")
+        ->active()->get();
         if(!empty($ckey)){
             $cat = FaqCategory::where('user_type','candidate')->where('slug',$ckey)->first();
         }else{
@@ -49,9 +52,10 @@ class ContactController extends Controller
     
     public function getFaqData(Request $request)
     {
+        $faqcategory = FaqCategory::where('user_type','candidate')->where('slug',$request->ckey)->active()->first();
+      
         if(empty($request->search_q))
         {
-            $faqcategory = FaqCategory::where('user_type','candidate')->where('slug',$request->ckey)->active()->first();
             $faqs = Faq::where('user_type','candidate')
                         ->whereFaqCategoryId($faqcategory->id)
                         ->select('question','answer')->get();          
@@ -59,9 +63,9 @@ class ContactController extends Controller
         {
             $search_q = $request->search_q;
             $faqs = Faq::where('user_type','candidate')
-                        ->whereHas('faq_category',function($q) use($search_q){
-                            $q->where('faq_category', 'like', "%{$search_q}%");
-                        })->orwhere('question', 'like', "%{$search_q}%")->get();
+                        ->whereFaqCategoryId($faqcategory->id)
+                        ->where('question', 'like', "%{$search_q}%")
+                        ->get();
         }
          return response()->json(array('status' => true, 'data' => $faqs));
     }
