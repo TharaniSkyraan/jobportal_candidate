@@ -1,22 +1,19 @@
 @extends('layouts.app')
 @section('custom_scripts')
-
-<link href="{{ asset('site_assets_1/assets/css/input_tag/jquery-ui.min.css')}}" rel="stylesheet">
-<link href="{{ asset('site_assets_1/assets/css/input_tag/jquery.tagsinput-revisited.css')}}" rel="stylesheet">	  
-<link href="{{ asset('site_assets_1/assets/vendor/select2/select2.min.css') }}" rel="stylesheet">
-<link href="{{ asset('site_assets_1/assets/vendor/selectize/selectize.css')}}" rel="stylesheet">
-<link href="{{ asset('site_assets_1/assets/1a9ve2/css/userbasic.w2fr4ha2.css')}}" rel="stylesheet">
-<link rel="stylesheet" href="{{ asset('site_assets_1/assets/date_flatpicker/flatpickr.min.css')}}">
-<script src="{{ asset('site_assets_1/assets/date_flatpicker/flatpickr.js')}}"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
+    <link href="{{ asset('site_assets_1/assets/css/input_tag/jquery-ui.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('site_assets_1/assets/css/input_tag/jquery.tagsinput-revisited.css')}}" rel="stylesheet">	  
+    <link href="{{ asset('site_assets_1/assets/vendor/select2/select2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('site_assets_1/assets/vendor/selectize/selectize.css')}}" rel="stylesheet">
+    <link href="{{ asset('site_assets_1/assets/1a9ve2/css/userbasic.w2fr4ha2.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('site_assets_1/assets/date_flatpicker/flatpickr.min.css')}}">
+    <script src="{{ asset('site_assets_1/assets/date_flatpicker/flatpickr.js')}}"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
 @endsection
 @section('content')
 <div class="wrapper" >
 	@include('layouts.dashboard_header')
 	@include('layouts.side_navbar')
-
-	
 	<div class="main-panel main-panel-custom main-panel-customize">
 		<div class="content">
 			<div class="page-inner">
@@ -29,17 +26,14 @@
                         $total_exp = explode('.',$total_exp);
                         $total_year = $total_exp[0]??0;
                         $total_month = $total_exp[1]??0;
-
                     @endphp
                     {{-- <h4 class="mt-5 mb-3">Total years of experience :<span class="fw-bolder"> @if($total_year != 0 || $total_month !=0){{$total_year}} years {{$total_month}} month @else Fresher @endif</span></h4> --}}
-
                     <div class="crdbxpl mt-5">
                         <div class="row">
                             <div class="col-7 px-4 align-self-center">Experience</div>
                             <div class="col-5 text-end"><button class="openForm addExperience" type="button" data-form="new">Add New <i class="fa fa-plus"></i></button></div>
                         </div>
                     </div>
-                    
                     <div class="append-form-experience">
                         @if(count(Auth::user()->userExperience) == 0)
                         <div class="text-center">
@@ -50,7 +44,6 @@
                     <!-- experience card-->
                     <div class="" id="experience_div"></div>
                     <!-- experience card end -->
-
                 </div>
             </div>
         </div>

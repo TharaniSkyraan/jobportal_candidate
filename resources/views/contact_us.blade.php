@@ -6,7 +6,7 @@
 @section('content')
 @include('layouts.header')
 <div id="content-wrap">
-    <div class="main mt-5">
+    <div class="main mt-3">
         <div class="container panel panel-default mb-5">
             <form id="contact-form">
                 {{-- <div class="row"> --}}
@@ -17,7 +17,8 @@
                             <span class="m-3">
                                 <img draggable="false" src="{{asset('images/m_svg/call.svg')}}" class="phone-img border-radius-10 contact-icons" alt="...">
                             </span>
-                            <span class="my-3">Phone <br>
+                            <span class="my-3">
+                                <div class='fdwq'>Phone</div> <br>
                                 <a href="tel://+91-9900559924">+91-9900559924</a>
                             </span>                               
                         </div>
@@ -25,7 +26,8 @@
                             <span class="m-3">
                                 <img draggable="false" src="{{asset('images/m_svg/mail.svg')}}" class="email-img border-radius-10 contact-icons" alt="...">
                             </span>
-                            <span class="my-3">Email <br>
+                            <span class="my-3">
+                                <div class='fdwq'>Email</div> <br>
                                 <a href="mailto:contact@mugaam.com">contact@mugaam.com</a>
                             </span> 
                         </div>
@@ -33,7 +35,8 @@
                             <span class="m-3">
                                 <img draggable="false" src="{{asset('images/m_svg/location.svg')}}" class="address-img border-radius-10 contact-icons" alt="...">
                             </span>
-                            <span class="my-3">Address <br>
+                            <span class="my-3">
+                                <div class='fdwq'>Address</div> <br>
                                 <a href="javascript:void(0)" class="cursor-default"> Hari Complex, 207/A3, Sathy Rd, opp. Prozone Mall, Saravanampatti, Coimbatore, Tamil Nadu 641035</a>
                             </span>
                         </div>
@@ -46,7 +49,7 @@
                             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-6 col-12">
                                 <div class="form-group mb-3">
                                     <input class="form-control" id="name" type="text" placeholder="Name" name="name"
-                                        value="{{old('name')}}" autocomplete="off" />
+                                        value="{{old('name')}}" autocomplete="off" required />
                                     <span class="text-danger" id="name-error"></span>
 
                                 </div>
@@ -56,7 +59,7 @@
                             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-6 col-12">
                                 <div class="form-group mb-3">
                                     <input class="form-control" id="email" type="text" name="email"
-                                        placeholder="Email Address" value="{{old('email')}}" autocomplete="off" />
+                                        placeholder="Email Address" value="{{old('email')}}" autocomplete="off" required/>
                                     <span class="text-danger" id="email-error"></span>
                                 </div>
                             </div>
@@ -64,14 +67,14 @@
                         <!-- Subject input -->
                         <div class="form-group mb-3">
                             <input class="form-control" id="subject" type="text" name="subject"
-                                placeholder="Subject" value="{{old('subject')}}" autocomplete="off" />
+                                placeholder="Subject" value="{{old('subject')}}" autocomplete="off" required/>
                             <span class="text-danger" id="subject-error"></span>
                         </div>
                         <!-- Message input -->
-                        <div class="form-group mb-5">
+                        <div class="form-group mb-4">
                             <textarea class="form-control" id="message" type="text" name="message"
                                 placeholder="Message" style="height:8rem !important;" value="{{old('message')}}"
-                                autocomplete="off"></textarea>
+                                autocomplete="off" required></textarea>
                             <span class="text-danger" id="message-error"></span>
                         </div>
                         <!-- Form submit button -->

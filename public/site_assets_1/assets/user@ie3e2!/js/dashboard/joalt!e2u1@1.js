@@ -173,7 +173,7 @@
       }
       
       if($(".job_alert_div").length==0){
-      $('.append-form-job_alert').html(`<div class="text-center"><img draggable="false" src="${baseurl}site_assets_1/assets/img/fresher.png" height="250" width="250"></div>`);
+      $('.append-form-job_alert').html(`<div class="text-center no_kmbq1"><img draggable="false" src="${baseurl}images/profile/job_alert.svg" height="250" width="250"><div class="no_kmbq2">No<br/><strong>”JOB Alerts”</strong></div></div>`);
       }else{
         $('.append-form-job_alert').html('');
       }

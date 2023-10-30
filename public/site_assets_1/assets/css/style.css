@@ -2492,4 +2492,20 @@ background-position: center;
 #header{
   padding-right: unset !important;
   z-index: 999;
+}.no_kmbq1 img{
+  width: 220px;
+  height: 220px;
+}.no_kmbq2{
+  font-size: 23px;  
+  margin-top: 5px;
+}.no_kmbq1{
+  margin-top: 30px;
+}
+@media(max-width: 1200px){
+  .no_kmbq1 img{
+    width: 180px;
+    height: 180px;
+  }.no_kmbq2{
+    font-size: 20px;  
+  }
 }

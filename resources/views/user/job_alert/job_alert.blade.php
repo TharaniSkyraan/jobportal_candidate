@@ -17,9 +17,6 @@
 		<div class="content">
 			<div class="page-inner">
                 <div id="my_expernce2" class="mt-4">
-                    <!-- <div class="text-center ttleicn">
-                        <h2 class="fw-bolder"><img draggable="false" src="{{asset('images/sidebar/job_alert.svg')}}">&nbsp;My Experience</h2>
-                    </div> -->
                     <h4 class="mt-5 mb-3">Note :<span class="fw-bolder"> Maximum number of alerts reached. To add new you must remove existing alert. </span></h4>
                     
                     <div class="crdbxpl mt-5">
@@ -31,8 +28,12 @@
                     
                     <div class="append-form-job_alert">
                         @if(count(Auth::user()->JobAlert) == 0)
-                        <div class="text-center">
-                            <img draggable="false" src="{{ asset('site_assets_1/assets/img/fresher.png')}}" height="250" width="250">
+                        <div class="text-center no_kmbq1">
+                            <img draggable="false" src="{{ asset('images/profile/job_alert.svg')}}" height="250" width="250">
+                            <div class="no_kmbq2">
+                                No<br/>
+                                <strong>”JOB Alerts”</strong>
+                            </div>
                         </div>
                         @endif 
                     </div>
