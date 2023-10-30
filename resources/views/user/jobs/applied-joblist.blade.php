@@ -42,16 +42,14 @@
     </div>
 </div>
 @empty
-<div class="d-flex justify-content-center mt-5">
+<div class="d-flex justify-content-center">
     <div class="">
-        <div class="text-center mb-4">
-            <img draggable="false" class="janoimg" src="{{ url('site_assets_1/assets/img/no_results.svg') }}" rel="nofollow">
-        </div>
-        <div class="text-center">
-            <h4>No Jobs found </h4>
-            <a href="{{ url('/') }}" class="btn btnc1 mt-4">
-                Find Jobs
-            </a>
+        <div class="text-center no_kmbq1 mb-4">
+            <img draggable="false" class="janoimg" src="{{ url('images/profile/no_jobs.svg') }}" rel="nofollow">
+            <div class="no_kmbq2">
+                No<br/>
+                <strong>"Jobs found"</strong>
+            </div>
         </div>
     </div>
 </div>

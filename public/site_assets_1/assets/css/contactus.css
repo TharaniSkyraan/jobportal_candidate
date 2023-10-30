@@ -51,6 +51,10 @@ body{
 } */
 .contactinf .email{
   padding-left: 3rem;
+}.fdwq{
+  font-weight: 600;
+  margin-bottom: -12px;
+  font-size: 16px;
 }
 .contactinf{
   font-weight: 400 !important;
