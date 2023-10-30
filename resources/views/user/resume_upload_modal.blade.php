@@ -82,6 +82,7 @@
                   <br>
                   <p class="file_upld text-center mt-2">Drop your Resume here or Browse</p>
                   <input class="file-input" type="file" name="file" id="file" accept=".doc,.docx,.pdf,.rtf">
+                  <small class="grayc">Supported files - Doc, Docx, PDF, RTF <br>(2MB limited)</small>
                 </label>
              
                 <div class="text-center">
