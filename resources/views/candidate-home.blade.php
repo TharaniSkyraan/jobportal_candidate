@@ -348,46 +348,47 @@
                     </div>
                 </div>
             </div>
-
-            <div class="container-xl">
-                <div class="blog-sectionw">
-                    <div class="row fdfeyhsq">
-                        <div class="col-md-10 col-7 p-0">
-                            <h3 class="fw-bolder m-0">Blogs</h3>
+            @if(count($blog) >= 1)
+                <div class="container-xl">
+                    <div class="blog-sectionw">
+                        <div class="row fdfeyhsq">
+                            <div class="col-md-10 col-7 p-0">
+                                <h3 class="fw-bolder m-0">Blogs</h3>
+                            </div>
+                            <div class="col-md-2 col-5 text-end p-0 align-self-center">
+                                @if(count($blog) > 2)
+                                    <a href="{{url('blogs')}}"><span class="grayc">View all <img src="{{asset('images/home/right_vtrm.svg')}}" alt=""></span></a>
+                                @endif
+                            </div>
                         </div>
-                        <div class="col-md-2 col-5 text-end p-0 align-self-center">
-                            @if(count($blog) > 2)
-                                <a href="{{url('blogs')}}"><span class="grayc">View all <img src="{{asset('images/home/right_vtrm.svg')}}" alt=""></span></a>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="blog-carousal p-0">
-                        <div class="owl-carousel owl-theme">
-                            @foreach($blog as $row)
-                                @php
-                                    $formats = \Carbon\Carbon::parse($row->created_at)->format('D jS, M Y');
-                                @endphp
-                                <article class="item">
-                                    <a href="{{route('view-blog', [$row->id, $row->slug])}}">
-                                        <div class="card">
-                                            <div class="row">
-                                                <div class="col-md-12 col-lg-12 col-xl-5">
-                                                    <img src="{{$row->thumbnail_url}}" alt="{{$row->slug}}" class="img-fluid" draggable="false">
-                                                </div>
-                                                <div class="col-md-12 col-lg-12 col-xl-7">
-                                                    <h2 class="fw-bolder">{{$row->title}}</h2>
-                                                    <p class="cntc">{{$row->short_description}}</p>
-                                                    <p class="grayc m-0">{{$formats}}</p>
+                        <div class="blog-carousal p-0">
+                            <div class="owl-carousel owl-theme">
+                                @foreach($blog as $row)
+                                    @php
+                                        $formats = \Carbon\Carbon::parse($row->created_at)->format('D jS, M Y');
+                                    @endphp
+                                    <article class="item">
+                                        <a href="{{route('view-blog', [$row->id, $row->slug])}}">
+                                            <div class="card">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-lg-12 col-xl-5">
+                                                        <img src="{{$row->thumbnail_url}}" alt="{{$row->slug}}" class="img-fluid" draggable="false">
+                                                    </div>
+                                                    <div class="col-md-12 col-lg-12 col-xl-7">
+                                                        <h2 class="fw-bolder">{{$row->title}}</h2>
+                                                        <p class="cntc">{{$row->short_description}}</p>
+                                                        <p class="grayc m-0">{{$formats}}</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </a>
-                                </article>
-                            @endforeach
+                                        </a>
+                                    </article>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endif
         </section>
     </div>
 
