@@ -37,6 +37,9 @@ use App\Model\Companygalary;
 use App\Model\JobWorkLocation;
 use App\Model\UserEducation;
 
+use App\Model\UserSkill;
+use App\Model\UserLanguage;
+
 class AjaxController extends Controller
 {
 
@@ -247,7 +250,7 @@ class AjaxController extends Controller
         if(!empty($user_id))
         {         
             $skill_id = $request->skill_id;
-            $skill_ids = App\Http\Model\UserSkill::where('user_id',$user_id)
+            $skill_ids = UserSkill::where('user_id',$user_id)
                                                 ->select('skill_id')
                                                 ->where('skill_id','!=',$skill_id)
                                                 ->pluck('skill_id')->toArray();
@@ -281,7 +284,7 @@ class AjaxController extends Controller
         if(!empty($user_id))
         {         
             $language_id = $request->language_id;
-            $language_ids = App\Http\Model\UserLanguage::where('user_id',$user_id)
+            $language_ids = UserLanguage::where('user_id',$user_id)
                                                 ->select('language_id')
                                                 ->where('language_id','!=',$language_id)
                                                 ->pluck('language_id')->toArray();
