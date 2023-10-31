@@ -50,10 +50,10 @@
     height: 120px;
     width: 120px;
 }#cndidate_wzrd .slct_apnd select{
-    border: 1px solid #ccc;
+    border: none;
     padding: 5px;   
 }#cndidate_wzrd .slct_apnd span{
-    border: 1px solid #ced4da !important;
+    border: none;
     background: #4285f4;
     color: #fff;
 }#cndidate_wzrd .skls_cdte{

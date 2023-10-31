@@ -456,3 +456,9 @@
       }
     }
 
+    $('#phone').on('input', function(e) {
+      var input = e.target.value;
+      var sanitizedInput = input.replace(/[^0-9]/g, '');
+      $('#phone').val(sanitizedInput);
+  });
+

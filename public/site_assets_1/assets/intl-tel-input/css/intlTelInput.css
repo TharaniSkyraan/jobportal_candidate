@@ -96,7 +96,9 @@
       background-color: transparent; }
   .iti--separate-dial-code .iti__selected-flag {
     color: #fff;
-    background: #4285f4;
+    background: #4285f4 !important;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
   }
   .iti--separate-dial-code .iti__selected-dial-code {
     margin-left: 6px; }

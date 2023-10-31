@@ -112,76 +112,78 @@
                         </h1>
                         {!! Form::open(array('method' => 'post', 'route' => array('career-info-save'),  'onSubmit' => 'return validateCareerInfoForm()')) !!}
                         <div class="container">
-                            <div class="mb-3 career_title">
-                                <label for="career_title" class="form-label">@if($user->employment_status=='fresher') Jobs looking for @else Your designation @endif</label>
-                                {!! Form::text('career_title', $user->career_title??null, array('class'=>'form-control required typeahead', 'id'=>'career_title', 'placeholder'=>__('ex:auditor, doctor'), 'autocomplete'=>'off')) !!}
-                                <small class="form-text text-muted text-danger err_msg" id="err_career_title"></small>
-                            </div>
-                            @php
-                                $exp = explode('.',$user->total_experience);
-                                $exp_in_year = $exp[0]??'';
-                                $exp_in_month = $exp[1]??'';
-                            @endphp
-                            @if($user->employment_status=='experienced')
-                            <label for="exampleInputEmail1" class="form-label">Total years of experience</label>
-                            <div class="row mb-4">
-                                <div class="col-md-6">
-                                    {!! Form::select('exp_in_year', MiscHelper::getNumExpYears(), $exp_in_year, array('class'=>'form-select required', 'id'=>'exp_in_year')) !!}
+                            <div class="scroll-height1">
+                                <div class="mb-3 career_title">
+                                    <label for="career_title" class="form-label">@if($user->employment_status=='fresher') Jobs looking for @else Your designation @endif</label>
+                                    {!! Form::text('career_title', $user->career_title??null, array('class'=>'form-control required typeahead', 'id'=>'career_title', 'placeholder'=>__('ex:auditor, doctor'), 'autocomplete'=>'off')) !!}
+                                    <small class="form-text text-muted text-danger err_msg" id="err_career_title"></small>
                                 </div>
+                                @php
+                                    $exp = explode('.',$user->total_experience);
+                                    $exp_in_year = $exp[0]??'';
+                                    $exp_in_month = $exp[1]??'';
+                                @endphp
+                                @if($user->employment_status=='experienced')
+                                <label for="exampleInputEmail1" class="form-label">Total years of experience</label>
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        {!! Form::select('exp_in_year', MiscHelper::getNumExpYears(), $exp_in_year, array('class'=>'form-select required', 'id'=>'exp_in_year')) !!}
+                                    </div>
 
-                                <div class="col-md-6">
-                                    {!! Form::select('exp_in_month', MiscHelper::getNumExpMonths(), $exp_in_month, array('class'=>'form-select required', 'id'=>'exp_in_month')) !!}
+                                    <div class="col-md-6">
+                                        {!! Form::select('exp_in_month', MiscHelper::getNumExpMonths(), $exp_in_month, array('class'=>'form-select required', 'id'=>'exp_in_month')) !!}
+                                    </div>
+                                    <small class="form-text text-muted text-danger err_msg" id="err_total_exp"></small>
                                 </div>
-                                <small class="form-text text-muted text-danger err_msg" id="err_total_exp"></small>
-                            </div>
-                            @endif
+                                @endif
 
-                            <label for="expected_salary" class="form-label">Expected salary</label>
-                            <div class="input-group mb-3 slct_apnd">
-                                {!! Form::select('salary_currency', ['₹'=>'₹'], $user->salary_currency, array('id'=>'salary_currency')) !!}
-                                {!! Form::text('expected_salary', null, array('class'=>'form-control required', 'data-type'=>'currency', 'id'=>'expected_salary', 'minlength'=>'0', 'maxlength'=>'10', 'placeholder'=>__('Expected Salary'))) !!}
-                                <span class="input-group-text">/ annam</span>
-                            </div>
-                            <small class="form-text text-muted text-danger err_msg" id="err_expected_salary"></small>
-                            
-                            <div class="mb-3">
-                                <label class="form-label">Jobs location looking for <span class="country_text">- {{ $country }} <a href="javascript:void(0);" onClick="CountryChange()">Change</a></span></label>
-                                <div class="country_change"  style="display:none;">
-                                    <label for="div_country_id" class="form-label">Country </label>  
-                                    <div>                              
-                                        {!! Form::select('country_id', $countries['value'], $country_id, array('class'=>'form-select required', 'id'=>'country_id'), $countries['attribute']) !!}
-                                        <small class="form-text text-muted text-danger err_msg" id="err_country_id"></small>
-                                        {!! APFrmErrHelp::showErrors($errors, 'country_id') !!} 
+                                <label for="expected_salary" class="form-label">Expected salary</label>
+                                <div class="input-group mb-3 slct_apnd">
+                                    {!! Form::select('salary_currency', ['₹'=>'₹'], $user->salary_currency, array('id'=>'salary_currency')) !!}
+                                    {!! Form::text('expected_salary', null, array('class'=>'form-control required', 'data-type'=>'currency', 'id'=>'expected_salary', 'minlength'=>'0', 'maxlength'=>'10', 'placeholder'=>__('Expected Salary'))) !!}
+                                    <span class="input-group-text">/ annam</span>
+                                </div>
+                                <small class="form-text text-muted text-danger err_msg" id="err_expected_salary"></small>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">Jobs location looking for <span class="country_text">- {{ $country }} <a href="javascript:void(0);" onClick="CountryChange()">Change</a></span></label>
+                                    <div class="country_change"  style="display:none;">
+                                        <label for="div_country_id" class="form-label">Country </label>  
+                                        <div>                              
+                                            {!! Form::select('country_id', $countries['value'], $country_id, array('class'=>'form-select required', 'id'=>'country_id'), $countries['attribute']) !!}
+                                            <small class="form-text text-muted text-danger err_msg" id="err_country_id"></small>
+                                            {!! APFrmErrHelp::showErrors($errors, 'country_id') !!} 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="mb-3 city">
-                                <label for="" class="form-label">City</label>
-                                {!! Form::text('location', $user->location??null, array('class'=>'form-control required typeahead', 'id'=>'location', 'placeholder'=>__('Enter your location'), 'aria-label'=>'Enter your location', 'autocomplete'=>'off')) !!}
-                                <small class="form-text text-muted text-danger err_msg" id="err_location"></small>
-                            </div>
-                            <div class="mb-4">
-                                <label class="form-label">Contact Number</label>
-                                {!! Form::hidden('full_number', null, array('id'=>'full_number')) !!}
-                                {!! Form::tel('phone', $user->phone??null, array('class'=>'form-control mob_cp validMob', 'id'=>'phone', 'onkeypress'=> 'return isNumber(event)', 'minlength'=>'9', 'maxlength'=>'14', 'placeholder'=>__('Phone'))) !!}
-                                <small class="form-text text-muted text-danger err_msg" id="err_phone"></small> 
-                                {!! APFrmErrHelp::showErrors($errors, 'phone') !!}
-                            </div>
-                            <!-- <div class="form-check mb-2 is_watsapp_number">
-                                {!! Form::checkbox('is_watsapp_number', 'yes', $user->is_watsapp_number??'', array('class'=>'form-check-input', 'id'=>'is_watsapp_number')) !!}
-                                <label class="form-check-label" for="is_watsapp_number">Is this watsapp number.</label>
-                            </div> -->
-                            @if($user->employment_status=='experienced')
-                            <div class="row mb-4">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="" class="form-label">Notice Period</label>
-                                        {!! Form::select('notice_period', [''=>'Select']+$noticePeriod, $user->notice_period, array('class'=>'form-select required', 'id'=>'notice_period')) !!}
-                                        <small class="form-text text-muted text-danger err_msg" id="err_notice_period"></small>
+                                <div class="mb-3 city">
+                                    <label for="" class="form-label">City</label>
+                                    {!! Form::text('location', $user->location??null, array('class'=>'form-control required typeahead', 'id'=>'location', 'placeholder'=>__('Enter your location'), 'aria-label'=>'Enter your location', 'autocomplete'=>'off')) !!}
+                                    <small class="form-text text-muted text-danger err_msg" id="err_location"></small>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label">Contact Number</label>
+                                    {!! Form::hidden('full_number', null, array('id'=>'full_number')) !!}
+                                    {!! Form::tel('phone', $user->phone??null, array('class'=>'form-control mob_cp validMob', 'id'=>'phone', 'onkeypress'=> 'return isNumber(event)', 'minlength'=>'9', 'maxlength'=>'14', 'placeholder'=>__('Phone'))) !!}
+                                    <small class="form-text text-muted text-danger err_msg" id="err_phone"></small> 
+                                    {!! APFrmErrHelp::showErrors($errors, 'phone') !!}
+                                </div>
+                                <!-- <div class="form-check mb-2 is_watsapp_number">
+                                    {!! Form::checkbox('is_watsapp_number', 'yes', $user->is_watsapp_number??'', array('class'=>'form-check-input', 'id'=>'is_watsapp_number')) !!}
+                                    <label class="form-check-label" for="is_watsapp_number">Is this watsapp number.</label>
+                                </div> -->
+                                @if($user->employment_status=='experienced')
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Notice Period</label>
+                                            {!! Form::select('notice_period', [''=>'Select']+$noticePeriod, $user->notice_period, array('class'=>'form-select required', 'id'=>'notice_period')) !!}
+                                            <small class="form-text text-muted text-danger err_msg" id="err_notice_period"></small>
+                                        </div>
                                     </div>
                                 </div>
+                                @endif
                             </div>
-                            @endif
                             <div class="row mb-4 mt-5">
                                 <div class="col-md-6 col-5">
                                     <a href="{{ route('experience')}}" class="btn p-0"><img draggable="false" src="{{asset('images/lefticon.png')}}"> Previous</a>
@@ -190,11 +192,11 @@
                                     <button class="btn p-0" type="submit">Save & Continue  <img draggable="false" src="{{asset('images/righticon.png')}}"></button>
                                 </div>
                             </div>
+                            <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 80%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            {!! Form::close() !!}
                         </div>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 80%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>
