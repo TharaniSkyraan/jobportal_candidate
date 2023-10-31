@@ -51,16 +51,18 @@ trait UserCvsTrait
         if($id){
             $userCv = UserCv::find($id);
         }else{
-            $user = Auth::user();    
+            $user_id = Auth::user()->id;    
             $userCv = new UserCv();
-            $userCv->user_id = $user->id;
+            $userCv->user_id = $user_id;
         }    
         $userCv->path = $request->path??"";
         $userCv->cv_file = $request->url??"";
         $userCv->save();  
 
         $message = "Updated successfully.";
-
+        
+        User::where('user_id',$user_id)->update(['updated_at'=>Carbon::now()]);
+    
         return $this->sendResponse(['cv_id'=>$userCv->id], $message); 
    
     }

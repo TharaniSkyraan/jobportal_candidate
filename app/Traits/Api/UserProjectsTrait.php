@@ -59,10 +59,8 @@ trait UserProjectsTrait
     public function projectsUpdate(UserProjectRequest $request)
     {
 
-
-        $user_id = Auth::user()->id;
-
         $id = $request->project_id??NULL;
+        $user_id = Auth::user()->id;
         if($id){
             $userProject = UserProject::find($id);
         }else{
@@ -73,7 +71,9 @@ trait UserProjectsTrait
         $userProject->save();
 
         $message = "Updated successfully.";
-
+        
+        User::where('user_id',$user_id)->update(['updated_at'=>Carbon::now()]);
+    
         return $this->sendResponse(['project_id'=>$userProject->id], $message); 
 
     }

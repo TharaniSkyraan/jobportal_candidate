@@ -50,6 +50,7 @@ trait UserExperienceTrait
     {
 
         $id = $request->experience_id??NULL;
+        $user_id = Auth::user()->id;
         if($id){
             $userExperience = UserExperience::find($id);
         }else{
@@ -59,7 +60,9 @@ trait UserExperienceTrait
         $userExperience->save();
           
         $message = "Updated successfully.";
-
+        
+        User::where('user_id',$user_id)->update(['updated_at'=>Carbon::now()]);
+    
         return $this->sendResponse(['experience_id'=>$userExperience->id], $message); 
   
     }
