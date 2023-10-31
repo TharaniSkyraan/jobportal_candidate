@@ -111,8 +111,8 @@
                             <div><img draggable="false" src="{{asset('images/career_info.png')}}">&nbsp;Career Info</div>
                         </h1>
                         {!! Form::open(array('method' => 'post', 'route' => array('career-info-save'),  'onSubmit' => 'return validateCareerInfoForm()')) !!}
-                        <div class="container">
-                            <div class="scroll-height1">
+                        <div class="scroll-height1">
+                            <div class="container">
                                 <div class="mb-3 career_title">
                                     <label for="career_title" class="form-label">@if($user->employment_status=='fresher') Jobs looking for @else Your designation @endif</label>
                                     {!! Form::text('career_title', $user->career_title??null, array('class'=>'form-control required typeahead', 'id'=>'career_title', 'placeholder'=>__('ex:auditor, doctor'), 'autocomplete'=>'off')) !!}
@@ -184,6 +184,8 @@
                                 </div>
                                 @endif
                             </div>
+                        </div>
+                        <div class="container">
                             <div class="row mb-4 mt-3">
                                 <div class="col-md-6 col-5">
                                     <a href="{{ route('experience')}}" class="btn p-0"><img draggable="false" src="{{asset('images/lefticon.png')}}"> Previous</a>
