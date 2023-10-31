@@ -641,4 +641,7 @@ label{
 form label{
     font-size: 14px!important;
     font-weight: 400 !important;
+}.lgncard1 h2{
+    font-size: 22px;
+    font-weight: 600 !important;
 }
