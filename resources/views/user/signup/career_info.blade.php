@@ -185,7 +185,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="row mb-4 mt-5">
+                        <div class="row mb-4 mt-3">
                             <div class="col-md-6 col-5">
                                 <a href="{{ route('experience')}}" class="btn p-0"><img draggable="false" src="{{asset('images/lefticon.png')}}"> Previous</a>
                             </div>
