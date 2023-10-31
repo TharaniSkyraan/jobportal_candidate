@@ -644,4 +644,6 @@ form label{
 }.lgncard1 h2{
     font-size: 22px;
     font-weight: 600 !important;
+}.lgncard1 .fw-bolder{
+    font-weight: 600 !important;
 }
