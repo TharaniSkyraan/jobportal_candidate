@@ -49,13 +49,13 @@ li {
                         {!! Form::hidden('id', $education->id??null) !!}
                         <div class="container">
                             <div class="mb-4">
-                                <label for="exampleInputEmail1" class="form-label grytxtv">Highest level of Qualification</label>
+                                <label for="exampleInputEmail1" class="form-label">Highest level of Qualification</label>
                                 {!! Form::select('education_level_id', [''=>__('Select Education')]+$educationLevels, $education->education_level_id??null, array('class'=>'form-select required', 'id'=>'education_level_id')) !!}
                                 <small class="help-block form-text text-muted text-danger err_msg education_level_id-error" id="err_education_level_id"></small> 
                             </div>
 
                             <div class="mb-4 education_type_div" @if(empty($education->education_type)) style="display:none;" @endif>
-                                <label for="exampleInputEmail1" class="form-label grytxtv">Education</label>
+                                <label for="exampleInputEmail1" class="form-label">Education</label>
                                 {!! Form::text('education_type', $education->education_type??null, array('class'=>'form-control required typeahead education_type', 'id'=>'education_type', 'placeholder'=>__('Select education type'),'autocomplete'=>'off')) !!}
                                 <small class="form-text text-muted text-danger err_msg" id="err_education_type"></small>
                                 <small class="help-block form-text text-muted text-danger err_msg education_type-error" id="err_education_type"></small> 
