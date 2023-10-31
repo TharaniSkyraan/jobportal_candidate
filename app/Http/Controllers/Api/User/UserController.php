@@ -48,6 +48,7 @@ class UserController extends BaseController
                 'resume_url' => $user->getDefaultCv()->cv_file??"",
                 'resume_id' => $user->getDefaultCv()->id??0,
                 'user_token' => $user->token,
+                'updated_at' => $user->updated_at,
                 'profile_summary' => url('api/profile_summary/'.$user->id),
             ),
             'genders' => DataArrayHelper::langGendersApiArray(),    
