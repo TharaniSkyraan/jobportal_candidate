@@ -184,19 +184,19 @@
                                 </div>
                                 @endif
                             </div>
-                            <div class="row mb-4 mt-5">
-                                <div class="col-md-6 col-5">
-                                    <a href="{{ route('experience')}}" class="btn p-0"><img draggable="false" src="{{asset('images/lefticon.png')}}"> Previous</a>
-                                </div>
-                                <div class="col-md-6 col-7 text-end">
-                                    <button class="btn p-0" type="submit">Save & Continue  <img draggable="false" src="{{asset('images/righticon.png')}}"></button>
-                                </div>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 80%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            {!! Form::close() !!}
                         </div>
+                        <div class="row mb-4 mt-5">
+                            <div class="col-md-6 col-5">
+                                <a href="{{ route('experience')}}" class="btn p-0"><img draggable="false" src="{{asset('images/lefticon.png')}}"> Previous</a>
+                            </div>
+                            <div class="col-md-6 col-7 text-end">
+                                <button class="btn p-0" type="submit">Save & Continue  <img draggable="false" src="{{asset('images/righticon.png')}}"></button>
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 80%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>
