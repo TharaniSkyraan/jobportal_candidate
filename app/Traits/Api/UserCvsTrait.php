@@ -21,6 +21,7 @@ trait UserCvsTrait
         if(count($user->UserCvs)!=0){
             $response['resume'][] = array(
                 'id'         => $user->UserCvs[0]['id'],
+                'cv_name'    => 'Resume 1.pdf',
                 'cv_file'    => $user->UserCvs[0]['cv_file'],
                 'path'       => $user->UserCvs[0]['path'],
                 'is_default' => $user->UserCvs[0]['is_default'],
@@ -32,6 +33,7 @@ trait UserCvsTrait
         if(count($user->UserCvs)>=2){
             $response['resume'][] = array(
                 'id'         => $user->UserCvs[1]['id'],
+                'cv_name'    => 'Resume 2.pdf',
                 'cv_file'    => $user->UserCvs[1]['cv_file'],
                 'path'       => $user->UserCvs[1]['path'],
                 'is_default' => $user->UserCvs[1]['is_default'],
