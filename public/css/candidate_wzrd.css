@@ -20,7 +20,7 @@
 #cndidate_wzrd .cndte_mbile img{
     width:100%;
 }#cndidate_wzrd .site2_logo img{
-    width:130px;
+    width:125px;
 }#cndidate_wzrd .progress{
     height:8px;
     background: none !important;
@@ -53,8 +53,9 @@
     border: 1px solid #ccc;
     padding: 5px;   
 }#cndidate_wzrd .slct_apnd span{
-    background: #fff;
     border: 1px solid #ced4da !important;
+    background: #4285f4;
+    color: #fff;
 }#cndidate_wzrd .skls_cdte{
     position: relative;
     background: #fff;
@@ -80,7 +81,7 @@
 }.loadflebrd img{
     width: 80px !important;
 }#cndidate_wzrd button img, #cndidate_wzrd a.btn img{
-    width: 18px;
+    width: 15px;
 }#cndidate_wzrd .btn{
     padding: .6rem 1.4rem;
 }#cndidate_wzrd .card{
@@ -145,22 +146,28 @@
         background:url(../images/fresher_inactive.png);
         background-size: cover;
         background-position: center;
-    }.levtstge_fre:hover, .levtstge_fre:focus, .levtstge_fre.checked{
-        background:url(../images/fresher_active.png);
-        background-size: cover;
-        background-position: center;
     }.levtstge_exp{
         background:url(../images/experienced_inactive.png);
         background-size: cover;
         background-position: center;    
-    }.levtstge_exp:focus, .levtstge_exp:hover, .levtstge_exp.checked{
+    }
+    /* .levtstge_exp:focus, .levtstge_exp:hover, .levtstge_exp.checked{
         background:url(../images/experienced_active.png);
         background-size: cover;
         background-position: center;
-    }
+    }.levtstge_fre:hover, .levtstge_fre:focus, .levtstge_fre.checked{
+        background:url(../images/fresher_active.png);
+        background-size: cover;
+        background-position: center;
+    } */
     .form-control.is-invalid{
         background-image: unset !important;
     }
     .grayc{
         font-size: 11px;
+    }.scroll-page #salary_currency{
+        border-top-left-radius: 0.25rem;
+        border-bottom-left-radius: 0.25rem;
+        background: #4285f4;
+        color: #fff;
     }

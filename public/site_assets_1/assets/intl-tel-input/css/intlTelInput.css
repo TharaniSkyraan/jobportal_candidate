@@ -95,7 +95,8 @@
     .iti--allow-dropdown input[readonly] + .iti__flag-container:hover .iti__selected-flag {
       background-color: transparent; }
   .iti--separate-dial-code .iti__selected-flag {
-    background-color: rgba(0, 0, 0, 0.05); }
+    color: #fff;
+    background: #4285f4;
   .iti--separate-dial-code .iti__selected-dial-code {
     margin-left: 6px; }
   .iti--container {
