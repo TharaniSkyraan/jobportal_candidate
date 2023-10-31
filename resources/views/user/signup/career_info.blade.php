@@ -184,13 +184,13 @@
                                 </div>
                                 @endif
                             </div>
-                        </div>
-                        <div class="row mb-4 mt-3">
-                            <div class="col-md-6 col-5">
-                                <a href="{{ route('experience')}}" class="btn p-0"><img draggable="false" src="{{asset('images/lefticon.png')}}"> Previous</a>
-                            </div>
-                            <div class="col-md-6 col-7 text-end">
-                                <button class="btn p-0" type="submit">Save & Continue  <img draggable="false" src="{{asset('images/righticon.png')}}"></button>
+                            <div class="row mb-4 mt-3">
+                                <div class="col-md-6 col-5">
+                                    <a href="{{ route('experience')}}" class="btn p-0"><img draggable="false" src="{{asset('images/lefticon.png')}}"> Previous</a>
+                                </div>
+                                <div class="col-md-6 col-7 text-end">
+                                    <button class="btn p-0" type="submit">Save & Continue  <img draggable="false" src="{{asset('images/righticon.png')}}"></button>
+                                </div>
                             </div>
                         </div>
                         <div class="progress">
