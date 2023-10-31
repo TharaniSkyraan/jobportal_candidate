@@ -6,8 +6,16 @@ const sidenavbarLockBtn = document.querySelector("#lock-icon");
 const header = document.querySelector("#header");
 const mainPanel = document.querySelector(".main-panel");
 const overlay = document.querySelector(".overlay");
-
 var screensize= $( window ).width();
+
+if(screensize<=800){
+  $('#header').removeClass('header-open').addClass('header-close');
+  $('.sidenavv-toggler #lock-icon').removeClass('fa-close').addClass('fa-bars');
+  setTimeout(() => {
+    $('.changewdth').removeClass('changewdth');
+  }, 100);
+}
+
 if(sidenavbarfaq==null){
   
     // Collage Card profile

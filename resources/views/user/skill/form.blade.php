@@ -1,8 +1,8 @@
 
 <div class="card mt-5">
     <div class="row d-flex mb-4">
-        <div class="col-md-4 col-lg-2 mb-2">
-            Skill Name
+        <div class="col-md-4 col-lg-2 align-self-center">
+            <label class="form-label mb-0">Skill Name</span>
         </div>
         <div class="col-md-4 col-lg-6">
            {{-- <?php

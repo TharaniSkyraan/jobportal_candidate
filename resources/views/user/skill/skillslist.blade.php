@@ -4,10 +4,10 @@
     <div class="row">
         <div class="col-md-8 col-lg-8 col-sm-8 col-8">
             <div class="mb-4 dtls">
-                <h3 class="fw-bolder mb-1">{{ $skill->getSkill('skill') }}</h3>
-                <p class="mb-0">{{ $skill->is_currently_working=='yes'?' Currently Working ':'' }}</p>
-                <p class="mb-0">Skill level</p>
-                <p class="fw-bolder">{{ $skill->getLevel('language_level')??'-' }}</p>
+                <h3>{{ $skill->getSkill('skill') }}</h3>
+                <p>{{ $skill->is_currently_working=='yes'?' Currently Working ':'' }}</p>
+                <p>Skill level</p>
+                <p>{{ $skill->getLevel('language_level')??'-' }}</p>
             </div>
         </div>
         <div class="col-md-4 col-lg-4 col-sm-4 col-4">

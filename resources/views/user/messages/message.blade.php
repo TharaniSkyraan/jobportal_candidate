@@ -12,7 +12,7 @@
   @include('layouts.dashboard_header')
   @include('layouts.side_navbar')
 
-	<div class="main-panel main-panel-custom main-panel-customize">
+	<div class="main-panel main-panel-custom">
 		<div class="content">
       <div class="page-inner">
         <div class="container-fuild">

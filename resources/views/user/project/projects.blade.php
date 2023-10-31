@@ -16,15 +16,15 @@
 	@include('layouts.dashboard_header')
 	@include('layouts.side_navbar')
 
-	<div class="main-panel main-panel-custom main-panel-customize">
+	<div class="main-panel main-panel-custom">
 		<div class="content">
             <div class="page-inner">        
-                <div id="my_expernce2" class="mt-4">
+                <div id="my_expernce2" class="mt-3">
                     <div class="text-center ttleicn">
                         <h2 class="fw-bolder"><img draggable="false" src="{{asset('images/sidebar/project.svg')}}">&nbsp;My Projects</h2>
                     </div>
 
-                    <div class="crdbxpl mt-5">
+                    <div class="crdbxpl mt-4">
                         <div class="row">
                             <div class="col-7 px-4 align-self-center">Project</div>
                             <div class="col-5 text-end add-form"><button class="openForm addProjects" type="button" data-form="new">Add New <i class="fa fa-plus"></i></button></div>

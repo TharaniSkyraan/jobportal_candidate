@@ -4,11 +4,11 @@
         <div class="row">
             <div class="col-md-8 col-lg-8 col-sm-8 col-8">
                 <div class="dtls">
-                    <h3 class="fw-bolder mb-1">{{$job_alert->title}}</h3>
-                    <p class="mb-0">{{$job_alert->location}}</p>
+                    <h3>{{$job_alert->title}}</h3>
+                    <p>{{$job_alert->location}}</p>
                     @if(!empty($job_alert->experienceFid) && $job_alert->experienceFid!=0)
-                    <h5>Experience</h5>
-                    <p class="mb-0">{{$job_alert->experienceFid}} Years </p>
+                        <h5>Experience</h5>
+                        <p>{{$job_alert->experienceFid}} Years </p>
                     @endif 
                 </div>
             </div>
