@@ -27,7 +27,7 @@ trait UserSkillTrait
             $skill = Skill::where('skill_id',$user_skill['skill_id'])->first();
             $lang_level = LanguageLevel::where('language_level_id',$user_skill['level_id'])->first();
             $from = $user_skill['start_date']?Carbon::parse($user_skill['start_date'])->Format('M Y'):'';
-            $to = ($user_skill['is_currently_working']!='yes'? ($user_skill['end_date']?Carbon::parse($user_skill['end_date'])->Format('M Y'):'') : 'In Progress');
+            $to = ($user_skill['is_currently_working']!='yes'? ($user_skill['end_date']?Carbon::parse($user_skill['end_date'])->Format('M Y'):'') : '- In Progress');
             $val = array(
                 'id'=>$user_skill['id'],
                 'skill'=>$skill->skill??'',
@@ -87,6 +87,8 @@ trait UserSkillTrait
         }
         $userSkill->is_currently_working = $request->input('is_currently_working')??NULL;
         $userSkill->save();
+
+        User::where('user_id',$user_id)->update(['updated_at'=>Carbon::now()]);
     
         $message = "Updated successfully.";
 

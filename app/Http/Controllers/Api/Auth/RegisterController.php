@@ -58,7 +58,24 @@ class RegisterController extends BaseController
             if(isset($user)){
                 Auth::login($user, true);
                 $user = Auth::user();
+            }else
+            {
+                
+                $otp = $this->generateRandomCode(6);
+                $data = $request->all();
+                $data['token'] = $this->generateRandomString(8);
+                User::updateOrCreate(['email' => $request->email],$data);
+                
+                $updateUser = User::where('email',$request->email)->first();
+                Auth::login($updateUser, true);
+                $user = Auth::user();
+                $updateUser->verify_otp = null;
+                $updateUser->verified = 1;
+                $updateUser->next_process_level = 'education';
+                $updateUser->candidate_id = $this->generateCandidate($updateUser->id);
+                $updateUser->save();
             }
+
         }        
 
         if(isset($user))

@@ -62,6 +62,7 @@ trait UserEducationTrait
     public function educationsUpdate(UserEducationRequest $request)
     {
         $id = $request->education_id??NULL;
+        $user_id = Auth::user()->id;
         if($id){
             $userEducation = UserEducation::find($id);
         }else{
@@ -76,7 +77,9 @@ trait UserEducationTrait
      
      
         $message = "Updated successfully.";
-
+        
+        User::where('user_id',$user_id)->update(['updated_at'=>Carbon::now()]);
+    
         return $this->sendResponse(['education_id'=>$userEducation->id], $message); 
     }
 

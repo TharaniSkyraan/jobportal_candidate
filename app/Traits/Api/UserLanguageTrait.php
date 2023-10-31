@@ -47,6 +47,7 @@ trait UserLanguageTrait
     {
         
         $id = $request->id??NULL;
+        $user_id = Auth::user()->id;
         if($id){
             $userLanguage = UserLanguage::find($id);
         }else{
@@ -56,7 +57,9 @@ trait UserLanguageTrait
         $userLanguage->save();
        
         $message = "Updated successfully.";
-
+       
+        User::where('user_id',$user_id)->update(['updated_at'=>Carbon::now()]);
+    
         return $this->sendResponse(['id'=>$userLanguage->id], $message); 
     }
 

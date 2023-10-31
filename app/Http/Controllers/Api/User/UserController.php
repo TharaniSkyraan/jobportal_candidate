@@ -48,6 +48,7 @@ class UserController extends BaseController
                 'resume_url' => $user->getDefaultCv()->cv_file??"",
                 'resume_id' => $user->getDefaultCv()->id??0,
                 'user_token' => $user->token,
+                'updated_at' => (!empty($user->updated_at))?Carbon::parse($user->updated_at)->getTimestampMs():0,
                 'profile_summary' => url('api/profile_summary/'.$user->id),
             ),
             'genders' => DataArrayHelper::langGendersApiArray(),    
@@ -59,7 +60,6 @@ class UserController extends BaseController
     
     public function profileUpdate(UpdateProfileRequest $request)
     {
-
         $request['date_of_birth'] = Carbon::parse($request->date_of_birth)->format('Y-m-d');
         $user = User::findOrFail(Auth::user()->id)->update($request->all());
 
@@ -70,7 +70,6 @@ class UserController extends BaseController
     
     public function career_info()
     {
-
         $user = Auth::user();     
         $exp = explode('.',$user->total_experience);
         $exp_in_year = $exp[0]??'';
@@ -87,16 +86,13 @@ class UserController extends BaseController
             'exp_in_month' => $exp_in_month??0,
         );
         return $this->sendResponse($response);
-        
     }
 
     public function about()
     {
-
         $user = Auth::user();     
         $response =  array('summary'=>$user->summary??'');
         return $this->sendResponse($response); 
-
     }
     
     public function career_infoUpdate(UpdateCareerInfoRequest $request)

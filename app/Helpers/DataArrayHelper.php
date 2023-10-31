@@ -758,7 +758,7 @@ class DataArrayHelper
         if(!empty($skill_id)){
            $skills = $skills->whereNotIn('id',$skill_id);
         }
-        return $skills->isDefault()->lang()->active()->take(10)->get();
+        return $skills->isDefault()->lang()->active()->get();
     }
 
     public static function suggestionResultType()
