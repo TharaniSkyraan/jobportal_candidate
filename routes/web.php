@@ -48,7 +48,6 @@ Route::view('/privacy-policy','privacy_policy')->name('privacy-policy');
 Route::view('/terms-of-use','terms_of_use')->name('terms-of-use');
 
 
-
 /* * ******** TypeAheadController ********* */
 Route::get('typeahead-currency_codes', 'TypeAheadController@typeAheadCurrencyCodes')->name('typeahead.currency_codes');
 
@@ -66,8 +65,8 @@ Route::get('/clear-cache', function () {
 
 //Developer defined routes
 Route::get('/dev-cvparser','CVParserController@index');
-// Modified By Sound ************ */
 
+// Modified By Sound ************ */
 Route::get('robots.txt', function () {
     return response(file_get_contents(public_path('robots.txt')), 200, [
         'Content-Type' => 'text/plain'

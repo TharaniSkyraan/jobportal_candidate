@@ -39,7 +39,9 @@ class JobsController extends BaseController
         $user_id = Auth::user()->id??710;        
         $user = User::find($user_id);
         $appliedjobs = JobApply::where('user_id',$user_id)
-                        ->whereIn('application_status',['view','shortlist','consider'])
+                        ->whereIn('application_status',['shortlist'])
+                        ->whereIsRead(1)
+                        // ->whereIn('application_status',['view','shortlist','consider'])
                         ->take(4)
                         ->orderBy('created_at','desc')
                         ->get();
@@ -62,9 +64,8 @@ class JobsController extends BaseController
             }
         }
 
-        $sortBy = 'date';
         $filter = array();
-        $filter['sortBy']  = $sortBy;
+        $filter['sortBy'] = 'date';
         $jobs = $this->fetchJobs($user->career_title, $filter, [], 5);
         
         $jobs['joblist']->each(function ($job, $key) use($user) {
@@ -144,9 +145,8 @@ class JobsController extends BaseController
 
         
 
-        $sortBy = 'date';
         $filter = array();
-        $filter['sortBy']  = $sortBy;
+        $filter['sortBy']  = 'date';
         $jobs = $this->fetchJobs($user->career_title, $filter, [], 5);
         
         $jobs['joblist']->each(function ($job, $key) use($user) {
@@ -369,7 +369,20 @@ class JobsController extends BaseController
             );
         return $this->sendResponse($response);
     }
-
+    
+    /**
+     * return Success json response.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function shortlistView(Request $request)
+    {
+        $user_id = Auth::user()->id??710;
+        $job= Job::where('slug', $request->slug)->pluck('id')->first();
+        $apply = JobApply::whereUserId($user_id)->whereJobId($job)->update(['is_read'=>1]);
+   
+        return $this->sendResponse('', 'Success');
+    }
     /**
      * return Success json response.
      *

@@ -99,7 +99,7 @@
     padding-top: 3.5rem;
     /* background: linear-gradient(180deg, rgba(66, 133, 244, 0.21) 0%, rgba(14, 66, 152, 0.671875) 56.77%, rgba(0, 48, 127, 0.75) 100%); */
 }.hme_banner{
-    background: url('../../images/home/img.png');
+    background: url('../images/home/img.png');
     background-repeat: no-repeat;
     background-size: cover;
 }.reserch .titsearch{

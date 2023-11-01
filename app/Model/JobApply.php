@@ -29,6 +29,8 @@ class JobApply extends Model
 
     protected $dates = ['created_at', 'updated_at'];
 
+    protected $fillable = ['is_read'];
+
 
     public function user()
     {
@@ -71,16 +73,16 @@ class JobApply extends Model
                 'age' => $user->getAge(),
                 'career_title' => !empty($user->career_title)? $user->career_title : $user->getuserCurrentDesignation(),
                 'total_experience' => ($user->employment_status=='experienced')?$user->total_experience:'Fresher',
-                'availability_to_join' => !empty($user->NoticePeriod)?$user->NoticePeriod->notice_period:null,
-                'email' => $user->email,
-                'location' => $user->location,
-                'phone' => $user->phone,
+                'availability_to_join' => !empty($user->NoticePeriod)?$user->NoticePeriod->notice_period:'',
+                'email' => $user->email??'',
+                'location' => $user->location??'',
+                'phone' => $user->phone??'',
                 'education' => $user->getuserEducationLast(),
                 'skill' => $user->getUserSkillsStr(),
-                'image' => $user->image,
+                'image' => $user->image??'',
                 'is_image' => !empty($user->image)?'yes':'no',
                 'avatar' => $user->getName()[0]??ucwords($user->email[0]),
-                'cv' => $user->getDefaultCv()->id??'',
+                'cv' => $user->getDefaultCv()->id??0,
             );
         }
 

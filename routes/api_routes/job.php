@@ -9,6 +9,7 @@
         Route::get('advanced_filter/{job_alert?}', [JobsController::class, 'advancedFilter']);
         Route::post('search-job', [JobsController::class, 'searchJob']);
         Route::get('job-detail/{slug}', [JobsController::class, 'jobDetail']);
+        Route::post('shortlist-view', [JobsController::class, 'shortlistView']);
         Route::get('company-detail/{slug}', [JobsController::class, 'companyDetail']);
 
         Route::post('apply-job/{slug}', [MyJobsController::class, 'ApplyJob']);
