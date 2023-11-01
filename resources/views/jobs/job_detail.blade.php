@@ -619,18 +619,18 @@
         var save_req_url = "{{ route('job.save', $job->slug) }}";
         var apply_req_url = "{{ route('job.apply', $job->slug) }}" ;
         var isscreening = "{{(count($job->screeningquiz)!=0)?'yes':'no'}}"; 
-        //   window.addEventListener("scroll", function () {
-        //     const header = document.querySelector(".jsky_hb");
+          window.addEventListener("scroll", function () {
+            const header = document.querySelector(".jsky_hb");
 
-        //     if (header) {
-        //         header.classList.toggle("sticky", window.scrollY > 0);
-        //     }
+            if (header) {
+                header.classList.toggle("sticky", window.scrollY > 0);
+            }
 
-        // });
+        });
 
-        // $(document).on('click', '.applyrs_btn', function(){
-        //     $('#screenings').modal('show');
-        // });
+        $(document).on('click', '.applyrs_btn', function(){
+            $('#screenings').modal('show');
+        });
     </script>
     <script type="text/javascript" src="{{ asset('site_assets_1/assets/2e9ejr3/js/destail.e2k3eu0.js') }}"></script>
 @endsection
