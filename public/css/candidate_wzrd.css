@@ -122,6 +122,8 @@
     box-shadow: inset 0 0 4px grey;
 }#cndidate_wzrd .typeahead::-webkit-scrollbar-thumb {
     background: #4285f4;
+}#cndidate_wzrd input::placeholder{
+    color: #e4efff;
 }
 @media(max-width:480px){
     #cndidate_wzrd .cndte_mbile{
