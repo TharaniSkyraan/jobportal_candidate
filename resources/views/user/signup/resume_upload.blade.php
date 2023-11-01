@@ -21,12 +21,12 @@
                     <!-- <div class="progress">
                         <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width:50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div> -->
-                    <div class="site2_logo mb-3 mt-3 text-center">
+                    <div class="site2_logo mb-2 mt-3 text-center">
                         <a href="{{url('/')}}" class="href">
                             <img draggable="false" src="{{asset('images/footer_logo.png')}}" alt="logo">
                         </a>
                     </div>
-                    <h1 class="fw-bolder text-center lvledticn mt-3 mb-4">
+                    <h1 class="fw-bolder text-center lvledticn mt-2 mb-4">
                         <div class="mb-3">Upload Resume</div>
                         <p class="text-center">Upload your resume and start your Job search...</p>
                     </h1>

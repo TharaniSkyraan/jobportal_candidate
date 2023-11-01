@@ -138,12 +138,14 @@
                                 @endif
 
                                 <label for="expected_salary" class="form-label">Expected salary</label>
-                                <div class="input-group mb-3 slct_apnd">
-                                    {!! Form::select('salary_currency', ['₹'=>'₹'], $user->salary_currency, array('id'=>'salary_currency')) !!}
-                                    {!! Form::text('expected_salary', null, array('class'=>'form-control required', 'data-type'=>'currency', 'id'=>'expected_salary', 'minlength'=>'0', 'maxlength'=>'10', 'placeholder'=>__('Expected Salary'))) !!}
-                                    <span class="input-group-text">/ annam</span>
+                                <div class="mb-3">
+                                    <div class="input-group slct_apnd">
+                                        {!! Form::select('salary_currency', ['₹'=>'₹'], $user->salary_currency, array('id'=>'salary_currency')) !!}
+                                        {!! Form::text('expected_salary', null, array('class'=>'form-control required', 'data-type'=>'currency', 'id'=>'expected_salary', 'minlength'=>'0', 'maxlength'=>'10', 'placeholder'=>__('Expected Salary'))) !!}
+                                        <span class="input-group-text">/ annam</span>
+                                    </div>
+                                    <small class="form-text text-muted text-danger err_msg" id="err_expected_salary"></small>
                                 </div>
-                                <small class="form-text text-muted text-danger err_msg" id="err_expected_salary"></small>
                                 
                                 <div class="mb-3">
                                     <label class="form-label">Jobs location looking for <span class="country_text">- {{ $country }} <a href="javascript:void(0);" onClick="CountryChange()">Change</a></span></label>
