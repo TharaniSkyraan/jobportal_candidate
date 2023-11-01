@@ -43,7 +43,7 @@ class JobsController extends BaseController
                         ->whereIsRead(1)
                         // ->whereIn('application_status',['view','shortlist','consider'])
                         ->take(4)
-                        ->orderBy('created_at','desc')
+                        ->orderBy('updated_at','desc')
                         ->get();
 
         $appliedlist = [];
