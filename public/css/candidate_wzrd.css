@@ -96,6 +96,7 @@
     cursor: pointer;
 }.experience-text, .fresher-text{
     opacity: 0.4;
+    font-weight: 600;
 }.experience-text.fw-bolder, .fresher-text.fw-bolder{
     opacity: 1;
 }.experienced:hover .experience-text, .fresher:hover .fresher-text{
