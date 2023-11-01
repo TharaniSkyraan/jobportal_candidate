@@ -94,6 +94,12 @@
     padding: 0px;
 }.levtstge_fre:hover, .levtstge_exp:hover{
     cursor: pointer;
+}.experience-text, .fresher-text{
+    opacity: 0.4;
+}.experience-text.fw-bolder, .fresher-text.fw-bolder{
+    opacity: 1;
+}.experienced:hover .experience-text, .fresher:hover .fresher-text{
+    opacity: 1;
 }
 @media(max-width:480px){
     #cndidate_wzrd .cndte_mbile{

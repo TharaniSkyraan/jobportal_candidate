@@ -649,6 +649,7 @@ form label{
 }.scroll-height1{
     height: 350px;
     overflow-y: scroll;
+    position: relative;
 }.scroll-height1::-webkit-scrollbar {
     width: 3px
 }.scroll-height1 #search::placeholder{
