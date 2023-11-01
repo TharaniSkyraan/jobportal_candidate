@@ -80,7 +80,7 @@
                 @endphp
 
                 <div class="mb-2">
-                    <label class="form-labeler"> Location <span class="country_text">- {{ $country }} <a href="javascript:void(0);" onClick="CountryChange()">Change</a></span></label>  
+                    <label class="form-label"> Location <span class="country_text">- {{ $country }} <a href="javascript:void(0);" onClick="CountryChange()">Change</a></span></label>  
                     <div class="row">
                         <div class="col-md-8 col-lg-8 col-sm-8 col-xs-12 col-12 mb-3 country_change"  style="display:none;">
                             <label class="form-labeler"> Country </label>  
@@ -90,7 +90,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-8 col-lg-8 col-sm-8 col-xs-12 col-12 mb-2 location">
-                            <label class="form-labeler">City </label>  
+                            <label class="form-label">City </label>  
                             {!! Form::text('location', null, array('class'=>'form-control required typeahead', 'autocomplete'=>'off', 'id'=>'location', 'placeholder'=>__('Enter city'),' aria-label'=>'Enter city')) !!}
                             <small class="form-text text-muted text-danger err_msg" id="err_location"></small>                          
                         </div>

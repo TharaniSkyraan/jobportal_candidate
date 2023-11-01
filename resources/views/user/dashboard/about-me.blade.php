@@ -1,13 +1,11 @@
 @extends('layouts.app')
-
-
 @section('custom_scripts')
-<link rel="stylesheet" href="{{ asset('site_assets_1/assets/date_flatpicker/flatpickr.min.css')}}">
-<script src="{{ asset('site_assets_1/assets/date_flatpicker/flatpickr.js')}}"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shortcut-buttons-flatpickr@0.1.0/dist/themes/light.min.css">
-<script src="https://cdn.jsdelivr.net/npm/shortcut-buttons-flatpickr@0.1.0/dist/shortcut-buttons-flatpickr.min.js"></script>
-
-<link href="{{ asset('css/about_me.css') }}" rel="stylesheet">
+    <title>Mugaam - About me Page</title>
+    <link rel="stylesheet" href="{{ asset('site_assets_1/assets/date_flatpicker/flatpickr.min.css')}}">
+    <script src="{{ asset('site_assets_1/assets/date_flatpicker/flatpickr.js')}}"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shortcut-buttons-flatpickr@0.1.0/dist/themes/light.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/shortcut-buttons-flatpickr@0.1.0/dist/shortcut-buttons-flatpickr.min.js"></script>
+    <link href="{{ asset('css/about_me.css') }}" rel="stylesheet">
 @endsection
 
 
@@ -18,14 +16,14 @@
     @if(Session::has('message'))
         <script>toastr.success("{{ Session('message') }}");</script>
     @endif
-	<div class="main-panel main-panel-custom main-panel-customize">
+	<div class="main-panel main-panel-custom">
 		<div class="content">
 			<div class="page-inner">
-                <div id="abt_meusr" class="mt-4">
+                <div id="abt_meusr" class="mt-2">
                     <div class="text-center ttleicn">
                         <h2 class="fw-bolder"><img draggable="false" src="{{asset('images/sidebar/my_info.svg')}}">&nbsp;About me</h2>
                     </div>
-                    <div class="card mt-5">
+                    <div class="card mt-4">
                         <div class="prof_bg">
                             <div class="row">
                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-xs-4 col-12">
@@ -40,7 +38,7 @@
                                 <div class="col-xl-9 col-lg-9 col-md-8 col-sm-8 col-xs-8 col-12 align-self-center">
                                     <label for="exampleInputPassword1" class="form-label"> Email ID</label>
                                     <div class="row d-flex">
-                                        <div class="col-11 fw-bolder" style="font-size: 12px">{{$user->email}}</div>
+                                        <div class="col-11 fw-bolder" style="font-size: 15px">{{$user->email}}</div>
                                         <div class="col-1 p-0 m-0"><i class="fa-solid fa-check"></i></div>
                                     </div>
                                     <!-- <div class="mb-4">
@@ -48,7 +46,7 @@
                                         <div class="fw-bolder">{{$user->phone??'None'}}</div>
                                     </div> -->
                                     <div class="col-md-12 text-end mt-2">
-                                        <a href="{{route('accounts_settings')}}"><div class="fw-bolder d-flex align-items-end justify-content-end cursor-pointer"><i class="fa-solid fa fa-key"></i>&nbsp;Account Settings</div></a>
+                                        <a href="{{route('accounts_settings')}}"><div class="fw-bolder d-flex align-items-end justify-content-end cursor-pointer jn_abtgfv1"><i class="fa-solid fa fa-key"></i>&nbsp;Account Settings</div></a>
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +86,7 @@
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
                                         @php $cgender = (!empty($user->gender))?$user->gender:2; @endphp
                                         @foreach($genders as $key => $gender)
-                                        <div class="form-check form-check-inline ms-3">
+                                        <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="gender" id="gender{{$key}}" value="{{$key}}" @if($key==$cgender) checked @endif>
                                             <label class="form-check-label" for="gender{{$key}}">{{$gender}}</label>
                                         </div>
@@ -107,19 +105,6 @@
                         {!! Form::close() !!}
 
                     </div>  
-                </div>
-
-
-
-                <div class="text-center">
-
-                </div>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="card">
-							
-						</div>
-					</div>
                 </div>
             </div>
         </div>

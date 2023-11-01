@@ -6878,7 +6878,8 @@ label.error {
     opacity: 1; } }
 .fadeIn {
   -webkit-animation-name: fadeIn;
-  animation-name: fadeIn; }
+  animation-name: fadeIn; 
+}
 
 @-webkit-keyframes fadeInDown {
   from {

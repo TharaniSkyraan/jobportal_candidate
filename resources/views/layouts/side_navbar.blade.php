@@ -1,11 +1,11 @@
-<nav class="wrapper sidenavbar close">
+<nav class="wrapper sidenavbar locked changewdth">
   <div class="logo_items flex">
-      <text class="nav_image">
-        <a href="{{url('/')}}"><img draggable="false" src="{{ asset('/') }}site_assets_1/logo_24@2x.png" alt="logo_img" id="sidebar_logo" /></a>
-        <a href="{{url('/')}}"><img draggable="false" src="{{ asset('/') }}site_assets_1/logo1.png" alt="logo_img" id="sidebar_logo_image" /></a>
-      </text> 
-      <i class="fa fa-horizontal-rule"></i>
-    </div>
+    <text class="nav_image">
+      <a href="{{url('/')}}"><img draggable="false" src="{{ asset('/') }}site_assets_1/logo_24@2x.png" alt="logo_img" id="sidebar_logo" /></a>
+      <a href="{{url('/')}}"><img draggable="false" src="{{ asset('/') }}site_assets_1/logo1.png" alt="logo_img" id="sidebar_logo_image" /></a>
+    </text> 
+    <i class="fa fa-horizontal-rule"></i>
+  </div>
   <!-- <div class="logo_items flex">
     <i class="fa fa-close text-white" id="lock-icon" title="Unlock Sidenavbar"></i>
     <i class="fa fa-bars text-white" id="sidenavbar-close"></i>

@@ -74,26 +74,27 @@
     display: flex;
 }#abt_meusr .profilepictureappend img {
     width: 125px;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 20%);
     border-radius: 50%;
     height: 125px;
+    border: 2px solid #eee;
     padding: 2px;
 }#abt_meusr{
     width:65%;
 }.ttleicn img{
-    /* width:45px; */
+    width:32px;
     filter: invert(76%) sepia(30%) saturate(3461%) hue-rotate(179deg) brightness(98%) contrast(91%);
     border: 1px solid #eee;
-    padding: 7px;
+    padding: 5px;
     border-radius: 21px;
-    margin-right: 10px;
+    margin-right: 5px;
     align-items:center;
 }.ttleicn h2{
     color: #2b5baa;
-    font-size: 25px;
+    font-size: 22px;
     align-items: center;
     justify-content: center;
     display: flex;
+    font-weight: 700 !important;
 }#page-container{
     min-height:auto !important;
 }#abt_meusr .fa-user{
@@ -102,10 +103,11 @@
     border-radius: 62px;
     padding: 9px 11px;
     background: #fff;
-}#abt_meusr .card{
-    padding: 35px;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 6px #00000029;
+}.main-panel-custom .card{
+    padding: 25px !important;
+    box-shadow: none !important;
+    border: 1px solid #cccccc57;
+    border-radius: 4px;
 }#abt_meusr .fa-camera {
     position: absolute;
     background-color: blue;
@@ -120,11 +122,12 @@
     margin-top: 30px;
     margin-left: 55px;
 }#abt_meusr label{
-    color:#808080 !important;
+    color: #000000b8 !important;
+    font-weight: 600 !important;
 }#abt_meusr .fa-check{
     background-color: #25D366;
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     color: #fff;
     text-align: center;
     border-radius: 50%;
@@ -133,6 +136,8 @@
     cursor: pointer;
     display: flex;
     font-size: 8px;
+}#abt_meusr label.form-check-label {
+    font-weight: 500 !important;
 }
 @media(min-width: 280px) and (max-width: 767px){
     #abt_meusr .ttleicn img{
@@ -157,6 +162,14 @@
         margin-bottom: 15px;
     }
 }
+
+@media(min-width: 768px){
+    .jn_abtgfv1{
+        position: absolute;
+        right: 60px;
+        margin-top: 8px;
+    }
+}
 /******************
 **1.3.my education**
 *******************/
@@ -173,8 +186,8 @@
     font-weight: 500;
     padding: 10px;
     margin-bottom: 20px;
-    box-shadow: 0px 0px 6px #00000029;
     cursor: pointer;
+    border: 1px solid #ccc;
 }#my_eductin .crdbxless{
     background-color:#2762c2a3;
     color: #FFFFFF;
@@ -214,6 +227,9 @@
 .educationForm .modal-body{
     overflow-y: scroll;
     max-height: 400px;
+}#experience_div h3{
+    font-size: 17px;
+    font-weight: 600;
 }
 @media screen and (min-height:800px){
     .educationForm .modal-body{
@@ -296,7 +312,7 @@
     font-weight: 500;
     padding: 8px;
     margin-bottom: 20px;
-    box-shadow: 0px 0px 6px #00000029;
+    border: 1px solid #ccc;
     cursor: pointer;
 }.crdbxpl button{
     background-color: #2b5baa;
@@ -316,6 +332,7 @@
     color: #808080
 }#my_expernce2 .gry{
     color:#808080;
+    font-size: 14px;
 }#my_expernce2 .skilsdtl span{
     background: #2b5baa !important;
     color: #fff !important;
@@ -379,6 +396,8 @@
 }#my_skills .card{
     background: #F6F6F6;
     padding: 20px;
+}#my_expernce2 label.form-label{
+    font-weight: 500 !important;
 }
 /******************
 **1.9.my skills1**
@@ -399,18 +418,20 @@
     font-weight: 500;
     padding: 8px;
     margin-bottom: 20px;
-    box-shadow: 0px 0px 6px #00000029;
     cursor: pointer;
+    border: 1px solid #ccc;
 }#my_skills1 .fa-trash {
     color: #FF3434;
     font-size: 18px;
     cursor: pointer;
+}.modal label.form-label, #language_knwn label.form-label{
+    font-weight: 500 !important;
 }
 /******************
 **10. language Known**
 *******************/
 #language_knwn{
-    width: 65%;
+    width: 70%;
 }#language_knwn .thtg{
     background: #2b5baa;
     color: #fff;
@@ -476,16 +497,6 @@
     background: #FFFFFF;
     padding: 30px;
     box-shadow: 0px 0px 6px #00000029;
-}#my_resme .fa-info{
-    font-size: 8px;
-    border: 1px solid blue;
-    width: 15px;
-    height: 15px;
-    color: blue;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    border-radius: 50%;
 }#my_resme .fa-arrow-up{
     background: #00d599;
     width: 20px;
@@ -503,6 +514,11 @@
 }#my_resme .fa-trash {
     color: #FF3434;
     cursor: pointer;
+}
+
+#job_alert_div h3{
+    font-size: 16px;
+    font-weight: 600;
 }
 @media screen and (max-width: 480px){
     #my_resme, #abt_meusr, #language_knwn1, #language_knwn, #my_eductin, #my_expernce2, #my_skills1{
@@ -537,6 +553,28 @@
     #language_div .table{
         overflow-x: auto;
         display: block;
+    }
+}
+
+@media(min-width: 600px) and (max-width: 800px){
+    .main-panel-custom{
+        width: calc(100% - 80px) !important;
+    }
+}
+
+@media(max-width: 600px){
+    .main-panel-custom{
+        width: 100% !important;
+    }.changewdth{
+        display: none;
+    }
+}
+
+@media(max-width: 1200px){
+    #my_resme .d-flex{
+        align-items: center;
+        width: 250px;
+        margin: 0 auto;
     }
 }
 @media(min-width: 768px) and (max-width: 1024px)
@@ -577,7 +615,7 @@
 }
 @media only screen and (min-width: 1300px){
     #abt_meusr, #my_resme, #my_eductin, #my_expernce2, #my_skills1{
-        width: 90%;
+        width: 85%;
     }
     .main-panel-custom.main-panel-customize #abt_meusr, 
     .main-panel-custom.main-panel-customize #my_resme, 
@@ -603,4 +641,21 @@ label{
 form label{
     font-size: 14px!important;
     font-weight: 400 !important;
+}.lgncard1 h2{
+    font-size: 22px;
+    font-weight: 600 !important;
+}.lgncard1 .fw-bolder{
+    font-weight: 600 !important;
+}.scroll-height1{
+    height: 350px;
+    overflow-y: scroll;
+    position: relative;
+}.scroll-height1::-webkit-scrollbar {
+    width: 5px;
+}.scroll-height1 #search::placeholder{
+    color:#D8E8FF;
+}.scroll-height1::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 4px grey;
+}.scroll-height1::-webkit-scrollbar-thumb {
+    background: #4285f4;
 }

@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
-@section('custom_styles')	  
-<link href="{{ asset('site_assets_1/assets/vendor/select2/select2.min.css') }}" rel="stylesheet">
-<link href="{{ asset('site_assets_1/assets/user@ie3e2!/js/msg2!1/css/msgg!$21.css') }}" rel="stylesheet">
+@section('custom_styles')	 
+  <title>Mugaam - Message Page</title>
+  <link href="{{ asset('site_assets_1/assets/vendor/select2/select2.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('site_assets_1/assets/user@ie3e2!/js/msg2!1/css/msgg!$21.css') }}" rel="stylesheet">
 @endsection
 @section('content')
 @php
@@ -12,7 +13,7 @@
   @include('layouts.dashboard_header')
   @include('layouts.side_navbar')
 
-	<div class="main-panel main-panel-custom main-panel-customize">
+	<div class="main-panel main-panel-custom">
 		<div class="content">
       <div class="page-inner">
         <div class="container-fuild">

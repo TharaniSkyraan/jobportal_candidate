@@ -35,7 +35,7 @@
     height: 0;
     border-left: 3px solid transparent;
     border-right: 3px solid transparent;
-    border-top: 4px solid #555; }
+    border-top: 4px solid #fff; }
     .iti__arrow--up {
       border-top: none;
       border-bottom: 4px solid #555; }
@@ -95,7 +95,11 @@
     .iti--allow-dropdown input[readonly] + .iti__flag-container:hover .iti__selected-flag {
       background-color: transparent; }
   .iti--separate-dial-code .iti__selected-flag {
-    background-color: rgba(0, 0, 0, 0.05); }
+    color: #fff;
+    background: #4285f4 !important;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+  }
   .iti--separate-dial-code .iti__selected-dial-code {
     margin-left: 6px; }
   .iti--container {

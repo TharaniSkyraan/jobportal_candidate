@@ -1,14 +1,13 @@
 @extends('layouts.app')
 @section('custom_scripts')
-<meta name="csrf-token" content="{{ csrf_token() }}">
-<link href="{{ asset('site_assets_1/assets/vendor/select2/select2.min.css') }}" rel="stylesheet">
-<link href="{{ asset('site_assets_1/assets/1a9ve2/css/userbasic.w2fr4ha2.css')}}" rel="stylesheet">
-<link href="{{ asset('site_assets_1/assets/1a9ve2/css/careeinfo.css')}}" rel="stylesheet">
-<link href="{{ asset('site_assets_1/assets/intl-tel-input/css/intlTelInput.css')}}" rel="stylesheet">
-<script src="{{ asset('site_assets_1/assets/intl-tel-input/js/intlTelInput.js')}}" ></script>
-<!--icons fa -->
-<!--icons fa -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Mugaam - Career Information</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="{{ asset('site_assets_1/assets/vendor/select2/select2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('site_assets_1/assets/1a9ve2/css/userbasic.w2fr4ha2.css')}}" rel="stylesheet">
+    <link href="{{ asset('site_assets_1/assets/1a9ve2/css/careeinfo.css')}}" rel="stylesheet">
+    <link href="{{ asset('site_assets_1/assets/intl-tel-input/css/intlTelInput.css')}}" rel="stylesheet">
+    <script src="{{ asset('site_assets_1/assets/intl-tel-input/js/intlTelInput.js')}}" ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 @endsection
 @section('content')
 <div class="wrapper" >
@@ -18,10 +17,10 @@
     @if(Session::has('message'))
         <script>toastr.success("{{ Session('message') }}");</script>
     @endif
-	<div class="main-panel main-panel-custom main-panel-customize">
+	<div class="main-panel main-panel-custom">
 		<div class="content">
 			<div class="page-inner">
-                <div id="abt_meusr" class="mt-4">
+                <div id="abt_meusr" class="mt-3">
                     <div class="text-center ttleicn">
                         <h2 class="fw-bolder"><img draggable="false" src="{{asset('images/sidebar/career_info.svg')}}">&nbsp;Career Information</h2>
                     </div>
@@ -32,7 +31,7 @@
                         $country_id = (!empty($user->country_id))?$user->country_id:$ip_data['country_id'];
                         $country = \App\Model\Country::where('country_id',$country_id)->pluck('country')->first();
                     @endphp
-                    <div class="card mt-5">                        
+                    <div class="card mt-4">                        
                         {!! Form::open(array('method' => 'put', 'route' => array('career_info_save'),  'onSubmit' => 'return validateCareerInfoForm()')) !!}
                             <div class="mb-3 career_title">
                                 <label for="career_title" class="form-label">@if($user->employment_status=='fresher') Jobs looking for @else Your designation @endif</label>
@@ -56,11 +55,11 @@
                                 <small class="form-text text-muted text-danger err_msg" id="err_total_exp"></small>
                             </div>
                             <div class="row mb-4">
-                                <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+                                <div class="col-lg-8 col-xl-6 col-md-8 col-sm-12 col-12">
                                     <label for="expected_salary" class="form-label">Expected salary</label>
                                     <div class="input-group mb-3 slct_apnd">
                                         {!! Form::select('salary_currency', ['₹'=>'₹'], $user->salary_currency, array('class'=>'form-select','id'=>'salary_currency')) !!}
-                                        {!! Form::text('expected_salary', null, array('class'=>'form-control required', 'data-type'=>'currency', 'id'=>'expected_salary', 'minlength'=>'0', 'maxlength'=>'10', 'placeholder'=>__('Expected Salary'))) !!}
+                                        {!! Form::text('expected_salary', null, array('class'=>'form-control required', 'data-type'=>'currency', 'id'=>'expected_salary', 'minlength'=>'0', 'maxlength'=>'10', 'autocomplete'=>'off', 'placeholder'=>__('Expected Salary'))) !!}
                                         <span class="input-group-text"> / annam</span>
                                     </div>
                                     <small class="form-text text-muted text-danger err_msg" id="err_expected_salary"></small>
@@ -77,11 +76,21 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="mb-3 city">
-                                <label for="" class="form-label">City</label>
-                                {!! Form::text('location', $user->location??null, array('class'=>'form-control-2 required typeahead', 'id'=>'location', 'placeholder'=>__('Enter your location'),' aria-label'=>'Enter your location')) !!}
-                                <small class="form-text text-muted text-danger err_msg" id="err_location"></small>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3 city">
+                                        <label for="" class="form-label">City</label>
+                                        {!! Form::text('location', $user->location??null, array('class'=>'form-control-2 required typeahead', 'id'=>'location', 'placeholder'=>__('Enter your location'),' aria-label'=>'Enter your location')) !!}
+                                        <small class="form-text text-muted text-danger err_msg" id="err_location"></small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="" class="form-label">Notice Period</label>
+                                    {!! Form::select('notice_period', [''=>'Select']+$noticePeriod, $user->notice_period, array('class'=>'form-select required', 'id'=>'notice_period')) !!}
+                                    <small class="form-text text-muted text-danger err_msg" id="err_notice_period"></small>
+                                </div>
                             </div>
+                            
                             {{-- <div class="mb-4">
                                 <label class="form-label">Contact Number</label>
                                 {!! Form::hidden('full_number', null, array('id'=>'full_number')) !!}
@@ -89,13 +98,7 @@
                                 <small class="form-text text-muted text-danger err_msg" id="err_phone"></small> 
                                 {!! APFrmErrHelp::showErrors($errors, 'phone') !!}
                             </div> --}}
-                            <div class="row">
-                                <div class="col-6">
-                                    <label for="" class="form-label">Notice Period</label>
-                                    {!! Form::select('notice_period', [''=>'Select']+$noticePeriod, $user->notice_period, array('class'=>'form-select required', 'id'=>'notice_period')) !!}
-                                    <small class="form-text text-muted text-danger err_msg" id="err_notice_period"></small>
-                                </div>
-                            </div>
+                           
                             
                             <!-- <div class="form-check mb-2 is_watsapp_number">
                                 {!! Form::checkbox('is_watsapp_number', 'yes', $user->is_watsapp_number??'', array('class'=>'form-check-input', 'id'=>'is_watsapp_number')) !!}
@@ -111,17 +114,6 @@
                         {!! Form::close() !!}
                     </div>  
                 </div>
-
-                <div class="text-center">
-
-                </div>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="card">
-							
-						</div>
-					</div>
-                </div>
             </div>
         </div>
     </div>
@@ -135,6 +127,7 @@
  var baseurl = "{{ url('/') }}";
  var expected_salary = "{{$user->expected_salary??''}}";
  var employment_status = "{{$user->employment_status??''}}";
+ $('select#exp_in_year option:first, select#exp_in_month option:first, select#notice_period option:first').attr('disabled', true);
 </script>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/user@ie3e2!/js/formwizard/usiup@4h6i1.js') }}"></script>
 @endpush

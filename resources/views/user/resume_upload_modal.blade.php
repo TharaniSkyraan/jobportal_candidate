@@ -7,17 +7,21 @@
       justify-content: center;
       /* display: flex; */
       margin: 0 auto;
-      border: 3px solid #ccc;
+      border: 2px solid #ccc;
       border-style: dashed;
       width: 80%;
       /* height: 150px; */
       border-radius: 10px;
       cursor: pointer;
+    }.file_upld{
+      font-weight: 500;
+      color: #808080;
+      font-size: 15px;
     }
     
     .file-drop-area img{
-      width: 100px;
-      height: 100px;
+      width: 90px;
+      height: 90px;
     }
     .file-drop-area.is-active {
       background-color: rgba(255, 255, 255, 0.05);

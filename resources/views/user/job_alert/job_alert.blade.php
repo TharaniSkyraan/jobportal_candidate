@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('custom_scripts')
-
+<title>Mugaam - Job Alerts Page</title>
 <link href="{{ asset('site_assets_1/assets/css/input_tag/jquery-ui.min.css')}}" rel="stylesheet">
 <link href="{{ asset('site_assets_1/assets/css/input_tag/jquery.tagsinput-revisited.css')}}" rel="stylesheet">	  
 <link href="{{ asset('site_assets_1/assets/vendor/select2/select2.min.css') }}" rel="stylesheet">
@@ -13,7 +13,7 @@
 	@include('layouts.side_navbar')
 
 	
-	<div class="main-panel main-panel-custom main-panel-customize">
+	<div class="main-panel main-panel-custom">
 		<div class="content">
 			<div class="page-inner">
                 <div id="my_expernce2" class="mt-4">

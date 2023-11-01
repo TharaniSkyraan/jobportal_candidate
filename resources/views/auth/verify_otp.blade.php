@@ -14,7 +14,7 @@
            
             <div class="col-md-6 card-size">
                 <div class="card lgncard1">
-                    <div class="site2_logo mb-3 mt-2 text-center">
+                    <div class="site2_logo mb-2 mt-2 text-center">
                         <a href="{{url('/')}}" class="href">
                             <img draggable="false" src="{{asset('images/footer_logo.png')}}" alt="logo">
                         </a>
@@ -33,7 +33,7 @@
                            @csrf
                             <div class="mb-3">
                                 <label for="otp" class="form-label">Received OTP</label>
-                                <input type="text" class="form-control" id="otp" name   ="otp" aria-describedby="otp">
+                                <input type="text" placeholder="Enter OTP" class="form-control" id="otp" name   ="otp" aria-describedby="otp">
                                 <small id="err_otp" class="text-muted err_msg text-danger"></small>
                             </div>
                             <div class="mt-3 mb-5">
@@ -60,6 +60,14 @@
 {{-- @include('layouts.footer') --}}
 <script>
     let baseurl = '{{ url("/") }}';
+    $('#otp').on('input', function() {
+        var inputValue = $(this).val();
+        var digitsOnly = inputValue.replace(/\D/g, '');
+        if (digitsOnly.length > 6) {
+        digitsOnly = digitsOnly.slice(0, 6);
+        }
+        $(this).val(digitsOnly);
+    });
 </script>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/user@ie3e2!/js/verify&e7.re@34.js') }}"></script>
 @endsection

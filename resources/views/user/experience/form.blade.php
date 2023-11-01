@@ -21,6 +21,8 @@
     }
     .flatpickr-rContainer{
         padding: 5px;
+    }#my_expernce2 label.form-label{
+        font-weight: 500 !important;
     }
         
 </style>
@@ -28,13 +30,13 @@
     <div class="card mt-4">
     
         <div class="mb-4 title">    
-            <label for="" class="form-label fw-bolder">Designation</label>
+            <label for="" class="form-label">Designation</label>
             <input class="form-control required typeahead" id="title" placeholder="{{__('Designation')}}" name="title" type="text" value="{{(isset($userExperience)? $userExperience->title:'')}}">
             <small class="help-block form-text text-muted text-danger err_msg title-error" id="err_title"></small>
         </div>
 
         <div class="mb-4">    
-            <label for="" class="form-label fw-bolder">Name of Industry / Organization</label>
+            <label for="" class="form-label">Name of Industry / Organization</label>
             <input class="form-control required" id="company" placeholder="{{__('Company')}}" name="company" type="text" value="{{(isset($userExperience)? $userExperience->company:'')}}">
             <small class="help-block form-text text-muted text-danger err_msg company-error" id="err_company"></small> 
         </div>
@@ -45,17 +47,17 @@
         @endphp
 
         <div class="mb-4">
-            <label class="form-label fw-bolder"> Location <span class="country_text">- {{ $country }} <a href="javascript:void(0);" onClick="CountryChange()">Change</a></span></label>  
+            <label class="form-label"> Location <span class="country_text">- {{ $country }} <a href="javascript:void(0);" onClick="CountryChange()">Change</a></span></label>  
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-12 mb-3 country_change"  style="display:none;">
-                    <label class="form-label fw-bolder"> Country </label>  
+                    <label class="form-label"> Country </label>  
                     {!! Form::select('country_id_dd', [''=>__('Select Country')]+$countries['value'], $country_id, array('class'=>'form-select country_id required', 'id'=>'country_id_dd'), $countries['attribute']) !!}
                     <small class="help-block form-text text-muted text-danger err_msg country_id_dd-error" id="err_country_id_dd"></small>                        
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 col-12 mb-2 location">
-                    <label class="form-label fw-bolder">City </label>  
+                    <label class="form-label">City </label>  
                     {!! Form::text('location', null, array('class'=>'form-control required typeahead', 'id'=>'location', 'placeholder'=>__('Enter city'),' aria-label'=>'Enter city', 'autocomplete'=>'off')) !!}
                     <small class="form-text text-muted text-danger err_msg" id="err_location"></small>                          
                 </div>
@@ -89,14 +91,14 @@
         </div>
 
         <div class="mb-4">    
-            <label for="" class="form-label fw-bolder">Job Description (Optional)</label>
+            <label for="" class="form-label">Job Description (Optional)</label>
             <textarea name="description" rows="3" class="form-control" maxlength='4000' placeholder="Write about your roles and responsibilities in this industry/ Organaisation" id="job_description">{{(isset($userExperience)? $userExperience->description:'')}}</textarea>
             <small class="job_desc_remain_char text-muted fw-bold"></small>
             <small class="description_remain_char"></small>
         </div>
 
         <div class="mb-4">    
-            <label for="" class="form-label fw-bolder">Tools / Softwares Used (Optional)</label>   
+            <label for="" class="form-label">Tools / Softwares Used (Optional)</label>   
             <input  type="text" name="used_tools" class="form-control" value="{{$userExperience->used_tools??''}}" id="tagsinputexp">
         </div>
 

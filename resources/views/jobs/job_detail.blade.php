@@ -109,17 +109,17 @@
                     
                     <div class="col-md-12 col-12">
                         <div class="row">
-                            <div class="col-md-4 col-5 align-self-center">
+                            <div class="col-md-4 col-5 col-xl-4 col-lg-5 align-self-center">
                                 <div class="postedrs_dt mgmw mb-0">
                                     <img src="{{asset('images/detailpage/posted_icon.svg')}}" alt="posted-date" class="icon_rs" draggable="false"><span class="mblef">Posted</span> {{ MiscHelper::timeSince($job->posted_date) }}
                                 </div>
                             </div>
-                            <div class="col-md-6 col-5 align-self-center">
+                            <div class="col-md-6 col-5 col-xl-5 col-lg-5 align-self-center">
                                 <div class="immediate_ic mgmw mb-0">
                                     <img src="{{asset('images/detailpage/immediate.svg')}}" alt="immediate-join" class="icon_rs" draggable="false">Immediate <span class="mblef">Join</span>
                                 </div>
                             </div>
-                            <div class="col-md-2 col-2">
+                            <div class="col-md-2 col-2 col-xl-3 col-lg-3">
                                 @php
                                     $is_fav = 'no';
                                     if((Auth::check() && Auth::user()->isFavouriteJob($job->slug)==true))
@@ -417,7 +417,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 align-self-center">
-                                <h1 class="fw-bolder mb-4">Screening Questions</h1>
+                                <h1 class="fw-bolder mb-3">Screening Questions</h1>
                                 <p>These questions will help the recruiter
                                     to filter your profile to next level of interview
                                 </p>

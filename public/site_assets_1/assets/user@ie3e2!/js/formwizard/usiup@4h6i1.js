@@ -97,19 +97,18 @@
     });
     function checkstatus()
     {
-        if($("input[name='employment_status']:checked").val()=='fresher'){
-            $('.experience-text').removeClass('fw-bolder');
-            $('.fresher-text').addClass('fw-bolder');
-            $('.levtstge_fre').addClass('checked');
-            $('.levtstge_exp').removeClass('checked');   
-        }else
-        
-        if($("input[name='employment_status']:checked").val()=='experienced'){
-            $('.fresher-text').removeClass('fw-bolder');
-            $('.levtstge_exp').addClass('checked');
-            $('.experience-text').addClass('fw-bolder');
-            $('.levtstge_fre').removeClass('checked');
-        }
+      if($("input[name='employment_status']:checked").val()=='fresher'){
+        $('.experience-text').removeClass('fw-bolder');
+        $('.fresher-text').addClass('fw-bolder');
+        $('.levtstge_fre').addClass('checked');
+        $('.levtstge_exp').removeClass('checked');   
+      }else
+      if($("input[name='employment_status']:checked").val()=='experienced'){
+        $('.fresher-text').removeClass('fw-bolder');
+        $('.levtstge_exp').addClass('checked');
+        $('.experience-text').addClass('fw-bolder');
+        $('.levtstge_fre').removeClass('checked');
+      }
     }
     checkstatus();
 
@@ -456,4 +455,10 @@
           return true;
       }
     }
+
+    $('#phone').on('input', function(e) {
+      var input = e.target.value;
+      var sanitizedInput = input.replace(/[^0-9]/g, '');
+      $('#phone').val(sanitizedInput);
+  });
 

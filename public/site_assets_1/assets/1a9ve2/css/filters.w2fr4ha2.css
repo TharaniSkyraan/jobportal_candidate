@@ -1082,6 +1082,12 @@ outline-offset: 2px;
     }
 }
 
+@media(max-width: 768px){
+    .desk-res-filter .card{
+        margin-bottom: 0px;
+    }
+}
+
 @media only screen and (max-width: 575px) {
  
     .search-inp-sec .location{
@@ -1231,6 +1237,15 @@ min-height: 240px;
     }
 }
 
+@media(min-width: 576px) and (max-width: 768px){
+    .search-inp-sec input{
+        margin-bottom: 0px !important;
+    }.search-inp-sec .pre-d{
+        margin: 0px !important;
+    }
+}
+
+
 @media screen and (max-width: 992px){
     .filterTooltip{
         width: -webkit-fill-available;
@@ -1242,6 +1257,12 @@ min-height: 240px;
     }
     .filtershow{
         display: none !important;
+    }
+}
+
+@media(max-width: 576px){
+    .jobcard .mb-2 strong {
+        display: none;
     }
 }
 .search-inp-sec{
@@ -1263,18 +1284,22 @@ min-height: 240px;
     .search-inp-sec .mobile_m{
         display: none;
     }.search-inp-sec{
-        margin-top: 78px;
+        margin-top: 41px;
         padding: 30px 15px 10px 15px;
-        border-radius: 10px;
+        border-radius: 0px;
     }.search-inp-sec input, .search-inp-sec button{
         margin-bottom:20px;
+    }.search-inp-sec .designation .typeahead#designation, .search-inp-sec button{
+        margin-bottom: 0px;
+    }.search-inp-sec .jhier_ngfey{
+        padding-left: 0px;
     }
 }
 @media(min-width: 768px) and (max-width: 1300px){
     .search-inp-sec img{
         width: 100%;;
     }.search-inp-sec{
-        padding: 100px 0 30px 0;
+        padding: 90px 0 30px 0;
     }
 }   
 .search-job-a{

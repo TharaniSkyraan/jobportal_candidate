@@ -6,7 +6,7 @@
                     <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-12 text-start">
                         <h4 class="fw-bold text-green-color">{{ $job->title }}</h4>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 text-end">
                         @if($job->expiry_date > Carbon\Carbon::now())
                             @if(Auth::user()->isAppliedOnJob($job->id))                
                                 <label class="japplied-btn">

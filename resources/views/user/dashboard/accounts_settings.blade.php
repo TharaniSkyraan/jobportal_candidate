@@ -1,18 +1,19 @@
 @extends('layouts.app')
 
 @section('custom_scripts')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js"></script>
-<link href="{{ asset('site_assets_1/assets/intl-tel-input/css/intlTelInput.css')}}" rel="stylesheet">
-<script src="{{ asset('site_assets_1/assets/intl-tel-input/js/intlTelInput.js')}}" ></script>
-<link href="{{ asset('css/account_settings.css') }}" rel="stylesheet">
+<title>Mugaam - Accounts Settings Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js"></script>
+  <link href="{{ asset('site_assets_1/assets/intl-tel-input/css/intlTelInput.css')}}" rel="stylesheet">
+  <script src="{{ asset('site_assets_1/assets/intl-tel-input/js/intlTelInput.js')}}" ></script>
+  <link href="{{ asset('css/account_settings.css') }}" rel="stylesheet">
 @endsection
 @section('content')
 <div class="wrapper" >        
 	@include('layouts.dashboard_header')
 	@include('layouts.side_navbar')
 
-	<div class="main-panel main-panel-custom main-panel-customize">
+	<div class="main-panel main-panel-custom">
 		<div class="content">
 			<div class="page-header">
 				<h4 class="page-title"></h4>

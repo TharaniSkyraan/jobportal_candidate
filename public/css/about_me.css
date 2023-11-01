@@ -14,14 +14,13 @@
 }
 
 #abt_meusr .card {
-    padding: 30px;
+    padding: 25px;
 }
 
 #abt_meusr .prof_bg{
     padding: 20px;
     background: #cccccc29;
     border-radius: 10px;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 20%);
 }
 
 .shortcut-buttons-flatpickr-wrapper.light{

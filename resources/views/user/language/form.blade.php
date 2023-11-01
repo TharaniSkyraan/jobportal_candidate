@@ -35,7 +35,7 @@
     </div>  
     <div class="row mb-4">
         <div class="col-md-3 fw-bolder mb-2">
-            Fluency Level
+            <label class="form-label">Fluency Level</label>
         </div> 
         <div class="col-md-9 mb-2">
             <div>   

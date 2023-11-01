@@ -2,6 +2,7 @@
 @extends('layouts.app')
 
 @section('custom_styles')
+<title>Mugaam - About Us</title>
 <style>
 section{
     padding: 120px 0;

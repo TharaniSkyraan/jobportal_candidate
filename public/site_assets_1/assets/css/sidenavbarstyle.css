@@ -183,11 +183,11 @@
   margin-bottom: 8px;
   color: #fff;
 }
-.link:hover, .link.active{
+.link.active{
   color: #305695;
   background-color: #FFFFFF;
 }
-.link:hover > img, .link.active img
+.link.active img
 {
   filter: invert(76%) sepia(30%) saturate(3461%) hue-rotate(179deg) brightness(98%) contrast(91%);
 }
@@ -287,14 +287,14 @@
 .collapses .link{
   color:#305695;
 }
-.collapses .link:hover, .collapses .link.active{
+.collapses .link.active{
   margin-left: 5px !important;
   margin-right: -1px !important; 
   color: #fff;
   background-color: #4070f4;  
 }
 .collapses .link img {
-  filter: invert(76%) sepia(30%) saturate(3461%) hue-rotate(179deg) brightness(98%) contrast(91%)
+  filter: invert(76%) sepia(30%) saturate(3461%) hue-rotate(179deg) brightness(98%) contrast(91%);
 }
 .collapses .link span {
   color: #305695;
@@ -303,22 +303,25 @@
 .collapses .link:hover > i {
   min-width: 46px;
 }
-.collapses .link.no_fillfield img {
-  filter: invert(.47);
-}
-.collapses .link.no_fillfield span {
-    color: #717171;
-    font-weight: 500;
-}
-.collapses .link:hover > img, .collapses .link.active > img{
+
+.collapses .link.active > img{
   filter: brightness(0) invert(1);
 }
-.collapses .link:hover > span, .collapses .link.active > span{
+.collapses .link.active > span{
   color:#fff;
-  /* font-weight: 500; */
 }
-.sidenavbar.close .collapses .link:hover > img ,  .sidenavbar.close .collapses .link.active > img{
+.sidenavbar.close .collapses .link.active > img{
   margin: 10px 10px;
+}.menu_item li a:hover{
+  color: #fff;
+}.menu_item li a.active{
+  color: #305695 !important;
+}.main-panel-custom .card.job-list{
+    padding: 5px !important;
+}.main-panel-custom .wizard-tab .nav{
+  justify-content: space-between;
+}.main-panel-custom .card.acc-set{
+  padding: 0px !important;
 }
 
 .sidenavbar .user{
@@ -340,7 +343,7 @@
   transition: all 0.4s ease;
 }
 .sidenavbar .card{
-  border-radius: 10px;
+  border-radius: 6px;
 }
 .sidenavbar .user span{
   color:#000;
@@ -371,6 +374,7 @@
     left: 65%;
   } */
 }
+
 @media screen and (max-width: 800px) {
  
   .sidenavbar {

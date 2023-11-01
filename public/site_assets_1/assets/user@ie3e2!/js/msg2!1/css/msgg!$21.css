@@ -17,6 +17,9 @@
     cursor: pointer;
     float: right;
     margin-top: 10px;
+  }.main-panel-custom .card.jlsection{
+    padding: 0px !important;
+    padding-top: 20px !important;
   }
 
   .dropdown-toggle#action::after {
@@ -60,7 +63,6 @@
     height: 84vh;
     min-height: 300px;
     max-height: 720px; 
-    padding-top: 20px;
     border-radius: 10px;
   }
   /* Set the color of the scroll thumb */

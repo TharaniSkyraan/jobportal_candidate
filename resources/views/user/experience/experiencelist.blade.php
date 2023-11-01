@@ -4,9 +4,9 @@
         <div class="row">
             <div class="col-md-8 col-lg-8 col-sm-8 col-8">
                 <div class="dtls">
-                    <h3 class="fw-bolder mb-1">{{$experience->title}}</h3>
-                    <p class="mb-0">{{$experience->company}}</p>
-                    <p class="mb-0">{{$experience->location}}</p>
+                    <h3 class="mb-3">{{$experience->title}}</h3>
+                    <p>{{$experience->company}}</p>
+                    <p>{{$experience->location}}</p>
                     <p>{{Carbon\Carbon::parse($experience->date_start)->Format('M Y')}} - {{ ($experience->is_currently_working!=1? Carbon\Carbon::parse($experience->date_end)->Format('M Y') : 'Currently working') }}.</p>
                 </div>
             </div>

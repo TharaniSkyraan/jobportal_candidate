@@ -21,7 +21,8 @@ $('input[name=primary]').on('change', function() {
     .done(function (response) {
         if (response == 'ok')
         {       
-            toastr.options.timeOut = 10000;
+            $('.toast').remove();
+            toastr.options.timeOut = 3000;
             toastr.success('Successfully Updated.');             
             // window.location = baseurl + "/resume-details";
         } else
