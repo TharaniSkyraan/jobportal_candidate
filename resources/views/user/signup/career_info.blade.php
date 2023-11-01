@@ -174,7 +174,7 @@
                                 </div> -->
                                 @if($user->employment_status=='experienced')
                                 <div class="row mb-4">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="mb-3">
                                             <label for="" class="form-label">Notice Period</label>
                                             {!! Form::select('notice_period', [''=>'Select']+$noticePeriod, $user->notice_period, array('class'=>'form-select required', 'id'=>'notice_period')) !!}
@@ -216,7 +216,7 @@ var baseurl = '{{ url("/") }}';
  var expected_salary = "{{$user->expected_salary??''}}";
  var employment_status = "{{$user->employment_status??''}}";
  var setcountry = '{{$user->phone}}';
-
+ $('select#exp_in_year option:first, select#exp_in_month option:first').attr('disabled', true);
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" integrity="sha512-HWlJyU4ut5HkEj0QsK/IxBCY55n5ZpskyjVlAoV9Z7XQwwkqXoYdCIC93/htL3Gu5H3R4an/S0h2NXfbZk3g7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/user@ie3e2!/js/formwizard/usiup@4h6i1.js') }}"></script>

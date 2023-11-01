@@ -52,10 +52,12 @@
 }#cndidate_wzrd .slct_apnd select{
     border: none;
     padding: 5px;   
+    border: 1px solid #4285f4 !important;
 }#cndidate_wzrd .slct_apnd span{
     border: none;
     background: #4285f4;
     color: #fff;
+    border: 1px solid #4285f4 !important;
 }#cndidate_wzrd .skls_cdte{
     position: relative;
     background: #fff;
