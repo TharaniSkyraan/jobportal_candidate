@@ -335,6 +335,7 @@ class JobsController extends BaseController
             'is_admin' => $job->company->is_admin??0,
             'about_company' => $job->company->description??'',
             'redirect_url' => (!empty($job->reference_url))?$job->reference_url:'',
+            'is_deleted' => (!empty($job->deleted_at) || $job->is_active==3)?'Job is expired or closed.':(($job->is_active==2)?'Job is In-active':''), 
         );
 
         $jobs = $this->fetchJobs($job->title, '', [], 10);
