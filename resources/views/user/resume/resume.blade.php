@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('custom_scripts')
+<title>Mugaam - My Resume Page</title>
+@endsection
 @section('content')
 <div class="wrapper" >
 	@include('layouts.dashboard_header')

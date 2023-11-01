@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('custom_scripts')
+    <title>Mugaam - Privacy & Policy</title>
     <link href="{{ asset('site_assets_1/assets/css/static_css.css') }}" rel="stylesheet">
 @endsection
 @section('content')

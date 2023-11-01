@@ -417,7 +417,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 align-self-center">
-                                <h1 class="fw-bolder mb-4">Screening Questions</h1>
+                                <h1 class="fw-bolder mb-3">Screening Questions</h1>
                                 <p>These questions will help the recruiter
                                     to filter your profile to next level of interview
                                 </p>

@@ -212,7 +212,8 @@ body{
 }#screenings .questionsdt{
     padding: 30px;
 }#screenings .first_mwe h1{
-    font-size: 26px;
+    font-size: 22px;
+    font-weight: 600 !important;
 }#screenings strong{
     font-size: 14px;
 }.questionsdt .form-check{

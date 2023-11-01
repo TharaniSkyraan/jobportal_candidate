@@ -1,14 +1,13 @@
 @extends('layouts.app')
 @section('custom_scripts')
-<meta name="csrf-token" content="{{ csrf_token() }}">
-<link href="{{ asset('site_assets_1/assets/vendor/select2/select2.min.css') }}" rel="stylesheet">
-<link href="{{ asset('site_assets_1/assets/1a9ve2/css/userbasic.w2fr4ha2.css')}}" rel="stylesheet">
-<link href="{{ asset('site_assets_1/assets/1a9ve2/css/careeinfo.css')}}" rel="stylesheet">
-<link href="{{ asset('site_assets_1/assets/intl-tel-input/css/intlTelInput.css')}}" rel="stylesheet">
-<script src="{{ asset('site_assets_1/assets/intl-tel-input/js/intlTelInput.js')}}" ></script>
-<!--icons fa -->
-<!--icons fa -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Mugaam - Career Information</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="{{ asset('site_assets_1/assets/vendor/select2/select2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('site_assets_1/assets/1a9ve2/css/userbasic.w2fr4ha2.css')}}" rel="stylesheet">
+    <link href="{{ asset('site_assets_1/assets/1a9ve2/css/careeinfo.css')}}" rel="stylesheet">
+    <link href="{{ asset('site_assets_1/assets/intl-tel-input/css/intlTelInput.css')}}" rel="stylesheet">
+    <script src="{{ asset('site_assets_1/assets/intl-tel-input/js/intlTelInput.js')}}" ></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 @endsection
 @section('content')
 <div class="wrapper" >

@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('custom_scripts')
-<link href="{{ asset('css/applied_jobs.css') }}" rel="stylesheet">
+  <title>Mugaam - Applied Jobs Page</title>
+  <link href="{{ asset('css/applied_jobs.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
