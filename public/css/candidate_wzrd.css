@@ -103,6 +103,8 @@
     opacity: 1;
 }.experienced:hover .experience-text, .fresher:hover .fresher-text{
     opacity: 1;
+}#cndidate_wzrd label.form-label{
+    font-weight: 500 !important;
 }
 @media(max-width:480px){
     #cndidate_wzrd .cndte_mbile{
