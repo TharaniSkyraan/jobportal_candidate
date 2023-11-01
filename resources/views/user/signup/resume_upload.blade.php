@@ -39,7 +39,6 @@
                                     <div  class="cursor-pointer file_upld">Drop your Resume here or Browse
                                     </div>  
                                     <small class="grayc">Supported files - Doc, Docx, PDF, RTF <br>(2MB limited)</small>
-
                                     <input type="file" class="d-none" id="file" name="file" accept=".doc,.docx,.pdf,.rtf">
                                 </div>   
                             </div>
