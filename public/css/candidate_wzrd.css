@@ -117,13 +117,13 @@
 }#cndidate_wzrd .typeahead::-webkit-scrollbar {
     width: 5px;
 }#cndidate_wzrd .typeahead::placeholder{
-    color:#D8E8FF;
+    color: #d2d0d0;
 }#cndidate_wzrd .typeahead::-webkit-scrollbar-track {
     box-shadow: inset 0 0 4px grey;
 }#cndidate_wzrd .typeahead::-webkit-scrollbar-thumb {
     background: #4285f4;
 }#cndidate_wzrd input::placeholder{
-    color: #e4efff;
+    color: #d2d0d0;
 }
 @media(max-width:480px){
     #cndidate_wzrd .cndte_mbile{
