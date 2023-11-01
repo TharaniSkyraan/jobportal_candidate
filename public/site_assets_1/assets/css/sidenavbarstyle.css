@@ -320,6 +320,8 @@
     padding: 5px !important;
 }.main-panel-custom .wizard-tab .nav{
   justify-content: space-between;
+}.main-panel-custom .card.acc-set{
+  padding: 0px !important;
 }
 
 .sidenavbar .user{
