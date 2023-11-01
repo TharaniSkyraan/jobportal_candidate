@@ -314,6 +314,12 @@
   margin: 10px 10px;
 }.menu_item li a:hover{
   color: #fff;
+}.menu_item li a.active{
+  color: #305695 !important;
+}.main-panel-custom .card.job-list{
+    padding: 5px !important;
+}.main-panel-custom .wizard-tab .nav{
+  justify-content: space-between;
 }
 
 .sidenavbar .user{

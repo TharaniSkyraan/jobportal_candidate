@@ -1,6 +1,6 @@
 @extends('layouts.app')
   @section('custom_scripts')
-    <title>Mugaam - Applied Jobs Page</title>
+    <title>Mugaam - Saved Jobs Page</title>
   @endsection
 @section('content')
 <style>
