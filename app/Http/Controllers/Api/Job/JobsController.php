@@ -380,8 +380,8 @@ class JobsController extends BaseController
     public function shortlistView(Request $request)
     {
         $user_id = Auth::user()->id??710;
-        $job= Job::where('slug', $request->slug)->pluck('id')->first();
-        $apply = JobApply::whereUserId($user_id)->whereJobId($job)->update(['is_read'=>1]);
+        $job = Job::where('slug', $request->slug)->pluck('id')->first();
+        $apply = JobApply::where('user_id',$user_id)->where('job_id',$job)->update(['is_read'=>'1']);
    
         return $this->sendResponse('', 'Success');
     }
