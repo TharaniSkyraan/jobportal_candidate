@@ -60,6 +60,14 @@
 {{-- @include('layouts.footer') --}}
 <script>
     let baseurl = '{{ url("/") }}';
+    $('#otp').on('input', function() {
+        var inputValue = $(this).val();
+        var digitsOnly = inputValue.replace(/\D/g, '');
+        if (digitsOnly.length > 6) {
+        digitsOnly = digitsOnly.slice(0, 6);
+        }
+        $(this).val(digitsOnly);
+    });
 </script>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/user@ie3e2!/js/verify&e7.re@34.js') }}"></script>
 @endsection

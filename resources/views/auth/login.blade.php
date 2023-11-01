@@ -14,7 +14,7 @@
            
             <div class="col-md-6 card-size">
                 <div class="card lgncard1">
-                    <div class="site2_logo mb-4 mt-2 text-center">
+                    <div class="site2_logo mb-1 mt-2 text-center">
                         <a href="{{url('/')}}" class="href">
                             <img draggable="false" src="{{asset('images/footer_logo.png')}}" alt="logo">
                         </a>
