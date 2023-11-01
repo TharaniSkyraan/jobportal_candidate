@@ -61,7 +61,7 @@ trait UserExperienceTrait
           
         $message = "Updated successfully.";
         
-        User::where('user_id',$user_id)->update(['updated_at'=>Carbon::now()]);
+        User::where('id',$user_id)->update(['updated_at'=>Carbon::now()]);
     
         return $this->sendResponse(['experience_id'=>$userExperience->id], $message); 
   

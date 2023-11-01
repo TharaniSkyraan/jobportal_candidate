@@ -88,7 +88,7 @@ trait UserSkillTrait
         $userSkill->is_currently_working = $request->input('is_currently_working')??NULL;
         $userSkill->save();
 
-        User::where('user_id',$user_id)->update(['updated_at'=>Carbon::now()]);
+        User::where('id',$user_id)->update(['updated_at'=>Carbon::now()]);
     
         $message = "Updated successfully.";
 
