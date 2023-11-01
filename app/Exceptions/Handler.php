@@ -51,14 +51,14 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
 
-        $prefix = $request->route()->getPrefix();
+        // $prefix = $request->route()->getPrefix();
         
-        if ($request->expectsJson() && str_contains($prefix, 'api')) {
+        // if ($request->expectsJson() && str_contains($prefix, 'api')) {
     
-            $response = ['success' => false, 'message' => 'Authorization User', 'data'=>[]];
+        //     $response = ['success' => false, 'message' => 'Authorization User', 'data'=>[]];
 
-            return response()->json($response, 401);
-        }
+        //     return response()->json($response, 401);
+        // }
         return parent::render($request, $exception);
     }
 }
