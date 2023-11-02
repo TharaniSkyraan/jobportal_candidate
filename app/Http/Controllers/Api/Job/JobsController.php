@@ -176,13 +176,13 @@ class JobsController extends BaseController
      */
     public function searchJob(JobSearchRequest $request)
     {
-        dd(Auth::user());
+        $user = "";
         if(Auth::check()){
             UserActivity::updateOrCreate(['user_id' => Auth::user()->id],['last_active_at'=>Carbon::now()]);
+            $user_id = Auth::user()->id??710;
+            $user = User::find($user_id); 
         }
 
-        $user_id = Auth::user()->id??710;
-        $user = User::find($user_id);
         $filters = $jobs = $filter = $citylFGid  = $salaryFGid = $jobtypeFGid = $jobshiftFGid = $edulevelFGid = $wfhtypeFid = $industrytypeGid = $functionalareaGid = $posteddateFid = array();
 
         $sortBy = 'date';
@@ -248,8 +248,8 @@ class JobsController extends BaseController
                 $job['job_type'] = $jobc->getTypesStr();
                 $job['skills'] = $jobc->getSkillsStr();
                 $job['posted_at'] = Carbon::parse($jobc->posted_date)->getTimestampMs();
-                $job['is_applied'] = $user->isAppliedOnJob($job->job_id);
-                $job['is_favourite'] = $user->isFavouriteJob($jobc->slug);
+                $job['is_applied'] = $user->isAppliedOnJob($job->job_id)??false;
+                $job['is_favourite'] = $user->isFavouriteJob($jobc->slug)??false;
                 $job['is_deleted'] = (!empty($jobc->deleted_at))?0:1; 
             });   
 
@@ -281,22 +281,28 @@ class JobsController extends BaseController
      */
     public function jobDetail($slug)
     {  
-        
-        $user_id = Auth::user()->id??710;
-        $user = User::find($user_id);
         $job = Job::whereSlug($slug)->with(['screeningquiz'])->first(); 
         if($job==NULL){
             return $this->sendError('No Job Available.'); 
         }
-        $jobapplied = JobApply::whereJobId($job->id)
-                              ->whereUserId($user_id)
-                              ->first();
         $exclude_days = isset($job->walkin->exclude_days)?'(Excluding'. $job->walkin->exclude_days.')':'';
         $job_skill_id = explode(',',$job->getSkillsStr());
-        $skills = explode(',',$user->getUserSkillsStr('skill'));
-        $skill = array_intersect($job_skill_id,$skills);
-        $shortlist = (isset($jobapplied->application_status)?(!empty($jobapplied->application_status)?$jobapplied->application_status:''):'');
-        $applied_at = (isset($jobapplied->created_at)?(!empty($jobapplied->created_at)?$jobapplied->created_at:''):'');
+        $user = '';
+        $skill = array();
+        if(Auth::check())
+        {                
+            $user_id = Auth::user()->id;
+            $user = User::find($user_id);
+            $jobapplied = JobApply::whereJobId($job->id)
+                                  ->whereUserId($user_id)
+                                  ->first();
+            $skills = explode(',',$user->getUserSkillsStr('skill'));
+            $skill = array_intersect($job_skill_id,$skills);
+            $shortlist = (isset($jobapplied->application_status)?(!empty($jobapplied->application_status)?$jobapplied->application_status:''):'');
+            $applied_at = (isset($jobapplied->created_at)?(!empty($jobapplied->created_at)?$jobapplied->created_at:''):'');
+        
+        }
+
         $jobd = array(
             'id'=>$job->id,
             'slug'=>$job->slug,
@@ -323,10 +329,10 @@ class JobsController extends BaseController
             'contact_email'=>$job->contact_person_details->email??'',
             'contact_phone'=>$job->contact_person_details->phone_1??'',
             'contact_alternative'=>$job->contact_person_details->phone_2??'',
-            'skillmatches' => $user->profileMatch($job->id),
-            'is_applied'=>$user->isAppliedOnJob($job->id),
-            'is_favourite'=>$user->isFavouriteJob($job->slug),
-            'shortlist'=>$shortlist,
+            'skillmatches' => $user->profileMatch($job->id)??0,
+            'is_applied'=>$user->isAppliedOnJob($job->id)??'',
+            'is_favourite'=>$user->isFavouriteJob($job->slug)??'',
+            'shortlist'=>$shortlist??'',
             'applied_at'=>(!empty($applied_at)?Carbon::parse($applied_at)->getTimestampMs():0),
             'website_url'=>$job->company->website_url??'',
             'linkedin_url'=>$job->company->linkedin_url??'',
@@ -349,8 +355,8 @@ class JobsController extends BaseController
             $rjob['job_type'] = $jobc->getTypesStr();
             $rjob['skills'] = $jobc->getSkillsStr();
             $rjob['posted_at'] = Carbon::parse($jobc->posted_date)->getTimestampMs();
-            $rjob['is_applied'] = $user->isAppliedOnJob($jobc->id);
-            $rjob['is_favourite'] = $user->isFavouriteJob($jobc->slug);
+            $rjob['is_applied'] = $user->isAppliedOnJob($jobc->id)??false;
+            $rjob['is_favourite'] = $user->isFavouriteJob($jobc->slug)??false;
             $rjob['is_deleted'] = (!empty($jobc->deleted_at))?0:1; 
         });   
         $joblist = $jobs['joblist']->items();     
