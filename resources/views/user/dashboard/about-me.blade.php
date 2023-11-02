@@ -16,7 +16,7 @@
     @if(Session::has('message'))
         <script>toastr.success("{{ Session('message') }}");</script>
     @endif
-	<div class="main-panel main-panel-custom">
+	<div class="main-panel main-panel-custom lkdprw">
 		<div class="content">
 			<div class="page-inner">
                 <div id="abt_meusr" class="mt-2">
