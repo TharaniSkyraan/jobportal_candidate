@@ -58,7 +58,7 @@ trait UserLanguageTrait
        
         $message = "Updated successfully.";
        
-        User::where('user_id',$user_id)->update(['updated_at'=>Carbon::now()]);
+        User::where('id',$user_id)->update(['updated_at'=>Carbon::now()]);
     
         return $this->sendResponse(['id'=>$userLanguage->id], $message); 
     }
