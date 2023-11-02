@@ -248,8 +248,8 @@ class JobsController extends BaseController
                 $job['job_type'] = $jobc->getTypesStr();
                 $job['skills'] = $jobc->getSkillsStr();
                 $job['posted_at'] = Carbon::parse($jobc->posted_date)->getTimestampMs();
-                $job['is_applied'] = $user->isAppliedOnJob($job->job_id)??false;
-                $job['is_favourite'] = $user->isFavouriteJob($jobc->slug)??false;
+                $job['is_applied'] = (!empty($user))?$user->isAppliedOnJob($job->job_id):false;
+                $job['is_favourite'] = (!empty($user))?$user->isFavouriteJob($jobc->slug):false;
                 $job['is_deleted'] = (!empty($jobc->deleted_at))?0:1; 
             });   
 
@@ -330,8 +330,8 @@ class JobsController extends BaseController
             'contact_phone'=>$job->contact_person_details->phone_1??'',
             'contact_alternative'=>$job->contact_person_details->phone_2??'',
             'skillmatches' => $user->profileMatch($job->id)??0,
-            'is_applied'=>$user->isAppliedOnJob($job->id)??'',
-            'is_favourite'=>$user->isFavouriteJob($job->slug)??'',
+            'is_applied'=>(!empty($user))?$user->isAppliedOnJob($job->id):false,
+            'is_favourite'=>(!empty($user))?$user->isFavouriteJob($job->slug):false,
             'shortlist'=>$shortlist??'',
             'applied_at'=>(!empty($applied_at)?Carbon::parse($applied_at)->getTimestampMs():0),
             'website_url'=>$job->company->website_url??'',
@@ -355,8 +355,8 @@ class JobsController extends BaseController
             $rjob['job_type'] = $jobc->getTypesStr();
             $rjob['skills'] = $jobc->getSkillsStr();
             $rjob['posted_at'] = Carbon::parse($jobc->posted_date)->getTimestampMs();
-            $rjob['is_applied'] = $user->isAppliedOnJob($jobc->id)??false;
-            $rjob['is_favourite'] = $user->isFavouriteJob($jobc->slug)??false;
+            $rjob['is_applied'] = (!empty($user))?$user->isAppliedOnJob($jobc->id):false;
+            $rjob['is_favourite'] = (!empty($user))?$user->isFavouriteJob($jobc->slug):false;
             $rjob['is_deleted'] = (!empty($jobc->deleted_at))?0:1; 
         });   
         $joblist = $jobs['joblist']->items();     
