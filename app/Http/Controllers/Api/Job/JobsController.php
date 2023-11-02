@@ -176,6 +176,7 @@ class JobsController extends BaseController
      */
     public function searchJob(JobSearchRequest $request)
     {
+        dd(Auth::user());
         if(Auth::check()){
             UserActivity::updateOrCreate(['user_id' => Auth::user()->id],['last_active_at'=>Carbon::now()]);
         }

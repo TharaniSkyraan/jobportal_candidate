@@ -2,13 +2,14 @@
 
     use App\Http\Controllers\Api\Job\JobsController;
     use App\Http\Controllers\Api\Job\MyJobsController;
+    Route::post('search-job', [JobsController::class, 'searchJob']);
+    Route::get('job-detail/{slug}', [JobsController::class, 'jobDetail']);
+
     Route::middleware('auth:api')->group( function () {
             
         Route::get('index', [JobsController::class, 'index']);
         Route::get('fresher-index', [JobsController::class, 'fresherIndex']);    
         Route::get('advanced_filter/{job_alert?}', [JobsController::class, 'advancedFilter']);
-        Route::post('search-job', [JobsController::class, 'searchJob']);
-        Route::get('job-detail/{slug}', [JobsController::class, 'jobDetail']);
         Route::post('shortlist-view', [JobsController::class, 'shortlistView']);
         Route::get('company-detail/{slug}', [JobsController::class, 'companyDetail']);
 
