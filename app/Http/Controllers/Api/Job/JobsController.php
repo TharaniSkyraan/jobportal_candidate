@@ -329,7 +329,7 @@ class JobsController extends BaseController
             'contact_email'=>$job->contact_person_details->email??'',
             'contact_phone'=>$job->contact_person_details->phone_1??'',
             'contact_alternative'=>$job->contact_person_details->phone_2??'',
-            'skillmatches' => $user->profileMatch($job->id)??0,
+            'skillmatches' => (!empty($user))?$user->profileMatch($job->id):0,
             'is_applied'=>(!empty($user))?$user->isAppliedOnJob($job->id):false,
             'is_favourite'=>(!empty($user))?$user->isFavouriteJob($job->slug):false,
             'shortlist'=>$shortlist??'',
