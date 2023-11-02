@@ -46,6 +46,7 @@
                   </span>
                 </div>              
             </div>
+            <span class="cat_nme" id="{{$cat->id}}"></span>
             <div id="content">
               <h3 id="bi_activ_ct">{{ $cat->faq_category}}</h3>
               <ul class="timeline catfaqs">

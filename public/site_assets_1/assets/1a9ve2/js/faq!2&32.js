@@ -59,18 +59,16 @@ function enter(e) {
 $(document).on('click', '#search', function (event) {
   search_val = $('#search_input').val();
   load_faq_data(act_ckey,search_val);
-
 });
 
 function load_faq_data(act_ckey,search_val='') {
-
   let csrf_token = $('meta[name=csrf-token]').attr('content');
   let req_url = baseurl + faqData;
-
+  var id = $('.cat_nme').attr('id');
   $.ajax({
       url: req_url,
       type: 'POST',
-      data: { "_token": csrf_token, 'ckey': act_ckey, 'search_q': search_val},
+      data: { "_token": csrf_token, 'ckey': act_ckey, 'search_q': search_val, 'ids': id},
       datatype: 'JSON',
       beforeSend: function () {          
           $('#content').addClass("is-loading");

@@ -66,19 +66,17 @@ class ContactController extends Controller
     }
     
     public function getFaqData(Request $request)
-    {
-        $faqcategory = FaqCategory::where('user_type','candidate')->where('slug',$request->ckey)->active()->first();
-      
+    {      
         if(empty($request->search_q))
         {
             $faqs = Faq::where('user_type','candidate')
-                        ->whereFaqCategoryId($faqcategory->id)
+                        ->whereFaqCategoryId($request->ids)
                         ->select('question','answer')->get();          
         }else
         {
             $search_q = $request->search_q;
             $faqs = Faq::where('user_type','candidate')
-                        ->whereFaqCategoryId($faqcategory->id)
+                        ->whereFaqCategoryId($request->ids)
                         ->where('question', 'like', "%{$search_q}%")
                         ->get();
         }
