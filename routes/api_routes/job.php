@@ -6,7 +6,6 @@
             
         Route::get('index', [JobsController::class, 'index']);
         Route::get('fresher-index', [JobsController::class, 'fresherIndex']);    
-        Route::get('advanced_filter/{job_alert?}', [JobsController::class, 'advancedFilter']);
         Route::post('search-job', [JobsController::class, 'searchJob']);
         Route::get('job-detail/{slug}', [JobsController::class, 'jobDetail']);
         Route::post('shortlist-view', [JobsController::class, 'shortlistView']);
@@ -26,6 +25,6 @@
 
     Route::post('guest-search-job', [JobsController::class, 'searchJob']);
     Route::get('guest-job-detail/{slug}', [JobsController::class, 'jobDetail']);
-   
-
+    Route::get('advanced_filter/{job_alert?}', [JobsController::class, 'advancedFilter']);
+       
 ?>
