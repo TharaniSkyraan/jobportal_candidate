@@ -381,7 +381,6 @@ class LoginController extends Controller
      
      public function UserSwitchRedirect($from='')
      {
-
         if(Auth::check() && !empty(Auth::user()->reset_via)){
             $user = User::find(Auth::user()->id);
             $via = $user->reset_via??'';
@@ -424,9 +423,7 @@ class LoginController extends Controller
                 break;
  
         }
- 
-        return redirect($page??'');
-         
+        return redirect($page??'');         
      }
   
      /**

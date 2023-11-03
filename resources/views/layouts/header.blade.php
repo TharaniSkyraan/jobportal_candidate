@@ -58,7 +58,7 @@
 							<li><a class="nav-link ps-0 pe-3 search-job-a d-none" href="{{ route('index') }}"><img draggable="false" src="{{asset('images/sidebar/search.png')}}" alt=""></a></li>
 							<li><a class="nav-link ps-0 profile-pic" href="{{ route('index') }}"><span>Find Jobs</span></a></li>
 							<li><a class="nav-link" href="{{ route('employer_messages') }}"><img draggable="false" src="{{asset('images/sidebar/msg.png')}}" alt=""></a></li>
-							<li><a class="nav-link" href="#"><img draggable="false" src="{{asset('images/sidebar/notification.png')}}" alt=""></a></li>
+							{{--<li><a class="nav-link" href="#"><img draggable="false" src="{{asset('images/sidebar/notification.png')}}" alt=""></a></li>--}}
 							<li class="dropdown hidden-caret">
 								<a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#" id="dropdownMenuLink" aria-expanded="false">
 									<div class="avatar-sm d-flex align-items-center">

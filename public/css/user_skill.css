@@ -514,6 +514,15 @@
 }#my_resme .fa-trash {
     color: #FF3434;
     cursor: pointer;
+}#cndidate_wzrd .loadflebrd .grayc{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 10px;
+}#cndidate_wzrd .loadflebrd .box{
+    width: 100%;
+}#cndidate_wzrd .loadflebrd .file_upld{
+    margin-top: 6px;
+    font-weight: 500;
 }
 
 #job_alert_div h3{
