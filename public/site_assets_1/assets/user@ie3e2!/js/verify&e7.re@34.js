@@ -6,12 +6,11 @@ var timerEl = $('#seconds-counter');
 // Set the initial time to 5 minutes
 var remainingTime = 300;
 
-// Update the timer display every second
-var intervalId = setInterval(function() {
+function otptimer(){
     // Calculate the minutes and seconds
     var minutes = Math.floor(remainingTime / 60);
     var seconds = remainingTime % 60;
-
+    console.log(remainingTime);
     // Display the time with leading zeros
     timerEl.text(('0' + minutes).slice(-2) + ':' + ('0' + seconds).slice(-2));
 
@@ -19,13 +18,21 @@ var intervalId = setInterval(function() {
     remainingTime--;
 
     // Stop the timer when it reaches 0
-    if (remainingTime < 0) {
-        clearInterval(intervalId);
-        timerEl.text('00:00');
-        $('.seconds-counter').hide();
-        $('#restnt').show();
+    if (remainingTime < 1) {
+      // Stop the interval
+        clearInterval(interval);
+      timerEl.text('05:00');
+      $('.seconds-counter').hide();
+      $('#restnt').show();
     }
-}, 1000);
+}
+
+if(otp!=''){
+  var interval = setInterval(otptimer, 1000);  
+}else{  
+  $('.seconds-counter').hide();
+  $('#restnt').show();
+}
 
 $(document).on('keydown, keyup', "#otp", function() {
     var otp = $(this).val();
@@ -48,7 +55,11 @@ function resentMail() {
       data: {"_token": csrf_token, "email": email},
       dataType: 'json',
       success:function(data) { 
-          seconds = 60;    
+          remainingTime = 300;   
+          // Reset the interval and set it to 10s
+          
+          interval = setInterval(otptimer, 1000);
+
           $('.seconds-counter').show();
           $('#restnt').hide();
       }

@@ -60,6 +60,7 @@
 {{-- @include('layouts.footer') --}}
 <script>
     let baseurl = '{{ url("/") }}';
+    let otp = '{{ $otp }}';
     $('#otp').on('input', function() {
         var inputValue = $(this).val();
         var digitsOnly = inputValue.replace(/\D/g, '');
