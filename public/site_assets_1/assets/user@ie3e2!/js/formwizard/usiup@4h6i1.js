@@ -396,7 +396,8 @@
       } else {
         $(".file_upload").attr('src', baseurl+'/images/upload_img.png');
           // otherwise show number of files
-          $textContainer.text('No files selected');
+          $textContainer.text(`Supported files - Doc, Docx, PDF, RTF
+          (2MB limited)`);
       }
     });
 
