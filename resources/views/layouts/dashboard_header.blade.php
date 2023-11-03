@@ -25,9 +25,9 @@
 					<li>
 						<a class="nav-link" href="{{ route('employer_messages') }}"><img draggable="false" src="{{asset('images/sidebar/msg.png')}}" alt=""></a>
 					</li>
-					<li>
+					{{--<li>
 						<a class="nav-link" href="#"><img draggable="false" src="{{asset('images/sidebar/notification.png')}}" alt=""></a>
-					</li>
+					</li>--}}
 					<li class="dropdown hidden-caret">
 						<a class="dropdown-toggle nav-link profile-pic" data-bs-toggle="dropdown" href="#" id="dropdownMenuLink" aria-expanded="false" data-bs-flip="false">
 							<div class="avatar-sm d-flex align-items-center">
