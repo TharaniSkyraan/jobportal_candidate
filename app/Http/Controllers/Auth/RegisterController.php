@@ -224,10 +224,13 @@ class RegisterController extends Controller
         $user->career_title = $request->career_title;
 
         if($user->employment_status=='experienced'){
-            $user->total_experience = $request->exp_in_year.'.'.$request->exp_in_month;
+            $user->total_experience = ($request->exp_in_year??0).'.'.($request->exp_in_month??0);
+            if($user->total_experience==0.0){
+                $user->employment_status = 'fresher';
+            }
             $user->notice_period = $request->notice_period;
         }else{
-            $user->total_experience =0;
+            $user->total_experience =0.0;
             $user->notice_period = null;
         }
 

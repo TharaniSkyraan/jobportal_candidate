@@ -127,11 +127,11 @@
                                 <label for="exampleInputEmail1" class="form-label">Total years of experience</label>
                                 <div class="row mb-4">
                                     <div class="col-md-6">
-                                        {!! Form::select('exp_in_year', MiscHelper::getNumExpYears(), $exp_in_year, array('class'=>'form-select required', 'id'=>'exp_in_year')) !!}
+                                        {!! Form::select('exp_in_year', [''=>'Years']+MiscHelper::getNumExpYears(), $exp_in_year, array('class'=>'form-select required', 'id'=>'exp_in_year')) !!}
                                     </div>
 
                                     <div class="col-md-6">
-                                        {!! Form::select('exp_in_month', MiscHelper::getNumExpMonths(), $exp_in_month, array('class'=>'form-select required', 'id'=>'exp_in_month')) !!}
+                                        {!! Form::select('exp_in_month',  [''=>'Month']+MiscHelper::getNumExpMonths(), $exp_in_month, array('class'=>'form-select required', 'id'=>'exp_in_month')) !!}
                                     </div>
                                     <small class="form-text text-muted text-danger err_msg" id="err_total_exp"></small>
                                 </div>

@@ -148,9 +148,13 @@ class UserController extends Controller
         $request['location'] = $request->location;       
         $request['career_title'] = $request->career_title;
         $request['notice_period'] = $request->notice_period;
-        $request['total_experience'] = $request->exp_in_year.'.'.$request->exp_in_month;
+        $request['total_experience'] = ($request->exp_in_year??0).'.'.($request->exp_in_month??0);
         $request['salary_currency'] = $request->salary_currency;
         $request['country_id'] = $request->country_id;
+        if($request['total_experience']==0.0){
+            $request['employment_status'] = 'fresher';
+        }
+
         $user = User::findOrFail(Auth::user()->id)->update($request->all());
     
         return \Redirect::back()->with('message',' Updated Succssfully!');
