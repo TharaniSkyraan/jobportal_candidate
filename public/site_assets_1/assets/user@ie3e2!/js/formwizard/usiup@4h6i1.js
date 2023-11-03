@@ -256,9 +256,8 @@
             $("#full_number").val($('.iti__selected-dial-code').html()+String($("#phone").val()).replace(/ /g, ""));
         }
         if(employment_status!='fresher'){
-          if($('#exp_in_year').val()==0&&$('#exp_in_month').val()==0){
+          if(($('#exp_in_year').val()==0&&$('#exp_in_month').val()==0)){
             $('#err_total_exp').html('Please select your experience');
-            $('#err_notice_period').html('Please select your experience');
             errStaus=true;
           }
           if(validateFormFields('notice_period','Field is required.','')) errStaus=true;
