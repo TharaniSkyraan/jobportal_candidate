@@ -336,7 +336,8 @@ font-weight: bolder !important;
     border: none;
     cursor: pointer;
 }.blog-sectionw .card img {
-    width: 100%;
+    width: 300px;
+    height: 160px;
     border-radius: 3px;
 }.blog-sectionw .card h2 {
     font-size: 17px;
@@ -364,6 +365,12 @@ font-weight: bolder !important;
     border-radius: 0px;
     width: 45px;
     height: 5px;
+}.result_cnhgb .content-section h3{
+    font-size: 15px;
+}.result_cnhgb .content-section h2{
+    font-size: 16px;
+}.result_cnhgb .content-section h1{
+    font-size: 17px;
 }.blog-sectionw .grayc img {
     width: 7px;
     margin-left: 5px;

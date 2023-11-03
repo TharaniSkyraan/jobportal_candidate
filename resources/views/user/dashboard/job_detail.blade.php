@@ -215,7 +215,7 @@
     position: inherit;
 }
 </style>
-    <div class="main-panel main-panel-custom">
+    <div class="main-panel main-panel-custom lkdprw">
         <div class="header d-none" id="myHeader">
             <div class="row">
                 <div class="col-xl-9 col-lg-9 col-md-10 col-sm-10 col-12 ms-2">

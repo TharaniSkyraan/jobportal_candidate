@@ -13,7 +13,7 @@
 	@include('layouts.dashboard_header')
 	@include('layouts.side_navbar')
 
-	<div class="main-panel main-panel-custom">
+	<div class="main-panel main-panel-custom lkdprw">
 		<div class="content">
 			<div class="page-header">
 				<h4 class="page-title"></h4>

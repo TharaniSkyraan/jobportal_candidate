@@ -6,6 +6,7 @@ use Mail;
 use Illuminate\Http\Request;
 use App\Model\Contact;
 use App\Model\Faq;
+use DB;
 use App\Model\FaqCategory;
 use App\Mail\ContactUs;
 
@@ -44,26 +45,38 @@ class ContactController extends Controller
         ->active()->get();
         if(!empty($ckey)){
             $cat = FaqCategory::where('user_type','candidate')->where('slug',$ckey)->first();
+            $cat = Faq::where('faq_category_id', $cat->id)
+                    ->select('faq_category_id', DB::raw('count(*) as category_count'))
+                    ->groupBy('faq_category_id')
+                    ->orderBy('category_count', 'desc')
+                    ->first();
+            if($cat == null){
+                abort(500);
+            }
         }else{
-            $cat = FaqCategory::where('user_type','candidate')->first();
+            $cat = Faq::where('user_type', 'candidate')
+                        ->select('faq_category_id', DB::raw('count(*) as category_count'))
+                        ->groupBy('faq_category_id')
+                        ->orderBy('category_count', 'desc')
+                        ->first();
         }
+        $cat = FaqCategory::where('id', $cat->faq_category_id)->first();
         return view('faq.faq', compact('faq_categories','ckey','cat'));
+
     }
     
     public function getFaqData(Request $request)
-    {
-        $faqcategory = FaqCategory::where('user_type','candidate')->where('slug',$request->ckey)->active()->first();
-      
+    {      
         if(empty($request->search_q))
         {
             $faqs = Faq::where('user_type','candidate')
-                        ->whereFaqCategoryId($faqcategory->id)
+                        ->whereFaqCategoryId($request->ids)
                         ->select('question','answer')->get();          
         }else
         {
             $search_q = $request->search_q;
             $faqs = Faq::where('user_type','candidate')
-                        ->whereFaqCategoryId($faqcategory->id)
+                        ->whereFaqCategoryId($request->ids)
                         ->where('question', 'like', "%{$search_q}%")
                         ->get();
         }

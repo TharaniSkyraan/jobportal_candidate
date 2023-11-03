@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('custom_scripts')
     <title>Mugaam - {{$blog->title}}</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet" />
