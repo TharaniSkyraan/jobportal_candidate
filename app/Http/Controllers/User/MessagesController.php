@@ -24,13 +24,11 @@ class MessagesController extends Controller
      */
     public function __construct(MessageContact $message_contact,Message $message)
     {
-        
         $this->middleware('auth');
         $this->message_contact = $message_contact;
         $this->message = $message;
     }
     
-
     public function index($message_id='')
     {
         $message = "";
@@ -55,21 +53,23 @@ class MessagesController extends Controller
                                             $q1->where('name', 'like', "%{$search}%");
                                     }); 
                                 } 
-                            })->where(function ($q) use($status){
+                            })->where(function ($q) use($status,$search){
                                 if($status!='inbox'){
                                     $q->where('employer_active_status',$status);
                                 }else{
                                     $q->whereNull('employer_active_status');
                                 }
-                            })->where('message_id','!=', $message_id)
-                            ->orderBy('updated_at',$orderby)
+                                if(!empty($search)){                                    
+                                    $q1->where('message_id','!=', $message_id);
+                                }
+                            })->orderBy('updated_at',$orderby)
                             ->whereUserId($user_id)
                             ->get()->each(function ($items) {
                                 $items->append(['company_name','company_image','company_avatar','title','unread','unread_count']);
                             });  
         $contacts->makeHidden(['job_id','job','company','message']);
 
-        if(empty($search))
+        if(!empty($search))
         {
             $contact = $this->message_contact->select('sub_user_id','id','message_id','job_id','updated_at')
                             ->where('message_id', $message_id)                        
@@ -87,6 +87,7 @@ class MessagesController extends Controller
         }
 
         $resArr = $result??$contacts;
+        
         if(count($resArr)){
             return response()->json(array('status' => true, 'data' => $result??$contacts));
         }else{
@@ -107,8 +108,8 @@ class MessagesController extends Controller
         $this->message->where('message_id',$request->message_id)->where('send_by','employer')->update(['is_read'=>'1']);
 
         $resArr = array(
-            'contact' =>$contact,
-            'messages' =>$messages,
+            'contact' => $contact,
+            'messages' => $messages,
         );
         return response()->json(array('success' => true, 'datas' => $resArr));
     }
