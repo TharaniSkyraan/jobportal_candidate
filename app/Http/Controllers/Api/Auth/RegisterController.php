@@ -12,6 +12,7 @@ use App\Model\Skill;
 use App\Model\UserEducation;
 use App\Model\UserActivity;
 use App\Model\UserCv;
+use App\Model\ResultType;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Api\LoginRequest;
 use App\Http\Requests\Api\ResentRequest;
