@@ -9,8 +9,7 @@
         Route::post('search-job', [JobsController::class, 'searchJob']);
         Route::get('job-detail/{slug}', [JobsController::class, 'jobDetail']);
         Route::post('shortlist-view', [JobsController::class, 'shortlistView']);
-        Route::get('company-detail/{slug}', [JobsController::class, 'companyDetail']);
-
+       
         Route::post('apply-job/{slug}', [MyJobsController::class, 'ApplyJob']);
         Route::post('save-unsave-job/{slug}', [MyJobsController::class, 'Savejob']);
         Route::post('applied-job-list', [MyJobsController::class, 'appliedJobsList']);
@@ -25,6 +24,7 @@
 
     Route::post('guest-search-job', [JobsController::class, 'searchJob']);
     Route::get('guest-job-detail/{slug}', [JobsController::class, 'jobDetail']);
+    Route::get('company-detail/{slug}', [JobsController::class, 'companyDetail']);
     Route::get('advanced_filter/{job_alert?}', [JobsController::class, 'advancedFilter']);
        
 ?>

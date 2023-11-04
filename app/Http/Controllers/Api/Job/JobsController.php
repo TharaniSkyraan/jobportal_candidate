@@ -399,8 +399,11 @@ class JobsController extends BaseController
      */
     public function companyDetail($slug)
     {
-        $user_id = Auth::user()->id??710;
-        $user = User::find($user_id);
+        $user = '';
+        if(Auth::check()){
+            $user_id = Auth::user()->id;
+            $user = User::find($user_id);
+        }
         $companies= Company::where('slug', $slug)->pluck('id')->first();
         $company = Company::find($companies);
         $company->country_name = $company->getCountry('country')??'';
@@ -430,11 +433,11 @@ class JobsController extends BaseController
                 'experience'=>$job->experience_string,
                 'salary'=>$job->salary_string,
                 'immediate_join' => $job->NoticePeriod !=null?$job->NoticePeriod->notice_period:'',
-                'is_favourite'=>$user->isFavouriteJob($job->slug),
+                'is_favourite'=>(!empty($user))?$user->isFavouriteJob($job->slug):false,
                 'job_type'=>$job->getTypesStr(),
                 'skills'=>$job->getSkillsStr(),
                 'posted_at'=>Carbon::parse($job->posted_date)->getTimestampMs(),
-                'is_applied'=>$user->isAppliedOnJob($job->id),
+                'is_applied'=>(!empty($user))?$user->isAppliedOnJob($job->id):false,
                 'is_deleted' => (!empty($job->deleted_at))?0:1
             );
             return $val;
