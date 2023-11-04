@@ -214,9 +214,9 @@ class RegisterController extends BaseController
         
         if(!empty($education)){
             $result_type = ResultType::find($education->result_type_id);
-            if(!empty($education_type_id)){
-                $education_type = EducationType::find($education->education_type_id);
-            }
+            $country = Country::find($education->country_id);
+            $education_level = EducationLevel::find($education->education_level_id);
+            $education_type = EducationType::find($education->education_type_id);
         }
 
         $data = array(
