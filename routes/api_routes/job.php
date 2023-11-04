@@ -23,7 +23,7 @@
 
     });
     
-    Route::get('guest-home/{slug}', [JobsController::class, 'fresherIndex']);
+    Route::get('guest-home', [JobsController::class, 'fresherIndex']);
     Route::get('guest-company-detail/{slug}', [JobsController::class, 'companyDetail']);
     Route::post('guest-search-job', [JobsController::class, 'searchJob']);
     Route::get('guest-job-detail/{slug}', [JobsController::class, 'jobDetail']);
