@@ -33,7 +33,8 @@ class ResumeUploadRequest extends Request
         $rules =  [
             'device_token' => 'required',
             'device_type' => 'required',
-            'file' => 'required|file|mimes:pdf,docx,doc,txt,rtf|max:2048',
+            "url" => "required",
+            "path" => "required"
         ];
 
         return $rules;
