@@ -29,7 +29,6 @@ class CareerInfoRequest extends Request
     public function rules()
     {
 
-
         $rules =  [
             'career_title' => 'required',
             'phone' => 'required',
@@ -38,7 +37,7 @@ class CareerInfoRequest extends Request
             'salary_currency' => 'required',
             'expected_salary' => 'required',
             'country_id' => 'required',
-            'location' => 'required',
+            'prefered_location' => 'required',
         ];
 
         return $rules;

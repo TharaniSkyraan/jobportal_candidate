@@ -331,8 +331,7 @@ class RegisterController extends BaseController
             'salary_currency' => $user->salary_currency,
             'expected_salary' => $user->expected_salary,
             'country_id' => $user->country_id,
-            'location' => $user->location,
-            'phone' => $user->phone,
+            'prefered_location' => $user->prefered_location,
             'employment_status' => $user->employment_status??'fresher',
         );
         
@@ -356,15 +355,14 @@ class RegisterController extends BaseController
     public function careerInfoSave(CareerInfoRequest $request)
     {  
        $user = User::findOrFail(Auth::user()->id);
-       $user->phone = $request->phone;
        $user->employment_status = $request->employment_status;
        $user->career_title = $request->career_title;
        $user->total_experience = $request->exp_in_year.'.'.$request->exp_in_month;
        $user->expected_salary = (int) str_replace(',',"",$request->input('expected_salary'));
        $user->salary_currency = $request->salary_currency;
        $user->country_id = $request->country_id;
-       $user->location = $request->location;
-       if($user->next_process_level == 'career_info'){                
+       $user->prefered_location = $request->prefered_location;
+       if($user->next_process_level == 'career_info'||$user->next_process_level == 'experience'){                
            $user->next_process_level = 'skills';
        }
        $user->save();
@@ -427,9 +425,6 @@ class RegisterController extends BaseController
      {
 
        $user = User::findOrFail(Auth::user()->id);
-       if($user->next_process_level == 'skills'){                
-           $user->next_process_level = 'resume_upload';
-       }
 
        $skills = [];
        $words = DataArrayHelper::blockedKeywords();
@@ -473,6 +468,10 @@ class RegisterController extends BaseController
        $user->skill = json_encode($skills);
        $user->save();
 
+       if($user->next_process_level == 'skills'){                
+           $user->next_process_level = 'resume_upload';
+       }
+
        return $this->sendResponse();
 
      }
@@ -486,12 +485,10 @@ class RegisterController extends BaseController
     public function uploadResume(ResumeUploadRequest $request)
     {
         $user = User::findOrFail(Auth::user()->id);
-        $path = Storage::disk('s3')->put('candidate/'.$user->token.'/file', $request->file);
-        $url = Storage::disk('s3')->url($path);
 
         $UserCv = new UserCv();
-        $UserCv->path = $path;
-        $UserCv->cv_file = $url;
+        $userCv->path = $request->path??"";
+        $userCv->cv_file = $request->url??"";
         $UserCv->user_id = $user->id;
         $UserCv->is_default = 1;
         $UserCv->save();
