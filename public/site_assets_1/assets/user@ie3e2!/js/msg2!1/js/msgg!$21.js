@@ -115,7 +115,7 @@ var cp_search_inp = $('#jp_search_btn').val();
 $("#jp_search_btn").click(function () {
     clear_cp_search_err();
     cp_search_inp = $('#jp_search_inp').val();
-    if(cp_search_inp !=''){
+    if($.trim(cp_search_inp) !=''){
         ContactList();
     }else{
         $("#jp_search_inp, #jp_search_btn").addClass("is_invalid_c1");
@@ -124,7 +124,10 @@ $("#jp_search_btn").click(function () {
 
 $("#jp_search_inp").keyup(function () {
     jp_search_inp = $('#jp_search_inp').val();
-    if(jp_search_inp =='' || event.keyCode=='13'){
+    if($.trim(jp_search_inp) !='' && event.keyCode=='13'){
+        ContactList();
+    }
+    if($.trim(jp_search_inp) =='' && event.keyCode=='8'){
         ContactList();
     }
 });

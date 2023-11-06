@@ -12,6 +12,10 @@ use App\Model\Skill;
 use App\Model\UserEducation;
 use App\Model\UserActivity;
 use App\Model\UserCv;
+use App\Model\ResultType;
+use App\Model\Country;
+use App\Model\EducationType;
+use App\Model\EducationLevel;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Api\LoginRequest;
 use App\Http\Requests\Api\ResentRequest;
@@ -209,24 +213,32 @@ class RegisterController extends BaseController
     public function education()
     {
         $user = User::findOrFail(Auth::user()->id);
-        $educationLevels = DataArrayHelper::langEducationlevelsArray();
-        $educationTypes = '';
         $education  = (count($user->userEducation)>0)?$user->userEducation[0]:null;
         
         if(!empty($education)){
-            $education_level_id = $education->education_level_id;
-            $education_type_id = $education->education_type_id;
-            if(!empty($education_type_id)){
-                $educationTypes = DataArrayHelper::langEducationTypesArray($education_level_id);
-            }
+            $result_type = ResultType::find($education->result_type_id);
+            $country = Country::find($education->country_id);
+            $education_level = EducationLevel::find($education->education_level_id);
+            $education_type = EducationType::find($education->education_type_id);
         }
 
-        $response['education'] = array(
-            'education_level_id' => $education_level_id??"",
-            'education_type_id' => $education_type_id??""
+        $data = array(
+            'id'=>$education->id??0,
+            'education_type_id'=>$education->education_type_id??0,
+            'education_level'=>$education_level->education_level??"",
+            'education_level_id' => $education_level_id??0,
+            'education' => $education->education_type??($education_type->education_type??""),
+            'institution'=>$education->institution??"",
+            'country'=>(!empty($education->country_id))?$country->country:($ip_data['geoplugin_countryName']??""),
+            'country_id'=>$education->country_id??0,
+            'location'=>$education->location??"",
+            'pursuing'=>$education->pursuing??"",
+            'percentage' => $education->percentage??"",
+            'result_type_id' => $education->result_type_id??0,
+            'from' => (!empty($education->from_year))?Carbon::parse($education->from_year)->getTimestampMs():0,
+            'to' => (!empty($education->to_year))?Carbon::parse($education->to_year)->getTimestampMs():0,
         ); 
-        $response['educationLevels'] = $educationLevels;
-        return $this->sendResponse($response);
+        return $this->sendResponse($data);
     }
     /**
      *  View Blade file of Candidate Basic Information Form
@@ -246,14 +258,22 @@ class RegisterController extends BaseController
         }else{
             $userEducation = new UserEducation();
         }
-        $userEducation->user_id = $user->id;
-        $userEducation->education_level_id = $request->education_level_id;
-        $userEducation->education_type = $request->education_type;
-        $userEducation->pursuing = Null;
+        $userEducation->user_id = Auth::user()->id;
+        $userEducation->education_level_id = $request->input('education_level_id');
+        $userEducation->education_type_id = NULL;
+        $userEducation->education_type = $request->input('education');
+        $userEducation->country_id = $request->input('country_id');
+        $userEducation->from_year = $request->input('from_year');
+        $userEducation->to_year = $request->input('to_year');
+        $userEducation->institution = $request->input('institution');
+        $userEducation->location = $request->input('location');
+        $userEducation->percentage = $request->percentage??null;
+        $userEducation->result_type_id = $request->input('result_type_id');
+        $userEducation->pursuing = $request->input('pursuing')??Null;
         $userEducation->save();
 
-        if($user->next_process_level == 'education'){                
-            $user->next_process_level = 'experience';
+        if($user->next_process_level == 'education'||$user->next_process_level == 'experience'){                
+            $user->next_process_level = 'career_info';
             $user->save();
         }
 
@@ -285,7 +305,7 @@ class RegisterController extends BaseController
     {
        $user = User::findOrFail(Auth::user()->id);
        $user->employment_status = $request->employment_status;
-       if($user->next_process_level == 'experience'){                
+       if($user->next_process_level == 'education'||$user->next_process_level == 'experience'){                
            $user->next_process_level = 'career_info';
        }
        $user->save();
@@ -313,6 +333,7 @@ class RegisterController extends BaseController
             'country_id' => $user->country_id,
             'location' => $user->location,
             'phone' => $user->phone,
+            'employment_status' => $user->employment_status??'fresher',
         );
         
        return $this->sendResponse($response);
@@ -336,6 +357,7 @@ class RegisterController extends BaseController
     {  
        $user = User::findOrFail(Auth::user()->id);
        $user->phone = $request->phone;
+       $user->employment_status = $request->employment_status;
        $user->career_title = $request->career_title;
        $user->total_experience = $request->exp_in_year.'.'.$request->exp_in_month;
        $user->expected_salary = (int) str_replace(',',"",$request->input('expected_salary'));
