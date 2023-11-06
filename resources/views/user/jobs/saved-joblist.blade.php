@@ -36,7 +36,9 @@
                 <div class="row mb-3">
                     <div class="col-md-3 col-sm-4 col-xs-12"><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/experience.png') }}"></span><text class="">{{ $job->experience_string }}</text></div>
                     <div class="col-md-5 col-sm-4 col-xs-12"><div><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/salary.png') }}"></span><text class="">{{ trim($job->salary_string) ? $job->salary_string :'Not Disclosed' }}</text></div></div>
-                    <div class="col-md-4 col-sm-4 col-xs-12"><div><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/location.png') }}"></span><text class=""> {{ rtrim($job->work_locations, ", ") }}</text></div></div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/location.png') }}"></span><text class="">@if($job->work_locations != null) {{ rtrim($job->work_locations, ", ") }} @else Remote @endif</text></div>
+                    </div>
                 </div>
                 <div class="mb-2">
                     <h5 class="text-green-color fw-bold">Job Description </h5>

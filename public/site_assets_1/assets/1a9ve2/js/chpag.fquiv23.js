@@ -276,7 +276,8 @@ $(function(){
         $("#designation").removeAttr("readonly data-bs-toggle data-bs-target aria-controls");
 
     }
-    
- 
-
 });
+
+    $(document).on('click', '.renty_pocdd .card', function(){
+        localStorage.setItem('page_url', "");
+    });
