@@ -262,7 +262,7 @@ class RegisterController extends BaseController
         }
         $userEducation->user_id = Auth::user()->id;
         $userEducation->education_level_id = $request->input('education_level_id');
-        $userEducation->education_type_id = NULL;
+        $userEducation->education_type_id = $request->input('education_type_id');;
         $userEducation->education_type = $request->input('education');
         $userEducation->country_id = $request->input('country_id');
         $userEducation->from_year = $request->input('from_year');
