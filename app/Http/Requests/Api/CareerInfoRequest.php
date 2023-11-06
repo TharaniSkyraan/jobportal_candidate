@@ -31,15 +31,16 @@ class CareerInfoRequest extends Request
 
         $rules =  [
             'career_title' => 'required',
-            'phone' => 'required',
-            'exp_in_year' => 'required',
-            'exp_in_month' => 'required',
-            'salary_currency' => 'required',
             'expected_salary' => 'required',
             'country_id' => 'required',
             'prefered_location' => 'required',
+            'employment_status' => 'required',
         ];
 
+        if($this->employment_status=='experienced'){
+            $rule["exp_in_year"] = "required";
+            $rule["exp_in_month"] = "required";
+        }
         return $rules;
     }
     public function failedValidation(Validator $validator)
