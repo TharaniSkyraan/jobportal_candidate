@@ -335,6 +335,9 @@ class RegisterController extends BaseController
             'country_id' => $user->country_id,
             'prefered_location' => $user->prefered_location,
             'employment_status' => $user->employment_status??'fresher',
+            'country' => $user->country->country??'',
+            'exp_in_year' => $exp_in_year??0,
+            'exp_in_month' => $exp_in_month??0,
         );
         
        return $this->sendResponse($response);

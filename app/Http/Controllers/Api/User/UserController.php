@@ -75,6 +75,7 @@ class UserController extends BaseController
         $exp_in_year = $exp[0]??'';
         $exp_in_month = $exp[1]??'';  
         $response = array(
+            'employment_status' => $user->employment_status??'fresher',
             'country_id' => $user->country_id??'',
             'prefered_location' => $user->prefered_location??'',
             'salary_currency' => $user->salary_currency??0,
