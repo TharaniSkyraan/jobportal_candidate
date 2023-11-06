@@ -487,8 +487,8 @@ class RegisterController extends BaseController
         $user = User::findOrFail(Auth::user()->id);
 
         $UserCv = new UserCv();
-        $userCv->path = $request->path??"";
-        $userCv->cv_file = $request->url??"";
+        $UserCv->path = $request->path??"";
+        $UserCv->cv_file = $request->url??"";
         $UserCv->user_id = $user->id;
         $UserCv->is_default = 1;
         $UserCv->save();
