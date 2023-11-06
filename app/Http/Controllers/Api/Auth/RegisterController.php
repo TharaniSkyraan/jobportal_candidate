@@ -326,6 +326,9 @@ class RegisterController extends BaseController
     public function careerInfo()
     {
         $user = User::findOrFail(Auth::user()->id);
+        $exp = explode('.',$user->total_experience);
+        $exp_in_year = $exp[0]??'';
+        $exp_in_month = $exp[1]??'';  
 
         $response =array(
             'career_title' => $user->career_title,
