@@ -72,7 +72,9 @@ $(document).ready(function () {
 });
 
 $(document).on( 'click', '.job-list', function(e) {
-    url = baseurl + 'job-detail/'+ $(this).data("jobid");
+    url = baseurl + 'detail/'+ $(this).data("jobid");
+    var currentUrl = window.location.href;
+    localStorage.setItem('page_url', currentUrl);
     openInNewTabWithNoopener(url)
 });
 function jobApply(e, jobidv) {

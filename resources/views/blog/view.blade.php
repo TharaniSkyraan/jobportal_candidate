@@ -54,7 +54,7 @@
                     @endphp
                 </div>
                  <!--subscribe section-->
-                <div class="subscribe_usr">
+                <!-- <div class="subscribe_usr">
                     <div class="card">
                         <div class="row">
                             <div class="col-xl-3 col-lg-2 col-md-2">
@@ -79,7 +79,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="blg-top list-blogs">
                     <div class="text-center">

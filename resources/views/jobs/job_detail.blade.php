@@ -5,7 +5,10 @@
 @section('content')
 
 @include('layouts.header')
-    <button class="mobile_apply japplybtn" id="japplybtn" data-value="disabled"><img src="{{asset('images/detailpage/apply_icon.svg')}}" alt="apply-icon"> Apply</button>
+    <div class="sdad_aw">
+        <button class="mobile_apply applyrs_btn japplybtn japply-btn" id="japplybtn" data-value="disabled"><img src="{{asset('images/detailpage/apply_icon.svg')}}" alt="apply-icon"> <span>Apply</span></button>
+        <button class="mobile_apply applied_bm japplied-btn"><img src="{{asset('images/detailpage/applied.svg')}}" alt="applied-icon"> <span>Applied</span></button>
+    </div>
     <!-- sticky header -->
     <nav class="navbar jsky_hb navbar-expand-lg navbar-light">
         <div class="container-xl">
@@ -31,10 +34,27 @@
                     <div class="col-md-4 col-2 col-sm-4 col-lg-3 col-xl-3 align-self-center">
                         <div class="row">
                             <div class="col-md-6 col-sm-5 col-lg-6 col-xl-6 saved_jgb text-center align-self-center">
-                                <img src="{{asset('images/detailpage/savedj.svg')}}" alt="saved-icon" class="cursor-pointer">
+
+                            {{-- @php
+                                    $is_fav = 'no';
+                                    if((Auth::check() && Auth::user()->isFavouriteJob($job->slug)==true))
+                                    {
+                                        $is_fav = 'yes';
+                                    }
+                                @endphp
+                                @if($is_fav=='yes')
+                                    <div class="mb-0 text-center cursor-pointer favjob" data-fav='{{$is_fav}}'>
+                                        <img src="{{asset('images/detailpage/savedj.svg')}}" alt="savedjobs" class="icon_rs chsizew" draggable="false"><span class="mblef"></span>
+                                    </div>
+                                @else
+                                    <div class="text-center d mb-0 cursor-pointer favjob" data-fav='{{$is_fav}}'>
+                                        <img src="{{asset('images/detailpage/unsavedj.svg')}}" alt="unsavedjobs" class="icon_rs chsizew" draggable="false"><span class="mblef"></span>
+                                    </div>
+                                @endif--}}
                             </div>
                             <div class="col-md-6 col-sm-7 col-lg-6 col-xl-6 text-end">
-                                <button><img src="{{asset('images/detailpage/apply_icon.svg')}}" alt="apply-icon">Apply</button>
+                                <button class="applyrs_btn japplybtn japply-btn" id="japplybtn" data-value="disabled"><img src="{{asset('images/detailpage/apply_icon.svg')}}" alt="apply-icon"><span> Apply </span></button>
+                                <button class="applied_bm japplied-btn"><img src="{{asset('images/detailpage/applied.svg')}}" alt="applied-icon"><span> Applied </span></button>
                             </div>
                         </div>
                     </div>
@@ -45,7 +65,7 @@
     <main class="resultjobwb">
         <div class="resulty-width1 mt-4 mb-4">
             <div class="mt-3 mb-3 breadcrumbty cursor-pointer">
-                <span><a href="{{url('/')}}" class="text-dark"><img src="{{asset('images/detailpage/breadcrumb.svg')}}" alt="breadcrumb-arrow"> Back to Home</a></span>
+                <span><a href="{{url('/')}}" class="slug_brd text-dark"><img src="{{asset('images/detailpage/breadcrumb.svg')}}" alt="breadcrumb-arrow"> Back</a></span>
             </div>            
         </div>
         <div class="resulty-width2 mb-5">
@@ -184,7 +204,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 text-center align-self-center">
-                        <h3>Profile Match <span class="fw-bolder">{{Auth::user()->profileMatch($job->id)}}%</span></h3>
+                        <h3>Profile Match <span>{{Auth::user()->profileMatch($job->id)}}%</span></h3>
                     </div>
                 </div>
                 <div class="mt-3">
@@ -619,18 +639,42 @@
         var save_req_url = "{{ route('job.save', $job->slug) }}";
         var apply_req_url = "{{ route('job.apply', $job->slug) }}" ;
         var isscreening = "{{(count($job->screeningquiz)!=0)?'yes':'no'}}"; 
-          window.addEventListener("scroll", function () {
-            const header = document.querySelector(".jsky_hb");
-
-            if (header) {
-                header.classList.toggle("sticky", window.scrollY > 0);
+        //company header
+        function boxtothetop() {
+            var windowTop = $(window)
+            .scrollTop();
+            var top = ($('.applybtnsticky')
+            .offset()
+            .top)-40;
+            if(windowTop > top) {
+            $('.jsky_hb').addClass('sticky');
+            } else {
+            $('.jsky_hb').removeClass('sticky');
             }
-
+            var bottom = $('.container').height() - $(window).height();
+            if(windowTop > (parseInt(bottom)+180)) {
+            $('.applybtnsticky').addClass('nonsticky');
+            } else {
+            $('.applybtnsticky').removeClass('nonsticky');
+            }
+        }
+        $(function() {
+            $(window)
+            .scroll(boxtothetop);
+            boxtothetop();
         });
 
         $(document).on('click', '.applyrs_btn', function(){
             $('#screenings').modal('show');
         });
+
+        var pgurl = localStorage.getItem('page_url');
+        if(pgurl == ""){
+            $('.slug_brd').attr('href', baseurl);
+        }else{
+            $('.slug_brd').attr('href', pgurl);
+        }
+
     </script>
     <script type="text/javascript" src="{{ asset('site_assets_1/assets/2e9ejr3/js/destail.e2k3eu0.js') }}"></script>
 @endsection
