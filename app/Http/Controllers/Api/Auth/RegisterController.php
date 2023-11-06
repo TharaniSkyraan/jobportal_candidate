@@ -222,7 +222,7 @@ class RegisterController extends BaseController
             $education_type = EducationType::find($education->education_type_id);
         }
 
-        $data = array(
+        $data[] = array(
             'id'=>$education->id??0,
             'education_type_id'=>$education->education_type_id??0,
             'education_level'=>$education_level->education_level??"",
