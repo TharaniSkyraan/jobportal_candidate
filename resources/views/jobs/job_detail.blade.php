@@ -326,7 +326,7 @@
                             @endif
                         </div>
                         @isset($job->company)
-                            <div class="align-self-center">
+                            <div class="align-self-end">
                                 <div class="know_cmpany">
                                     <a href="{{url('company-view/'.$job->company->slug)}}" class="knowmr"><span>Know more <img src="{{asset('images/detailpage/know_mre.svg')}}" alt="know-more"></span></a>
                                 </div>
@@ -677,7 +677,7 @@
         });
 
         var pgurl = localStorage.getItem('page_url');
-        if(pgurl == ""){
+        if(pgurl == null){
             $('.slug_brd').attr('href', baseurl);
         }else{
             $('.slug_brd').attr('href', pgurl);
