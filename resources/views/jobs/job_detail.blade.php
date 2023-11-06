@@ -336,92 +336,100 @@
                 </div>                
             @endif
 
-            <div class="card walkin_cd align-self-center">
-                @if($job->walkin)
-                    <h4>Walk-in</h4>
-                    <div>
-                        <p><b>From </b>{{ \Carbon\Carbon::parse($job->walkin->walk_in_from_date)->format('d F, Y')}} to {{ \Carbon\Carbon::parse($job->walkin->walk_in_to_date)->format('d F, Y')}}.@if($job->walkin->exclude_days) (Excluding {{$job->walkin->exclude_days}})@endif</p>
-                        <p><b>Time between : </b>{{ \Carbon\Carbon::parse($job->walkin->walk_in_from_time)->format('H:i A')}} to {{ \Carbon\Carbon::parse($job->walkin->walk_in_to_time)->format('H:i A')}}</p>
-                        @if(!empty($job->walkin->walk_in_location))
+            
+            @if($job->walkin || ($job->contact_person_details->morning_section_from && $job->contact_person_details->morning_section_to) || 
+               ($job->contact_person_details->evening_section_from && $job->contact_person_details->evening_section_to) || 
+               (!empty($job->contact_person_details->email)) ||
+               (!empty($job->contact_person_details->phone_1)) ||
+               (!empty($job->contact_person_details->phone_2)))
+
+                <div class="card walkin_cd align-self-center">
+                    @if($job->walkin)
+                        <h4>Walk-in</h4>
+                        <div>
+                            <p><b>From </b>{{ \Carbon\Carbon::parse($job->walkin->walk_in_from_date)->format('d F, Y')}} to {{ \Carbon\Carbon::parse($job->walkin->walk_in_to_date)->format('d F, Y')}}.@if($job->walkin->exclude_days) (Excluding {{$job->walkin->exclude_days}})@endif</p>
+                            <p><b>Time between : </b>{{ \Carbon\Carbon::parse($job->walkin->walk_in_from_time)->format('H:i A')}} to {{ \Carbon\Carbon::parse($job->walkin->walk_in_to_time)->format('H:i A')}}</p>
+                            @if(!empty($job->walkin->walk_in_location))
+                                <p>
+                                    <table>
+                                        <tr>
+                                            <td class="d-block"><img src="{{asset('images/detailpage/locate.svg')}}" alt="location" class="icon_rs" draggable="false"></td>
+                                            <td>
+                                                <span>
+                                                    {{ $job->walkin->walk_in_location }}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </p>
+                            @endif
+                        </div>
+                    @endif
+
+                    @if(($job->contact_person_details->morning_section_from && $job->contact_person_details->morning_section_to) || 
+                    ($job->contact_person_details->evening_section_from && $job->contact_person_details->evening_section_to) || 
+                    (!empty($job->contact_person_details->email)) ||
+                    (!empty($job->contact_person_details->phone_1)) ||
+                    (!empty($job->contact_person_details->phone_2)))
+                    
+                        <h4>Contact Detail</h4>
+
+                        @if(($job->contact_person_details->morning_section_from && $job->contact_person_details->morning_section_to) || ($job->contact_person_details->evening_section_from && $job->contact_person_details->evening_section_to))
                             <p>
+                                <b>Time between :</b> 
+                                @if( ($job->contact_person_details->morning_section_from && $job->contact_person_details->morning_section_to))
+                                    {{ \Carbon\Carbon::parse($job->contact_person_details->morning_section_from)->format('h:i A')}} to
+                                    {{ \Carbon\Carbon::parse($job->contact_person_details->morning_section_to)->format('h:i A') }}
+                                @endif
+                                @if( ($job->contact_person_details->evening_section_from && $job->contact_person_details->evening_section_to))
+                                    {{ \Carbon\Carbon::parse($job->contact_person_details->evening_section_from)->format('h:i A') }} to 
+                                    {{ \Carbon\Carbon::parse($job->contact_person_details->evening_section_to)->format('h:i A') }}
+                                @endif
+                            </p>
+                        @endif
+                        @if(!empty($job->contact_person_details->email))
+                            <p>
+                                <a href="mailto:{{ $job->contact_person_details->email??'' }}">
+                                    <img src="{{asset('images/detailpage/email.svg')}}" alt="email-address" class="icon_rs">{{ $job->contact_person_details->email??'' }}
+                                </a>
+                            </p>
+                        @endif
+                        <div class="row">
+                            <div class="col-md-6">
                                 <table>
+                                    @php
+                                        $pincode= $job->company->pin_code ?? '';
+                                        $pincode= !empty($pincode)? ', '.$pincode.'.' : '';
+                                    @endphp
                                     <tr>
                                         <td class="d-block"><img src="{{asset('images/detailpage/locate.svg')}}" alt="location" class="icon_rs" draggable="false"></td>
                                         <td>
                                             <span>
-                                                {{ $job->walkin->walk_in_location }}
-                                            </span>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </p>
-                        @endif
-                    </div>
-                @endif
-
-                @if(($job->contact_person_details->morning_section_from && $job->contact_person_details->morning_section_to) || 
-                ($job->contact_person_details->evening_section_from && $job->contact_person_details->evening_section_to) || 
-                (!empty($job->contact_person_details->email)) ||
-                (!empty($job->contact_person_details->phone_1)) ||
-                (!empty($job->contact_person_details->phone_2)))
-                
-                    <h4>Contact Detail</h4>
-
-                    @if(($job->contact_person_details->morning_section_from && $job->contact_person_details->morning_section_to) || ($job->contact_person_details->evening_section_from && $job->contact_person_details->evening_section_to))
-                        <p>
-                            <b>Time between :</b> 
-                            @if( ($job->contact_person_details->morning_section_from && $job->contact_person_details->morning_section_to))
-                                {{ \Carbon\Carbon::parse($job->contact_person_details->morning_section_from)->format('h:i A')}} to
-                                {{ \Carbon\Carbon::parse($job->contact_person_details->morning_section_to)->format('h:i A') }}
-                            @endif
-                            @if( ($job->contact_person_details->evening_section_from && $job->contact_person_details->evening_section_to))
-                                {{ \Carbon\Carbon::parse($job->contact_person_details->evening_section_from)->format('h:i A') }} to 
-                                {{ \Carbon\Carbon::parse($job->contact_person_details->evening_section_to)->format('h:i A') }}
-                            @endif
-                        </p>
-                    @endif
-                    @if(!empty($job->contact_person_details->email))
-                        <p>
-                            <a href="mailto:{{ $job->contact_person_details->email??'' }}">
-                                <img src="{{asset('images/detailpage/email.svg')}}" alt="email-address" class="icon_rs">{{ $job->contact_person_details->email??'' }}
-                            </a>
-                        </p>
-                    @endif
-                    <div class="row">
-                        <div class="col-md-6">
-                            <table>
-                                @php
-                                    $pincode= $job->company->pin_code ?? '';
-                                    $pincode= !empty($pincode)? ', '.$pincode.'.' : '';
-                                @endphp
-                                <tr>
-                                    <td class="d-block"><img src="{{asset('images/detailpage/locate.svg')}}" alt="location" class="icon_rs" draggable="false"></td>
-                                    <td>
-                                        <span>
-                                            {{ !empty($job->company->address) ? $job->company->address.' '.$job->company->location.$pincode : "-" }}
-                                        </span>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        @if((!empty($job->contact_person_details->phone_1)) || (!empty($job->contact_person_details->phone_2)))
-                            <div class="col-md-6">
-                                <table class="call_nhvcez">
-                                    <tr>
-                                        <td class="d-block"><img src="{{asset('images/detailpage/calls.svg')}}" alt="call-icon" class="icon_rs" draggable="false"></td>
-                                        <td>
-                                            <span>
-                                                @if(!empty($job->contact_person_details->phone_1))<div><a href="tel:{{ $job->contact_person_details->phone_1 }}">{{ $job->contact_person_details->phone_1 }}</a></div>@endif
-                                                @if(!empty($job->contact_person_details->phone_2))<div><a href="tel:{{ $job->contact_person_details->phone_2 }}">{{ $job->contact_person_details->phone_2 }}</a></div>@endif
+                                                {{ !empty($job->company->address) ? $job->company->address.' '.$job->company->location.$pincode : "-" }}
                                             </span>
                                         </td>
                                     </tr>
                                 </table>
                             </div>
-                        @endif
-                    </div>
-                @endif
-            </div>
+                            @if((!empty($job->contact_person_details->phone_1)) || (!empty($job->contact_person_details->phone_2)))
+                                <div class="col-md-6">
+                                    <table class="call_nhvcez">
+                                        <tr>
+                                            <td class="d-block"><img src="{{asset('images/detailpage/calls.svg')}}" alt="call-icon" class="icon_rs" draggable="false"></td>
+                                            <td>
+                                                <span>
+                                                    @if(!empty($job->contact_person_details->phone_1))<div><a href="tel:{{ $job->contact_person_details->phone_1 }}">{{ $job->contact_person_details->phone_1 }}</a></div>@endif
+                                                    @if(!empty($job->contact_person_details->phone_2))<div><a href="tel:{{ $job->contact_person_details->phone_2 }}">{{ $job->contact_person_details->phone_2 }}</a></div>@endif
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            @endif
+                        </div>
+                    @endif
+                </div>
+            @endif
         </div>
     </main>
     <!-- view document -->
