@@ -226,7 +226,7 @@ class RegisterController extends BaseController
             'id'=>$education->id??0,
             'education_type_id'=>$education->education_type_id??0,
             'education_level'=>$education_level->education_level??"",
-            'education_level_id' => $education_level_id??0,
+            'education_level_id' => $education->education_level_id??0,
             'education' => $education->education_type??($education_type->education_type??""),
             'institution'=>$education->institution??"",
             'country'=>(!empty($education->country_id))?$country->country:($ip_data['geoplugin_countryName']??""),
