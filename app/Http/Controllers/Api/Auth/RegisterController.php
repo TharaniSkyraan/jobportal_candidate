@@ -240,7 +240,7 @@ class RegisterController extends BaseController
             'from' => (!empty($education->from_year))?Carbon::parse($education->from_year)->getTimestampMs():0,
             'to' => (!empty($education->to_year))?Carbon::parse($education->to_year)->getTimestampMs():0,
         ); 
-        return $this->sendResponse(['education_id'=>0]);
+        return $this->sendResponse($data);
     }
     /**
      *  View Blade file of Candidate Basic Information Form
@@ -279,7 +279,7 @@ class RegisterController extends BaseController
             $user->save();
         }
 
-        return $this->sendResponse();
+        return $this->sendResponse(['education_id'=>0]);
 
     }
 
