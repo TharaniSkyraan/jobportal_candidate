@@ -234,11 +234,13 @@ class RegisterController extends BaseController
             'location'=>$education->location??"",
             'pursuing'=>$education->pursuing??"",
             'percentage' => $education->percentage??"",
+            'percentage_val'=> "",
             'result_type_id' => $education->result_type_id??0,
+            'year_of_education' =>  '',
             'from' => (!empty($education->from_year))?Carbon::parse($education->from_year)->getTimestampMs():0,
             'to' => (!empty($education->to_year))?Carbon::parse($education->to_year)->getTimestampMs():0,
         ); 
-        return $this->sendResponse($data);
+        return $this->sendResponse(['education_id'=>0]);
     }
     /**
      *  View Blade file of Candidate Basic Information Form

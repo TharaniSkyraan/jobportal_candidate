@@ -37,6 +37,7 @@ trait UserEducationTrait
             $to = ($education['pursuing']!='yes'? ($education['to_year']?Carbon::parse($education['to_year'])->Format('M Y'):'') : 'Still Pursuing');
             $val = array(
                 'id'=>$education['id'],
+                'education_type_id'=>0,
                 'education_level'=>$education_level->education_level??"",
                 'education_level_id' => $education['education_level_id']??0,
                 'education' => $education['education_type']??($education_type->education_type??""),
