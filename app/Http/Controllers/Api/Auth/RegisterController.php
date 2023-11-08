@@ -134,7 +134,7 @@ class RegisterController extends BaseController
             return $this->sendResponse(['id'=>$user->id,'otp'=>$otp,'next_process_level'=>$user->next_process_level], 'Verification OTP Send Successful.');
         }
 
-        return $this->sendResponse([], 'Existing'); 
+        return $this->sendResponse('{}', 'Existing'); 
     
     }
     /**
