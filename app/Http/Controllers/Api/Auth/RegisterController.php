@@ -131,7 +131,7 @@ class RegisterController extends BaseController
             Auth::logout();
             UserActivity::updateOrCreate(['user_id' => $user->id],['last_active_at'=>Carbon::now()]);
 
-            return $this->sendResponse(['id'=>$user->id,'otp'=>$otp], 'Verification OTP Send Successful.');
+            return $this->sendResponse(['id'=>$user->id,'otp'=>$otp,'next_process_level'=>$user->next_process_level], 'Verification OTP Send Successful.');
         }
 
         return $this->sendResponse([], 'Existing'); 
