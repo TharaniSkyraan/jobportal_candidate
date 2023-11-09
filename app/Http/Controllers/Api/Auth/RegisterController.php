@@ -429,8 +429,8 @@ class RegisterController extends BaseController
      
      */
 
-     public function SkillSave(SkillRequest $request)
-     {
+    public function SkillSave(SkillRequest $request)
+    {
 
        $user = User::findOrFail(Auth::user()->id);
 
@@ -439,7 +439,7 @@ class RegisterController extends BaseController
 
        foreach(json_decode($request->skills) as $skill)
        {
-           if(!isset($skill->id) && !in_array($skill->value, $words))
+           if(empty($skill->id) && !in_array($skill->value, $words))
            {                
                if(Skill::where('skill',$skill->value)->doesntExist())
                {
@@ -456,9 +456,9 @@ class RegisterController extends BaseController
                }
            }
 
-           if(isset($skill->id) || isset($newskill->id))
+           if(!empty($skill->id) || isset($newskill->id))
            {    
-               $skill_id = $skill->id??$newskill->id;       
+               $skill_id = !empty($skill->id)?$skill->id:$newskill->id;       
                if(UserSkill::where('skill_id',$skill_id)->doesntExist())
                {                
                    $updateSkill = new UserSkill();
