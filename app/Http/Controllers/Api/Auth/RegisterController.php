@@ -474,12 +474,11 @@ class RegisterController extends BaseController
            }
        }
        $user->skill = json_encode($skills);
-       $user->save();
-
-       $user = User::findOrFail(Auth::user()->id);
        if($user->next_process_level == 'skills'){                
            $user->next_process_level = 'resume_upload';
        }
+       $user->save();
+
 
        return $this->sendResponse();
 
