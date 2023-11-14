@@ -410,7 +410,6 @@ $(document).on('click', '.textClose', function (event) {
 
 $(document).on('click', '.textSend', function (event) {
     if (!$(this).hasClass('disabled')) {
-        resetMessage();
         sendChatMessages();
     }
 });
@@ -420,6 +419,8 @@ function sendChatMessages()
     let req_url = baseurl + msg_send;
 
     var message = $('#message').val();
+    resetMessage();
+
     $.ajax({
         url: req_url,
         type: 'POST',

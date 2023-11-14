@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
+    
     @include('layouts.meta')
     <!-- Favicons -->
     <link href="{{ asset('site_assets_1/favicon.ico')}}" rel="icon">

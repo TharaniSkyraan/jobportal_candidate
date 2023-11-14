@@ -8,7 +8,6 @@
 </style>
 <div class="main-header">
 	<header id="header" class="header header-open fixed-top bg-color-blue d-flex justify-content-center align-items-center">
-		
 		<!-- <button class="navbar-toggler sidenavv-toggler ml-auto" type="button">
 			<i class="fa fa-bars" id="lock-icon1"></i>
 		</button>  -->
