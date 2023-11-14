@@ -251,6 +251,9 @@ class JobsController extends Controller
         if($job==NULL){
             abort(404);
         }
+        if(Auth::check()){
+            JobViewedCandidate::updateOrCreate(['user_id' => Auth::user()->id],['job_id'=>$job->id,'job_slug'=>$slug]);
+        }
         $breakpoint = JobScreeningQuiz::whereJobId($job->id)->whereBreakpoint('yes')->first();
         $meta =[];
         if(!empty($job))
@@ -272,6 +275,7 @@ class JobsController extends Controller
             $this->shareSeoToLayout('job_detail',$tt,$wl,$cpn);  
 
         }
+
         
         return view('jobs.job_detail', compact('job','meta','breakpoint'));
     }

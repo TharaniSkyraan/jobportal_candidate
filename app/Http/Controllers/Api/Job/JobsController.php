@@ -21,6 +21,7 @@ use App\Traits\BlockedKeywords;
 use App\Model\ProfilePercentage;
 use App\Model\JobScreeningQuiz;
 use App\Model\JobWorkLocation;
+use App\Model\JobViewedCandidate;
 use App\Http\Requests\Api\Job\JobSearchRequest;
 use App\Model\Industry;
 
@@ -285,12 +286,15 @@ class JobsController extends BaseController
         if($job==NULL){
             return $this->sendError('No Job Available.'); 
         }
+
         $exclude_days = isset($job->walkin->exclude_days)?'(Excluding'. $job->walkin->exclude_days.')':'';
         $job_skill_id = explode(',',$job->getSkillsStr());
         $user = '';
         $skill = array();
         if(Auth::check())
         {                
+            
+            JobViewedCandidate::updateOrCreate(['user_id' => Auth::user()->id],['job_id'=>$job->id,'job_slug'=>$slug]);
             $user_id = Auth::user()->id;
             $user = User::find($user_id);
             $jobapplied = JobApply::whereJobId($job->id)

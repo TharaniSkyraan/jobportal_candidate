@@ -54,21 +54,7 @@ class JobsController extends Controller
         
         return response()->json(array('success' => true, 'html' => $returnHTML));
     }
-    
-    public function JobDetail(Request $request, $slug){  
-        $user_id = Auth::user()->id;
-        $job = Job::whereSlug($slug)->first();
-        $jobdetail = $this->jobapply->whereUserId($user_id)->whereJobId($job->id)->first();
-        $application_status = $jobdetail->application_status??'empty';
-        if($job==NULL){
-            abort(404);
-        }
-        $breakpoint = JobScreeningQuiz::whereJobId($job->id)->whereBreakpoint('yes')->first();
-     
-        return view('user.dashboard.job_detail', compact('job', 'application_status', 'breakpoint'));
-    }
-
-    
+        
     public function savedJobs()
     {        
         return view('user.dashboard.saved_jobs');
