@@ -95,12 +95,14 @@
   color: #333;
   font-weight: 500px;
   transition: all 0.3s ease;
-}
+}       
 .sidenavbar.close .logo_name,
 .sidenavbar.close #lock-icon,
 .sidenavbar.close #sidenavbar-close {
   /* opacity: 0; */
   /* pointer-events: none; */
+}.resultjobwb .breadcrumbty{
+  position: absolute;
 }
 
 #lock-icon{

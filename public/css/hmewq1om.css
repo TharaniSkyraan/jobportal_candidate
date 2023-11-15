@@ -31,7 +31,7 @@
     box-shadow: 1px 1px 14px 0 rgb(18 38 63 / 20%) !important;
     right: 30px;
     top: 70px;
-    z-index: 9;
+    z-index: 99;
 }.pfcmpletalert .wrning{
     background:#D0DEF5;
     height: 60px;
@@ -84,7 +84,6 @@
     padding: 0.8rem 0.9rem 0.6rem 1.5rem;
     font-size: 18px !important;
 } .popularser_card{
-    border: 1px solid #0336880f;
     border-radius: 10px !important;
     padding: 25px 0px;
     background-color: #F8F8F8;
@@ -254,7 +253,7 @@
     }.blog-sectionw .card {
         padding: 8px;
     }.blog-sectionw .item{
-        padding-right: 10px;
+        padding: 5px;
     }
 }
 
@@ -355,7 +354,7 @@
 
 @media(min-width: 481px) and (max-width: 576px){
     .blog-sectionw .item{
-        padding-right: 10px;
+        padding: 5px;
     }
 }
 

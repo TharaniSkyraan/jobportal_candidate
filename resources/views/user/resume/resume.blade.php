@@ -12,9 +12,7 @@
 }
 
 @media (max-width: 467px){
-    .replace-resume{
-        margin-top:10px !important;
-    }
+
 }.sjhiqum{
     font-weight: 600;
     text-align:center;
@@ -39,7 +37,7 @@
                         <span class='sjhiqum'>Resume (<span class="m-1">You can keep up to 2 resumes</span>)</span>
                         <!-- resume store 1 -->
                         <div class="row mt-3 resume{{$resume1->id}}">
-                            <div class="col-lg-6 col-md-8 col-sm-8 col-12">
+                            <div class="col-lg-6 col-md-8 col-sm-8 col-8">
                                 <div class="row">
                                     <div class="col-12 d-flex">
                                         <a href="javascript:void(0);" data-aci="{{$resume1->id??''}}" class="download-resume text-dark text-decoration-underline cursor-pointer" data-bs-toggle="tooltip" data-bs-placement="top" title="Considered to be the default Resume!"><i class="fa fa-download"></i> Resume-1</a>    
@@ -51,12 +49,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12">
+                            <div class="col-lg-6 col-md-4 col-4 col-sm-4 col-xs-12">
                                 <div class="row">
                                     <div class="col-12 d-flex">
                                         <span class="cursor-pointer prime1" data-bs-toggle="modal" data-bs-target="#resume_upload_modal" onClick="Replace({{$resume1->id}});" aria-hidden="true" @if($resume1->is_default==1) style="display:none" @endif>
                                             <i class="fa fa-refresh"></i>
-                                            &nbsp;Replace
+                                            &nbsp;<span>Replace</span>
                                         </span>
                                         <span class="prime1 mx-2" @if($resume1->is_default==1) style="display:none" @endif>
                                             <i class="fa fa-trash cursor-pointer" onClick="deleteResumes({{$resume1->id}});"></i>
@@ -69,7 +67,7 @@
                         @if($resume2!=null)
                             <!-- resume store 2 -->
                             <div class="row mt-3 resume{{$resume2->id}}">
-                                <div class="col-lg-6 col-md-8 col-sm-8 col-12">
+                                <div class="col-lg-6 col-8 col-md-8 col-sm-8">
                                     <div class="row">
                                         <div class="col-12 d-flex">   
                                             <a href="javascript:void(0);" data-aci="{{$resume2->id??''}}" class="download-resume text-dark text-decoration-underline">
@@ -83,12 +81,12 @@
                                     </div>     
                                 </div>     
 
-                                <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12">
+                                <div class="col-lg-6 col-4 col-md-4 col-sm-4 col-xs-12">
                                     <div class="row">
                                         <div class="col-12 replace-resume d-flex">
                                             <span class="cursor-pointer prime2" data-bs-toggle="modal" data-bs-target="#resume_upload_modal" onClick="Replace({{$resume2->id}});" aria-hidden="true" @if($resume2->is_default==1) style="display:none" @endif>
                                                 <i class="fa fa-refresh"></i>
-                                                &nbsp;Replace
+                                                &nbsp;<span>Replace</span>
                                             </span>
                                             <span class="prime2 mx-2" @if($resume2->is_default==1) style="display:none" @endif>
                                                 <i class="fa fa-trash cursor-pointer" onClick="deleteResumes({{$resume2->id}});"></i>

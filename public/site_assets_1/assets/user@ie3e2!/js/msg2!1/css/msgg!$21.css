@@ -262,8 +262,12 @@
   .mob-res-arrow{
     display: none;
   }
-    @media screen and (max-width: 768px)
-  {
+ 
+  @media(max-width: 1299px){
+    #nodatamsg img{
+      width: 300px;
+      margin: 0 auto !important;  
+    }
   }
   @media screen and (max-width: 991px){
     .main-panel-customize{      

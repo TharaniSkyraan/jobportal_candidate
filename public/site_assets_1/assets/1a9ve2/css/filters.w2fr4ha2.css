@@ -1175,10 +1175,11 @@ min-height: 240px;
 .sidebar .nav>.nav-item.active>a, .sidebar[data-background-color=white] .nav>.nav-item.active>a
 {
     background: rgb(255 255 255 / 3%) !important;
-}.jobcard .avatar-sm img{
+}
+/* .jobcard .avatar-sm img{
     width: 65px !important;
     height:65px !important;
-  }
+  } */
 
 @media only screen and (max-width: 1024px) {
    .btn_c_se{

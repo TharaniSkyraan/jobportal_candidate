@@ -371,7 +371,7 @@
                                         <a href="{{route('view-blog', [$row->id, $row->slug])}}">
                                             <div class="card">
                                                 <div class="row">
-                                                    <div class="col-md-12 col-lg-12 col-xl-5">
+                                                    <div class="col-md-12 col-lg-12 col-xl-5 align-self-center">
                                                         <img src="{{$row->thumbnail_url}}" alt="{{$row->slug}}" class="img-fluid" draggable="false">
                                                     </div>
                                                     <div class="col-md-12 col-lg-12 col-xl-7">

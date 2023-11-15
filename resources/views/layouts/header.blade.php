@@ -55,9 +55,9 @@
 				<nav id="navbar" class="navbar">
 					@if(Auth::check())
 						<ul class="web-nav">    
-							<li><a class="nav-link ps-0 pe-3 search-job-a d-none" href="{{ route('index') }}"><img draggable="false" src="{{asset('images/sidebar/search.png')}}" alt=""></a></li>
-							<li><a class="nav-link ps-0 profile-pic" href="{{ route('index') }}"><span>Find Jobs</span></a></li>
-							<li><a class="nav-link" href="{{ route('employer_messages') }}"><img draggable="false" src="{{asset('images/sidebar/msg.png')}}" alt=""></a></li>
+							@if(Request::is('/')) @else<li><a class="nav-link ps-0 pe-3 search-job-a d-none" href="{{ route('index') }}"><img draggable="false" src="{{asset('images/sidebar/search.png')}}" alt=""></a></li>@endif
+							@if(Request::is('/')) @else<li><a class="nav-link ps-0 profile-pic" href="{{ route('index') }}"><span>Find Jobs</span></a></li>@endif
+							<li class="msg7thb"><a class="nav-link" href="{{ route('employer_messages') }}"><img draggable="false" src="{{asset('images/sidebar/msg.png')}}" alt=""></a></li>
 							{{--<li><a class="nav-link" href="#"><img draggable="false" src="{{asset('images/sidebar/notification.png')}}" alt=""></a></li>--}}
 							<li class="dropdown hidden-caret">
 								<a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#" id="dropdownMenuLink" aria-expanded="false">
@@ -107,8 +107,8 @@
 						</ul>
 					@elseif(!Auth::check())
 						<ul class="">
-							<li><a class="me-5 search-job-a d-none" href="{{ route('index') }}"><img draggable="false" src="{{asset('images/sidebar/search.png')}}" alt=""></a></li>
-							<li><a class="pe-5 profile-pic" href="{{ route('index') }}"><span>Find Jobs</span></a></li>
+							@if(Request::is('/')) @else<li><a class="me-5 search-job-a d-none" href="{{ route('index') }}"><img draggable="false" src="{{asset('images/sidebar/search.png')}}" alt=""></a></li>@endif
+							@if(Request::is('/')) @else<li><a class="pe-5 profile-pic" href="{{ route('index') }}"><span>Find Jobs</span></a></li>@endif
 							<li><a class="btn btn_c_si px-2 py-1 text-white me-5 {{ (Route::is('login') )?'active':''}}" href="{{ route('login') }}">Login</a></li>
 							<li><a class="px-0 profile-pic" href="https://employer.mugaam.com/"> For Recruiter &nbsp; <img  draggable="false" src="{{asset('images/sidebar/forward.png')}}" alt=""></a></li>
 						</ul>

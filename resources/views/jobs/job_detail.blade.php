@@ -64,7 +64,7 @@
     </nav>
     <main class="resultjobwb">
         <div class="resulty-width1 mt-4 mb-4">
-            <div class="mt-3 mb-3 breadcrumbty cursor-pointer">
+            <div class="mb-3 breadcrumbty cursor-pointer">
                 <span><a href="{{url('/')}}" class="slug_brd text-dark"><img src="{{asset('images/detailpage/breadcrumb.svg')}}" alt="breadcrumb-arrow"> Back</a></span>
             </div>            
         </div>

@@ -244,20 +244,20 @@
 
 	<!-- CHnage Password -->
 	<div class="modal fade" id="changephone" tabindex="-1" aria-labelledby="changephoneLabel" aria-hidden="true">
-      <div class="modal-dialog  modal-dialog-centered modal-lg">
+      <div class="modal-dialog  modal-dialog-centered modal-md">
         <div class="modal-content">
           <div class="modal-header" style="border-bottom:unset !important">
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <div class="m-auto" style="width:70%">
+            <div class="m-auto">
               {!! Form::model(Auth::user(), array('method' => 'post', 'route' => array('verify-otp'), 'id' => 'verify-otp')) !!}
                 <div class="text-center">
                   <h2 class="text-green-color">
                     You have changed your phone number 
                   </h2>
                   <h5>Verify by providing the received OTP</h5>
-                  <h5>An OTP was sent to the Email provided</h5>
+                  <h5 class="mb-3">An OTP was sent to the Email provided</h5>
                   {{-- {!! Form::hidden('otp_code', null, array('id'=>'otp_code', 'class'=>'otp')) !!} --}}
                   {!! Form::hidden('full_number', null, array('id'=>'full_number', 'class'=>'otp')) !!}
                   <div id="otp-holder text-center">

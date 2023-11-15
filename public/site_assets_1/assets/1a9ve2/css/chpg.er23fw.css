@@ -344,8 +344,6 @@ font-weight: bolder !important;
 }.blog-sectionw .card p {
     font-size: 15px;
 }.blog-sectionw .card .grayc {
-    position: absolute;
-    bottom: 10px;
     font-size: 14px;
 }.blog-sectionw .grayc {
     cursor: pointer;
@@ -379,11 +377,11 @@ font-weight: bolder !important;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     color: #4a545a;
     -webkit-box-orient: vertical;
     text-transform: capitalize;
-    height: 68px;
+    height: 45px;
 }.blog-sectionw h2{
     overflow: hidden;
     text-overflow: ellipsis;
@@ -398,5 +396,8 @@ font-weight: bolder !important;
     border: none;
     border-radius: 5px;
     margin: 0 auto;
+    max-width: 100%;
+    width: 100%;
+    height: auto;   
     object-fit: contain;
 }

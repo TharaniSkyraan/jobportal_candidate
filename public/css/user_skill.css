@@ -156,8 +156,6 @@
     }.user_card .pf_cfont{
         width: max-content;
         margin: 0 auto;
-    }.replace-resume{
-        margin-top: 20px;
     }#abt_meusr #exp_in_year{
         margin-bottom: 15px;
     }
@@ -333,18 +331,23 @@
 }#my_expernce2 .gry{
     color:#808080;
     font-size: 14px;
-}#my_expernce2 .skilsdtl span{
+}#my_expernce2 .skilsdtl div{
     background: #2b5baa !important;
     color: #fff !important;
     font-size: 14px;
     padding: 4px 15px;
+    margin-bottom: 6px;
     border-radius: 20px;
 }#my_expernce2 .skilsdtl .fa-close{
     font-size: 12px;
-}#my_expernce2 .skilsdtl span{
+}#my_expernce2 .skilsdtl div{
     margin-right: 10px;
 }#my_expernce2 .text-justify{
     text-align: justify;
+}#my_expernce2 .skilsdtl{
+    display: flex;
+    width: fit-content;
+    flex-wrap: wrap;
 }
 /******************
 **1.8.my projects**
@@ -544,6 +547,8 @@
     }.cmpinfo-detail .text-end{
         text-align: start !important;
         margin-top: 1rem;
+    }#my_resme .prime1 span, #my_resme .prime2 span, .primeinfo1, .primeinfo2{
+        display: none !important;
     }
 }
 
@@ -579,15 +584,14 @@
     }
 }
 
-@media(max-width: 1200px){
+@media(min-width: 768px) and (max-width: 1024px)
+{  
     #my_resme .d-flex{
         align-items: center;
         width: 250px;
         margin: 0 auto;
     }
-}
-@media(min-width: 768px) and (max-width: 1024px)
-{    
+    
     #abt_meusr, #my_resme, #my_eductin, #my_expernce2, #my_skills1{
         width: 100%;
     }

@@ -130,7 +130,8 @@ body{
     border: none;
 }#previewgallery .item img{
     width: 600px;
-    height: 100%;
+    /* padding-right: 30px; */
+    height: auto;
     margin: 0 auto;
 }#previewgallery .close_m{
     position: absolute;
@@ -141,16 +142,19 @@ body{
     cursor: pointer;
 }#previewgallery .layer-bottom{
     padding: 15px;
-    position: absolute;
-    bottom: 0px;
+    position: fixed;
     background: #000;
-    width: 100%;
+    width: inherit;
+    bottom: 0;
     opacity: 0.6;
     color: #fff;
 }#previewgallery .item{
     height: 400px;
     width: 600px;
     margin: 0 auto;
+    padding-right: 10px;
+    overflow-x: hidden;
+    overflow-y: scroll;
     position: relative;
 }.owl-carousel .item img {
     display: block;
@@ -199,6 +203,14 @@ body{
 }.nav-tabs .nav-link {
     transition: none !important;
 }
+#previewgallery .item::-webkit-scrollbar {
+    width: 0px
+}#previewgallery .item::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 0px transparent;
+}
+#previewgallery .item::-webkit-scrollbar-thumb {
+    background: transparent;
+}
 
 @media(min-width:1198px){
     .gallerypg .nav-tabs{
@@ -222,7 +234,7 @@ body{
     }.sp_gt5 .steps-partw .arrowstep {
         width: 20px;
     }#previewgallery .item, #previewgallery .layer-bottom, #previewgallery .item img{
-        width: 90%;
+        width: 100%;
     }#previewgallery .layer-bottom{
         right: 0px;
         margin: 0 auto;
@@ -231,6 +243,7 @@ body{
         font-size: 50px;
     }#previewgallery .item{
         height:90%;
+        padding: 0px;
     }.tab-content #aboutcmp .descrip .card {
         box-shadow: none;
         padding-top: 10px;
@@ -242,6 +255,14 @@ body{
         font-size: 15px;
     }#activejobs .jobsearch td strong {
         font-size: 14px;
+    }#previewgallery .item{
+        height: 300px;
+        width: 100%;
+        margin: 0 auto;
+        padding-right: 0px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        position: relative;
     }
 
 }
@@ -549,8 +570,8 @@ body{
         width: 35%;
         margin-bottom: 5px;
   }#previewgallery .close_m{
-    right: 0px;
-    top: 30px;
+    right: 15px;
+    top: -50px;
   }
 }
 
