@@ -74,7 +74,7 @@ class MessageContact extends Model
     
     public function getCompanyImageAttribute()
     {
-        return ($this->company->company)?$this->company->company->company_image:'';
+        return ($this->company->company)?($this->company->company->company_image??asset('site_assets_1/assets/img/industry.svg')):asset('site_assets_1/assets/img/industry.svg');
     }
     
     public function getUnreadAttribute()

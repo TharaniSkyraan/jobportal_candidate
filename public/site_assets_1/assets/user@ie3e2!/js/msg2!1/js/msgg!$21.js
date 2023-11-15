@@ -80,12 +80,12 @@ $(document).on('click', '.action .dropdown-item', function (event) {
             if(update_status=='archive'){
                 toastr.success('Moved Archive successfully');
             }else
-            if(update_status=='archive'){
+            if(update_status=='not_interest'){
                 toastr.success('Moved Spam successfully');
             }else{
                 toastr.success('Revert successfully');
             }
-
+            $('#nodatamsg').removeClass('hide');
         });
 });
 //Selete contact
@@ -205,15 +205,15 @@ function conactlist_html(data) {
 
         $html += `<div class="card card-body jlsca `+active_cls+`" data-mkey="`+val.message_id+`">
                     <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-3 cntpro">`;
+                    <div class="col-xl-3 col-lg-4 col-3 cntpro">`;
         if(val.company_image!=null){
-            $html +=`<div class="avatar avatar-md"><img draggable="false" src="`+val.company_image+`" alt="Img" class="img-fluid rounded-circle"></div>`;
+            $html +=`<div class="avatar avatar-md"><img draggable="false" src="`+val.company_image+`" alt="Img" class="img-fluidd rounded-circle w-100 h-100"></div>`;
         }else{
             $html +=`<div class="avatar avatar-md profileImage rounded-circle">`+val.company_avatar+`</div>`;
         }
                 
         $html +=` </div>
-                    <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-9">
+                    <div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-9">
                         <p>`+val.title+`</p>
                         <h4 class="m-0">`+val.company_name+`</h4>
                         <h5 class="m-0">`+m_created_at;
