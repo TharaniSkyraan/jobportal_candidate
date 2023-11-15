@@ -2,7 +2,7 @@
 @section('custom_scripts')
 <link href="{{ asset('css/candidate_wzrd.css') }}" rel="stylesheet">
 @endsection
-
+@section('title') Mugaam - Reset Password @endsection
 @section('content')
 
 <section id="cndidate_wzrd">
@@ -19,7 +19,7 @@
                           <img draggable="false" src="{{asset('images/footer_logo.png')}}" alt="logo">
                       </a>
                       <h2 class="fw-bolder mt-3"> Reset Password </h2>
-                      <p class="grytxtv px-4">Enter the email associated with your account and we'll send you instructions to reset your password.</p>
+                      <p class="grytxtv px-4">Enter the registered email address of your account to be recovered and receive instructions on password reset.</p>
                   </div>
                   <div class="container">
                     @if(session()->has('message'))

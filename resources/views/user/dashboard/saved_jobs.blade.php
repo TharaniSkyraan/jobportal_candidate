@@ -1,7 +1,5 @@
 @extends('layouts.app')
-  @section('custom_scripts')
-    <title>Mugaam - Saved Jobs Page</title>
-  @endsection
+@section('title') Mugaam - Saved Jobs Page @endsection
 @section('content')
 <style>
   .preview_job {

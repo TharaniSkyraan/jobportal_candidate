@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('custom_scripts')
-    <title>Mugaam - My Projects Page</title>
     <link href="{{ asset('site_assets_1/assets/css/input_tag/jquery-ui.min.css')}}" rel="stylesheet">
     <link href="{{ asset('site_assets_1/assets/css/input_tag/jquery.tagsinput-revisited.css')}}" rel="stylesheet">	  
     <link href="{{ asset('site_assets_1/assets/vendor/select2/select2.min.css') }}" rel="stylesheet">
@@ -12,6 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
 @endsection
+@section('title') Mugaam - My Projects Page @endsection
 @section('content')
 <div class="wrapper" >
 	@include('layouts.dashboard_header')

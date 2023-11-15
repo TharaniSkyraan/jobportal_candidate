@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('custom_styles')
-  <title>Mugaam - FAQ</title>
   <link href="{{ asset('site_assets_1/assets/1a9ve2/css/faq!2&32.css')}}" rel="stylesheet">
   <style>
     .navbar .dropdown ul {
@@ -26,6 +25,7 @@
     }
   </style>
 @endsection
+@section('title') Mugaam - FAQ @endsection
 @section('content')
   <div class="wrapper" >        
     @include('faq.header')

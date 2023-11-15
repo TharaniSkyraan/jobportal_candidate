@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('custom_scripts')
-    <title>Mugaam - Career Information</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{ asset('site_assets_1/assets/vendor/select2/select2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('site_assets_1/assets/1a9ve2/css/userbasic.w2fr4ha2.css')}}" rel="stylesheet">
@@ -9,6 +8,7 @@
     <script src="{{ asset('site_assets_1/assets/intl-tel-input/js/intlTelInput.js')}}" ></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 @endsection
+@section('title') Mugaam - Career Information @endsection
 @section('content')
 <div class="wrapper" >
 	@include('layouts.dashboard_header')

@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('custom_styles')
     <link href="{{ asset('css/hjb2wrli.css')}}" rel="stylesheet">
-    <title>{{$breadcrumbs->title}} - {{$company->name}}</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" rel="stylesheet" />
 @endsection
 @section('content')
+@section('title'){{$breadcrumbs->title}} - {{$company->name}} @endsection
 @include('layouts.header')
     @php 
         $arra=array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');

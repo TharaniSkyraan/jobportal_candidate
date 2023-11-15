@@ -3,8 +3,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />        
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    @if(isset($seo))
+    @if(isset($seo->seo_title))
     <title>{{ $seo->seo_title ?? ''}}</title>
+    @else
+    <title>@yield('title')</title>
+    @endif
+    @if(isset($seo))
     <meta name="title" content="{{ $seo->seo_title ?? ''}}">
     <meta name="description" content="{{ $seo->seo_description ?? ''}}"/>
     @if(!empty($seo->seo_keywords))

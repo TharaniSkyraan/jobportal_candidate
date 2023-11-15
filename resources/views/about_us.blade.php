@@ -2,7 +2,6 @@
 @extends('layouts.app')
 
 @section('custom_styles')
-<title>Mugaam - About Us</title>
 <style>
 section{
     padding: 120px 0;
@@ -12,6 +11,7 @@ section{
 }
 </style>
 @endsection
+@section('title') Mugaam - About Us @endsection
 @section('custom_scripts')        
     <link href="{{ asset('site_assets_1/assets/css/static_css.css') }}" rel="stylesheet">
 @endsection

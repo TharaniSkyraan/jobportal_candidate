@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('custom_scripts')
-<title>Mugaam - Contact Us</title>
 <link href="{{ asset('site_assets_1/assets/css/static_css.css') }}" rel="stylesheet">
 <link href="{{ asset('site_assets_1/assets/css/contactus.css') }}" rel="stylesheet">
 @endsection
+@section('title') Mugaam - Contact Us @endsection
 @section('content')
 @include('layouts.header')
 <div id="content-wrap">

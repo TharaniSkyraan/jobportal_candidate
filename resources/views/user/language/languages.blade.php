@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('custom_scripts')
-    <title>Mugaam - Languages Known</title>
     <link href="{{ asset('site_assets_1/assets/css/input_tag/jquery-ui.min.css')}}" rel="stylesheet">
     <link href="{{ asset('site_assets_1/assets/css/input_tag/jquery.tagsinput-revisited.css')}}" rel="stylesheet">	  
     <link href="{{ asset('site_assets_1/assets/vendor/select2/select2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('site_assets_1/assets/vendor/selectize/selectize.css')}}" rel="stylesheet">
     <link href="{{ asset('site_assets_1/assets/1a9ve2/css/userbasic.w2fr4ha2.css')}}" rel="stylesheet">
 @endsection
+@section('title') Mugaam - Languages Known @endsection
 @section('content')
 <div class="wrapper" >
 	@include('layouts.dashboard_header')

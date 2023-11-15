@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('custom_scripts')
-    <title>Mugaam - About me Page</title>
     <link rel="stylesheet" href="{{ asset('site_assets_1/assets/date_flatpicker/flatpickr.min.css')}}">
     <script src="{{ asset('site_assets_1/assets/date_flatpicker/flatpickr.js')}}"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shortcut-buttons-flatpickr@0.1.0/dist/themes/light.min.css">
@@ -8,6 +7,7 @@
     <link href="{{ asset('css/about_me.css') }}" rel="stylesheet">
 @endsection
 
+@section('title') Mugaam - About me Page @endsection
 
 @section('content')
 <div class="wrapper" >

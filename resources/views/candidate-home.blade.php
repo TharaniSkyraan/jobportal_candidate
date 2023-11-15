@@ -47,7 +47,7 @@
                             <h1>Begin your <br/><strong class="fw-bolder">Dream career.</strong></h1>
                             <h3>
                             <span> 1000+ Jobs posted all over the world </span><br/>
-                                <strong class="fw-bolder">Opportunities waiting for your successfull start</strong> 
+                                <strong class="fw-bolder">Opportunities waiting for your successful start</strong> 
                             </h3>
                             @if(Auth::check()) @else <a href="{{url('login')}}"><button>Join the Job Hunt Now</button></a>@endif
                         </div>

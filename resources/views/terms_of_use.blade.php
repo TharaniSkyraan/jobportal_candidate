@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('custom_scripts')
-    <title>Mugaam - Terms & Conditions</title>
     <link href="{{ asset('site_assets_1/assets/css/static_css.css') }}" rel="stylesheet">
 @endsection
+@section('title') Mugaam - Terms & Conditions @endsection
 @section('content')
 
     @include('layouts.header')
