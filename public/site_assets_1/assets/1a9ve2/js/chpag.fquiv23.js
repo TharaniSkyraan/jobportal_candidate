@@ -277,7 +277,3 @@ $(function(){
 
     }
 });
-
-    $(document).on('click', '.renty_pocdd .card', function(){
-        localStorage.setItem('page_url', "");
-    });

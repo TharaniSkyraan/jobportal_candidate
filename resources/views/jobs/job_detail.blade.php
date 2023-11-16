@@ -676,12 +676,9 @@
             $('#screenings').modal('show');
         });
 
-        var pgurl = localStorage.getItem('page_url');
-        if(pgurl == null){
-            $('.slug_brd').attr('href', baseurl);
-        }else{
-            $('.slug_brd').attr('href', pgurl);
-        }
+        
+        var backurl = document.referrer || baseurl;
+        $('.slug_brd').attr('href', backurl);
 
     </script>
     <script type="text/javascript" src="{{ asset('site_assets_1/assets/2e9ejr3/js/destail.e2k3eu0.js') }}"></script>
