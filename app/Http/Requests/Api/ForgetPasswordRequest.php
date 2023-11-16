@@ -42,7 +42,7 @@ class ForgetPasswordRequest extends Request
         }
         throw new HttpResponseException(response()->json([
             'success'   => false,
-            'message'   => 'Validation errors',
+            'message'   => $errors,
             'data'=> $errors
         ]));
     }
