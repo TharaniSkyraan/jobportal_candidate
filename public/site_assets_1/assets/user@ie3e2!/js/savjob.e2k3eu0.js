@@ -63,9 +63,9 @@ $(document).ready(function () {
     btn = $(this);
     jobUnsave(btn);
   });
-  $(document).on( 'click', '.japplybtn', function(e) {
+$(document).on( 'click', '.japplybtn', function(e) {
     e.stopPropagation();
-    let jobidv = $(this).parent().parent().parent().parent().data('jobid');
+    let jobidv = $(this).closest('.job-list').data('jobid');
     btn = $(this);
     jobApply(btn, jobidv);
    
@@ -92,11 +92,10 @@ function jobApply(e, jobidv) {
             datatype: 'JSON',
             beforeSend:function(){
                 $(btn).html(
-                    `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading..`
+                    `<i class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></i> <span>Loading..</span>`
                 );
             },
             success: function(resp) {
-                
                 let redir='';
                 let applied_b =false;
                 let reload_page = resp.reload_page || false;
@@ -115,50 +114,18 @@ function jobApply(e, jobidv) {
                 }
                 
                 if(applied_b){
-                    $(`<label class="japplied-btn"><img draggable="false" class="imagesz-2" src="${baseurl}site_assets_1/assets/img/Shortlist.png" alt="applied"> <span class="fw-bold">Applied</span></label>`).insertAfter(btn);
-                    $(btn).hide();
+                    $(btn).closest('.japply-btn').addClass('japplied-btn').removeClass('japply-btn');
+                    $(btn).closest('.japplied-btn').html(`<button class="btn p-1 px-2 shadow-sm rounded-pill">
+                                                            <img draggable="false" class="imagesz-2" src="${baseurl}site_assets_1/assets/img/Shortlist.png" alt="applied"> 
+                                                            <span class="fw-bold">Applied</span>
+                                                        </button>`);
                 }
                 else{
-                    $(btn).html(
-                        `<img draggable="false" class="image-size" src="${baseurl}site_assets_1/assets/img/apply2.png" alt="apply"> Apply</button>`
-                    );
-                    $(btn).show();
+                    $(btn).html(`<img draggable="false" class="image-size" src="${baseurl}site_assets_1/assets/img/apply2.png" alt="apply"> <span>Apply</span>`);
                 }
+
                 $(btn).prop("disabled", false);
 
-                let url ='';
-                //redir action
-                if(redir =='login' || redir == 'redirect_user' ){
-                    url = baseurl + redir;
-                    openInNewTabWithNoopener(url);
-                    // alert()
-                }else if(redir =='company/postedjobslist'){
-                    location.reload();
-                }
-                else{
-                    if(resp.success == false){
-                        var html = `<div class="modal-content">
-                            <div class="modal-body pending">
-                                <div class="text-center mb-3">
-                                    <h1 class="fw-bolder">Hi `+resp.candidate+`</h1>
-                                    <h3 class="fw-bolder">Your Profile Completion is</h3>
-                                </div>
-                                <div class="mx-auto mb-3 progressbar useraccountsetting cursor-pointer fw-bolder" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" style="--value: `+resp.percentage+`">    
-                                `+resp.percentage+`                     
-                                </div>
-                                <div class="mb-4">
-                                    <span class="text-center align-items-center justify-content-center d-flex">Complete your profile minimum 40% to apply for Jobs</span>
-                                </div>
-                                <h3 class="text-center text-primary fw-bold"><a href="`+redir+`">COMPLETE NOW</a></h3>
-                            </div>
-                        </div>`;
-                        $('.cmpPrf').html(html);
-                        $('#cmptprf').modal('show');
-                    }elseif(reload_page)
-                    {
-                            location.reload();
-                    }
-                }
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 // $('#content').html(errorMsg);

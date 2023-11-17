@@ -1,44 +1,40 @@
-
-.preview_job{
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
-  }
-  .preview_job p{
-    font-size: 14px;
-    margin-bottom: 0.5rem;
-  }
-  .image-size{
-    width: 16px;
-    /* vertical-align: text-top; */
-    margin-top: -2px;
-  }
-  .imagesz-2{
-    width: 21px;
-    /* vertical-align: text-bottom; */
-    margin-top: -2px;
-  }
-  .nav-link{
-    font-size: 1.025rem !important;
-  }.allJobList ul.preview_job{
-    padding: 0px;
-  }
-  .janoimg{
-    width: 50%;    
-  }.btnc1{
-    line-height: 0;
-    padding: 1.165rem 1.7rem;
-    border-radius: 3px;
-    transition: 0.5s;
-    color: #fff;
-    background: #4285F4;
-    box-shadow: 0px 5px 25px rgb(65 84 241 / 30%);
+.preview_job {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+.preview_job p {
+  font-size: 14px;
+  margin-bottom: 0.5rem;
+}
+.image-size {
+  width: 16px;
+  /* vertical-align: text-top; */
+  margin-top: -2px;
+}
+.imagesz-2 {
+  width: 21px;
+  /* vertical-align: text-bottom; */
+  margin-top: -2px;
+}
+.nav-link {
+  font-size: 1.025rem !important;
+}
+.janoimg {
+  width: 50%;    
+}
+.btnc1 {
+  line-height: 0;
+  padding: 1.165rem 1.7rem;
+  border-radius: 3px;
+  transition: 0.5s;
+  color: #fff;
+  background: #4285F4;
+  box-shadow: 0px 5px 25px rgb(65 84 241 / 30%);
 }
 .btnc1 span {
-    /* font-family: "Nunito", sans-serif; */
-    
-	font-family: "Poppins";
+    font-family: "Nunito", sans-serif;
     font-weight: 500;
     font-size: 14px;
     letter-spacing: 1px;
@@ -49,17 +45,96 @@
 .nav-pills .nav-link {
     padding: 10px 30px;
 }
-.fw-bold {
-    font-weight: 500!important;
+.allJobList{
+  padding-left:2rem !important;
+}
+@media(min-width: 280px) and (max-width: 599px){
+    .allJobList{
+      padding-left:1rem !important;
+      padding-right:1rem !important;
+    }
 }
 
-@media(max-width: 576px){
-  .allJobList .cmpprofile{
-    display: none;
-  }
+.image-size {
+    width: 16px;
+    margin-top: -3px;
 }
+.japply-btn, .japplied-btn{
+    width: 20%;
+    text-align: end;
+}
+.job-list .imagesz-2 {
+    width: 20px;
+}
+.japply-btn button {
+    background-color: #4285f4 !important;
+    color: #fff;
+}
+.japplied-btn button, .favjob button {
+    background-color: #F3F7FE;
+}
+.job-list .jtle-jcmp {
+    width: 80%;
+}
+.japply-btn .image-size {
+    width: 12.5px;
+}
+.nav.nav-pills{
+  flex-wrap: unset;
+}
+
 @media(min-width: 576px) and (max-width: 1300px){
   .allJobList .dsf2lmq{
     margin-left: 15px;
+  }
+}
+@media only screen and (max-width: 991px)
+{
+  .allJobList{
+    padding:2rem !important;
+  }
+  .job-list .japplied-btn span{
+    display: none;
+  }
+  .japplied-btn button{
+      background-color: #ffffff00;
+      box-shadow: none !important;
+      padding: 0px !important;
+  }
+}
+@media only screen and (max-width: 768px)
+{  
+  .allJobList{
+    padding:1.4rem !important;
+  }
+}
+@media only screen and (max-width: 575px)
+{
+  .favjob button {
+      background-color: #ffffff00;
+      box-shadow: none !important;
+      padding: 0px !important;
+  }
+  .job-list .favjob .image-size {
+    width: 16px;
+  }
+  .job-list .cmpprofile {
+      display: none;
+  }
+  .job-list .japply-btn span , .job-list .jd_txt, .favjob span, .job-list .jdesc{
+      display: none;
+  }
+  .job-list .jtle-jcmp {
+      width: 90%;
+  }
+  .job-list .japplied-btn, .job-list .japply-btn{
+    width: 10%;
+  }    
+  .jepiry{
+      margin-top: -0.5rem !important;
+      margin-bottom: -0.5rem !important;
+  }
+  .nav.nav-pills{
+    overflow: scroll;
   }
 }

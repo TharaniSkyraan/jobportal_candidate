@@ -19,7 +19,7 @@
                   <div class="card-body wizard-tab" style="background-color:unset !important">
                       <ul class="nav nav-pills" id="pills-tab" role="tablist">
                           <li class="nav-item applicationStatus mb-4" role="all">
-                              <button class="nav-link active" id="pills-all-tab" data-bs-toggle="pill" data-bs-target="#pills-all" data-type="all" type="button" role="tab" aria-controls="pills-all" aria-selected="true">All</button>
+                              <button class="nav-link" id="pills-all-tab" data-bs-toggle="pill" data-bs-target="#pills-all" data-type="all" type="button" role="tab" aria-controls="pills-all" aria-selected="true">All</button>
                           </li>
                           <li class="nav-item applicationStatus mb-4" role="view">
                               <button class="nav-link" id="pills-viewed-tab" data-bs-toggle="pill" data-bs-target="#pills-viewed" data-type="view" type="button" role="tab" aria-controls="pills-viewed" aria-selected="false">Viewed</button>
@@ -110,12 +110,26 @@ $(document).ready(function () {
           }
 
           $('.jobList').removeClass('is-loading');
-
         }
-    });
+
+      });
     
   }
   fetch_data(1);  
 });
+var hash = window.location.hash;
+$('.nav-pills a').click(function (e) {
+    $(this).tab('show');
+    var scrollmem = $('body').scrollTop();
+    window.location.hash = this.hash;
+    $('html,body').scrollTop(scrollmem);
+});
+if(hash){
+    $('.nav-pills > li > a[href="'+hash+'"]').addClass('active');
+    $(hash).addClass('show active');
+}else{
+    $('.nav-pills > li > a[href="#aboutcompany"]').addClass('active');
+    $('#pills-all-tab').addClass('show active');
+}
 </script>
 @endsection
