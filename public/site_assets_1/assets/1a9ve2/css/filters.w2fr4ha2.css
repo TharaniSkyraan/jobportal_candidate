@@ -1176,10 +1176,10 @@ min-height: 240px;
 {
     background: rgb(255 255 255 / 3%) !important;
 }
-/* .jobcard .avatar-sm img{
+.jobcard .avatar-sm img{
     width: 65px !important;
     height:65px !important;
-  } */
+  }
 
 @media only screen and (max-width: 1024px) {
    .btn_c_se{
@@ -1243,9 +1243,16 @@ min-height: 240px;
         margin-bottom: 0px !important;
     }.search-inp-sec .pre-d{
         margin: 0px !important;
+    } .jobcard .jcnt .d-flex{
+        margin-left: 25px;
     }
 }
 
+@media(min-width: 768px) and (max-width: 1300px){
+    .jobcard .jcnt .d-flex{
+        margin-left: 15px;
+    }
+}
 
 @media screen and (max-width: 992px){
     .filterTooltip{

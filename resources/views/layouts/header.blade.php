@@ -110,7 +110,7 @@
 							@if(Request::is('/')) @else<li><a class="me-5 search-job-a d-none" href="{{ route('index') }}"><img draggable="false" src="{{asset('images/sidebar/search.png')}}" alt=""></a></li>@endif
 							@if(Request::is('/')) @else<li><a class="pe-5 profile-pic" href="{{ route('index') }}"><span>Find Jobs</span></a></li>@endif
 							<li><a class="btn btn_c_si px-2 py-1 text-white me-5 {{ (Route::is('login') )?'active':''}}" href="{{ route('login') }}">Login</a></li>
-							<li><a class="px-0 profile-pic" href="https://employer.mugaam.com/"> For Recruiter &nbsp; <img  draggable="false" src="{{asset('images/sidebar/forward.png')}}" alt=""></a></li>
+							<li><a class="px-0 profile-pic" href="https://employer.mugaam.com/" target="_blank"> For Recruiter &nbsp; <img  draggable="false" src="{{asset('images/sidebar/forward.png')}}" alt=""></a></li>
 						</ul>
 					@endif
 				</nav>

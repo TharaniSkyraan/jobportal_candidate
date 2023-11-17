@@ -6,8 +6,8 @@
 
 @include('layouts.header')
     <div class="sdad_aw">
-        <button class="mobile_apply applyrs_btn japplybtn japply-btn" id="japplybtn" data-value="disabled"><img src="{{asset('images/detailpage/apply_icon.svg')}}" alt="apply-icon"> <span>Apply</span></button>
-        <button class="mobile_apply applied_bm japplied-btn"><img src="{{asset('images/detailpage/applied.svg')}}" alt="applied-icon"> <span>Applied</span></button>
+        <button class="mobile_apply applyrs_btn japplybtn japply-btn" id="japplybtn" data-value="disabled"><img src="{{asset('images/detailpage/apply_icon.svg')}}" alt="apply-icon"><span> Apply </span></button>
+        <button class="mobile_apply applied_bm japplied-btn"><img src="{{asset('images/detailpage/applied.svg')}}" alt="applied-icon"><span> Applied </span></button>
     </div>
     <!-- sticky header -->
     <nav class="navbar jsky_hb navbar-expand-lg navbar-light">

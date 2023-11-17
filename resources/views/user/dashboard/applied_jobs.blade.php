@@ -116,7 +116,6 @@ $(document).ready(function () {
     
   }
   fetch_data(1);  
-
 });
 </script>
 @endsection
