@@ -55,8 +55,6 @@ $(document).on('click', '.jobcard' , function(){
     let jobid = $(this).data('jobid');
     if(jobid != '' ){
         url = baseurl + 'detail/'+ jobid;
-        var currentUrl = window.location.href;
-        localStorage.setItem('page_url', currentUrl);
         openInNewTabWithNoopener(url)
     }
 });

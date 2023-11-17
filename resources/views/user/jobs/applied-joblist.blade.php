@@ -72,8 +72,6 @@
         const aTag = document.createElement('a');
         aTag.rel = 'noopener';
         aTag.target = "_blank";
-        var currentUrl = window.location.href;
-        localStorage.setItem('page_url', currentUrl);
         aTag.href = '{{ url("detail") }}/'+$(this).data("jobid");
         aTag.click();
     });
