@@ -380,6 +380,12 @@
   } */
 }
 
+@media(max-width: 1200px) {
+  .resultjobwb .breadcrumbty{
+    position: relative;
+  }
+}
+
 @media screen and (max-width: 800px) {
  
   .sidenavbar {

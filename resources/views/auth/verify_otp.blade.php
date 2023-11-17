@@ -33,7 +33,7 @@
                            @csrf
                             <div class="mb-3">
                                 <label for="otp" class="form-label">Received OTP</label>
-                                <input type="text" placeholder="Enter OTP" class="form-control" id="otp" name   ="otp" aria-describedby="otp">
+                                <input type="text" placeholder="Enter OTP" class="form-control" id="otp" name="otp" aria-describedby="otp">
                                 <small id="err_otp" class="text-muted err_msg text-danger"></small>
                             </div>
                             <div class="mt-3 mb-5">

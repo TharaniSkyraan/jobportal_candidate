@@ -21,6 +21,8 @@
   }
   .nav-link{
     font-size: 1.025rem !important;
+  }.allJobList ul.preview_job{
+    padding: 0px;
   }
   .janoimg{
     width: 50%;    
@@ -49,4 +51,15 @@
 }
 .fw-bold {
     font-weight: 500!important;
+}
+
+@media(max-width: 576px){
+  .allJobList .cmpprofile{
+    display: none;
+  }
+}
+@media(min-width: 576px) and (max-width: 1300px){
+  .allJobList .dsf2lmq{
+    margin-left: 15px;
+  }
 }
