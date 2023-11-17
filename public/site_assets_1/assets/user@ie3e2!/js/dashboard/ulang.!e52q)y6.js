@@ -73,7 +73,7 @@ function submitUserLanguageForm() {
   if(result != false){
 
     var form = $('#add_edit_user_language');
-
+    $('.btn_c_s1').prop("disabled", true);
     $.ajax({
 
       url     : form.attr('action'),
@@ -98,20 +98,23 @@ function submitUserLanguageForm() {
         toastr.success(json.message);
         
 
+        $('.btn_c_s1').prop("disabled", false);
+
 
       },
 
       error: function(json){
 
         if (json.status === 422) {
-          var resJSON = json.responseJSON;
-          $('.help-block').html('');
-          $.each(resJSON.errors, function (key, value) {
-          $('.' + key + '-error').html('<strong>' + value + '</strong>');
-          $('#div_' + key).addClass('has-error');
-        });
-
+            var resJSON = json.responseJSON;
+            $('.help-block').html('');
+            $.each(resJSON.errors, function (key, value) {
+            $('.' + key + '-error').html('<strong>' + value + '</strong>');
+            $('#div_' + key).addClass('has-error');
+          });
         }
+
+        $('.btn_c_s1').prop("disabled", false);
       }
     });
   }

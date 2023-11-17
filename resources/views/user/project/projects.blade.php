@@ -35,7 +35,8 @@
                     <div class="append-form-project">
                         @if(count(Auth::user()->userProjects) == 0)
                         <div class="text-center">
-                            <img draggable="false" src="{{ asset('site_assets_1/assets/img/fresher.png')}}" height="250" width="250">
+                            <img draggable="false" src="{{ asset('site_assets_1/assets/img/place_holder/no_project_added.svg')}}" height="250" width="250">
+                            <h4>No Project Added</h4>
                         </div>
                         @endif 
                     </div>

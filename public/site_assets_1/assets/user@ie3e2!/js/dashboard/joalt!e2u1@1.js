@@ -80,6 +80,7 @@
 
     function submitJobAlertForm() {
       var result = validatejob_alertForm(); 
+      $('.btn_c_s1').prop("disabled", true);
       if(result != false){
         var form = $('#add_edit_user_job_alert');
         $.ajax({
@@ -102,6 +103,7 @@
           });
           
           $('.addJobAlert').show();
+          $('.btn_c_s1').prop("disabled", false);
         },
         error: function(json){
             if (json.status === 422) {
@@ -113,6 +115,7 @@
                 $('#div_' + key).addClass('has-error');
                 });
             } 
+            $('.btn_c_s1').prop("disabled", false);
           }
         });
       }

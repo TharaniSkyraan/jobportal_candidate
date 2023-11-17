@@ -83,8 +83,8 @@
           validateFormFields('from_year','Please select from year of month.','');
           errStaus=true;
         }
-        if($("input[name='pursuing']").is(':checked') == false){
-          
+        if($("input[name='pursuing']").is(':checked') == false)
+        {  
             if($("#add_edit_user_education").find('.to_year').val() == ''){
               validateFormFields('to_year','Please select from year of month.','');
               errStaus=true;
@@ -135,7 +135,7 @@
 
         // form validation ends
         var form = $('#add_edit_user_education');
-
+        $('.btn_c_s1').prop("disabled", true);
         $.ajax({
             url     : form.attr('action'),
             type    : form.attr('method'),
@@ -166,6 +166,7 @@
               
               toastr.options.timeOut = 1000;
               toastr.success('Successfully Updated.');  
+              $('.btn_c_s1').prop("disabled", false);
              
             },
             error: function(json){
@@ -177,6 +178,7 @@
                   $('#div_' + key).addClass('has-error');
                 });
               }
+              $('.btn_c_s1').prop("disabled", false);
             }
         });
       }

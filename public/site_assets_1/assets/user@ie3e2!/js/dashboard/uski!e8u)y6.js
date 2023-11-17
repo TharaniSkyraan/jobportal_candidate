@@ -94,6 +94,7 @@ function loadUserSkillForm(form, id=null){
     if(result != false){
 
       var form = $('#add_edit_user_skill');
+      $('.btn_c_s1').prop("disabled", true);
 
       $.ajax({
 
@@ -119,6 +120,7 @@ function loadUserSkillForm(form, id=null){
           });
           $('.addSkills button').show();
 
+          $('.btn_c_s1').prop("disabled", false);
         },
         error: function(json){
 
@@ -133,6 +135,7 @@ function loadUserSkillForm(form, id=null){
 
             } 
 
+            $('.btn_c_s1').prop("disabled", false);
         }
 
       });

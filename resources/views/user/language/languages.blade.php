@@ -31,7 +31,8 @@
                     <div class="append-card-language">
                         @if(count(Auth::user()->userLanguages) == 0)
                         <div class="text-center">
-                            <img draggable="false" src="{{ asset('site_assets_1/assets/img/fresher.png')}}" height="250" width="250">
+                            <img draggable="false" src="{{ asset('site_assets_1/assets/img/place_holder/no_lang_added.svg')}}" height="250" width="250">
+                            <h4>No Language Added</h4>
                         </div>
                         @endif 
                     </div>

@@ -37,9 +37,10 @@
                     </div>
                     <div class="append-form-experience">
                         @if(count(Auth::user()->userExperience) == 0)
-                        <div class="text-center">
-                            <img draggable="false" src="{{ asset('site_assets_1/assets/img/fresher.png')}}" height="250" width="250">
-                        </div>
+                            <div class="text-center">
+                                <img draggable="false" src="{{ asset('site_assets_1/assets/img/place_holder/no_exp_added.svg')}}" height="250" width="250">
+                                <h4>No Experience Added</h4>
+                            </div>
                         @endif 
                     </div>
                     <!-- experience card-->

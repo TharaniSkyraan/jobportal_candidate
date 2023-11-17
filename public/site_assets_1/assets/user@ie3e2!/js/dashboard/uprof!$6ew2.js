@@ -42,13 +42,20 @@ $("#basic-info-submit-button").click(function(){
     var dd = today.getDate();
     var mm = today.getMonth()+1; //January is 0 so need to add 1 to make it 1!
     var yyyy = today.getFullYear()-14;
-    var yyyy1 = today.getFullYear()-100;
+    var yyyy1 = today.getFullYear()-70;
 
-    yeardectoday = yyyy+'-'+mm+'-'+dd;
-    yearincrtoday = yyyy1+'-'+mm+'-'+dd;
 
-    if($('#date_of_birth').val() > yeardectoday && $('#date_of_birth').val() > yearincrtoday){
-      setMsg('date_of_birth','Enter date between '+ yearincrtoday +' to '+ yeardectoday);
+    console.log(dd);
+    console.log(mm);
+    yeardectoday = yyyy+''+mm+''+dd;
+    yearincrtoday = yyyy1+''+mm+''+dd;
+
+    var dob = $('#date_of_birth').val();
+    var d2 = dob.split("-");
+    d2 = d2[2].concat(d2[1], d2[0]);
+
+    if(d2 > yeardectoday && d2 < yearincrtoday){
+      setMsg('date_of_birth','Enter valid date of birth');
       errStaus=true;
     }
   

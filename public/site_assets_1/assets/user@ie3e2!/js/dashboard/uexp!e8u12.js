@@ -115,6 +115,7 @@
 
     function submitUserExperienceForm() {
       var result = validateexperienceForm(); 
+      $('.btn_c_s1').prop("disabled", true);
       if(result != false){
         var form = $('#add_edit_user_experience');
         $.ajax({
@@ -141,6 +142,7 @@
           toastr.options.timeOut = 1000;
           toastr.success('Successfully Updated.');  
           // profilePercentage();
+        $('.btn_c_s1').prop("disabled", false);
         },
         error: function(json){
             if (json.status === 422) {
@@ -152,6 +154,7 @@
                 $('#div_' + key).addClass('has-error');
                 });
             } 
+            $('.btn_c_s1').prop("disabled", false);
           }
         });
       }
@@ -212,7 +215,8 @@
       }
       
       if($(".experience_div").length==0){
-      $('.append-form-experience').html(`<div class="text-center"><img draggable="false" src="${baseurl}site_assets_1/assets/img/fresher.png" height="250" width="250"></div>`);
+                            <h4>No Experience Added</h4>
+      $('.append-form-experience').html(`<div class="text-center"><img draggable="false" src="${baseurl}site_assets_1/assets/img/place_holder/no_exp_added.svg" height="250" width="250"><h4>No Experience Added</h4></div>`);
       }else{
         $('.append-form-experience').html('');
       }

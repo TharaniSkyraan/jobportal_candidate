@@ -197,7 +197,7 @@ function cancelUserProjectForm(project_id) {
     $('.project_edited_div_'+project_id).show();
   }
   if($(".project_div").length==0){
-    $('.append-form-project').html(`<div class="text-center"><img draggable="false" src="${baseurl}site_assets_1/assets/img/fresher.png" height="250" width="250"></div>`);
+    $('.append-form-project').html(`<div class="text-center"><img draggable="false" src="${baseurl}site_assets_1/assets/img/place_holder/no_project_added.svg" height="250" width="250"><h4>No Project Added</h4></div>`);
   }else{
     $('.append-form-project').html('');
   }

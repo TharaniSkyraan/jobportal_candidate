@@ -1,5 +1,5 @@
 @php $skills = Auth::user()->userSkills;@endphp
-@foreach ($skills as $skill)
+@forelse ($skills as $skill)
 <div class="card mt-5 skill_div skill_edited_div_{{$skill->id}}">
     <div class="row">
         <div class="col-md-8 col-lg-8 col-sm-8 col-8">
@@ -21,4 +21,5 @@
         </div>
     </div>
 </div>
-@endforeach
+@empty    
+@endforelse
