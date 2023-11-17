@@ -12,7 +12,7 @@
                                 <label class="japplied-btn">
                                     <img draggable="false" class="imagesz-2" src="{{url('site_assets_1/assets/img/Shortlist.png')}}" alt="Applied"> <span class="fw-bolder fs-6">Applied</span>
                                 </label>
-                            @else
+                            @elseif($job->is_active==1)
                                 @if(count($job->screeningquiz)!=0 || !empty($job->reference_url))
                                     <button class="btn btn-lg p-1 shadow-sm bg-color-blue rounded-pill japply-btn japplybtnredir" id="japplybtn" data-bs-toggle="modal" href="#screeningQuiz72ers3" role="button">
                                         <img draggable="false" class="image-size" src="{{url('site_assets_1/assets/img/apply2.png')}}" alt="apply"> <span class="fw-bold">Apply</span>
@@ -48,9 +48,11 @@
                 </div>
                 <div class="d-flex mt-3 justify-content-between">
                     @if($job->expiry_date < Carbon\Carbon::now())
-                    <div><text class="text-danger"><i class="jpaicon bi-clock-history"></i> Expired<text> </div>
+                        <div><text class="text-danger"><i class="jpaicon bi-clock-history"></i> Expired<text> </div>
+                    @elseif($job->is_active==2)
+                        <div><text class="text-danger"><i class="jpaicon bi-clock-history"></i> Currently In-active<text> </div>
                     @else
-                    <div><text>Posted : <i class="jpaicon bi-clock-history"></i> {{ \Carbon\Carbon::parse($job->created_at)->diffForHumans() }}</text> </div>
+                        <div><text>Posted : <i class="jpaicon bi-clock-history"></i> {{ \Carbon\Carbon::parse($job->created_at)->diffForHumans() }}</text> </div>
                     @endif
                     <div class="text-black-75">            
                     </div>

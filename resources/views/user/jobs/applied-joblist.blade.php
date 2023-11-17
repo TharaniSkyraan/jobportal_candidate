@@ -31,7 +31,7 @@
                     @if($job->expiry_date < Carbon\Carbon::now())
                         <text class="text-danger"><i class="jpaicon bi-clock-history"></i> Expired<text> 
                     @else
-                        <text>@if($job->is_active == 2) <span class="text-danger">Jobs is Currently In-active</span> @else <i class="jpaicon bi-clock-history"></i> {{ \Carbon\Carbon::parse($applyjob->created_at)->diffForHumans() }} @endif</text> 
+                        <text>@if($job->is_active == 2) <span class="text-danger">Currently In-active</span> @else <i class="jpaicon bi-clock-history"></i> {{ \Carbon\Carbon::parse($applyjob->created_at)->diffForHumans() }} @endif</text> 
                     @endif
                 </div>
                 <div class="text-black-75">            
