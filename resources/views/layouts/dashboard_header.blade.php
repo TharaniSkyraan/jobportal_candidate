@@ -7,13 +7,16 @@
 	}
 </style>
 <div class="main-header">
-	<header id="header" class="header header-open fixed-top bg-color-blue d-flex justify-content-center align-items-center">
-		<!-- <button class="navbar-toggler sidenavv-toggler ml-auto" type="button">
-			<i class="fa fa-bars" id="lock-icon1"></i>
-		</button>  -->
-		<button class="navbar-toggler sidenavv-toggler ml-auto" type="button">
-			<i class="fa fa-close" id="lock-icon" title="Unlock Sidenavbar"></i>
-		</button> 
+	<header id="header" class="header {{ Route::is('employer_messages') ? 'header-close' : 'header-open' }} fixed-top bg-color-blue d-flex justify-content-center align-items-center">
+		@if(Route::is('employer_messages')) 
+			<button class="navbar-toggler sidenavv-toggler ml-auto" type="button">
+				<i class="fa fa-bars" id="lock-icon"></i>
+			</button>  
+		@else
+			<button class="navbar-toggler sidenavv-toggler ml-auto" type="button">
+				<i class="fa fa-close" id="lock-icon" title="Unlock Sidenavbar"></i>
+			</button>
+		@endif 
 		<div class="container-fluid container-xl d-flex align-items-center justify-content-end">
 		
 			<nav id="navbar" class="navbar">

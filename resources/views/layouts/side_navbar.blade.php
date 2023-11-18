@@ -1,4 +1,4 @@
-<nav class="wrapper sidenavbar locked changewdth">
+<nav class="wrapper sidenavbar {{ Route::is('employer_messages') ? 'close' : 'locked' }} changewdth">
   <div class="logo_items flex">
     <text class="nav_image">
       <a href="{{url('/')}}"><img draggable="false" src="{{ asset('/') }}site_assets_1/logo_24@2x.png" alt="logo_img" id="sidebar_logo" /></a>

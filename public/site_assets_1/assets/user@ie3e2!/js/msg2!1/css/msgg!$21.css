@@ -26,7 +26,9 @@
     border: none;
   }
   .jcardlist .cntnme{
-    min-width: 75%;
+    min-width: 88%;
+    max-width: 100%;
+    padding-right: 25px;
   }
   @media(min-width: 280px) and (max-width: 480px){
     .jlsection{
@@ -286,7 +288,7 @@
     }
     .close .nav_image{
       transition: all 10s ease;
-      margin-left: -13rem;
+      margin-left: -25rem;
     }
     .cntpro{
       display: none;
@@ -305,6 +307,7 @@
   @media (min-width: 576px) and (max-width: 991px){
     .jcardlist .cntnme{
       width: 100%;
+      padding-right: unset;
     }
   }
   @media screen and (max-width: 576px){
