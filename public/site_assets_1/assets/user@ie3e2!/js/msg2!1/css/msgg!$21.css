@@ -26,8 +26,8 @@
     border: none;
   }
   .jcardlist .cntnme{
-    min-width: 88%;
-    max-width: 100%;
+    min-width: 80%;
+    max-width: 80%;
     padding-right: 25px;
   }
   @media(min-width: 280px) and (max-width: 480px){
@@ -306,7 +306,8 @@
   }
   @media (min-width: 576px) and (max-width: 991px){
     .jcardlist .cntnme{
-      width: 100%;
+      max-width: 100%;
+      min-width: 100%;
       padding-right: unset;
     }
   }
