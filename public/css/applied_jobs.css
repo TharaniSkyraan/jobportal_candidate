@@ -79,7 +79,7 @@
 .japply-btn .image-size {
     width: 12.5px;
 }
-.nav.nav-pills{
+.nav.nav-tabs{
   flex-wrap: unset;
 }
 
@@ -134,7 +134,10 @@
       margin-top: -0.5rem !important;
       margin-bottom: -0.5rem !important;
   }
-  .nav.nav-pills{
+  .nav.nav-tabs{
     overflow: scroll;
+  }
+  .nav .nav-item a{
+    padding: unset;
   }
 }

@@ -49,7 +49,15 @@
                     }
                 @endphp
                 <div class="d-flex">
-                    <label class="favjob" data-slug="{{ $job->slug }}"><button class="btn p-1 px-2 shadow-sm rounded-pill cursor-pointer"> <img draggable="false" class="image-size cursor-pointer" src="{{ asset('site_assets_1/assets/img/star_filled.png')}}" alt="bookmark"> <span>Saved</span></button></label>
+                    <label class="favjob" data-slug="{{ $job->slug }}" data-fav="{{$is_fav}}">
+                        <button class="btn p-1 px-2 shadow-sm rounded-pill"> 
+                            @if($is_fav=='yes') <img draggable="false" class="image-size cursor-pointer" src="{{ asset('site_assets_1/assets/img/star_filled.png') }}" alt="bookmark"> 
+                            <span>Saved</span>
+                            @else <img draggable="false" class="image-size cursor-pointer" src="{{ asset('site_assets_1/assets/img/star_unfilled.png') }}" alt="bookmark"> 
+                            <span>Save</span>
+                            @endif
+                        </button>
+                    </label>
                 </div>
             </div>
         </div>
@@ -72,12 +80,3 @@
         {{ $jobs->appends(request()->query())->links(); }}
     </div>
 @endif   
-<script>
-    $('.job-list').click(function() {
-        const aTag = document.createElement('a');
-        aTag.rel = 'noopener';
-        aTag.target = "_blank";
-        aTag.href = '{{ url("detail") }}/'+$(this).data("jobid");
-        aTag.click();
-    });
-</script>
