@@ -86,6 +86,11 @@ $(document).on('click', '.action .dropdown-item', function (event) {
                 toastr.success('Revert successfully');
             }
             $('#nodatamsg').removeClass('hide');
+            if(devwidth =='mobwidth'){
+                $('.job-filter').removeClass('jfilter');
+                $('.msglistpar').addClass('hide'); 
+            }
+            
         });
 });
 //Selete contact
@@ -93,7 +98,7 @@ $(document).on('click', '#tempskle2 .jlsca', function (event)
 {    
     change_url_state(act_mid,$(this).data('mkey'));
     act_mid = $(this).data('mkey');
-    if (!$(this).hasClass('jpcactive') || devwidth=='devwidth') {
+    if (!$(this).hasClass('jpcactive') || devwidth=='mobwidth') {
         $('#tempskle2 .jlsca').removeClass('jpcactive');
         $(this).addClass('jpcactive');
         $(this).removeClass('unread');
@@ -204,8 +209,8 @@ function conactlist_html(data) {
         m_created_at = format(new Date(m_created_at));
 
         $html += `<div class="card card-body jlsca `+active_cls+`" data-mkey="`+val.message_id+`">
-                    <div class="row">
-                    <div class="col-xl-3 col-lg-4 col-3 cntpro">`;
+                    <div class="d-flex">
+                    <div class="cntpro pe-2">`;
         if(val.company_image!=null){
             $html +=`<div class="avatar avatar-md"><img draggable="false" src="`+val.company_image+`" alt="Img" class="img-fluidd rounded-circle w-100 h-100"></div>`;
         }else{
@@ -213,7 +218,7 @@ function conactlist_html(data) {
         }
                 
         $html +=` </div>
-                    <div class="col-xl-9 col-lg-8 col-md-12 col-sm-12 col-9">
+                    <div class="cntnme">
                         <p>`+val.title+`</p>
                         <h4 class="m-0">`+val.company_name+`</h4>
                         <h5 class="m-0">`+m_created_at;
@@ -512,5 +517,5 @@ function ContactListen(){
     ContactList('background');
 }
 // Call fetchMessages function periodically to fetch new messages
-setInterval(message_listen_data, 3000); // Fetch messages every 3 seconds (adjust as needed)
-setInterval(ContactListen, 3000); // Fetch messages every 3 seconds (adjust as needed)
+// setInterval(message_listen_data, 3000); // Fetch messages every 3 seconds (adjust as needed)
+// setInterval(ContactListen, 3000); // Fetch messages every 3 seconds (adjust as needed)

@@ -25,7 +25,9 @@
   .dropdown-toggle#action::after {
     border: none;
   }
-  
+  .jcardlist .cntnme{
+    min-width: 75%;
+  }
   @media(min-width: 280px) and (max-width: 480px){
     .jlsection{
       min-height: auto;
@@ -244,9 +246,9 @@
     width:3rem;
     transition: all 0.4s ease;
   }
-  .main-panel-customize .avatar{
+  /* .main-panel-customize .avatar{
     width:3.5rem;
-  }
+  } */
   .page-inner{
     padding-bottom: 0px !important;
   }
@@ -298,6 +300,11 @@
       left: 0;
       max-width: 100%;
       transform: translateX(0%);
+    }
+  }
+  @media (min-width: 576px) and (max-width: 991px){
+    .jcardlist .cntnme{
+      width: 100%;
     }
   }
   @media screen and (max-width: 576px){
