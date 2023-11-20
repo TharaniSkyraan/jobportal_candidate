@@ -6,7 +6,7 @@
 
 @include('layouts.header')
     <div class="sdad_aw">
-        <button class="mobile_apply applyrs_btn japplybtn japply-btn" id="japplybtn" data-value="disabled"><img src="{{asset('images/detailpage/apply_icon.svg')}}" alt="apply-icon"><span> Apply </span></button>
+        <button class="mobile_apply applyrs_btn japplybtn japply-btn" data-value="disabled"><img src="{{asset('images/detailpage/apply_icon.svg')}}" alt="apply-icon"><span> Apply </span></button>
         <button class="mobile_apply applied_bm japplied-btn"><img src="{{asset('images/detailpage/applied.svg')}}" alt="applied-icon"><span> Applied </span></button>
     </div>
     <!-- sticky header -->
@@ -53,7 +53,7 @@
                                 @endif--}}
                             </div>
                             <div class="col-md-6 col-sm-7 col-lg-6 col-xl-6 text-end">
-                                <button class="applyrs_btn japplybtn japply-btn" id="japplybtn" data-value="disabled"><img src="{{asset('images/detailpage/apply_icon.svg')}}" alt="apply-icon"><span> Apply </span></button>
+                                <button class="applyrs_btn japplybtn japply-btn" data-value="disabled"><img src="{{asset('images/detailpage/apply_icon.svg')}}" alt="apply-icon"><span> Apply </span></button>
                                 <button class="applied_bm japplied-btn"><img src="{{asset('images/detailpage/applied.svg')}}" alt="applied-icon"><span> Applied </span></button>
                             </div>
                         </div>
@@ -120,7 +120,7 @@
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 apply_div col-sm-3 applybtnsticky">
                         <div class="text-end mt-2">
-                            <button class="applyrs_btn japplybtn japply-btn" id="japplybtn" data-value="disabled"><img src="{{asset('images/detailpage/apply_icon.svg')}}" alt="apply-icon"> Apply</button>
+                            <button class="applyrs_btn japplybtn japply-btn" data-value="disabled"><img src="{{asset('images/detailpage/apply_icon.svg')}}" alt="apply-icon"> Apply</button>
                         </div>
                         <div class="text-end">
                             <button class="applied_bm japplied-btn"><img src="{{asset('images/detailpage/applied.svg')}}" alt="applied-icon">Applied</button>
@@ -322,6 +322,7 @@
                                     @isset($job->company->fb_url)<span><a href="{{$job->company->fb_url}}"><img src="{{asset('images/detailpage/facebook.svg')}}" alt="facebook-image"></a></span>@endif
                                     @isset($job->company->linkedin_url)<span><a href="{{$job->company->linkedin_url}}"><img src="{{asset('images/detailpage/linkedin.svg')}}" alt="linkedin-image"></a></span>@endif
                                     @isset($job->company->insta_url)<span><a href="{{$job->company->insta_url}}"><img src="{{asset('images/detailpage/instagram.svg')}}" alt="instagram-image"></a></span>@endif
+                                    @isset($job->company->twitter_url)<span><a href="{{$job->company->twitter_url}}"><img src="{{asset('images/about/twitterx.png')}}" alt="twitter-image" class="w-50 px-1"></a></span>@endif
                                 </div>
                             @endif
                         </div>
@@ -340,6 +341,7 @@
                ($job->contact_person_details->evening_section_from && $job->contact_person_details->evening_section_to) || 
                (!empty($job->contact_person_details->email)) ||
                (!empty($job->contact_person_details->phone_1)) ||
+               (!empty($job->contact_person_details->phone_2)) ||
                (!empty($job->contact_person_details->phone_2)))
 
                 <div class="card walkin_cd align-self-center">
@@ -347,7 +349,7 @@
                         <h4>Walk-in</h4>
                         <div>
                             <p><b>From </b>{{ \Carbon\Carbon::parse($job->walkin->walk_in_from_date)->format('d F, Y')}} to {{ \Carbon\Carbon::parse($job->walkin->walk_in_to_date)->format('d F, Y')}}.@if($job->walkin->exclude_days) (Excluding {{$job->walkin->exclude_days}})@endif</p>
-                            <p><b>Time between : </b>{{ \Carbon\Carbon::parse($job->walkin->walk_in_from_time)->format('H:i A')}} to {{ \Carbon\Carbon::parse($job->walkin->walk_in_to_time)->format('H:i A')}}</p>
+                            <p><b>Best Time to Contact: </b>{{ \Carbon\Carbon::parse($job->walkin->walk_in_from_time)->format('h:i A')}} to {{ \Carbon\Carbon::parse($job->walkin->walk_in_to_time)->format('h:i A')}}</p>
                             @if(!empty($job->walkin->walk_in_location))
                                 <p>
                                     <table>
@@ -362,6 +364,7 @@
                                     </table>
                                 </p>
                             @endif
+                            <p><b>Google link: </b>{{ \Carbon\Carbon::parse($job->walkin->walk_in_from_time)->format('h:i A')}} to {{ \Carbon\Carbon::parse($job->walkin->walk_in_to_time)->format('h:i A')}}</p>
                         </div>
                     @endif
 
@@ -394,6 +397,20 @@
                             </p>
                         @endif
                         <div class="row">
+                            @if((!empty($job->contact_person_details->name)))
+                                <div class="col-md-6">
+                                    <table class="call_nhvcez">
+                                        <tr>
+                                            <td class="d-block"><img src="{{asset('images/detailpage/user.svg')}}" alt="call-icon" class="icon_rs" draggable="false"></td>
+                                            <td>
+                                                <span>
+                                                    <div>{{ $job->contact_person_details->name }}</div>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            @endif
                             <div class="col-md-6">
                                 <table>
                                     @php
@@ -634,13 +651,10 @@
 
     @include('user.complete-profile-modal')
 
-    @php
-        $applied = Auth::user()?(Auth::user()->isAppliedOnJob($job->id)??false):false;
-    @endphp
     <script>
         var reference_url = '{{ $job->reference_url }}';
         var is_admin = '{{ $job->company->is_admin }}';
-        var applied = '{{ $applied }}';
+        var applied = '{{ Auth::user()?(Auth::user()->isAppliedOnJob($job->id)??false):false }}';
         var baseurl = '{{ url("/") }}/';
         var is_login = '{{ Cookie::get("is_login") }}';
         var save_req_url = "{{ route('job.save', $job->slug) }}";

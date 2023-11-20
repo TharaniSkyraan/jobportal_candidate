@@ -1,5 +1,4 @@
-
-    if(applied==true){
+    if(applied==true || applied==1){
         $(".japplied-btn").show();
         $(".japply-btn").hide();
     }else{

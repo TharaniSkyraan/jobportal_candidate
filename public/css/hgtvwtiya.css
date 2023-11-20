@@ -137,7 +137,7 @@ body{
     text-indent: 25px;
 }.resultjobwb .about_cmp a{
     text-decoration: none;
-    color: #000;
+    /* color: #000; */
     font-size: 14px;
 }.resultjobwb .about_cmp h5{
     color: #4285F4;
@@ -176,8 +176,8 @@ body{
     margin: auto;
 }.svdmh_jbs.mgmw{
     background: #F3F7FE;
-}.sdad_aw .mobile_apply{
-    display: none !important;
+}.sdad_aw{
+    display: none;
 }.unsavgf_jbs.mgmw{
     background: transparent;
     padding: 6px 16px;
@@ -524,8 +524,8 @@ body{
 }
 
 @media(max-width:576px){
-    .sdad_aw .mobile_apply{
-        display: block !important;
+    .sdad_aw{
+        display: block;
     }.resultjobwb .applyrs_btn{
         display: none;
     }.jhnt5vfd{
