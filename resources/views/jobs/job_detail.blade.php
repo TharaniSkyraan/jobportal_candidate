@@ -336,7 +336,6 @@
                 </div>                
             @endif
 
-            
             @if($job->walkin || ($job->contact_person_details->morning_section_from && $job->contact_person_details->morning_section_to) || 
                ($job->contact_person_details->evening_section_from && $job->contact_person_details->evening_section_to) || 
                (!empty($job->contact_person_details->email)) ||

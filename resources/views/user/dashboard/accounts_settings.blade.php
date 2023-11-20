@@ -359,8 +359,12 @@ $('.btn-upload-image').on('click', function (ev) {
 
 <script>
 
+ 
   $(document.body).on('hidden.bs.modal', function () {
-    $(".reset-modal" ).load(document.URL + ".reset-modal", "" );
+    $("#upload-demo").hide();
+    $(".profilepic-modal").show();
+    $(".btn-upload-image").hide();
+    $(".upload-image-label").text('Upload image');
   });
 
 	function openModal(){
