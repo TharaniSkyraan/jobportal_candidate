@@ -257,19 +257,27 @@
                     You have changed your phone number 
                   </h2>
                   <h5>Verify by providing the received OTP</h5>
-                  <h5 class="mb-3">An OTP was sent to the Email provided</h5>
+                  <h5 class="mb-3">An OTP was sent to the Whatsapp provided</h5>
                   {{-- {!! Form::hidden('otp_code', null, array('id'=>'otp_code', 'class'=>'otp')) !!} --}}
                   {!! Form::hidden('full_number', null, array('id'=>'full_number', 'class'=>'otp')) !!}
-                  <div id="otp-holder text-center">
+                  <div class="otp-field">
+                      <input type="text" maxlength="1" id="otp0" onkeypress="return /[0-9]/i.test(event.key)"/>
+                      <input type="text" maxlength="1"  id="otp1" onkeypress="return /[0-9]/i.test(event.key)"/>
+                      <input class="space" type="text" maxlength="1"  id="otp2" onkeypress="return /[0-9]/i.test(event.key)"/>
+                      <input type="text" maxlength="1"  id="otp3" onkeypress="return /[0-9]/i.test(event.key)"/>
+                      <input type="text" maxlength="1"  id="otp4" onkeypress="return /[0-9]/i.test(event.key)"/>
+                      <input type="text" maxlength="1"  id="otp5" onkeypress="return /[0-9]/i.test(event.key)"/>
+                  </div>
+                  {{-- <div id="otp-holder text-center">
                     <div id="otp-content">
                       <input id="otp_code" name="otp_code" type="tel" maxlength="6" pattern="\d{6}" value="" autocomplete="off"/>
                     </div>
-                  </div>
+                  </div> --}}
                   <small class="form-text text-muted text-danger err_msg" id="err_otp_code"></small> 
 
                 </div>
                 <div class="text-center mt-2">
-                  <button class="btn btn-submit btn_c_s verify" type="button"  onClick="VerifyPasswordChange()">verify</button>
+                  <button class="btn btn-submit btn_c_s verify" type="button"  onClick="VerifyPhoneNumberChange()">verify</button>
                 </div>
               {!! Form::close() !!}
           </div>
@@ -284,36 +292,6 @@
 @endsection
 
 @push('scripts')
-
-<!-- otp starts -->
-<script>
-document.addEventListener("DOMContentLoaded", function(event) {
-  
-  function OTPInput() {
-    const inputs = document.querySelectorAll('#otp > *[id]');
-    for (let i = 0; i < inputs.length; i++) { 
-      inputs[i].addEventListener('keydown', function(event) { 
-        if (event.key==="Backspace" ) { 
-          inputs[i].value='' ; 
-          if (i !==0) inputs[i - 1].focus(); 
-        } else { 
-          if (i===inputs.length - 1 && inputs[i].value !=='' ) { 
-            return true; 
-          } else if (event.keyCode> 47 && event.keyCode < 58) { 
-            inputs[i].value=event.key; 
-            if (i !==inputs.length - 1) inputs[i + 1].focus(); event.preventDefault(); 
-          } else if (event.keyCode> 64 && event.keyCode < 91) { 
-            inputs[i].value=String.fromCharCode(event.keyCode); 
-            if (i !==inputs.length - 1) inputs[i + 1].focus(); event.preventDefault(); 
-          } 
-        } 
-      }); 
-    } 
-  } 
-  OTPInput(); 
-});
-</script>
-<!-- otp ends -->
 
 
 <script type="text/javascript">
@@ -445,7 +423,7 @@ $('.btn-upload-image').on('click', function (ev) {
         return false;
     }
 
-    $('#err_phone').hide();
+    $('#err_phone').html('');
     return true;
   }
 	function ChangePhoneNumberRequest(){
@@ -471,10 +449,11 @@ $('.btn-upload-image').on('click', function (ev) {
           data    : {"phone": phone, "_token": "{{ csrf_token() }}"},
           dataType: 'json',
           success : function (json){  
-            console.log(json);
+            // console.log(json);
             $('.err_msg').html('');  
             $('#changephone').modal('show');
             $("#otp_code").val('');
+            $('.verify').prop("disabled", true);
           },
           error: function(json){
             $('.err_msg').html('');   
@@ -489,43 +468,44 @@ $('.btn-upload-image').on('click', function (ev) {
       }
     }
   }
-  function VerifyPasswordChange(){
-     var errStaus = false;
+  function VerifyPhoneNumberChange(){
+    clrErr();
+    var otp = "";
+    inputs.forEach((input) => {
+        otp += input.value;
+        input.disabled = true;
+        input.classList.add("disabled");
+    });
+    var phone = $("#full_number").val();
+    $.ajax({             
+      url     : '{{ route("verify-otp")}}',
+      type    : 'post',
+      data    : {"phone": phone, "otp": otp, "_token": "{{ csrf_token() }}"},
+      dataType: 'json',
+      success : function (json){  
+          $("#otp_code").val('');
+          toastr.options.timeOut = 10000;
+          toastr.success('Successfully Updated.');
+          window.location = "{{ route('accounts_settings') }}";
+        },
+        error: function(json){
+            $('.err_msg').html('');  
+            if (json.status === 422) {
+                var resJSON = json.responseJSON;
+                $.each(resJSON.errors, function (key, value) {     
+                  $('#err_otp_code').html(value);               
+                });
+            }
+            inputs.forEach((input) => {
+                otp += input.value;
+                input.disabled = false;
+                input.classList.remove("disabled");
+            });
 
-     if(validateFormFields('otp_code','Please enter otp','')) errStaus=true;
-     if(errStaus == false){
-         if($('#otp_code').val().length < 6){
-           $('#err_otp_code').html('Please Enter Valid otp');
-           return false;
-         }
-       else{
-        var phone = $("#full_number").val();
-        var otp = $("#otp_code").val();        
-         $.ajax({             
-            url     : '{{ route("verify-otp")}}',
-            type    : 'post',
-            data    : {"phone": phone, "otp": otp, "_token": "{{ csrf_token() }}"},
-            dataType: 'json',
-            success : function (json){  
-               $("#otp_code").val('');
-               toastr.options.timeOut = 10000;
-               toastr.success('Successfully Updated.');
-               window.location = "{{ route('accounts_settings') }}";
-             },
-               error: function(json){
-                 $('.err_msg').html('');  
-                 if (json.status === 422) {
-                     var resJSON = json.responseJSON;
-                     $.each(resJSON.errors, function (key, value) {     
-                       $('#err_otp_code').html(value);               
-                     });
-                 }
-
-             }
-         });
-       }
-     }
-   }
+        }
+    });
+       
+  }
 
 	function SubmitPasswordChange(){
     clrErr();
@@ -583,19 +563,65 @@ $('.btn-upload-image').on('click', function (ev) {
         cpwd.attr("type", "password");
       }
   }
-  $('#otp_code').on('keypress', function(e) {
-    var count = $(this).val().length;
-    if(count==5){
-      e.preventDefault();
-      $(this).val($(this).val()+e.originalEvent.key)
-    }if(count>5){
-      e.preventDefault();      
-    }
-  });  
-  $("#otp_code").bind("paste", function(e){
-    var pastedData = e.originalEvent.clipboardData.getData('text');
-      e.preventDefault();
-      $(this).val(pastedData.slice(0,6));
+
+
+  const inputs = document.querySelectorAll(".otp-field input");
+  let otp = '';
+
+  inputs.forEach((input, index) => {
+      input.dataset.index = index;
+      input.addEventListener("keyup", handleOtp);
+      input.addEventListener("paste", handleOnPasteOtp);
   });
+
+  function handleOtp(e) {
+
+      let cotp = '';
+      inputs.forEach((input) => {cotp += input.value;});
+      /**
+       * <input type="text" 👉 maxlength="1" />
+       * 👉 NOTE: On mobile devices `maxlength` property isn't supported,
+       * So we to write our own logic to make it work. 🙂
+       */
+      const input = e.target;
+      let fieldIndex = input.dataset.index;
+      let value = e.key;
+      let value1 = input.value;
+      let isValidInput = value.match(/^[0-9]*$/);
+      let isValidInput1 = value1.match(/^[0-9]*$/);
+      value = isValidInput ? value : (isValidInput1 ? input.value : "");
+      // let isValidInput = true;
+      $('#otp'+fieldIndex).val(value);
+
+      if (fieldIndex < inputs.length - 1 && isValidInput) {
+          input.nextElementSibling.focus();
+      }
+      
+      if (e.key === "Backspace" && fieldIndex > 0 && (otp.length == cotp.length)) {
+          input.previousElementSibling.focus();
+      }
+
+      otp = cotp; 
+      if (otp.length == inputs.length) {
+        $('.verify').prop("disabled", false);
+      }else{      
+        $('.verify').prop("disabled", true);
+      }
+  }
+
+  function handleOnPasteOtp(e) {
+      const data = e.clipboardData.getData("text");
+      const value = data.split("");
+      let cotp = '';
+      inputs.forEach((input, index) => (input.value = value[index]??''));
+      inputs.forEach((input) => {cotp += input.value;});
+      otp = cotp;
+      if (value.length === inputs.length) {
+        $('.verify').prop("disabled", false);
+      }else{      
+        $('.verify').prop("disabled", true);
+      }
+  }
+
   </script>
 @endpush

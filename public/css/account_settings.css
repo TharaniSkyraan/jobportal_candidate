@@ -87,32 +87,48 @@
 
 /* otp starts*/
 
-/* otp starts*/ 
-#otp_code {
-  padding: 0px;
-  letter-spacing: 28px;
-  border: 0;
-  background: url('../images/artboard2.png');
-  background-repeat: space;
-  min-width: 210px;
-  background-size: 34px auto;
-  padding-left: 12px;
-  padding-top: 8px;
-  padding-bottom: 5px;
+.otp-field {
+  display: flex;
+  justify-content: center;
+}
+.otp-field input {
+  width: 10%;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  margin: 2px;
+  border: 2px solid #ddd;
+  font-weight: bold;
+  outline: none;
+  transition: all 0.1s;
+}
+.otp-field input:focus {
+  border: 2px solid #2b5baa;
+  box-shadow: 0 0 2px 2px #2b5baa7d;
+}
+.disabled {
+  opacity: 0.5;
+}
+.space {
+  margin-right: 1rem !important;
 }
 
-#otp-content {
-  left: 0;
-  position: sticky;
+@media (max-width: 500px) {
+  .otp-field input {
+    width: 12%;
+  }
 }
 
-#otp-holder {
-  width: 250px;
-  overflow: hidden
-}
+@media (max-width: 375px) {
+  .otp-field input {
+    width: 14%;
+  }
 
-#otp_code:focus-visible {
-  outline: unset;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }
 /** otp ends */
 

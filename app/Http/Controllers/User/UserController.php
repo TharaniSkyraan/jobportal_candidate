@@ -188,27 +188,23 @@ class UserController extends Controller
 
     public function SendRequest(ChangePhoneNumberFormRequest $request)
     {
-        $verification_token = $this->generateRandomCode(6);
-        $user = User::find(Auth::user()->id);
-        $user->verification_token = $verification_token;
-        $user->session_otp = Carbon::now();
-        $user->save();
-        $this->Notification($request->phone,$verification_token);
-        // Mail::send(new ChangePasswordRequestMailable($user));
-           
-        // $settings = SiteSetting::findOrFail(1272);
-        // $account_sid = $settings->twilio_account_sid;
-        // $auth_token = $settings->twilio_auth_token;   
-        // $twilio_number = $settings->twilio_number;
-        // $client = new Client(['auth' => [$account_sid, $auth_token]]);
-        // $result = $client->post('https://api.twilio.com/2010-04-01/Accounts/'.$account_sid.'/Messages.json',
-        //         ['form_params' => [
-        //         'Body' => 'CODE:'.$verification_token, //set message body
-        //         'To' => '+917402171681',
-        //         'From' => $twilio_number //we get this number from twilio
-        //         ]]);
 
-        return response()->json(array('success' => true, 'status' => 200, 'token' => $verification_token), 200);
+        if(User::where('phone',$request->phone)->where('id','!=',Auth::user()->id)->doesntExist())
+        {
+            $verification_token = $this->generateRandomCode(6);
+            $user = User::find(Auth::user()->id);
+            $user->verification_token = $verification_token;
+            $user->session_otp = Carbon::now();
+            $user->save();
+            $this->Notification($request->phone,$verification_token);
+            
+            return response()->json(array('success' => true, 'status' => 200, 'token' => ''), 200);
+
+        }else{
+
+            return response()->json(['errors' => ["phone" => "Phone number already existing."]], 422);
+        }
+
 
     }
 
