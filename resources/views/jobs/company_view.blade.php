@@ -90,7 +90,7 @@
                                             @if(!empty($company->fb_url))<a href="{{$company->fb_url}}"><img src="{{asset('images/about/facebook.svg')}}" alt="facebook-icon" draggable="false"></a>@endif
                                             @if(!empty($company->insta_url))<a href="{{$company->insta_url}}"><img src="{{asset('images/about/instagram.svg')}}" alt="instagram-icon" draggable="false"></a>@endif
                                             @if(!empty($company->linkedin_url))<a href="{{$company->linkedin_url}}"><img src="{{asset('images/about/linkedin.svg')}}" alt="linkedin-icon" draggable="false"></a>@endif
-                                            @if(!empty($company->twitter_url))<a href="{{$company->twitter_url}}"><img src="{{asset('images/about/twitterx.png')}}" alt="twitter-icon" draggable="false"></a>@endif
+                                            @if(!empty($company->twitter_url))<a href="{{$company->twitter_url}}"><img src="{{asset('images/about/twitterx.png')}}" class="twitter-img" alt="twitter-icon" draggable="false"></a>@endif
                                         </span>
                                     </div>
                                 </div>
