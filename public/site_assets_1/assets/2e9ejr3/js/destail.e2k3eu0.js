@@ -216,7 +216,7 @@
                         location.reload();
                     }
                     else if(redir == 'screening'){
-                        $(btn).attr('data-value','enabled');
+                        // $(btn).attr('data-value','enabled');
                         $('#screenings').modal('show');
 
                     }else if(redir == 'already_applied'){

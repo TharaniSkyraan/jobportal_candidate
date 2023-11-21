@@ -1186,9 +1186,9 @@ function createJoblistDiv(data,appliedJobids,savedJobids){
         shortdesc=shortdesc.trim();
         // shortdesc=shortdesc.slice(0,350);
         posted_ago = val.posted_date || 'Posted: 1 day ago';
-        imdjoin_v = val.immediate_join || ' Immediate Join';
+        imdjoin_v = val.immediate_join || ' ';
         imdjoin = imdjoin_v;
-        if(imdjoin_v == 'Immediate Join'){imdjoin = imdjoin_v;}
+        if(imdjoin_v == 'Immediate Join'){imdjoin = imdjoin_v;}else{ imdjoin = "";}
 
         posted_ago_a = '2 Days ago';
         if(posted_ago != ''){

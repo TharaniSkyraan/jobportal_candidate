@@ -293,6 +293,10 @@ body{
 }.mobile_apply.japplied-btn{
     background: rgba(243, 247, 254, 1);
     color: #000;
+}.mobile_apply.expied{
+    background: rgba(243, 247, 254, 1);
+    color: #ea4335;
+    font-weight: 400;
 }.sdad_aw .mobile_apply.japplied-btn img{
     width: 18px;
     margin-right: 6px;
@@ -336,7 +340,25 @@ body{
     background: #f0f0f0;
     color: #000;
 }
-  
+.resultjobwb .applyrs_btn.expired, .jsky_hb.sticky button.expired, .mobile_apply.expired{
+    background: none;
+    color: #ea4335;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+.mobile_apply.expired{
+    background: #f0f0f0;
+}
+.questionsdt .previous-btn{
+    background: none;
+}
+.quizs .form-check label, .form-group label{
+    text-wrap: wrap !important;
+}
+.quizs .break-point{
+    width: 30px;
+    height: 35px;
+}
 @media(max-width: 768px){
     .breadcrumbty{
         margin-left: 12px;
@@ -348,7 +370,7 @@ body{
     }.resultjobwb .requiredn{
         display: none;
     }.resultjobwb .call_nhvcez{
-        margin-top: 10px;
+        margin-top: 5px;
     }#screenings .questionsdt {
         padding: 15px;
     }#screenings .first_mwe h1{

@@ -25,14 +25,12 @@
                         <h2 class="fw-bolder"><img draggable="false" src="{{asset('images/sidebar/skill.svg')}}">&nbsp;My skills</h2>
                     </div>
 
-
-                    <div class="crdbxpl mt-4">
+                    <div class="crdbxpl mt-4 mb-5">
                         <div class="row">
                             <div class="col-7 px-4 align-self-center">Skill</div>
                             <div class="col-5 text-end addSkills"><button class="openForm" type="button" data-form="new">Add New <i class="fa fa-plus"></i></button></div>
                         </div>
                     </div>
-                       
 
                     <div class="append-form-skill" id="append-form-skill"></div>
 
