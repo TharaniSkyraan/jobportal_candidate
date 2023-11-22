@@ -37,6 +37,7 @@ $("#basic-info-submit-button").click(function(){
     if(validateFormFields('last_name','Please enter Last name.','NameVali')) errStaus=true;
     if(validateFormFields('date_of_birth ','Please enter date of birth.','')) errStaus=true;
     if(validateFormFields('marital_status_id ','Please select Marital status.','')) errStaus=true;
+    if(validateFormFields('gender ','Please specify your gender.','checkbox')) errStaus=true;
   
     var today = new Date();
     var dd = today.getDate();

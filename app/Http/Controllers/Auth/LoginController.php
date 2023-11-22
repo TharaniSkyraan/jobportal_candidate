@@ -99,6 +99,11 @@ class LoginController extends Controller
         $this->middleware('guest')->except(['logout','UserSwitchRedirect']);
         
     }
+
+    public function logout(Request $request) {
+        Auth::logout();
+        return back();
+    }
     
     /**
      * Show the application's login form.

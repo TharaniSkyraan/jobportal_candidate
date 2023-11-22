@@ -85,13 +85,18 @@
                                     </div>
                                     <label for="" class="form-label">Gender</label>
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-4">
-                                        @php $cgender = (!empty($user->gender))?$user->gender:2; @endphp
+                                        @php
+                                            $cgender = (!empty($user->gender)) ? $user->gender : '0';
+                                        @endphp
                                         @foreach($genders as $key => $gender)
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender" id="gender{{$key}}" value="{{$key}}" @if($key==$cgender) checked @endif>
+                                            <input class="form-check-input" type="radio" name="gender" id="gender{{$key}}" value="{{$key}}" @if($cgender == '0') @elseif($key==$cgender) checked @endif>
                                             <label class="form-check-label" for="gender{{$key}}">{{$gender}}</label>
                                         </div>
                                         @endforeach
+                                        <div>
+                                            <small class="form-text text-muted text-danger err_msg" id="err_gender"></small>
+                                        </div>
                                     </div>
                     
                                 </div>

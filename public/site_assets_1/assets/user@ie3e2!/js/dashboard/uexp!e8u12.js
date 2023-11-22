@@ -215,8 +215,7 @@
       }
       
       if($(".experience_div").length==0){
-                            <h4>No Experience Added</h4>
-      $('.append-form-experience').html(`<div class="text-center"><img draggable="false" src="${baseurl}site_assets_1/assets/img/place_holder/no_exp_added.svg" height="250" width="250"><h4>No Experience Added</h4></div>`);
+        $('.append-form-experience').html(`<div class="text-center"><img draggable="false" src="${baseurl}site_assets_1/assets/img/place_holder/no_exp_added.svg" height="250" width="250"><h4>No Experience Added</h4></div>`);
       }else{
         $('.append-form-experience').html('');
       }

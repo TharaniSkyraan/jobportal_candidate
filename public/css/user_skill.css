@@ -230,6 +230,8 @@
 }#experience_div h3{
     font-size: 17px;
     font-weight: 600;
+}#ui-id-1.ui-widget.ui-widget-content{
+    width: fit-content !important;
 }
 @media screen and (min-height:800px){
     .educationForm .modal-body{
