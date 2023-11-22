@@ -41,14 +41,14 @@ if ($project->is_on_going == 1)
                 {{ $project->description }}
             </p>
         </div>
-        @if(!empty($project->role_on_project))
+        {{-- @if(!empty($project->role_on_project))
         <div class="mb-2">
             <h3 class="gry">Role on the project</h3>
             <p class="text-justify">
                 {{ $project->role_on_project }}
             </p>
         </div>
-        @endif
+        @endif --}}
         @if($project->used_tools!=null)
         <h4 class="mb-3">Tools / software Used</h4>
 

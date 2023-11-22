@@ -131,10 +131,10 @@
             <small class="description_remain_char"></small>
         </div>
 
-        <div class="mb-4">    
+        {{-- <div class="mb-4">    
             <label for="" class="form-label">Your role on the project (Optional)</label>
             {!! Form::textarea('role_on_project', null, array('class'=>'form-control', 'id'=>'role_on_project', 'rows'=>3, 'placeholder'=>'Write about your role and responsiblities in this project')) !!}
-        </div>
+        </div> --}}
 
         <div class="mb-4">    
             <label for="" class="form-label">Tools / Softwares Used (Optional)</label>   
