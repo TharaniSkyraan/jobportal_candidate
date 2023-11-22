@@ -1,5 +1,4 @@
-
-    if(applied==true){
+    if(applied==true || applied==1){
         $(".japplied-btn").show();
         $(".japply-btn").hide();
     }else{
@@ -217,7 +216,7 @@
                         location.reload();
                     }
                     else if(redir == 'screening'){
-                        $(btn).attr('data-value','enabled');
+                        // $(btn).attr('data-value','enabled');
                         $('#screenings').modal('show');
 
                     }else if(redir == 'already_applied'){

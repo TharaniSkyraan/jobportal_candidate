@@ -224,6 +224,7 @@
     margin-bottom: 0rem !important;
     color: #867b7b;
     font-size: 16px;
+    line-height: 30px;
   } 
   
   .jcardlist .unread p, .jcardlist .unread h4{
@@ -258,7 +259,7 @@
     border-top: 1px solid #a6abb069;
   } 
   .jcardlist h5{
-    font-size: 12px;
+    font-size: 10px;
   }
   .jlsection span{
     font-size: 14px;
@@ -267,6 +268,10 @@
     display: none;
   }
  
+  .cand-pro h5 a:hover{
+    color: unset;
+  }
+  
   @media(max-width: 1299px){
     #nodatamsg img{
       width: 300px;

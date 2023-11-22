@@ -5,9 +5,14 @@
 @section('content')
 
 @include('layouts.header')
+
     <div class="sdad_aw">
-        <button class="mobile_apply applyrs_btn japplybtn japply-btn" id="japplybtn" data-value="disabled"><img src="{{asset('images/detailpage/apply_icon.svg')}}" alt="apply-icon"><span> Apply </span></button>
-        <button class="mobile_apply applied_bm japplied-btn"><img src="{{asset('images/detailpage/applied.svg')}}" alt="applied-icon"><span> Applied </span></button>
+        @if($job->is_active==3 || $job->is_active==2)
+            <button class="mobile_apply expired" data-value="disabled"> {{ ($job->is_active==2)?'In-active':'Expired' }}</button>
+        @else
+            <button class="mobile_apply applyrs_btn japplybtn japply-btn" data-value="disabled"><img src="{{asset('images/detailpage/apply_icon.svg')}}" alt="apply-icon"><span> Apply </span></button>
+            <button class="mobile_apply applied_bm japplied-btn"><img src="{{asset('images/detailpage/applied.svg')}}" alt="applied-icon"><span> Applied </span></button>
+        @endif
     </div>
     <!-- sticky header -->
     <nav class="navbar jsky_hb navbar-expand-lg navbar-light">
@@ -53,8 +58,13 @@
                                 @endif--}}
                             </div>
                             <div class="col-md-6 col-sm-7 col-lg-6 col-xl-6 text-end">
-                                <button class="applyrs_btn japplybtn japply-btn" id="japplybtn" data-value="disabled"><img src="{{asset('images/detailpage/apply_icon.svg')}}" alt="apply-icon"><span> Apply </span></button>
+                                
+                            @if($job->is_active==3 || $job->is_active==2)
+                                <button class="expired" data-value="disabled">  {{ ($job->is_active==2)?'In-active':'Expired' }} </button>
+                            @else
+                                <button class="applyrs_btn japplybtn japply-btn" data-value="disabled"><img src="{{asset('images/detailpage/apply_icon.svg')}}" alt="apply-icon"><span> Apply </span></button>
                                 <button class="applied_bm japplied-btn"><img src="{{asset('images/detailpage/applied.svg')}}" alt="applied-icon"><span> Applied </span></button>
+                            @endif
                             </div>
                         </div>
                     </div>
@@ -119,12 +129,19 @@
                         </table>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 apply_div col-sm-3 applybtnsticky">
-                        <div class="text-end mt-2">
-                            <button class="applyrs_btn japplybtn japply-btn" id="japplybtn" data-value="disabled"><img src="{{asset('images/detailpage/apply_icon.svg')}}" alt="apply-icon"> Apply</button>
-                        </div>
-                        <div class="text-end">
-                            <button class="applied_bm japplied-btn"><img src="{{asset('images/detailpage/applied.svg')}}" alt="applied-icon">Applied</button>
-                        </div>
+                        
+                        @if($job->is_active==3 || $job->is_active==2)
+                            <div class="text-end mt-2">
+                                <button class="applyrs_btn expired" data-value="disabled"> {{ ($job->is_active==2)?'In-active':'Expired' }}</button>
+                            </div>
+                        @else
+                            <div class="text-end mt-2">
+                                <button class="applyrs_btn japplybtn japply-btn" data-value="disabled"><img src="{{asset('images/detailpage/apply_icon.svg')}}" alt="apply-icon"> Apply</button>
+                            </div>
+                            <div class="text-end">
+                                <button class="applied_bm japplied-btn"><img src="{{asset('images/detailpage/applied.svg')}}" alt="applied-icon">Applied</button>
+                            </div>
+                        @endif
                     </div>
                     
                     <div class="col-md-12 col-12">
@@ -135,9 +152,13 @@
                                 </div>
                             </div>
                             <div class="col-md-6 col-5 col-xl-5 col-lg-5 align-self-center">
-                                <div class="immediate_ic mgmw mb-0">
-                                    <img src="{{asset('images/detailpage/immediate.svg')}}" alt="immediate-join" class="icon_rs" draggable="false">Immediate <span class="mblef">Join</span>
-                                </div>
+                                @php $notice_period = $job->NoticePeriod !=null?$job->NoticePeriod->notice_period:'' @endphp
+                                @if(!empty($notice_period) && $notice_period=='Immediate Join')
+                                    <div class="immediate_ic mgmw mb-0">
+                                        <img src="{{asset('images/detailpage/immediate.svg')}}" alt="immediate-join" class="icon_rs" draggable="false"> 
+                                        @if($notice_period=='Immediate Join') Immediate <span class="mblef">Join</span> @else {{ ucwords($notice_period) }} @endif
+                                    </div>
+                                @endif
                             </div>
                             <div class="col-md-2 col-2 col-xl-3 col-lg-3">
                                 @php
@@ -311,7 +332,7 @@
                     @isset($job->company->website_url)
                         <h5>Website</h5>
                         <div class="mb-3">
-                            <a href="{{ $job->company->website_url}}">{{ $job->company->website_url}}</a>
+                            <a href="{{ $job->company->website_url}}" target="_blank">{{ $job->company->website_url}}</a>
                         </div>
                     @endisset               
                     <div class="d-flex justify-content-between">
@@ -322,6 +343,7 @@
                                     @isset($job->company->fb_url)<span><a href="{{$job->company->fb_url}}"><img src="{{asset('images/detailpage/facebook.svg')}}" alt="facebook-image"></a></span>@endif
                                     @isset($job->company->linkedin_url)<span><a href="{{$job->company->linkedin_url}}"><img src="{{asset('images/detailpage/linkedin.svg')}}" alt="linkedin-image"></a></span>@endif
                                     @isset($job->company->insta_url)<span><a href="{{$job->company->insta_url}}"><img src="{{asset('images/detailpage/instagram.svg')}}" alt="instagram-image"></a></span>@endif
+                                    @isset($job->company->twitter_url)<span><a href="{{$job->company->twitter_url}}"><img src="{{asset('images/about/twitterx.png')}}" alt="twitter-image" class="w-50 px-1"></a></span>@endif
                                 </div>
                             @endif
                         </div>
@@ -340,6 +362,7 @@
                ($job->contact_person_details->evening_section_from && $job->contact_person_details->evening_section_to) || 
                (!empty($job->contact_person_details->email)) ||
                (!empty($job->contact_person_details->phone_1)) ||
+               (!empty($job->contact_person_details->phone_2)) ||
                (!empty($job->contact_person_details->phone_2)))
 
                 <div class="card walkin_cd align-self-center">
@@ -347,7 +370,7 @@
                         <h4>Walk-in</h4>
                         <div>
                             <p><b>From </b>{{ \Carbon\Carbon::parse($job->walkin->walk_in_from_date)->format('d F, Y')}} to {{ \Carbon\Carbon::parse($job->walkin->walk_in_to_date)->format('d F, Y')}}.@if($job->walkin->exclude_days) (Excluding {{$job->walkin->exclude_days}})@endif</p>
-                            <p><b>Time between : </b>{{ \Carbon\Carbon::parse($job->walkin->walk_in_from_time)->format('H:i A')}} to {{ \Carbon\Carbon::parse($job->walkin->walk_in_to_time)->format('H:i A')}}</p>
+                            <p><b>Best Time to Contact: </b>{{ \Carbon\Carbon::parse($job->walkin->walk_in_from_time)->format('h:i A')}} to {{ \Carbon\Carbon::parse($job->walkin->walk_in_to_time)->format('h:i A')}}</p>
                             @if(!empty($job->walkin->walk_in_location))
                                 <p>
                                     <table>
@@ -361,6 +384,10 @@
                                         </tr>
                                     </table>
                                 </p>
+                            @endif
+                            
+                            @if(isset($job->walkin->walk_in_google_map_url) && !empty($job->walkin->walk_in_google_map_url))
+                                <p><b>Google link: </b><a href="{{$job->walkin->walk_in_google_map_url}}" target="_blank" class="text-primary">{{ $job->walkin->walk_in_google_map_url }}</a></p>
                             @endif
                         </div>
                     @endif
@@ -394,8 +421,22 @@
                             </p>
                         @endif
                         <div class="row">
+                            @if((!empty($job->contact_person_details->name)))
+                                <div class="col-md-6">
+                                    <table>
+                                        <tr>
+                                            <td class="d-block"><img src="{{asset('images/detailpage/user.svg')}}" alt="call-icon" class="icon_rs" draggable="false"></td>
+                                            <td>
+                                                <span>
+                                                    <div>{{ $job->contact_person_details->name }}</div>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            @endif
                             <div class="col-md-6">
-                                <table>
+                                <table class="call_nhvcez">
                                     @php
                                         $pincode= $job->company->pin_code ?? '';
                                         $pincode= !empty($pincode)? ', '.$pincode.'.' : '';
@@ -450,9 +491,11 @@
                                 </p>
                             </div>
                             <div class="col-md-7 col-6 align-self-center">
+                                @if($breakpoint==null)
                                 <div class="text-end space_hgtyu2">
                                     <p class="m-0 cursor-pointer previous-btn skip-submit">Skip & apply</p>
                                 </div>
+                                @endif
                             </div>
                             <div class="col-md-5 col-6">
                                 <div class="text-end space_hgtyu">
@@ -496,46 +539,53 @@
                             <div class="quizs">
                                 {{-- Question --}}
                                     @foreach ($job->screeningquiz as $key => $quiz)
-                                        <div class="quiz" data-bp="{{$quiz->breakpoint}}" data-dsw3w14="{{$quiz->quiz_code}}" data-dsw3w15="{{$quiz->answer_type}}">
-                                            <div class="mb-3">
-                                                <strong>{{$quiz->candidate_question}}</strong>
+                                        <div class="row">
+                                            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-2 text-end">
+                                                @if($quiz->breakpoint=='yes')<img src="{{asset('images/detailpage/breakpoints_mcv.svg')}}" class="break-point" alt="break-points-{{$quiz->quiz_code}}">@endif
                                             </div>
-                                            @if($quiz->answer_type=='text')
-                                                <div class="input_hgmtr mb-3">    
-                                                    {{ Form::text('answer_'.$quiz->quiz_code, null, array('class'=>'form-control e1ex0nj0 w-auto', 'id'=>'answer_'.$quiz->quiz_code, 'placeholder'=>__(' '))) }}
-                                                </div>
-                                            @elseif($quiz->answer_type=='single')
-                                                @foreach (json_decode($quiz->candidate_options) as $key1 => $option)                           
-                                                    <div class="form-check">
-                                                        <input class="form-check-input e1ex0nj0" type="radio" name="answer_{{$quiz->quiz_code}}" value="{{ $option }}" id="answerradio{{$quiz->quiz_code}}_{{ $key1 }}" @if($key1==0) checked @endif>
-                                                        <label class="form-check-label" for="answerradio{{$quiz->quiz_code}}_{{ $key1 }}">
-                                                            {{ $option }}
-                                                        </label>
-                                                    </div>                                                
-                                                @endforeach
-                                            @elseif($quiz->answer_type=='multiple')
-                                                @foreach (json_decode($quiz->candidate_options) as $key1 => $option)                           
-                                                    <div class="form-check">
-                                                        <input class="form-check-input e1ex0nj0" type="checkbox" name="answer_{{$quiz->quiz_code}}[]" value="{{ $option }}" id="answercheckbox{{$quiz->quiz_code}}_{{ $key1 }}">
-                                                        <label class="form-check-label" for="answercheckbox{{$quiz->quiz_code}}_{{ $key1 }}">
-                                                            {{ $option }}
-                                                        </label>
+                                            <div class="col-xl-11 col-lg-11 col-md-11 col-sm-11 col-10">
+                                                <div class="quiz" data-bp="{{$quiz->breakpoint}}" data-dsw3w14="{{$quiz->quiz_code}}" data-dsw3w15="{{$quiz->answer_type}}">
+                                                    <div class="mb-3">
+                                                        <strong>{{$quiz->candidate_question}}</strong>
                                                     </div>
-                                                @endforeach
-                                            @elseif($quiz->answer_type=='textarea')
-                                                <div class="mb-3 input_hgmtr">
-                                                    {{ Form::textarea('answer_'.$quiz->quiz_code, null, array('class'=>'form-control e1ex0nj0', 'id'=>'answer_'.$quiz->quiz_code, 'placeholder'=>__(' '))) }}
+                                                    @if($quiz->answer_type=='text')
+                                                        <div class="input_hgmtr mb-3">    
+                                                            {{ Form::text('answer_'.$quiz->quiz_code, null, array('class'=>'form-control e1ex0nj0 w-auto', 'id'=>'answer_'.$quiz->quiz_code, 'placeholder'=>__(' '))) }}
+                                                        </div>
+                                                    @elseif($quiz->answer_type=='single')
+                                                        @foreach (json_decode($quiz->candidate_options) as $key1 => $option)                           
+                                                            <div class="form-check">
+                                                                <input class="form-check-input e1ex0nj0" type="radio" name="answer_{{$quiz->quiz_code}}" value="{{ $option }}" id="answerradio{{$quiz->quiz_code}}_{{ $key1 }}" @if($key1==0) checked @endif>
+                                                                <label class="form-check-label" for="answerradio{{$quiz->quiz_code}}_{{ $key1 }}">
+                                                                    {{ $option }}
+                                                                </label>
+                                                            </div>                                                
+                                                        @endforeach
+                                                    @elseif($quiz->answer_type=='multiple')
+                                                        @foreach (json_decode($quiz->candidate_options) as $key1 => $option)                           
+                                                            <div class="form-check">
+                                                                <input class="form-check-input e1ex0nj0" type="checkbox" name="answer_{{$quiz->quiz_code}}[]" value="{{ $option }}" id="answercheckbox{{$quiz->quiz_code}}_{{ $key1 }}">
+                                                                <label class="form-check-label" for="answercheckbox{{$quiz->quiz_code}}_{{ $key1 }}">
+                                                                    {{ $option }}
+                                                                </label>
+                                                            </div>
+                                                        @endforeach
+                                                    @elseif($quiz->answer_type=='textarea')
+                                                        <div class="mb-3 input_hgmtr">
+                                                            {{ Form::textarea('answer_'.$quiz->quiz_code, null, array('class'=>'form-control e1ex0nj0', 'id'=>'answer_'.$quiz->quiz_code, 'placeholder'=>__(' '))) }}
+                                                        </div>
+                                                    @elseif($quiz->answer_type=='select')
+                                                    @php
+                                                        $options = json_decode($quiz->candidate_options);
+                                                        $options = array_combine($options, $options);
+                                                    @endphp
+                                                        <div class="mb-3 input_hgmtr">
+                                                            {{ Form::select('answer_'.$quiz->quiz_code, ['' => __('Select')]+$options??'', null, array('class'=>'form-select w-auto', 'id'=>'answer_'.$quiz->quiz_code)) }}
+                                                        </div>
+                                                    @endif
+                                                    <span class="es2wa7s text-danger"> </span>
                                                 </div>
-                                            @elseif($quiz->answer_type=='select')
-                                            @php
-                                                $options = json_decode($quiz->candidate_options);
-                                                $options = array_combine($options, $options);
-                                            @endphp
-                                                <div class="mb-3 input_hgmtr">
-                                                    {{ Form::select('answer_'.$quiz->quiz_code, ['' => __('Select')]+$options??'', null, array('class'=>'form-select w-auto', 'id'=>'answer_'.$quiz->quiz_code)) }}
-                                                </div>
-                                            @endif
-                                            <span class="es2wa7s text-danger"> </span>
+                                            </div>
                                         </div>
                                     <hr/>
                                     @endforeach
@@ -552,95 +602,12 @@
         </div>
     </div>
 
-    <div class="modal fade" id="fullquestions1" tabindex="-1" role="dialog" aria-labelledby="screeningQuiz72ers3Label2" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered assessment_modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="exampleModalLongTitle">Screening Questions</h3>
-                    <button type="button" class="close btn-close" data-bs-dismiss="modal" aria-label="Close">
-                    </button>
-                </div>
-                <form class="form" id="screeningQuiz" action="{{route('job.apply', $job->slug)}}" method="post">
-                    @csrf
-                    {!! Form::hidden('is_login',null, array('id'=>'is_login')) !!}
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-xl-7 col-lg-12 col-md-12 col-12 align-self-center">
-                                <section id="cdate_assesment">
-                                    <div class="card ass_details p-2">
-                                        <div class="row">
-                                            {{-- Question --}}
-                                            @foreach ($job->screeningquiz as $key => $quiz)
-                                            <div class="col-md-12 quiz" data-bp="{{$quiz->breakpoint}}" data-dsw3w14="{{$quiz->quiz_code}}" data-dsw3w15="{{$quiz->answer_type}}">
-                                                <p class="h3 mt-4 mb-2">{{$quiz->candidate_question}}</p>
-                                                
-                                                @if($quiz->answer_type=='text')
-                                                    {{ Form::text('answer_'.$quiz->quiz_code, null, array('class'=>'form-control e1ex0nj0 w-auto', 'id'=>'answer_'.$quiz->quiz_code, 'placeholder'=>__(' '))) }}
-                                                @elseif($quiz->answer_type=='single')
-                                                    @foreach (json_decode($quiz->candidate_options) as $key1 => $option)                           
-                                                        <div class="form-check">
-                                                            <input class="form-check-input e1ex0nj0" type="radio" name="answer_{{$quiz->quiz_code}}" value="{{ $option }}" id="answerradio{{$quiz->quiz_code}}_{{ $key1 }}" @if($key1==0) checked @endif>
-                                                            <label class="form-check-label" for="answerradio{{$quiz->quiz_code}}_{{ $key1 }}">
-                                                                {{ $option }}
-                                                            </label>
-                                                        </div>                                                
-                                                    @endforeach
-                                                @elseif($quiz->answer_type=='multiple')
-                                                    @foreach (json_decode($quiz->candidate_options) as $key1 => $option)                           
-                                                        <div class="form-check">
-                                                            <input class="form-check-input e1ex0nj0" type="checkbox" name="answer_{{$quiz->quiz_code}}[]" value="{{ $option }}" id="answercheckbox{{$quiz->quiz_code}}_{{ $key1 }}">
-                                                            <label class="form-check-label" for="answercheckbox{{$quiz->quiz_code}}_{{ $key1 }}">
-                                                                {{ $option }}
-                                                            </label>
-                                                        </div>
-                                                    @endforeach
-                                                @elseif($quiz->answer_type=='textarea')
-                                                    {{ Form::textarea('answer_'.$quiz->quiz_code, null, array('class'=>'form-control e1ex0nj0', 'id'=>'answer_'.$quiz->quiz_code, 'placeholder'=>__(' '))) }}
-                                                @elseif($quiz->answer_type=='select')
-                                                @php
-                                                    $options = json_decode($quiz->candidate_options);
-                                                    $options = array_combine($options, $options);
-                                                @endphp
-                                                    {{ Form::select('answer_'.$quiz->quiz_code, ['' => __('Select')]+$options??'', null, array('class'=>'form-select w-auto', 'id'=>'answer_'.$quiz->quiz_code)) }}
-                                                @endif
-                                                <span class="es2wa7s text-danger"> </span>
-                                            </div>
-                                            @endforeach
-                                            {{-- // Question --}}
-                                        </div>
-                                    </div>                  
-                                </section>    
-                            </div>
-                        </div>
-                    </div>
-                  
-                    <div class="d-flex justify-content-between  mx-4 mb-4">
-                        @if($breakpoint==null)
-                            <div>
-                                <a class="btn previous-btn skip-submit"> Skip & apply</a>
-                            </div> 
-                        @endif
-                        <div>
-                            <a class="btn previous-btn" data-bs-dismiss="modal"> Skip</a>
-                        </div>
-                        <div>
-                            <button type="button" class="btn btn_c_s1 submit">Submit & Apply</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
     @include('user.complete-profile-modal')
 
-    @php
-        $applied = Auth::user()?(Auth::user()->isAppliedOnJob($job->id)??false):false;
-    @endphp
     <script>
         var reference_url = '{{ $job->reference_url }}';
         var is_admin = '{{ $job->company->is_admin }}';
-        var applied = '{{ $applied }}';
+        var applied = '{{ Auth::user()?(Auth::user()->isAppliedOnJob($job->id)??false):false }}';
         var baseurl = '{{ url("/") }}/';
         var is_login = '{{ Cookie::get("is_login") }}';
         var save_req_url = "{{ route('job.save', $job->slug) }}";

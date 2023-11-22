@@ -137,7 +137,7 @@ body{
     text-indent: 25px;
 }.resultjobwb .about_cmp a{
     text-decoration: none;
-    color: #000;
+    /* color: #000; */
     font-size: 14px;
 }.resultjobwb .about_cmp h5{
     color: #4285F4;
@@ -176,8 +176,8 @@ body{
     margin: auto;
 }.svdmh_jbs.mgmw{
     background: #F3F7FE;
-}.sdad_aw .mobile_apply{
-    display: none !important;
+}.sdad_aw{
+    display: none;
 }.unsavgf_jbs.mgmw{
     background: transparent;
     padding: 6px 16px;
@@ -293,6 +293,10 @@ body{
 }.mobile_apply.japplied-btn{
     background: rgba(243, 247, 254, 1);
     color: #000;
+}.mobile_apply.expied{
+    background: rgba(243, 247, 254, 1);
+    color: #ea4335;
+    font-weight: 400;
 }.sdad_aw .mobile_apply.japplied-btn img{
     width: 18px;
     margin-right: 6px;
@@ -336,7 +340,25 @@ body{
     background: #f0f0f0;
     color: #000;
 }
-  
+.resultjobwb .applyrs_btn.expired, .jsky_hb.sticky button.expired, .mobile_apply.expired{
+    background: none;
+    color: #ea4335;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+.mobile_apply.expired{
+    background: #f0f0f0;
+}
+.questionsdt .previous-btn{
+    background: none;
+}
+.quizs .form-check label, .form-group label{
+    text-wrap: wrap !important;
+}
+.quizs .break-point{
+    width: 30px;
+    height: 35px;
+}
 @media(max-width: 768px){
     .breadcrumbty{
         margin-left: 12px;
@@ -348,7 +370,7 @@ body{
     }.resultjobwb .requiredn{
         display: none;
     }.resultjobwb .call_nhvcez{
-        margin-top: 10px;
+        margin-top: 5px;
     }#screenings .questionsdt {
         padding: 15px;
     }#screenings .first_mwe h1{
@@ -524,8 +546,8 @@ body{
 }
 
 @media(max-width:576px){
-    .sdad_aw .mobile_apply{
-        display: block !important;
+    .sdad_aw{
+        display: block;
     }.resultjobwb .applyrs_btn{
         display: none;
     }.jhnt5vfd{

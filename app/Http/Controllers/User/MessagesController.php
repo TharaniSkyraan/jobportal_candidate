@@ -100,7 +100,7 @@ class MessagesController extends Controller
         $contact = $this->message_contact->select('sub_user_id','id','message_id','user_id','job_id','created_at','employer_active_status')
                                          ->where('message_id',$request->message_id)
                                          ->first()
-                                         ->append(['company_name','company_image','company_avatar','title','company_name','job_location','contact_number']);
+                                         ->append(['company_name','company_image','company_avatar','title','company_name','job_location','contact_number','view_profile_link','view_job_link']);
         $contact->makeHidden(['user_id','job_id','job','company']);
         $messages = $this->message->select('message','send_at','send_by')
                                   ->where('message_id',$request->message_id)

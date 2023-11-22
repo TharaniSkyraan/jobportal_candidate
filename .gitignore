@@ -3,6 +3,8 @@
 /config/*
 /cache/*.key
 /node_modules
+/public/temp
+/public/temp/*
 /public/hot
 /public/site_assets_1/assets/img/profile_image
 /public/storage
