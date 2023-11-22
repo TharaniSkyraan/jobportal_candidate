@@ -15,7 +15,7 @@
 		<div class="content">
         <div class="row">
           <div class="col-md-12 col-lg-10 col-sm-12 col-xs-12">         
-              <div class="px-4 pt-4 pb-0 mt-3 mb-3">
+              <div class="px-3 pt-4 pb-0 mt-3 mb-3">
                   <div class="card-body wizard-tab" style="background-color:unset !important">
                       <ul class="nav nav-tabs mb-3 border-0" role="tablist">
                         <li class="nav-item applicationStatus" role="all"><a class="nav-link" id="pills-all-tab" data-bs-toggle="tab" href="#all">All</a></li>

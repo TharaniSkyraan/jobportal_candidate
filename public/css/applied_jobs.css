@@ -106,6 +106,16 @@
 {  
   .allJobList{
     padding:1.4rem !important;
+  }.lkdprw .jobList.allJobList, .lkdprw .card-body.wizard-tab{
+    padding: 0px !important;
+  }.lkdprw .card-body.wizard-tab a.nav-link{
+    font-size: 15px !important;
+    padding: 0px;
+  }.lkdprw .no_kmbq1 img{
+    width: 100px;
+    height: 100px;
+  }.lkdprw .no_kmbq2 {
+    font-size: 16px;
   }
 }
 @media only screen and (max-width: 575px)
