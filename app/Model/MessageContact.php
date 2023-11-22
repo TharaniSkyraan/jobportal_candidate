@@ -97,4 +97,14 @@ class MessageContact extends Model
         return ($this->company->company->name[0]??ucwords($this->company->company->email[0]));
     }
     
+    public function GetViewProfileLinkAttribute()
+    {
+        return 'company-view/'.$this->company->company->slug;
+    }
+    
+    public function GetViewJobLinkAttribute()
+    {
+        return 'detail/'.$this->job->slug;
+    }
+    
 }

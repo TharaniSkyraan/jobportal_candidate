@@ -221,14 +221,16 @@ function conactlist_html(data) {
                     <div class="cntnme">
                         <p>`+val.title+`</p>
                         <h4 class="m-0">`+val.company_name+`</h4>
-                        <h5 class="m-0">`+m_created_at;
-                         if(active_cls=='unread'){
-                                $html +=` <span class="badge badge-default">`+val.unread_count+`</span>`;
-                         }
-                         $html +=` </h5>
                     </div>
-                    </div>
-                </div>`;
+                </div>
+                <div class="pt-2">
+                    <h5 class="m-0">`+m_created_at;
+                    if(active_cls=='unread'){
+                            $html +=` <span class="badge badge-default">`+val.unread_count+`</span>`;
+                    }
+                    $html +=` </h5>                    
+                </div>
+            </div>`;
 
     });
 
@@ -300,8 +302,8 @@ function messagesPopulate(resp){
                 <img draggable="false" src="${baseurl}images/msgs/arrow.png" alt="Img" class="img-fluid">
             </div>
             <div class="ms-2">
-                <h5>`+candi_data.title+`</h5>
-                <p class="m-0">`+candi_data.company_name+`</p>
+                <h5 data-bs-toggle="tooltip" data-bs-placement="top" title="Click to view job detail!"><a href="`+baseurl+candi_data.view_job_link+`" target="_blank">`+candi_data.title+`</a></h5>
+                <p class="m-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Click to view profile!"><a href="`+baseurl+candi_data.view_profile_link+`" target="_blank">`+candi_data.company_name+`</a></p>
             </div>
         </div>
         <div class="col-1 align-self-center">
@@ -326,6 +328,10 @@ function messagesPopulate(resp){
     $('.message-list').html(html_msg);
     $('.msglistpar').removeClass('hide');
 
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
 }
 // Message List html replicate
 function messagesListHtml(messages){
