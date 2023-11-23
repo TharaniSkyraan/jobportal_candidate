@@ -295,7 +295,7 @@ class JobsController extends Controller
             if(Auth::user()->is_active ==1){
                 
                 $is_login = $request->is_login ?? 0;
-                $is_screening = isset($request->is_screening)?'yes':'no';
+                $is_screening = ($request->is_screening=='yes')?'yes':'no';
                 $is_enabled = ($request->is_enabled=='enabled')?1:0;
                 if(! $is_login){
                     $reload_page = true;
