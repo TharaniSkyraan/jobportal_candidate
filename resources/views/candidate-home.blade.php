@@ -398,7 +398,7 @@
         var baseurl = '{{ url("/") }}/';
         var current_city = "{{$ip_data['city']??''}}";
         
-        var path1 = '{{ url("api/autocomplete/search_designation") }}';
+        var path1 = '{{ url("api/autocomplete/search_title") }}';
         var path = '{{ url("api/autocomplete/search_location") }}';
 
 

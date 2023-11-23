@@ -113,7 +113,7 @@ $('#mobsearch_btn').on('click', function(){
 });
 
 $(function(){
-    var cache1 = JSON.parse(localStorage.getItem('designation'))??{};
+    var cache1 = JSON.parse(localStorage.getItem('title'))??{};
     var enter_limit = 1;
     
     var cache = JSON.parse(localStorage.getItem('search_city'))??{};
@@ -123,7 +123,7 @@ $(function(){
     if($( window ).width()<=575){
         $('#mdesignation').typeahead({ // focus on first result in dropdown
             source: function(query, result) {
-                var local_cache = JSON.parse(localStorage.getItem('designation'));
+                var local_cache = JSON.parse(localStorage.getItem('title'));
                 if ((local_cache!=null) && (query in local_cache)) {
                     // If result is already in local_cache, return it
                     result(cache1[query]);
@@ -136,7 +136,7 @@ $(function(){
                     dataType: 'json',
                     success: function(data) {
                         cache1[query] = data;
-                        localStorage.setItem('designation',JSON.stringify(cache1));
+                        localStorage.setItem('title',JSON.stringify(cache1));
                         result(data);
                     }
                 });
@@ -182,7 +182,7 @@ $(function(){
 
         $('#designation').typeahead({ // focus on first result in dropdown
             source: function(query, result) {
-                var local_cache = JSON.parse(localStorage.getItem('designation'));
+                var local_cache = JSON.parse(localStorage.getItem('title'));
                 if ((local_cache!=null) && (query in local_cache)) {
                     // If result is already in local_cache, return it
                     result(cache1[query]);
@@ -195,7 +195,7 @@ $(function(){
                     dataType: 'json',
                     success: function(data) {
                         cache1[query] = data;
-                        localStorage.setItem('designation',JSON.stringify(cache1));
+                        localStorage.setItem('title',JSON.stringify(cache1));
                         result(data);
                     }
                 });

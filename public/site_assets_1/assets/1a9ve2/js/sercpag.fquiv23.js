@@ -75,9 +75,9 @@ if($( window ).width()<=575){
         var mdesignation_s = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.whitespace,
         queryTokenizer: Bloodhound.tokenizers.whitespace,
-        prefetch: 'api/autocomplete/search_designation_default',
+        prefetch: 'api/autocomplete/search_title',
         remote: {
-            url: "api/autocomplete/search_designation",
+            url: "api/autocomplete/search_title",
             replace: function(url, query) {
                 return url + "?q=" + query;
             },        
@@ -154,9 +154,9 @@ if($( window ).width()<=575){
         var stocks = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.whitespace,
         queryTokenizer: Bloodhound.tokenizers.whitespace,
-        prefetch: 'api/autocomplete/search_designation_default',
+        prefetch: 'api/autocomplete/search_title',
         remote: {
-            url: "api/autocomplete/search_designation",
+            url: "api/autocomplete/search_title",
             replace: function(url, query) {
                 return url + "?q=" + query;
             },        

@@ -27,6 +27,7 @@ use App\Model\Skill;
 use App\Model\Experience;
 use App\Model\Type;
 use App\Model\Shift;
+use App\Model\Designation;
 use App\Model\Title;
 use App\Model\Location;
 use App\Model\Company;
@@ -789,9 +790,9 @@ class DataArrayHelper
     
     public static function autocompleteDesignation($key='')
     {
-        $titles = Title::select('title as name')->where('title', 'like', "$key%")->isDefault()->lang()->active()->take(10)->get();
+        $designations = Designation::select('designation as name')->where('designation', 'like', "$key%")->isDefault()->lang()->active()->take(10)->get();
         
-        return $titles;
+        return $designations;
     }
     
     public static function autocompleteLocation($key='',$country_code='')
