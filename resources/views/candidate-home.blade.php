@@ -272,7 +272,7 @@
                                                                 <div class="card hm_grn cursor-pointer jobsearch">
                                                                     <div class="row">
                                                                         <div class="col-8">
-                                                                            <h3 class="fw-bolder">{{$joblist->title}}</h3>
+                                                                            <h3 class="fw-bolder jobsearchtitle">{{$joblist->title}}</h3>
                                                                             <p>{{$joblist->total_count}} + jobs</p>
                                                                         </div>
                                                                         <div class="col-4 d-flex justify-content-center kjhmg_yb">

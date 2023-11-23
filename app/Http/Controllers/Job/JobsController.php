@@ -76,14 +76,13 @@ class JobsController extends Controller
                                 ->limit(3)
                                 ->get();
                                 
-        $job_list = Job::whereIsActive(1)
-                        ->select('title', DB::raw('count(`title`) as total_count'))
-                        ->groupBy('title')
-                        ->whereNotNull('title')
-                        ->havingRaw("total_count != 0")
-                        ->orderBy('total_count','DESC')
-                        ->limit(4)
-                        ->get();
+        $job_list = JobSearch::select('title', DB::raw('count(`title`) as total_count'))
+                            ->groupBy('title')
+                            ->whereNotNull('title')
+                            ->havingRaw("total_count != 0")
+                            ->orderBy('total_count','DESC')
+                            ->limit(4)
+                            ->get();
 
         $top_cities = JobWorkLocation::whereHas('job',function($q){
                                         $q->where('work_from_home','!=','permanent');
