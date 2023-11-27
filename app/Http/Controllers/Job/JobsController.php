@@ -247,6 +247,7 @@ class JobsController extends Controller
     {  
         
         $job = Job::whereSlug($slug)->first(); 
+        dd($job);
         if($job==NULL){
             abort(404);
         }
