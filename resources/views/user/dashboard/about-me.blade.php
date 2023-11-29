@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section('custom_scripts')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js"></script>
     <link rel="stylesheet" href="{{ asset('site_assets_1/assets/date_flatpicker/flatpickr.min.css')}}">
     <script src="{{ asset('site_assets_1/assets/date_flatpicker/flatpickr.js')}}"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shortcut-buttons-flatpickr@0.1.0/dist/themes/light.min.css">
@@ -28,11 +30,15 @@
                             <div class="row">
                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-xs-4 col-12">
                                     <div class="profilepictureappend">
-                                        @if(Auth::user()->image)
-                                            <img draggable="false" src="{{Auth::user()->image}}" alt="profile-img" class="savecompanyname updateprofilepicture">
-                                        @else
-                                            <img draggable="false" src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="profile-img" class="savecompanyname updateprofilepicture">
-                                        @endif
+                                        <div class="icnsuld" onclick="openModal();">
+                                            <i class="fa fa-camera cursor-pointer editprofileicon"></i>    
+
+                                            @if(Auth::user()->image)
+                                                <img draggable="false" src="{{Auth::user()->image}}" alt="profile-img" class="savecompanyname updateprofilepicture">
+                                            @else
+                                                <img draggable="false" src="{{ url('site_assets_1/assets/img/default_profile.jpg')}}" alt="profile-img" class="savecompanyname updateprofilepicture">
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-xl-9 col-lg-9 col-md-8 col-sm-8 col-xs-8 col-12 align-self-center">
@@ -116,12 +122,51 @@
         </div>
     </div>
 </div>
+
+<!-- Company Profile modal -->
+<div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" data-bs-backdrop="static" aria-hidden="true" data-bs-keyboard="false">
+    <div class="modal-dialog  modal-dialog-centered ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title fw-bolder">Profile picture</h4>
+                <button type="button" class="btn-close profilemodalclose" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="text-center reset-modal">
+                    <div class="text-center">
+                        <small class="form-text text-muted text-danger err_msg  mb-4" id="err_image"></small>
+                    </div>
+                    <div class="profilepic-modal m-auto mb-4">
+                        @if(Auth::user()->image !=null )
+                        <img draggable="false" src="{{Auth::user()->image}}" alt="Img" class="profilepic__image w-100 h-100" id="profileImage">
+                        @else  
+                        <img draggable="false" src="{{ url('noupload.png') }}" alt="Img" class="profilepic__image w-100 h-100" id="profileImage">
+                        @endif
+                    </div>
+                    <div id="preview-crop-image"></div>
+                    <div id="upload-demo" style="display:none"></div>
+                    <input type="file" id="choose-profile-pic" accept="image/*" style="display:none">
+                    <small class="form-text text-muted text-danger err_msg" id="err_image"></small>
+                    <label class="btn-block upload-image-label up_txt" for="choose-profile-pic" >Upload Image</label>
+                    <label class="btn-block text-success btn-upload-image save_txt" style="display:none">save</label>
+                    <label class="text-primary btn-block loading" type="button" disabled style="display:none">
+                        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                        Uploading...
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 @push('scripts')
 <script type="text/javascript">
-var baseurl = '{{ url("/") }}/';
-
-$('select#marital_status_id option:first').attr('disabled', true);
+    var baseurl = '{{ url("/") }}/';
+    function openModal(){
+		$('#profileModal').modal('show');
+	} 
+    $('select#marital_status_id option:first').attr('disabled', true);
 </script>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/user@ie3e2!/js/dashboard/uprof!$6ew2.js') }}"></script>
 @endpush

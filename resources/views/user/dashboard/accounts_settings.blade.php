@@ -171,12 +171,12 @@
 						<div id="upload-demo" style="display:none"></div>
 						<input type="file" id="choose-profile-pic" accept="image/*" style="display:none">
 						<small class="form-text text-muted text-danger err_msg" id="err_image"></small>
-						<label class="btn btn-secondary btn-block text-white upload-image-label" for="choose-profile-pic" >Upload Image</label>
-						<button class="btn btn-success btn-block btn-upload-image" style="display:none">save</button>
-						<button class="btn btn-primary btn-block loading" type="button" disabled style="display:none">
+						<label class="btn-block text-white upload-image-label up_txt" for="choose-profile-pic" >Upload Image</label>
+						<label class="btn-block btn-upload-image save_txt" style="display:none">save</label>
+						<label class="text-primary btn-block loading" disabled style="display:none">
 							<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
 							Uploading...
-						</button>
+            </label>
 					</div>
 				</div>
 			</div>

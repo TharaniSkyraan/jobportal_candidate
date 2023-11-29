@@ -1,3 +1,5 @@
+
+let csrf_token = $('meta[name=csrf-token]').attr('content');
 var maxBirthdayDate = new Date();
 maxBirthdayDate.setFullYear( maxBirthdayDate.getFullYear() - 16 );
 
@@ -64,3 +66,83 @@ $("#basic-info-submit-button").click(function(){
       return true;		
     }
   }
+
+  
+var resize = $('#upload-demo').croppie({
+  enableExif: true,
+  enableOrientation: true,    
+  viewport: { // Default { width: 100, height: 100, type: 'square' } 
+      width: 200,
+      height: 200,
+      type: 'square' //square
+  },
+  boundary: {
+      width: 300,
+      height: 300
+  }
+});
+
+$('#choose-profile-pic').on('change', function () { 
+$("#upload-demo").show();
+$(".profilepic-modal").hide();
+$(".btn-upload-image").show();
+$(".upload-image-label").text('Replace image');
+  var reader = new FileReader();
+  reader.onload = function (e) {
+    resize.croppie('bind',{
+      url: e.target.result
+    }).then(function(){
+      // console.log('jQuery bind complete');
+    });
+  }
+  reader.readAsDataURL(this.files[0]);
+});
+
+$('.btn-upload-image').on('click', function (ev) {
+  $(".upload-image-label").hide();	
+  $(".btn-upload-image").hide();
+  $(".profilemodalclose").hide();
+  $(".loading").show();
+
+  resize.croppie('result', {
+      type: 'canvas',
+      size: 'viewport'
+  }).then(function (img) {
+      $.ajax({
+      url: baseurl+'profileupdate',
+      type: "POST",
+      contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+      data: {"image":img, "_token": csrf_token},
+      success: function (data) {
+          $('.err_msg').html('');
+          location.reload();
+      },
+      error: function(json){
+          if (json.status === 422) {
+              var resJSON = json.responseJSON;
+              $('.err_msg').html('');
+              $.each(resJSON.errors, function (key, value) {
+              $('#err_image').html('<strong>' + value + '</strong>');
+              });
+
+          }
+      }
+      });
+  });
+});
+
+$('.profilemodalclose').on('click', function (ev) { 
+  var count = 0; 
+  var timeout = setTimeout(function(count) {       
+      $(".upload-image-label").text('Upload Image');
+      $(".profilemodalclose").show();
+      $(".btn-upload-image").hide();
+      $(".profilepic-modal").show();
+      $("#upload-demo").hide();
+      $(".loading").hide();
+      count++;
+      if(count==1){
+          clearTimeout(timeout);
+      }
+  }, 1000);
+});

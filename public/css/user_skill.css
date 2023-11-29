@@ -68,10 +68,15 @@
 /******************
 ****1.2.user about me****
 *******************/
-#abt_meusr .icnsuld {
+.profilepictureappend{
+    
     align-items: center;
     justify-content: center;
     display: flex;
+
+}
+#abt_meusr .icnsuld {
+    position: relative;
 }#abt_meusr .profilepictureappend img {
     width: 125px;
     border-radius: 50%;
@@ -110,17 +115,12 @@
     border-radius: 4px;
 }#abt_meusr .fa-camera {
     position: absolute;
-    background-color: blue;
-    color: #ffff;
-    width: 30px;
-    height: 30px;
-    font-size: 10px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
+    background-color: #000;
+    color: #fff;
+    padding: 7px;
     border-radius: 50%;
-    margin-top: 30px;
-    margin-left: 55px;
+    font-size: 12px !important;
+    left: 90px;
 }#abt_meusr label{
     color: #000000b8 !important;
     font-weight: 600 !important;
@@ -138,6 +138,29 @@
     font-size: 8px;
 }#abt_meusr label.form-check-label {
     font-weight: 500 !important;
+}
+.profilepictureappend img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 3px solid #ccc;
+    padding: 2px;
+}
+#profileModal label.up_txt {
+    color: #4e78c1 !important;
+    text-decoration: underline;
+    font-size: 15px !important;
+}#profileModal .save_txt {
+    color: #34a853 !important;
+    padding-left: 25px;
+    text-decoration: underline;
+}
+.profilepic-modal{
+	border: 0.5px solid lightgrey;
+	position: relative;
+	width: 39%;
+	border-radius: 50%;
+	overflow: hidden;
 }
 @media(min-width: 280px) and (max-width: 767px){
     #abt_meusr .ttleicn img{
@@ -168,6 +191,7 @@
         margin-top: 8px;
     }
 }
+
 /******************
 **1.3.my education**
 *******************/
