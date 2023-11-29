@@ -526,7 +526,7 @@ function ContactListen(){
 setInterval(message_listen_data, 3000); // Fetch messages every 3 seconds (adjust as needed)
 setInterval(ContactListen, 3000); // Fetch messages every 3 seconds (adjust as needed)
 
-$(document).on('click', '.nav_image' , function(e){
-    e.preventDefault();
-    $('#lock-icon').trigger('click');
-  });
+// $(document).on('click', '.nav_image' , function(e){
+//     e.preventDefault();
+//     $('#lock-icon').trigger('click');
+// });

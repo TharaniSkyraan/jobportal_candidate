@@ -150,10 +150,12 @@
     color: #4e78c1 !important;
     text-decoration: underline;
     font-size: 15px !important;
+    cursor: pointer;
 }#profileModal .save_txt {
     color: #34a853 !important;
     padding-left: 25px;
     text-decoration: underline;
+    cursor: pointer;
 }
 .profilepic-modal{
 	border: 0.5px solid lightgrey;
