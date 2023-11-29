@@ -51,6 +51,7 @@ function loadUserProjectForm(form, id=null){
 
 }
 function validateprojectForm(){
+  
   clrErr();
   var errStaus = false; 
   if(validateFormFields('name','Please enter Project title.','ValiCity')) errStaus=true;
@@ -86,6 +87,12 @@ function validateprojectForm(){
   if($('#user_experience_id').val() == ""){
     setMsg('user_experience_id','Please enter Your project done by'); errStaus=true;
   }
+  if($("input[name='work_as_team']").is(':checked')==true){
+    if($('#number').val()<2){
+      setMsg('noof_team_member','Atleast 2 member should be in team'); errStaus=true;
+    }
+  }
+  
 
   if(errStaus) {
     return false;

@@ -23,6 +23,11 @@
 
           $('#job_alert_div').html(response);
 
+            if($('#job_alert_div .card').length >= 5){
+              $('.addJobAlert').hide();
+            }else{
+              $('.addJobAlert').show();
+            }
         });
 
     }
@@ -65,10 +70,14 @@
     
     function validatejob_alertForm(){
       clrErr();
-      var errStaus = false; 
-      if(validateFormFields('title','Please enter Designation.','')) errStaus=true;
+      var errStaus = false;
+      if($('#title').val()==''){
+        if(validateFormFields('location','Please enter city','ValiCity')) errStaus=true;
+      } 
+      if($('#location').val()==''){
+        if(validateFormFields('title','Please enter Designation.','')) errStaus=true;
+      }
       if(validateFormFields('country_id_dd','Please enter Country.','')) errStaus=true;
-      if(validateFormFields('location','Please enter city','ValiCity')) errStaus=true;
       
       if(errStaus) {
         return false;
@@ -80,8 +89,8 @@
 
     function submitJobAlertForm() {
       var result = validatejob_alertForm(); 
-      $('.btn_c_s1').prop("disabled", true);
       if(result != false){
+       $('.btn_c_s1').prop("disabled", true);
         var form = $('#add_edit_user_job_alert');
         $.ajax({
         url     : form.attr('action'),
@@ -102,7 +111,6 @@
             $("#job_alert_success").slideUp(500);
           });
           
-          $('.addJobAlert').show();
           $('.btn_c_s1').prop("disabled", false);
         },
         error: function(json){
@@ -170,7 +178,12 @@
     {
 
       $('.job_alert_div').show();
-      $('.addJobAlert').show();
+      
+      if($('#job_alert_div .card').length >= 5){
+        $('.addJobAlert').hide();
+      }else{
+        $('.addJobAlert').show();
+      }
       if(job_alert_id!=0){      
         $('.job_alert_edited_div_'+job_alert_id).show();
       }

@@ -23,6 +23,10 @@
        
   </style> 
     <div class="card mt-4">
+        <div class="mb-4">
+            <input class="form-check-input" type="checkbox" value="yes" id="is_freelance" name="is_freelance" @if( isset($userProject) && $userProject->is_freelance=='yes') checked @endif>
+            <label class="form-check-label" for="is_freelance"> Done as Freelancher </label>
+        </div>
         <div class="mb-4">    
             <label for="" class="form-label">Project Title</label>
             {!! Form::text('name', null, array('class'=>'form-control required', 'id'=>'name', 'placeholder'=>__('Enter your Project name/Title'))) !!}
@@ -48,17 +52,19 @@
         </div>
 
         <div class="row align-items-baseline mb-4">
-            <div class="d-flex">
-                <div class="col-md-4 justify-content-center align-self-center">
-                    <input class="form-check-input" type="checkbox" value="yes" id="work_as_team" name="work_as_team" @if( isset($userProject) && $userProject->work_as_team=='yes') checked @endif>
-                    <label class="form-check-label" for="work_as_team"> Worked as team </label>
+            <div class="col-md-4 justify-content-center align-self-center mb-4">
+                <input class="form-check-input" type="checkbox" value="yes" id="work_as_team" name="work_as_team" @if( isset($userProject) && $userProject->work_as_team=='yes') checked @endif>
+                <label class="form-check-label" for="work_as_team"> Worked as team </label>
+            </div>
+            <div class="col-md-6">
+                <div class="d-flex">
+                    <span class="team-length" @if( isset($userProject) && $userProject->work_as_team=='yes') @else style="display:none;" @endif>
+                        <div class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
+                            {!! Form::number('noof_team_member', $userProject->noof_team_member??2, array('id'=>'number','min'=>'2')) !!}
+                        <div class="value-button" id="increase" onclick="increaseValue()" value="Increase Value">+</div>
+                    </span>
                 </div>
-                <span class="team-length" style="display:none;">
-                    <div class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
-                        {!! Form::number('noof_team_member', 0, array('id'=>'number')) !!}
-                    <div class="value-button" id="increase" onclick="increaseValue()" value="Increase Value">+</div>
-                    <small class="help-block form-text text-muted text-danger err_msg noof_team_member-error" id="err_noof_team_member"></small>  
-                </span>
+                <small class="help-block form-text text-muted text-danger err_msg noof_team_member-error" id="err_noof_team_member"></small>  
             </div>
         </div>
 

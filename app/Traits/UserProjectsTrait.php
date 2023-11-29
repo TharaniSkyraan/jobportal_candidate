@@ -88,9 +88,9 @@ trait UserProjectsTrait
         }else{
             $userProject->date_end = NULL;
         }
-        // dd($userProject);
         $userProject->is_on_going = $request->input('is_on_going')??NULL;
-        $userProject->noof_team_member = $request->input('noof_team_member');
+        $userProject->is_freelance = $request->input('is_freelance')??NULL;
+        $userProject->noof_team_member = (isset($request->work_as_team))?$request->input('noof_team_member'):null;
         $userProject->work_as_team = $request->input('work_as_team');
         $userProject->project_location = $request->input('project_location');
         $userProject->country_id = $request->input('country_id_dd');
@@ -98,7 +98,6 @@ trait UserProjectsTrait
         $userProject->role_on_project = $request->input('role_on_project');
         $userProject->description = $request->input('description');        
         $userProject->used_tools = $request->input('used_tools');
-        // dd($userProject);
 
         return $userProject;
 

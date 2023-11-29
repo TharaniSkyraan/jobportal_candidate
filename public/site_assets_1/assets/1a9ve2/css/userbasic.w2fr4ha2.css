@@ -103,7 +103,7 @@
 
 .value-button {
     display: inline-block;
-  /*   border: 1px solid #ddd; */
+    border: 1px solid #E9FBFF;
     margin: 0px;
     width: 40px;
     /* height: 20px; */
@@ -141,11 +141,11 @@
   input#number {
     text-align: center;
     border: none;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    margin: 0px;
+    border-top: 1px solid #E9FBFF;
+    border-bottom: 1px solid #E9FBFF;
+    margin: -1px;
     width: 40px;
-    height: 40px;
+    height: 41px;
   }
   
   input[type=number]::-webkit-inner-spin-button,

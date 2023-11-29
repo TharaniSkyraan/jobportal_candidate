@@ -16,10 +16,16 @@ if ($project->is_on_going == 1)
     <div class="row">
         <div class="col-md-8 col-lg-8 col-sm-8 col-8">
             <div class="mb-2 dtls">
-                <h3 class="fw-bolder mb-1">{{$project->name}}</h3>
+                @if($project->is_freelance=='yes')
+                <p class="mb-2">Freelance project.</p>
+                @endif
+                <h3 class="fw-bold mb-1">{{$project->name}}</h3>
                 <p class="mb-0">{{ $project->getCompany('company') }}</p>
-                <p class="mb-2">{{ $date }}.</p>
-                <p class="mb-2">{{ $project->url }}.</p>
+                <p class="mb-2">@if($project->project_location=='off_side') Offsite Project @else Onsite Project @endif.</p>
+                @if(!empty($project->location))<p class="mb-2">{{ $project->location }}.</p>@endif
+                @if(!empty($date))<p class="mb-2">{{ $date }}.</p>@endif
+                @if(!empty($project->url))<p class="mb-4">{{ $project->url }}.</p>@endif
+                @if(!empty($project->work_as_team=='yes'))<p class="mb-2">Team project - {{ $project->noof_team_member }} members .</p>@endif
             </div>
         </div>
         <div class="col-md-4 col-lg-4 col-sm-4 col-4">

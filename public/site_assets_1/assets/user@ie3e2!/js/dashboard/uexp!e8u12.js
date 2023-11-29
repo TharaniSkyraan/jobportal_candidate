@@ -115,8 +115,8 @@
 
     function submitUserExperienceForm() {
       var result = validateexperienceForm(); 
-      $('.btn_c_s1').prop("disabled", true);
       if(result != false){
+        $('.btn_c_s1').prop("disabled", true);
         var form = $('#add_edit_user_experience');
         $.ajax({
         url     : form.attr('action'),
