@@ -158,7 +158,8 @@ class MessagesController extends Controller
       
         // Mail::send(new MessageSendMail($maildata));
 
-        if(!empty($company->phone) && $company->is_mobile_verified=='yes')
+        // if(!empty($company->phone) && $company->is_mobile_verified=='yes')
+        if(!empty($company->phone))
         {
             $phone =  str_replace("+","",$company->phone);
             $data = [

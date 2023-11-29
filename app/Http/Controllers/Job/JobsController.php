@@ -349,22 +349,22 @@ class JobsController extends Controller
                     //     $user->update();
                     // }
                     /*         * ******************************* */
-                    // if($job->contact_person_details->send_apply_notify_email=='yes'){
-                    //     event(new JobApplied($job, $jobApply));
-                    // }
-                    // if($job->contact_person_details->send_apply_notify_mobile=='yes'){
+                    if($job->contact_person_details->send_apply_notify_email=='yes'){
+                        event(new JobApplied($job, $jobApply));
+                    }
+                    if($job->contact_person_details->send_apply_notify_mobile=='yes'){
                         
-                    //     $phone = str_replace("+","",$job->contact_person_details->phone_1??'');
-                    //     $phone1 = str_replace("+","",$job->contact_person_details->phone_2??'');
+                        $phone = str_replace("+","",$job->contact_person_details->phone_1??'');
+                        $phone1 = str_replace("+","",$job->contact_person_details->phone_2??'');
 
-                    //     if(!empty($phone)){
-                    //         $this->Notification($jobApply->id,$phone);
-                    //     }
-                    //     if(!empty($phone1)){
-                    //         $this->Notification($jobApply->id,$phone1);
-                    //     }
+                        if(!empty($phone)){
+                            $this->Notification($jobApply->id,$phone);
+                        }
+                        if(!empty($phone1)){
+                            $this->Notification($jobApply->id,$phone1);
+                        }
 
-                    // }
+                    }
                     $response = array("success" => true, "message" => "You have successfully applied for this job", "return_to" => "");
                 }
                      
