@@ -166,7 +166,7 @@
                                 <div class="mb-4">
                                     <label class="form-label">Contact Number</label>
                                     {!! Form::hidden('full_number', null, array('id'=>'full_number')) !!}
-                                    {!! Form::tel('phone', $user->phone??null, array('class'=>'form-control mob_cp validMob', 'id'=>'phone', 'onkeypress'=> 'return isNumber(event)', 'minlength'=>'9', 'maxlength'=>'10', 'placeholder'=>__('Phone'))) !!}
+                                    {!! Form::tel('phone', $user->phone??null, array('class'=>'form-control mob_cp validMob', 'id'=>'phone', 'minlength'=>'9', 'maxlength'=>'10', 'placeholder'=>__('Phone'))) !!}
                                     <small class="form-text text-muted text-danger err_msg" id="err_phone"></small> 
                                     {!! APFrmErrHelp::showErrors($errors, 'phone') !!}
                                 </div>
@@ -193,7 +193,7 @@
                                     <a href="{{ route('experience')}}" class="btn p-0"><img draggable="false" src="{{asset('images/lefticon.png')}}"> Previous</a>
                                 </div>
                                 <div class="col-md-6 col-7 text-end">
-                                    <button class="btn p-0" type="submit">Save & Continue  <img draggable="false" src="{{asset('images/righticon.png')}}"></button>
+                                    <button class="btn p-0 sve-btn" type="submit">Save & Continue  <img draggable="false" src="{{asset('images/righticon.png')}}"></button>
                                 </div>
                             </div>
                         </div>

@@ -15,9 +15,9 @@
           },
           source: function(query, result) {
               var education_level_id = $('#education_level_id').val();
-              if ((query in cache)) {
+              if ((query+'-'+education_level_id in cache)) {
                   // If result is already in local_cache, return it
-                  result(cache[query]);
+                  result(cache[query+'-'+education_level_id]);
                   return;
               }
               $.ajax({
@@ -26,7 +26,7 @@
                   data: {q: query,education_level_id:education_level_id, _token: csrf_token},
                   dataType: 'json',
                   success: function(data) {
-                      cache[query] = data;
+                      cache[query+'-'+education_level_id] = data;
                       result(data);
                   }
               });
@@ -147,6 +147,17 @@
               } else {
                 $('#'+fieldId).removeClass('is-invalid').addClass('is-valid');
                 $(".err_msg").html('');
+                
+                phone_num = $('.iti__selected-dial-code').html()+String($("#phone").val()).replace(/ /g, "");
+                $.post(baseurl + "/phone_number_exist", {phone: phone_num, _method: 'POST', _token: csrf_token})
+                .done(function (response) {
+                  if(response=='exist'){
+                    setMsg(fieldId,'Phone number already existing');
+                    $('.sve-btn').prop('disabled',true);
+                  }else{
+                    $('.sve-btn').prop('disabled',false);
+                  }
+                });
               }
           }
         });
@@ -217,9 +228,9 @@
                     data: {q: query},
                     dataType: 'json',
                     success: function(data) {
-                        cache2[query] = data;
-                        localStorage.setItem('designation',JSON.stringify(cache2));
-                        result(data);
+                      cache2[query] = data;
+                      localStorage.setItem('designation',JSON.stringify(cache2));
+                      result(data);
                     }
                 });
             },
@@ -256,7 +267,10 @@
             $("#full_number").val($('.iti__selected-dial-code').html()+String($("#phone").val()).replace(/ /g, ""));
         }
         if(employment_status!='fresher'){
-          if(($('#exp_in_year').val()==0&&$('#exp_in_month').val()==0)){
+          exp_in_year = $('#exp_in_year').val()==0?'null':$('#exp_in_year').val();
+          exp_in_month = $('#exp_in_month').val()==0?null:$('#exp_in_month').val();
+
+          if((exp_in_year==null||exp_in_year=='null') && (exp_in_month==null||exp_in_month=='null')){
             $('#err_total_exp').html('Please select your experience');
             errStaus=true;
           }
@@ -461,4 +475,3 @@
       var sanitizedInput = input.replace(/[^0-9]/g, '');
       $('#phone').val(sanitizedInput);
   });
-

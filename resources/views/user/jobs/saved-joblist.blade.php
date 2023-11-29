@@ -1,5 +1,6 @@
 @forelse ($jobs as $savedjob)
     @php $job = $savedjob->job; @endphp
+    @isset($job)
         <div class="card mb-4 p-1 job-list" data-jobid="{{$job->slug}}">
             <div class="card-body m-1">
                 <div class="row mb-1">
@@ -91,6 +92,7 @@
                 </div>
             </div>
         </div>
+    @endisset
     @empty
     <div class="d-flex justify-content-center">
         <div class="">

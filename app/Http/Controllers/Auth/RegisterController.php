@@ -177,7 +177,17 @@ class RegisterController extends Controller
          
         return redirect('/career_info');
      }
- 
+     /**
+      *  Phone number check
+      */
+     public function phoneNumberExist(Request $request)
+     {
+
+        if(User::where('id','!=',Auth::user()->id)->where('phone',$request->phone)->doesntExist()){
+            return true;
+        }
+        return 'exist';
+     }
      /**
       *  View Blade file of Candidate Basic Information Form
       

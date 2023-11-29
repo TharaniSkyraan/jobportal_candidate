@@ -78,7 +78,8 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['only' => ['index', 'myProfile', 'updateMyProfile', 'viewPublicProfile', 'accountSettings']]);
+        $this->middleware('auth');
+        // $this->middleware('auth', ['only' => ['index', 'myProfile', 'updateMyProfile', 'viewPublicProfile', 'accountSettings']]);
         // $this->middleware('checkauth', ['only' => ['index']]);
     }
 

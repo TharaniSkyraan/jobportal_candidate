@@ -370,7 +370,7 @@
                         <h4>Walk-in</h4>
                         <div>
                             <p><b>From </b>{{ \Carbon\Carbon::parse($job->walkin->walk_in_from_date)->format('d F, Y')}} to {{ \Carbon\Carbon::parse($job->walkin->walk_in_to_date)->format('d F, Y')}}.@if($job->walkin->exclude_days) (Excluding {{$job->walkin->exclude_days}})@endif</p>
-                            <p><b>Best Time to Contact: </b>{{ \Carbon\Carbon::parse($job->walkin->walk_in_from_time)->format('h:i A')}} to {{ \Carbon\Carbon::parse($job->walkin->walk_in_to_time)->format('h:i A')}}</p>
+                            <p><b>Time between: </b>{{ \Carbon\Carbon::parse($job->walkin->walk_in_from_time)->format('h:i A')}} to {{ \Carbon\Carbon::parse($job->walkin->walk_in_to_time)->format('h:i A')}}</p>
                             @if(!empty($job->walkin->walk_in_location))
                                 <p>
                                     <table>
@@ -402,7 +402,7 @@
 
                         @if(($job->contact_person_details->morning_section_from && $job->contact_person_details->morning_section_to) || ($job->contact_person_details->evening_section_from && $job->contact_person_details->evening_section_to))
                             <p>
-                                <b>Time between :</b> 
+                                <b>Best Time to Contact :</b> 
                                 @if( ($job->contact_person_details->morning_section_from && $job->contact_person_details->morning_section_to))
                                     {{ \Carbon\Carbon::parse($job->contact_person_details->morning_section_from)->format('h:i A')}} to
                                     {{ \Carbon\Carbon::parse($job->contact_person_details->morning_section_to)->format('h:i A') }}

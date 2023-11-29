@@ -108,6 +108,7 @@ class DailyJobAlerts extends Command
             return new JobAlertMailable($jobalert,$jobs,$slug,$limit);
     
         }
+        
     }
     
 }

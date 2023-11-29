@@ -30,6 +30,7 @@ $("#basic-info-submit-button").click(function(){
   });
 
   function validateBasicinfoForm(){
+    alert('test');
     clrErr();
     var errStaus = false; 
     
@@ -37,7 +38,7 @@ $("#basic-info-submit-button").click(function(){
     if(validateFormFields('last_name','Please enter Last name.','NameVali')) errStaus=true;
     if(validateFormFields('date_of_birth ','Please enter date of birth.','')) errStaus=true;
     if(validateFormFields('marital_status_id ','Please select Marital status.','')) errStaus=true;
-    if(validateFormFields('gender ','Please specify your gender.','checkbox')) errStaus=true;
+    if(validateFormFields('gender ','Please specify your gender.','radio')) errStaus=true;
   
     var today = new Date();
     var dd = today.getDate();
@@ -45,9 +46,6 @@ $("#basic-info-submit-button").click(function(){
     var yyyy = today.getFullYear()-14;
     var yyyy1 = today.getFullYear()-70;
 
-
-    console.log(dd);
-    console.log(mm);
     yeardectoday = yyyy+''+mm+''+dd;
     yearincrtoday = yyyy1+''+mm+''+dd;
 
