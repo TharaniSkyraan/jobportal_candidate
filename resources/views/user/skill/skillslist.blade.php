@@ -27,4 +27,5 @@
     </div>
 </div>
 @empty    
+{{ count(Auth::user()->userSkills) }} 
 @endforelse
