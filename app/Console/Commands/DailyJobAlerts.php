@@ -39,7 +39,7 @@ class DailyJobAlerts extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(Request $request)
     { 
      
         \Log::info("Job ALert!");
@@ -100,8 +100,8 @@ class DailyJobAlerts extends Command
             $filter['sortBy']  = $sortBy;
             $jobs = $this->fetchJobs($designation, $location, $filter, $limit);
                         
-            $request->designation = $designation??'';
-            $request->location = $location??'';
+            $request['designation'] = $designation??'';
+            $request['location'] = $location??'';
             $checkKeywords = $this->checkKeywords($request, $designation, $location);
             $jobs = $jobs['joblist']->items();
             $jobId = array_column($jobs, 'job_id');
