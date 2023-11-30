@@ -45,71 +45,77 @@ class DailyJobAlerts extends Command
 
         $from = Carbon::now()->subDays(30)->startOfDay();
         $to = Carbon::now()->endOfDay(16);
-        $jobalert = JobAlert::whereHas('user', function($q) use($from,$to){
+        $jobalerts = JobAlert::whereHas('user', function($q) use($from,$to){
                                 $q->whereHas('UserActivity',function($q1) use($from,$to){
                                     $q1->where('last_active_at', '>=' ,$from)
                                         ->where('last_active_at', '<=' ,$to);
                                 });
-                            })->first();
-        $data = $jobalert;       
-        $user = User::find($jobalert->user_id);
-        $filters = $jobs = $filter = $citylFGid  = $salaryFGid = $jobtypeFGid = $jobshiftFGid = $edulevelFGid = $wfhtypeFid = $posteddateFid = array();
-    
-        $sortBy = 'relevance';
-        $experienceFid = ($jobalert->experienceFid!=0)?$jobalert->experienceFid:'';
-        $designation = $jobalert->title??'';
-        $location = $jobalert->location??'';
-        $limit = 6;
-        $words = DataArrayHelper::blockedKeywords();
-    
-        $dbk = $this->checkTitleBlockedKeywords($designation, $words);
-        $lbk = $this->checkLocationBlockedKeywords($location, $words);
-    
-        if($dbk != 'yes' && $lbk != 'yes'){
+                            })->get();
+            foreach($jobalerts as $jobalert)
+            {
+
+                $data = $jobalert;       
+                $user = User::find($jobalert->user_id);
+                $filters = $jobs = $filter = $citylFGid  = $salaryFGid = $jobtypeFGid = $jobshiftFGid = $edulevelFGid = $wfhtypeFid = $posteddateFid = array();
             
-            if(!empty($jobalert->salaryFGid)){
-                $salaryFGid = explode(',',$jobalert->salaryFGid);
-            }
-            if(!empty($jobalert->jobtypeFGid)){
-                $jobtypeFGid = explode(',',$jobalert->jobtypeFGid);
-            }
-            if(!empty($jobalert->jobshiftFGid)){
-                $jobshiftFGid = explode(',',$jobalert->jobshiftFGid);
-            }
-            if(!empty($jobalert->edulevelFGid)){
-                $edulevelFGid = explode(',',$jobalert->edulevelFGid);
-            }
-            if(!empty($jobalert->wfhtypeFid)){
-                $wfhtypeFid = explode(',',$jobalert->wfhtypeFid);
-            }
-            if(!empty($jobalert->posteddateFid)){
-                $posteddateFid = explode(',',$jobalert->posteddateFid);
-            }
-            $appliedIds = $user->getAppliedJobIdsArray();
-            $jobIds = (isset($user->UserActivity))?explode(',',$user->UserActivity->job_ids):array();
-            $filter['experienceFid']  = $experienceFid;        
-            $filter['citylFGid']  = count($citylFGid)!=0?',('.implode('|',$citylFGid).'),':'';
-            $filter['jobtypeFGid']  = count($jobtypeFGid)!=0?',('.implode('|',$jobtypeFGid).'),':'';
-            $filter['jobshiftFGid']  = count($jobshiftFGid)!=0?',('.implode('|',$jobshiftFGid).'),':''; 
-            $filter['salaryFGid']  = $salaryFGid;
-            $filter['edulevelFGid']  = $edulevelFGid;
-            $filter['wfhtypeFid']  = $wfhtypeFid;
-            $filter['posteddateFid']  = $posteddateFid;
-            $filter['jobIds']  = array_merge($jobIds,$appliedIds);
-            $filter['sortBy']  = $sortBy;
-            $jobs = $this->fetchJobs($designation, $location, $filter, $limit);
-                        
-            $request['designation'] = $designation??'';
-            $request['location'] = $location??'';
-            $checkKeywords = $this->checkKeywords($request, $designation, $location);
-            $jobs = $jobs['joblist']->items();
-            $jobId = array_column($jobs, 'job_id');
-            array_pop($jobId);
-            UserActivity::updateOrCreate(['user_id' => $user->id],['job_ids'=>implode(',',array_merge($jobIds,$jobId))]);
-            $slug = $checkKeywords['sl'];
+                $sortBy = 'relevance';
+                $experienceFid = ($jobalert->experienceFid!=0)?$jobalert->experienceFid:'';
+                $designation = $jobalert->title??'';
+                $location = $jobalert->location??'';
+                $limit = 6;
+                $words = DataArrayHelper::blockedKeywords();
             
-    
-            Mail::send(new JobAlertMailable($data,$jobs,$slug,$limit));    
+                $dbk = $this->checkTitleBlockedKeywords($designation, $words);
+                $lbk = $this->checkLocationBlockedKeywords($location, $words);
+            
+                if($dbk != 'yes' && $lbk != 'yes'){
+                    
+                    if(!empty($jobalert->salaryFGid)){
+                        $salaryFGid = explode(',',$jobalert->salaryFGid);
+                    }
+                    if(!empty($jobalert->jobtypeFGid)){
+                        $jobtypeFGid = explode(',',$jobalert->jobtypeFGid);
+                    }
+                    if(!empty($jobalert->jobshiftFGid)){
+                        $jobshiftFGid = explode(',',$jobalert->jobshiftFGid);
+                    }
+                    if(!empty($jobalert->edulevelFGid)){
+                        $edulevelFGid = explode(',',$jobalert->edulevelFGid);
+                    }
+                    if(!empty($jobalert->wfhtypeFid)){
+                        $wfhtypeFid = explode(',',$jobalert->wfhtypeFid);
+                    }
+                    if(!empty($jobalert->posteddateFid)){
+                        $posteddateFid = explode(',',$jobalert->posteddateFid);
+                    }
+                    $appliedIds = $user->getAppliedJobIdsArray();
+                    $jobIds = (isset($user->UserActivity))?explode(',',$user->UserActivity->job_ids):array();
+                    $filter['experienceFid']  = $experienceFid;        
+                    $filter['citylFGid']  = count($citylFGid)!=0?',('.implode('|',$citylFGid).'),':'';
+                    $filter['jobtypeFGid']  = count($jobtypeFGid)!=0?',('.implode('|',$jobtypeFGid).'),':'';
+                    $filter['jobshiftFGid']  = count($jobshiftFGid)!=0?',('.implode('|',$jobshiftFGid).'),':''; 
+                    $filter['salaryFGid']  = $salaryFGid;
+                    $filter['edulevelFGid']  = $edulevelFGid;
+                    $filter['wfhtypeFid']  = $wfhtypeFid;
+                    $filter['posteddateFid']  = $posteddateFid;
+                    $filter['jobIds']  = array_merge($jobIds,$appliedIds);
+                    $filter['sortBy']  = $sortBy;
+                    $jobs = $this->fetchJobs($designation, $location, $filter, $limit);
+                                
+                    $request['designation'] = $designation??'';
+                    $request['location'] = $location??'';
+                    $checkKeywords = $this->checkKeywords($request, $designation, $location);
+                    $jobs = $jobs['joblist']->items();
+                    $jobId = array_column($jobs, 'job_id');
+                    array_pop($jobId);
+                    UserActivity::updateOrCreate(['user_id' => $user->id],['job_ids'=>implode(',',array_merge($jobIds,$jobId))]);
+                    $slug = $checkKeywords['sl'];
+                    
+            
+                    Mail::send(new JobAlertMailable($data,$jobs,$slug,$limit));    
+        
+            }
+
         }
         
     }
