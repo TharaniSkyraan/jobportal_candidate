@@ -351,7 +351,7 @@ class RegisterController extends Controller
             if(isset($skill->id) || isset($newskill->id))
             {    
                 $skill_id = $skill->id??$newskill->id;       
-                if(UserSkill::where('skill_id',$skill_id)->doesntExist())
+                if(UserSkill::where('skill_id',$skill_id)->where('user_id',$user->id)->doesntExist())
                 {                
                     $updateSkill = new UserSkill();
                     $updateSkill->user_id = $user->id;
