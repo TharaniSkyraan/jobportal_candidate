@@ -24,10 +24,10 @@ trait UserSkillTrait
 
     public function showUserSkills(Request $request, $user_id=null)
     {
-        dd(Auth::user()->userSkills->count());
         if(Auth::user()->userSkills->count()==0){
             $user_skills = json_decode(Auth::user()->skill);
 
+            $words = DataArrayHelper::blockedKeywords();
             $skills = [];
             foreach($user_skills as $skill)
             {
