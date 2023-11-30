@@ -168,7 +168,7 @@
     </div>
     <p class="title"><b>Job Alert !</b></p>
     <p class="text-center"><img draggable="false" src="{{ asset('/') }}images/mail/applyjob.jpg" style="width: 65%;"/></p>
-    <p class="text-left"><b>These job ads match your saved job alert. </p>
+    <p class="text-left"><b>These jobs match your saved job alert. </p>
     @php $jobcount = ($limit!=count($jobs))?count($jobs):count($jobs)-1;@endphp
     @foreach ($jobs as $key => $job)
         @if($key<$jobcount)
