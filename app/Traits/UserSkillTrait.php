@@ -52,6 +52,8 @@ trait UserSkillTrait
                 if(isset($skill->id) || isset($newskill->id))
                 {    
                     $skill_id = $skill->id??$newskill->id;       
+                    dd($skill_id);
+
                     if(UserSkill::where('skill_id',$skill_id)->doesntExist())
                     {                
                         $updateSkill = new UserSkill();
