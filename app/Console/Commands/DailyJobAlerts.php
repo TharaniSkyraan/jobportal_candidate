@@ -42,7 +42,6 @@ class DailyJobAlerts extends Command
     public function handle(Request $request)
     { 
      
-        \Log::info("Job ALert!");
 
         $from = Carbon::now()->subDays(30)->startOfDay();
         $to = Carbon::now()->endOfDay(16);
@@ -109,8 +108,8 @@ class DailyJobAlerts extends Command
             UserActivity::updateOrCreate(['user_id' => $user->id],['job_ids'=>implode(',',array_merge($jobIds,$jobId))]);
             $slug = $checkKeywords['sl'];
             
-            return new JobAlertMailable($data,$jobs,$slug,$limit);
     
+            Mail::send(new JobAlertMailable($data,$jobs,$slug,$limit));    
         }
         
     }
