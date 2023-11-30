@@ -25,6 +25,53 @@ trait UserSkillTrait
     public function showUserSkills(Request $request, $user_id=null)
     {
         
+        if(Auth::user()->userSkills->count()==0){
+            $user_skills = json_decode(Auth::user()->skill);
+
+            $skills = [];
+            foreach($user_skills as $skill)
+            {
+                if(!isset($skill->id) && !in_array($skill->value, $words))
+                {                
+                    if(Skill::where('skill',$skill->value)->doesntExist())
+                    {
+                        $newskill = new Skill();                
+                        $newskill->skill = $skill->value;
+                        $newskill->is_active = 0;
+                        $newskill->lang = 'en';
+                        $newskill->is_default = 1;
+                        $newskill->save();
+                        $newskill->skill_id = $newskill->id;
+                        $newskill->update();
+                    }else{
+                        $newskill = Skill::where('skill',$skill->value)->first();
+                    }
+                }
+
+                if(isset($skill->id) || isset($newskill->id))
+                {    
+                    $skill_id = $skill->id??$newskill->id;       
+                    if(UserSkill::where('skill_id',$skill_id)->doesntExist())
+                    {                
+                        $updateSkill = new UserSkill();
+                        $updateSkill->user_id = $user->id;
+                        $updateSkill->skills  = $skill->value;
+                        $updateSkill->skill_id  = $skill_id;
+                        $updateSkill->save();
+                    }
+                    $skills[] = array(
+                        'id'=>$skill_id,
+                        'value'=>$skill->value,
+                    );
+                }
+            }
+            $user = User::findOrFail(Auth::user()->id);
+            $user->skill = json_encode($skills);
+            $user->save();
+    
+
+        }
+
         $html = view('user.skill.skillslist')->render();
         
         echo $html;  
