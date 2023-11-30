@@ -66,6 +66,9 @@
 .job-list .imagesz-2 {
     width: 20px;
 }
+.japply-btn button:hover {
+  color: #ffffff;
+}
 .japply-btn button {
     background-color: #4285f4 !important;
     color: #fff;

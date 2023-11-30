@@ -6,7 +6,10 @@
                 <div class="row mb-1">
                     <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1 col-1 cmpprofile">
                         <div class="avatar-sm">
-                            <img alt="Web developer" draggable="false" class="rounded-circle h-100" src="http://localhost/candidate/site_assets_1/assets/img/industry.svg">
+                            @php
+                                $logo = $job->company->company_image??asset('\site_assets_1\assets\img\industry.svg');
+                            @endphp
+                            <img alt="Web developer" draggable="false" class="rounded-circle h-100" src="{{$logo}}">
                         </div>
                     </div>
 
