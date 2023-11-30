@@ -42,6 +42,8 @@ class DailyJobAlerts extends Command
     public function handle()
     { 
      
+        \Log::info("Job ALert!");
+
         $from = Carbon::now()->subDays(30)->startOfDay();
         $to = Carbon::now()->endOfDay(16);
         $jobalert = JobAlert::whereHas('user', function($q) use($from,$to){
@@ -98,6 +100,8 @@ class DailyJobAlerts extends Command
             $filter['sortBy']  = $sortBy;
             $jobs = $this->fetchJobs($designation, $location, $filter, $limit);
                         
+            $request->designation = $designation;
+            $request->location = $location;
             $checkKeywords = $this->checkKeywords($request, $designation, $location);
             $jobs = $jobs['joblist']->items();
             $jobId = array_column($jobs, 'job_id');
