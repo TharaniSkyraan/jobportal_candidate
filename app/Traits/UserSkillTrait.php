@@ -24,7 +24,8 @@ trait UserSkillTrait
 
     public function showUserSkills(Request $request, $user_id=null)
     {
-        if(Auth::user()->userSkills->count()==0){
+        if(Auth::user()->userSkills->count()==0)
+        {
             $user_skills = json_decode(Auth::user()->skill);
 
             $words = DataArrayHelper::blockedKeywords();
@@ -65,6 +66,7 @@ trait UserSkillTrait
                     );
                 }
             }
+            dd(Auth::user()->userSkills);
             $user = User::findOrFail(Auth::user()->id);
             $user->skill = json_encode($skills);
             $user->save();
