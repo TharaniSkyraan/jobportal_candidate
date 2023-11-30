@@ -52,7 +52,7 @@ class DailyJobAlerts extends Command
                                         ->where('last_active_at', '<=' ,$to);
                                 });
                             })->first();
-                        
+        $data = $jobalert;       
         $user = User::find($jobalert->user_id);
         $filters = $jobs = $filter = $citylFGid  = $salaryFGid = $jobtypeFGid = $jobshiftFGid = $edulevelFGid = $wfhtypeFid = $posteddateFid = array();
     
@@ -109,7 +109,7 @@ class DailyJobAlerts extends Command
             UserActivity::updateOrCreate(['user_id' => $user->id],['job_ids'=>implode(',',array_merge($jobIds,$jobId))]);
             $slug = $checkKeywords['sl'];
             
-            return new JobAlertMailable($jobalert,$jobs,$slug,$limit);
+            return new JobAlertMailable($data,$jobs,$slug,$limit);
     
         }
         
