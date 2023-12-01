@@ -148,53 +148,64 @@ function submitUserProjectForm() {
 
 function delete_user_project(id) {
 
-  var msg = "Are you sure! you want to delete?";
+    swal({
+      text: "Are you sure! you want to delete?",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if(willDelete) {
 
-  if (confirm(msg)) {
-
-      $.post(baseurl + "delete-project", {id: id, _method: 'DELETE', _token: csrf_token})
-      .done(function (response) {
-
-          if (response == 'ok')
-          {                	
-            $('.undo_project_'+id).show();
-            $('.delete_project_'+id).hide();
-            $('.edit_project_'+id).hide();
-            $('.project_edited_div_' + id).removeClass("project_div");
-            if($(".project_div").length == 1){
-                $('.delete_project').hide();
-            }
-          } else
-          {
-              alert('Request Failed!');
-          }
-
-      });
-
-  }
-
-}
-
-function undo_user_project(id) {
-    var msg = "Are you sure! you want to undo?";
-    if (confirm(msg)) {
-        $.post(baseurl + "undo-project", {id: id, _method: 'POST', _token: csrf_token})
+        $.post(baseurl + "delete-project", {id: id, _method: 'DELETE', _token: csrf_token})
         .done(function (response) {
+
             if (response == 'ok')
-            {
-              $('.undo_project_'+id).hide();
-              $('.delete_project_'+id).show();
-              $('.edit_project_'+id).show();
-              $('.project_edited_div_' + id).addClass("project_div");           
-              if($(".project_div").length > 1){
-                $('.project_div').find(".delete_project").show();
+            {                	
+              $('.undo_project_'+id).show();
+              $('.delete_project_'+id).hide();
+              $('.edit_project_'+id).hide();
+              $('.project_edited_div_' + id).removeClass("project_div");
+              if($(".project_div").length == 1){
+                  $('.delete_project').hide();
               }
             } else
             {
                 alert('Request Failed!');
             }
+
         });
+      }
+    });
+
+}
+
+function undo_user_project(id) {
+  
+  swal({
+    text: "Are you sure! you want to undo?",
+    buttons: true,
+  })
+  .then((willUndo) => {
+    if(willUndo) {
+      $.post(baseurl + "undo-project", {id: id, _method: 'POST', _token: csrf_token})
+      .done(function (response) {
+          if (response == 'ok')
+          {
+            $('.undo_project_'+id).hide();
+            $('.delete_project_'+id).show();
+            $('.edit_project_'+id).show();
+            $('.project_edited_div_' + id).addClass("project_div");           
+            if($(".project_div").length > 1){
+              $('.project_div').find(".delete_project").show();
+            }
+          } else
+          {
+              alert('Request Failed!');
+          }
+      });
     }
+  });
+
 } 
 
 function cancelUserProjectForm(project_id) {

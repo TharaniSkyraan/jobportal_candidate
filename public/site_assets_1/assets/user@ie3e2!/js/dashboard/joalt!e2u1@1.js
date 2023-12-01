@@ -130,48 +130,63 @@
     }
 
     function delete_user_job_alert(id) {
-      var msg = "Are you sure! you want to delete?";
-      if(confirm(msg)) {
-        $.post(baseurl + "delete-job-alert", {id: id, _method: 'DELETE', _token: csrf_token})
-        .done(function (response) {
-          if (response == 'ok')
-          {                    
-            $('.undo_job_alert_'+id).show();
-            $('.delete_job_alert_'+id).hide();
-            $('.edit_job_alert_'+id).hide();
-            $('.job_alert_edited_div_' + id).removeClass("job_alert_div");
-            if($(".job_alert_div").length == 1){
-              $('.delete_job_alert').hide();
-            }
-          } else
-          {
-              alert('Request Failed!');
-          }
-        });
-      }
+      
+      swal({
+        text: "Are you sure! you want to delete?",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if(willDelete) {
+            $.post(baseurl + "delete-job-alert", {id: id, _method: 'DELETE', _token: csrf_token})
+            .done(function (response) {
+              if (response == 'ok')
+              {                    
+                $('.undo_job_alert_'+id).show();
+                $('.delete_job_alert_'+id).hide();
+                $('.edit_job_alert_'+id).hide();
+                $('.job_alert_edited_div_' + id).removeClass("job_alert_div");
+                if($(".job_alert_div").length == 1){
+                  $('.delete_job_alert').hide();
+                }
+              } else
+              {
+                  alert('Request Failed!');
+              }
+            });
+        }
+      });
+
     }
 
     function undo_user_job_alert(id) {
-      var msg = "Are you sure! you want to undo?";
-      if(confirm(msg)) {
-        $.post(baseurl + "undo-job-alert", {id: id, _method: 'POST', _token: csrf_token})
-        .done(function (response) {
-              if (response == 'ok')
-              {                    
-                $('.undo_job_alert_'+id).hide();
-                $('.delete_job_alert_'+id).show();
-                $('.edit_job_alert_'+id).show();
-                $('.job_alert_edited_div_' + id).addClass("job_alert_div");           
-                if($(".job_alert_div").length > 1){
-                  $('.job_alert_div').find(".delete_job_alert").show();
-                }
+      
+      swal({
+        text: "Are you sure! you want to undo?",
+        buttons: true,
+      })
+      .then((willUndo) => {
+        if(willUndo) {
+            $.post(baseurl + "undo-job-alert", {id: id, _method: 'POST', _token: csrf_token})
+            .done(function (response) {
+                  if (response == 'ok')
+                  {                    
+                    $('.undo_job_alert_'+id).hide();
+                    $('.delete_job_alert_'+id).show();
+                    $('.edit_job_alert_'+id).show();
+                    $('.job_alert_edited_div_' + id).addClass("job_alert_div");           
+                    if($(".job_alert_div").length > 1){
+                      $('.job_alert_div').find(".delete_job_alert").show();
+                    }
 
-              } else
-              {
-                alert('Request Failed!');
-              }
-        });
-      }
+                  } else
+                  {
+                    alert('Request Failed!');
+                  }
+            });
+        }
+      });
+
     }
 
     function cancelJobAlertForm(job_alert_id) 

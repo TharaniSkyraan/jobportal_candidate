@@ -142,7 +142,7 @@
           toastr.options.timeOut = 1000;
           toastr.success('Successfully Updated.');  
           // profilePercentage();
-        $('.btn_c_s1').prop("disabled", false);
+          $('.btn_c_s1').prop("disabled", false);
         },
         error: function(json){
             if (json.status === 422) {
@@ -161,48 +161,62 @@
     }
 
     function delete_user_experience(id) {
-      var msg = "Are you sure! you want to delete?";
-      if(confirm(msg)) {
-        $.post(baseurl + "delete-experience", {id: id, _method: 'DELETE', _token: csrf_token})
-        .done(function (response) {
-          if (response == 'ok')
-          {                    
-            $('.undo_experience_'+id).show();
-            $('.delete_experience_'+id).hide();
-            $('.edit_experience_'+id).hide();
-            $('.experience_edited_div_' + id).removeClass("experience_div");
-            if($(".experience_div").length == 1){
-              $('.delete_experience').hide();
-            }
-          } else
-          {
-              alert('Request Failed!');
+      
+        swal({
+          text: "Are you sure! you want to delete?",
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((willDelete) => {
+          if(willDelete) {
+            $.post(baseurl + "delete-experience", {id: id, _method: 'DELETE', _token: csrf_token})
+            .done(function (response) {
+              if (response == 'ok')
+              {                    
+                $('.undo_experience_'+id).show();
+                $('.delete_experience_'+id).hide();
+                $('.edit_experience_'+id).hide();
+                $('.experience_edited_div_' + id).removeClass("experience_div");
+                if($(".experience_div").length == 1){
+                  $('.delete_experience').hide();
+                }
+              } else
+              {
+                  alert('Request Failed!');
+              }
+            });
           }
         });
-      }
     }
 
     function undo_user_experience(id) {
-      var msg = "Are you sure! you want to undo?";
-      if(confirm(msg)) {
-        $.post(baseurl + "undo-experience", {id: id, _method: 'POST', _token: csrf_token})
-        .done(function (response) {
-              if (response == 'ok')
-              {                    
-                $('.undo_experience_'+id).hide();
-                $('.delete_experience_'+id).show();
-                $('.edit_experience_'+id).show();
-                $('.experience_edited_div_' + id).addClass("experience_div");           
-                if($(".experience_div").length > 1){
-                  $('.experience_div').find(".delete_experience").show();
-                }
+      
+        swal({
+          text: "Are you sure! you want to undo?",
+          buttons: true,
+        })
+        .then((willUndo) => {
+            if(willUndo) {
+              $.post(baseurl + "undo-experience", {id: id, _method: 'POST', _token: csrf_token})
+              .done(function (response) {
+                    if (response == 'ok')
+                    {                    
+                      $('.undo_experience_'+id).hide();
+                      $('.delete_experience_'+id).show();
+                      $('.edit_experience_'+id).show();
+                      $('.experience_edited_div_' + id).addClass("experience_div");           
+                      if($(".experience_div").length > 1){
+                        $('.experience_div').find(".delete_experience").show();
+                      }
 
-              } else
-              {
-                alert('Request Failed!');
-              }
+                    } else
+                    {
+                      alert('Request Failed!');
+                    }
+              });
+            }
+
         });
-      }
     }
 
     function cancelUserExperienceForm(experience_id) 

@@ -123,31 +123,42 @@ function submitUserLanguageForm() {
 
 function delete_user_language(id) {
 
-  var msg = "Are you sure! you want to delete?";
-  if (confirm(msg)) {
-  $.post(baseurl + "delete-language", {id: id, _method: 'DELETE', _token: csrf_token})
-    .done(function (response) {
-        if (response == 'ok')
-        {                    
-          $('.undo_language_'+id).show();
-          $('.delete_language_'+id).hide();
-          $('.edit_language_'+id).hide();    
-          $('.language_edited_div_' + id).removeClass("language_div");
-          if($(".language_div").length == 1){
-            $('.delete_language').hide();
-            // toastr.success(response.message);
+  swal({
+    text: "Are you sure! you want to delete?",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if(willDelete) {
+    $.post(baseurl + "delete-language", {id: id, _method: 'DELETE', _token: csrf_token})
+      .done(function (response) {
+          if (response == 'ok')
+          {                    
+            $('.undo_language_'+id).show();
+            $('.delete_language_'+id).hide();
+            $('.edit_language_'+id).hide();    
+            $('.language_edited_div_' + id).removeClass("language_div");
+            if($(".language_div").length == 1){
+              $('.delete_language').hide();
+              // toastr.success(response.message);
+            }
+          } else
+          {
+            alert('Request Failed!');
           }
-        } else
-        {
-          alert('Request Failed!');
-        }
-    });
-  }
+      });
+    }
+  });
+
 }
 
 function undo_user_language(id) {
-    var msg = "Are you sure! you want to undo?";
-    if (confirm(msg)) {
+  swal({
+    text: "Are you sure! you want to undo?",
+    buttons: true,
+  })
+  .then((willUndo) => {
+    if(willUndo) {
       $.post(baseurl + "undo-language", {id: id, _method: 'POST', _token: csrf_token})
       .done(function (response) {
         if (response == 'ok')
@@ -165,6 +176,7 @@ function undo_user_language(id) {
         }
       });
     }
+  });
 }
 
 function cancelUserLanguageForm(language_id) {
