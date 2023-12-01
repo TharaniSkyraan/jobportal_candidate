@@ -110,8 +110,9 @@ class DailyTwiceJobAlerts extends Command
                 UserActivity::updateOrCreate(['user_id' => $user->id],['job_ids'=>implode(',',array_merge($jobIds,$jobId))]);
                 $slug = $checkKeywords['sl'];
                 
-        
-                Mail::send(new JobAlertMailable($data,$jobs,$slug,$limit));    
+                if($jobs->count()!=0){
+                    Mail::send(new JobAlertMailable($data,$jobs,$slug,$limit));   
+                }   
     
             }
         }
