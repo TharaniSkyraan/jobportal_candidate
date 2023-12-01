@@ -32,7 +32,6 @@ $("#basic-info-submit-button").click(function(){
   });
 
   function validateBasicinfoForm(){
-    alert('test');
     clrErr();
     var errStaus = false; 
     
