@@ -81,19 +81,8 @@ class JobsController extends BaseController
         });   
         $joblist = $jobs['joblist']->items();     
 
-        $userData = array(
-                'name' => $user->getName(),
-                'final_percentage' => $user->getProfilePercentage(),
-                'image' => $user->image,
-                'career_title' => $user->career_title,
-                'updated_at' => Carbon::parse($user->updated_at)->getTimestampMs(),  
-                'resume' => $user->getDefaultCv()->cv_file??'',            
-                'location' => $user->location,            
-            );
-
         $response = array(
                         'jobs' => $joblist, 
-                        'user' => $userData, 
                         'appliedlist' => $appliedlist
                     );
 
@@ -144,8 +133,6 @@ class JobsController extends BaseController
                             ->get();
         $sectors->makeHidden(['lang','industry_id','is_active','sort_order','is_default','created_at','updated_at']);
 
-        
-
         $filter = array();
         $filter['sortBy']  = 'date';
         $jobs = $this->fetchJobs($user->career_title, $filter, [], 5);
@@ -162,10 +149,37 @@ class JobsController extends BaseController
         });   
         $joblist = $jobs['joblist']->items(); 
 
+        $appliedjobs = JobApply::where('user_id',$user_id)
+                        ->whereIn('application_status',['shortlist'])
+                        ->whereIsRead(1)
+                        // ->whereIn('application_status',['view','shortlist','consider'])
+                        ->take(4)
+                        ->orderBy('updated_at','desc')
+                        ->get();
+
+        $appliedlist = [];
+        
+        foreach($appliedjobs as $job)
+        {
+            if(isset($job->job))
+            {                    
+                $appliedlist[] = array(
+                    'slug' => $job->job->slug,
+                    'title' => $job->job->title??'Php Developer',
+                    'company_name' => $job->job->company_name??'Skyraan',
+                    'company_image' => $job->job->company->company_image??'',
+                    'status' => $job->application_status,
+                    'applied_at' => Carbon::parse($job->created_at)->getTimestampMs(),
+                    'status_updated_at' => Carbon::parse($job->updated_at)->getTimestampMs(),
+                );
+            }
+        }
+
         $response = array(
             'jobs' => $joblist,
             'top_cities' => $top_cities,
-            'sectors' => $sectors
+            'sectors' => $sectors, 
+            'appliedlist' => $appliedlist
         );
         return $this->sendResponse($response);
     }
