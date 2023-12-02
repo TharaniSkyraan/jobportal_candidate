@@ -236,7 +236,7 @@ class DataArrayHelper
         $industrycount=Industry::where('id',$id)->count();
         if($industrycount > 0)
         {
-            return Industry::where('id',$id)->pluck('industry')[0];
+            return Industry::where('id',$id)->pluck('industry')->first();
         }
         else
         {
