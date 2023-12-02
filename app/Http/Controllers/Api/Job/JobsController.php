@@ -287,7 +287,7 @@ class JobsController extends BaseController
             return $this->sendError('No Job Available.'); 
         }
 
-        $exclude_days = isset($job->walkin->exclude_days)?'(Excluding'. $job->walkin->exclude_days.')':'';
+        $exclude_days = isset($job->walkin->exclude_days)?'(Excluding - '. $job->walkin->exclude_days.')':'';
         $job_skill_id = explode(',',$job->getSkillsStr());
         $user = '';
         $skill = array();
@@ -372,9 +372,10 @@ class JobsController extends BaseController
                                      ->each(function ($screeningquiz, $key) {
                                         $screeningquiz['options'] = $screeningquiz->candidate_options?json_decode($screeningquiz->candidate_options):[];
                                      });
+        $job_id = $job->id;
         $response = array(
                 'job' => $jobd, 
-                'relevant_job' => $joblist, 
+                'relevant_job' => array_filter($joblist, function ($job) use ($job_id) {return $job['job_id'] !== $job_id;}), 
                 'company_slug' => $job->company->slug??'', 
                 'breakpoint' => $breakpoint?'yes':'no',
                 'have_screening' => JobScreeningQuiz::whereJobId($job->id)->count(),
@@ -413,6 +414,7 @@ class JobsController extends BaseController
         $company->country_name = $company->getCountry('country')??'';
         $company_jobs = Job::where('company_id', $companies)
                          ->whereIsActive(1)
+                         ->orderBy('updated_at','desc')
                         //  ->whereDate('expiry_date', '>', Carbon::now())
                          ->get()->toArray();
         $gallery=Companygalary::whereCompanyId($companies)->get();
@@ -434,6 +436,7 @@ class JobsController extends BaseController
                 'location'=>$job->work_locations,
                 'company_image'=>$job->company->company_image??'',
                 'company_name'=>$job->company->name??'',
+                'industry'=> DataArrayHelper::industryParticular($company->industry_id??0),
                 'experience'=>$job->experience_string,
                 'salary'=>$job->salary_string,
                 'immediate_join' => $job->NoticePeriod !=null?$job->NoticePeriod->notice_period:'',
