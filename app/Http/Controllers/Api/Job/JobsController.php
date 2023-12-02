@@ -440,6 +440,8 @@ class JobsController extends BaseController
         $company->CEO_name = $company->CEO_name??'';
         $company->website_url = $company->website_url??'';
         $company->company_image = $company->company_image??"";
+        $company->industry = DataArrayHelper::industryParticular($company->industry_id??0);
+
         $companyjobs = array_map(function ($companyjob) use($user) {
             $job = Job::find($companyjob['id']);
             $val = array(
@@ -450,7 +452,6 @@ class JobsController extends BaseController
                 'location'=>$job->work_locations,
                 'company_image'=>$job->company->company_image??'',
                 'company_name'=>$job->company->name??'',
-                'industry'=> DataArrayHelper::industryParticular($company->industry_id??0),
                 'experience'=>$job->experience_string,
                 'salary'=>$job->salary_string,
                 'immediate_join' => $job->NoticePeriod !=null?$job->NoticePeriod->notice_period:'',
