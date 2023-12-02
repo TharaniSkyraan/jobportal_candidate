@@ -135,6 +135,8 @@ class JobsController extends BaseController
 
         $filter = array();
         $filter['sortBy']  = 'date';
+        dd($filter);
+
         $jobs = $this->fetchJobs($user->career_title, $filter, [], 5);
         dd($jobs);
         $jobs['joblist']->each(function ($job, $key) use($user) {

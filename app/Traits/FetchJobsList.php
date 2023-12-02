@@ -17,7 +17,6 @@ trait FetchJobsList
 
     public function createQuery($designation = '', $location = '', $filter = '', $limit = 10)
     {
-        dd($filter);
         $searchValues = preg_split('/\s+/', $designation, -1, PREG_SPLIT_NO_EMPTY);
          
         $queries = JobSearch::where(function ($q) use ($searchValues){
