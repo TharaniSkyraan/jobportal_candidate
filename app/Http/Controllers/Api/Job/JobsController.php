@@ -136,7 +136,7 @@ class JobsController extends BaseController
         $filter = array();
         $filter['sortBy']  = 'date';
         $jobs = $this->fetchJobs($user->career_title, $filter, [], 5);
-        
+        dd($jobs);
         $jobs['joblist']->each(function ($job, $key) use($user) {
             $jobc = Job::find($job->job_id);
             $job['company_image'] = $jobc->company->company_image??'';
