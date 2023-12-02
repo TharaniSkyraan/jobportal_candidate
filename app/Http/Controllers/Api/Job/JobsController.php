@@ -67,7 +67,7 @@ class JobsController extends BaseController
 
         $filter = array();
         $filter['sortBy'] = 'date';
-        $jobs = $this->fetchJobs($user->career_title, $filter, [], 5);
+        $jobs = $this->fetchJobs($user->career_title,'', $filter, 5);
         
         $jobs['joblist']->each(function ($job, $key) use($user) {
             $jobc = Job::find($job->job_id);
@@ -134,10 +134,8 @@ class JobsController extends BaseController
         $sectors->makeHidden(['lang','industry_id','is_active','sort_order','is_default','created_at','updated_at']);
 
         $filter = array('sortBy'=> 'date');
-        dd($filter);
+        $jobs = $this->fetchJobs($user->career_title,'',$filter, 5);
 
-        $jobs = $this->fetchJobs($user->career_title, $filter, [], 5);
-        dd($jobs);
         $jobs['joblist']->each(function ($job, $key) use($user) {
             $jobc = Job::find($job->job_id);
             $job['company_image'] = $jobc->company->company_image??'';

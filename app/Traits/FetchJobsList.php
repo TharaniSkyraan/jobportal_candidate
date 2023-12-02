@@ -11,7 +11,6 @@ trait FetchJobsList
 
     public function fetchJobs($designation = '', $location = '', $filter = '', $limit = 10)
     {        
-        dd($filter);
         $query = $this->createQuery($designation, $location, $filter, $limit); 
         return $query;
     }
