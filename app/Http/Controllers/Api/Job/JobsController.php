@@ -133,8 +133,7 @@ class JobsController extends BaseController
                             ->get();
         $sectors->makeHidden(['lang','industry_id','is_active','sort_order','is_default','created_at','updated_at']);
 
-        $filter = array();
-        $filter['sortBy']  = 'date';
+        $filter = array('sortBy'=> 'date');
         dd($filter);
 
         $jobs = $this->fetchJobs($user->career_title, $filter, [], 5);
