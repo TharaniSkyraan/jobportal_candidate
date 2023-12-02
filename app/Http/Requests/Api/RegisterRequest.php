@@ -35,7 +35,7 @@ class RegisterRequest extends Request
         ];
         if($this->provider==null)
         {            
-            $rules['phone'] = 'required|unique:users,phone,0,id,deleted_at,NULL,email,'.$this->email;
+            $rules['phone'] = 'required|unique:users,phone,'.($this->email??null).',email,deleted_at,NULL';
             $rules['password'] = 'required|max:30';
         }
 
