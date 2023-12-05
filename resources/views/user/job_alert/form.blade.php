@@ -181,7 +181,7 @@
             <button class="btn bg-grey-color user-job-alert-cancel" type="button"  onClick="cancelJobAlertForm({{$jobAlert->id??0}});">Cancel</button>
         </div>
         <div class="col-6 text-center">
-            <button class="btn btn-submit btn_c_s1" type="submit" onClick="submitJobAlertForm();">Save</button>
+            <button class="btn btn-submit btn_c_s1" type="button" onClick="submitJobAlertForm();">Save</button>
         </div>
     </div>
 </div>

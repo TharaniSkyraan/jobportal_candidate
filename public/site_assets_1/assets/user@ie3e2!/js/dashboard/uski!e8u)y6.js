@@ -155,8 +155,13 @@ function loadUserSkillForm(form, id=null){
 
 }
   function delete_user_skill(id) {
-      var msg = "Are you sure! you want to delete?";
-      if (confirm(msg)) {
+    swal({
+      text: "Are you sure! you want to delete?",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if(willDelete) {
           $.post(baseurl + "delete-skill", {id: id, _method: 'DELETE', _token: csrf_token})
           .done(function (response) {
             if (response == 'ok')
@@ -174,27 +179,33 @@ function loadUserSkillForm(form, id=null){
             }
           });
       }
+    });
   }
   function undo_user_skill(id) {
-    var msg = "Are you sure! you want to undo?";
-    if (confirm(msg)) {
-      $.post(baseurl + "undo-skill", {id: id, _method: 'post', _token: csrf_token})
-      .done(function (response) {
-        if (response == 'ok')
-        {                
-          $('.undo_skill_'+id).hide();
-          $('.delete_skill_'+id).show();
-          $('.edit_skill_'+id).show();
-          $('.skill_edited_div_' + id).addClass("skill_div");           
-          if($(".skill_div").length > 1){
-            $('.skill_div').find(".delete_skill").show();
+    swal({
+      text: "Are you sure! you want to undo?",
+      buttons: true,
+    })
+    .then((willUndo) => {
+        if(willUndo) {
+        $.post(baseurl + "undo-skill", {id: id, _method: 'post', _token: csrf_token})
+        .done(function (response) {
+          if (response == 'ok')
+          {                
+            $('.undo_skill_'+id).hide();
+            $('.delete_skill_'+id).show();
+            $('.edit_skill_'+id).show();
+            $('.skill_edited_div_' + id).addClass("skill_div");           
+            if($(".skill_div").length > 1){
+              $('.skill_div').find(".delete_skill").show();
+            }
+          } else
+          {
+          alert('Request Failed!');
           }
-        } else
-        {
-        alert('Request Failed!');
-        }
-      });
-    }
+        });
+      }
+    });
   }
 
 

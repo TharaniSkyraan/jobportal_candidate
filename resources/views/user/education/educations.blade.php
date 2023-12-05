@@ -10,6 +10,7 @@
 <script src="{{ asset('site_assets_1/assets/date_flatpicker/flatpickr.js')}}"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @endsection
 @section('title') Mugaam - My Education Page @endsection
 

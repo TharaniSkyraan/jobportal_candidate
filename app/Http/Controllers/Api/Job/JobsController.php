@@ -67,7 +67,7 @@ class JobsController extends BaseController
 
         $filter = array();
         $filter['sortBy'] = 'date';
-        $jobs = $this->fetchJobs($user->career_title, $filter, [], 5);
+        $jobs = $this->fetchJobs($user->career_title,'', $filter, 5);
         
         $jobs['joblist']->each(function ($job, $key) use($user) {
             $jobc = Job::find($job->job_id);
@@ -81,19 +81,8 @@ class JobsController extends BaseController
         });   
         $joblist = $jobs['joblist']->items();     
 
-        $userData = array(
-                'name' => $user->getName(),
-                'final_percentage' => $user->getProfilePercentage(),
-                'image' => $user->image,
-                'career_title' => $user->career_title,
-                'updated_at' => Carbon::parse($user->updated_at)->getTimestampMs(),  
-                'resume' => $user->getDefaultCv()->cv_file??'',            
-                'location' => $user->location,            
-            );
-
         $response = array(
                         'jobs' => $joblist, 
-                        'user' => $userData, 
                         'appliedlist' => $appliedlist
                     );
 
@@ -144,12 +133,9 @@ class JobsController extends BaseController
                             ->get();
         $sectors->makeHidden(['lang','industry_id','is_active','sort_order','is_default','created_at','updated_at']);
 
-        
+        $filter = array('sortBy'=> 'date');
+        $jobs = $this->fetchJobs($user->career_title,'',$filter, 5);
 
-        $filter = array();
-        $filter['sortBy']  = 'date';
-        $jobs = $this->fetchJobs($user->career_title, $filter, [], 5);
-        
         $jobs['joblist']->each(function ($job, $key) use($user) {
             $jobc = Job::find($job->job_id);
             $job['company_image'] = $jobc->company->company_image??'';
@@ -162,10 +148,37 @@ class JobsController extends BaseController
         });   
         $joblist = $jobs['joblist']->items(); 
 
+        $appliedjobs = JobApply::where('user_id',$user_id)
+                        ->whereIn('application_status',['shortlist'])
+                        ->whereIsRead(1)
+                        // ->whereIn('application_status',['view','shortlist','consider'])
+                        ->take(4)
+                        ->orderBy('updated_at','desc')
+                        ->get();
+
+        $appliedlist = [];
+        
+        foreach($appliedjobs as $job)
+        {
+            if(isset($job->job))
+            {                    
+                $appliedlist[] = array(
+                    'slug' => $job->job->slug,
+                    'title' => $job->job->title??'Php Developer',
+                    'company_name' => $job->job->company_name??'Skyraan',
+                    'company_image' => $job->job->company->company_image??'',
+                    'status' => $job->application_status,
+                    'applied_at' => Carbon::parse($job->created_at)->getTimestampMs(),
+                    'status_updated_at' => Carbon::parse($job->updated_at)->getTimestampMs(),
+                );
+            }
+        }
+
         $response = array(
             'jobs' => $joblist,
             'top_cities' => $top_cities,
-            'sectors' => $sectors
+            'sectors' => $sectors, 
+            'appliedlist' => $appliedlist
         );
         return $this->sendResponse($response);
     }
@@ -287,7 +300,7 @@ class JobsController extends BaseController
             return $this->sendError('No Job Available.'); 
         }
 
-        $exclude_days = isset($job->walkin->exclude_days)?'(Excluding'. $job->walkin->exclude_days.')':'';
+        $exclude_days = isset($job->walkin->exclude_days)?'(Excluding - '. $job->walkin->exclude_days.')':'';
         $job_skill_id = explode(',',$job->getSkillsStr());
         $user = '';
         $skill = array();
@@ -372,9 +385,10 @@ class JobsController extends BaseController
                                      ->each(function ($screeningquiz, $key) {
                                         $screeningquiz['options'] = $screeningquiz->candidate_options?json_decode($screeningquiz->candidate_options):[];
                                      });
+        $job_id = $job->id;
         $response = array(
                 'job' => $jobd, 
-                'relevant_job' => $joblist, 
+                'relevant_job' => array_filter($joblist, function ($job) use ($job_id) {return $job['job_id'] !== $job_id;}), 
                 'company_slug' => $job->company->slug??'', 
                 'breakpoint' => $breakpoint?'yes':'no',
                 'have_screening' => JobScreeningQuiz::whereJobId($job->id)->count(),
@@ -413,6 +427,7 @@ class JobsController extends BaseController
         $company->country_name = $company->getCountry('country')??'';
         $company_jobs = Job::where('company_id', $companies)
                          ->whereIsActive(1)
+                         ->orderBy('updated_at','desc')
                         //  ->whereDate('expiry_date', '>', Carbon::now())
                          ->get()->toArray();
         $gallery=Companygalary::whereCompanyId($companies)->get();
@@ -424,6 +439,8 @@ class JobsController extends BaseController
         $company->CEO_name = $company->CEO_name??'';
         $company->website_url = $company->website_url??'';
         $company->company_image = $company->company_image??"";
+        $company->industry = DataArrayHelper::industryParticular($company->industry_id??0);
+
         $companyjobs = array_map(function ($companyjob) use($user) {
             $job = Job::find($companyjob['id']);
             $val = array(
