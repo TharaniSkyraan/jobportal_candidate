@@ -51,7 +51,7 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
 
-        $prefix = $request->route()->getPrefix();
+        $prefix = $request->route()->getPrefix()??'';
         
         if ($request->expectsJson() && str_contains($prefix, 'api')) {
     
