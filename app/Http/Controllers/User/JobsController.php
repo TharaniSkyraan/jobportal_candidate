@@ -37,7 +37,7 @@ class JobsController extends Controller
     
     public function appliedJobsList(Request $request){      
         $user_id = Auth::user()->id;
-        $sortBy = $request->sortBy;
+        $sortBy = ($request->sortBy!='all')?str_replace('ed','',$request->sortBy):'all';
         $jobs = $this->jobapply->where('user_id',$user_id)
                                ->where(function($q) use($sortBy){
                                     if($sortBy =='view'){                
