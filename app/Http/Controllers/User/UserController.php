@@ -351,7 +351,7 @@ class UserController extends Controller
                 "messaging_product"=>"whatsapp",
                 "type"=>"template",
                 "template"=>[
-                    "name"=>"verify_account",
+                    "name"=>"verify_otp",
                     "language"=>[
                         "code"=>"en_US"
                     ],

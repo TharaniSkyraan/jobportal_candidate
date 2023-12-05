@@ -175,7 +175,7 @@
             @component('mail::table')
             | <th colspan="3"><a><span style="text-decoration: underline;">{{ $job->title }} </span><br><span class="company_name">{{ $job['company_name'] }}</span></a> | | | |
             |:--| :-- | :-- | :-- |
-            | | <img draggable="false" src="{{ asset('/site_assets_1/assets/img/side_nav_icon/experience.png') }}" style="margin-bottom: -2px;width: 15px;"/> {{ $job['experience']}} |<img draggable="false" src="{{ asset('/site_assets_1/assets/img/side_nav_icon/salary.png') }}" style=" margin-bottom: -2px;width: 15px;"/> {{ $job['salary']??'1-3 Lakh / Annum'}}</span> |
+            | | <img draggable="false" src="{{ asset('/site_assets_1/assets/img/side_nav_icon/experience.png') }}" style="margin-bottom: -2px;width: 15px;"/> {{ $job['experience']}} |<img draggable="false" src="{{ asset('/site_assets_1/assets/img/side_nav_icon/salary.png') }}" style=" margin-bottom: -2px;width: 15px;"/>  {{ !empty($job['salary']) ? $job['salary'] :'Not Disclosed'}}</span> |
             | <td colspan="3" style="padding: 10px 0px 10px 0px !important;"><img draggable="false" src="{{ asset('/site_assets_1/assets/img/side_nav_icon/location.png') }}" style=" margin-bottom: -2px;width: 15px;"/>{{$job['location']}}<td> |
             | | <a href="{{ url('/detail')}}/{{$job->slug}}" class="apply-button"><img draggable="false" src="{{ asset('/') }}images/mail/apply.svg"/>Apply now</a> |
             | <td colspan="3"><span style="color:#8a8a8a;padding-top:10px;"> Posted On : {{ MiscHelper::timeSince($job->posted_date) }} <span><td> |

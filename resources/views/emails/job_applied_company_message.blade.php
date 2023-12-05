@@ -142,7 +142,7 @@
     @component('mail::table')
     | <th colspan="3"><b>{{ $job->title??'Android Developer Fresher Android Developer Fresher'}} | | | |
     |:--| :-- | :-- | :-- |
-    | | <img draggable="false" src="{{ asset('/site_assets_1/assets/img/side_nav_icon/experience.png') }}" style="margin-bottom: -2px;width: 15px;"/> {{ $job->experience_string??'0 - 3 years'}} |<img draggable="false" src="{{ asset('/site_assets_1/assets/img/side_nav_icon/salary.png') }}" style=" margin-bottom: -2px;width: 15px;"/> {{ $job->salary_string??'1-3 Lakh / Annum'}}</span> |
+    | | <img draggable="false" src="{{ asset('/site_assets_1/assets/img/side_nav_icon/experience.png') }}" style="margin-bottom: -2px;width: 15px;"/> {{ $job->experience_string??'0 - 3 years'}} |<img draggable="false" src="{{ asset('/site_assets_1/assets/img/side_nav_icon/salary.png') }}" style=" margin-bottom: -2px;width: 15px;"/> {{ !empty($job->salary_string) ? $job->salary_string :'Not Disclosed'}}</span> |
     | <td colspan="3" style="padding: 10px 0px 10px 0px !important;"><img draggable="false" src="{{ asset('/site_assets_1/assets/img/side_nav_icon/location.png') }}" style=" margin-bottom: -2px;width: 15px;"/> {{ $job->work_locations?rtrim($job->work_locations, ", "):'Coimbatore'}} <td> |
     @endcomponent
     <p class="text-center">
