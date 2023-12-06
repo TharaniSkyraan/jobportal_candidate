@@ -245,8 +245,9 @@
     /* font-family: inherit; */
     line-height: 3.4rem;
   }
-  .avatar{
+  .cntpro .avatar{
     width:3rem;
+    height:3rem;
     transition: all 0.4s ease;
   }
   /* .main-panel-customize .avatar{
