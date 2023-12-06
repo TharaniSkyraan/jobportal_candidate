@@ -31,7 +31,6 @@ class MessageSendMail extends Mailable
     public function build()
     {
         $data = $this->data;
-        \Log::info($data['company_email']);
         return $this->from($data['user_email'], $data['user_name'])
                     ->to($data['company_email'], $data['company_name'])                        
                     ->subject('New message received from '.$data['user_name'].' for '.$data['job_title'])

@@ -128,7 +128,7 @@
     </div>
     <p class="title-content"><b>Dear {{$data['company_name']}},</b></p>
     <p class="text-left"></p>
-    <p class="text-left">Following email has been received from {{$data['user_name']}} for {{$data['job_title']}} :</p>
+    <p class="text-left">Following email has been received from {{$data['user_name']}} for {{$data['job_title']}} </p>
     <p class="text-left">
         {{ $data['message'] }}
     </p>
