@@ -367,7 +367,6 @@
                         $contact_person_details = 'true';                      
                     }
                 }
-
             @endphp
 
             @if($job->walkin || $contact_person_details=='true')
