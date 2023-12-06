@@ -358,12 +358,19 @@
                 </div>                
             @endif
 
-            @if($job->walkin || ($job->contact_person_details->morning_section_from && $job->contact_person_details->morning_section_to) || 
-               ($job->contact_person_details->evening_section_from && $job->contact_person_details->evening_section_to) || 
-               (!empty($job->contact_person_details->email)) ||
-               (!empty($job->contact_person_details->phone_1)) ||
-               (!empty($job->contact_person_details->phone_2)) ||
-               (!empty($job->contact_person_details->phone_2)))
+
+            @php
+                $contact_person_details = 'false';
+                if(isset($job->contact_person_details)){
+                    if(($job->contact_person_details->morning_section_from && $job->contact_person_details->morning_section_to) || ($job->contact_person_details->evening_section_from && $job->contact_person_details->evening_section_to) || (!empty($job->contact_person_details->email)) || (!empty($job->contact_person_details->phone_1)) || (!empty($job->contact_person_details->phone_2)) || (!empty($job->contact_person_details->phone_2)))
+                    {
+                        $contact_person_details = 'true';                      
+                    }
+                }
+
+            @endphp
+
+            @if($job->walkin || $contact_person_details=='true')
 
                 <div class="card walkin_cd align-self-center">
                     @if($job->walkin)
