@@ -31,6 +31,7 @@ class MessageSendMail extends Mailable
     public function build()
     {
         $data = $this->data;
+        \Log::info($data);
         return $this->from($data['company_email'], $data['company_name'])
                         ->replyTo($data['company_email'], $data['company_name'])
                         ->to(config('mail.support_recieve_to.address'), config('mail.support_recieve_to.name'))
