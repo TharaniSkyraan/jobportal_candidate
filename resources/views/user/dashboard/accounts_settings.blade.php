@@ -442,7 +442,7 @@ $('.btn-upload-image').on('click', function (ev) {
       if(phone == old_num && verified=='yes')
       {  
         $("#phone").removeClass('is-valid').addClass('is-invalid');   
-        $("#err_phone").html('Given number is already Existing.');
+        $("#err_phone").html('Given number is already Verified.');
         return false;   
       }else
       {
