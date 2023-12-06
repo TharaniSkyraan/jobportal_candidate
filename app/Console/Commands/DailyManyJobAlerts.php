@@ -110,7 +110,7 @@ class DailyManyJobAlerts extends Command
                 $slug = $checkKeywords['sl'];
                 
          
-                if($jobs->count()!=0){
+                if(count($jobs)!=0){
                     Mail::send(new JobAlertMailable($data,$jobs,$slug,$limit));   
                 } 
             }
