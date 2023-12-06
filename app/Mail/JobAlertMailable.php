@@ -37,7 +37,7 @@ class JobAlertMailable extends Mailable
         return $this->from(config('mail.recieve_to.address'), config('mail.recieve_to.name'))
                     ->replyTo(config('mail.recieve_to.address'), config('mail.recieve_to.name'))
                     ->to($user->email, $user->getName())
-                    ->subject('New job vaccancies for '. $this->jobalert->title . config('app.name'))
+                    ->subject('New job vaccancies for '. $this->jobalert->title .' '. config('app.name'))
                     ->markdown('emails.job_alert')
                     ->with([
                             'jobalert' => $this->jobalert,
