@@ -34,9 +34,6 @@ class JobAlertMailable extends Mailable
     {
         $user = $this->jobalert->user;
         
-        \Log::info("user!".json_encode($user));
-
-
         return $this->from(config('mail.recieve_to.address'), config('mail.recieve_to.name'))
                     ->replyTo(config('mail.recieve_to.address'), config('mail.recieve_to.name'))
                     ->to($user->email, $user->getName())
