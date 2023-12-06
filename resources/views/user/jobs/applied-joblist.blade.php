@@ -20,10 +20,8 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-xl-4 col-lg-4 col-md-5 col-sm-5 col-xs-12 col-12 d-flex mb-2"><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/experience.png') }}"></span><text class="">{{ $job->experience_string }}</text></div>
-                            <div class="col-xl-4 col-lg-4 col-md-7 col-sm-7 col-xs-12 col-12 d-flex mb-2"><div><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/salary.png') }}"></span><text class="">{{ trim($job->salary_string) ? $job->salary_string :'Not Disclosed' }}</text></div></div>
-                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 col-12 d-flex mb-2">
-                                <div><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/location.png') }}"></span><text class="">@if($job->work_locations != null) {{ rtrim($job->work_locations, ", ") }} @else Remote @endif</text></div>
-                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-7 col-sm-7 col-xs-12 col-12 d-flex mb-2"><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/salary.png') }}"></span><text class="">{{ trim($job->salary_string) ? $job->salary_string :'Not Disclosed' }}</text></div>
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12 col-12 d-flex mb-2"><span class=""><img draggable="false" class="me-2 image-size" src="{{ url('site_assets_1/assets/img/side_nav_icon/location.png') }}"></span><text class="text-truncate">@if($job->work_locations != null) {{ rtrim($job->work_locations, ", ") }} @else Remote @endif</text></div>
                         </div>
                     </div>
                 </div>

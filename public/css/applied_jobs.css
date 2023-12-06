@@ -48,6 +48,13 @@
 .allJobList, .viewedJobList, .shortlistedJobList, .rejectedJobList{
   padding-left:2rem !important;
 }
+.dsf2lmq .text-truncate{
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  display: -webkit-box !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 @media(min-width: 280px) and (max-width: 599px){
     .allJobList, .viewedJobList, .shortlistedJobList, .rejectedJobList{
       padding-left:1rem !important;
