@@ -45,7 +45,7 @@ class UserController extends BaseController
                 'designation' => $user->career_title??"",
                 'is_watsapp_number' => $user->is_watsapp_number??"",
                 'employment_status' => $user->employment_status??"",
-                'resume_url' => $user->getDefaultCv()->cv_file??"",
+                'resume_url' => $user->getDefaultCv()->pdf_file??"",
                 'resume_id' => $user->getDefaultCv()->id??0,
                 'user_token' => $user->token,
                 'updated_at' => (!empty($user->updated_at))?Carbon::parse($user->updated_at)->getTimestampMs():0,
