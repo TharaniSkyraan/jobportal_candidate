@@ -54,8 +54,8 @@ trait UserCvsTrait
         }else{
             $user_id = Auth::user()->id;    
             $userCv = new UserCv();
-            $userCv->user_id = $user_id;
         }    
+        $userCv->user_id = $user_id;
         $path = $request->path??'';
         $url = $request->url??'';
         $userCv->path = $path??"";
