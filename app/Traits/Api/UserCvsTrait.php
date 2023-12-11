@@ -49,10 +49,10 @@ trait UserCvsTrait
     public function cvsUpdate(UserCvRequest $request)
     {
         $id = $request->cv_id??NULL;
+        $user_id = Auth::user()->id;    
         if($id){
             $userCv = UserCv::find($id);
         }else{
-            $user_id = Auth::user()->id;    
             $userCv = new UserCv();
         }    
         $userCv->user_id = $user_id;
