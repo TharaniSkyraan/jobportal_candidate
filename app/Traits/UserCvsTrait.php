@@ -18,6 +18,8 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Requests\UserCvFormRequest;
 use App\Http\Requests\UserCvFileFormRequest;
 use Illuminate\Support\Facades\Storage;
+use App\Helpers\DataArrayHelper;
+
 
 trait UserCvsTrait
 {
@@ -45,6 +47,20 @@ trait UserCvsTrait
             $UserCv->path = $path??"";
             $UserCv->cv_file = $url??"";
             $UserCv->user_id = $user->id;
+            $fileExt = pathinfo($url, PATHINFO_EXTENSION);
+            if($fileExt=='pdf'){
+                $UserCv->pdf_path = $path??'';
+                $UserCv->pdf_file = $url??'';
+            }else
+            {
+                $localFilePath = DataArrayHelper::convertionext($url);
+                $pdf_path = "candidate/".$user->token."/file/".time().'.pdf';
+                Storage::disk('s3')->put($pdf_path, file_get_contents($localFilePath['real_path']));
+                $pdf_url = Storage::disk('s3')->url($pdf_path);  
+                $UserCv->pdf_path = $pdf_path??'';
+                $UserCv->pdf_file = $pdf_url??'';
+                unlink(public_path($localFilePath['path']));
+            }
             $UserCv->save();
         }
         
@@ -66,12 +82,28 @@ trait UserCvsTrait
             $url = Storage::disk('s3')->url($path);
             $UserCv = UserCv::find($cv_id);
             $previous_file_path = $UserCv->path;
+            $previous_file_pdf_path = $UserCv->pdf_path;
             $UserCv->path = $path??'';
             $UserCv->cv_file = $url??'';
-            $UserCv->user_id = $user->id;
-            $UserCv->upload_on = 'local_server';
+            $fileExt = pathinfo($url, PATHINFO_EXTENSION);
+            if($fileExt=='pdf'){
+                $UserCv->pdf_path = $path??'';
+                $UserCv->pdf_file = $url??'';
+            }else{
+                $localFilePath = DataArrayHelper::convertionext($url);
+                $pdf_path = "candidate/".$user->token."/file/".time().'.pdf';
+                Storage::disk('s3')->put($pdf_path, file_get_contents($localFilePath['real_path']));
+                $pdf_url = Storage::disk('s3')->url($pdf_path);  
+                $UserCv->pdf_path = $pdf_path??'';
+                $UserCv->pdf_file = $pdf_url??'';
+                unlink(public_path($localFilePath['path']));    
+            }
             $UserCv->save();
+
             Storage::disk('s3')->delete($previous_file_path); 
+            if($previous_file_path != $previous_file_pdf_path){
+                Storage::disk('s3')->delete($previous_file_pdf_path); 
+            }
         }
         
         return response()->json(array('success' => true));       
@@ -126,5 +158,7 @@ trait UserCvsTrait
         }
 
     }
+
+
 
 }

@@ -47,6 +47,12 @@ use App\Model\TopCompany;
 use App\Model\NoticePeriod;
 
 
+use File;
+use PDF;
+use App\Model\UserCv;
+use PhpOffice\PhpWord\IOFactory;
+use PhpOffice\PhpWord\Settings;
+
 class DataArrayHelper
 {
 
@@ -1142,4 +1148,71 @@ class DataArrayHelper
         return 123;
     }
 
+    
+    public static function convertionext($cv_file)
+    {
+        $random = str_pad(rand(0, 999999), 6, '0', STR_PAD_LEFT);
+        $a_id = auth()->user()->id;
+        $folderPath = public_path('temp/'.$a_id);
+        if (!File::exists($folderPath)) {
+            File::makeDirectory($folderPath, 0755, true, true);
+        }
+        $currentDateTime = Carbon::now();
+        $twoMinutesAgo = $currentDateTime->subMinutes(1);
+        $files = File::files($folderPath);
+        foreach ($files as $file) {
+            $lastModifiedTime = Carbon::createFromTimestamp(filemtime($file));
+            if ($lastModifiedTime->lte($twoMinutesAgo)) {   
+                unlink($file);
+            }
+        }
+        $file = $cv_file;
+        $fileExt = pathinfo($cv_file, PATHINFO_EXTENSION);
+        $docxPath = public_path('temp/'.$a_id.'/'.$random.'.'.$fileExt);
+        $jhbj = 'temp/'.$a_id.'/'.$random.'.'.$fileExt;
+        // Download the file
+        $fileContent = file_get_contents($file);
+        // Save the file locally
+        file_put_contents($docxPath, $fileContent);
+        switch ($fileExt) {
+            case 'pdf';
+                $real_path = asset($jhbj);
+            break;
+            case 'rtf';
+                $phpWord = IOFactory::load(public_path($jhbj), 'RTF');
+                $phpWord->save($docxPath, 'Word2007');
+                // Convert DOCX to PDF using DomPDF
+                $domPdfPath = base_path('vendor/dompdf/dompdf');
+                Settings::setPdfRendererPath($domPdfPath);
+                Settings::setPdfRendererName('DomPDF');
+                $docxContent = IOFactory::load($docxPath, 'Word2007');
+                $pdfWriter = IOFactory::createWriter($docxContent, 'PDF');
+                $pdfPath = public_path('temp/'.$a_id.'/'.$random.'.pdf');
+                $pdfWriter->save($pdfPath);
+                $real_path = asset('temp/'.$a_id.'/'.$random.'.pdf');
+            break;
+            case 'doc':
+                $phpWord = IOFactory::load(public_path($jhbj), 'MsDoc');
+                $phpWord->save($docxPath, 'Word2007');
+            break;
+        }
+        if($fileExt == 'doc' || $fileExt == 'docx'){
+            $domPdfPath = base_path('vendor/dompdf/dompdf');
+            \PhpOffice\PhpWord\Settings::setPdfRendererPath($domPdfPath);
+            \PhpOffice\PhpWord\Settings::setPdfRendererName('DomPDF'); 
+            $Content = \PhpOffice\PhpWord\IOFactory::load($docxPath); 
+            $PDFWriter = \PhpOffice\PhpWord\IOFactory::createWriter($Content,'PDF');
+            $pdfFileName = time().'.pdf';
+            $PDFWriter->save(public_path('temp/'.$a_id.'/'.$random.'.pdf')); 
+
+            $real_path = asset('temp/'.$a_id.'/'.$random.'.pdf');
+        }
+        if($fileExt != 'pdf'){
+            unlink(public_path('temp/'.$a_id.'/'.$random.'.'.$fileExt));
+        }
+        $data = [];
+        $data['path'] = 'temp/'.$a_id.'/'.$random.'.pdf';
+        $data['real_path'] = $real_path; 
+        return $data;
+    }
 }

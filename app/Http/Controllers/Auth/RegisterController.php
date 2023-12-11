@@ -423,12 +423,24 @@ class RegisterController extends Controller
             $url = Storage::disk('s3')->url($path);
             // $path = Storage::disk('public')->put('cv_uploads', $request->file('file'));
             // $url = Storage::disk('public')->url($path);
-
             $UserCv = new UserCv();
             $UserCv->path = $path;
             $UserCv->cv_file = $url;
             $UserCv->user_id = $user->id;
             $UserCv->is_default = 1;
+            $fileExt = pathinfo($url, PATHINFO_EXTENSION);
+            if($fileExt=='pdf'){
+                $UserCv->pdf_path = $path??'';
+                $UserCv->pdf_file = $url??'';
+            }else{
+                $localFilePath = DataArrayHelper::convertionext($url);
+                $pdf_path = "candidate/".$user->token."/file/".time().'.pdf';
+                Storage::disk('s3')->put($pdf_path, file_get_contents($localFilePath['real_path']));
+                $pdf_url = Storage::disk('s3')->url($pdf_path);  
+                $UserCv->pdf_path = $pdf_path??'';
+                $UserCv->pdf_file = $pdf_url??'';
+                unlink(public_path($localFilePath['path']));    
+            }            
             $UserCv->save();
             
             $user = User::findOrFail(Auth::user()->id);             

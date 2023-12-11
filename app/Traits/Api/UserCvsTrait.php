@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Requests\Api\User\UserCvRequest;
 use Illuminate\Support\Facades\Storage;
+use App\Helpers\DataArrayHelper;
 
 trait UserCvsTrait
 {
@@ -57,6 +58,19 @@ trait UserCvsTrait
         }    
         $userCv->path = $request->path??"";
         $userCv->cv_file = $request->url??"";
+        $fileExt = pathinfo($url, PATHINFO_EXTENSION);
+        if($fileExt=='pdf'){
+            $userCv->pdf_path = $path??'';
+            $userCv->pdf_file = $url??'';
+        }else{
+            $localFilePath = DataArrayHelper::convertionext($url);
+            $pdf_path = "candidate/".$user->token."/file/".time().'.pdf';
+            Storage::disk('s3')->put($pdf_path, file_get_contents($localFilePath['real_path']));
+            $pdf_url = Storage::disk('s3')->url($pdf_path);  
+            $userCv->pdf_path = $pdf_path??'';
+            $userCv->pdf_file = $pdf_url??'';
+            unlink(public_path($localFilePath['path']));    
+        }  
         $userCv->save();  
 
         $message = "Updated successfully.";
