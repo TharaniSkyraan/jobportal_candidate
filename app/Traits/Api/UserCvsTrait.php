@@ -23,7 +23,7 @@ trait UserCvsTrait
             $response['resume'][] = array(
                 'id'         => $user->UserCvs[0]['id'],
                 'cv_name'    => 'Resume 1.pdf',
-                'pdf_file'   => $user->Usepdfs[0]['pdf_file'],
+                'pdf_file'   => $user->UserCvs[0]['pdf_file'],
                 'pdf_path'   => $user->UserCvs[0]['pdf_path'],
                 'cv_file'    => $user->UserCvs[0]['cv_file'],
                 'path'       => $user->UserCvs[0]['path'],
@@ -37,7 +37,7 @@ trait UserCvsTrait
             $response['resume'][] = array(
                 'id'         => $user->UserCvs[1]['id'],
                 'cv_name'    => 'Resume 2.pdf',
-                'pdf_file'    => $user->Usepdfs[1]['pdf_file'],
+                'pdf_file'    => $user->UserCvs[1]['pdf_file'],
                 'pdf_path'    => $user->UserCvs[1]['pdf_path'],
                 'cv_file'    => $user->UserCvs[1]['cv_file'],
                 'path'       => $user->UserCvs[1]['path'],
