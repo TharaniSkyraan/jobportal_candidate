@@ -50,6 +50,7 @@ trait UserCvsTrait
     {
         $id = $request->cv_id??NULL;
         $user_id = Auth::user()->id;    
+        $user_token = Auth::user()->token;    
         if($id){
             $userCv = UserCv::find($id);
         }else{
@@ -66,7 +67,7 @@ trait UserCvsTrait
             $userCv->pdf_file = $url??'';
         }else{
             $localFilePath = DataArrayHelper::convertionext($url);
-            $pdf_path = "candidate/".$user->token."/file/".time().'.pdf';
+            $pdf_path = "candidate/".$user_token."/file/".time().'.pdf';
             Storage::disk('s3')->put($pdf_path, file_get_contents($localFilePath['real_path']));
             $pdf_url = Storage::disk('s3')->url($pdf_path);  
             $userCv->pdf_path = $pdf_path??'';
