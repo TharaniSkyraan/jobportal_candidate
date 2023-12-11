@@ -56,8 +56,10 @@ trait UserCvsTrait
             $userCv = new UserCv();
             $userCv->user_id = $user_id;
         }    
-        $userCv->path = $request->path??"";
-        $userCv->cv_file = $request->url??"";
+        $path = $request->path??'';
+        $url = $request->url??'';
+        $userCv->path = $path??"";
+        $userCv->cv_file = $url??"";
         $fileExt = pathinfo($url, PATHINFO_EXTENSION);
         if($fileExt=='pdf'){
             $userCv->pdf_path = $path??'';
