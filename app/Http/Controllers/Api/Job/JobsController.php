@@ -360,7 +360,7 @@ class JobsController extends BaseController
             'about_company' => $job->company->description??'',
             'redirect_url' => (!empty($job->reference_url))?$job->reference_url:'',
             'job_status' => (!empty($job->deleted_at) || $job->is_active==3)?'Job is expired or closed.':(($job->is_active==2)?'Job is In-active':''), 
-
+            'website_link' => url('/detail/').$job->slug
         );
 
         $jobs = $this->fetchJobs($job->title, '', [], 10);
@@ -438,7 +438,12 @@ class JobsController extends BaseController
         $company->twitter_url = $company->twitter_url??'';
         $company->CEO_name = $company->CEO_name??'';
         $company->website_url = $company->website_url??'';
+        $company->location = $company->location??'';
+        $company->address = $company->address??'';
+        $company->website = $company->website??'';
+        $company->no_of_employees = $company->no_of_employees??'';
         $company->company_image = $company->company_image??"";
+        $company->no_of_offices = $company->no_of_offices??'';
         $company->industry = DataArrayHelper::industryParticular($company->industry_id??0);
 
         $companyjobs = array_map(function ($companyjob) use($user) {

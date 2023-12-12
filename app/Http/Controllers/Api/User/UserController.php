@@ -48,6 +48,7 @@ class UserController extends BaseController
                 'resume_url' => $user->getDefaultCv()->pdf_file??"",
                 'resume_id' => $user->getDefaultCv()->id??0,
                 'user_token' => $user->token,
+                'summary' => $user->summary,
                 'updated_at' => (!empty($user->updated_at))?Carbon::parse($user->updated_at)->getTimestampMs():0,
                 'profile_summary' => url('api/profile_summary/'.$user->id),
             ),
