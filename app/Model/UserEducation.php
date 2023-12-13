@@ -73,7 +73,7 @@ class UserEducation extends Model
             else
                 return $educationType->$field;
         } else {
-            return '';
+            return $this->education_type;
         }
     }
 

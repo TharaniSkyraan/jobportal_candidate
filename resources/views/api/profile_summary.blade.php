@@ -22,11 +22,14 @@
                     <div class="hgvwnema">
                         <div class="prf d-flex">
                             <div class="profile">
-                                <img src="{{ $user->image??asset('site_assets_1/assets/img/candiimg/profile.png') }}" alt="profile-image">
+                                <img src="{{ $user->image??asset('images/profile/profile_placeholder.svg') }}" alt="profile-image">
                             </div>
                             <div class="ps-3">
                                 <h3>{{$user->getName()}}</h3>
-                                <h6>{{$user->getGender('gender')}}, {{$user->getAge()}}</h6>
+                                @if(!empty($user->getGender('gender')) || !empty($user->getAge())) 
+                                    <h6> @if(!empty($user->getGender('gender'))) {{$user->getGender('gender')}}, @endif 
+                                        {{$user->getAge()}} </h6> 
+                                @endif
                                 <p>{{ $user->email }}</p>
                                 <p>{{ $user->phone }}</p>
                                 <p>{{ $user->location }}</p>
@@ -34,19 +37,47 @@
                         </div>
                     </div>
                     <!-- Myself -->
+                    @if(!empty($user->summary))
                     <div class="hgvwnema myself">
-                        <h6>About Myself</h6>
+                        <h6 class="my-2">About Myself</h6>
                         <div class="mb-4">
                             <div class="text-desc">
                                 {{$user->summary}}.
                             </div>  
                         </div>  
                     </div>
+                    @endif
+                    
+                    @if(count($user->userEducation)!=0) 
+                        <!-- Education -->
+                        <div class="hgvwnema education">
+                            <h6 class="my-4">Education</h6>
+                            <div class="mb-3">
+                                @forelse($user->userEducation as $education)
+                                    @php
+                                        $educa =  $education->getEducationLevel('education_level') . (($education->getEducationType('education_type')!='' || $education->education_type!='')? ' - ' : ' ') . $education->getEducationType('education_type');
+                                        $year = (!empty($education->from_year) && !empty($education->to_year))?\Carbon\Carbon::parse($education->from_year)->Format('M Y') . ' - '. ($education->pursuing!='yes'? \Carbon\Carbon::parse($education->to_year)->Format('M Y') : 'Still Pursuing'):'';
+                                        $percentage = ($education->percentage!=''? $education->getResultType('result_type') . ': ' . $education->percentage : ' ' );
+                                        $location =  ($education->institution!=''?ucwords($education->institution).', ':'') . ($education->location!=''?$education->location:'');
+                                    @endphp
+                                    <address class="mt-3">
+                                        <h5 class="fw-bold">{{$educa}}</h5>
+                                        @if(!empty($location)) <p>{{$location}}.</p> @endif
+                                        @if(!empty($year))<p>{{$year}}.</p> @endif
+                                        @if(!empty($education->percentage))
+                                        <p>{{$percentage}}</p>
+                                        @endif
+                                    </address>                                    
+                                    @empty 
+                                @endforelse
+                            </div> 
+                        </div>
+                    @endif
                     
                     @if(count($user->userExperience)!=0)
                         <!-- Experience -->
                         <div class="hgvwnema experience">
-                            <h6>Experiences</h6>
+                            <h6 class="my-4">Experiences</h6>
                             <div class="mb-5">
                                 @foreach($user->userExperience as $experience)
                                     @php
@@ -71,37 +102,10 @@
                             </div>  
                         </div>
                     @endif
-                    
-                    @if(count($user->userEducation)!=0) 
-                        <!-- Education -->
-                        <div class="hgvwnema education">
-                            <h6>Education</h6>
-                            <div class="mb-3">
-                                @forelse($user->userEducation as $education)
-                                    @php
-                                        $educa =  $education->getEducationLevel('education_level') . (($education->getEducationType('education_type')!='' || $education->education_type!='')? ' - ' : ' ') . $education->getEducationType('education_type');
-                                        $year = (!empty($education->from_year) && !empty($education->to_year))?\Carbon\Carbon::parse($education->from_year)->Format('M Y') . ' - '. ($education->pursuing!='yes'? \Carbon\Carbon::parse($education->to_year)->Format('M Y') : 'Still Pursuing'):'';
-                                        $percentage = ($education->percentage!=''? $education->getResultType('result_type') . ': ' . $education->percentage : ' ' );
-                                        $location =  ($education->institution!=''?ucwords($education->institution).', ':'') . ($education->location!=''?$education->location:'');
-                                    @endphp
-                                    <address class="mt-3">
-                                        <h5 class="fw-bold">{{$educa}}</h5>
-                                        <p>{{$location}}.</p>
-                                        <p>{{$year}}.</p>
-                                        @if(!empty($education->percentage))
-                                        <p>{{$percentage}}</p>
-                                        @endif
-                                    </address>                                    
-                                    @empty 
-                                @endforelse
-                            </div> 
-                        </div>
-                    @endif
-                    
                     @if(count($user->userProjects)!=0)
                         <!-- Project -->
                         <div class="hgvwnema project">
-                            <h6>Projects</h6>
+                            <h6 class="my-4">Projects</h6>
                             <div class="mb-3">
                                 @foreach ($user->userProjects as $project)      
                                     @php
@@ -142,7 +146,7 @@
                         <!-- Skills -->
                         <div class="hgvwnema skill">
                             <div class="mb-3">
-                                <h6>Skills</h6>
+                                <h6 class="my-4">Skills</h6>
                                 <div class="row">
                                     @foreach($user->userSkills as $skill)
                                         @if(isset($skill->skill->is_active) && $skill->skill->is_active==1)
@@ -157,7 +161,7 @@
                                             @endphp
                                             <div class="col-6">
                                                 <h5 class="fw-bold">{{ $skill->getSkill('skill') }}</h5>
-                                                <p>- @if($skill->getLevel('language_level')!='') {{ $skill->getLevel('language_level') }}, @endif  @if(!empty($skill->start_date) || !empty($skill->end_date)){{ $date }}.@endif</p>
+                                                <p>@if($skill->getLevel('language_level')!='') {{ $skill->getLevel('language_level') }}, @endif  @if(!empty($skill->start_date) || !empty($skill->end_date)){{ $date }}.@endif</p>
                                             </div>
                                         @endif
                                     @endforeach
@@ -195,7 +199,7 @@
                     @endif
 
                     <div class="hgvwnema mt-3">
-                        <p>I hereby declare that all the information; furnished above is true my knowledg. </p>
+                        <p>I hereby declare that all the information furnished above is true to the best of my knowledge. </p>
                         <p class="text-end">Yours Faithfully<br>{{$user->getName()}} </p>
                     </div>
                 </div>
