@@ -23,6 +23,7 @@
             }
             .fw-bolder{
                 font-weight: 600 !important;
+                font-size: 15px !important;
             }
         </style>
   </head>
