@@ -82,7 +82,7 @@
                                         @if(!empty($location)) <p>{{$location}}.</p> @endif
                                         @if(!empty($year))<p>{{$year}}.</p> @endif
                                         @if(!empty($education->percentage))
-                                        <p>{{$percentage}} @if($education->getResultType('result_type') == 'Pecentage') % @endif</p>
+                                        <p>{{$percentage}} @if($education->getResultType('result_type') == 'Percentage') % @endif</p>
                                         @endif
                                     </address>                                    
                                     @empty 
