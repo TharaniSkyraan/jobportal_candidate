@@ -21,6 +21,9 @@ h6{
 h5{
     font-size: 15px;
 }
+h6.fw-bold{
+    font-weight: 400;
+}
         </style>
   </head>
   <body>
