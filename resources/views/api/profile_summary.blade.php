@@ -14,16 +14,13 @@
     <title>Candidate</title>
     <style>
 
-h6{
-    color: #0000009e;
-    font-size: 16px;
-}
-h5{
-    font-size: 15px;
-}
-h6.fw-bold{
-    font-weight: 400;
-}
+            h6{
+                color: #0000009e;
+                font-size: 16px;
+            }
+            h5{
+                font-size: 15px;
+            }
         </style>
   </head>
   <body>
@@ -102,11 +99,12 @@ h6.fw-bold{
                                         <p>{{$experience->company}}, {{ $experience->location }}.</p>
                                         @if(!empty($date)) <p>{!! $date !!}</p> @endif
                                     </address>
-
-                                    <h6 class="fw-bold">Job Description</h6>
+                                    @if(!empty($experience->description))
+                                    <h6 class="fw-bolder">Job Description</h6>
                                     <div class="text-desc">
                                         {!! $experience->description !!}
                                     </div>  
+                                    @endif
                                     @if(!empty($experience->used_tools))
                                         <h6 class="fw-bold text-dark">Tools / software used</h6>
                                         <p>{{$experience->used_tools}}</p>
@@ -135,15 +133,19 @@ h6.fw-bold{
                                     <address class="mt-3">
                                         <h5 class="fw-bold">{{ $project->name }}</h5>
                                         <p>@if(!empty($project->getCompany('company'))){{ $project->getCompany('company') }} ,@endif @if(!empty($project->location)){{ $project->location }}.@endif</p>
+                                        @if($project->project_location=='off_side') <p>Offsite project.</p> @else <p>Onsite Project.</p> @endif
+                                        @if(!empty($project->work_as_team=='yes'))<p>Team project - {{ $project->noof_team_member }} members .</p>@endif
                                         @if(!empty($project->date_start) || !empty($project->date_end)) <p>{{ $date }}.</p> @endif
                                     </address>
 
-                                    <h6 class="fw-bold">Job Description</h6>
+                                    @if(!empty($project->description))
+                                    <h6 class="fw-bolder">Project Description</h6>
                                     <div class="text-desc">
                                         {!! $project->description !!}
                                     </div>   
+                                    @endif
                                     @if(!empty($project->url))
-                                    <h6 class="fw-bold text-dark">Project Link</h6>
+                                    <h6 class="fw-bolder text-dark">Project Link</h6>
                                     <p> <a href="{{$project->url}}" target="_blank">{{$project->url}}</a> </p>
                                     @endif
                                     @if(!empty($project->used_tools))
