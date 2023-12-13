@@ -56,7 +56,7 @@
                     <!-- Myself -->
                     @if(!empty($user->summary))
                     <div class="hgvwnema myself">
-                        <h6 class="my-2">About Myself</h6>
+                        <h6 class="my-3">About Myself</h6>
                         <div class="mb-4">
                             <div class="text-desc">
                                 {{$user->summary}}.
@@ -152,7 +152,7 @@
                                     </div>   
                                     @endif
                                     @if(!empty($project->url))
-                                    <h6 class="fw-bolder text-dark">Project Link</h6>
+                                    <h6 class="fw-bolder text-dark mt-3">Project Link</h6>
                                     <p> <a href="{{$project->url}}" target="_blank">{{$project->url}}</a> </p>
                                     @endif
                                     @if(!empty($project->used_tools))
