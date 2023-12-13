@@ -12,6 +12,16 @@
     <link rel="stylesheet" href="{{ asset('site_assets_1/assets/1a9ve2/css/api/common.css')}}">
     <link rel="stylesheet" href="{{ asset('site_assets_1/assets/1a9ve2/css/api/cantybfw.css')}}">
     <title>Candidate</title>
+    <style>
+
+h6{
+    color: #0000009e;
+    font-size: 16px;
+}
+h5{
+    font-size: 15px;
+}
+        </style>
   </head>
   <body>
 <div class="cantybfw">
