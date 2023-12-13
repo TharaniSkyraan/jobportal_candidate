@@ -12,8 +12,7 @@
     <link rel="stylesheet" href="{{ asset('site_assets_1/assets/1a9ve2/css/api/common.css')}}">
     <link rel="stylesheet" href="{{ asset('site_assets_1/assets/1a9ve2/css/api/cantybfw.css')}}">
     <title>Candidate</title>
-    <style>
-
+        <style>
             h6{
                 color: #0000009e;
                 font-size: 16px;
@@ -24,6 +23,10 @@
             .fw-bolder{
                 font-weight: 600 !important;
                 font-size: 15px !important;
+            }
+            .my-4{
+                margin-top: 2rem!important;
+                margin-bottom: 2rem!important;
             }
         </style>
   </head>
