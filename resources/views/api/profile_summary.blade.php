@@ -66,7 +66,7 @@
                         <!-- Education -->
                         <div class="hgvwnema education">
                             <h6 class="my-4">Education</h6>
-                            <div class="mb-3">
+                            <div class="mb-5">
                                 @forelse($user->userEducation as $education)
                                     @php
                                         $educa =  $education->getEducationLevel('education_level') . (($education->getEducationType('education_type')!='' || $education->education_type!='')? ' - ' : ' ') . $education->getEducationType('education_type');
@@ -121,7 +121,7 @@
                         <!-- Project -->
                         <div class="hgvwnema project">
                             <h6 class="my-4">Projects</h6>
-                            <div class="mb-3">
+                            <div class="mb-5">
                                 @foreach ($user->userProjects as $project)      
                                     @php
                                         $date = '';                
@@ -193,7 +193,7 @@
                     @if(count($user->userLanguages)!=0)
                         <!-- Language -->
                         <div class="mb-3 language">
-                            <h6 class="my-2">Languages Known</h6>
+                            <h6 class="my-3">Languages Known</h6>
                             <table class="text-center">
                                 <thead>
                                     <td>Language</td>
