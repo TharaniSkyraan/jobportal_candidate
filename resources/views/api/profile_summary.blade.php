@@ -39,7 +39,7 @@
                     <!-- Myself -->
                     @if(!empty($user->summary))
                     <div class="hgvwnema myself">
-                        <h6 class="my-2">About Myself</h6>
+                        <h4 class="my-2">About Myself</h4>
                         <div class="mb-4">
                             <div class="text-desc">
                                 {{$user->summary}}.
@@ -51,7 +51,7 @@
                     @if(count($user->userEducation)!=0) 
                         <!-- Education -->
                         <div class="hgvwnema education">
-                            <h6 class="my-4">Education</h6>
+                            <h4 class="my-4">Education</h4>
                             <div class="mb-3">
                                 @forelse($user->userEducation as $education)
                                     @php
@@ -77,7 +77,7 @@
                     @if(count($user->userExperience)!=0)
                         <!-- Experience -->
                         <div class="hgvwnema experience">
-                            <h6 class="my-4">Experiences</h6>
+                            <h4 class="my-4">Experiences</h4>
                             <div class="mb-5">
                                 @foreach($user->userExperience as $experience)
                                     @php
@@ -105,7 +105,7 @@
                     @if(count($user->userProjects)!=0)
                         <!-- Project -->
                         <div class="hgvwnema project">
-                            <h6 class="my-4">Projects</h6>
+                            <h4 class="my-4">Projects</h4>
                             <div class="mb-3">
                                 @foreach ($user->userProjects as $project)      
                                     @php
@@ -146,7 +146,7 @@
                         <!-- Skills -->
                         <div class="hgvwnema skill">
                             <div class="mb-3">
-                                <h6 class="my-4">Skills</h6>
+                                <h4 class="my-4">Skills</h4>
                                 <div class="row">
                                     @foreach($user->userSkills as $skill)
                                         @if(isset($skill->skill->is_active) && $skill->skill->is_active==1)
@@ -174,7 +174,7 @@
                     @if(count($user->userLanguages)!=0)
                         <!-- Language -->
                         <div class="mb-3 language">
-                            <h6 class="my-2">Languages Known</h6>
+                            <h4 class="my-2">Languages Known</h4>
                             <table class="text-center">
                                 <thead>
                                     <td>Language</td>
