@@ -21,6 +21,9 @@
             h5{
                 font-size: 15px;
             }
+            .fw-bolder{
+                font-weight: 600 !important;
+            }
         </style>
   </head>
   <body>
