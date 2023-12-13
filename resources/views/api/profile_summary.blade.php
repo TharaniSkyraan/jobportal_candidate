@@ -65,7 +65,7 @@
                     @if(count($user->userEducation)!=0) 
                         <!-- Education -->
                         <div class="hgvwnema education">
-                            <h6 class="my-5">Education</h6>
+                            <h6 class="my-4">Education</h6>
                             <div class="mb-3">
                                 @forelse($user->userEducation as $education)
                                     @php
@@ -91,7 +91,7 @@
                     @if(count($user->userExperience)!=0)
                         <!-- Experience -->
                         <div class="hgvwnema experience">
-                            <h6 class="my-5">Experiences</h6>
+                            <h6 class="my-4">Experiences</h6>
                             <div class="mb-3">
                                 @foreach($user->userExperience as $experience)
                                     @php
@@ -120,7 +120,7 @@
                     @if(count($user->userProjects)!=0)
                         <!-- Project -->
                         <div class="hgvwnema project">
-                            <h6 class="my-5">Projects</h6>
+                            <h6 class="my-4">Projects</h6>
                             <div class="mb-3">
                                 @foreach ($user->userProjects as $project)      
                                     @php
@@ -165,7 +165,7 @@
                         <!-- Skills -->
                         <div class="hgvwnema skill">
                             <div class="mb-3">
-                                <h6 class="my-5">Skills</h6>
+                                <h6 class="my-4">Skills</h6>
                                 <div class="row">
                                     @foreach($user->userSkills as $skill)
                                         @if(isset($skill->skill->is_active) && $skill->skill->is_active==1)
