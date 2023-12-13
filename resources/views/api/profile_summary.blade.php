@@ -65,8 +65,8 @@
                     @if(count($user->userEducation)!=0) 
                         <!-- Education -->
                         <div class="hgvwnema education">
-                            <h6 class="my-4">Education</h6>
-                            <div class="mb-5">
+                            <h6 class="my-5">Education</h6>
+                            <div class="mb-3">
                                 @forelse($user->userEducation as $education)
                                     @php
                                         $educa =  $education->getEducationLevel('education_level') . (($education->getEducationType('education_type')!='' || $education->education_type!='')? ' - ' : ' ') . $education->getEducationType('education_type');
@@ -91,8 +91,8 @@
                     @if(count($user->userExperience)!=0)
                         <!-- Experience -->
                         <div class="hgvwnema experience">
-                            <h6 class="my-4">Experiences</h6>
-                            <div class="mb-5">
+                            <h6 class="my-5">Experiences</h6>
+                            <div class="mb-3">
                                 @foreach($user->userExperience as $experience)
                                     @php
                                         $date = \Carbon\Carbon::parse($experience->date_start)->Format('M Y') . ' - '. ($experience->is_currently_working!=1? \Carbon\Carbon::parse($experience->date_end)->Format('M Y') : 'Currently working');
@@ -120,8 +120,8 @@
                     @if(count($user->userProjects)!=0)
                         <!-- Project -->
                         <div class="hgvwnema project">
-                            <h6 class="my-4">Projects</h6>
-                            <div class="mb-5">
+                            <h6 class="my-5">Projects</h6>
+                            <div class="mb-3">
                                 @foreach ($user->userProjects as $project)      
                                     @php
                                         $date = '';                
@@ -165,7 +165,7 @@
                         <!-- Skills -->
                         <div class="hgvwnema skill">
                             <div class="mb-3">
-                                <h6 class="my-4">Skills</h6>
+                                <h6 class="my-5">Skills</h6>
                                 <div class="row">
                                     @foreach($user->userSkills as $skill)
                                         @if(isset($skill->skill->is_active) && $skill->skill->is_active==1)
@@ -193,7 +193,7 @@
                     @if(count($user->userLanguages)!=0)
                         <!-- Language -->
                         <div class="mb-3 language">
-                            <h6 class="my-3">Languages Known</h6>
+                            <h6 class="my-4">Languages Known</h6>
                             <table class="text-center">
                                 <thead>
                                     <td>Language</td>
