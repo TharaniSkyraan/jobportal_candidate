@@ -174,7 +174,7 @@
                     @if(count($user->userLanguages)!=0)
                         <!-- Language -->
                         <div class="mb-3 language">
-                            <h6>Languages Known</h6>
+                            <h6 class="my-2">Languages Known</h6>
                             <table class="text-center">
                                 <thead>
                                     <td>Language</td>
