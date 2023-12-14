@@ -58,12 +58,12 @@ function loadUserSkillForm(form, id=null){
   if($('.start_date').val() !='')
   {
     var start_date = new Date($('.start_date').val());
-    start_date = (start_date.getFullYear())+'-'+(start_date.getMonth()+1);
+    start_date = (start_date.getMonth()+1)+'-'+(start_date.getFullYear());
   }
   if($('.end_date').val() !='')
   {
     var end_date = new Date($('.end_date').val());
-    end_date = (end_date.getFullYear())+'-'+(end_date.getMonth()+1);
+    end_date = (end_date.getMonth()+1)+'-'+(end_date.getFullYear());
   }
 
   if($("input[name='is_currently_working']").is(':checked') == false){
