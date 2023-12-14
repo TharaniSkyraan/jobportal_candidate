@@ -60,44 +60,36 @@
         if(validateFormFields('institution','Please enter Institution.','ValInstitute')) errStaus=true;
       }
 
-      var edu_type_id = $("#education_type_id").val();
-      var today = new Date();
-      var todaymonthyear = (today.getFullYear()-1)+'-'+(today.getMonth()+1); //January is 0 so need to add 1 to make it 1!
+      // var edu_type_id = $("#education_type_id").val();
       
-      if($('.from_year').val() !='')
+      if($('#from_year').val() !='')
       {
-        var from_year = new Date($('.from_year').val());
-        from_year = (from_year.getFullYear())+'-'+(from_year.getMonth()+1);
+        var from_year = new Date($('#from_year').val());
+        alert(from_year);
+        from_year = (from_year.getFullYear())+''+(('0' + (from_year.getMonth()+1)).slice(-2));
       }
-      if($('.to_year').val() !='')
+      if($('#to_year').val() !='')
       {
-        var to_year = new Date($('.to_year').val());
-        to_year = (to_year.getFullYear())+'-'+(to_year.getMonth()+1);
+        var to_year = new Date($('#to_year').val());
+        to_year = (to_year.getFullYear())+''+(('0' + (to_year.getMonth()+1)).slice(-2));
+      }
+      alert(from_year)
+      alert(to_year)
+      if($("input[name='pursuing']").is(':checked') == false)
+      {  
+        if($('#to_year').val() != '' || $('#from_year').val() != '' ){
+          if(validateFormFields('to_year','Please select end year of month.','')) errStaus=true;
+          if(validateFormFields('from_year','Please select start year of month.','')) errStaus=true;
+          if(parseInt(to_year) <= parseInt(from_year)){
+            setMsg('to_year','Please select Greater than from month'); errStaus=true;
+          }
+        }
       }
 
-      if(edu_type_id){
-        
-        // if(validateFormFields('university_board','Please select university board.','')) errStaus=true;
-       
-        if($("#add_edit_user_education").find('.from_year').val() == ''){
-          validateFormFields('from_year','Please select from year of month.','');
-          errStaus=true;
-        }
-        if($("input[name='pursuing']").is(':checked') == false)
-        {  
-            if($("#add_edit_user_education").find('.to_year').val() == ''){
-              validateFormFields('to_year','Please select from year of month.','');
-              errStaus=true;
-            } 
-        }
-
-      }
-      
-      if($("#add_edit_user_education").find('.to_year').val() != ''){
+      if($("input[name='pursuing']").is(':checked') == true)
+      {  
         if(validateFormFields('from_year','Please select start year of month.','')) errStaus=true;
-        if(to_year <= from_year){
-          setMsg('to_year','Please select Greater than from month'); errStaus=true;
-        }
+
       }
       if(errStaus) {
         return false;

@@ -87,17 +87,21 @@
       if($('.date_start').val() !='')
       {
         var date_start = new Date($('.date_start').val());
-        date_start = (date_start.getFullYear())+'-'+(date_start.getMonth()+1);
+        date_start = (date_start.getFullYear())+''+(('0' + (date_start.getMonth()+1)).slice(-2));
       }
       if($('.date_end').val() !='')
       {
         var date_end = new Date($('.date_end').val());
-        date_end = (date_end.getFullYear())+'-'+(date_end.getMonth()+1);
+        date_end = (date_end.getFullYear())+''+(('0' + (date_end.getMonth()+1)).slice(-2));
       }
 
       if($("input[name='is_currently_working']").is(':checked') == false){
-        if(date_start >= date_end){
-            setMsg('date_start','Please select less than from end year of month'); errStaus=true;
+        if($('#date_end').val() != '' || $('#date_start').val() != ''){
+            if(validateFormFields('date_start','Please select Date start','')) errStaus=true;
+            if(validateFormFields('date_end','Please select Date end','')) errStaus=true;
+            if(parseInt(date_start) >= parseInt(date_end)){
+                setMsg('date_start','Please select less than from end year of month'); errStaus=true;
+            }
         }
       }
       if(errStaus) {

@@ -60,25 +60,27 @@ function validateprojectForm(){
   // if(validateFormFields('location','Please enter city.','ValiCity')) errStaus=true;
   if(validateFormFields('description','Please enter Description.','')) errStaus=true;
   
-  if($('.date_start').val() !='')
+  if($('#date_start').val() !='')
   {
-    var date_start = new Date($('.date_start').val());
-    date_start = (date_start.getFullYear())+'-'+(date_start.getMonth()+1);
+    var date_start = new Date($('#date_start').val());
+    date_start = (date_start.getFullYear())+''+(('0' + (date_start.getMonth()+1)).slice(-2));
   }
-  if($('.date_end').val() !='')
+  if($('#date_end').val() !='')
   {
-    var date_end = new Date($('.date_end').val());
-    date_end = (date_end.getFullYear())+'-'+(date_end.getMonth()+1);
+    var date_end = new Date($('#date_end').val());
+    date_end = (date_end.getFullYear())+''+(('0' + (date_end.getMonth()+1)).slice(-2));
   }
 
   if($("input[name='is_on_going']").is(':checked') == false){
-    if($("#add_edit_user_project").find('#date_end').val() != ''){
+    if($('#date_end').val() != '' || $('#date_start').val() != ''){
       if(validateFormFields('date_start','Please select Date start','')) errStaus=true;
-      if(date_end <= date_start && $('.date_start').val() !=''){
+      if(validateFormFields('date_end','Please select Date end','')) errStaus=true;
+      if((parseInt(date_end) <= parseInt(date_start))){
         setMsg('date_end','Please select greater than from year'); errStaus=true;
       }
     }
-  }else{
+  }
+  if($("input[name='is_on_going']").is(':checked') == true){
     if(validateFormFields('date_start','Please select date start','')) errStaus=true;
   }
   if($('#url').val() != ""){

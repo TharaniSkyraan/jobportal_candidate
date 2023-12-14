@@ -55,22 +55,24 @@ function loadUserSkillForm(form, id=null){
       if(validateFormFields('level_id','Please slect Skill level.','')) errStaus=true;
     }
     
-  if($('.start_date').val() !='')
+  if($('#start_date').val() !='')
   {
-    var start_date = new Date($('.start_date').val());
-    start_date = (start_date.getMonth()+1)+'-'+(start_date.getFullYear());
+    var start_date = new Date($('#start_date').val());
+    start_date = (start_date.getFullYear())+''+(('0' + (start_date.getMonth()+1)).slice(-2));
   }
-  if($('.end_date').val() !='')
+  if($('#end_date').val() !='')
   {
-    var end_date = new Date($('.end_date').val());
-    end_date = (end_date.getMonth()+1)+'-'+(end_date.getFullYear());
+    var end_date = new Date($('#end_date').val());
+    end_date = (end_date.getFullYear())+''+(('0' + (end_date.getMonth()+1)).slice(-2));
   }
+
+
 
   if($("input[name='is_currently_working']").is(':checked') == false){
     if($('#end_date').val() != '' || $('#start_date').val() != ''){
       if(validateFormFields('start_date','Please select Date start','')) errStaus=true;
       if(validateFormFields('end_date','Please select Date end','')) errStaus=true;
-      if(end_date <= start_date && $('.start_date').val() !=''){
+      if((parseInt(end_date) <= parseInt(start_date)) && $('#start_date').val() !=''){
         setMsg('end_date','Please select greater than from year'); errStaus=true;
       }
     }
