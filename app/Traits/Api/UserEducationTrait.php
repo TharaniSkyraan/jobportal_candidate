@@ -25,7 +25,7 @@ trait UserEducationTrait
     public function educations()
     { 
 
-        $educations = UserEducation::whereUserId(Auth::user()->id)->get()->toArray();
+        $educations = UserEducation::whereUserId(Auth::user()->id)->orderBy('education_level_id','asc')->get()->toArray();
         $ip_data = $ip_data??array();
        
         $data = array_map(function ($education) use($ip_data) {
