@@ -161,6 +161,11 @@ class LoginController extends Controller
         
         if($user->getEmail() != '' && !isset($user->user['is_private_email'])) 
         {
+            $data['provider'] = $provider;
+            $data['provider_id'] = $user->getId(); 
+            if($provider=='apple'){
+                $data['apple_provider_id'] = $user->getId(); 
+            }
 
             $str = $user->getName() . $user->getId() . $user->getEmail();
             $email = $user->getEmail();
@@ -169,17 +174,15 @@ class LoginController extends Controller
 
             if(User::where('email',$email)->doesntExist()){
 
-                $user = User::create([
-                    'first_name' => $user->getName()??(!empty($names)?$names[0]:''), 
-                    'email' => $user->getEmail(),
-                    'next_process_level' =>  'education',
-                    'provider' => $provider,
-                    'provider_id' => $providerId, 
-                    'password' => bcrypt($str), 
-                    'is_active' => 0, 
-                    'verified' => 1, 
-                    'token'=>$this->generateRandomString(8)
-                ]);
+                $data['first_name'] = $user->getName()??(!empty($names)?$names[0]:''); 
+                $data['email'] = $user->getEmail();
+                $data['password'] = bcrypt($str); 
+                $data['next_process_level'] =  'education';
+                $data['is_active'] = 0; 
+                $data['verified'] = 1; 
+                $data['token']=$this->generateRandomString(8);
+            
+                $user = User::create($data);
 
                 $user = User::findorFail($user->id);
 
@@ -194,18 +197,13 @@ class LoginController extends Controller
                 $user_id = $user->id;
                 
                 if($user->next_process_level=='verify_otp'){
-                    User::where('email',$email)->update([
-                        'next_process_level' => 'education',
-                        'provider' => $provider,
-                        'provider_id' => $providerId, 
-                        'is_active' => 0, 
-                        'verified' => 1
-                    ]);
+                    
+                    $data['next_process_level'] =  'education';
+                    $data['is_active'] = 0; 
+                    $data['verified'] = 1; 
+                    User::where('email',$email)->update($data);
                 }else{
-                    User::where('email',$email)->update([
-                        'provider' => $provider,
-                        'provider_id' => $providerId 
-                    ]);
+                    User::where('email',$email)->update($data);
                 }
                 $user = User::findorFail($user->id);
                 $page = $this->SwitchRedirect($user->next_process_level);
@@ -214,6 +212,14 @@ class LoginController extends Controller
             session(['id' => $user->id]);
             return redirect($page);
         }elseif(isset($user->user['is_private_email'])){
+            
+            if(User::where('apple_provider_id',$user->getId())->exists())
+            {
+                $user = User::where('apple_provider_id',$user->getId())->first();
+                $page = $this->SwitchRedirect($user->next_process_level);
+                Auth::login($user, true); session(['id' => $user->id]);
+                return redirect($page);
+            }
             return redirect('login')->with("error", 'Something went wrong!');   
         }
 
