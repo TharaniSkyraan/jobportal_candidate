@@ -66,14 +66,17 @@ function loadUserSkillForm(form, id=null){
     end_date = (end_date.getFullYear())+'-'+(end_date.getMonth()+1);
   }
 
-  if($("input[name='is_on_going']").is(':checked') == false){
-    if($("#add_edit_user_project").find('#end_date').val() != ''){
+  if($("input[name='is_currently_working']").is(':checked') == false){
+    if($('#end_date').val() != '' || $('#start_date').val() != ''){
       if(validateFormFields('start_date','Please select Date start','')) errStaus=true;
+      if(validateFormFields('end_date','Please select Date end','')) errStaus=true;
       if(end_date <= start_date && $('.start_date').val() !=''){
         setMsg('end_date','Please select greater than from year'); errStaus=true;
       }
     }
-  }else{
+  }
+  
+  if($("input[name='is_currently_working']").is(':checked') == true){
     if(validateFormFields('start_date','Please select date start','')) errStaus=true;
   }
     
