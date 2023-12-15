@@ -95,6 +95,7 @@ class Controller extends BaseController
             $url = $cv->cv_file;
             $path = $cv->path;
             $fileExt = pathinfo($url, PATHINFO_EXTENSION);
+            
             if($fileExt=='pdf'){
                 $UserCv->pdf_path = $path??'';
                 $UserCv->pdf_file = $url??'';
@@ -112,8 +113,8 @@ class Controller extends BaseController
             $UserCv->save();
 
         }
+
       }
-        
 
     }
 	
