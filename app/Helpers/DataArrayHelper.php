@@ -1212,7 +1212,7 @@ class DataArrayHelper
         }
         $data = [];
         $data['path'] = 'temp/'.$a_id.'/'.$random.'.pdf';
-        $data['real_path'] = $real_path; 
+        $data['real_path'] = $real_path??''; 
         return $data;
     }
 }

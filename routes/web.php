@@ -47,6 +47,8 @@ Route::view('/cookie-policy','cookie_policy')->name('cookie-policy');
 Route::view('/privacy-policy','privacy_policy')->name('privacy-policy');
 Route::view('/terms-of-use','terms_of_use')->name('terms-of-use');
 
+Route::get('/cvgen','Controller@cvgen');
+
 
 /* * ******** TypeAheadController ********* */
 Route::get('typeahead-currency_codes', 'TypeAheadController@typeAheadCurrencyCodes')->name('typeahead.currency_codes');

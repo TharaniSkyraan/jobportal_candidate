@@ -84,22 +84,34 @@ class Controller extends BaseController
      *  checkTime
      * 
      */
-	public function checkTime()
+	public function cvgen()
 
     {
-        $siteSetting = SiteSetting::findOrFail(1272);
-        $t1 = strtotime( date('Y-m-d h:i:s'));
-        $t2 = strtotime( $siteSetting->check_time );
-        $diff = $t1 - $t2;
-        $hours = $diff / ( 60 * 60 );
-        if($hours>=1){
-            $siteSetting->check_time = date('Y-m-d h:i:s');
-            $siteSetting->update();
-            Artisan::call('schedule:run');
-            echo 'done';
+      $cvs = \App\Model\UserCv::where('pdf_file','')->get();
+// dd($cvs);
+      foreach($cvs as $cv){
+        $UserCv =  \App\Model\UserCv::find($cv->id);
+        $url = $cv->cv_file;
+        $path = $cv->path;
+        $fileExt = pathinfo($url, PATHINFO_EXTENSION);
+        if($fileExt=='pdf'){
+            $UserCv->pdf_path = $path??'';
+            $UserCv->pdf_file = $url??'';
         }else{
-            echo 'not done';
+            $localFilePath = \App\Helpers\DataArrayHelper::convertionext($url);
+            if($localFilePath['real_path']!=''){                    
+                $pdf_path = "candidate/".$cv->user->token."/file/".time().'.pdf';
+                \Storage::disk('s3')->put($pdf_path, file_get_contents($localFilePath['real_path']));
+                $pdf_url = \Storage::disk('s3')->url($pdf_path);  
+                $UserCv->pdf_path = $pdf_path??'';
+                $UserCv->pdf_file = $pdf_url??'';
+                unlink(public_path($localFilePath['path']));  
+            }  
         }
+        $UserCv->save();
+
+      }
+        
 
     }
 	
