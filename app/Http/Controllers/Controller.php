@@ -99,7 +99,8 @@ class Controller extends BaseController
             if($fileExt=='pdf'){
                 $UserCv->pdf_path = $path??'';
                 $UserCv->pdf_file = $url??'';
-            }else{
+                $UserCv->save();
+            }elseif($fileExt=='rtf'){
                 $localFilePath = \App\Helpers\DataArrayHelper::convertionext($url);
                 if($localFilePath['real_path']!=''){                    
                     $pdf_path = "candidate/".$cv->user->token."/file/".time().'.pdf';
@@ -109,8 +110,8 @@ class Controller extends BaseController
                     $UserCv->pdf_file = $pdf_url??'';
                     unlink(public_path($localFilePath['path']));  
                 }  
+                $UserCv->save();
             }
-            $UserCv->save();
 
         }
 
