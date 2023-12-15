@@ -91,25 +91,28 @@ class Controller extends BaseController
 // dd($cvs);
       foreach($cvs as $cv){
         $UserCv =  \App\Model\UserCv::find($cv->id);
-        $url = $cv->cv_file;
-        $path = $cv->path;
-        $fileExt = pathinfo($url, PATHINFO_EXTENSION);
-        if($fileExt=='pdf'){
-            $UserCv->pdf_path = $path??'';
-            $UserCv->pdf_file = $url??'';
-        }else{
-            $localFilePath = \App\Helpers\DataArrayHelper::convertionext($url);
-            if($localFilePath['real_path']!=''){                    
-                $pdf_path = "candidate/".$cv->user->token."/file/".time().'.pdf';
-                \Storage::disk('s3')->put($pdf_path, file_get_contents($localFilePath['real_path']));
-                $pdf_url = \Storage::disk('s3')->url($pdf_path);  
-                $UserCv->pdf_path = $pdf_path??'';
-                $UserCv->pdf_file = $pdf_url??'';
-                unlink(public_path($localFilePath['path']));  
-            }  
-        }
-        $UserCv->save();
+        if(!empty($cv->user->token)){
+                
+            $url = $cv->cv_file;
+            $path = $cv->path;
+            $fileExt = pathinfo($url, PATHINFO_EXTENSION);
+            if($fileExt=='pdf'){
+                $UserCv->pdf_path = $path??'';
+                $UserCv->pdf_file = $url??'';
+            }else{
+                $localFilePath = \App\Helpers\DataArrayHelper::convertionext($url);
+                if($localFilePath['real_path']!=''){                    
+                    $pdf_path = "candidate/".$cv->user->token."/file/".time().'.pdf';
+                    \Storage::disk('s3')->put($pdf_path, file_get_contents($localFilePath['real_path']));
+                    $pdf_url = \Storage::disk('s3')->url($pdf_path);  
+                    $UserCv->pdf_path = $pdf_path??'';
+                    $UserCv->pdf_file = $pdf_url??'';
+                    unlink(public_path($localFilePath['path']));  
+                }  
+            }
+            $UserCv->save();
 
+        }
       }
         
 
