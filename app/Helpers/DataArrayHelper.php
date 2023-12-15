@@ -1192,8 +1192,8 @@ class DataArrayHelper
                 $real_path = asset('temp/'.$a_id.'/'.$random.'.pdf');
             break;
             case 'doc':
-                $phpWord = IOFactory::load(public_path($jhbj), 'MsDoc');
-                $phpWord->save($docxPath, 'Word2007');
+                // $phpWord = IOFactory::load(public_path($jhbj), 'MsDoc');
+                // $phpWord->save($docxPath, 'Word2007');
             break;
         }
         if($fileExt == 'doc' || $fileExt == 'docx'){
