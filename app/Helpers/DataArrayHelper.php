@@ -1196,7 +1196,7 @@ class DataArrayHelper
                 // $phpWord->save($docxPath, 'Word2007');
             break;
         }
-        if($fileExt == 'doc' || $fileExt == 'docx'){
+        if($fileExt == 'docx'){
             $domPdfPath = base_path('vendor/dompdf/dompdf');
             \PhpOffice\PhpWord\Settings::setPdfRendererPath($domPdfPath);
             \PhpOffice\PhpWord\Settings::setPdfRendererName('DomPDF'); 
