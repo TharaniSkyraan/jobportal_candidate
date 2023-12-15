@@ -1192,8 +1192,7 @@ class DataArrayHelper
                 $real_path = asset('temp/'.$a_id.'/'.$random.'.pdf');
             break;
             case 'doc':
-                // dd(asset($jhbj));
-                $phpWord = IOFactory::load(asset($jhbj), 'MsDoc');
+                $phpWord = IOFactory::load(public_path($jhbj), 'MsDoc');
                 $phpWord->save($docxPath, 'Word2007');
             break;
         }
