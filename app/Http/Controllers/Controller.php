@@ -87,7 +87,7 @@ class Controller extends BaseController
 	public function cvgen()
 
     {
-      $cvs = \App\Model\UserCv::where('pdf_file','!=','')->get();
+      $cvs = \App\Model\UserCv::whereIn('id',[136,272,293,314,441,442,452,469,541,542,553,686,688,689,690,691,693,697,700,701,707,708,709,710,713,859,965,1424,1523])->get();
       foreach($cvs as $cv){
         $UserCv =  \App\Model\UserCv::find($cv->id);
         if(!empty($cv->user->token)){
