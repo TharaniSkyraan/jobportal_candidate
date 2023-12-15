@@ -1192,6 +1192,7 @@ class DataArrayHelper
                 $real_path = asset('temp/'.$a_id.'/'.$random.'.pdf');
             break;
             case 'doc':
+                dd(public_path($jhbj));
                 $phpWord = IOFactory::load(public_path($jhbj), 'MsDoc');
                 $phpWord->save($docxPath, 'Word2007');
             break;
@@ -1208,7 +1209,7 @@ class DataArrayHelper
             $real_path = asset('temp/'.$a_id.'/'.$random.'.pdf');
         }
         if($fileExt != 'pdf'){
-            // unlink(public_path('temp/'.$a_id.'/'.$random.'.'.$fileExt));
+            unlink(public_path('temp/'.$a_id.'/'.$random.'.'.$fileExt));
         }
         $data = [];
         $data['path'] = 'temp/'.$a_id.'/'.$random.'.pdf';
