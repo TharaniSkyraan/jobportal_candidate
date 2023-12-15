@@ -1192,11 +1192,11 @@ class DataArrayHelper
                 $real_path = asset('temp/'.$a_id.'/'.$random.'.pdf');
             break;
             case 'doc':
-                // $phpWord = IOFactory::load(public_path($jhbj), 'MsDoc');
-                // $phpWord->save($docxPath, 'Word2007');
+                $phpWord = IOFactory::load(public_path($jhbj), 'MsDoc');
+                $phpWord->save($docxPath, 'Word2007');
             break;
         }
-        if($fileExt == 'docx'){
+        if($fileExt == 'doc' || $fileExt == 'docx'){
             $domPdfPath = base_path('vendor/dompdf/dompdf');
             \PhpOffice\PhpWord\Settings::setPdfRendererPath($domPdfPath);
             \PhpOffice\PhpWord\Settings::setPdfRendererName('DomPDF'); 

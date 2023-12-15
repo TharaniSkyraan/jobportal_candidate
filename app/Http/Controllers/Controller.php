@@ -88,7 +88,6 @@ class Controller extends BaseController
 
     {
       $cvs = \App\Model\UserCv::where('pdf_file','')->get();
-// dd($cvs);
       foreach($cvs as $cv){
         $UserCv =  \App\Model\UserCv::find($cv->id);
         if(!empty($cv->user->token)){
