@@ -85,9 +85,8 @@ class Controller extends BaseController
      * 
      */
 	public function cvgen()
-
     {
-      $cvs = \App\Model\UserCv::whereIn('id',[136,272,293,314,441,442,452,469,541,542,553,686,688,689,690,691,693,697,700,701,707,708,709,710,713,859,965,1424,1523])->get();
+      $cvs = \App\Model\UserCv::where('pdf_file','')->get();
       foreach($cvs as $cv){
         $UserCv =  \App\Model\UserCv::find($cv->id);
         if(!empty($cv->user->token)){
@@ -99,8 +98,7 @@ class Controller extends BaseController
             if($fileExt=='pdf'){
                 $UserCv->pdf_path = $path??'';
                 $UserCv->pdf_file = $url??'';
-                $UserCv->save();
-            }elseif($fileExt=='rtf'){
+            }else{
                 $localFilePath = \App\Helpers\DataArrayHelper::convertionext($url);
                 if($localFilePath['real_path']!=''){                    
                     $pdf_path = "candidate/".$cv->user->token."/file/".time().'.pdf';
@@ -110,8 +108,8 @@ class Controller extends BaseController
                     $UserCv->pdf_file = $pdf_url??'';
                     unlink(public_path($localFilePath['path']));  
                 }  
-                $UserCv->save();
             }
+            $UserCv->save();
 
         }
 
