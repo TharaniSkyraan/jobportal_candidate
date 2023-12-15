@@ -125,7 +125,10 @@ trait UserCvsTrait
 
     private function updateDefaultCv($cv_id)
     {
-        UserCv::where('user_id',Auth::user()->id)->where('is_default', '=', 1)->where('id', '<>', $cv_id)->update(['is_default' => 0]);
+        UserCv::where('user_id',Auth::user()->id)
+             ->where('is_default', '=', 1)
+             ->where('id', '!=', $cv_id)
+             ->update(['is_default' => 0]);
     }
 
     public function downloadCv($cv_id)
