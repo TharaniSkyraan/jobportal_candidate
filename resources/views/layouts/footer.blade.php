@@ -104,7 +104,7 @@
               <h3 class="">Jobs by Sectors</h3>
               <ul>
                 <li class="footer-search cursor-pointer">Automobile</li>
-                <li class="footer-search cursor-pointer">Marketting</li>
+                <li class="footer-search cursor-pointer">Marketing</li>
                 <li class="footer-search cursor-pointer">Information Technology</li>
                 <li class="footer-search cursor-pointer">Security</li>
               </ul>
