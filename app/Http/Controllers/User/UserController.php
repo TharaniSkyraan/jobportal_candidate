@@ -373,7 +373,7 @@ class UserController extends Controller
                 ]
             ];
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL,"https://graph.facebook.com/v15.0/108875332057674/messages");
+            curl_setopt($ch, CURLOPT_URL,"https://graph.facebook.com/v17.0/184496344748646/messages");
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_POSTFIELDS,json_encode($data));  //Post Fields
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -386,7 +386,7 @@ class UserController extends Controller
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         
             $server_output = curl_exec ($ch);
-        
+            
             curl_close ($ch); 
         }
 

@@ -90,7 +90,7 @@ trait JobTrait
             ];
             
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL,"https://graph.facebook.com/v15.0/108875332057674/messages");
+            curl_setopt($ch, CURLOPT_URL,"https://graph.facebook.com/v17.0/184496344748646/messages");
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_POSTFIELDS,json_encode($data));  //Post Fields
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
