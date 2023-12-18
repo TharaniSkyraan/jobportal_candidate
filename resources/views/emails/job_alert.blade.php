@@ -196,7 +196,7 @@
         <span style="margin: 5px;">:</span>
        <span> <img draggable="false" src="{{ asset('/site_assets_1/assets/img/job_description/contact_message.png') }}" style="margin-bottom: -2px;width: 15px;"/> support@mugaam.com </span>
        <span style="margin: 5px;">|</span>
-       <span> <img draggable="false" src="{{ asset('/site_assets_1/assets/img/job_description/contact_num.png') }}" style="margin-bottom: -2px;width: 15px;"/> +91 9900559924 </span>
+       <span> <img draggable="false" src="{{ asset('/site_assets_1/assets/img/job_description/contact_num.png') }}" style="margin-bottom: -2px;width: 15px;"/> +91 9150555033 </span>
     </div>
     {{-- Footer --}}
     @slot('footer')

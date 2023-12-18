@@ -20,7 +20,7 @@
                             </span>
                             <span class="my-3">
                                 <div class='fdwq'>Phone</div> <br>
-                                <a href="tel://+91-9900559924">+91-9900559924</a>
+                                <a href="tel://+91-9150555033">+91-9150555033</a>
                             </span>                               
                         </div>
                         <div class="d-flex email mb-3">
