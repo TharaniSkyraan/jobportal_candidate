@@ -484,7 +484,7 @@ class Job extends Model
             $salary = $salary_currency.' '. preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,", $salary_from) .' - '.  preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,", $salary_to) .' PA.';
 
         }
-        return $salary;
+        return ($salary??'Not Disclosed');
     }
 
     public function getWorkLocationsAttribute()
