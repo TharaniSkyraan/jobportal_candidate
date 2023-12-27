@@ -34,7 +34,7 @@ class MyJobsController extends BaseController
     public function ApplyJob(Request $request, $job_slug)
     {
         
-        $user_id = Auth::user()->id??710;
+        $user_id = Auth::user()->id??0;
         $user = User::find($user_id);
         $job = Job::where('slug', 'like', $job_slug)->first();
         $message = "You have already applied for this job";
@@ -184,7 +184,7 @@ class MyJobsController extends BaseController
      */
     public function savedJobsList(Request $request)
     {      
-        $user_id = Auth::user()->id??710;
+        $user_id = Auth::user()->id??0;
         $user = User::find($user_id);
         $sortBy = $request->sortBy;
         $orderBy = $request->orderBy;

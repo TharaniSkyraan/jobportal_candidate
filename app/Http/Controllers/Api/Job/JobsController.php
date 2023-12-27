@@ -37,7 +37,7 @@ class JobsController extends BaseController
      */
     public function index()
     {
-        $user_id = Auth::user()->id??710;        
+        $user_id = Auth::user()->id??0;        
         $user = User::find($user_id);
         $appliedjobs = JobApply::where('user_id',$user_id)
                         ->whereIn('application_status',['shortlist'])
@@ -97,7 +97,6 @@ class JobsController extends BaseController
     {
         $user_id = Auth::user()->id??0;        
         $user = User::find($user_id);
-        $user = isset($user)?$user:'';
 
         $top_cities = JobWorkLocation::whereHas('job',function($q){
                                         $q->where('work_from_home','!=','permanent')
@@ -194,7 +193,7 @@ class JobsController extends BaseController
         $user = "";
         if(Auth::check()){
             UserActivity::updateOrCreate(['user_id' => Auth::user()->id],['last_active_at'=>Carbon::now()]);
-            $user_id = Auth::user()->id??710;
+            $user_id = Auth::user()->id??0;
             $user = User::find($user_id); 
         }
 
@@ -412,7 +411,7 @@ class JobsController extends BaseController
      */
     public function shortlistView(Request $request)
     {
-        $user_id = Auth::user()->id??710;
+        $user_id = Auth::user()->id??0;
         $job = Job::where('slug', $request->slug)->pluck('id')->first();
         $apply = JobApply::where('user_id',$user_id)->where('job_id',$job)->update(['is_read'=>'1']);
    
