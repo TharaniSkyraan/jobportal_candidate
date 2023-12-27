@@ -384,11 +384,16 @@ class JobsController extends BaseController
             $rjob['is_favourite'] = (!empty($user))?$user->isFavouriteJob($jobc->slug):false;
             $rjob['is_deleted'] = (!empty($jobc->deleted_at))?0:1; 
         });   
-        dd($jobs['joblist']);
         $joblist = $jobs['joblist']->items();  
 
+
         $job_id = $job->id;
-        $joblist = array_filter($joblist, function ($job) use ($job_id) { return $job['job_id'] != $job_id;});
+        $keyToRemove = array_search($job_id, array_column($joblist, 'job_id'));
+
+        // Check if the key exists before unsetting
+        if ($keyToRemove !== false) {
+            unset($joblist[$keyToRemove]);
+        }
 
         $breakpoint = JobScreeningQuiz::whereJobId($job->id)->whereBreakpoint('yes')->first();
         $screening = JobScreeningQuiz::whereJobId($job->id)
