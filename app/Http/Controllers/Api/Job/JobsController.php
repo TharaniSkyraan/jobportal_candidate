@@ -142,8 +142,8 @@ class JobsController extends BaseController
             $job['job_type'] = $jobc->getTypesStr();
             $job['skills'] = $jobc->getSkillsStr();
             $job['posted_at'] = Carbon::parse($jobc->posted_date)->getTimestampMs();
-            $job['is_applied'] = $user->isAppliedOnJob($job->job_id);
-            $job['is_favourite'] = $user->isFavouriteJob($jobc->slug);
+            $job['is_applied'] = isset($user)?$user->isAppliedOnJob($job->job_id):false;
+            $job['is_favourite'] = isset($user)?$user->isFavouriteJob($jobc->slug):false;
             $job['is_deleted'] = (!empty($jobc->deleted_at))?0:1; 
         });   
         $joblist = $jobs['joblist']->items(); 
