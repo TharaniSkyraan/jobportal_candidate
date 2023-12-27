@@ -95,8 +95,9 @@ class JobsController extends BaseController
      */
     public function fresherIndex()
     {
-        $user_id = Auth::user()->id??710;        
+        $user_id = Auth::user()->id??0;        
         $user = User::find($user_id);
+        $user = isset($user)?$user:'';
 
         $top_cities = JobWorkLocation::whereHas('job',function($q){
                                         $q->where('work_from_home','!=','permanent')
@@ -134,7 +135,7 @@ class JobsController extends BaseController
         $sectors->makeHidden(['lang','industry_id','is_active','sort_order','is_default','created_at','updated_at']);
 
         $filter = array('sortBy'=> 'date');
-        $jobs = $this->fetchJobs($user->career_title,'',$filter, 5);
+        $jobs = $this->fetchJobs($user->career_title??'','',$filter, 5);
 
         $jobs['joblist']->each(function ($job, $key) use($user) {
             $jobc = Job::find($job->job_id);
