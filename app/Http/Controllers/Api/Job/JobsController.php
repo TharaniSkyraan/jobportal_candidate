@@ -386,17 +386,6 @@ class JobsController extends BaseController
         });   
         $joblist = $jobs['joblist']->items();  
         $job_id = $job->id;
-        if(count($joblist)>2){
-            $joblist = array_filter($joblist, function ($job) use ($job_id) {return $job['job_id'] !== $job_id;});
-        }else{
-            foreach ($joblist as $key => $value) {
-                if ($value["job_id"] == $job_id) {
-                    unset($joblist[$key]);
-                }
-            }
-            $joblist = array_values($joblist);
-
-        }
         $breakpoint = JobScreeningQuiz::whereJobId($job->id)->whereBreakpoint('yes')->first();
         $screening = JobScreeningQuiz::whereJobId($job->id)
                                      ->select('quiz_code','answer_type','candidate_options','candidate_question as question','breakpoint')
@@ -406,7 +395,7 @@ class JobsController extends BaseController
                                      });
         $response = array(
                 'job' => $jobd, 
-                'relevant_job' => $joblist, 
+                'relevant_job' => array_values(array_filter($joblist, function ($job) use ($job_id) {return $job['job_id'] !== $job_id;})), 
                 'company_slug' => $job->company->slug??'', 
                 'breakpoint' => $breakpoint?'yes':'no',
                 'have_screening' => JobScreeningQuiz::whereJobId($job->id)->count(),
