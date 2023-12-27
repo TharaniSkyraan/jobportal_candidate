@@ -388,7 +388,7 @@ class JobsController extends BaseController
 
         if(count($joblist)<3){
             usort($joblist, function ($a, $b) {
-                return $a["job_id"] - $b["job_id"];
+                return $b["job_id"] - $a["job_id"];
             });
         }
 
