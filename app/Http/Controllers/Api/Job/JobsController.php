@@ -386,13 +386,10 @@ class JobsController extends BaseController
         });   
         $joblist = $jobs['joblist']->items();  
 
-    dd($joblist);
-        $job_id = $job->id;
-        $keyToRemove = array_search($job_id, array_column($joblist, 'job_id'));
-
-        // Check if the key exists before unsetting
-        if ($keyToRemove !== false) {
-            unset($joblist[$keyToRemove]);
+        if(count($joblist)<3){
+            usort($joblist, function ($a, $b) {
+                return $a["job_id"] - $b["job_id"];
+            });
         }
 
         $breakpoint = JobScreeningQuiz::whereJobId($job->id)->whereBreakpoint('yes')->first();
@@ -402,9 +399,10 @@ class JobsController extends BaseController
                                      ->each(function ($screeningquiz, $key) {
                                         $screeningquiz['options'] = $screeningquiz->candidate_options?json_decode($screeningquiz->candidate_options):[];
                                      });
+        $job_id = $job->id;
         $response = array(
                 'job' => $jobd, 
-                'relevant_job' => $joblist,
+                'relevant_job' => array_filter($joblist, function ($job) use ($job_id) {return $job['job_id'] !== $job_id;}), 
                 'company_slug' => $job->company->slug??'', 
                 'breakpoint' => $breakpoint?'yes':'no',
                 'have_screening' => JobScreeningQuiz::whereJobId($job->id)->count(),
