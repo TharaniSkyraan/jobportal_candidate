@@ -482,11 +482,11 @@ class Job extends Model
             }
             
             if($salary_to <= 99999){
-                $salary_from = floor($salary_from / 1000);
-                $salary_to = floor($salary_to / 1000) . ' K PA';
+                $salary_from = round(($salary_from / 1000), 2);
+                $salary_to = round(($salary_to / 1000), 2) . ' K PA';
             }else{
-                $salary_from = floor($salary_from / 100000);
-                $salary_to = floor($salary_to / 100000) . ' LPA';
+                $salary_from = round(($salary_from / 100000), 2);
+                $salary_to = round(($salary_to / 100000), 2) . ' LPA';
             }
             
             
