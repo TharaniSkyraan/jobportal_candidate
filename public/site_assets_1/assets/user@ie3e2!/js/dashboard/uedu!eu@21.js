@@ -65,7 +65,6 @@
       if($('#from_year').val() !='')
       {
         var from_year = new Date($('#from_year').val());
-        alert(from_year);
         from_year = (from_year.getFullYear())+''+(('0' + (from_year.getMonth()+1)).slice(-2));
       }
       if($('#to_year').val() !='')
@@ -73,8 +72,6 @@
         var to_year = new Date($('#to_year').val());
         to_year = (to_year.getFullYear())+''+(('0' + (to_year.getMonth()+1)).slice(-2));
       }
-      alert(from_year)
-      alert(to_year)
       if($("input[name='pursuing']").is(':checked') == false)
       {  
         if($('#to_year').val() != '' || $('#from_year').val() != '' ){
