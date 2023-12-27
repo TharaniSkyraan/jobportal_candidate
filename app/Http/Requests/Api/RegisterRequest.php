@@ -51,7 +51,7 @@ class RegisterRequest extends Request
         throw new HttpResponseException(response()->json([
             'success'   => false,
             'message'   => 'Validation errors',
-            'data'=> $errors
+            'data'=> [$errors]
         ]));
     }
 
