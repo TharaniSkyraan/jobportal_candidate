@@ -480,8 +480,20 @@ class Job extends Model
                 $salary_from = $this->salary_from * 52;
                 $salary_to = $this->salary_to * 52;
             }
+            if($salary_from <= 99999){
+                $salary_from = floor($salary_from / 1000) . ' K';
+            }else{
+                $salary_from = floor($salary_from / 100000) . ' L';
+            }
+            if($salary_to <= 99999){
+                $salary_to = floor($salary_to / 1000) . ' K';
+            }else{
+                $salary_to = floor($salary_to / 100000) . ' L';
+            }
             
-            $salary = $salary_currency.' '. preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,", $salary_from) .' - '.  preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,", $salary_to) .' PA.';
+            $salary = $salary_currency.' '. $salary_from .' - '.  $salary_to .' PA.';
+           
+            // $salary = $salary_currency.' '. preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,", $salary_from) .' - '.  preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,", $salary_to) .' PA.';
 
         }
         return (!empty($salary)?$salary:'Not Disclosed');
