@@ -302,7 +302,7 @@ class JobsController extends BaseController
 
         $exclude_days = isset($job->walkin->exclude_days)?'(Excluding - '. $job->walkin->exclude_days.')':'';
         $job_skill_id = explode(',',$job->getSkillsStr());
-        $user = '';
+        $user = $best_time_to_contact = '';
         $skill = array();
         if(Auth::check())
         {                
@@ -318,6 +318,13 @@ class JobsController extends BaseController
             $shortlist = (isset($jobapplied->application_status)?(!empty($jobapplied->application_status)?$jobapplied->application_status:''):'');
             $applied_at = (isset($jobapplied->created_at)?(!empty($jobapplied->created_at)?$jobapplied->created_at:''):'');
         
+        }
+
+        if(($job->contact_person_details->morning_section_from && $job->contact_person_details->morning_section_to)){
+            $best_time_to_contact = Carbon::parse($job->contact_person_details->morning_section_from)->format('h:i A').' to '.Carbon::parse($job->contact_person_details->morning_section_to)->format('h:i A');
+        }
+        if(($job->contact_person_details->evening_section_from && $job->contact_person_details->evening_section_to)){
+            $best_time_to_contact .= (!empty($best_time_to_contact)?' & ':'') . Carbon::parse($job->contact_person_details->evening_section_from)->format('h:i A').' to '.Carbon::parse($job->contact_person_details->evening_section_to)->format('h:i A');
         }
 
         $jobd = array(
@@ -346,6 +353,7 @@ class JobsController extends BaseController
             'contact_email'=>$job->contact_person_details->email??'',
             'contact_phone'=>$job->contact_person_details->phone_1??'',
             'contact_alternative'=>$job->contact_person_details->phone_2??'',
+            'best_time_to_contact'=>$best_time_to_contact??'',
             'skillmatches' => (!empty($user))?$user->profileMatch($job->id):0,
             'is_applied'=>(!empty($user))?$user->isAppliedOnJob($job->id):false,
             'is_favourite'=>(!empty($user))?$user->isFavouriteJob($job->slug):false,
