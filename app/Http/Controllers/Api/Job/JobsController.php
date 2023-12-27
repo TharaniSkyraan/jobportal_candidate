@@ -386,7 +386,7 @@ class JobsController extends BaseController
         });   
         $joblist = $jobs['joblist']->items();  
         $job_id = $job->id;
-        if(count($joblist)){
+        if(count($joblist)<3){
             $joblist = array_filter($joblist, function ($job) use ($job_id) {return $job['job_id'] !== $job_id;});
         }else{
             foreach ($joblist as $key => $value) {
