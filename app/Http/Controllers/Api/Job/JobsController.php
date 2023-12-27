@@ -385,6 +385,8 @@ class JobsController extends BaseController
             $rjob['is_deleted'] = (!empty($jobc->deleted_at))?0:1; 
         });   
         $joblist = $jobs['joblist']->items();  
+
+        $joblist = array_filter($joblist, function ($job) use ($job_id) {return $job['job_id'] !== $job_id;});
         dd($joblist);   
 
         $breakpoint = JobScreeningQuiz::whereJobId($job->id)->whereBreakpoint('yes')->first();
@@ -397,7 +399,7 @@ class JobsController extends BaseController
         $job_id = $job->id;
         $response = array(
                 'job' => $jobd, 
-                'relevant_job' => array_filter($joblist, function ($job) use ($job_id) {return $job['job_id'] !== $job_id;}), 
+                'relevant_job' => $joblist,
                 'company_slug' => $job->company->slug??'', 
                 'breakpoint' => $breakpoint?'yes':'no',
                 'have_screening' => JobScreeningQuiz::whereJobId($job->id)->count(),
