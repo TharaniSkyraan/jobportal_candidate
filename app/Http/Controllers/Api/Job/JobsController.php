@@ -371,6 +371,7 @@ class JobsController extends BaseController
             'website_link' => url('/detail').'/'.$job->slug
         );
 
+        $job_id = $job->id;
         $jobs = $this->fetchJobs($job->title, '', [], 10);
         $jobs['joblist']->each(function ($rjob, $key) use($user) {
             $jobc = Job::find($rjob->job_id);
@@ -383,11 +384,13 @@ class JobsController extends BaseController
             $rjob['is_applied'] = (!empty($user))?$user->isAppliedOnJob($jobc->id):false;
             $rjob['is_favourite'] = (!empty($user))?$user->isFavouriteJob($jobc->slug):false;
             $rjob['is_deleted'] = (!empty($jobc->deleted_at))?0:1; 
+            if($job['job_id'] == $job_id){
+                unset($jobs[$key]);
+            }
         });   
         $joblist = $jobs['joblist']->items();  
 
-        $job_id = $job->id;
-        $joblist = array_filter($joblist, function ($job) use ($job_id) {return $job['job_id'] !== $job_id;});
+        // $joblist = array_filter($joblist, function ($job) use ($job_id) {return $job['job_id'] !== $job_id;});
         dd($joblist);   
 
         $breakpoint = JobScreeningQuiz::whereJobId($job->id)->whereBreakpoint('yes')->first();
