@@ -384,7 +384,8 @@ class JobsController extends BaseController
             $rjob['is_favourite'] = (!empty($user))?$user->isFavouriteJob($jobc->slug):false;
             $rjob['is_deleted'] = (!empty($jobc->deleted_at))?0:1; 
         });   
-        $joblist = $jobs['joblist']->items();     
+        $joblist = $jobs['joblist']->items();  
+        dd($joblist);   
 
         $breakpoint = JobScreeningQuiz::whereJobId($job->id)->whereBreakpoint('yes')->first();
         $screening = JobScreeningQuiz::whereJobId($job->id)
