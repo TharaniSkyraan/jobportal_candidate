@@ -480,13 +480,15 @@ class Job extends Model
                 $salary_from = $this->salary_from * 52;
                 $salary_to = $this->salary_to * 52;
             }
-            
             if($salary_to <= 99999){
                 $salary_from = round(($salary_from / 1000), 2);
                 $salary_to = round(($salary_to / 1000), 2) . ' K PA';
-            }else{
+            }elseif($salary_to <= 9999999){
                 $salary_from = round(($salary_from / 100000), 2);
-                $salary_to = round(($salary_to / 100000), 2) . ' LPA';
+                $salary_to = round(($salary_to / 100000), 2) . ' Lacs PA';
+            }else{
+                $salary_from = round(($salary_from / 10000000), 2);
+                $salary_to = round(($salary_to / 10000000), 2) . ' Cr PA';
             }
             
             
