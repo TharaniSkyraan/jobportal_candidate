@@ -384,6 +384,7 @@ class JobsController extends BaseController
             $rjob['is_favourite'] = (!empty($user))?$user->isFavouriteJob($jobc->slug):false;
             $rjob['is_deleted'] = (!empty($jobc->deleted_at))?0:1; 
         });   
+        dd($jobs['joblist']);
         $joblist = $jobs['joblist']->items();  
 
         $job_id = $job->id;
