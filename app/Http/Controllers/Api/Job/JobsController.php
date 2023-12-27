@@ -386,6 +386,7 @@ class JobsController extends BaseController
         });   
         $joblist = $jobs['joblist']->items();  
 
+        $job_id = $job->id;
         $joblist = array_filter($joblist, function ($job) use ($job_id) {return $job['job_id'] !== $job_id;});
         dd($joblist);   
 
@@ -396,7 +397,6 @@ class JobsController extends BaseController
                                      ->each(function ($screeningquiz, $key) {
                                         $screeningquiz['options'] = $screeningquiz->candidate_options?json_decode($screeningquiz->candidate_options):[];
                                      });
-        $job_id = $job->id;
         $response = array(
                 'job' => $jobd, 
                 'relevant_job' => $joblist,
