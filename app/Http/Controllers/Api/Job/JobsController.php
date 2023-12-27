@@ -386,7 +386,7 @@ class JobsController extends BaseController
         });   
         $joblist = $jobs['joblist']->items();  
 
-
+    dd($joblist);
         $job_id = $job->id;
         $keyToRemove = array_search($job_id, array_column($joblist, 'job_id'));
 
