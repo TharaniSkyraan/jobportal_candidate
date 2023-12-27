@@ -394,7 +394,8 @@ class JobsController extends BaseController
                     unset($joblist[$key]);
                 }
             }
-            dd('tes');
+            $joblist = array_values($joblist);
+
         }
         $breakpoint = JobScreeningQuiz::whereJobId($job->id)->whereBreakpoint('yes')->first();
         $screening = JobScreeningQuiz::whereJobId($job->id)
