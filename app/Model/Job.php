@@ -488,7 +488,7 @@ class Job extends Model
                 $salary_from = floor($salary_from / 100000) . ' LPA';
             }
             
-            $salary = $salary_currency.' '. $salary_from .' - '.  $salary_to .' PA.';
+            $salary = $salary_currency.' '. $salary_from .' - '.  $salary_to;
            
             // $salary = $salary_currency.' '. preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,", $salary_from) .' - '.  preg_replace("/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/i", "$1,", $salary_to) .' PA.';
 
