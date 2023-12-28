@@ -171,11 +171,12 @@ class AjaxController extends Controller
         {         
             $education_level_id = $request->education_level_id;
             $education_level_ids = UserEducation::whereHas('educationLevel', function($q) use($education_level_id){
-                                                    $q->where('study_count','!=',0)
+                                                    $q->where('study_count','!=',1)
                                                       ->where('id','!=',$education_level_id);
                                                 })->where('user_id',$user_id)
                                                 ->select('education_level_id')
                                                 ->pluck('education_level_id')->toArray();
+                                                dd($education_level_ids);
         }
         $data = DataArrayHelper::autocompleteEducationLevel($education_level_ids);
         return response()->json($data);
