@@ -170,7 +170,9 @@ class AjaxController extends Controller
         if(!empty($user_id))
         {         
             $education_level_id = $request->education_level_id;
-            $education_level_ids = UserEducation::where('user_id',$user_id)
+            $education_level_ids = UserEducation::whereHas('educationLevel', function($q){
+                                                    $q->where('study_count',0);
+                                                })->where('user_id',$user_id)
                                                 ->select('education_level_id')
                                                 ->where('education_level_id','!=',$education_level_id)
                                                 ->pluck('education_level_id')->toArray();
