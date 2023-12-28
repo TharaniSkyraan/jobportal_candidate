@@ -176,7 +176,6 @@ class AjaxController extends Controller
                                                 })->where('user_id',$user_id)
                                                 ->select('education_level_id')
                                                 ->pluck('education_level_id')->toArray();
-                                                dd($education_level_ids);
         }
         $data = DataArrayHelper::autocompleteEducationLevel($education_level_ids);
         return response()->json($data);
