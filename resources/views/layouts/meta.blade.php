@@ -33,7 +33,7 @@
             $result['description']=$job->description;
             $result['datePosted'] = $job->posted_date;
             $result['validThrough'] = $job->expiry_date;
-            $result['employmentType']='['.rtrim($jtyv, ", ").']';
+            $result['employmentType']=$jtyvs;
             $result['skills']=$skillarr;
             $result['hiringOrganization']['@type']="Organization";
             $result['hiringOrganization']['name']=$job->company_name??$job->company->name;

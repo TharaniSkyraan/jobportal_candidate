@@ -264,25 +264,31 @@
             <div class="card">
                 <h4>Job Type</h4>
                     @php
-                    $jtyv= '';
+                    $jtyv ='';
+                    $jtyvs = [];
                     @endphp
                     @foreach($job->jobtypes as $types)
                         @php
                             $jt_v = $types->type->type;
+                            $jt_vs = $types->type->slug;
                             if($types->type_id == 1 || $types->type_id == 2 || $types->type_id == 4) {
                                 if($job->working_deadline && $job->working_deadline_period_id){
                                     $exle = $job->working_deadline .' '.$job->working_deadline_period_id.'(s)';
-                                    $jt_v = $types->type->type ;
+                                    $jt_v = $types->type->type;
+                                    $jt_vs = $types->type->slug;
                                 }
                             }else if($types->type_id == 5) {
                                 if($job->working_hours){
                                     $exl = $job->working_hours .' hour(s)';
                                     $jt_v = $types->type->type ;
+                                    $jt_vs = $types->type->slug;
                                 }
                             }else{
                                 // $jt_v = $types->type->type ?? '';
                             }
                             $jtyv .=  $jt_v.', ';
+                            $jtyvs[]=  $jt_vs;
+
                         @endphp
                         {{-- <p>{{$jt_v.', '}}</p> --}}
                     @endforeach
