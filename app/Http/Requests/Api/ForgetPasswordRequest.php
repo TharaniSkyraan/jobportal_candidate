@@ -38,6 +38,7 @@ class ForgetPasswordRequest extends Request
         $errors = '';
         $messages = $validator->errors()->messages();
         $message = '';
+        dd($message);
         foreach ($messages as $key => $value) {
             $errors[$key] = $value[0];
             if(empty($message)){
