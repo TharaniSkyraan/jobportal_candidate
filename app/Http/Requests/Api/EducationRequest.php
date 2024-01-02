@@ -50,7 +50,7 @@ class EducationRequest extends Request
         throw new HttpResponseException(response()->json([
             'success'   => false,
             'message'   => $message,
-            'data'=> []
+            'data'=> $errors
         ]));
     }
 
