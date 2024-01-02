@@ -59,7 +59,7 @@ class Handler extends ExceptionHandler
         
             if ($request->expectsJson() && str_contains($prefix, 'api')) {
         
-                $response = ['success' => false, 'message' => 'Authorization User', 'data'=>[]];
+                $response = ['success' => false, 'message' => 'Unauthorization User', 'data'=>[]];
     
                 return response()->json($response, 401);
             }
