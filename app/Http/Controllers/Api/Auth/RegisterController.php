@@ -100,9 +100,9 @@ class RegisterController extends BaseController
                 // Auth::logout();
             }
             $update->save();
-            return $this->sendResponse($response, 'User login successfully.');
+            return $this->sendResponse([$response], 'User login successfully.');
         }        
-        return $this->sendError('Invalid Credential.', ['error'=>'']);
+        return $this->sendError('Invalid Credential.');
     }
     
     /**
@@ -134,7 +134,7 @@ class RegisterController extends BaseController
             return $this->sendResponse([['id'=>$user->id,'otp'=>$otp,'user_token'=>$user->token,'next_process_level'=>$user->next_process_level]], 'Verification OTP Send Successful.');
         }
 
-        return $this->sendError('User Already Exist.', ['error'=>'']);
+        return $this->sendError('User Already Exist.');
     
     }
     /**
