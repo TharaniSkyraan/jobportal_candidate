@@ -37,12 +37,16 @@ class ForgetPasswordRequest extends Request
     {
         $errors = '';
         $messages = $validator->errors()->messages();
+        $message = '';
         foreach ($messages as $key => $value) {
-            $errors = $value[0];
+            $errors[$key] = $value[0];
+            if(empty($message)){
+                $message = $value[0];
+            }
         }
         throw new HttpResponseException(response()->json([
             'success'   => false,
-            'message'   => $errors,
+            'message'   => $message,
             'data'=> $errors
         ]));
     }

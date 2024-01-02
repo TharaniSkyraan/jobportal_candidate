@@ -28,28 +28,29 @@ class LoginRequest extends Request
      */
     public function rules()
     {
-
-        $rules =  [
-            'device_token' => 'required',
-            'device_type' => 'required',
-            'email' => 'required',
-        ];
+        $rules = [];
+        $rules['email'] = 'required';
         if($this->provider==null){
             $rules['password'] = 'required|max:30';
         }
-
+        $rules['device_token'] = 'required';
+        $rules['device_type'] = 'required';
         return $rules;
     }
     public function failedValidation(Validator $validator)
     {
         $errors = array();
         $messages = $validator->errors()->messages();
+        $message = '';
         foreach ($messages as $key => $value) {
             $errors[$key] = $value[0];
+            if(empty($message)){
+                $message = $value[0];
+            }
         }
         throw new HttpResponseException(response()->json([
             'success'   => false,
-            'message'   => 'Validation errors',
+            'message'   => $message,
             'data'=> $errors
         ]));
     }

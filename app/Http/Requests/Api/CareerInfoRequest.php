@@ -47,12 +47,16 @@ class CareerInfoRequest extends Request
     {
         $errors = array();
         $messages = $validator->errors()->messages();
+        $message = '';
         foreach ($messages as $key => $value) {
             $errors[$key] = $value[0];
+            if(empty($message)){
+                $message = $value[0];
+            }
         }
         throw new HttpResponseException(response()->json([
             'success'   => false,
-            'message'   => 'Validation errors',
+            'message'   => $message,
             'data'=> $errors
         ]));
     }
