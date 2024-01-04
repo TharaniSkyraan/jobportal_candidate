@@ -51,7 +51,7 @@ class MyJobsController extends BaseController
             $jobanalytics->job_id = $job->id;
             $jobanalytics->save();
 
-            if(count($job->screeningquiz)!=0 && !empty($request->skip_screening)){
+            if(count($job->screeningquiz)!=0 && empty($request->skip_screening)){
                 foreach($job->screeningquiz as $quiz){
                     $answerkey = 'answer_'.$quiz->quiz_code;
                     $data = new JobQuizCandidateAnswer();
