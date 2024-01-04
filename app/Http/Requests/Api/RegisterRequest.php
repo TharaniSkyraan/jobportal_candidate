@@ -63,6 +63,7 @@ class RegisterRequest extends Request
     {
         return [
             'password.required' => __('Password is required'),
+            'phone.unique' => _('This phone number is already registered. Please choose a different one'),
             'email.required' => __('Email is required'),
             'name.required' => __('Name is required'),
         ];
