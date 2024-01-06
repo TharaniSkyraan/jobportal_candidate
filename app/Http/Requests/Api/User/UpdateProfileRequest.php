@@ -36,7 +36,6 @@ class UpdateProfileRequest extends Request
             // 'phone' => 'required|unique:users,phone,'.(Auth::user()->id).',id,deleted_at,NULL',
             // 'skill_id' => 'required|unique:user_skills,skill_id,'.($this->id??null).',id,deleted_at,NULL,user_id,'.\Auth::user()->id,
             'image' => 'required',
-            // 'alternative_phone' => 'required',
             'gender' => 'required',
             'marital_status_id' => 'required',
             'location' => 'required',
@@ -54,8 +53,8 @@ class UpdateProfileRequest extends Request
         ];
         $rules['alternative_phone'] = [
             'nullable',
-            Rule::unique('users')->where(function ($query) {
-                return $query->where('alternative_phone', request('alternative_phone'))
+            Rule::unique('users')->where(function ($query1) {
+                return $query1->where('alternative_phone', request('alternative_phone'))
                              ->orWhere('phone', request('alternative_phone'))
                              ->whereNull('deleted_at')
                              ->where('id', '<>', \Auth::user()->id);
