@@ -43,19 +43,27 @@ class UpdateProfileRequest extends Request
             'phone' => [
                 'required',
                 Rule::unique('users')->where(function ($query) {
-                    return $query->where('phone', request('phone'))
-                                 ->orWhere('alternative_phone', request('phone'))
-                                 ->whereNull('deleted_at')
-                                 ->where('id', '<>', \Auth::user()->id);
+                    return $query->where(function ($subquery) {
+                        $subquery->where('phone', request('phone'))
+                            ->whereNull('deleted_at');
+                    })
+                    ->orWhere(function ($subquery) {
+                        $subquery->where('alternative_phone', request('phone'))
+                            ->whereNull('deleted_at');
+                    });
                 })->ignore(\Auth::user()->id),
             ],
             'alternative_phone' => [
                 'nullable',
-                Rule::unique('users')->where(function ($query1) {
-                    return $query1->where('phone', request('alternative_phone'))
-                                 ->orWhere('alternative_phone', request('alternative_phone'))
-                                 ->whereNull('deleted_at')
-                                 ->where('id', '<>', \Auth::user()->id);
+                Rule::unique('users')->where(function ($query) {
+                    return $query->where(function ($subquery) {
+                        $subquery->where('phone', request('phone'))
+                            ->whereNull('deleted_at');
+                    })
+                    ->orWhere(function ($subquery) {
+                        $subquery->where('alternative_phone', request('phone'))
+                            ->whereNull('deleted_at');
+                    });
                 })->ignore(\Auth::user()->id),
             ],
         ];
