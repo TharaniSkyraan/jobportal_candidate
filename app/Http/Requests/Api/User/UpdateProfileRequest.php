@@ -43,6 +43,10 @@ class UpdateProfileRequest extends Request
             'phone' => ['required', new UniquePhoneAndAlternative],
         ];
 
+        if($this->alternative_phone!=''){
+            $rules['alternative_phone'] = ['required', new UniquePhoneAndAlternative];
+        }
+
         return $rules;
     }
     public function failedValidation(Validator $validator)

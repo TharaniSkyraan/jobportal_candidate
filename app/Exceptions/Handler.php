@@ -53,17 +53,17 @@ class Handler extends ExceptionHandler
 
         $route = $request->route();
 
-        // if($route != null){
+        if($route != null){
 
-        //     $prefix = $route->getPrefix()??'';
+            $prefix = $route->getPrefix()??'';
         
-        //     if ($request->expectsJson() && str_contains($prefix, 'api')) {
+            if ($request->expectsJson() && str_contains($prefix, 'api')) {
         
-        //         $response = ['success' => false, 'message' => 'Unauthorization User', 'data'=>[]];
+                $response = ['success' => false, 'message' => 'Unauthorization User', 'data'=>[]];
     
-        //         return response()->json($response, 401);
-        //     }
-        // }
+                return response()->json($response, 401);
+            }
+        }
 
         return parent::render($request, $exception);
     }

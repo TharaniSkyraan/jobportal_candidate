@@ -25,6 +25,6 @@ class UniquePhoneAndAlternative implements Rule
 
     public function message()
     {
-        return 'The :attribute must be unique for both phone and alternative number except for the authenticated user.';
+        return 'This :attribute number is already registered. Please choose a different one.';
     }
 }
