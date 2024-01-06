@@ -55,8 +55,8 @@ class UpdateProfileRequest extends Request
             $rules['alternative_phone'] = [
                 'required',
                 Rule::unique('users')->where(function ($query1) {
-                    return $query1->where('alternative_phone', request('alternative_phone'))
-                                 ->orWhere('phone', request('alternative_phone'))
+                    return $query1->where('phone', request('alternative_phone'))
+                                 ->orWhere('alternative_phone', request('alternative_phone'))
                                  ->whereNull('deleted_at')
                                  ->where('id', '<>', \Auth::user()->id);
                 })->ignore(\Auth::user()->id),
