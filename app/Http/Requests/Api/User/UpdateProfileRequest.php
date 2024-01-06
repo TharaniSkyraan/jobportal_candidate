@@ -7,7 +7,7 @@ use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Validation\Rule;
+use App\Http\Requests\Api\UniquePhoneAndAlternative;
 
 class UpdateProfileRequest extends Request
 {
@@ -40,33 +40,9 @@ class UpdateProfileRequest extends Request
             'location' => 'required',
             'country_id' => 'required',
             'date_of_birth' => 'required',
-            'phone' => [
-                'required',
-                Rule::unique('users')->where(function ($query) {
-                    return $query->where(function ($subquery) {
-                        $subquery->where('phone', request('phone'))
-                            ->whereNull('deleted_at');
-                    })
-                    ->orWhere(function ($subquery) {
-                        $subquery->where('alternative_phone', request('phone'))
-                            ->whereNull('deleted_at');
-                    });
-                })->ignore(\Auth::user()->id),
-            ],
-            'alternative_phone' => [
-                'nullable',
-                Rule::unique('users')->where(function ($query) {
-                    return $query->where(function ($subquery) {
-                        $subquery->where('phone', request('alternative_phone'))
-                            ->whereNull('deleted_at');
-                    })
-                    ->orWhere(function ($subquery) {
-                        $subquery->where('alternative_phone', request('alternative_phone'))
-                            ->whereNull('deleted_at');
-                    });
-                })->ignore(\Auth::user()->id),
-            ],
+            'phone' => ['required', new UniquePhoneAndAlternative],
         ];
+        
         return $rules;
     }
     public function failedValidation(Validator $validator)
