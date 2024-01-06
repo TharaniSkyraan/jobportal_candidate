@@ -348,7 +348,7 @@ class JobsController extends BaseController
             'immediate_join' => $job->NoticePeriod !=null?$job->NoticePeriod->notice_period:'',
             'walkin' => isset($job->walkin)?'yes':'no',
             'walkin_date' => (isset($job->walkin)?'From :'.(Carbon::parse($job->walkin->walk_in_from_date)->format('d F, Y').' to '.Carbon::parse($job->walkin->walk_in_to_date)->format('d F, Y')).$exclude_days:''),
-            'walkin_time' => (isset($job->walkin)?(Carbon::parse($job->walkin->walk_in_from_time)->format('H:i A').' to '.Carbon::parse($job->walkin->walk_in_to_time)->format('H:i A')):''),
+            'walkin_time' => (isset($job->walkin)?(Carbon::parse($job->walkin->walk_in_from_time)->format('h:i A').' to '.Carbon::parse($job->walkin->walk_in_to_time)->format('h:i A')):''),
             'contact_name'=>$job->contact_person_details->name??'',
             'contact_email'=>$job->contact_person_details->email??'',
             'contact_phone'=>$job->contact_person_details->phone_1??'',
@@ -376,7 +376,7 @@ class JobsController extends BaseController
             $jobc = Job::find($rjob->job_id);
             $rjob['company_name'] = $jobc->company_name??$jobc->company->name;
             $rjob['company_image'] = $jobc->company->company_image??'';
-            $rjob['location'] = $rjob->work_locations??'';
+            $rjob['location'] = $jobc->work_locations??'';
             $rjob['job_type'] = $jobc->getTypesStr();
             $rjob['skills'] = $jobc->getSkillsStr();
             $rjob['posted_at'] = Carbon::parse($jobc->posted_date)->getTimestampMs();
