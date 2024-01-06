@@ -7,7 +7,7 @@ use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
-use App\Http\Requests\Api\UniquePhoneAndAlternative;
+use App\Http\Requests\Api\User\UniquePhoneAndAlternative;
 
 class UpdateProfileRequest extends Request
 {
@@ -42,7 +42,7 @@ class UpdateProfileRequest extends Request
             'date_of_birth' => 'required',
             'phone' => ['required', new UniquePhoneAndAlternative],
         ];
-        
+
         return $rules;
     }
     public function failedValidation(Validator $validator)
