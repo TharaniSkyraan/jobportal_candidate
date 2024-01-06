@@ -29,7 +29,7 @@ class UpdateProfileRequest extends Request
      */
     public function rules()
     {
-
+dd(request('alternative_phone'));
         $email = Auth::user()->email;
         $rules =  [
             'name' => 'required|max:80',
