@@ -3,7 +3,7 @@
 namespace App\Http\Requests\Api\User;
 
 use Illuminate\Contracts\Validation\Rule;
-use App\Models\User;
+use App\Model\User;
 use Illuminate\Support\Facades\Auth;
 
 class UniquePhoneAndAlternative implements Rule
