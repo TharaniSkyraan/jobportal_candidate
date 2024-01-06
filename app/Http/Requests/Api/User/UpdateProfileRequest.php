@@ -49,7 +49,7 @@ class UpdateProfileRequest extends Request
                 return $query->where('phone', request('phone'))
                              ->orWhere('alternative_phone', request('phone'))
                              ->whereNull('deleted_at')
-                             ->where('id',\Auth::user()->id);
+                             ->where('id','!=',\Auth::user()->id);
             }),
         ];
         $rules['alternative_phone'] = [
@@ -58,7 +58,7 @@ class UpdateProfileRequest extends Request
                 return $query->where('alternative_phone', request('alternative_phone'))
                              ->orWhere('phone', request('alternative_phone'))
                              ->whereNull('deleted_at')
-                             ->where('id', \Auth::user()->id);
+                             ->where('id','!=', \Auth::user()->id);
             }),
         ];
         return $rules;
