@@ -29,7 +29,6 @@ class UpdateProfileRequest extends Request
      */
     public function rules()
     {
-dd(request('alternative_phone'));
         $email = Auth::user()->email;
         $rules =  [
             'name' => 'required|max:80',
@@ -51,15 +50,18 @@ dd(request('alternative_phone'));
                              ->where('id', '<>', \Auth::user()->id);
             })->ignore(\Auth::user()->id),
         ];
-        $rules['alternative_phone'] = [
-            'nullable',
-            Rule::unique('users')->where(function ($query1) {
-                return $query1->where('alternative_phone', request('alternative_phone'))
-                             ->orWhere('phone', request('alternative_phone'))
-                             ->whereNull('deleted_at')
-                             ->where('id', '<>', \Auth::user()->id);
-            })->ignore(\Auth::user()->id),
-        ];
+        if(!empty(request('alternative_phone'))){
+
+            $rules['alternative_phone'] = [
+                'required',
+                Rule::unique('users')->where(function ($query1) {
+                    return $query1->where('alternative_phone', request('alternative_phone'))
+                                 ->orWhere('phone', request('alternative_phone'))
+                                 ->whereNull('deleted_at')
+                                 ->where('id', '<>', \Auth::user()->id);
+                })->ignore(\Auth::user()->id),
+            ];
+        }
         return $rules;
     }
     public function failedValidation(Validator $validator)
