@@ -40,28 +40,25 @@ class UpdateProfileRequest extends Request
             'location' => 'required',
             'country_id' => 'required',
             'date_of_birth' => 'required',
-        ];
-        $rules['phone'] = [
-            'required',
-            Rule::unique('users')->where(function ($query) {
-                return $query->where('phone', request('phone'))
-                             ->orWhere('alternative_phone', request('phone'))
-                             ->whereNull('deleted_at')
-                             ->where('id', '<>', \Auth::user()->id);
-            })->ignore(\Auth::user()->id),
-        ];
-        if(!empty(request('alternative_phone'))){
-
-            $rules['alternative_phone'] = [
+            'phone' => [
                 'required',
+                Rule::unique('users')->where(function ($query) {
+                    return $query->where('phone', request('phone'))
+                                 ->orWhere('alternative_phone', request('phone'))
+                                 ->whereNull('deleted_at')
+                                 ->where('id', '<>', \Auth::user()->id);
+                })->ignore(\Auth::user()->id),
+            ],
+            'alternative_phone' => [
+                'nullable',
                 Rule::unique('users')->where(function ($query1) {
                     return $query1->where('phone', request('alternative_phone'))
                                  ->orWhere('alternative_phone', request('alternative_phone'))
                                  ->whereNull('deleted_at')
                                  ->where('id', '<>', \Auth::user()->id);
                 })->ignore(\Auth::user()->id),
-            ];
-        }
+            ],
+        ];
         return $rules;
     }
     public function failedValidation(Validator $validator)
