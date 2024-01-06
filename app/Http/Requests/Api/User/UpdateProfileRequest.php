@@ -32,7 +32,8 @@ class UpdateProfileRequest extends Request
         $email = Auth::user()->email;
         $rules =  [
             'name' => 'required|max:80',
-            'phone' => 'required|unique:users,phone,0,id,deleted_at,NULL'.\Auth::user()->id,
+            'phone' => 'required|unique:users,phone,'.(Auth::user()->id).',id,deleted_at,NULL',
+            // 'skill_id' => 'required|unique:user_skills,skill_id,'.($this->id??null).',id,deleted_at,NULL,user_id,'.\Auth::user()->id,
             'image' => 'required',
             // 'alternative_phone' => 'required',
             'gender' => 'required',
