@@ -31,7 +31,6 @@ class UpdateProfileRequest extends Request
     {
 
         $email = Auth::user()->email;
-
         $rules =  [
             'name' => 'required|max:80',
             // 'phone' => 'required|unique:users,phone,'.(Auth::user()->id).',id,deleted_at,NULL',
@@ -50,8 +49,8 @@ class UpdateProfileRequest extends Request
                 return $query->where('phone', request('phone'))
                              ->orWhere('alternative_phone', request('phone'))
                              ->whereNull('deleted_at')
-                             ->where('id',\Auth::user()->id);
-            }),
+                             ->where('id', '<>', \Auth::user()->id);
+            })->ignore(\Auth::user()->id),
         ];
         $rules['alternative_phone'] = [
             'nullable',
@@ -59,8 +58,8 @@ class UpdateProfileRequest extends Request
                 return $query->where('alternative_phone', request('alternative_phone'))
                              ->orWhere('phone', request('alternative_phone'))
                              ->whereNull('deleted_at')
-                             ->where('id', \Auth::user()->id);
-            }),
+                             ->where('id', '<>', \Auth::user()->id);
+            })->ignore(\Auth::user()->id),
         ];
         return $rules;
     }
