@@ -15,7 +15,7 @@ class UniquePhoneAndAlternative implements Rule
         // Check if the value is unique in both phone and alternative_number columns
         $userCount = User::where(function ($query) use ($value, $userId) {
             $query->where('phone', $value)
-                  ->orWhere('alternative_number', $value);
+                  ->orWhere('alternative_phone', $value);
         })
         ->where('id', '<>', $userId) // Exclude the authenticated user
         ->count();
