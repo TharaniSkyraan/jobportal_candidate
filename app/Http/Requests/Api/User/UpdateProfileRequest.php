@@ -57,11 +57,11 @@ class UpdateProfileRequest extends Request
                 'nullable',
                 Rule::unique('users')->where(function ($query) {
                     return $query->where(function ($subquery) {
-                        $subquery->where('phone', request('phone'))
+                        $subquery->where('phone', request('alternative_phone'))
                             ->whereNull('deleted_at');
                     })
                     ->orWhere(function ($subquery) {
-                        $subquery->where('alternative_phone', request('phone'))
+                        $subquery->where('alternative_phone', request('alternative_phone'))
                             ->whereNull('deleted_at');
                     });
                 })->ignore(\Auth::user()->id),
