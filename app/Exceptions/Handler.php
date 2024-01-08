@@ -62,10 +62,10 @@ class Handler extends ExceptionHandler
               
                 if(Auth::user()==null) {
                     $response = ['success' => false, 'message' => 'Unauthorization', 'data'=>[]];
-                    return response()->json($response, 200);
+                    return response()->json($response, 401);
                 }else{
                     $response = ['success' => false, 'message' => 'Something went wrong, Try Again.', 'data'=>[]];
-                    return response()->json($response, 401);
+                    return response()->json($response, 403);
                 }
     
             }
