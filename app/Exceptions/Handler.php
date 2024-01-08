@@ -66,7 +66,7 @@ class Handler extends ExceptionHandler
                 if(Auth::user()==null) {
 
                     if($uri_last_param=='profile'){
-                        $response = ['success' => false, 'message' => 'Unauthorization', 'data'=>['user'=>[],'genders'=>[],'maritalStatuses'=>[]]];
+                        $response = ['success' => false, 'message' => 'Unauthorization', 'data'=>[['user'=>[],'genders'=>[],'maritalStatuses'=>[]]]];
 
                     }else{
                         $response = ['success' => false, 'message' => 'Unauthorization', 'data'=>[]];
