@@ -61,7 +61,7 @@ class Handler extends ExceptionHandler
         
                 $response = ['success' => false, 'message' => 'Unauthorization User', 'data'=>[]];
     
-                return response()->json($response, 401);
+                return response()->json($response, 200);
             }
         }
 
