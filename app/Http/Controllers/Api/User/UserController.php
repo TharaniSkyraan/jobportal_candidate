@@ -55,7 +55,7 @@ class UserController extends BaseController
             'genders' => DataArrayHelper::langGendersApiArray(),    
             'maritalStatuses' => DataArrayHelper::langMaritalStatusesApiArray()
         );
-        return $this->sendResponse($response);
+        return $this->sendResponse([$response]);
         
     }
     
