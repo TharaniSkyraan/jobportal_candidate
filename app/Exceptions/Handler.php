@@ -28,13 +28,14 @@ class Handler extends ExceptionHandler
         if ($exception instanceof UnauthorizedHttpException) {
             return response()->json([
                 'error' => 'Unauthenticated',
-                'message' => 'You are not authenticated.',
+                'message' => 'You are not authenticated.'
             ], 401);
         }
 
         return response()->json([
             'error' => 'Unauthenticated',
             'message' => $exception->getMessage(),
+            'data' => []
         ], 401);
     }
 
