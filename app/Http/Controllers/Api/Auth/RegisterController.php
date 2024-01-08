@@ -130,6 +130,7 @@ class RegisterController extends BaseController
             UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
             Auth::logout();
             UserActivity::updateOrCreate(['user_id' => $user->id],['last_active_at'=>Carbon::now()]);
+            User::where('id',$user->id)->update(['candidate_id'=>$this->generateCandidate($user->id)]);
 
             return $this->sendResponse([['id'=>$user->id,'otp'=>$otp,'user_token'=>$user->token,'next_process_level'=>$user->next_process_level]], 'Verification OTP Send Successful.');
         }
@@ -163,7 +164,6 @@ class RegisterController extends BaseController
         $user->verify_otp = null;
         $user->verified = 1;
         $user->next_process_level = 'education';
-        $user->candidate_id = $this->generateCandidate($user->id);
         $user->save();
         
         $user = User::find($request->id);
