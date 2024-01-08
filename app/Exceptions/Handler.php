@@ -60,11 +60,17 @@ class Handler extends ExceptionHandler
         
             if ($request->expectsJson() && str_contains($prefix, 'api')) {
 
-
-                dd($route->uri());
-              
+                $uri_params = explode('/',$route->uri());
+                $uri_last_param = pop($uri_params);
+                
                 if(Auth::user()==null) {
-                    $response = ['success' => false, 'message' => 'Unauthorization', 'data'=>[]];
+
+                    if($uri_last_param=='profile'){
+                        $response = ['success' => false, 'message' => 'Unauthorization', 'data'=>['user'=>[],'genders'=>[],'maritalStatuses'=>[]]];
+
+                    }else{
+                        $response = ['success' => false, 'message' => 'Unauthorization', 'data'=>[]];
+                    }
                     return response()->json($response, 200);
                 }else{
                     $response = ['success' => false, 'message' => 'Something went wrong, Try Again.', 'data'=>[]];
