@@ -235,7 +235,7 @@ class MyJobsController extends BaseController
         $response['next_page'] = (!empty($jobs->nextPageUrl())?($jobs->currentPage()+1):"");
         $response['no_of_pages'] = $jobs->lastPage()??0;
        
-        return $this->sendResponse($response); 
+        return $this->sendResponse([$response]); 
     }
 
     /**
