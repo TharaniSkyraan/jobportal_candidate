@@ -2,78 +2,41 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Throwable;
-use Auth;
-use Response;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class Handler extends ExceptionHandler
 {
-    /**
-     * A list of the exception types that are not reported.
-     *
-     * @var array
-     */
-    protected $dontReport = [
-        //
-    ];
+    // ...
 
-    /**
-     * A list of the inputs that are never flashed for validation exceptions.
-     *
-     * @var array
-     */
-    protected $dontFlash = [
-        'password',
-        'password_confirmation',
-    ];
-
-    /**
-     * Report or log an exception.
-     *
-     * @param  \Throwable  $exception
-     * @return void
-     *
-     * @throws \Exception
-     */
-    public function report(Throwable $exception)
+    protected function unauthenticated($request, AuthenticationException $exception)
     {
-        parent::report($exception);
-    }
-
-    /**
-     * Render an exception into an HTTP response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Throwable  $exception
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
-     * @throws \Throwable
-     */
-    public function render($request, Throwable $exception)
-    {
-
-        $route = $request->route();
-
-        if($route != null){
-
-            $prefix = $route->getPrefix()??'';
-        
-            if ($request->expectsJson() && str_contains($prefix, 'api')) {
-
-                $uri_params = explode('/',$route->uri());
-                $uri_last_param = end($uri_params);
-                
-                if(Auth::user()==null) 
-                {
-                    return response()->json(['success' => true, 'message' => 'Unauthorization', 'data'=>[]], 200);
-                }else{
-                    return response()->json(['success' => true, 'message' => 'Something went wrong, Try Again.', 'data'=>[]], 200);
-                }
-    
-            }
+        if ($request->expectsJson() || $request->is('api/*')) {
+            return $this->jsonResponse($request, $exception);
         }
 
-        return parent::render($request, $exception);
+        return redirect()->guest($exception->redirectTo() ?? route('login'));
     }
+
+    private function jsonResponse($request, AuthenticationException $exception)
+    {
+        if ($exception instanceof UnauthorizedHttpException) {
+            return response()->json([
+                'error' => 'Unauthenticated',
+                'message' => 'You are not authenticated.',
+            ], 401);
+        }
+
+        return response()->json([
+            'error' => 'Unauthenticated',
+            'message' => $exception->getMessage(),
+        ], 401);
+    }
+
+    // ...
 }
