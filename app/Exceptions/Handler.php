@@ -63,18 +63,11 @@ class Handler extends ExceptionHandler
                 $uri_params = explode('/',$route->uri());
                 $uri_last_param = end($uri_params);
                 
-                if(Auth::user()==null) {
-
-                    if($uri_last_param=='profile'){
-                        $response = ['success' => false, 'message' => 'Unauthorization', 'data'=>[['user'=>[],'genders'=>[],'maritalStatuses'=>[]]]];
-
-                    }else{
-                        $response = ['success' => false, 'message' => 'Unauthorization', 'data'=>[]];
-                    }
-                    return response()->json($response, 200);
+                if(Auth::user()==null) 
+                {
+                    return response()->json(['success' => false, 'message' => 'Unauthorization', 'data'=>[]], 200);
                 }else{
-                    $response = ['success' => false, 'message' => 'Something went wrong, Try Again.', 'data'=>[]];
-                    return response()->json($response, 403);
+                    return response()->json(['success' => false, 'message' => 'Something went wrong, Try Again.', 'data'=>[]], 403);
                 }
     
             }
