@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Auth;
 
 class Handler extends ExceptionHandler
 {
@@ -59,9 +60,14 @@ class Handler extends ExceptionHandler
         
             if (str_contains($prefix, 'api/')) {
         
-                $response = ['success' => false, 'message' => 'Unauthorization User', 'data'=>[]];
+                if(Auth::user()==null) {
+                    $response = ['success' => false, 'message' => 'Unauthorization', 'data'=>[]];
+                    return response()->json($response, 401);
+                }else{
+                    $response = ['success' => false, 'message' => 'Something went wrong, Try again', 'data'=>[]];
+                    return response()->json($response, 403);
+                }
     
-                return response()->json($response, 404);
             }
         }
 
