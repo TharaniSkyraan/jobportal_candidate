@@ -70,7 +70,7 @@ class UpdateProfileRequest extends Request
     public function messages()
     {
         return [
-            'image.required' => __('Image is required'),
+            'image.required' => _('Image is required'),
         ];
     }
 
