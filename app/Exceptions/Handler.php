@@ -65,7 +65,7 @@ class Handler extends ExceptionHandler
                     return response()->json($response, 200);
                 }else{
                     $response = ['success' => false, 'message' => 'Something went wrong, Try again', 'data'=>[]];
-                    return response()->json($response, 403);
+                    return response()->json($response, 200);
                 }
     
             }
