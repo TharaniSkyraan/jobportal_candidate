@@ -61,9 +61,9 @@ class Handler extends ExceptionHandler
             if ($request->expectsJson() && str_contains($prefix, 'api')) {
               
                 if(Auth::user()==null) {
-                    $response = ['success' => false, 'message' => 'Unauthorization User', 'data'=>[]];
+                    $response = ['success' => false, 'message' => 'Unauthorization', 'data'=>[]];
                 }else{
-                    $response = ['success' => false, 'message' => 'Unauthorization User', 'data'=>[]];
+                    $response = ['success' => false, 'message' => 'Something went wrong, Try Again.', 'data'=>[]];
                 }
     
                 return response()->json($response, 200);
