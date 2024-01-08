@@ -61,8 +61,8 @@ class Handler extends ExceptionHandler
             if ($request->expectsJson() && str_contains($prefix, 'api')) {
 
                 $uri_params = explode('/',$route->uri());
-                dd($uri_params);
                 $uri_last_param = pop($uri_params);
+                dd($uri_last_param);
                 
                 if(Auth::user()==null) {
 
