@@ -288,7 +288,7 @@ class MyJobsController extends BaseController
 
         $message = "You have successfully saved this job";
 
-        return $this->sendResponse('', $message);
+        return $this->sendResponse($jobFav, $message);
 
     }
     /**
