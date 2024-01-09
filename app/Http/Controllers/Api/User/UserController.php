@@ -96,7 +96,7 @@ class UserController extends BaseController
     {
         $user = Auth::user();     
         $response =  array('summary'=>$user->summary??'');
-        return $this->sendResponse($response); 
+        return $this->sendResponse([$response]); 
     }
     
     public function career_infoUpdate(UpdateCareerInfoRequest $request)
