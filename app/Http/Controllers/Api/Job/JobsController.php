@@ -284,7 +284,7 @@ class JobsController extends BaseController
             $response['filters'] = $filters;
         }
 
-        return $this->sendResponse($response);
+        return $this->sendResponse([$response]);
     }
 
     /**
