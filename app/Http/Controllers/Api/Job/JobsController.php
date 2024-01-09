@@ -86,7 +86,7 @@ class JobsController extends BaseController
                         'appliedlist' => $appliedlist
                     );
 
-        return $this->sendResponse($response);
+        return $this->sendResponse([$response]);
     }
     /**
      * return Success json response.
