@@ -38,7 +38,6 @@ class JobsController extends BaseController
     public function index()
     {
         $user_id = Auth::user()->id??0;     
-        dd($user_id);   
         $user = User::find($user_id);
         $appliedjobs = JobApply::where('user_id',$user_id)
                         ->whereIn('application_status',['shortlist'])
@@ -65,7 +64,7 @@ class JobsController extends BaseController
                 );
             }
         }
-
+        dd($user->career_title);
         $filter = array();
         $filter['sortBy'] = 'date';
         $jobs = $this->fetchJobs($user->career_title,'', $filter, 5);
