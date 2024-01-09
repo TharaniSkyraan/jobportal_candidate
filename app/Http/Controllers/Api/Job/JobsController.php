@@ -179,7 +179,7 @@ class JobsController extends BaseController
             'sectors' => $sectors, 
             'appliedlist' => $appliedlist
         );
-        return $this->sendResponse($response);
+        return $this->sendResponse([$response]);
     }
 
     /**
