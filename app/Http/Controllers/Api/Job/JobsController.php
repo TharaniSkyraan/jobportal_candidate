@@ -64,7 +64,6 @@ class JobsController extends BaseController
                 );
             }
         }
-        dd($user->career_title);
         $filter = array();
         $filter['sortBy'] = 'date';
         $jobs = $this->fetchJobs($user->career_title,'', $filter, 5);
