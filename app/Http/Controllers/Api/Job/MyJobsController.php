@@ -136,7 +136,7 @@ class MyJobsController extends BaseController
         $response['next_page'] = (!empty($jobs->nextPageUrl())?($jobs->currentPage()+1):"");
         $response['no_of_pages'] = $jobs->lastPage()??0;
         
-        return $this->sendResponse($response);              
+        return $this->sendResponse([$response]);              
 
     }
 
@@ -288,7 +288,7 @@ class MyJobsController extends BaseController
 
         $message = "You have successfully saved this job";
 
-        return $this->sendResponse($jobFav, $message);
+        return $this->sendResponse('', $message);
 
     }
     /**
@@ -334,7 +334,7 @@ class MyJobsController extends BaseController
         $response['next_page'] = (!empty($list->nextPageUrl())?($list->currentPage()+1):"");
         $response['no_of_pages'] = $list->lastPage()??0;
        
-        return $this->sendResponse($response);  
+        return $this->sendResponse([$response]);  
     }
     
     /**

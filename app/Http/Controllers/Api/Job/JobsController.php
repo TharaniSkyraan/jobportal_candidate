@@ -400,7 +400,7 @@ class JobsController extends BaseController
                 'have_screening' => JobScreeningQuiz::whereJobId($job->id)->count(),
                 'screening_quiz' => $screening
             );
-        return $this->sendResponse($response);
+        return $this->sendResponse([$response]);
     }
     
     /**
