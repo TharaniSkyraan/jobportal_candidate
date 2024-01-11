@@ -380,7 +380,7 @@ class AjaxController extends Controller
             $country_detail = CountryDetail::find($country['country_id']);
             $val = array(
                 'id'=>$country['id'],
-                'data-code'=>$country_detail->sort_name??'',
+                'data_code'=>$country_detail->sort_name??'',
                 'name'=>$country['country'],
             );
             return $val;
