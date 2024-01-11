@@ -481,7 +481,7 @@ class JobsController extends BaseController
             'company_jobs' => $companyjobs,
             'gallery' => $gallery
         );
-        return $this->sendResponse($response);
+        return $this->sendResponse([$response]);
     }
     
     /**
