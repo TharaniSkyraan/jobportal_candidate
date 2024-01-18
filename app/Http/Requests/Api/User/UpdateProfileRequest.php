@@ -31,6 +31,7 @@ class UpdateProfileRequest extends Request
     {
         $email = Auth::user()->email;
         $rules =  [
+            'phone' => ['required', new UniquePhoneAndAlternative],
             'name' => 'required|max:80',
             // 'phone' => 'required|unique:users,phone,'.(Auth::user()->id).',id,deleted_at,NULL',
             // 'skill_id' => 'required|unique:user_skills,skill_id,'.($this->id??null).',id,deleted_at,NULL,user_id,'.\Auth::user()->id,
@@ -40,7 +41,6 @@ class UpdateProfileRequest extends Request
             'location' => 'required',
             'country_id' => 'required',
             'date_of_birth' => 'required',
-            'phone' => ['required', new UniquePhoneAndAlternative],
         ];
 
         if($this->alternative_phone!=''){
