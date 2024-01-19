@@ -57,8 +57,15 @@ class RegisterController extends BaseController
                 $user = Auth::user(); 
             } 
         }else{
+            
             // social login
-            $user = User::whereEmail($request->email)->first();
+            if(!empty($request->email))
+            {
+                $user = User::whereEmail($request->email)->first();
+            }else{
+                $user = User::whereAppleProviderId($request->provider_id)->first();
+            }  
+
             if(isset($user)){
                 Auth::login($user, true);
                 $user = Auth::user();
@@ -92,6 +99,9 @@ class RegisterController extends BaseController
             $update = User::find($user->id);
             $update->device_token = $request->device_token;
             $update->device_type = $request->device_type;
+            if($request->provider=='apple'){
+                $update->apple_provider_id = $request->provider_id;
+            }
             if($user->next_process_level == 'verify_otp'){
                 $update->verify_otp = $this->generateRandomCode(6);
                 $update->session_otp = Carbon::now();
