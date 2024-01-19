@@ -127,6 +127,9 @@ class RegisterController extends BaseController
             $otp = $this->generateRandomCode(6);
             $data = $request->all();
             $data['verify_otp'] = $otp;
+            if($request->provider=='apple'){
+                $data['apple_provider_id'] = $request->provider_id;
+            }
             $data['session_otp'] = Carbon::now();
             $data['password'] = Hash::make($request->password);
             $data['next_process_level'] = 'verify_otp';
