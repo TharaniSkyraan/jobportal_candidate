@@ -10,9 +10,9 @@ Route::get('/sitemapjobtitle.xml', 'SitemapController@jobTitle');
 Route::get('/sitemapjoblocation.xml', 'SitemapController@jobLocation');
 Route::get('/sitemapjobtype.xml', 'SitemapController@jobType');
 
-
 Route::get('/sitemapjobtitlelocation.xml', 'SitemapController@jobTitleLocation');
 Route::get('/sitemapjobtitlelocation/{id}/link.xml', 'SitemapController@jobTitleLocations')->name('sitemapjobtitlelocation');
+
 
 Route::get('/sitemapjobtypetitle.xml', 'SitemapController@jobTypeTitle');
 Route::get('/sitemapjobtypetitle/{id}/link.xml', 'SitemapController@jobTypeTitles')->name('sitemapjobtypetitle');
