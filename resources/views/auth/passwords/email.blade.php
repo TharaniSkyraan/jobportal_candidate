@@ -52,9 +52,6 @@
 
 @endsection
 @section('footer')
-{{-- @include('layouts.footer') --}}
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-{{-- @include('layouts.footer') --}}
 <script>
 
   @if(session('status'))
