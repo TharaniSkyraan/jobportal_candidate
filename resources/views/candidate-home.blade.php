@@ -81,6 +81,7 @@
             @php
                 $cacheData = Cookie::has('searchJobs') ? json_decode(Cookie::get('searchJobs')):array(); 
                 $cachedatas = array_reverse($cacheData); 
+                $cachedatas = array_slice($cachedatas, 0, 3, true);
             @endphp
             <div class="popular_recent_src_hme">
                 @if(count($cachedatas)!=0)
