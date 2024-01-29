@@ -91,7 +91,7 @@
                             @forelse($cachedatas as $key => $search)
                                 @if($key < 3 && ($search->designation !='' || $search->location !='')  )
                                     <label class="cursor-pointer resentsearch plerhvr titsearch" data-d="{{$search->designation}}" data-l="{{$search->location}}">                                            
-                                        <div class="text_ygb"><img src="{{ asset('images/home/search-icon.png') }}"><span>{{$search->designation}} {{$search->location}}</span></div>
+                                        <div class="text_ygb"><img src="{{ asset('images/home/search-icon.png') }}" alt="search-icon" draggable="false"><span>{{$search->designation}} {{$search->location}}</span></div>
                                     </label>
                                 @endif
                             @endforeach
@@ -126,7 +126,7 @@
                                     <div class="mobile_bnr">
                                         <div class="row">
                                             <div class="col-4 text-end align-self-center col-lg">
-                                                <img draggable="false" src="{{asset('images/create_profile.png')}}">
+                                                <img draggable="false" src="{{asset('images/create_profile.png')}}" alt="create_profile_mob">
                                             </div>
                                             <div class="col-8 col-lg">
                                                 <h2 class="fw-bolder mt-2">Create Profile</h2>
@@ -135,19 +135,19 @@
                                         </div>
                                     </div>
                                     <div class="system_vw">
-                                        <img draggable="false" src="{{asset('images/create_profile.png')}}">
+                                        <img draggable="false" src="{{asset('images/create_profile.png')}}"  alt="create_profile_web">
                                         <h2 class="fw-bolder mt-2">Create Profile</h2>
                                         <p>Flow simple steps to create your profile</p>
                                     </div>
                                 </div>
                                 <div class="col-md arrow align-self-center">
-                                    <img draggable="false" src="{{asset('images/home_arrow.png')}}">
+                                    <img draggable="false" src="{{asset('images/home_arrow.png')}}" alt="profile_following_arrow">
                                 </div>                                  
                                 <div class="col-md">
                                     <div class="mobile_bnr">
                                         <div class="row">
                                             <div class="col-4 mbalgnsl text-end align-self-center col-lg">
-                                                <img draggable="false" src="{{asset('images/provode_info.png')}}">
+                                                <img draggable="false" src="{{asset('images/provode_info.png')}}"  alt="provide_req_info_mob">
                                             </div>
                                             <div class="col-8 col-lg">
                                                 <h2 class="fw-bolder mt-2">Provide the Required Info</h2>
@@ -156,19 +156,19 @@
                                         </div>
                                     </div>
                                     <div class="system_vw">
-                                        <img draggable="false" src="{{asset('images/provode_info.png')}}">
+                                        <img draggable="false" src="{{asset('images/provode_info.png')}}" alt="provide_req_info_web">
                                         <h2 class="fw-bolder mt-2">Provide the Required Info</h2>
                                         <p>Your profile completeness is like your first introduction to the job.</p>
                                     </div>
                                 </div>
                                 <div class="col-md arrow align-self-center">
-                                    <img draggable="false" src="{{asset('images/home_arrow.png')}}">
+                                    <img draggable="false" src="{{asset('images/home_arrow.png')}}" alt="provide_req_info_following_arrow">
                                 </div> 
                                 <div class="col-md align-self-center">
                                     <div class="mobile_bnr">
                                         <div class="row">
                                             <div class="col-4 text-end align-self-center col-lg">
-                                                <img draggable="false" src="{{asset('images/explore_opportunities.png')}}">
+                                                <img draggable="false" src="{{asset('images/explore_opportunities.png')}}" alt="explore_opportunities_mob">
                                             </div>
                                             <div class="col-8 col-lg">
                                                 <h2 class="fw-bolder mt-2">Explore your Opportunities</h2>
@@ -177,7 +177,7 @@
                                         </div>
                                     </div>
                                     <div class="system_vw">
-                                        <img draggable="false" src="{{asset('images/explore_opportunities.png')}}">
+                                        <img draggable="false" src="{{asset('images/explore_opportunities.png')}}" alt="explore_opportunities_web">
                                         <h2 class="fw-bolder mt-2">Explore your Opportunities</h2>
                                         <p>find more jobs, more Resumes in no time.</p>
                                     </div>
@@ -229,11 +229,11 @@
                                     @foreach($recent_job as $recent)
                                         <div class="card p-3 hm_gy cursor-pointer">
                                             <a href="{{url('detail',$recent->slug)}}" class="text-dark">
-                                                <h3><img src="{{asset('site_assets_1/assets/img/side_nav_icon/title.png')}}"  class="me-2 ms-1 title-img" draggable="false" alt=""> {{$recent->title}}</h3>
-                                                <p><img src="{{asset('site_assets_1/assets/img/side_nav_icon/industry.png')}}" class="image-size" draggable="false" alt=""> {{$recent->company_name}}</p>
-                                                <p><img src="{{asset('site_assets_1/assets/img/side_nav_icon/experience.png')}}" class="image-size" draggable="false" alt=""> {{$recent->experience_string}}</p>
-                                                <p><img src="{{asset('site_assets_1/assets/img/side_nav_icon/location.png')}}" class="image-size" draggable="false" alt=""> {{$recent->location}}</p>
-                                                <p><img src="{{asset('site_assets_1/assets/img/side_nav_icon/salary.png')}}" class="image-size" draggable="false" alt=""> {{$recent->salary_string}}</p>
+                                                <h3><img src="{{asset('site_assets_1/assets/img/side_nav_icon/title.png')}}"  class="me-2 ms-1 title-img" draggable="false" alt="{{$recent->title}}"> {{$recent->title}}</h3>
+                                                <p><img src="{{asset('site_assets_1/assets/img/side_nav_icon/industry.png')}}" class="image-size" draggable="false" alt="{{$recent->company_name}}"> {{$recent->company_name}}</p>
+                                                <p><img src="{{asset('site_assets_1/assets/img/side_nav_icon/experience.png')}}" class="image-size" draggable="false" alt="{{$recent->experience_string}}"> {{$recent->experience_string}}</p>
+                                                <p><img src="{{asset('site_assets_1/assets/img/side_nav_icon/location.png')}}" class="image-size" draggable="false" alt="{{$recent->location}}"> {{$recent->location}}</p>
+                                                <p><img src="{{asset('site_assets_1/assets/img/side_nav_icon/salary.png')}}" class="image-size" draggable="false" alt="{{$recent->salary_string}}"> {{$recent->salary_string}}</p>
                                             </a> 
                                         </div>
                                     @endforeach
@@ -308,7 +308,7 @@
                                                                     <div class="col-6 d-flex align-items-center justify-content-center">
                                                                         <h5>View all</h5>
                                                                         <p class="align-items-center justify-content-center d-flex upu5dc_ivdf">
-                                                                            &nbsp;&nbsp;&nbsp;<img src="{{asset('images/home/arrow3.svg')}}" alt="arrow-image"></p>
+                                                                            &nbsp;&nbsp;&nbsp;<img src="{{asset('images/home/arrow3.svg')}}" alt="arrow-image" draggable="false"></p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -331,7 +331,7 @@
                                                                 <div class="card hm_grn cursor-pointer topsector">
                                                                     <div class="row">
                                                                         <div class="col-3 text-center">
-                                                                            <img draggable="false" src="{{url('images/hme_designing.png')}}">
+                                                                            <img draggable="false" src="{{url('images/hme_designing.png')}}" alt="{{$sector->industry}}" >
                                                                         </div>
                                                                         <div class="col-9 align-self-center">
                                                                             <h3 class="fw-bolder sector">{{$sector->industry}}</h3>
@@ -363,7 +363,7 @@
                             </div>
                             <div class="col-md-2 col-5 text-end p-0 align-self-center">
                                 @if(count($blog) > 2)
-                                    <a href="{{url('blogs')}}"><span class="grayc">View all <img src="{{asset('images/home/right_vtrm.svg')}}" alt=""></span></a>
+                                    <a href="{{url('blogs')}}"><span class="grayc">View all <img src="{{asset('images/home/right_vtrm.svg')}}" alt="View all blog" draggable="false"></span></a>
                                 @endif
                             </div>
                         </div>
