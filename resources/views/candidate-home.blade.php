@@ -13,6 +13,11 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" rel="stylesheet" />
 @endsection
 @section('content')
+    <style>
+    .title-img{
+        width:7px;
+    }
+    </style>
     @include('layouts.header')
     @include('layouts.search_side_navbar')
     <div class="content">
@@ -205,7 +210,7 @@
                         <div class="carousel">
                             @foreach($near_job as $near)
                             <div class="card p-3 hm_gr cursor-pointer jobsearch">
-                                <h3 class="jobsearchtitle"><img src="{{asset('site_assets_1/assets/img/side_nav_icon/title.png')}}"width="7px" class="me-2 ms-1" draggable="false" alt=""> {{$near->title}}</h3>
+                                <h3 class="jobsearchtitle"><img src="{{asset('site_assets_1/assets/img/side_nav_icon/title.png')}}" class="me-2 ms-1 title-img" draggable="false" alt=""> {{$near->title}}</h3>
                                 <p><img src="{{asset('site_assets_1/assets/img/side_nav_icon/industry.png')}}" class="image-size" draggable="false" alt=""> {{$near->company_name}}</p>
                             </div>  
                             {{-- <div class="card p-4 hm_gr cursor-pointer jobsearch">
@@ -223,7 +228,7 @@
                                     @foreach($recent_job as $recent)
                                         <div class="card p-3 hm_gy cursor-pointer">
                                             <a href="{{url('detail',$recent->slug)}}" class="text-dark">
-                                                <h3><img src="{{asset('site_assets_1/assets/img/side_nav_icon/title.png')}}" width="7px" class="me-2 ms-1" draggable="false" alt=""> {{$recent->title}}</h3>
+                                                <h3><img src="{{asset('site_assets_1/assets/img/side_nav_icon/title.png')}}"  class="me-2 ms-1 title-img" draggable="false" alt=""> {{$recent->title}}</h3>
                                                 <p><img src="{{asset('site_assets_1/assets/img/side_nav_icon/industry.png')}}" class="image-size" draggable="false" alt=""> {{$recent->company_name}}</p>
                                                 <p><img src="{{asset('site_assets_1/assets/img/side_nav_icon/experience.png')}}" class="image-size" draggable="false" alt=""> {{$recent->experience_string}}</p>
                                                 <p><img src="{{asset('site_assets_1/assets/img/side_nav_icon/location.png')}}" class="image-size" draggable="false" alt=""> {{$recent->location}}</p>
@@ -325,7 +330,7 @@
                                                                 <div class="card hm_grn cursor-pointer topsector">
                                                                     <div class="row">
                                                                         <div class="col-3 text-center">
-                                                                            <img draggable="false" src="{{url('images/hme_designing.png')}}" width="100%">
+                                                                            <img draggable="false" src="{{url('images/hme_designing.png')}}">
                                                                         </div>
                                                                         <div class="col-9 align-self-center">
                                                                             <h3 class="fw-bolder sector">{{$sector->industry}}</h3>
