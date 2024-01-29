@@ -40,19 +40,19 @@ li {
     padding: 2rem;
 }
 .popular_recent_src_hme{
-    background: url('../../../../images/home/line.png');
+    background: url('../../../../images/home/line.webp');
     background-repeat: no-repeat;
     background-size: 100%;
 }
 .candidate_img{
-   background:url('../../../../images/candidate_hpg_bg.png');
+   background:url('../../../../images/candidate_hpg_bg.webp');
     background-repeat: no-repeat;
     background-size: cover;
     padding-bottom: 110px;
     background-position: center;
 }
 .nearbyjob{
-    background: url('../../../../images/home/wave_line.png');
+    background: url('../../../../images/home/wave_line.webp');
     background-repeat: no-repeat;
     background-size: 100%;
 }

@@ -6,7 +6,7 @@
 
 <style>
    #footer .align_ftr{
-        background-image: url('{{asset('images/footer_bg.png')}}');
+        background-image: url('{{asset('images/footer_bg.webp')}}');
         background-size: cover;
         background-repeat: no-repeat;
         background-color: hsla(0,0%,100%,0.40);
@@ -16,7 +16,7 @@
 
     @media(min-width: 320px) and (max-width: 767px)  {
       #footer .align_ftr{
-              background-image: url('{{asset('images/footer_bg.png')}}');
+              background-image: url('{{asset('images/footer_bg.webp')}}');
               background-repeat: no-repeat;
               background-size: contain;
               background-position: bottom;
@@ -26,7 +26,7 @@
       
     @media(min-width: 768px) and (max-width: 1300px)  {
       #footer .align_ftr{
-              background-image: url('{{asset('images/footer_bg.png')}}');
+              background-image: url('{{asset('images/footer_bg.webp')}}');
               background-repeat: no-repeat;
               background-size: contain;
               background-position: bottom;
