@@ -12,7 +12,9 @@
 
     <!-- Main CSS File -->
     <link href="{{ asset('site_assets_1/assets/css/style.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('site_assets_1/assets/css/custom_style.css?v1') }}" rel="stylesheet">
     <link href="{{ asset('site_assets_1/assets/css/atlantis.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/user_skill.min.css') }}" rel="stylesheet">
     <link href="{{ asset('site_assets_1/assets/css/sidenavbarstyle.css') }}" rel="stylesheet">
 
     <!-- Google Fonts -->
