@@ -1,17 +1,5 @@
-@extends('layouts.app')
+@extends('layouts.landing-app')
 
-@section('custom_scripts')
-<link href="{{ asset('site_assets_1/assets/1a9ve2/css/userbasic.w2fr4ha2.css')}}" rel="stylesheet">
-<link href="{{ asset('site_assets_1/assets/1a9ve2/css/chpg.er23fw.css')}}" rel="stylesheet">
-<link href="{{asset('css/hmewq1om.min.css')}}" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.8/slick.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.8/slick-theme.min.css">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet" />
-<link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" rel="stylesheet" />
-@endsection
 @section('content')
     <style>
     .title-img{
@@ -354,13 +342,54 @@
                     </div>
                 </div>
             </div>
+            <!-- @if(count($blog) >= 1)
+                <div class="container-xl">
+                    <div class="blog-sectionw">
+                        <div class="row fdfeyhsq">
+                            <div class="col-md-10 col-7 p-0">
+                                <h3 class="fw-bolder m-0">Blogs</h3>
+                            </div>
+                            <div class="col-md-2 col-5 text-end p-0 align-self-center">
+                                @if(count($blog) > 2)
+                                    <a href="{{url('blogs')}}"><span class="grayc">View all <img src="{{asset('images/home/right_vtrm.svg')}}" alt="View all blog" draggable="false"></span></a>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="blog-carousal p-0">
+                            <div class="owl-carousel owl-theme">
+                                @foreach($blog as $row)
+                                    @php
+                                        $formats = \Carbon\Carbon::parse($row->created_at)->format('D jS, M Y');
+                                    @endphp
+                                    <article class="item">
+                                        <a href="{{route('view-blog', [$row->id, $row->slug])}}">
+                                            <div class="card">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-lg-12 col-xl-5 align-self-center">
+                                                        <img src="{{$row->thumbnail_url}}" alt="{{$row->slug}}" class="img-fluid" draggable="false">
+                                                    </div>
+                                                    <div class="col-md-12 col-lg-12 col-xl-7">
+                                                        <h2 class="fw-bolder">{{$row->title}}</h2>
+                                                        <p class="cntc">{{$row->short_description}}</p>
+                                                        <p class="grayc m-0">{{$formats}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </article>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif -->
         </section>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>    
     <script type="text/javascript"> 
-        var baseurl = '{{ url("/") }}/';
+        // var baseurl = '{{ url("/") }}/';
         var current_city = "{{$ip_data['city']??''}}";
         
         var path1 = '{{ url("api/autocomplete/search_title") }}';
@@ -434,6 +463,38 @@
             
         });
 
+        $(document).ready(function() {
+            $('.blog-carousal .owl-carousel').owlCarousel({
+                items: 2,
+                nav: false,
+                dots: true,
+                mouseDrag: true,
+                responsiveClass: true,
+                responsive: {
+                    0:{
+                    items: 1
+                    },
+                    350:{
+                    items: 2
+                    },
+                    576:{
+                    items: 3
+                    },
+                    768:{
+                    items: 3
+                    },
+                    992:{
+                    items: 4
+                    },
+                    1200:{
+                    items: 2
+                    },
+                    1600:{
+                    items: 2
+                    }
+                }
+            });
+        });
 
         $(document).on('click', '.typeahead', function(){
             $('.tooltip').removeClass('show');
@@ -455,7 +516,5 @@
 @section('custom_bottom_scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" integrity="sha512-HWlJyU4ut5HkEj0QsK/IxBCY55n5ZpskyjVlAoV9Z7XQwwkqXoYdCIC93/htL3Gu5H3R4an/S0h2NXfbZk3g7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="text/javascript" src="{{ asset('site_assets_1/assets/1a9ve2/js/chpag.fquiv23.js') }}"></script>
-<script type="text/javascript" src="{{ asset('site_assets_1/assets/js/searchsidenavbarscript.js') }}"></script>
-{{-- <script rel="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> --}}
 <script rel="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.8/slick.min.js"></script>
 @endsection
