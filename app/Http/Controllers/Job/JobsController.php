@@ -102,8 +102,8 @@ class JobsController extends Controller
 
         $titles = Title::where('hit_count','!=',0)->orderBy('hit_count','desc')->take(5)->get();
         $this->shareSeoToLayout('candidate_home');
-        $blog = Blog::orderBy('created_at','desc')->take(5)->get();
-        return view('candidate-home', compact('titles', 'near_job', 'recent_job', 'job_list', 'top_cities', 'top_sector', 'blog'));
+        // $blog = Blog::orderBy('created_at','desc')->take(5)->get();
+        return view('candidate-home', compact('titles', 'near_job', 'recent_job', 'job_list', 'top_cities', 'top_sector'));
 
     }
     
