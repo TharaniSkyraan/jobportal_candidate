@@ -1,3 +1,174 @@
+/* atlantis */
+.b,.mail-wrapper .mail-content .inbox-body .email-list .email-list-item.unread .email-list-detail .from,.page-title,.sidebar .nav-collapse li.active>a,.sidebar[data-background-color=white] .nav-collapse li.active>a,.strong,b,strong {
+    font-weight: 600
+}
+
+.wrapper,body {
+    min-height: 100vh
+}
+
+.breadcrumbs li a i,body {
+    font-size: 16px
+}
+
+:focus {
+    outline: 0!important;
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important
+}
+
+.alert,.brand,.btn-simple,.h1,.h2,.h3,.h4,.h5,.h6,.navbar,.td-name,a,body,button.close,h1,h2,h3,h4,h5,h6,p,td {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased
+}
+
+.card-profile,.sidebar .nav>.nav-item a[data-toggle=collapse][aria-expanded=true] p,.sidebar[data-background-color=white] .nav>.nav-item a[data-toggle=collapse][aria-expanded=true] p,body,body[data-background-color=dark] .board {
+    color: #575962
+}
+
+.accordion.accordion-primary .card .card-header,.card-pricing2.card-primary .value,.nav.nav-line.nav-color-primary .nav-link:focus,.nav.nav-line.nav-color-primary .nav-link:hover,.quick-actions.quick-actions-primary .quick-actions-item,a {
+    color: #1572e8
+}
+
+a:focus,a:hover {
+    color: #1269db
+}
+
+.h1,h1 {
+    font-size: 1.725rem
+}
+
+.h2,h2 {
+    font-size: 1.35rem
+}
+
+.h3,h3 {
+    font-size: 1.1625rem
+}
+
+.h4,h4 {
+    font-size: 1.0375rem
+}
+
+.h5,h5 {
+    font-size: .9125rem
+}
+
+.h6,h6 {
+    font-size: .825rem
+}
+
+p {
+    font-size: 14px;
+    line-height: 1.62;
+    word-break: break-word
+}
+
+.h1,.h2,.h3,.h4,.h5,.h6,h1,h2,h3,h4,h5,h6 {
+    line-height: 1.4
+}
+
+.h1 a,.h2 a,.h3 a,.h4 a,.h5 a,.h6 a,body[data-background-color=dark] .list-group .list-group-item-text,body[data-background-color=dark] .list-group-messages .list-group-item-title a,h1 a,h2 a,h3 a,h4 a,h5 a,h6 a {
+    color: inherit
+}
+
+.card-tasks .card-body .table td,.dropdown-item,.mail-wrapper .mail-content .inbox-body .email-list .email-list-item .email-list-detail .from,.quick-actions .quick-actions-header .subtitle,.small,small {
+    font-size: 13px
+}
+
+label {
+    color: #212529!important;
+    font-size: 16px!important;
+    font-weight: 400;
+    margin-bottom: 0
+}
+.fw-bold {
+    font-weight: 600!important
+}
+.wrapper {
+    position: relative;
+    top: 0;
+    height: 100vh
+}
+
+.main-header {
+    z-index: 1046;
+    min-height: 60px
+}
+
+.breadcrumbs li a:hover,.logo-header .big-logo:hover,.logo-header .logo:hover,.mail-wrapper .mail-content .email-attachments ul li a:hover,.page-with-aside .page-aside .aside-nav .nav>li>a:focus,.page-with-aside .page-aside .aside-nav .nav>li>a:hover,.profile-pic:focus,.profile-pic:hover,.quick-actions a:hover,.sidebar .nav>.nav-item a:focus,.sidebar .nav>.nav-item a:hover,.sidebar .user .info a:focus,.sidebar .user .info a:hover,.sidebar[data-background-color=white] .nav>.nav-item a:focus,.sidebar[data-background-color=white] .nav>.nav-item a:hover,.sidebar[data-background-color=white] .user .info a:focus,.sidebar[data-background-color=white] .user .info a:hover {
+    text-decoration: none
+}
+
+.footer,.page-sidebar {
+    position: absolute;
+    width: 100%
+}
+
+.footer {
+    border-top: 1px solid #eee;
+    padding: 15px;
+    background: #fff
+}
+.avatar-sm {
+    width: auto;
+    height: 2.5rem
+}
+.card,.card-light {
+    margin-bottom: 30px;
+    border-radius: 5px;
+    background-color: #fff;
+    -webkit-box-shadow: 2px 6px 15px 0 rgba(69,65,78,.1);
+    -moz-box-shadow: 2px 6px 15px 0 rgba(69,65,78,.1);
+    box-shadow: 2px 6px 15px 0 rgba(69,65,78,.1);
+    border: 0
+}
+
+.accordion.accordion-danger .card .card-header,.accordion.accordion-danger .card .card-header .btn-link,.accordion.accordion-default .card .card-header,.accordion.accordion-default .card .card-header .btn-link,.accordion.accordion-info .card .card-header,.accordion.accordion-info .card .card-header .btn-link,.accordion.accordion-primary .card .card-header,.accordion.accordion-primary .card .card-header .btn-link,.accordion.accordion-secondary .card .card-header,.accordion.accordion-secondary .card .card-header .btn-link,.accordion.accordion-success .card .card-header,.accordion.accordion-success .card .card-header .btn-link,.accordion.accordion-warning .card .card-header,.accordion.accordion-warning .card .card-header .btn-link,.form-control {
+    font-size: 14px
+}
+.form-control {
+    border-color: #ccc;
+    height: inherit!important
+}
+.hidden-caret .dropdown-toggle::after {
+    display: none!important
+}
+
+.profile-pic span {
+    font-size: 13px;
+    font-weight: 300;
+    padding: 0 10px;
+    color: #555
+}
+.dropdown-menu {
+    border: 0;
+    border-radius: 3px;
+    box-shadow: 0 1px 11px rgba(0,0,0,.15)!important;
+    padding-bottom: 8px;
+    margin-top: 3px
+}
+
+.dropdown-user {
+    width: 210px
+}
+.btn,.btn-lg {
+    border-radius: 3px
+}
+.btn {
+    padding: .6rem 1.4rem;
+    font-size: 14px;
+    opacity: 1
+}
+
+.fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn
+}
+
+.bg-primary,.timeline-badge.primary {
+    background-color: #1572e8!important
+}
 
 /* From user_skill.css */
 .form-check label,.form-group label,.fw-bolder,form label {
@@ -60,6 +231,40 @@ table{
 
 /* From userbasic.w2fr4ha2.css */
 
+.typeahead, .tt-query, .tt-hint {
+    border: 1px solid #CCCCCC;
+    border-radius: .25rem;
+    font-size: 14px; /* Set input font size */
+    /* height: 30px; */
+    line-height: 24px;
+    /* outline: medium none; */
+    padding: 0.6rem 1rem;
+    width: 100%;
+}
+.typeahead {
+    background-color: #FFFFFF !important;
+}
+.form-control-2 {
+    border-color: #ccc;
+    height: inherit!important;
+}
+.form-control-2 {
+    display: block;
+    width: 100%;
+    padding: 0.6rem 1rem;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid lightgrey;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
 
 /*  */
 #homepage_stn .hm_gr h3, #homepage_stn strong.fw-bolder, .hmenear_job p {

@@ -11,10 +11,11 @@
     <link href="{{ asset('site_assets_1/assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Main CSS File -->
+    <link href="{{asset('site_assets_1/assets/4wuiq1Y2/css/hmewq1om.css')}}" rel="stylesheet">
     <link href="{{ asset('site_assets_1/assets/css/style.min.css') }}" rel="stylesheet">
     <link href="{{ asset('site_assets_1/assets/css/custom_style.css?v1') }}" rel="stylesheet">
-    <link href="{{ asset('site_assets_1/assets/css/atlantis.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/user_skill.min.css') }}" rel="stylesheet">
+    <!-- <link href="{{ asset('site_assets_1/assets/css/atlantis.min.css') }}" rel="stylesheet"> -->
+    <!-- <link href="{{ asset('css/user_skill.min.css') }}" rel="stylesheet"> -->
     <link href="{{ asset('site_assets_1/assets/css/sidenavbarstyle.css') }}" rel="stylesheet">
 
     <!-- Google Fonts -->
@@ -29,9 +30,8 @@
     <script type="text/javascript" src="{{ asset('site_assets_1/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js') }}"></script>
 
     <!-- custom style -->
-    <link href="{{ asset('site_assets_1/assets/1a9ve2/css/userbasic.w2fr4ha2.css')}}" rel="stylesheet">
+    <!-- <link href="{{ asset('site_assets_1/assets/1a9ve2/css/userbasic.w2fr4ha2.css')}}" rel="stylesheet"> -->
     <link href="{{ asset('site_assets_1/assets/1a9ve2/css/chpg.er23fw.css')}}" rel="stylesheet">
-    <link href="{{asset('site_assets_1/assets/4wuiq1Y2/css/hmewq1om.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.8/slick.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.8/slick-theme.min.css">
