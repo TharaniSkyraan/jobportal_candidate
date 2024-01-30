@@ -240,17 +240,17 @@
                                     <ul class="nav nav-tabs justify-content-around" id="candiftabs" role="tablist">
                                         @if(count($job_list)!=0)
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link active" id="received-tab" data-bs-toggle="tab" data-bs-target="#topjoblistings" type="button" role="tab" aria-controls="received" aria-selected="true"> Job Listings</button>
+                                            <button class="nav-link active" id="received-tab" data-bs-toggle="tab" data-bs-target="#topjoblistings" type="button" role="tab" aria-controls="received-tab" aria-selected="true"> Job Listings</button>
                                         </li>  
                                         @endif
                                         @if(count($top_cities)!=0)
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link @if(count($job_list)==0) active @endif" id="suggested-tab" data-bs-toggle="tab" data-bs-target="#topcities" type="button" role="tab" aria-controls="suggested" aria-selected="false">Cities</button>
+                                            <button class="nav-link @if(count($job_list)==0) active @endif" id="suggested-tab" data-bs-toggle="tab" data-bs-target="#topcities" type="button" role="tab" aria-controls="suggested-tab" aria-selected="false">Cities</button>
                                         </li>
                                         @endif
                                         @if(count($top_sector)!=0)
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link @if(count($job_list)==0 && count($top_cities)==0) active @endif" id="shortlisted-tab" data-bs-toggle="tab" data-bs-target="#topjobsector" type="button" role="tab" aria-controls="shortlisted" aria-selected="false">Job Sectors</button>
+                                            <button class="nav-link @if(count($job_list)==0 && count($top_cities)==0) active @endif" id="shortlisted-tab" data-bs-toggle="tab" data-bs-target="#topjobsector" type="button" role="tab" aria-controls="shortlisted-tab" aria-selected="false">Job Sectors</button>
                                         </li>
                                         @endif
                                     </ul>
