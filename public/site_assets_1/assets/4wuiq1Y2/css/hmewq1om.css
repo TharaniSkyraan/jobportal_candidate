@@ -475,7 +475,7 @@ table{
     padding-top: 3.5rem;
 }
 .hme_banner {
-    background: url('../../../../images/home/img.png') 0 0/cover no-repeat;
+    /* background: url('../../../../images/home/img.png') 0 0/cover no-repeat; */
 }
 .reserch .titsearch {
     border: 1px solid #4285f4c7;
