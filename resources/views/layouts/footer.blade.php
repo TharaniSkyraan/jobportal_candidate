@@ -2,42 +2,39 @@
 
 <style>
    #footer .align_ftr{
-        background-image: url('{{asset('images/footer_bg.webp')}}');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-color: hsla(0,0%,100%,0.40);
-        background-blend-mode: overlay;
+      background-image: url('{{asset('images/footer_bg.webp')}}');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-color: hsla(0,0%,100%,0.40);
+      background-blend-mode: overlay;
     }
-
 
     @media(min-width: 320px) and (max-width: 767px)  {
       #footer .align_ftr{
-              background-image: url('{{asset('images/footer_bg.webp')}}');
-              background-repeat: no-repeat;
-              background-size: contain;
-              background-position: bottom;
-          }
-      }
-
+          background-image: url('{{asset('images/footer_bg.webp')}}');
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: bottom;
+        }
+    }
       
     @media(min-width: 768px) and (max-width: 1300px)  {
       #footer .align_ftr{
-              background-image: url('{{asset('images/footer_bg.webp')}}');
-              background-repeat: no-repeat;
-              background-size: contain;
-              background-position: bottom;
-          }
-      }#footer .align_ftr li img {
+        background-image: url('{{asset('images/footer_bg.webp')}}');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: bottom;
+      }
+    }
+
+    #footer .align_ftr li img {
         margin-right: 5px;
     }.footer_logo img{
         width: 155px;
     }#footer .align_ftr h3{
       font-size: 17px;
       font-weight: 600;
-    }
-
-
-      
+    }     
 
 </style>
 

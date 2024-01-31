@@ -31,9 +31,6 @@
     <script type="text/javascript" src="{{ asset('site_assets_1/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('site_assets_1/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('site_assets_1/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('site_assets_1/assets/js/main.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('site_assets_1/assets/js/validationss.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('site_assets_1/assets/1a9ve2/js/chpag.fquiv23.js') }}"></script>
 
 </head>
 
@@ -48,6 +45,9 @@
 </body>
 
     <!-- Vendor script -->
+    <script type="text/javascript" src="{{ asset('site_assets_1/assets/js/main.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('site_assets_1/assets/js/validationss.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('site_assets_1/assets/1a9ve2/js/chpag.fquiv23.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" integrity="sha512-HWlJyU4ut5HkEj0QsK/IxBCY55n5ZpskyjVlAoV9Z7XQwwkqXoYdCIC93/htL3Gu5H3R4an/S0h2NXfbZk3g7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script rel="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.8/slick.min.js"></script>
 </html>
