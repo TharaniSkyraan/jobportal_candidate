@@ -134,7 +134,7 @@
                                     <div class="mobile_bnr">
                                         <div class="row">
                                             <div class="col-4 mbalgnsl text-end align-self-center col-lg">
-                                                <img draggable="false" src="{{asset('images/provode_info.png')}}"  alt="provide_req_info_mob">
+                                                <img draggable="false" src="{{asset('images/provode_info.webp')}}"  alt="provide_req_info_mob">
                                             </div>
                                             <div class="col-8 col-lg">
                                                 <h2 class="fw-bolder mt-2">Provide the Required Info</h2>
@@ -143,19 +143,19 @@
                                         </div>
                                     </div>
                                     <div class="system_vw">
-                                        <img draggable="false" src="{{asset('images/provode_info.png')}}" alt="provide_req_info_web">
+                                        <img draggable="false" src="{{asset('images/provode_info.webp')}}" alt="provide_req_info_web">
                                         <h2 class="fw-bolder mt-2">Provide the Required Info</h2>
                                         <p>Your profile completeness is like your first introduction to the job.</p>
                                     </div>
                                 </div>
                                 <div class="col-md arrow align-self-center">
-                                    <img draggable="false" src="{{asset('images/home_arrow.png')}}" alt="provide_req_info_following_arrow">
+                                    <img draggable="false" src="{{asset('images/home_arrow.webp')}}" alt="provide_req_info_following_arrow">
                                 </div> 
                                 <div class="col-md align-self-center">
                                     <div class="mobile_bnr">
                                         <div class="row">
                                             <div class="col-4 text-end align-self-center col-lg">
-                                                <img draggable="false" src="{{asset('images/explore_opportunities.png')}}" alt="explore_opportunities_mob">
+                                                <img draggable="false" src="{{asset('images/explore_opportunities.webp')}}" alt="explore_opportunities_mob">
                                             </div>
                                             <div class="col-8 col-lg">
                                                 <h2 class="fw-bolder mt-2">Explore your Opportunities</h2>
@@ -164,7 +164,7 @@
                                         </div>
                                     </div>
                                     <div class="system_vw">
-                                        <img draggable="false" src="{{asset('images/explore_opportunities.png')}}" alt="explore_opportunities_web">
+                                        <img draggable="false" src="{{asset('images/explore_opportunities.webp')}}" alt="explore_opportunities_web">
                                         <h2 class="fw-bolder mt-2">Explore your Opportunities</h2>
                                         <p>find more jobs, more Resumes in no time.</p>
                                     </div>
