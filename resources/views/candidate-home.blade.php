@@ -122,13 +122,13 @@
                                         </div>
                                     </div>
                                     <div class="system_vw">
-                                        <img draggable="false" src="{{asset('images/create_profile.png')}}"  alt="create_profile_web">
+                                        <img draggable="false" src="{{asset('images/create_profile.webp')}}"  alt="create_profile_web">
                                         <h2 class="fw-bolder mt-2">Create Profile</h2>
                                         <p>Flow simple steps to create your profile</p>
                                     </div>
                                 </div>
                                 <div class="col-md arrow align-self-center">
-                                    <img draggable="false" src="{{asset('images/home_arrow.png')}}" alt="profile_following_arrow">
+                                    <img draggable="false" src="{{asset('images/home_arrow.webp')}}" alt="profile_following_arrow">
                                 </div>                                  
                                 <div class="col-md">
                                     <div class="mobile_bnr">
