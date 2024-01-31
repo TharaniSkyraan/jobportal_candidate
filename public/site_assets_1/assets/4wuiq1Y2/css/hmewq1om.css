@@ -1,4 +1,8 @@
-/* atlantis */
+/* style.min.css */
+
+
+
+/* atlantis.min.css */
 .b,.mail-wrapper .mail-content .inbox-body .email-list .email-list-item.unread .email-list-detail .from,.page-title,.sidebar .nav-collapse li.active>a,.sidebar[data-background-color=white] .nav-collapse li.active>a,.strong,b,strong {
     font-weight: 600
 }
@@ -170,6 +174,21 @@ label {
     background-color: #1572e8!important
 }
 
+@media screen and (max-width: 767px) {
+
+    .dropdown-user .dropdown-user-scroll {
+        max-height: calc(100vh - 132px)
+    }
+    .main-header,.main-panel,.navbar-header,.sidebar {
+        transition: .5s
+    }
+    .nav-toggle,.profile-pic span {
+        display: none
+    }
+    body,body[data-background-color=bg1] {
+        background: #f9fbfd
+    }
+}
 /* From user_skill.css */
 .form-check label,.form-group label,.fw-bolder,form label {
     font-weight: 400!important
@@ -228,7 +247,68 @@ label {
 table{
     border-collapse: unset !important;
 }
+.dropdown .progressbar, .user .progressbar {
+    --percentage: var(--value);
+    --secondary: rgb(241, 243, 245);
+    --primary: #00D599;
+    --size: 60px;
+    animation: progress 2s 0.5s forwards;
+    width: var(--size);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    font-size: 12px;
+    margin-left: 12px;
+    transition: all 0.4s ease;  
+    font-weight: 600;
+    }
+    
+    .dropdown .progressbar::before, .user .progressbar::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: conic-gradient(var(--primary) calc(var(--percentage) * 1%), var(--secondary) 0);
+    mask: radial-gradient(white 55%, transparent 0);
+    mask-mode: alpha;
+    -webkit-mask: radial-gradient(#0000 60%, #000 0);
+    -webkit-mask-mode: alpha;
+    }
+        
+    .pending [role="progressbar"]
+    {  
+    --primary: #ffc800;
+    }
 
+    .completed [role="progressbar"]
+    {  
+    --primary: #00D599;
+    }
+
+    .web-nav [role="progressbar"]
+    {  
+    --size: 52px;
+    margin-left: 0px;
+    }
+    .navbar .dropdown ul .user a{
+    padding: 10px 12px 0px 16px;
+    cursor: default !important;
+    }
+
+    .navbar .dropdown ul .user .completion{
+    font-size: 14px;
+    }
+
+    .navbar .dropdown ul hr{
+    color: #cbc6c6;
+    margin: 10px 20px;
+    }
+    
 /* From userbasic.w2fr4ha2.css */
 
 .typeahead, .tt-query, .tt-hint {
@@ -517,6 +597,9 @@ table{
 }
 .home_pgecities .card {
     box-shadow: 0 3px 6px #00000029!important;
+}.candidate_img img {
+    width: 80px;
+    margin: 0 auto;
 }
 @media(min-width:1200px) {
     .candpcard .kjhmg_yb p {

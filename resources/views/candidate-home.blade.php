@@ -7,7 +7,6 @@
     }
     </style>
     @include('layouts.header')
-    @include('layouts.search_side_navbar')
     <div class="content">
         <div class="myprofile_sec">
             <!--alert profile-->
@@ -345,7 +344,7 @@
         </section>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>    
     <script type="text/javascript"> 
         // var baseurl = '{{ url("/") }}/';
@@ -470,10 +469,4 @@
 
 @section('footer')
     @include('layouts.footer')
-@endsection
-
-@section('custom_bottom_scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" integrity="sha512-HWlJyU4ut5HkEj0QsK/IxBCY55n5ZpskyjVlAoV9Z7XQwwkqXoYdCIC93/htL3Gu5H3R4an/S0h2NXfbZk3g7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script type="text/javascript" src="{{ asset('site_assets_1/assets/1a9ve2/js/chpag.fquiv23.js') }}"></script>
-<script rel="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.8/slick.min.js"></script>
 @endsection

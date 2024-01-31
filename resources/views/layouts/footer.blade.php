@@ -1,8 +1,5 @@
 <!--======= Footer =======-->
 <link rel="stylesheet" href="{{asset('css/main_2.min.css')}}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
 
 <style>
    #footer .align_ftr{
