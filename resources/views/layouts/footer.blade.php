@@ -1,5 +1,4 @@
 <!--======= Footer =======-->
-<link rel="stylesheet" href="{{asset('css/main_2.min.css')}}">
 
 <style>
    #footer .align_ftr{

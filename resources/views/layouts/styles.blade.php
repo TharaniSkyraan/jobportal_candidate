@@ -3,6 +3,7 @@
 <link href="{{ asset('site_assets_1/assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
 
 <!-- Main CSS File -->
+<link rel="stylesheet" href="{{asset('css/main_2.min.css')}}">
 <link href="{{ asset('site_assets_1/assets/css/style.min.css') }}" rel="stylesheet">
 <link href="{{ asset('site_assets_1/assets/css/custom_style.css?v1') }}" rel="stylesheet">
 <link href="{{ asset('site_assets_1/assets/css/atlantis.min.css') }}" rel="stylesheet">

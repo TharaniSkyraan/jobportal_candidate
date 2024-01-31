@@ -9,6 +9,7 @@
 
     <!-- Main CSS File -->
     <link href="{{ asset('site_assets_1/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/main_2.min.css')}}">
     <link href="{{ asset('site_assets_1/assets/4wuiq1Y2/css/hmewq1om.css') }}" rel="stylesheet">
     <link href="{{ asset('site_assets_1/assets/css/style.min.css') }}" rel="stylesheet">
     <link href="{{ asset('site_assets_1/assets/1a9ve2/css/chpg.er23fw.css')}}" rel="stylesheet">
