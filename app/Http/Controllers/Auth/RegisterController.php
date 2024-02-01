@@ -415,10 +415,10 @@ class RegisterController extends Controller
         if ($request->hasFile('file')) 
         {
 
-            $request->validate([
-                'file' => 'required|file|mimes:pdf,docx,doc,txt,rtf|max:2048',
-            ]);        
-         
+            // $request->validate([
+            //     'file' => 'required|file|mimes:pdf,docx,doc,txt,rtf|max:2048',
+            // ]);        
+
             $path = Storage::disk('s3')->put('candidate/'.$user->token.'/file', $request->file);
             $url = Storage::disk('s3')->url($path);
             // $path = Storage::disk('public')->put('cv_uploads', $request->file('file'));
