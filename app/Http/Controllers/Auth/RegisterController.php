@@ -415,7 +415,6 @@ class RegisterController extends Controller
         if ($request->hasFile('file')) 
         {
 
-            dd($request->all());
             $request->validate([
                 'file' => 'required|file|mimes:pdf,docx,doc,txt,rtf|max:2048',
             ]);        
