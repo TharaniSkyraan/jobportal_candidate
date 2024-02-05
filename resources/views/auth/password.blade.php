@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.pages.common_app')
 
 
 @section('custom_scripts')
@@ -8,7 +8,7 @@
 
 @section('content')
 
-@include('layouts.header')
+@include('layouts.header.header')
 
 <style>
   .navbar{
@@ -198,7 +198,7 @@
 @endsection
 @section('footer')
 
-@include('layouts.footer')
+@include('layouts.footer.footer')
 <script>
     let baseurl = '{{ url("/") }}';
     let is_exist = '{{ $is_exist }}';

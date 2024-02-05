@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.pages.common_app')
 <style>
 ul.typeahead.dropdown-menu {
     max-height: 188px !important;

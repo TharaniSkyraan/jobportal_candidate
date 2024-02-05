@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.pages.common_app')
 
 @section('content')
 
-@include('layouts.header')
+@include('layouts.header.header')
   <div class="main">
 <section class="gradient-custom mt-5 mb-5">
     <div class="container-xxl container-p-y">
@@ -20,5 +20,5 @@
 @endsection
 
 @section('footer')
-@include('layouts.footer')
+@include('layouts.footer.footer')
 @endsection

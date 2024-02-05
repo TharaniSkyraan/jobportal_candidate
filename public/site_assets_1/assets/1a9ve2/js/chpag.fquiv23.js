@@ -10,11 +10,11 @@ function handleScreenSizeChange() {
     
 
     if((ini_screensize<=mobile_screen) && (screenWidth<web_screen)){
-        console.log('Mob screen');
+        // console.log('Mob screen');
     }
 
     if((ini_screensize>mobile_screen) && (screenWidth>=web_screen)){
-        console.log('Web screen');
+        // console.log('Web screen');
     }
 
     if((ini_screensize>=web_screen) && (screenWidth<=mobile_screen)){
@@ -30,11 +30,11 @@ function handleScreenSizeChange() {
 }
 
 // Attach the event listener to window resize
-// $(window).resize(function() {
-//     if(widtherror=='no'){
-//         handleScreenSizeChange();
-//     }
-// });
+$(window).resize(function() {
+    if(widtherror=='no'){
+        // handleScreenSizeChange();
+    }
+});
 
 // Call the function initially
 handleScreenSizeChange();

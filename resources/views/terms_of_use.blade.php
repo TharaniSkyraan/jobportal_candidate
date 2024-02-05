@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.pages.common_app')
 @section('custom_scripts')
     <link href="{{ asset('site_assets_1/assets/css/static_css.css') }}" rel="stylesheet">
 @endsection
 @section('title') Mugaam - Terms & Conditions @endsection
 @section('content')
 
-    @include('layouts.header')
+    @include('layouts.header.header')
     
     <section class="terms_conditions mt-2 text-justify">
         <div class="container mt-5 ">
@@ -679,6 +679,6 @@
 
 @endsection
 @section('footer')
-@include('layouts.footer')
+@include('layouts.footer.footer')
 
 @endsection

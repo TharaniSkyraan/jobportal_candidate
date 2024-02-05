@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.pages.common_app')
 
 
 @section('content')
-@include('layouts.header')
+@include('layouts.header.header')
  <!-- ======= Hero Section ======= -->
  <section id="hero" class="hero d-flex align-items-center">
 
@@ -28,5 +28,5 @@
 
 </section><!-- End Hero -->
 
-@include('layouts.footer')
+@include('layouts.footer.footer')
 @endsection

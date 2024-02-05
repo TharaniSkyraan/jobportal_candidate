@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.pages.common_app')
 
 @section('content') 
 
 <!-- Header start --> 
 
-@include('layouts.header') 
+@include('layouts.header.header') 
 
 <!-- Header end --> 
 
@@ -56,7 +56,7 @@
 
 </div>
 
-@include('includes.footer')
+@include('includes.footer.footer')
 
 @endsection
 

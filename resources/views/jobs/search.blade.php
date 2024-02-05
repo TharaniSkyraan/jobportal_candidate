@@ -1,45 +1,11 @@
-@extends('jobs.app')
-
-@section('custom_styles')
-<link href="{{ asset('site_assets_1/assets/1a9ve2/css/filters.w2fr4ha2.css')}}" rel="stylesheet">
-<style>
-    input[type="search"]::-webkit-search-cancel-button {
-        -webkit-appearance: none;
-        height: 1em;
-        width: 1em;
-        border-radius: 50em;
-        background: url("{{ url('site_assets_1/assets/images/close-btn.svg') }}") no-repeat 50% 50%;
-        background-size: contain;
-        opacity: 0;
-        pointer-events: none;
-    }  
-    input[type="search"]:focus::-webkit-search-cancel-button {
-        opacity: .6;
-        pointer-events: all;
-        cursor: pointer;
-        font-size:14px;
-    }.tooltip-inner{
-        background-color: #ea4335fa !important;
-    }
-    
-    /* .added {
-        position: fixed;
-        top: 60px;
-        z-index: 1;
-        background: #fff;
-        width: 306px;
-        box-shadow: 0px 8px 6px -6px rgba(0, 0, 0, 0.1);
-    } */
-</style>
-@endsection
+@extends('layouts.pages.jobs.search_app')
 
 @section('content')
 
 <div class="">
 
-	@include('layouts.header')
-	@include('layouts.search_side_navbar')
-
+	@include('layouts.header.header')
+    
     <div class="search-inp-sec">
         <div class="container-xl">
             <div class="row justify-content-center jhier_ngfey">
@@ -281,20 +247,20 @@
 </div>
 
 
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" data-backdrop="false" aria-labelledby="offcanvasExampleLabel">
   <div class="offcanvas-body mob-res-filter">
 
   </div>
 </div>
 @include('user.complete-profile-modal')
 <script>
-    $('.fileter.mobile').click(function(){
-        $("#header").addClass('remove');
-    });
+    // $('.fileter.mobile').click(function(){
+    //     $("#header").addClass('remove');
+    // });
     
-    $(document).on('click', '.ok' , function(e){
-        $("#header").removeClass('remove');
-    });
+    // $(document).on('click', '.ok' , function(e){
+    //     $("#header").removeClass('remove');
+    // });
 
     // $(document).ready(function() {
     //     var elementPosition = $('.sidebar-style-2').offset();
@@ -312,9 +278,4 @@
 var baseurl = '{{ url("/") }}/';
 var is_login = '{{ Cookie::get("is_login") }}';
 </script>
-<script type="text/javascript" src="{{ asset('site_assets_1/assets/js/input_tag/jquery-ui.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('site_assets_1/assets/1a9ve2/js/filters.51e7k9a1.js?v=1.114333') }}"></script>
-<script  type="text/javascript" src="{{ asset('site_assets_1/assets/vendor/typehead/typeahead.bundle.js') }}"></script>
-<script type="text/javascript" src="{{ asset('site_assets_1/assets/1a9ve2/js/sercpag.fquiv23.js') }}"></script>
-<script type="text/javascript" src="{{ asset('site_assets_1/assets/js/searchsidenavbarscript.js') }}"></script>
 @endsection

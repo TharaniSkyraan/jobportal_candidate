@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.pages.common_app')
 @section('custom_scripts')
 <link href="{{ asset('css/candidate_wzrd.css') }}" rel="stylesheet">
 @endsection
@@ -57,7 +57,7 @@
 
 @endsection
 @section('footer')
-{{-- @include('layouts.footer') --}}
+{{-- @include('layouts.footer.footer') --}}
 <script>
     let baseurl = '{{ url("/") }}';
     let otp = '{{ $otp }}';

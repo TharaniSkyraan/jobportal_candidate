@@ -1,10 +1,11 @@
-@extends('jobs.app') 
+@extends('layouts.pages.jobs.app')
+ 
 @section('custom_styles')
-<link href="{{ asset('css/hgtvwtiya.css')}}" rel="stylesheet">
+<link href="{{ asset('site_assets_1/assets/2e9ejr3/css/hgtvwtiya.css')}}" rel="stylesheet">  
 @endsection
 @section('content')
 
-@include('layouts.header')
+    @include('layouts.header.header')
 
     <div class="sdad_aw">
         @if($job->is_active==3 || $job->is_active==2)

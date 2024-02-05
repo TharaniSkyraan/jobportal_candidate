@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.pages.common_app')
 
 @section('custom_scripts')
     <link href="{{ asset('site_assets_1/assets/css/input_tag/jquery-ui.min.css')}}" rel="stylesheet">
@@ -14,8 +14,8 @@
 @section('title') Mugaam - My Projects Page @endsection
 @section('content')
 <div class="wrapper" >
-	@include('layouts.dashboard_header')
-	@include('layouts.side_navbar')
+	@include('layouts.header.auth.dashboard_header')
+	@include('layouts.sidenavbar.side_navbar')
 
 	<div class="main-panel main-panel-custom">
 		<div class="content">

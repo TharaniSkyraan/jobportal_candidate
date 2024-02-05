@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.pages.common_app')
 @section('custom_scripts')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <link href="{{asset('css/candidate_wzrd.css')}}" rel="stylesheet">

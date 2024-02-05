@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.pages.common_app')
 
 
 @section('content')
-@include('layouts.header')
+@include('layouts.header.header')
 <!-- Header end --> 
 <!-- Inner Page Title start -->
 <!-- Inner Page Title end -->
@@ -17,5 +17,5 @@
         </div>
     </div>  
 </section>
-@include('layouts.footer')
+@include('layouts.footer.footer')
 @endsection

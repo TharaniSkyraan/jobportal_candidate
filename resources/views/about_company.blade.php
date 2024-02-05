@@ -1,5 +1,5 @@
 
-@extends('layouts.app')
+@extends('layouts.pages.common_app')
 @section('custom_styles')
 <style>
 section{
@@ -186,7 +186,7 @@ section{
 @endsection
 
 @section('footer')
-    @include('layouts.footer')
+    @include('layouts.footer.footer')
 @endsection
 
 @push('scripts')

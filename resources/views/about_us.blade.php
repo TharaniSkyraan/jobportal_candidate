@@ -1,5 +1,4 @@
-
-@extends('layouts.app')
+@extends('layouts.pages.common_app')
 
 @section('custom_styles')
 <style>
@@ -17,7 +16,7 @@ section{
 @endsection
 @section('content')
 
-    @include('layouts.header')
+    @include('layouts.header.header')
 
     <section class="about-style-01">
         <div class="container border-bottom border-color-extra-light-gray mb-1-9 mb-lg-6 pb-5 pb-1-9 pb-lg-6">
@@ -168,7 +167,7 @@ section{
 @endsection
 
 @section('footer')
-    @include('layouts.footer')
+    @include('layouts.footer.footer')
 @endsection
 
 @push('scripts')

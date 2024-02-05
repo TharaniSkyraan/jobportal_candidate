@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.pages.common_app')
 @section('custom_scripts')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js"></script>
@@ -13,8 +13,8 @@
 
 @section('content')
 <div class="wrapper" >
-	@include('layouts.dashboard_header')
-	@include('layouts.side_navbar')    
+	@include('layouts.header.auth.dashboard_header')
+	@include('layouts.sidenavbar.side_navbar')    
     @if(Session::has('message'))
         <script>toastr.success("{{ Session('message') }}");</script>
     @endif

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.pages.common_app')
 
 @section('custom_styles')	 
   <link href="{{ asset('site_assets_1/assets/vendor/select2/select2.min.css') }}" rel="stylesheet">
@@ -10,8 +10,8 @@
  $status = ($message)?(($message->candidate_active_status!='')?$message->candidate_active_status:'inbox'):'inbox';
 @endphp
 <div class="wrapper">
-  @include('layouts.dashboard_header')
-  @include('layouts.side_navbar')
+  @include('layouts.header.auth.dashboard_header')
+  @include('layouts.sidenavbar.side_navbar')
 
 	<div class="main-panel main-panel-custom main-panel-customize">
 		<div class="content">

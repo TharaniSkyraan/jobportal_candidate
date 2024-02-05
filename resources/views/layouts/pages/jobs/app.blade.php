@@ -7,21 +7,23 @@
     <!-- Favicons -->
     <link href="{{ asset('site_assets_1/favicon.ico')}}" rel="icon">
     <link href="{{ asset('site_assets_1/favicon.ico')}}" rel="apple-touch-icon">
+
+    <!-- Vendor CSS Files -->
+    @include('layouts.style.styles')
     
-    @include('layouts.styles')
-    @include('layouts.top_scripts')
+    @include('layouts.style.script')
+
     @yield('custom_styles')
 </head>
 <body>
     <div id="page-container">
         @yield('content')
 
-        @include('layouts.scripts')
-
         @yield('modals')
         
         @yield('custom_scripts')
     </div>
-    @include('layouts.footer')
+    @include('layouts.footer.footer')
 </body>
+    @include('layouts.style.custom_script')
 </html>

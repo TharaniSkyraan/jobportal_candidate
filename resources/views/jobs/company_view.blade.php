@@ -1,12 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.pages.app')
 @section('custom_styles')
-    <link href="{{ asset('css/hjb2wrli.css')}}" rel="stylesheet">
+    <link href="{{ asset('site_assets_1/assets/2e9ejr3/css/hjb2wrli.css')}}" rel="stylesheet">    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" rel="stylesheet" />
 @endsection
 @section('content')
 @section('title'){{$breadcrumbs->title}} - {{$company->name}} @endsection
-@include('layouts.header')
+@include('layouts.header.header')
     @php 
         $arra=array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
     @endphp
@@ -192,5 +192,5 @@
 @endsection
 
 @section('footer')
-    @include('layouts.footer')
+    @include('layouts.footer.footer')
 @endsection

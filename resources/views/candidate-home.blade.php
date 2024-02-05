@@ -1,4 +1,4 @@
-@extends('layouts.landing-app')
+@extends('layouts.pages.jobs.landing-app')
 
 @section('content')
     <style>
@@ -6,30 +6,10 @@
         width:7px;
     }
     </style>
-    @include('layouts.header')
+    @include('layouts.header.header')
     <div class="content">
-        <div class="myprofile_sec">
-            <!--alert profile-->
-            @if(Auth::check())
-                @if(Auth::user()->getProfilePercentage() < 80)
-                    <div class="alert_prnt">
-                        <div class="alert pfcmpletalert alert-dismissible fade show" role="alert">
-                            <div class="row">
-                                <div class="col-2 wrning text-center">
-                                    <img draggable="false" src="{{ asset('images/warning.png')}}">
-                                </div>
-                                <div class="col-9 align-self-center">
-                                    <span>Increase your profile visibility to recruiters by completing your profile</span>
-                                </div>
-                                <div class="col-1 align-self-center">
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
-                @endif
-            @endif
-        </div>
+        
+        @include('layouts.pages.jobs.profile_percentage')
 
         <section id="homepage_stn">
             <div class="pmbg_yt pb-0 pt-0">
@@ -344,7 +324,6 @@
         </section>
     </div>
 
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>    
     <script type="text/javascript"> 
         // var baseurl = '{{ url("/") }}/';
@@ -468,5 +447,5 @@
 @endsection
 
 @section('footer')
-    @include('layouts.footer')
+    @include('layouts.footer.footer')
 @endsection

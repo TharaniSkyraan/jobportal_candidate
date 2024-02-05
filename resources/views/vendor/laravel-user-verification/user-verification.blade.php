@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.pages.common_app')
 @section('content')
 <!-- Header start -->
-@include('layouts.header')
+@include('layouts.header.header')
 <!-- Header end --> 
 <!-- Inner Page Title start -->
 @include('includes.inner_page_title', ['page_title'=>__('User Verification')])

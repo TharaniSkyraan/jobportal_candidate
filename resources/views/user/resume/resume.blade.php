@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.pages.common_app')
 @section('title') Mugaam - My Resume Page @endsection
 @section('content')
 <div class="wrapper" >
-	@include('layouts.dashboard_header')
-	@include('layouts.side_navbar')
+	@include('layouts.header.auth.dashboard_header')
+	@include('layouts.sidenavbar.side_navbar')
 <style>
 @media (min-width: 280px) and (max-width: 767px){
     .replace-resume{

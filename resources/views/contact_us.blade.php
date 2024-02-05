@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.pages.common_app')
 @section('custom_scripts')
 <link href="{{ asset('site_assets_1/assets/css/static_css.css') }}" rel="stylesheet">
 <link href="{{ asset('site_assets_1/assets/css/contactus.css') }}" rel="stylesheet">
 @endsection
 @section('title') Mugaam - Contact Us @endsection
 @section('content')
-@include('layouts.header')
+@include('layouts.header.header')
 <div id="content-wrap">
     <div class="main mt-3">
         <div class="container panel panel-default mb-5">
@@ -91,7 +91,7 @@
 @endsection
 
 @section('footer')
-    @include('layouts.footer')
+    @include('layouts.footer.footer')
 @endsection
 
 @push('scripts')

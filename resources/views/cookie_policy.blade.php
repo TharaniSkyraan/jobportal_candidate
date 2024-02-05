@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.pages.common_app')
 
 @section('custom_scripts')
     <link href="{{ asset('site_assets_1/assets/css/static_css.css') }}" rel="stylesheet">
@@ -6,7 +6,7 @@
 @section('title') Mugaam - Cookie Policy @endsection
 @section('content')
 
-    @include('layouts.header')
+    @include('layouts.header.header')
 
     <section class="cookie_policy mt-2 text-justify">
         <div class="container mt-5 ">
@@ -79,7 +79,7 @@
     </section>
 @endsection
 @section('footer')
-@include('layouts.footer')
+@include('layouts.footer.footer')
 
 @endsection
 

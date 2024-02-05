@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.pages.common_app')
 @section('custom_scripts')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" rel="stylesheet" />
@@ -6,8 +6,8 @@
 @endsection
 @section('title') Mugaam - {{$blog->title}} @endsection
 @section('content')
-    @include('layouts.header')
-    @include('layouts.search_side_navbar')
+    @include('layouts.header.header')
+    @include('layouts.sidenavbar.search_side_navbar')
     <main id="view-blog">
         <div class="view-div">
             <nav aria-label="breadcrumb">
@@ -234,5 +234,5 @@
     </script>
 @endsection
 @section('footer')
-    @include('layouts.footer')
+    @include('layouts.footer.footer')
 @endsection

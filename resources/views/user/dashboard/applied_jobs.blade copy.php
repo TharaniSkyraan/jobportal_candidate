@@ -8,7 +8,7 @@
 
 <div class="wrapper" >
         
-	@include('layouts.dashboard_header')
+	@include('layouts.header.auth.dashboard_header')
 	@include('layouts.side_navbar')
         
 	<div class="main-panel main-panel-custom lkdprw">

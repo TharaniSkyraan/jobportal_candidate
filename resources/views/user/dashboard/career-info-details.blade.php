@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.pages.common_app')
 @section('custom_scripts')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{ asset('site_assets_1/assets/vendor/select2/select2.min.css') }}" rel="stylesheet">
@@ -11,8 +11,8 @@
 @section('title') Mugaam - Career Information @endsection
 @section('content')
 <div class="wrapper" >
-	@include('layouts.dashboard_header')
-	@include('layouts.side_navbar')
+	@include('layouts.header.auth.dashboard_header')
+	@include('layouts.sidenavbar.side_navbar')
 
     @if(Session::has('message'))
         <script>toastr.success("{{ Session('message') }}");</script>
