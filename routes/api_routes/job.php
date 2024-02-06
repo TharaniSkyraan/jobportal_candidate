@@ -6,7 +6,7 @@
     Route::middleware('auth:api')->group( function () {
 
         Route::post('recent-search-update', [JobsController::class, 'recentsearchStore']);            
-        Route::get('get-recent-search', [JobsController::class, 'getRecentsearch']);            
+        Route::post('get-recent-search', [JobsController::class, 'getRecentsearch']);            
         Route::get('fresher-index', [JobsController::class, 'fresherIndex']);    
         Route::post('search-job', [JobsController::class, 'searchJob']);
         Route::get('job-detail/{slug}', [JobsController::class, 'jobDetail']);

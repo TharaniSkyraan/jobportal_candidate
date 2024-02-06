@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use Auth;
+use Carbon\Carbon;
 use App\Model\User;
 use App\Model\JobRecentSearch;
 use App\Model\JobAlert;
@@ -52,7 +53,7 @@ trait UserJobRecentSearchTrait
             
             $jobSearchs = JobRecentSearch::whereUserId(Auth::user()->id)->count();
             if($jobSearchs>4){
-                $jobsearches = JobRecentSearch::latest()->first();
+                $jobsearches = JobRecentSearch::oldest()->first();
                 $jobsearches->forceDelete();
             }
         }
@@ -140,17 +141,19 @@ trait UserJobRecentSearchTrait
         $user = User::find($user_id);
         $list = JobRecentSearch::select('id','title','location','created_at')
                         ->whereUserId($user_id)
-                        ->where(function($q) use($recent_search_id){
-                            if(!empty($recent_search_id)){
-                                $q->where('id',$recent_search_id);
+                        ->where(function($q) use($id){
+                            if(!empty($id)){
+                                $q->where('id',$id);
                             }
                         })->orderBy('created_at','asc')->take(5)->get();
         
         $list->each(function ($job, $key) use($user) {
+            $designation = $job->title;
+            $location = $job->location;
             $alert = JobRecentSearch::find($job->id);
             $job['title'] = !empty($job->title)?$job->title:'';
             $job['location'] = !empty($job->location)?$job->location:'';
-            $job['saved_at'] = Carbon::parse($job->created_at)->getTimestampMs();
+            $job['saved_at'] = Carbon::parse($job->updated_at)->getTimestampMs();
             $job['industrytype'] = implode(", ",$alert->getIndustryType());
             $job['functionalarea'] = implode(", ",$alert->getFunctionalArea());
             $job['edulevel'] = implode(", ",$alert->getEducationLevel());
@@ -171,20 +174,20 @@ trait UserJobRecentSearchTrait
             $job['posteddateFid'] = $alert->posteddateFid??'';
             $job['experienceFid'] = $alert->experienceFid??'';
             
-            $designation = $job->title;
-            $location = $job->location;
             $jobAlert = JobAlert::where(function($q) use($designation){
                                     $designations = $designation??'';
                                     $q->where('title',$designation)->orwhere('title',$designations);
                                 })->where(function($q) use($location){
                                     $locations = $location??'';
                                     $q->where('location',$location)->orwhere('location',$locations);
-                                })->where('user_id',$user_id)
+                                })->where('user_id',$user->id)
                                 ->orderBy('updated_at','desc')->first();
             $job['jobalert_id'] = $jobAlert->id??0;
 
         });
-        $response['jobs'] = $list->items();
+
+        
+        $response['jobs'] = $list;
 
         return $this->sendResponse([$response]);  
     }

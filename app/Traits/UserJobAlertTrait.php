@@ -57,6 +57,12 @@ trait UserJobAlertTrait
 
         $user_id = empty($user_id)?Auth::user()->id:$user_id;
         $jobAlert = new JobAlert();
+        
+        $jobalerts = JobAlert::whereUserId(Auth::user()->id)->count();
+        if($jobalerts>4){
+            $job_alert = JobAlert::oldest()->first();
+            $job_alert->forceDelete();
+        }
         $jobAlert = $this->assignJobAlertValues($jobAlert, $request, $user_id);
         $jobAlert->save();
 
