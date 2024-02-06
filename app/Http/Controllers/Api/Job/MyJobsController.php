@@ -336,7 +336,7 @@ class MyJobsController extends BaseController
             $job['experienceFid'] = $alert->experienceFid??'';
         
         });
-        $response['jobs'] = $list->items();
+        $response['jobs'] = $list;
         $response['next_page'] = "";
         $response['no_of_pages'] = 0;
        
