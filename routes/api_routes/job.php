@@ -2,9 +2,11 @@
 
     use App\Http\Controllers\Api\Job\JobsController;
     use App\Http\Controllers\Api\Job\MyJobsController;
+    
     Route::middleware('auth:api')->group( function () {
-            
-        Route::get('index', [JobsController::class, 'index']);
+
+        Route::post('recent-search-update', [JobsController::class, 'recentsearchStore']);            
+        Route::get('get-recent-search', [JobsController::class, 'getRecentsearch']);            
         Route::get('fresher-index', [JobsController::class, 'fresherIndex']);    
         Route::post('search-job', [JobsController::class, 'searchJob']);
         Route::get('job-detail/{slug}', [JobsController::class, 'jobDetail']);

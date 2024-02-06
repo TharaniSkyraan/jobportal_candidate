@@ -88,9 +88,9 @@ class RegisterController extends BaseController
             }
 
         }        
-
         if(isset($user))
         {
+            
             $response['token'] = $user->createToken($request->email)->accessToken; 
             $response['next_process_level'] = $user->next_process_level;
             $response['id'] = $user->id;

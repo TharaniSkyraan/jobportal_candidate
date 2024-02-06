@@ -270,8 +270,12 @@ class MyJobsController extends BaseController
         }else{
             $jobFav                     = new JobAlert();
             $jobFav->user_id            = Auth::user()->id;
+            $jobalerts = JobAlert::whereUserId(Auth::user()->id)->count();
+            if($jobalerts>4){
+                $jobAlert = JobAlert::latest()->first();
+                $jobAlert->forceDelete();
+            }
         }
-
         $jobFav->title              = $request->title;
         $jobFav->location           = $request->location;
         $jobFav->citylFGid          = $request->citylFGid;
@@ -283,7 +287,7 @@ class MyJobsController extends BaseController
         $jobFav->industrytypeGid    = $request->industrytypeGid;
         $jobFav->functionalareaGid  = $request->functionalareaGid;
         $jobFav->posteddateFid      = $request->posteddateFid;
-        $jobFav->experienceFid      = $request->experienceFid;
+        $jobFav->experienceFid      = $request->experienceFid??0;
         $jobFav->save();
 
         $message = "You have successfully saved this job";
@@ -302,8 +306,9 @@ class MyJobsController extends BaseController
         $user = User::find($user_id);
         $list = JobAlert::select('id','title','location','created_at')
                         ->whereUserId($user_id)
-                        ->orderBy('created_at','asc')
-                        ->paginate(10);
+                        ->orderBy('created_at','desc')
+                        ->take(5)
+                        ->get();
         
         $list->each(function ($job, $key) use($user) {
             $alert = JobAlert::find($job->id);
@@ -329,12 +334,14 @@ class MyJobsController extends BaseController
             $job['salaryFGid'] = $alert->salaryFGid??'';
             $job['posteddateFid'] = $alert->posteddateFid??'';
             $job['experienceFid'] = $alert->experienceFid??'';
+        
         });
         $response['jobs'] = $list->items();
-        $response['next_page'] = (!empty($list->nextPageUrl())?($list->currentPage()+1):"");
-        $response['no_of_pages'] = $list->lastPage()??0;
+        $response['next_page'] = "";
+        $response['no_of_pages'] = 0;
        
         return $this->sendResponse([$response]);  
+        
     }
     
     /**
@@ -344,7 +351,7 @@ class MyJobsController extends BaseController
      */
     public function DeleteJobalert($id)
     {
-        JobAlert::find($id)->delete();
+        JobAlert::find($id)->forceDelete();
         $message = "You have remove from job alert"; 
         return $this->sendResponse('', $message);
     }

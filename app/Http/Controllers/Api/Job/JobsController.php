@@ -16,6 +16,7 @@ use App\Model\Companygalary;
 use App\Model\Company;
 use App\Model\User;
 use App\Helpers\DataArrayHelper;
+use App\Traits\UserJobRecentSearchTrait;
 use App\Traits\FetchJobsList;
 use App\Traits\BlockedKeywords;
 use App\Model\ProfilePercentage;
@@ -28,7 +29,7 @@ use App\Model\Industry;
 class JobsController extends BaseController
 {
     //
-    use FetchJobsList, BlockedKeywords;
+    use FetchJobsList, BlockedKeywords, UserJobRecentSearchTrait;
 
     /**
      * return Success json response.
