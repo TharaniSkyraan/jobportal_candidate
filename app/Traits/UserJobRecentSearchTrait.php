@@ -151,6 +151,7 @@ trait UserJobRecentSearchTrait
             $designation = $job->title;
             $location = $job->location;
             $alert = JobRecentSearch::find($job->id);
+            $job['designation'] = $job->title.((!empty($job->title)&&!empty($job->location))?',':'').$job->location;
             $job['title'] = !empty($job->title)?$job->title:'';
             $job['location'] = !empty($job->location)?$job->location:'';
             $job['saved_at'] = Carbon::parse($job->updated_at)->getTimestampMs();
