@@ -186,7 +186,7 @@ trait UserJobRecentSearchTrait
 
         });
 
-        return $this->sendResponse([$list]);  
+        return $this->sendResponse($list);  
     }
 
 }
