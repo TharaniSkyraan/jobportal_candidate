@@ -312,6 +312,7 @@ class MyJobsController extends BaseController
         
         $list->each(function ($job, $key) use($user) {
             $alert = JobAlert::find($job->id);
+            $job['designation'] = $job->title.((!empty($job->title)&&!empty($job->location))?',':'').$job->location;
             $job['title'] = !empty($job->title)?$job->title:'';
             $job['location'] = !empty($job->location)?$job->location:'';
             $job['saved_at'] = Carbon::parse($job->created_at)->getTimestampMs();
