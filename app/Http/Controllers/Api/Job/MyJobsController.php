@@ -321,11 +321,13 @@ class MyJobsController extends BaseController
             $job['edulevel'] = implode(", ",$alert->getEducationLevel());
             $job['jobtype'] = implode(", ",$alert->getJobType());
             $job['jobshift'] = implode(", ",$alert->getShift());
+            $job['city'] = implode(", ",$alert->getCity());
             $job['wfhtype'] = $alert->getWFH();
             $job['salary'] = $alert->getSalary();
             $job['posteddate'] = $alert->getDatePosted();
             $job['experience'] = $alert->experienceFid??'';
 
+            $job['citylFGid'] = $alert->citylFGid??'';
             $job['industrytypeGid'] = $alert->industrytypeGid??'';
             $job['functionalareaGid'] = $alert->functionalareaGid??'';
             $job['edulevelFGid'] = $alert->edulevelFGid??'';

@@ -25,6 +25,10 @@ class JobRecentSearch extends Model
     {
         return Shift::whereIn('id',explode(',',$this->jobshiftFGid))->pluck('shift')->toArray();
     }
+    public function getCity()
+    {
+        return City::whereIn('id',explode(',',$this->citylFGid))->pluck('city')->toArray();
+    }
     public function getSalary()
     {
         $salarydata = "";
