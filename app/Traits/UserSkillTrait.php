@@ -8,7 +8,6 @@ use Input;
 use Carbon\Carbon;
 use Redirect;
 use App\Model\User;
-use App\Model\AccountType;
 use App\Model\UserSkill;
 use App\Model\Skill;
 use App\Model\Experience;

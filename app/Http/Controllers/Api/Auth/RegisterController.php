@@ -52,6 +52,8 @@ class RegisterController extends BaseController
     {
         if(empty($request->provider))
         {
+            // $checkuser = User::whereEmail($request->email)
+            
             // normal Login
             if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
                 $user = Auth::user(); 
@@ -574,10 +576,25 @@ class RegisterController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function logout (Request $request) {
+    public function logout(Request $request) {
         $token = $request->user()->token();
         $token->revoke();
         return $this->sendResponse('', 'You have been successfully logged out!');
+    }
+
+    /**
+     * Delete account api
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteAccount (Request $request) {
+        
+        $data = $user = User::find(Auth::user()->id);  
+        $user->tokens()->delete();
+        $data->account_delete_request_at = Carbon::now();
+        $data->save();
+        
+        return $this->sendResponse('', 'You have been successfully! Deleted request received!');
     }
 
 }

@@ -7,7 +7,6 @@ use DB;
 use Input;
 use Carbon\Carbon;
 use Redirect;
-use App\Model\AccountType;
 use App\Model\User;
 use App\Model\UserLanguage;
 use App\Model\Language;

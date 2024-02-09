@@ -6,8 +6,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Model\User;
 
-use App\Model\AccountType;
-
 use Hash;
 
 use Auth;

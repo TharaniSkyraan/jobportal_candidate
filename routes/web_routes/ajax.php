@@ -3,7 +3,6 @@
 Route::post('filter-default-cities-dropdown', 'AjaxController@filterDefaultCities')->name('filter.default.cities.dropdown');
 Route::post('filter-default-cities-dropdown-countrywise', 'AjaxController@filterDefaultCitiesCountryWise')->name('filter.default.cities.dropdown.countrywise');
 Route::post('filter-default-states-dropdown', 'AjaxController@filterDefaultStates')->name('filter.default.states.dropdown');
-Route::post('filter-default-check-location', 'CompanyController@checklocation')->name('filter.default.location.validate');
 Route::get('getourcompanygallery/{id?}', 'AjaxController@getourcompanygallery')->name('getourcompanygallery');
 Route::get('getallgalariescompany', 'AjaxController@getAllGalariesCompany')->name('getAllGalariesCompany');
 Route::post('getallgalariescompanyparticular', 'AjaxController@getAllGalariesCompanyParticular')->name('getAllGalariesCompanyParticular');

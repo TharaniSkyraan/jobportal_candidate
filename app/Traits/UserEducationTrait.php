@@ -15,7 +15,6 @@ use App\Model\EducationLevel;
 use App\Model\EducationType;
 use App\Model\ResultType;
 use App\Model\MajorSubject;
-use App\Model\AccountType;
 use App\Model\Country;
 use App\Http\Requests;
 use Illuminate\Http\Request;

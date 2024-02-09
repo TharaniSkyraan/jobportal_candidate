@@ -57,6 +57,8 @@ trait UserCvsTrait
         $user_token = Auth::user()->token;    
         if($id){
             $userCv = UserCv::find($id);
+            $previous_file_path = $userCv->path;
+            $previous_file_pdf_path = $userCv->pdf_path;
         }else{
             $userCv = new UserCv();
         }    
@@ -79,13 +81,17 @@ trait UserCvsTrait
             unlink(public_path($localFilePath['path']));    
         }  
         $userCv->save();  
-
-        $message = "Updated successfully.";
         
+        if($id){
+            Storage::disk('s3')->delete($previous_file_path); 
+            if($previous_file_path != $previous_file_pdf_path){
+                Storage::disk('s3')->delete($previous_file_pdf_path); 
+            }
+        }
+        $message = "Updated successfully.";        
         User::where('id',$user_id)->update(['updated_at'=>Carbon::now()]);
-    
-        return $this->sendResponse(['cv_id'=>$userCv->id], $message); 
-   
+
+        return $this->sendResponse(['cv_id'=>$userCv->id], $message);    
     }
 
     public function makeDefaultCv($id)

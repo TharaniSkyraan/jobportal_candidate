@@ -11,7 +11,9 @@ Route::post('verify_otp', [RegisterController::class, 'verifyOTP']);
 Route::get('profile_summary/{id}', [UserController::class, 'profileSummary']);
 
 Route::middleware('auth:api')->group( function () {
-    
+
+    Route::get('logout', [RegisterController::class, 'logout']);
+    Route::get('delete_account', [RegisterController::class, 'deleteAccount']);
     Route::get('education', [RegisterController::class, 'education']);
     Route::post('education_save', [RegisterController::class, 'educationSave']);
     Route::get('experience', [RegisterController::class, 'experience']);
