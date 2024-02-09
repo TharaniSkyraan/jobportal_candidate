@@ -62,7 +62,7 @@ class RegisterController extends BaseController
         }  
 
         if(!empty($user->account_delete_request_at) && empty($request->login_continue)){
-            return $this->sendError('Account was deleted.',426);
+            return $this->sendError('Account was deleted.',[],426);
         }
 
         if(empty($request->provider))
