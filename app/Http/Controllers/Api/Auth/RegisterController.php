@@ -50,23 +50,28 @@ class RegisterController extends BaseController
      */
     public function login(LoginRequest $request)
     {
-        if(empty($request->provider))
-        {
-            // $checkuser = User::whereEmail($request->email)
+
+        
             
+        // social login
+        if(!empty($request->email))
+        {
+            $user = User::whereEmail($request->email)->first();
+        }else{
+            $user = User::whereAppleProviderId($request->provider_id)->first();
+        }  
+
+        if(!empty($user->account_delete_request_at) && empty($request->login_continue)){
+            return $this->sendError('Account was deleted.',426);
+        }
+
+        if(empty($request->provider))
+        {  
             // normal Login
             if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
                 $user = Auth::user(); 
             } 
         }else{
-            
-            // social login
-            if(!empty($request->email))
-            {
-                $user = User::whereEmail($request->email)->first();
-            }else{
-                $user = User::whereAppleProviderId($request->provider_id)->first();
-            }  
 
             if(isset($user)){
                 Auth::login($user, true);
@@ -101,6 +106,7 @@ class RegisterController extends BaseController
             $update = User::find($user->id);
             $update->device_token = $request->device_token;
             $update->device_type = $request->device_type;
+            $update->account_delete_request_at = NULL;
             if($request->provider=='apple'){
                 $update->apple_provider_id = $request->provider_id;
             }
@@ -124,6 +130,7 @@ class RegisterController extends BaseController
      */
     public function register(RegisterRequest $request)
     {
+       
         if(User::where('email',$request->email)->doesntExist() || User::where('email',$request->email)->whereVerified(0)->exists())
         {
             $otp = $this->generateRandomCode(6);
