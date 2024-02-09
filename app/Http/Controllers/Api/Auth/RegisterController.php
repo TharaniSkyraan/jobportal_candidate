@@ -50,9 +50,6 @@ class RegisterController extends BaseController
      */
     public function login(LoginRequest $request)
     {
-
-        
-            
         // social login
         if(!empty($request->email))
         {
