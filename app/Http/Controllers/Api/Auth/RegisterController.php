@@ -104,7 +104,6 @@ class RegisterController extends BaseController
             $update->device_token = $request->device_token;
             $update->device_type = $request->device_type;
             $update->account_delete_request_at = NULL;
-            $update->delete_reason = '';
             if($request->provider=='apple'){
                 $update->apple_provider_id = $request->provider_id;
             }
@@ -597,7 +596,6 @@ class RegisterController extends BaseController
         $data = $user = User::find(Auth::user()->id);  
         $user->tokens()->delete();
         $data->account_delete_request_at = Carbon::now();
-        $data->delete_reason = $request->reason;
         $data->save();
         
         return $this->sendResponse('', 'You have been successfully! Deleted request received!');

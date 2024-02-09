@@ -262,6 +262,11 @@ class AjaxController extends Controller
         
         return response()->json($skills);
     }
+    public function GetAccountDeleteReason()
+    {
+        $reasons = DataArrayHelper::langAccountDeleteReasonsArray();       
+        return response()->json($reasons);
+    }
 
 
     public function GetResultType(Request $request)

@@ -45,6 +45,7 @@ use App\Model\BlockedKeyword;
 use App\Model\Institute;
 use App\Model\TopCompany;
 use App\Model\NoticePeriod;
+use App\Model\AccountDeleteReason;
 
 
 use File;
@@ -711,9 +712,23 @@ class DataArrayHelper
     public static function langInstitutesArray()
     {
         $array = Institute::select('institutes.institute', 'institutes.institute_id')->lang()->active()->sorted()->pluck('institutes.institute', 'institutes.institute_id')->toArray();
-
         if ((int) count($array) === 0) {
             $array = self::defaultInstitutesArray();
+        }
+        return $array;
+    }
+
+    public static function defaultAccountDeleteReasonsArray()
+    {
+        $array = AccountDeleteReason::select('account_delete_reason as reason', 'account_delete_reason_id as id')->isDefault()->active()->sorted()->get();
+        return $array;
+    }
+
+    public static function langAccountDeleteReasonsArray()
+    {
+        $array = AccountDeleteReason::select('account_delete_reason as reason', 'account_delete_reason_id as id')->lang()->active()->sorted()->get();
+        if ((int) count($array) === 0) {
+            $array = self::defaultAccountDeleteReasonsArray();
         }
         return $array;
     }
