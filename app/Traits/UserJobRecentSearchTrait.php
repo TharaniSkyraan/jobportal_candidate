@@ -53,9 +53,10 @@ trait UserJobRecentSearchTrait
             
             $jobSearchs = JobRecentSearch::whereUserId(Auth::user()->id)->count();
             if($jobSearchs>4){
-                $jobsearches = JobRecentSearch::oldest()->first();
+                $jobsearches = JobRecentSearch::whereUserId(Auth::user()->id)->oldest()->first();
                 $jobsearches->forceDelete();
             }
+
         }
         $jobSearch->user_id            = $user_id;
         $jobSearch->title              = $designation;

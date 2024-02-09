@@ -20,5 +20,7 @@ Route::name('job.')->namespace('Job')->group(function () {
     // Search
     Route::get('/{slug}', 'JobsController@search')->name('search');
     Route::post('/api/search', 'JobsController@searchJob')->name('search-job');
+    
+    Route::post('recent-search-update', 'JobsController@recentsearchStore');  
 });
 ?>

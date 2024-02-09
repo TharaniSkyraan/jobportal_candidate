@@ -272,7 +272,7 @@ class MyJobsController extends BaseController
             $jobFav->user_id            = Auth::user()->id;
             $jobalerts = JobAlert::whereUserId(Auth::user()->id)->count();
             if($jobalerts>4){
-                $jobAlert = JobAlert::oldest()->first();
+                $jobAlert = JobAlert::whereUserId(Auth::user()->id)->oldest()->first();
                 $jobAlert->forceDelete();
             }
         }

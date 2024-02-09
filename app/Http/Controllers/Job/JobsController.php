@@ -23,6 +23,7 @@ use App\Model\Industry;
 use App\Model\JobWorkLocation;
 use App\Model\JobQuizCandidateAnswer;
 use App\Model\JobViewedCandidate;
+use App\Model\JobRecentSearch;
 use App\Helpers\MiscHelper;
 use App\Helpers\DataArrayHelper;
 use App\Http\Requests;
@@ -37,13 +38,14 @@ use App\Traits\ShareToLayout;
 use App\Events\JobApplied;
 use Illuminate\Support\Facades\Crypt;
 use Cookie;
+use App\Traits\UserJobRecentSearchTrait;
 
 
 class JobsController extends Controller
 {
 
     //use Skills;
-    use FetchJobsList, BlockedKeywords, ShareToLayout, JobTrait;
+    use FetchJobsList, BlockedKeywords, ShareToLayout, JobTrait, UserJobRecentSearchTrait;
 
     /**
      * Create a new controller instance.
@@ -102,8 +104,15 @@ class JobsController extends Controller
 
         $titles = Title::where('hit_count','!=',0)->orderBy('hit_count','desc')->take(5)->get();
         $this->shareSeoToLayout('candidate_home');
+        
+        if(Auth::check()){
+            $recent_searches = JobRecentSearch::whereUserId(Auth::user()->id)
+                                              ->orderBy('updated_at','desc')
+                                              ->take(5)->get();
+        }
+        $recent_searches = $recent_searches??[];
         // $blog = Blog::orderBy('created_at','desc')->take(5)->get();
-        return view('candidate-home', compact('titles', 'near_job', 'recent_job', 'job_list', 'top_cities', 'top_sector'));
+        return view('candidate-home', compact('titles', 'near_job', 'recent_job', 'job_list', 'top_cities', 'top_sector','recent_searches'));
 
     }
     
@@ -220,7 +229,7 @@ class JobsController extends Controller
 
             // if($joblist->total()!= 0){
             // }
-            self::checkCache($designation, $location);
+            // self::checkCache($designation, $location);
 
         }
         

@@ -45,20 +45,15 @@
                     </div>
                 </div>
             </div>
-            @php
-                $cacheData = Cookie::has('searchJobs') ? json_decode(Cookie::get('searchJobs')):array(); 
-                $cachedatas = array_reverse($cacheData); 
-                $cachedatas = array_slice($cachedatas, 0, 3, true);
-            @endphp
             <div class="popular_recent_src_hme">
-                @if(count($cachedatas)!=0)
+                @if(count($recent_searches)!=0)
                     <div class="reserch text-center">
                         <div class="container-xl">
                             <h3 class="ps-2 mb-4">RECENT SEARCHES</h3>
-                            @forelse($cachedatas as $key => $search)
-                                @if($key < 3 && ($search->designation !='' || $search->location !='')  )
-                                    <label class="cursor-pointer resentsearch plerhvr titsearch" data-d="{{$search->designation}}" data-l="{{$search->location}}">                                            
-                                        <div class="text_ygb"><img src="{{ asset('images/home/search-icon.png') }}" alt="search-icon" draggable="false"><span>{{$search->designation}} {{$search->location}}</span></div>
+                            @forelse($recent_searches as $key => $search)
+                                @if($key < 3 && ($search->title !='' || $search->location !=''))
+                                    <label class="cursor-pointer resentsearch plerhvr titsearch" data-d="{{$search->title}}" data-l="{{$search->location}}">                                            
+                                        <div class="text_ygb"><img src="{{ asset('images/home/search-icon.png') }}" alt="search-icon" draggable="false"><span>{{$search->title}} {{$search->location}}</span></div>
                                     </label>
                                 @endif
                             @endforeach
@@ -79,8 +74,6 @@
                         @endforeach
                     </div>
                 </div>
-
-
                 <div class="candidate_img text-center mt-5">
                     <div class="container-xl">
                         <div class="candimg_parent">

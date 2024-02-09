@@ -86,7 +86,6 @@ function processing_data(calby='onload'){
     req_params.append('sortBy',sortBy);
 
     let req_url = baseurl + 'api/search' + '?' + decodeURIComponent(req_params);
-
     $.ajax({
         url: req_url,
         type: 'POST',
@@ -107,6 +106,17 @@ function processing_data(calby='onload'){
         }
     });
 
+    let recent_req_params = new URLSearchParams(url.search);
+    recent_req_params.append('designation',desig);
+    recent_req_params.append('location',locat);
+    let recent_req_url = baseurl + 'recent-search-update' + '?' + decodeURIComponent(recent_req_params);
+
+    $.ajax({
+        url: recent_req_url,
+        type: 'POST',
+        data : {"_token": csrf_token },
+        datatype: 'JSON'
+    });
 }
 
 function populateData(JsonRes){
