@@ -266,6 +266,11 @@ class LoginController extends Controller
                 $update = User::findorFail($user->id);
                 $update->candidate_id = $this->generateCandidate($user->id);
                 $update->save();
+
+                Auth::login($user, true); 
+                UserVerification::generate($user);
+                UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
+                Auth::logout();
                
                 $page = $this->SwitchRedirect('verify_otp');
 
