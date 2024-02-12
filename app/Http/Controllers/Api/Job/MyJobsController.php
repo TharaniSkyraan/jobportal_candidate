@@ -57,7 +57,7 @@ class MyJobsController extends BaseController
                     $data = new JobQuizCandidateAnswer();
                     $data->apply_id = $jobApply->id;
                     $data->job_screening_quiz_id = $quiz->id;
-                    $data->answer = $request[$answerkey];
+                    $data->answer = is_array($request[$answerkey]) ? implode(',', $request[$answerkey]) : $request[$answerkey];
                     $data->save();
                 }
             }
