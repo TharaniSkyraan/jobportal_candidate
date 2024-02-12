@@ -252,6 +252,7 @@ class LoginController extends Controller
             }else
             if($request->user_type=='new')
             {
+                $otp = $this->generateRandomCode(6);
                 $user = User::create([
                             'first_name' => $request->name, 
                             'email' => $request->email, 
@@ -260,6 +261,8 @@ class LoginController extends Controller
                             'password' => Hash::make($request->password),
                             'next_process_level' => 'verify_otp',
                             'token'=>$this->generateRandomString(8),
+                            'verify_otp' => $otp,
+                            'session_otp' => Carbon::now()
                         ]);  
                 $user = User::findorFail($user->id);
 
@@ -335,7 +338,7 @@ class LoginController extends Controller
         }
 
             
-        return view('auth.verify_otp',compact('user','otp'));      
+        return view('auth.verify_otp',compact('user'));      
 
     }
 
