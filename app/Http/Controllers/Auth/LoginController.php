@@ -297,7 +297,7 @@ class LoginController extends Controller
             return Response()->json(['success' => true, 'page'=>$page], 200);
 
         }catch (\Exception $e) {
-            DB::roleback();
+            // DB::roleback();
             return Response()->json(['errors' => array('email' => 'Invalid Email. Please try again')], 422);
         }
  
