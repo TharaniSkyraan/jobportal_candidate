@@ -292,7 +292,7 @@ class LoginController extends Controller
             return Response()->json(['success' => true, 'page'=>$page], 200);
 
         }catch (\Exception $e) {
-            // DB::roleback();
+            DB::roleback();
             return Response()->json(['errors' => array('email' => 'Invalid Email. Please try again')], 422);
         }
  
@@ -311,19 +311,24 @@ class LoginController extends Controller
     public function verifyOtp(Request $request)
     {
         
-        $user = User::findOrFail(Session::get('id'));
-        $otp = '';
-        if(empty($user->verify_otp)){
-            $otp = $this->generateRandomCode(6);
-            $user->verify_otp = $otp;
-            $user->session_otp = Carbon::now();
-            $user->save();
+        try {
             $user = User::findOrFail(Session::get('id'));
-            Auth::login($user, true); 
-            UserVerification::generate($user);
-            UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
-            Auth::logout();
+            $otp = '';
+            if(empty($user->verify_otp)){
+                $otp = $this->generateRandomCode(6);
+                $user->verify_otp = $otp;
+                $user->session_otp = Carbon::now();
+                $user->save();
+                $user = User::findOrFail(Session::get('id'));
+                Auth::login($user, true); 
+                UserVerification::generate($user);
+                UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
+                Auth::logout();
+            }
+        }catch (\Exception $e) {
+            return Response()->json(['errors' => array('email' => 'Invalid Email. Please try again')], 422);
         }
+
             
         return view('auth.verify_otp',compact('user','otp'));      
 

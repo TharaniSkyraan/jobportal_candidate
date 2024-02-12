@@ -16,6 +16,7 @@ use App\Model\ResultType;
 use App\Model\Country;
 use App\Model\EducationType;
 use App\Model\EducationLevel;
+use App\Model\AccountDeleteRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Api\LoginRequest;
 use App\Http\Requests\Api\ResentRequest;
@@ -593,11 +594,14 @@ class RegisterController extends BaseController
      */
     public function deleteAccount (Request $request) {
         
-        $data = $user = User::find(Auth::user()->id);  
+        $user_id = Auth::user()->id;
+        $data = $user = User::find($user_id);  
         $user->tokens()->delete();
         $data->account_delete_request_at = Carbon::now();
         $data->save();
-        
+
+        AccountDeleteRequest::updateOrCreate(['account_id' => Auth::user()->id,'user_type'=>'candidate'],['reasons_id'=>$request->reasons,'other_reason'=>$request->other_reason]);
+
         return $this->sendResponse('', 'You have been successfully! Deleted request received!');
     }
 
