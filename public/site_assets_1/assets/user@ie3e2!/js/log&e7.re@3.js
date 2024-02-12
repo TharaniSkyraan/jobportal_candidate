@@ -40,7 +40,7 @@ $(document).on('click', ".edit-email", function() {
 
 });
 $(document).on('keyup', "#password", function() {
-    if( $(this).val() != '' ){$("#showpico").show();}
+    if($(this).val() != ''){$("#showpico").show();}
     else{$("#showpico").hide();}
 });
 $("#showpico").hide();
@@ -107,6 +107,9 @@ function validateLoginForm() {
                       $.each(resJSON.errors, function (key, value) {
                         $('#err_' + key).html(value);                    
                         $('#' + key).addClass('is-invalid');
+                        if(key=='email'){
+                          $('.edit-email').trigger('click');                 
+                        }
                       });
                   }
               }

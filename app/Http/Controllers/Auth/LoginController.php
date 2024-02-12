@@ -252,6 +252,7 @@ class LoginController extends Controller
             }else
             if($request->user_type=='new')
             {
+                $otp = $this->generateRandomCode(6);
                 $user = User::create([
                             'first_name' => $request->name, 
                             'email' => $request->email, 
@@ -260,12 +261,19 @@ class LoginController extends Controller
                             'password' => Hash::make($request->password),
                             'next_process_level' => 'verify_otp',
                             'token'=>$this->generateRandomString(8),
+                            'verify_otp' => $otp,
+                            'session_otp' => Carbon::now()
                         ]);  
                 $user = User::findorFail($user->id);
 
                 $update = User::findorFail($user->id);
                 $update->candidate_id = $this->generateCandidate($user->id);
                 $update->save();
+
+                Auth::login($user, true); 
+                UserVerification::generate($user);
+                UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
+                Auth::logout();
                
                 $page = $this->SwitchRedirect('verify_otp');
 
@@ -311,21 +319,26 @@ class LoginController extends Controller
     public function verifyOtp(Request $request)
     {
         
-        $user = User::findOrFail(Session::get('id'));
-        $otp = '';
-        if(empty($user->verify_otp)){
-            $otp = $this->generateRandomCode(6);
-            $user->verify_otp = $otp;
-            $user->session_otp = Carbon::now();
-            $user->save();
+        try {
             $user = User::findOrFail(Session::get('id'));
-            Auth::login($user, true); 
-            UserVerification::generate($user);
-            UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
-            Auth::logout();
+            $otp = '';
+            if(empty($user->verify_otp)){
+                $otp = $this->generateRandomCode(6);
+                $user->verify_otp = $otp;
+                $user->session_otp = Carbon::now();
+                $user->save();
+                $user = User::findOrFail(Session::get('id'));
+                Auth::login($user, true); 
+                UserVerification::generate($user);
+                UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
+                Auth::logout();
+            }
+        }catch (\Exception $e) {
+            return Response()->json(['errors' => array('email' => 'Invalid Email. Please try again')], 422);
         }
+
             
-        return view('auth.verify_otp',compact('user','otp'));      
+        return view('auth.verify_otp',compact('user'));      
 
     }
 
