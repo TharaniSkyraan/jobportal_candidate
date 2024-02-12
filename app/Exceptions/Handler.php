@@ -52,24 +52,24 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
 
-        // $route = $request->route();
+        $route = $request->route();
 
-        // if($route != null){
+        if($route != null){
 
-        //     $prefix = $route->getPrefix()??'';
+            $prefix = $route->getPrefix()??'';
         
-        //     if ($request->expectsJson() && str_contains($prefix, 'api')) {
+            if ($request->expectsJson() && str_contains($prefix, 'api')) {
         
-        //         if(Auth::user()==null) {
-        //             $response = ['success' => false, 'message' => 'Unauthorization', 'data'=>[]];
-        //             return response()->json($response, 401);
-        //         }else{
-        //             $response = ['success' => false, 'message' => 'Something went wrong, Try again', 'data'=>[]];
-        //             return response()->json($response, 403);
-        //         }
+                if(Auth::user()==null) {
+                    $response = ['success' => false, 'message' => 'Unauthorization', 'data'=>[]];
+                    return response()->json($response, 401);
+                }else{
+                    $response = ['success' => false, 'message' => 'Something went wrong, Try again', 'data'=>[]];
+                    return response()->json($response, 403);
+                }
     
-        //     }
-        // }
+            }
+        }
 
         return parent::render($request, $exception);
     }
