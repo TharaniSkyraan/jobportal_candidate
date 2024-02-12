@@ -40,7 +40,7 @@ $(document).on('click', ".edit-email", function() {
 
 });
 $(document).on('keyup', "#password", function() {
-    if($(this).val() != ''){$("#showpico").show();}
+    if( $(this).val() != '' ){$("#showpico").show();}
     else{$("#showpico").hide();}
 });
 $("#showpico").hide();
@@ -75,7 +75,6 @@ function validateLoginForm() {
               $('.display-email').show();
             },
             error: function(json){
-              console.log(json);
                 if (json.status === 422) {
                     var resJSON = json.responseJSON;
                     $.each(resJSON.errors, function (key, value) {
@@ -109,7 +108,6 @@ function validateLoginForm() {
                         $('#err_' + key).html(value);                    
                         $('#' + key).addClass('is-invalid');
                       });
-                      console.log(json);
                   }
               }
             });
