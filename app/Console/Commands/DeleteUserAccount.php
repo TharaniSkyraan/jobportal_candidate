@@ -25,9 +25,9 @@ use App\Model\BlogView;
 use App\Model\BlogLike;
 use App\Model\JobViewedCandidate;
 use App\Model\SuggestedCandidate;
-use App\Model\DeletedAccount;
 use App\Model\Message;
 use App\Model\MessageContact;
+use App\Model\DeletedAccount;
 use Carbon\Carbon;
 
 class DeleteUserAccount extends Command
@@ -99,10 +99,16 @@ class DeleteUserAccount extends Command
             JobApply::where('user_id',$user_id)->withTrashed()->forceDelete();
             JobRecentSearch::where('user_id',$user_id)->withTrashed()->forceDelete();
             JobViewedCandidate::where('user_id',$user_id)->delete();
-            SuggestedCandidate::where('user_id',$user_id)->delete();            
+            SuggestedCandidate::where('user_id',$user_id)->delete();  
             
-            // BlogView::where(['user_type','candidate'],['user_id',$user_id])->delete();
-            // BlogLike::where(['user_type','candidate'],['user_id',$user_id])->delete();
+            $mesageids = MessageContact::where('user_id',$user_id)->pluck('message_id')->toArray();     
+            MessageContact::where('user_id',$user_id)->delete();
+            if(count($mesageids)!=0){
+                Message::whereIn('message_id',$mesageids)->delete();     
+            }
+            
+            BlogView::where(['user_type','candidate'],['user_id',$user_id])->delete();
+            BlogLike::where(['user_type','candidate'],['user_id',$user_id])->delete();
 
             $delete_user = new DeletedAccount();
             $delete_user->name = $user->getName();

@@ -22,39 +22,23 @@ class BlogController extends Controller
     public function view(Request $request, $id){
         $blog = Blog::findOrFail($id);
         $more = Blog::where('id', '!=', $id)
-             ->latest()
-             ->take(2)
-             ->get();
+                    ->latest()
+                    ->take(2)
+                    ->get();
 
-        if(Auth::check()){
+        $like = '';
+
+        if (Auth::check()) 
+        {
             $like = BlogLike::where([
                 ['user_id', auth()->user()->id],
-                ['blog_id', $id]
+                ['blog_id', $id],
+                ['user_type', 'candidate']
             ])->first();
-        }else{
-            $like = '';
-        }
 
-        if (Auth::check()) {
-            $check = BlogView::where('blog_id', $id)
-                          ->where('user_id', auth()->user()->id)
-                          ->get();
-        
-            if ($check->isEmpty()) {
-                BlogView::create([
-                    'user_id' => auth()->user()->id,
-                    'blog_id' => $id,
-                ]);
-            } else {
-                $update = BlogView::find($check->first()->id);
-                $update->user_id = auth()->user()->id;
-                $update->blog_id = $id;
-                $update->updated_at = now();
-                $update->save();
-            }
+            BlogView::updateOrCreate(['user_id' => Auth::user()->id??0,'user_type'=>'candidate','blog_id'=>$id],['updated_at'=>now()]);
         }
         $count_v = BlogView::where('blog_id', $id)->count();
-
         $count_l = BlogLike::where('blog_id', $id)->count();
         return view('blog.view', compact('blog', 'more', 'like', 'count_l', 'count_v'));
     }
@@ -79,7 +63,8 @@ class BlogController extends Controller
                 if(Auth::check()){ 
                     $like = BlogLike::where([
                         ['user_id', auth()->user()->id],
-                        ['blog_id', $row->id]
+                        ['blog_id', $row->id],
+                        ['user_type', 'candidate']
                     ])->first();
 
                     if($like == null){ 
@@ -141,18 +126,21 @@ class BlogController extends Controller
     public function likeblog(Request $request, $id){
         $user = BlogLike::where([
             ['user_id', auth()->user()->id],
-            ['blog_id', $id]
+            ['blog_id', $id],
+            ['user_type', 'candidate']
         ])->first();
         if($user == null){
             $like = new BlogLike;
             $like->user_id = auth()->user()->id;
+            $like->user_type = 'candidate';
             $like->blog_id = $id;
             $like->save();
             $val = 1;
         }else{
             $like = BlogLike::where([
             ['user_id', auth()->user()->id],
-            ['blog_id', $id]])->delete();
+            ['blog_id', $id],
+            ['user_type', 'candidate']])->delete();
             $val = 0;
         }
         return response()->json([$val, BlogLike::where('blog_id', $id)->count()]);
