@@ -720,13 +720,15 @@ class DataArrayHelper
 
     public static function defaultAccountDeleteReasonsArray()
     {
-        $array = AccountDeleteReason::select( 'account_delete_reason_id as id','account_delete_reason as reason')->isDefault()->active()->sorted()->get();
+        $array = AccountDeleteReason::select( 'account_delete_reason_id as id','account_delete_reason as reason')
+        ->where('user_type','!=','recruiter')->isDefault()->active()->sorted()->get();
         return $array;
     }
 
     public static function langAccountDeleteReasonsArray()
     {
-        $array = AccountDeleteReason::select( 'account_delete_reason_id as id','account_delete_reason as reason')->lang()->active()->sorted()->get();
+        $array = AccountDeleteReason::select( 'account_delete_reason_id as id','account_delete_reason as reason')
+        ->where('user_type','!=','recruiter')->lang()->active()->sorted()->get();
         if ((int) count($array) === 0) {
             $array = self::defaultAccountDeleteReasonsArray();
         }
