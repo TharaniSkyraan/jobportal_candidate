@@ -65,8 +65,8 @@ class DeleteUserAccount extends Command
     public function handle()
     {
      
-        $from = Carbon::now()->subDays(15)->startOfDay();
-        $to = Carbon::now()->endOfDay(15)->endOfDay();
+        $from = Carbon::now()->subDays(1)->startOfDay();
+        $to = Carbon::now()->endOfDay(1)->endOfDay();
 
         $users = User::where(function($q) use($from,$to){
                         $q->where('account_delete_request_at', '>=' ,$from)
