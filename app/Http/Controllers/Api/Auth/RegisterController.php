@@ -600,7 +600,7 @@ class RegisterController extends BaseController
         $data->account_delete_request_at = Carbon::now();
         $data->save();
 
-        AccountDeleteRequest::updateOrCreate(['account_id' => Auth::user()->id,'user_type'=>'candidate'],['reasons_id'=>$request->reasons,'other_reason'=>$request->other_reason]);
+        AccountDeleteRequest::updateOrCreate(['account_id' => Auth::user()->id,'user_type'=>'candidate'],['reasons_id'=>$request->reasons,'other_reason'=>$request->other_reason??' ']);
 
         return $this->sendResponse('', 'You have been successfully! Deleted request received!');
     }
