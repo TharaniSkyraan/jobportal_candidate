@@ -20,7 +20,7 @@ if(sidenavbarfaq==null){
   
     // Collage Card profile
     const arrowtoggleBtn = document.querySelector('.toggle');
-    const angletoggleBtn = document.querySelector('.angle-toggle');
+    const angletoggleBtn = document.querySelector('.angle-btn-toggle');
 
 
     if(screensize<=600){
@@ -69,8 +69,8 @@ if(sidenavbarfaq==null){
 
     // Function to toggle the lock state of the sidenavbar
     const arrowToggle = () => {
-
         if (angletoggleBtn.classList.contains("fa-angle-up")) {
+
           angletoggleBtn.classList.replace("fa-angle-up", "fa-angle-down");
         }else{
           angletoggleBtn.classList.replace("fa-angle-down", "fa-angle-up");

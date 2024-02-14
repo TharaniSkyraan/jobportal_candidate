@@ -29,7 +29,7 @@
           </div>
       </div>
       <a class="text-black text-center toggle" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-        <i class="fa {{ (Request::is('home') || Request::is('education-details') || Request::is('experience-details') || Request::is('project-details') || Request::is('language-details') || Request::is('skill-details') || Request::is('career-info-details')|| Request::is('resume-details')) ? 'fa-angle-up' : 'fa-angle-down' }}  angle-toggle"></i> 
+        <i class="fa {{ (Request::is('home') || Request::is('education-details') || Request::is('experience-details') || Request::is('project-details') || Request::is('language-details') || Request::is('skill-details') || Request::is('career-info-details')|| Request::is('resume-details')) ? 'fa-angle-up' : 'fa-angle-down' }}  angle-btn-toggle"></i> 
       </a>   
       <div class="collapse collapses {{ (Request::is('home') || Request::is('education-details') || Request::is('experience-details') || Request::is('project-details') || Request::is('language-details') || Request::is('skill-details') || Request::is('career-info-details')|| Request::is('resume-details')) ? 'show' : '' }}" id="collapseExample">
         <div class="menu_items">
