@@ -131,7 +131,35 @@
                           <button class="btn rounded-pill align-self-center btn-sm bg-color-blue btns1" type="button" onclick="ChangePassword();">Change</button>                      
                         </div>
                       </div>
-										</div>										
+										</div>	
+                    <hr>
+										<div class="mb-4">  
+                      <div class="text-black dlttoggle" data-bs-toggle="collapse" href="#collapseExampledelete" role="button" aria-expanded="false" aria-controls="collapseExampledelete">
+                        <span> Delete Acccount</span>
+                        <span class="float-end"><i class="fa fa-angle-down dlt-toggle"></i></span>
+                      </div>										
+                      <div class="collapse collapses" id="collapseExampledelete">
+                        <div class="mt-4">
+                          <p><span class="px-4"></span>Delete Your Mugaam Account !
+                            You are about to submit a request for us to permanently delete your Mugaam Recruiter account and erase your data. Once your account is deleted, all of the app services associated with your account will no longer be available to you on the Mugaam Recruiter platform.
+                          </p>  
+                          <p>    
+                            Note : <b>Please note that your account will undergo a 15-day deactivation period before deletion. Once your account is deleted, it will no longer be available to you and cannot be restored. If you decide later that you want to start using our platform again, you will need to create a new account.</b>
+                          </p><br>
+                          <div class="text-center">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="checkbox" value="yes" id="confirm_delete" name="confirm_delete">
+                              <label class="form-check-label" for="confirm_delete">
+                                Yes, I want to permanently delete my Mugaam Recruiter Account 
+                              </label>
+                            </div>
+                          </div>
+                          <div class="text-center mt-2">
+                            <button class="btn btn-dlt-acc" type="button" id="dlt-acc" disabled>Delete Account</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>									
 									</div>
 								</div>
 						
@@ -139,6 +167,53 @@
 						</div>
 					</div>
 
+				</div>
+			</div>
+		</div>
+	</div>
+
+  <!-- Deleteaccount trigger modal -->
+	<div class="modal fade" id="dltaccountModal" tabindex="-1" aria-labelledby="dltaccountModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+		<div class="modal-dialog  modal-dialog-centered modal-md">
+			<div class="modal-content">
+				<div class="modal-body">
+          <div class="container">              
+            <div class="text-center">
+              <img draggable="false" src="{{ asset('/') }}sitesetting_images/thumb/{{ $siteSetting->site_logo }}" alt="logo" class="img-fluid">
+            </div>
+            <div class="d-req-frm">
+              <div class="text-center">
+                <h5>Let us know Why are you deleting your account ?</h5>
+              </div>
+              {!! Form::open(array('method' => 'post', 'route' => array('delete-account'), 'id' => 'delete-account')) !!}
+                <div class="row mt-4">
+                  @foreach($reasons as $reason)
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div class="form-check mb-2 reasons">
+                        {!! Form::checkbox('reasons[]', $reason->id, null, array('class'=>'form-check-input', 'id'=>'reasons'.$reason->id)) !!}
+                        <label class="form-check-label" for="reasons{{$reason->id}}">{{$reason->reason}}.</label>
+                      </div>
+                    </div>
+                  @endforeach
+                </div> 
+                <div class="row">              
+                  <div class="mb-4">    
+                    <p class="float-end mb-1" id="charCount">0/120</p>
+                    {!! Form::textarea('other_reason', null, array('class'=>'form-control', 'rows'=>4, 'id'=>'other_reason', 'placeholder'=>__('Descriptions'))) !!}
+                    <small class="form-text text-muted text-danger err_msg" id="err_reasons"></small>
+                  </div>
+                </div>
+                <div class="d-flex mt-2 justify-content-evenly">
+                  <div>
+                    <button class="btn btn-cancel" data-bs-dismiss="modal" aria-label="Close" type="button">Cancel</button>
+                  </div>    
+                  <div>
+                    <button class="btn btn-dlt-acc" type="button" id="dlt-acc" onClick="DeleteAccountSubmit()">Submit</button>
+                  </div>
+                </div>
+              {!! Form::close() !!} 
+            </div>
+          </div>
 				</div>
 			</div>
 		</div>
@@ -627,5 +702,77 @@ $('.btn-upload-image').on('click', function (ev) {
       }
   }
 
+  const arrowtoggleBtn = document.querySelector('.dlttoggle');
+  const angletoggleBtn = document.querySelector('.dlt-toggle');
+  const arrowToggle = () => {
+      if (angletoggleBtn.classList.contains("fa-angle-up")) {
+
+        angletoggleBtn.classList.replace("fa-angle-up", "fa-angle-down");
+      }else{
+        angletoggleBtn.classList.replace("fa-angle-down", "fa-angle-up");
+      }
+  }
+  arrowtoggleBtn.addEventListener("click", arrowToggle);
+
+  const DeletAct = () => {  
+    if($('#confirm_delete').is(':checked')){ 
+      $('#dlt-acc').prop("disabled", false);
+    }else{      
+      $('#dlt-acc').prop("disabled", true);
+    }
+  }
+  // A button object calls the function:
+  document.getElementById("confirm_delete").addEventListener("click", DeletAct);
+
+  $('#dlt-acc').on('click', function (e) {
+		$('#dltaccountModal').modal('show');
+	});  
+  
+  const ChartLimit = () => {  
+    var textarea = document.getElementById('other_reason');
+    var charCountDisplay = document.getElementById('charCount');
+    var remainingChars = 120 - textarea.value.length;
+    charCountDisplay.textContent = remainingChars+"/120";
+
+    // Disable or enable the textarea based on the character limit
+    textarea.disabled = remainingChars < 0;
+  }
+  // A button object calls the function:
+  document.getElementById("other_reason").addEventListener("input", ChartLimit);
+
+	function DeleteAccountSubmit(){
+    clrErr();
+    var errStaus = false;
+    if(validateFormFields('other_reason','Please enter your password','')) errStaus=true;
+
+    $("#other_reason").removeClass('is-invalid');
+    if($('input[name="reasons[]"]:checked').val() != undefined || errStaus==false){
+        var form = $('#delete-account');   
+        $.ajax({
+            url     : form.attr('action'),
+            type    : form.attr('method'),
+            data    : form.serialize(),
+            dataType: 'json',
+            success : function (json){  
+              $('.d-req-frm').html('');
+              $('.d-req-frm').html(`<br>
+                <img draggable="false" src="{{asset('site_assets_1/assets/img/stgs/success.svg')}}" alt="logo" class="img-fluid1 py-3">
+                <p>
+                  Your Mugaam account has been deleted temporarily. will take around 15 days to delete your account permanently.If you wish to restore your deleted account ;  login back with in 15 days from the day you deleted your account.
+                </p>
+                <button class="btn btn-dlt-acc winload" type="button">Ok</button>`);
+                $('.d-req-frm').addClass('text-center');
+            },
+        });
+    }else{
+      $('#err_reasons').html('Please choice the delete reason');
+      return false;
+    }
+    
+  }
+
+  $(document).on("click",".winload",function(){  
+    window.location.reload();
+  });
   </script>
 @endpush

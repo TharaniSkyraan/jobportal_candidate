@@ -243,11 +243,12 @@ class LoginController extends Controller
         try {
 
             if(empty($request->user_type)){
-                
-                if(User::where('email',$request->email)->doesntExist()){
-                    return Response()->json(['user_type' => 'new'], 200); 
+                $checkexist = User::where('email',$request->email)->first();
+                if(!isset($checkexist)){
+                    return Response()->json(['user_type' => 'new','is_deleted'=>''], 200); 
                 }else{
-                    return Response()->json(['user_type' => 'existing'], 200); 
+                    $account_delete_request_at = (empty($request->login_continue)?(!empty($checkexist->account_delete_request_at)?'deleted':''):'');
+                    return Response()->json(['user_type' => 'existing','is_deleted'=>$account_delete_request_at], 200); 
                 }
             }else
             if($request->user_type=='new')
@@ -289,6 +290,8 @@ class LoginController extends Controller
                     }
                 }   
                 if($user->verified==1){
+                    $data = $user;
+                    $data->update(['account_delete_request_at'=>NULL]);
                     Auth::login($user, true); 
                 }
                 

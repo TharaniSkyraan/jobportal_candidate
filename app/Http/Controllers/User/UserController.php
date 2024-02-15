@@ -32,6 +32,7 @@ use App\Model\Industry;
 use App\Model\Alert;
 use App\Model\FunctionalArea;
 use App\Model\SiteSetting;
+use App\Model\AccountDeleteRequest;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -80,9 +81,7 @@ class UserController extends Controller
     {
         $this->middleware('auth');
         // $this->middleware('auth', ['only' => ['index', 'myProfile', 'updateMyProfile', 'viewPublicProfile', 'accountSettings']]);
-        // $this->middleware('checkauth', ['only' => ['index']]);
     }
-
     
     /**
      * Show the application dashboard.
@@ -91,7 +90,6 @@ class UserController extends Controller
      */
     public function index()
     {
-
         $user = Auth::user();        
         $genders = DataArrayHelper::langGendersArray();
         $maritalStatuses = DataArrayHelper::langMaritalStatusesArray();
@@ -99,7 +97,6 @@ class UserController extends Controller
         $countries = DataArrayHelper::CountriesArray();
 
         return view('user.dashboard.about-me', compact('noticePeriod', 'user', 'genders', 'maritalStatuses', 'countries'));
-        
     }
     
     public function viewPublicProfile($id)
@@ -128,7 +125,8 @@ class UserController extends Controller
     }    
 
     public function accountSettings(){
-        return view('user.dashboard.accounts_settings');
+        $reasons = DataArrayHelper::langAccountDeleteReasonsArray(); 
+        return view('user.dashboard.accounts_settings', compact('reasons'));
     }
     
     public function updateMyProfile(UserFrontRegisterFormRequest $request)
@@ -392,4 +390,22 @@ class UserController extends Controller
 
     }
 
+    /**
+     * delete account api
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function DeleteAccount (Request $request) {
+        
+        $data = User::find(Auth::user()->id);
+        $data->account_delete_request_at = Carbon::now();
+        $data->remember_token = \Illuminate\Support\Str::random(60);
+        $data->save();
+        
+        $reasons =is_array($request->reasons) ? implode(',', $request->reasons) : ($request->reasons??' ');
+        AccountDeleteRequest::updateOrCreate(['account_id' => Auth::user()->id,'user_type'=>'candidate'],['reasons_id'=>$reasons,'other_reason'=>$request->other_reason??' ']);
+        Auth::logout();
+        return $this->sendResponse('', 'You have been successfully! Deleted request received!');
+    }
+    
 }

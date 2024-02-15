@@ -36,7 +36,7 @@
     // Complete signup
     Route::get('completed_signup', 'Auth\RegisterController@CompleteSignup')->name('completed_signup');  
 
-    Route::namespace('User')->group(function () {
+    Route::middleware(['checkdeletebackauth'])->namespace('User')->group(function () {
 
         /* * ******** user home page ************ */
 
@@ -50,14 +50,15 @@
         Route::post('send_request', 'UserController@SendRequest')->name('send-request');
         Route::post('verify_request', 'UserController@VerifyOtp')->name('verify-otp');
         Route::post('change-password', 'UserController@ChangePassword')->name('change-password');
+        Route::post('delete-account', 'UserController@DeleteAccount')->name('delete-account');
         Route::put('my_profile', 'UserController@updateMyProfile')->name('my_profile_save');
         Route::put('career_info', 'UserController@updateCareer')->name('career_info_save');
         
-        Route::view('/career-info-details','user.dashboard.career-info-details')->name('career-info-details')->middleware('auth');
+        Route::view('/career-info-details','user.dashboard.career-info-details')->name('career-info-details')->middleware(['auth']);
         
         /** Educations */
         
-        Route::view('/education-details','user.education.educations')->name('education-details')->middleware('auth');
+        Route::view('/education-details','user.education.educations')->name('education-details')->middleware(['auth']);
         Route::post('get-education-form/{id?}', 'UserController@getFrontUserEducationForm')->name('get.education.form');
         Route::post('get-education-form/{id?}', 'UserController@getFrontUserEducationForm')->name('get.education.form');
         Route::post('store-education/{id?}', 'UserController@storeFrontUserEducation')->name('store.education.form');
@@ -79,7 +80,7 @@
         Route::post('undo-experience', 'UserController@undoUserExperience')->name('undo.experience');
 
         /** Skills */
-        Route::view('/skill-details','user.skill.skills')->name('skill-details')->middleware('auth');
+        Route::view('/skill-details','user.skill.skills')->name('skill-details')->middleware(['auth']);
         Route::post('show-skills/{id?}', 'UserController@showUserSkills')->name('show.skills');
         Route::post('get-skill-form/{id?}', 'UserController@getFrontUserSkillForm')->name('get.skill.form');
         Route::post('store-skill/{id?}', 'UserController@storeFrontUserSkill')->name('store.skill');
@@ -89,7 +90,7 @@
         Route::post('undo-skill', 'UserController@undoUserSkill')->name('undo.skill');
 
         /**Languages */
-        Route::view('/language-details','user.language.languages')->name('language-details')->middleware('auth');
+        Route::view('/language-details','user.language.languages')->name('language-details')->middleware(['auth']);
         Route::post('show-languages/{id?}', 'UserController@showUserLanguages')->name('show.languages');
         Route::post('get-language-form/{id?}', 'UserController@getFrontUserLanguageForm')->name('get.languages.form');
         Route::post('store-language/{id?}', 'UserController@storeFrontUserLanguage')->name('store.languages');
@@ -99,7 +100,7 @@
         Route::post('undo-language', 'UserController@undoUserLanguage')->name('undo.languages');
 
         /**Projects */
-        Route::view('/project-details','user.project.projects')->name('project-details')->middleware('auth');
+        Route::view('/project-details','user.project.projects')->name('project-details')->middleware(['auth']);
         Route::post('show-projects/{id?}', 'UserController@showFrontUserProjects')->name('show.projects');
         Route::post('get-project-form/{id?}', 'UserController@getFrontUserProjectForm')->name('get.project.form');
         Route::post('store-project/{id?}', 'UserController@storeFrontUserProject')->name('store.project');

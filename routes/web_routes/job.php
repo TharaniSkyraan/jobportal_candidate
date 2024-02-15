@@ -1,5 +1,7 @@
 <?php
 
+
+
 Route::get('/', 'Job\JobsController@searchIndex')->name('index');
 
 // jobseeker main-search api routes starts..

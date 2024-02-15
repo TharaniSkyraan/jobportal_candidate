@@ -201,3 +201,31 @@
         background: #4285f4;
         color: #fff;
     }
+    /* delete account popup */
+    
+#dltaccountModal .modal-body{
+    padding: 0%;
+}
+#dltaccountModal .modal-header{
+    background: rgb(66,133,244);
+    background: linear-gradient(180deg, rgba(66,133,244,1) 0%, rgba(52,105,192,1) 100%);
+}
+#dltaccountModal .img-fluid {
+    max-width: 30%;
+    height: auto;
+}
+.btn-dlt-acc,.btn-dlt-acc:focus, .btn-dlt-acc:hover {
+  transition: 0.5s;
+  color: #fff;
+  background: #4285F4;
+  border-color: #4285F4;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.btn-cancel{
+    background: #cccccc21 !important;
+    color: #212529;
+    transition: 0.5s;
+    border-radius: 5px;
+    font-size: 14px;
+}

@@ -87,6 +87,31 @@
     </div>
 </section>
 
+  <!-- Deleteaccount trigger modal -->
+  <div class="modal fade" id="dltaccountModal" tabindex="-1" aria-labelledby="dltaccountModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+		<div class="modal-dialog  modal-dialog-centered modal-md">
+			<div class="modal-content">
+				<div class="modal-body">
+                    <div class="modal-header justify-content-center">
+                        <img draggable="false" src="{{ asset('site_assets_1/assets/img/stgs/delete.svg') }}" alt="logo" class="img-fluid py-5">
+                    </div>
+                    <div class="text-center px-5 py-3">
+                        <p>We received your deletion of account request.
+                        By giving “continue” you allow us to restore your account again. 
+                        All your data will be permanently deleted within 15 days from the day of your request if not logged in.</p>
+                    </div>
+                    <div class="d-flex mb-3 justify-content-evenly">
+                        <div>
+                            <button class="btn btn-cancel" data-bs-dismiss="modal" aria-label="Close" type="button">Cancel</button>
+                        </div>    
+                        <div>
+                            <button class="btn btn-dlt-acc" type="button" id="dlt-acc">Continue</button>
+                        </div>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
 @endsection
 @section('footer')
 {{-- @include('layouts.footer.footer') --}}

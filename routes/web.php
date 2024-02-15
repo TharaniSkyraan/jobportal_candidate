@@ -33,20 +33,24 @@ Route::any('signinorsignup/{provider}/callback', 'Auth\LoginController@handlePro
 
 
 /* * ******** User Auth ****************** */
+
+
 include_once($real_path . 'site_user.php');
 
-Auth::routes();
 
-Route::view('/contact-us','contact_us')->name('contact-us');
-Route::get('/faq/{ckey?}', 'ContactController@faqindex')->name('faq');
-Route::post('/faqData', 'ContactController@getFaqData')->name('faq-data');
-Route::post('contact-us-insert', 'ContactController@ContactInsert')->name('contact.insert');
-Route::view('/about-us','about_us')->name('about-us');
-Route::view('/about-company','about_company')->name('about-company');
-Route::view('/cookie-policy','cookie_policy')->name('cookie-policy');
-Route::view('/privacy-policy','privacy_policy')->name('privacy-policy');
-Route::view('/terms-of-use','terms_of_use')->name('terms-of-use');
+Route::middleware(['checkdeleteauth'])->group(function () {
+  Auth::routes();
+  Route::view('/contact-us','contact_us')->name('contact-us');
+  Route::get('/faq/{ckey?}', 'ContactController@faqindex')->name('faq');
+  Route::post('/faqData', 'ContactController@getFaqData')->name('faq-data');
+  Route::post('contact-us-insert', 'ContactController@ContactInsert')->name('contact.insert');
+  Route::view('/about-us','about_us')->name('about-us');
+  Route::view('/about-company','about_company')->name('about-company');
+  Route::view('/cookie-policy','cookie_policy')->name('cookie-policy');
+  Route::view('/privacy-policy','privacy_policy')->name('privacy-policy');
+  Route::view('/terms-of-use','terms_of_use')->name('terms-of-use');
 
+});
 Route::get('/cvgen','Controller@cvgen');
 
 
@@ -75,7 +79,9 @@ Route::get('robots.txt', function () {
     ]);
 });
 /* * ******** JobController **************** */
-include_once($real_path . 'job.php');
+Route::middleware(['checkdeleteauth'])->group(function () use($real_path) {
+  include_once($real_path . 'job.php');
+});
 
 //Developer defined routes
 // Route::get('/axejpdevr/truncate','Devdefined\DbClearController@allTableTruncate');

@@ -54,9 +54,6 @@ class JobsController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth', ['except' => ['search', 'viewJob', 'searchJob', 'searchJob_2','jobDetail']]);
-        // $this->functionalAreas = DataArrayHelper::langFunctionalAreasArray();
-        // $this->countries = DataArrayHelper::langCountriesArray();
     }
     
     public function searchIndex()

@@ -1,3 +1,4 @@
+var login_continue = '';
 $(document).on('keyup change', ".required_1", function() {
       
     var ck_email = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
@@ -45,6 +46,11 @@ $(document).on('keyup', "#password", function() {
 });
 $("#showpico").hide();
 
+$(document).on('click', ".btn-dlt-acc", function() {
+  login_continue = 'yes';
+  validateLoginForm();
+  $('.btn-cancel').trigger('click');
+});
 function validateLoginForm() {
     clrErr();
     var errStaus = false;
@@ -54,15 +60,23 @@ function validateLoginForm() {
   
     if(errStaus == false){  
       var form = $('#submitform'); 
+      var formData = form.serialize();
+
+      // Append additional input
+      formData += '&login_continue='+login_continue;
       if(is_empty(user_type))
       {     
         $.ajax({
             url     : form.attr('action'),
             type    : form.attr('method'),
-            data    : form.serialize(),
+            data    : formData,
             dataType: 'json',        
             success:function(data) {
+              login_continue = '';
               $('#user_type').val(data.user_type);
+              if(data.is_deleted=='deleted'){
+                $('#dltaccountModal').modal('show');
+              }
               if(data.user_type=='new'){
                  $('.rtname').show();
                  $('.rtpassword').show();
@@ -73,6 +87,9 @@ function validateLoginForm() {
               $('.rtemail').hide();
               $('#display-email').html(email);
               $('.display-email').show();
+              if(data.is_deleted=='deleted'){
+                $('.edit-email').trigger('click');
+              }
             },
             error: function(json){
                 if (json.status === 422) {

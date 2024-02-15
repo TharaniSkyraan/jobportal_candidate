@@ -190,3 +190,50 @@ input[type=number]::-webkit-outer-spin-button {
     text-decoration: underline;
     cursor: pointer;
 }
+/* Delete account */
+.form-check label, .form-group label{
+  white-space: unset;
+  font-weight: 400;
+  font-size: 13px !important;
+}
+.btn-dlt-acc,.btn-dlt-acc:focus, .btn-dlt-acc:hover {
+  transition: 0.5s;
+  color: #fff;
+  background: #4285F4;
+  border-color: #4285F4;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.btn-dlt-acc:disabled,
+.btn-dlt-acc[disabled]{
+  background: #cccccc !important;
+  border-color: #cccccc !important;
+  color: #666666;
+}
+#collapseExampledelete p{
+  text-align: justify;
+}
+.btn-cancel{
+    background: #cccccc61 !important;
+    border-color: #cccccc61 !important;
+    color: #212529;
+    transition: 0.5s;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.reasons.form-check label,.reasons.form-group label{
+  white-space: unset;
+  font-weight: 400;
+  font-size: 14px !important;
+}
+.modal.modal-static .modal-dialog{
+  transform: none !important;
+}
+#dltaccountModal .img-fluid{
+  max-width: 60% !important;
+  height: auto;
+}
+#dltaccountModal .img-fluid1{
+  max-width: 15% !important;
+  height: auto;
+}

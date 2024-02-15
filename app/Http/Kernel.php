@@ -61,6 +61,8 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'checkauth' => \App\Http\Middleware\RedirectIfAuthenticated::class,  
+        'checkdeleteauth' => \App\Http\Middleware\RedirectIfDeleted::class,  
+        'checkdeletebackauth' => \App\Http\Middleware\RedirectIfDeletedback::class,  
       
     ];
 
