@@ -156,7 +156,23 @@ class LoginController extends Controller
         }
          
         $user = Socialite::driver($provider)->stateless()->user();
-        
+        $email = $user->getEmail();
+
+        if(!isset($user->user['is_private_email'])){
+            $checkuser = User::where('email',$user->getEmail())->first();
+        }else{
+            $checkuser = User::where('apple_provider_id',$user->getId())->first();
+        }
+
+        if(isset($checkuser)){
+            if(!empty($checkuser->account_delete_request_at)){
+                $email = $checkuser->email;
+                $provider = $provider;
+                $user_type = 'existing';
+                return view('auth.login',compact('email','provider','user_type'));
+            }
+        }
+
         if($user->getEmail() != '' && !isset($user->user['is_private_email'])) 
         {
             $data['provider'] = $provider;
@@ -283,7 +299,7 @@ class LoginController extends Controller
 
                 $user = User::whereEmail($request->email)->first();
 
-                if(isset($request->password)){
+                if(isset($request->password) && empty($request->provider)){
                     if(! Hash::check( $request->password , $user->password))
                     {
                         return Response()->json(['errors' => array('password' => 'Invalid Password')], 422);

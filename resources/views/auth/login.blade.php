@@ -29,8 +29,8 @@
                         
                         <form class="mb-3" method="POST" id="submitform" action="{{ route('accountverification') }}" onsubmit='return validateLoginForm()' >
                             {{ csrf_field() }}
-                            {!! Form::hidden('user_type','', array('id'=>'user_type')) !!}
-                            
+                            {!! Form::hidden('user_type',$user_type??'', array('id'=>'user_type')) !!}
+                            {!! Form::hidden('provider',$provider??'', array('id'=>'provider')) !!}
                             <div class="mb-3 text-center display-email" style="display:none;">
                                 <h5>
                                     <text id="display-email">...</text> 
@@ -96,9 +96,7 @@
                         <img draggable="false" src="{{ asset('site_assets_1/assets/img/stgs/delete.svg') }}" alt="logo" class="img-fluid py-5">
                     </div>
                     <div class="text-center px-5 py-3">
-                        <p>We received your deletion of account request.
-                        By giving “continue” you allow us to restore your account again. 
-                        All your data will be permanently deleted within 15 days from the day of your request if not logged in.</p>
+                        <p>We've received your request to delete your account. It will remain inactive for 15 days. If you log in during this period, your account will be automatically restored. Do you wish to proceed?</p>
                     </div>
                     <div class="d-flex mb-3 justify-content-evenly">
                         <div>

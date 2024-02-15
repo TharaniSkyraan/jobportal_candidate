@@ -33,24 +33,35 @@ $(".toggle-password").click(function() {
 });
 $(document).on('click', ".edit-email", function() {
   $('#user_type').val('');
-    $('.rtname').hide();
-    $('.rtpassword').hide();
-    $('.rtemail').show();
-    $('.display-email').hide();
-    $('.f-pass').show();
-
+  $('#provider').val('');
+  $('.rtname').hide();
+  $('.rtpassword').hide();
+  $('.rtemail').show();
+  $('.display-email').hide();
+  $('.f-pass').show();
 });
 $(document).on('keyup', "#password", function() {
     if($(this).val() != ''){$("#showpico").show();}
     else{$("#showpico").hide();}
 });
 $("#showpico").hide();
-
 $(document).on('click', ".btn-dlt-acc", function() {
   login_continue = 'yes';
   validateLoginForm();
   $('.btn-cancel').trigger('click');
 });
+$(document).on('click', ".btn-cancel", function() {
+  if($('#provider').val()!=''){
+    $('.edit-email').trigger('click');
+  }
+});
+$(document).ready(function(){
+    if($('#provider').val()!=''){
+      $('#dltaccountModal').modal('show');
+      window.history.pushState({}, '', baseurl+'/login');
+    }
+});
+
 function validateLoginForm() {
     clrErr();
     var errStaus = false;
@@ -106,7 +117,9 @@ function validateLoginForm() {
           if(validateFormFields('password','Please enter your password','validPass')) errStaus=true;
           if(validateFormFields('name','Please enter name.','NameVali')) errStaus=true;
         }else{
-          if(validateFormFields('password','Please enter your password','')) errStaus=true;
+          if($('#provider').val()==''){
+            if(validateFormFields('password','Please enter your password','')) errStaus=true;
+          }
         }
 
         if(errStaus==false){
