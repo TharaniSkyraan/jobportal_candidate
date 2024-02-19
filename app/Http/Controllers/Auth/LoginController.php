@@ -342,15 +342,15 @@ class LoginController extends Controller
             $user = User::findOrFail(Session::get('id'));
             $otp = $user->verify_otp;
             $expired = '';
-            $startdate = Carbon::parse($company->session_otp);
+            $startdate = Carbon::parse($user->session_otp);
             $enddate = Carbon::now();
-            if(!empty($company->session_otp)){
+            if(!empty($user->session_otp)){
                 if(($startdate->diffInMinutes($enddate)) > 5) {
                     $expired = 'expired';
                 }
             }
             
-            if(empty($company->verify_otp) && empty($expired)){
+            if(empty($user->verify_otp) && empty($expired)){
                 $otp = $this->generateRandomCode(6);
                 $user->verify_otp = $otp;
                 $user->session_otp = Carbon::now();
