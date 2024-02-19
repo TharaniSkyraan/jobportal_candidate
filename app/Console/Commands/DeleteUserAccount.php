@@ -107,18 +107,18 @@ class DeleteUserAccount extends Command
                 Message::whereIn('message_id',$mesageids)->delete();     
             }
             
-            BlogView::where(['user_type','candidate'],['user_id',$user_id])->delete();
-            BlogLike::where(['user_type','candidate'],['user_id',$user_id])->delete();
+                BlogView::where('user_type','candidate')->where('user_id',$user_id)->delete();
+                BlogLike::where('user_type','candidate')->where('user_id',$user_id)->delete();
 
             $delete_user = new DeletedAccount();
             $delete_user->name = $user->getName();
             $delete_user->email = $user->email;
-            $delete_user->phone = $user->phone;
+            $delete_user->phone = $user->phone??' ';
             $delete_user->alternative_phone = $user->alternative_phone??'';
             $delete_user->gender = $user->gender??0;
             $delete_user->image = $user->image??'';
             $delete_user->date_of_birth = $user->date_of_birth??NULL;
-            $delete_user->country_id = $user->country_id;
+            $delete_user->country_id = $user->country_id??0;
             $delete_user->location = $user->location??' ';
             $delete_user->account_id = $user->id;
             $delete_user->user_type = 'candidate';
