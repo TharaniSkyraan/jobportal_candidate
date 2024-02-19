@@ -340,8 +340,17 @@ class LoginController extends Controller
         
         try {
             $user = User::findOrFail(Session::get('id'));
-            $otp = '';
-            if(empty($user->verify_otp)){
+            $otp = $user->verify_otp;
+            $expired = '';
+            $startdate = Carbon::parse($company->session_otp);
+            $enddate = Carbon::now();
+            if(!empty($company->session_otp)){
+                if(($startdate->diffInMinutes($enddate)) > 5) {
+                    $expired = 'expired';
+                }
+            }
+            
+            if(empty($company->verify_otp) && empty($expired)){
                 $otp = $this->generateRandomCode(6);
                 $user->verify_otp = $otp;
                 $user->session_otp = Carbon::now();
@@ -355,9 +364,8 @@ class LoginController extends Controller
         }catch (\Exception $e) {
             return Response()->json(['errors' => array('email' => 'Invalid Email. Please try again')], 422);
         }
-
             
-        return view('auth.verify_otp',compact('user'));      
+        return view('auth.verify_otp',compact('user','otp'));      
 
     }
 
