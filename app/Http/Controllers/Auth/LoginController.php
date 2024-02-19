@@ -362,7 +362,7 @@ class LoginController extends Controller
                 Auth::logout();
             }
         }catch (\Exception $e) {
-            return Response()->json(['errors' => array('email' => 'Invalid Email. Please try again')], 422);
+            return redirect('login');   
         }
             
         return view('auth.verify_otp',compact('user','otp'));      
