@@ -37,6 +37,8 @@ class RegisterRequest extends Request
         {            
             if(empty($this->id)){
                 $rules['phone'] = 'required|unique:users,phone,'.($this->email??null).',email,deleted_at,NULL';
+            }else{
+                $rules['phone'] = 'required|unique:users,phone,'.($this->id??null).',id,deleted_at,NULL';
             }
             $rules['password'] = 'required|max:30';
         }
