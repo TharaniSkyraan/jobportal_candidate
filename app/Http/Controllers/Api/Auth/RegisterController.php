@@ -128,15 +128,15 @@ class RegisterController extends BaseController
      */
     public function register(RegisterRequest $request)
     {
-       
-        
         DB::beginTransaction();
  
         try {
 
-            if(User::where('email',$request->email)->doesntExist() || User::where('email',$request->email)->whereVerified(0)->exists())
+            if((User::where('email',$request->email)->doesntExist() || User::where('email',$request->email)->whereVerified(0)->exists()) || !empty($request->id))
             {
                 $otp = $this->generateRandomCode(6);
+                $user_id = $request->id;
+                unset($request->id);
                 $data = $request->all();
                 $data['verify_otp'] = $otp;
                 if($request->provider=='apple'){
@@ -146,7 +146,11 @@ class RegisterController extends BaseController
                 $data['password'] = Hash::make($request->password);
                 $data['next_process_level'] = 'verify_otp';
                 $data['token'] = $this->generateRandomString(8);
-                User::updateOrCreate(['email' => $request->email],$data);
+                if(empty($user_id)){
+                    User::updateOrCreate(['email' => $request->email],$data);
+                }else{
+                    User::updateOrCreate(['id' => $user_id],$data);
+                }
 
                 $user = User::where('email',$request->email)->first();
                 
