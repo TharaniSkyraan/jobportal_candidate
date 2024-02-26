@@ -165,7 +165,7 @@ class RegisterController extends BaseController
             return $this->sendError('This email address is already registered. Please choose another one.', array(), 200);
     
         }catch (\Exception $e) {
-            return Response()->json(['errors' => array('email' => 'Invalid Email. Please try again')], 422);
+            return $this->sendError('Invalid Email. Please try again', array(), 422);
         }
     }
     /**
