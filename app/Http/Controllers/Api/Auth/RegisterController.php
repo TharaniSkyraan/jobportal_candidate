@@ -165,7 +165,7 @@ class RegisterController extends BaseController
             return $this->sendError('This email address is already registered. Please choose another one.', array(), 200);
     
         }catch (\Exception $e) {
-            return $this->sendError('Invalid Email. Please try again', array(), 422);
+            return $this->sendError('Enter Valid mail id', array(), 422);
         }
     }
     /**
@@ -202,7 +202,7 @@ class RegisterController extends BaseController
         $response['token'] =  $user->createToken($user->email)->accessToken; 
         $response['next_process_level'] = $user->next_process_level;
 
-        return $this->sendResponse($response, 'OTP Verified Successful.');
+        return $this->sendResponse($response, 'OTP has been successfully sent to your mail id.');
 
     }
 
