@@ -129,34 +129,44 @@ class RegisterController extends BaseController
     public function register(RegisterRequest $request)
     {
        
-        if(User::where('email',$request->email)->doesntExist() || User::where('email',$request->email)->whereVerified(0)->exists())
-        {
-            $otp = $this->generateRandomCode(6);
-            $data = $request->all();
-            $data['verify_otp'] = $otp;
-            if($request->provider=='apple'){
-                $data['apple_provider_id'] = $request->provider_id;
+        
+        DB::beginTransaction();
+ 
+        try {
+
+            if(User::where('email',$request->email)->doesntExist() || User::where('email',$request->email)->whereVerified(0)->exists())
+            {
+                $otp = $this->generateRandomCode(6);
+                $data = $request->all();
+                $data['verify_otp'] = $otp;
+                if($request->provider=='apple'){
+                    $data['apple_provider_id'] = $request->provider_id;
+                }
+                $data['session_otp'] = Carbon::now();
+                $data['password'] = Hash::make($request->password);
+                $data['next_process_level'] = 'verify_otp';
+                $data['token'] = $this->generateRandomString(8);
+                User::updateOrCreate(['email' => $request->email],$data);
+
+                $user = User::where('email',$request->email)->first();
+                
+                Auth::login($user, true); 
+                UserVerification::generate($user);
+                UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
+                Auth::logout();
+                UserActivity::updateOrCreate(['user_id' => $user->id],['last_active_at'=>Carbon::now()]);
+                User::where('id',$user->id)->update(['candidate_id'=>$this->generateCandidate($user->id)]);
+
+                DB::commit();
+                
+                return $this->sendResponse([['id'=>$user->id,'otp'=>$otp,'user_token'=>$user->token,'next_process_level'=>$user->next_process_level]], 'Verification OTP Send Successful.');
             }
-            $data['session_otp'] = Carbon::now();
-            $data['password'] = Hash::make($request->password);
-            $data['next_process_level'] = 'verify_otp';
-            $data['token'] = $this->generateRandomString(8);
-            User::updateOrCreate(['email' => $request->email],$data);
 
-            $user = User::where('email',$request->email)->first();
-            
-            Auth::login($user, true); 
-            UserVerification::generate($user);
-            UserVerification::send($user, 'User Verification', config('mail.recieve_to.address'), config('mail.recieve_to.name'));
-            Auth::logout();
-            UserActivity::updateOrCreate(['user_id' => $user->id],['last_active_at'=>Carbon::now()]);
-            User::where('id',$user->id)->update(['candidate_id'=>$this->generateCandidate($user->id)]);
-
-            return $this->sendResponse([['id'=>$user->id,'otp'=>$otp,'user_token'=>$user->token,'next_process_level'=>$user->next_process_level]], 'Verification OTP Send Successful.');
-        }
-
-        return $this->sendError('This email address is already registered. Please choose another one.', array(), 200);
+            return $this->sendError('This email address is already registered. Please choose another one.', array(), 200);
     
+        }catch (\Exception $e) {
+            return Response()->json(['errors' => array('email' => 'Invalid Email. Please try again')], 422);
+        }
     }
     /**
  
