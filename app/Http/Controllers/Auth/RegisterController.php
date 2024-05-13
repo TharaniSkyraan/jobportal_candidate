@@ -419,10 +419,10 @@ class RegisterController extends Controller
             //     'file' => 'required|file|mimes:pdf,docx,doc,txt,rtf|max:2048',
             // ]);        
 
-            // $path = Storage::disk('s3')->put('candidate/'.$user->token.'/file', $request->file);
-            // $url = Storage::disk('s3')->url($path);
-            $path = Storage::disk('public')->put('cv_uploads', $request->file('file'));
-            $url = Storage::disk('public')->url($path);
+            $path = Storage::disk('s3')->put('candidate/'.$user->token.'/file', $request->file);
+            $url = Storage::disk('s3')->url($path);
+            // $path = Storage::disk('public')->put('cv_uploads', $request->file('file'));
+            // $url = Storage::disk('public')->url($path);
             $UserCv = new UserCv();
             $UserCv->path = $path;
             $UserCv->cv_file = $url;
