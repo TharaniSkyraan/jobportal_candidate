@@ -84,6 +84,25 @@ class Controller extends BaseController
      *  checkTime
      * 
      */
+	public function cvmovelocaltos3()
+    {
+        $cv = \App\Model\UserCv::find(3547);
+
+        $url = $cv->cv_file;
+        $filePath = $cv->path;
+        $fileExt = pathinfo($url, PATHINFO_EXTENSION);
+        $s3DestinationPath = "candidate/".$cv->user->token."/file/".time().'.pdf';
+
+        dd($filePath);
+        // Move the file from local storage to S3
+        Storage::disk('s3')->putFileAs('', storage_path('app/'.$filePath), $s3DestinationPath);
+                
+    }
+    /**
+     * 
+     *  checkTime
+     * 
+     */
 	public function cvgen()
     {
       $cvs = \App\Model\UserCv::where('pdf_file','')->get();
