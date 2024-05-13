@@ -51,7 +51,7 @@ Route::middleware(['checkdeleteauth'])->group(function () {
   Route::view('/terms-of-use','terms_of_use')->name('terms-of-use');
 
 });
-Route::get('/cvgen','Controller@cvmovelocaltos3');
+Route::get('/cvgen','Controller@cvgen');
 
 
 /* * ******** TypeAheadController ********* */
