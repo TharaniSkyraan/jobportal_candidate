@@ -84,19 +84,69 @@ class Controller extends BaseController
      *  checkTime
      * 
      */
+	
+    /**
+     * 
+     *  checkTime
+     * 
+     */
 	public function cvmovelocaltos3()
     {
-        $cv = \App\Model\UserCv::find(3547);
-
-        $url = $cv->cv_file;
-        $filePath = $cv->path;
-        $fileExt = pathinfo($url, PATHINFO_EXTENSION);
-        $s3DestinationPath = "candidate/".$cv->user->token."/file/".time().'.pdf';
-
-        dd($filePath);
-        // Move the file from local storage to S3
-        Storage::disk('s3')->putFileAs('', storage_path('app/'.$filePath), $s3DestinationPath);
+        $cvs = \App\Model\UserCv::whereIn('id', [3558, 3570, 3571, 3611, 3675, 3700, 3702, 3818, 3824, 3830])->get();
+    
+        foreach($cvs as $cv){
+            
+            $url = $cv->cv_file;
+            $filePath = $cv->path;
+            $fileExt = pathinfo($url, PATHINFO_EXTENSION);
+           
+            if($fileExt=='pdf'){
+                  if (\File::exists(storage_path('app/public/'.$filePath))) 
+                    {
+                    $s3DestinationPath = "candidate/".$cv->user->token."/file/".time().'.pdf';
+                    
+                    // Move the file from local storage to S3
+                    \Storage::disk('s3')->putFileAs('', storage_path('app/public/'.$filePath), $s3DestinationPath);
+                    
+                    $pdf_url = \Storage::disk('s3')->url($s3DestinationPath);  
+                    $cv->pdf_path = $s3DestinationPath??'';
+                    $cv->pdf_file = $pdf_url??'';
+                    $cv->path = $s3DestinationPath??'';
+                    $cv->cv_file = $pdf_url??'';
+                    $cv->save();   
                 
+                    \Storage::disk('local')->delete($filePath);
+                }
+                
+            }else{
+                
+                $filepdfPath = $cv->pdf_path;
+                $s3DestinationpdfPath = "candidate/".$cv->user->token."/file/".time().'.pdf';
+          
+                if (\File::exists(storage_path('app/public/'.$filepdfPath))) {
+                    
+                    \Storage::disk('s3')->putFileAs('', storage_path('app/public/'.$filepdfPath), $s3DestinationpdfPath);
+                    
+                    $s3DestinationPath = "candidate/".$cv->user->token."/file/".time().'.'.$fileExt;
+                    \Storage::disk('s3')->putFileAs('', storage_path('app/public/'.$filePath), $s3DestinationPath);
+                    $url = \Storage::disk('s3')->url($s3DestinationPath);
+                    
+                    
+                    $pdf_url = \Storage::disk('s3')->url($s3DestinationpdfPath);    
+                    $cv->pdf_path = $s3DestinationpdfPath??'';
+                    $cv->pdf_file = $pdf_url??'';
+                    $cv->path = $s3DestinationPath??'';
+                    $cv->cv_file = $url??'';
+                    $cv->save();   
+                
+                    \Storage::disk('local')->delete($filePath);
+                }
+            }
+            
+        }
+                    
+        dd('done');
+        
     }
     /**
      * 
