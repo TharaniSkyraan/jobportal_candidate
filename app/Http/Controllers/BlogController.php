@@ -22,6 +22,7 @@ class BlogController extends Controller
     public function view(Request $request, $id){
         $blog = Blog::findOrFail($id);
         $more = Blog::where('id', '!=', $id)
+                    ->whereUserType('candidate')
                     ->latest()
                     ->take(2)
                     ->get();
@@ -44,18 +45,18 @@ class BlogController extends Controller
     }
 
     public function blogs(Request $request){
-        $sliders = Blog::latest()->take(3)->get();
+        $sliders = Blog::whereUserType('candidate')->latest()->take(3)->get();
         return view('blog.index', compact('sliders'));
     }
 
     public function searchs(Request $request){
         $query = $request->value;
         $page = $request->page;
-        $search = Blog::where('title', 'LIKE', "%{$query}%");
+        $search = Blog::where('title', 'LIKE', "%{$query}%")->whereUserType('candidate');
         $data = $search->where('id','>', $page)->take(5)->get();
         $output = '';   
         if(count($data) > 0){
-            $lastid = Blog::where('title', 'LIKE', "%{$query}%")->get()->last()->id;
+            $lastid = Blog::where('title', 'LIKE', "%{$query}%")->whereUserType('candidate')->get()->last()->id;
             foreach($data as $row)
             {
                 $count_v = BlogView::where('blog_id', $row->id)->count();

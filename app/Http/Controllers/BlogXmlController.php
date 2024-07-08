@@ -8,7 +8,7 @@ use App\Model\Blog;
 class BlogXmlController extends Controller
 {
     public function index(Request $request){
-        $blog = Blog::where('is_active', 1)->count(); 
+        $blog = Blog::where('is_active', 1)->whereUserType('candidate')->count(); 
         if($blog <= 20){
             $count = 1; 
         }else{
@@ -22,9 +22,9 @@ class BlogXmlController extends Controller
     public function view(Request $request, $id){
         $paginate = 20 * $id;
         if($paginate <= 20){
-            $blog = Blog::where('is_active', 1)->take(20)->get();
+            $blog = Blog::where('is_active', 1)->whereUserType('candidate')->take(20)->get();
         }else{
-            $blog = Blog::where('is_active', 1)->skip($paginate)->take(20)->get();
+            $blog = Blog::where('is_active', 1)->whereUserType('candidate')->skip($paginate)->take(20)->get();
         }       
         return response()->view('blog.sitemap.index', [
             'blog' => $blog,
