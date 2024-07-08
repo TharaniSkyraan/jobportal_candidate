@@ -92,10 +92,14 @@ padding-right: unset !important;
   /* border-radius: 10px !important;
   background: #F1F6FF;
   box-shadow: 1px 2px 3px 0 rgba(69,65,78,.1); */
-  border-radius: unset;
+  /* border-radius: unset;
   background: none;
-  box-shadow: unset;
+  box-shadow: unset; */
   
+}
+
+.card.event.active{
+  background: #F1F6FF;
 }
 .ske{    
   text-align: -webkit-center;
