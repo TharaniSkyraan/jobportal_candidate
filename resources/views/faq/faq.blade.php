@@ -1,30 +1,5 @@
 
 @extends('layouts.pages.common_app')
-@section('custom_styles')
-  <style>
-    .navbar .dropdown ul {
-      left: 0px;
-    }
-    @media(min-width: 400px) and (max-width: 767px){   
-      .navbar .dropdown ul {
-        left: 70px;
-      }
-    }
-    @media(min-width: 280px) and (max-width: 400px){   
-      .navbar .dropdown ul {
-        left: 20px;
-      }
-    }
-    .sidenavbar.sidenavbarfaq{
-      z-index: 12;
-    }.content .footer{
-      z-index: 2;
-      position: relative !important;
-      left: 0px;
-      margin-top: 85px;
-    }
-  </style>
-@endsection
 @section('title') Mugaam - FAQ @endsection
 @section('custom_scripts')        
   <link href="{{ asset('site_assets_1/assets/1a9ve2/css/faq!2&32.css')}}" rel="stylesheet">
@@ -66,7 +41,6 @@
     var cat_key_from_url = '{{ $cat->slug }}';
     var is_empty_categorykey = '{{$ckey}}'; 
   </script>
-  <script type="text/javascript" src="{{ asset('site_assets_1/assets/js/sidenavbarscript.js') }}"></script>
   <script type="text/javascript" src="{{ asset('site_assets_1/assets/1a9ve2/js/faq!2&32.js') }}"></script>
 @endsection
 

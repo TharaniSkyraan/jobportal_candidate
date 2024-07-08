@@ -2,7 +2,7 @@
 var act_ckey = cat_key_from_url;
 var faqData = 'faqData';
 // is_empty_categorykey
-change_url_state(is_empty_categorykey);
+// change_url_state(is_empty_categorykey);
 load_faq_data(act_ckey);
 
 function change_url_state(ckey){
