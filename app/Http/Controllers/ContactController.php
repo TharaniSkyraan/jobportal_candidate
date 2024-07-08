@@ -70,13 +70,13 @@ class ContactController extends Controller
         if(empty($request->search_q))
         {
             $faqs = Faq::where('user_type','candidate')
-                        ->whereFaqCategoryId($request->ids)
+                        // ->whereFaqCategoryId($request->ids)
                         ->select('question','answer')->get();          
         }else
         {
             $search_q = $request->search_q;
             $faqs = Faq::where('user_type','candidate')
-                        ->whereFaqCategoryId($request->ids)
+                        // ->whereFaqCategoryId($request->ids)
                         ->where('question', 'like', "%{$search_q}%")
                         ->get();
         }

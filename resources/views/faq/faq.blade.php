@@ -1,6 +1,6 @@
+
 @extends('layouts.pages.common_app')
 @section('custom_styles')
-  <link href="{{ asset('site_assets_1/assets/1a9ve2/css/faq!2&32.css')}}" rel="stylesheet">
   <style>
     .navbar .dropdown ul {
       left: 0px;
@@ -26,15 +26,14 @@
   </style>
 @endsection
 @section('title') Mugaam - FAQ @endsection
+@section('custom_scripts')        
+  <link href="{{ asset('site_assets_1/assets/1a9ve2/css/faq!2&32.css')}}" rel="stylesheet">
+@endsection
 @section('content')
-  <div class="wrapper" >        
-    @include('faq.header.header')
-    @include('faq.categorylist')
-    <div class="main-panel main-panel-custom">
+
+    @include('layouts.header.header')
+    <div class="container">
       <div class="content">
-          <div class="page-header justify-content-center  align-items-center mt-5 mb-1">
-            <h2 class="page-title d-flex"> <img draggable="false" src="{{asset('images/m_svg/FAQ.svg')}}" class="dropdown" alt="..."> Frequently Asked Questions</h2>
-          </div>
           <div class="page-inner">
             <div class="ske">
                 <div class="input-group">
@@ -46,18 +45,20 @@
                   </span>
                 </div>              
             </div>
-            <span class="cat_nme" id="{{$cat->id}}"></span>
+            <div class="page-header justify-content-center  align-items-center mt-5 mb-1">
+              <h2 class="page-title d-flex"> <img draggable="false" src="{{asset('images/m_svg/FAQ.svg')}}" class="dropdown" alt="..."> Frequently Asked Questions</h2>
+            </div>
             <div id="content">
-              <h3 id="bi_activ_ct">{{ $cat->faq_category}}</h3>
               <ul class="timeline catfaqs">
               </ul>
               <div id="nodatamsg"></div>
             </div>
           </div>
-          @include('faq.footer.footer') 
       </div>
     </div>
-  </div>
+@endsection
+@section('footer')
+    @include('layouts.footer.footer')
 @endsection
 @section('custom_bottom_scripts')
   <script>
@@ -68,3 +69,5 @@
   <script type="text/javascript" src="{{ asset('site_assets_1/assets/js/sidenavbarscript.js') }}"></script>
   <script type="text/javascript" src="{{ asset('site_assets_1/assets/1a9ve2/js/faq!2&32.js') }}"></script>
 @endsection
+
+

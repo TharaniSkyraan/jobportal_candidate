@@ -67,7 +67,7 @@
                 <li><img src="{{asset('images/footer/arrow_1.svg')}}" alt=""><a href="{{ route('index') }}">Home</a></li>
                 <li><img src="{{asset('images/footer/arrow_1.svg')}}" alt=""><a href="{{ route('about-us') }}">About us</a></li>
                 <li><img src="{{asset('images/footer/arrow_1.svg')}}" alt=""><a href="{{ route('contact-us') }}">Contact Us</a></li>
-                <!-- <li><img src="{{asset('images/footer/arrow_1.svg')}}" alt=""><a href="{{ route('faq') }}">FAQ</a></li> -->
+                <li><img src="{{asset('images/footer/arrow_1.svg')}}" alt=""><a href="{{ route('faq') }}">FAQ</a></li>
               </ul>
             </div>
             <div class="col-6">
