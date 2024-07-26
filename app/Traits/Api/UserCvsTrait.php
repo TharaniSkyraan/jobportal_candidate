@@ -127,7 +127,7 @@ trait UserCvsTrait
             'Content-Disposition' =>  'attachment; filename="'. $file_name.'.'.$extension.'"',
         ];
  
-        return \Response::make(Storage::disk('s3')->get($usercv->path), 200, $headers);   
+        return \Response::make($usercv->cv_file, 200, $headers);   
     }
 
     public function deleteUserCv(Request $request)
