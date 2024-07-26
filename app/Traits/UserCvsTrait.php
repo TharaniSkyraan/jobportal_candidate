@@ -142,7 +142,7 @@ trait UserCvsTrait
             'Content-Disposition' =>  'attachment; filename="'. $file_name.'.'.$extension.'"',
         ];
  
-        return \Response::make($usercv->cv_file, 200, $headers);   
+        return \Response::make($usercv->pdf_file, 200, $headers);   
         // return \Response::make(Storage::disk('public')->get($usercv->path), 200, $headers);   
     }
 
