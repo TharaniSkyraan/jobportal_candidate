@@ -58,6 +58,7 @@ return [
             'secret' => 'uzpf+SOX1+pW33pJjV6pbZzVlwfRFYm29jm7P9GK',
             'region' => 'ap-south-1',
             'bucket' => 'mugaam',
+            'url' => 'https://d153dnrbdnl9nt.cloudfront.net/'
         ],
     ],
 ];

@@ -3,15 +3,24 @@
         Options -MultiViews
     </IfModule>
     RewriteEngine On
+    
+    # Exclude the mysql folder from being rewritten
+    RewriteCond %{REQUEST_URI} ^/mysql/ [NC]
+    RewriteRule ^ - [L]
+    
+    # Check if the request is for an existing file or directory
     RewriteCond %{REQUEST_FILENAME} -d [OR]
     RewriteCond %{REQUEST_FILENAME} -f
     RewriteRule ^ ^$1 [N]
+    
+    # Rewrite requests with extensions to the public folder
     RewriteCond %{REQUEST_URI} (\.\w+$) [NC]
-    RewriteRule ^(.*)$ public/$1 
+    RewriteRule ^(.*)$ public/$1
+    
+    # Rewrite all other requests to index.php
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php
-    RewriteEngine On
 </IfModule>
 
 # BEGIN cPanel-generated php ini directives, do not edit
