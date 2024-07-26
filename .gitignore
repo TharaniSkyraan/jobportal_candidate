@@ -24,4 +24,4 @@ error-log
 /employer.mugaam.com
 /admin
 /admin-backup
-/mysql
+/mysql/*
