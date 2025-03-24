@@ -365,9 +365,9 @@ function messagesListHtml(messages){
                 }
             }
             if(val.send_by=='employer'){
-                $html_msg += `<div class="chat-left">`+val.message.replace(/\r?\n/g,'<br/>');
+                $html_msg += `<div class="chat-left">`+(val.message.replace(/\\n/g,'<br/>')).replace(/\r?\n/g,'<br/>');
             }else{
-                $html_msg += `<div class="chat-right">`+val.message.replace(/\r?\n/g,'<br/>');
+                $html_msg += `<div class="chat-right">`+(val.message.replace(/\\n/g,'<br/>')).replace(/\r?\n/g,'<br/>');
             };
 
             $html_msg += `<br><span class="text-right">`+time+`</span></div>`;

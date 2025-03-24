@@ -38,7 +38,7 @@
                             </span>
                             <span class="my-3">
                                 <div class='fdwq'>Address</div> <br>
-                                <a href="javascript:void(0)" class="cursor-default"> Hari Complex, 207/A3, Sathy Rd, opp. Prozone Mall, Saravanampatti, Coimbatore, Tamil Nadu 641035</a>
+                                <a href="javascript:void(0)" class="cursor-default"> No.17, Sri Venkateshwara Towers, FCI Rd, opp. Fire Station, Gandhimaa Nagar, Peelamedu, Coimbatore, Tamil Nadu 641004</a>
                             </span>
                         </div>
                     </div>

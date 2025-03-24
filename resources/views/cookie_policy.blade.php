@@ -70,9 +70,11 @@
 
             <address>
                 Ravindhiran K,<br/>
-                Mugaam India Private Limited,<br/>
-                207/A3, Hari Complex, Sathy Rd,<br/>
-                Saravanampatti, Tamil Nadu - 641035.<br/>
+                Mugaam India Private Limited<br/>
+                Address :No.17, Sri Venkateshwara Towers, <br/> 
+                FCI Rd, opp. Fire Station,  <br/>
+                Gandhimaa Nagar, Peelamedu,  <br/>
+                Coimbatore, Tamil Nadu 641004. <br/>
                 India.<br/>
             </address>
         </div>
